@@ -1,0 +1,314 @@
+{
+  "meta": {
+    "siteName": "Lunar New Year Tết Festival & Parade",
+    "titleSuffix": "Lunar New Year Tết Festival & Parade",
+    "idealistUrl": null,
+    "idealistNote": "Short link when Idealist listing is live"
+  },
+  "event": {
+    "name": "Lunar New Year Tết Festival & Parade",
+    "dates": "Feb 13–14, 2027 · 11 AM–5 PM · to be finalized",
+    "venue": "Elk Grove Regional Park, California",
+    "city": "Elk Grove, CA",
+    "tagline": "free admission · family fair",
+    "zodiacYear": "Year of the Goat",
+    "hosts": "cPALSs + VACOS + NVCC",
+    "attendanceNote": "Planning baseline ~6,000 attendees over the weekend"
+  },
+  "hero": {
+    "headline": "Help build the 2027 festival",
+    "intro": "The Lunar New Year Tết Festival & Parade returns to Elk Grove Regional Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
+    "subhead": "We're looking for directors — one owner per piece of the festival. Pick the lane you want to lead.",
+    "body": "We need directors — people who own an outcome, build a small team, and see it through with co-chair support. Co-chairs Thuy Pham (VACOS) and Bao Thien Ngo (cPALSs) back every lane."
+  },
+  "cta": {
+    "primaryLabel": "Join the team",
+    "primaryHref": "team.html",
+    "buildLabel": "Build the Festival",
+    "buildHref": "build/?festival=lny2027",
+    "sponsorsLabel": "Sponsors",
+    "sponsorsHref": "sponsors.html",
+    "archiveLabel": "2026 archive",
+    "archiveHref": "https://www.elkgrovelunarnewyear.com/"
+  },
+  "apply": {
+    "email": "LunarNewYear@cPALSs.com",
+    "emailSubject": "LNY 2027 Director interest",
+    "steps": [
+      "Pick one role (or two if they're closely related — we'll talk). See the full list on Get involved.",
+      "Apply on Idealist — name your role, preferred contact method (email, text, or phone), and any events you're already committed to this season.",
+      "We'll follow up within a few business days — add you to the staff directory, introduce vendor partners or teammates, and set a first check-in."
+    ],
+    "idealistFallback": "Can't use Idealist? Email LunarNewYear@cPALSs.com with the role name and one sentence on why you're interested."
+  },
+  "directorIntro": {
+    "title": "What is a director?",
+    "paragraphs": [
+      "A director is the go-to person for one festival lane. You don't have to do every task yourself — you own the plan, coordinate vendors and volunteers, and report status to the co-chairs. Most roles are planning now through February 2027; peak workload is the two weeks before and event weekend.",
+      "Already covered: Festival co-chairs only — Thuy Pham (VACOS) and Bao Thien Ngo (cPALSs). Co-chairs hold coalition partnership-level decision authority; every lane director is open for 2027 recruitment.",
+      "23 director roles are open across site & ops, program & experience, and outreach & partners. Member and support roles fill in behind each director. Returning 2026 volunteers are welcome to apply — nothing is assumed until confirmed on the staff directory."
+    ],
+    "notes": [
+      "Youth Culture Day (school multicultural rallies on stage) and Tết Relay Cup (open-age relay bracket on grass) are separate lanes with separate directors.",
+      "Parade & Procession is a sponsor-gated Phase 2 lane — likely cut at MVP unless a registry block funds it.",
+      "Saturday 5–8 PM headliner is sponsor unlock, not MVP baseline.",
+      "Volunteers Director owns shifts; if a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
+    ]
+  },
+  "coChairs": [
+    {
+      "name": "Thuy Pham",
+      "title": "LNY Co-Chair (VACOS)"
+    },
+    {
+      "name": "Bao Thien Ngo",
+      "title": "LNY Co-Chair (cPALSs)"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "site-ops",
+      "title": "Site & operations",
+      "subtitle": "Keep the festival running",
+      "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline — directors work with booked vendors and co-chairs on contracts and event weekend.",
+      "roles": [
+        {
+          "title": "Finance & Administration Director",
+          "own": "Budget, AP, vendor payments, post-event closeout",
+          "fit": "Are detail-oriented and comfortable tracking money in and out"
+        },
+        {
+          "title": "Foundation Director",
+          "own": "Insurance, CCSD/City permits, ops tents, contingency",
+          "fit": "Like checklists, deadlines, and make-it-official work",
+          "note": "Bounce house rentals and owned inflatable games typically require CGL review, vendor COI, and possible rider — sign off before Children's Village books bounce vendors."
+        },
+        {
+          "title": "Operations & Logistics Director",
+          "own": "Site map, load-in/out, day-of ops radio, Capitol Tent City",
+          "fit": "Love maps, timelines, and where does the truck go?"
+        },
+        {
+          "title": "Security Director",
+          "own": "Guard schedule (Sat–Sun festival hours)",
+          "fit": "Are calm under pressure; can liaise with Golden Protection"
+        },
+        {
+          "title": "Amenities Director",
+          "own": "Restrooms, ADA unit, hand-wash placement, porter service",
+          "fit": "Think about guest comfort, site flow, and stocked units through Sunday close"
+        },
+        {
+          "title": "Power & Lighting Director",
+          "own": "Generators, light towers, electrical zones",
+          "fit": "Can coordinate Rental Guys delivery and diesel logistics"
+        },
+        {
+          "title": "Parking & Transport Director",
+          "own": "Parking lots, overflow, golf carts",
+          "fit": "Can coordinate lot assignments, signage, and transport for a large regional park event"
+        },
+        {
+          "title": "Carnival Logistics Director",
+          "own": "Fun & Game profit-share, operator liaison, zero ops bleed",
+          "fit": "Can negotiate with carnival operators and keep rides off the ops budget"
+        }
+      ]
+    },
+    {
+      "id": "program",
+      "title": "Program & experience",
+      "subtitle": "What families see and remember",
+      "intro": "Stages, schedule, and signature moments — including sponsor-funded features from Build the Festival. Directors shape the plan, support sponsor asks when needed, and run the feature when funded.",
+      "roles": [
+        {
+          "title": "Program & Entertainment Director",
+          "experience": "Weekend run-of-show across outdoor and indoor stages",
+          "own": "MC scripts, talent cues, stage schedule"
+        },
+        {
+          "title": "Main Outdoor Stage Director",
+          "experience": "AFG lot · outdoor sound · daytime music stack",
+          "own": "Outdoor stage tent, sound, Saturday daytime programming"
+        },
+        {
+          "title": "Indoor Stage (KP International) Director",
+          "experience": "Day-2 indoor programming in the KP International tent",
+          "own": "Borrow terms, indoor sound, Chinh Kieu class vendor liaison"
+        },
+        {
+          "title": "Youth Culture Day Director",
+          "emoji": "🎌",
+          "experience": "Multicultural rallies — EGUSD high schools share a Sunday stage block",
+          "own": "School outreach, run-of-show, MC intros, group hospitality",
+          "fit": "Know high school advisors, club presidents, or multicultural student programming — this is the stage showcase, not the relay cup"
+        },
+        {
+          "title": "Tết Relay Cup Director",
+          "emoji": "🏃",
+          "experience": "Open-age relay bracket on grass beside Children's Village",
+          "own": "Bracket ops, corral layout, prizes, registration · not youth-only",
+          "fit": "Can run tournament logistics — sports, rec league, or festival games background"
+        },
+        {
+          "title": "Children's Show Director",
+          "emoji": "🎭",
+          "experience": "Short stage sets — magic, storytelling, puppetry for families",
+          "own": "Talent booking, MC coordination, run-of-show"
+        },
+        {
+          "title": "Children's Village Director",
+          "emoji": "🧒",
+          "experience": "Shade, crafts, cultural activity stations — plus rented bounce houses and/or owned inflatable carnival games when sponsors fund those blocks",
+          "own": "Village layout, crafts, gym/PTA activations · Bounce House Rentals · Inflatable Carnival Games when funded",
+          "fit": "Can juggle family programming and two different play models — rent vs owned asset + labor"
+        },
+        {
+          "title": "Honor our Elders Director",
+          "emoji": "🍵",
+          "experience": "Shade, seating, tea hospitality for grandparents",
+          "own": "Rest zone layout and elder-facing hospitality · sponsor-driven"
+        },
+        {
+          "title": "Lion Dance & Heritage Director",
+          "emoji": "🦁",
+          "experience": "2× lion dance @ full weekend — visible heritage programming",
+          "own": "Lion team booking, heritage programming lane"
+        },
+        {
+          "title": "Parade & Procession Director",
+          "phase2": true,
+          "experience": "Moving spectacle through the park",
+          "own": "Performers, staging, route — likely cut @ MVP unless registry funds",
+          "note": "Apply only if you want to hold the vision and help pitch sponsors; not a day-one ops lane."
+        }
+      ]
+    },
+    {
+      "id": "outreach",
+      "title": "Outreach & partners",
+      "subtitle": "Get people there and build allies",
+      "intro": "",
+      "roles": [
+        {
+          "title": "Sponsorship Director",
+          "own": "Corporate pipeline, registry asks, sponsor deliverables",
+          "fit": "Can build business relationships and follow through on sponsor commitments"
+        },
+        {
+          "title": "Marketing & Communications Director",
+          "own": "Email, Instagram, website, organic promotion",
+          "fit": "Write clearly and want Elk Grove families to find us"
+        },
+        {
+          "title": "Vendor Sales Director",
+          "own": "Pipeline, category caps, profitability playbook",
+          "fit": "Can sell booth space fairly and hit category mix targets"
+        },
+        {
+          "title": "Vendor Operations Director",
+          "own": "Eventeny/Zeffy admin, booth layout handoff, TFF pass-through",
+          "fit": "Are detail-oriented and fair — vendor committee experience a plus"
+        },
+        {
+          "title": "Volunteers Director",
+          "own": "Recruitment, shifts, waivers, appreciation event",
+          "fit": "Know how to mobilize people and keep shifts covered"
+        },
+        {
+          "title": "Partnerships & Grants Director",
+          "own": "CCSD, City, SMUD, Yocha Dehe, grant renewals",
+          "fit": "Build institutional relationships; comfortable with grant language"
+        }
+      ]
+    }
+  ],
+  "phase2": {
+    "title": "Sponsor unlocks — Phase 2",
+    "intro": "These director roles activate when sponsors fund the matching Build the Festival gift. Plan with the base director in the meantime; hold the vision until the block unlocks.",
+    "roles": [
+      "Saturday Night Headliner Director — Sat 5–8 PM B-tier anchor",
+      "Parade Production Director — Performers + staging",
+      "Spread the Word Director — Paid Meta / Instagram reach",
+      "Decor & Cây Nêu Director — Community pool + decor backlog"
+    ],
+    "registryHref": "build/?festival=lny2027"
+  },
+  "faq": [
+    {
+      "q": "Do I need festival experience?",
+      "a": "Helpful, not required. LNY 2026 runbooks and co-chairs back you up."
+    },
+    {
+      "q": "Is this paid?",
+      "a": "These are volunteer leadership roles. Sponsor-funded experiences may include modest stipends for performers or facilitators — not director compensation. If a lane stays unfilled past the steering trigger date, co-chairs may approve a contractor fallback from the ops budget."
+    },
+    {
+      "q": "Can two people co-direct?",
+      "a": "One name on the directory as Director; co-leads listed as Members is fine."
+    },
+    {
+      "q": "What if my experience isn't funded yet?",
+      "a": "Plan anyway — directors help pitch sponsors and hold the vision until the block unlocks. Parade and Saturday night headliner are explicitly sponsor-gated."
+    },
+    {
+      "q": "What's the difference between site & ops and program?",
+      "a": "Site & ops keeps the gates open, power on, and guests comfortable. Program & experience is what families come for — stages, Tết Relay Cup, children's programming, and elder hospitality."
+    },
+    {
+      "q": "How big is the festival?",
+      "a": "Planning baseline ~6,000 attendees over the weekend — a family fair, not a ticketed night market. Free gate, daylight hours (11 AM – 5 PM baseline)."
+    },
+    {
+      "q": "I'm already helping with Mid-Autumn Festival 2026 — can I do both?",
+      "a": "Yes — tell us your season commitments on Idealist and we'll coordinate lanes so nothing collides."
+    }
+  ],
+  "about": {
+    "headline": "About the Festival",
+    "sections": [
+      {
+        "title": "About Lunar New Year / Tết",
+        "paragraphs": [
+          "Lunar New Year, known as Tết in Vietnamese culture, is one of the most significant and cherished celebrations in Asian communities worldwide. This ancient festival marks the beginning of the lunar calendar year and symbolizes renewal, family reunion, and hope for prosperity. For Vietnamese families, Tết represents a time to honor ancestors, strengthen family bonds, and welcome good fortune for the year ahead. Traditional celebrations include preparing special foods, decorating homes with flowers and symbols of luck, exchanging red envelopes (lì xì) for good fortune, and gathering with loved ones to reflect on the past year while embracing new beginnings.",
+          "For Vietnamese and Asian communities that fled after the Fall of Saigon following decades of war, arriving in America meant starting over in an unfamiliar land. As refugees worked to rebuild their livelihoods and establish new roots, Lunar New Year celebrations served a crucial function — providing a place of familiarity and community connection in their adopted homeland. This ancient tradition became more than just a cultural observance; it became an essential anchor that helped displaced families reorient themselves, maintain their identity, and forge bonds with fellow community members navigating similar challenges of resettlement."
+        ]
+      },
+      {
+        "title": "Sacramento & Elk Grove",
+        "paragraphs": [
+          "Today, the Lunar New Year Tết Festival & Parade in Elk Grove builds on decades of cultural celebrations in the Sacramento region — from Stockton Boulevard and Florin to Elk Grove Regional Park. The festival is a free, family-centered gathering that welcomes the whole community: carnival, lion dance, multicultural programming, and live music.",
+          "The festival is co-hosted by Community Partners Advocate of Little Saigon Sacramento (cPALSs), Vietnamese American Community of Sacramento (VACOS), and Norcal Vietnamese Chamber of Commerce (NVCC), with generous support from sponsors, donors, and volunteers.",
+          "We hope you consider supporting our culturally-oriented and community-driven festival as part of this historical moment for our community."
+        ]
+      }
+    ],
+    "posterWall": {
+      "title": "Festival posters over the years",
+      "intro": "Each season's festival poster reflects the zodiac year and the host neighborhood.",
+      "posters": [
+        { "year": 2026, "venue": "Elk Grove Regional Park", "image": "posters/2026.png" },
+        { "year": 2025, "venue": "Elk Grove Regional Park", "image": "posters/2025.jpg" },
+        { "year": 2024, "venue": "Elk Grove Regional Park", "image": "posters/2024.jpg" },
+        { "year": 2023, "venue": "Florin Towne Centre", "image": "posters/2023.jpg" },
+        { "year": 2022, "venue": "Florin Towne Centre", "image": "posters/2022.jpg" },
+        { "year": 2020, "venue": "Stockton Boulevard", "image": "posters/2020.jpg" },
+        { "year": 2019, "venue": "Stockton Boulevard", "image": "posters/2019.jpg" },
+        { "year": 2018, "venue": "Cali Saigon Mall", "image": "posters/2018.png" },
+        { "year": 2017, "venue": "Stockton Boulevard", "image": "posters/2017.jpg" },
+        { "year": 2016, "venue": "Stockton Boulevard", "image": "posters/2016.jpg" },
+        { "year": 2012, "venue": "Stockton Boulevard", "image": "posters/2012.jpg" }
+      ],
+      "note": "2027 Year of the Goat poster coming soon. Want to contribute art? Email LunarNewYear@cPALSs.com."
+    }
+  },
+  "footer": {
+    "thankYou2026": "Thank you to our 2026 sponsors",
+    "coalitionLinks": [
+      { "label": "cPALSs", "href": "https://www.cpalss.com/" },
+      { "label": "VACOS", "href": "https://vacos.org/" },
+      { "label": "NVCC", "href": "https://www.facebook.com/norcalvietnamesechamber/" },
+      { "label": "2026 archive", "href": "https://www.elkgrovelunarnewyear.com/" }
+    ]
+  }
+}

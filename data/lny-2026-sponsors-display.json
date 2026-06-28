@@ -1,0 +1,180 @@
+{
+  "eventYear": 2026,
+  "tierOrder": [
+    "Partners",
+    "Platinum Sponsors",
+    "Bronze Sponsors",
+    "Community Sponsors",
+    "Media Sponsors"
+  ],
+  "sponsors": [
+    {
+      "name": "Cosumnes Community Services District",
+      "tier": "Partners",
+      "url": "https://www.cosumnescsd.gov/",
+      "logo": "2026/cosumnes-csd.png"
+    },
+    {
+      "name": "City of Elk Grove",
+      "tier": "Partners",
+      "url": "https://elkgrove.gov/",
+      "logo": "2026/city-of-elk-grove.png"
+    },
+    {
+      "name": "American Furniture Gallery",
+      "tier": "Platinum Sponsors",
+      "url": "https://www.americanfurnituregalleries.net/",
+      "logo": "2026/american-furniture-gallery.png"
+    },
+    {
+      "name": "Duc Huong",
+      "tier": "Platinum Sponsors",
+      "url": "https://duchuongsandwiches.com/",
+      "logo": "2026/duc-huong.png"
+    },
+    {
+      "name": "SMUD",
+      "tier": "Platinum Sponsors",
+      "url": "https://www.smud.org/",
+      "logo": "2026/smud.png"
+    },
+    {
+      "name": "Fire Wings",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/fire-wings.png"
+    },
+    {
+      "name": "Hydro City",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/hydro-city.png"
+    },
+    {
+      "name": "Metro by T-Mobile",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/metro-by-tmobile.png"
+    },
+    {
+      "name": "Parkwest Casino Lotus",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/parkwest-casino-lotus.png"
+    },
+    {
+      "name": "Phoong Law",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/phoong-law.png"
+    },
+    {
+      "name": "SF Supermarket",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/sf-supermarket.png"
+    },
+    {
+      "name": "Verizon",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/verizon.png"
+    },
+    {
+      "name": "Xfinity",
+      "tier": "Bronze Sponsors",
+      "url": null,
+      "logo": "2026/xfinity.png"
+    },
+    {
+      "name": "Asian American Business Club",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/aabc.png"
+    },
+    {
+      "name": "Chason's",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/chasons.png"
+    },
+    {
+      "name": "Hook & Reel",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/hook-and-reel.png"
+    },
+    {
+      "name": "Darren Suen",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/darren-suen.png"
+    },
+    {
+      "name": "Rod Brewer",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/rod-brewer.png"
+    },
+    {
+      "name": "Thien Ho",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/thien-ho.png"
+    },
+    {
+      "name": "Pat Hume",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/pat-hume.png"
+    },
+    {
+      "name": "Golden Protection Security Services",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/golden-protection-security.png"
+    },
+    {
+      "name": "KP International Market",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/kp-international-market.png"
+    },
+    {
+      "name": "Journey to the Dumpling",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/journey-to-the-dumpling.png"
+    },
+    {
+      "name": "Anthem",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/anthem.png"
+    },
+    {
+      "name": "California Waste Solutions",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/california-waste-solutions.png"
+    },
+    {
+      "name": "Vietnamese American Business Association",
+      "tier": "Community Sponsors",
+      "url": null,
+      "logo": "2026/vaba.png"
+    },
+    {
+      "name": "MY58",
+      "tier": "Media Sponsors",
+      "url": null,
+      "logo": "2026/my58.png"
+    },
+    {
+      "name": "Messenger Publishing Group",
+      "tier": "Media Sponsors",
+      "url": null,
+      "logo": "2026/messenger-publishing-group.png"
+    }
+  ]
+}

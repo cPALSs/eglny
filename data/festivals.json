@@ -1,0 +1,18 @@
+{
+  "festivals": [
+    {
+      "id": "lny2027",
+      "label": "Lunar New Year Tết Festival & Parade 2027",
+      "file": "../data/lny-2027.json",
+      "registryImpactSort": "desc",
+      "estimatedSponsorsFile": "../data/lny-2026-sponsors.json",
+      "cashOffsetLabel": "Vendors, parking & carnival",
+      "sections": {
+        "core": "Cash ops cover most of core (~$26K of ~$40K). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
+        "registry": "Upgrade blocks families remember — parade, talent, decor, Saturday night, and more. Pick the story you want to own.",
+        "options": "Sponsor booth spot unlocks at Bronze ($3,000+). Bring your own tent, or add tent rental. Tent rental requires sponsor booth spot."
+      }
+    }
+  ],
+  "default": "lny2027"
+}

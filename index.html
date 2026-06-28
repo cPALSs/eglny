@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lunar New Year Tết Festival & Parade — 2027 planning, director recruitment, and sponsorship at Elk Grove Regional Park." />
+  <title>Lunar New Year Tết Festival & Parade</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark" || t === "auto") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap" id="main">
+    <p class="muted">Loading…</p>
+  </main>
+  <div id="site-footer"></div>
+  <script src="site.js"></script>
+  <script>
+    (async function () {
+        const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml } = window.EglnySite;
+      initPageShell("home");
+      try {
+        const site = await loadSiteData();
+        setPageTitle(site);
+        const e = site.event;
+        const h = site.hero;
+        const c = site.cta;
+        document.getElementById("main").innerHTML = `
+          <section class="hero">
+            <h1>${escapeHtml(e.name)}</h1>
+            ${renderEventSummary(site)}
+          </section>
+          <p class="home-intro">${escapeHtml(h.intro)}</p>
+          <section class="panel">
+            <h2>${escapeHtml(h.headline)}</h2>
+            <p>${escapeHtml(h.subhead)}</p>
+            <p class="muted">${escapeHtml(h.body)}</p>
+            <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
+          </section>
+          <section class="panel">
+            <h2>Sponsor the experience</h2>
+            <p>Vendor fees fund baseline operations. Sponsors unlock the blocks families remember — stages, Tết Relay Cup, children's programming, and more.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="${escapeHtml(c.buildHref)}">${escapeHtml(c.buildLabel)}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.sponsorsHref)}">${escapeHtml(c.sponsorsLabel)}</a>
+            </div>
+          </section>
+        `;
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>
