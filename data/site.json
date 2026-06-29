@@ -304,6 +304,10 @@
   },
   "footer": {
     "thankYou2026": "Thank you to our 2026 sponsors",
+    "socialLinks": [
+      { "label": "Instagram", "href": "https://www.instagram.com/lunarnewyeartet/" },
+      { "label": "Facebook", "href": "https://www.facebook.com/LunarNewYearTet/" }
+    ],
     "coalitionLinks": [
       { "label": "cPALSs", "href": "https://www.cpalss.com/" },
       { "label": "VACOS", "href": "https://vacos.org/" },
