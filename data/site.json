@@ -73,43 +73,42 @@
       "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline — directors work with booked vendors and co-chairs on contracts and event weekend.",
       "roles": [
         {
-          "title": "Finance & Administration Director",
+          "title": "Finance & Administration",
           "own": "Budget, AP, vendor payments, post-event closeout",
           "fit": "Are detail-oriented and comfortable tracking money in and out"
         },
         {
-          "title": "Foundation Director",
+          "title": "Foundation",
           "own": "Insurance, CCSD/City permits, ops tents, contingency",
-          "fit": "Like checklists, deadlines, and make-it-official work",
-          "note": "Bounce house rentals and owned inflatable games typically require CGL review, vendor COI, and possible rider — sign off before Children's Village books bounce vendors."
+          "fit": "Like checklists, deadlines, and make-it-official work"
         },
         {
-          "title": "Operations & Logistics Director",
+          "title": "Operations & Logistics",
           "own": "Site map, load-in/out, day-of ops radio, Capitol Tent City",
           "fit": "Love maps, timelines, and where does the truck go?"
         },
         {
-          "title": "Security Director",
+          "title": "Security",
           "own": "Guard schedule (Sat–Sun festival hours)",
           "fit": "Are calm under pressure; can liaise with Golden Protection"
         },
         {
-          "title": "Amenities Director",
+          "title": "Amenities",
           "own": "Restrooms, ADA unit, hand-wash placement, porter service",
           "fit": "Think about guest comfort, site flow, and stocked units through Sunday close"
         },
         {
-          "title": "Power & Lighting Director",
+          "title": "Power & Lighting",
           "own": "Generators, light towers, electrical zones",
           "fit": "Can coordinate Rental Guys delivery and diesel logistics"
         },
         {
-          "title": "Parking & Transport Director",
+          "title": "Parking & Transport",
           "own": "Parking lots, overflow, golf carts",
           "fit": "Can coordinate lot assignments, signage, and transport for a large regional park event"
         },
         {
-          "title": "Carnival Logistics Director",
+          "title": "Carnival Logistics",
           "own": "Fun & Game profit-share, operator liaison, zero ops bleed",
           "fit": "Can negotiate with carnival operators and keep rides off the ops budget"
         }
@@ -122,65 +121,54 @@
       "intro": "Stages, schedule, and signature moments — including sponsor-funded features from Fund The Festival. Directors shape the plan, support sponsor asks when needed, and run the feature when funded.",
       "roles": [
         {
-          "title": "Program & Entertainment Director",
-          "experience": "Weekend run-of-show across outdoor and indoor stages",
-          "own": "MC scripts, talent cues, stage schedule"
+          "title": "Program & Entertainment",
+          "own": "MC scripts, talent cues, and master schedule for outdoor + indoor stages"
         },
         {
-          "title": "Main Outdoor Stage Director",
-          "experience": "AFG lot · outdoor sound · daytime music stack",
-          "own": "Outdoor stage tent, sound, Saturday daytime programming"
+          "title": "Main Outdoor Stage",
+          "own": "Outdoor stage tent, sound, Saturday daytime programming (AFG lot)"
         },
         {
-          "title": "Indoor Stage (KP International) Director",
-          "experience": "Day-2 indoor programming in the KP International tent",
-          "own": "Borrow terms, indoor sound, Chinh Kieu class vendor liaison"
+          "title": "Indoor Stage (KP International)",
+          "own": "KP International tent · borrow terms · indoor sound · Chinh Kieu vendor liaison"
         },
         {
-          "title": "Youth Culture Day Director",
+          "title": "Youth Culture Day",
           "emoji": "🎌",
-          "experience": "Multicultural rallies — EGUSD high schools share a Sunday stage block",
-          "own": "School outreach, run-of-show, MC intros, group hospitality",
+          "own": "School outreach · Sunday run-of-show · MC intros · group hospitality",
           "fit": "Know high school advisors, club presidents, or multicultural student programming — this is the stage showcase, not the relay cup"
         },
         {
-          "title": "Tết Relay Cup Director",
+          "title": "Tết Relay Cup",
           "emoji": "🏃",
-          "experience": "Open-age relay bracket on grass beside Children's Village",
-          "own": "Bracket ops, corral layout, prizes, registration · not youth-only",
+          "own": "Bracket ops · corral layout · prizes · registration",
           "fit": "Can run tournament logistics — sports, rec league, or festival games background"
         },
         {
-          "title": "Children's Show Director",
+          "title": "Children's Show",
           "emoji": "🎭",
-          "experience": "Short stage sets — magic, storytelling, puppetry for families",
-          "own": "Talent booking, MC coordination, run-of-show"
+          "own": "Talent booking · MC coordination · children's run-of-show"
         },
         {
-          "title": "Children's Village Director",
+          "title": "Children's Village",
           "emoji": "🧒",
-          "experience": "Shade, crafts, cultural activity stations — plus rented bounce houses and/or owned inflatable carnival games when sponsors fund those blocks",
-          "own": "Village layout, crafts, gym/PTA activations · Bounce House Rentals · Inflatable Carnival Games when funded",
+          "own": "Village layout · crafts · gym/PTA activations · bounce houses or inflatables when funded",
           "fit": "Can juggle family programming and two different play models — rent vs owned asset + labor"
         },
         {
-          "title": "Honor our Elders Director",
+          "title": "Honor our Elders",
           "emoji": "🍵",
-          "experience": "Shade, seating, tea hospitality for grandparents",
-          "own": "Rest zone layout and elder-facing hospitality · sponsor-driven"
+          "own": "Rest zone layout · elder tea station staffing (sponsor-driven)"
         },
         {
-          "title": "Lion Dance & Heritage Director",
+          "title": "Lion Dance & Heritage",
           "emoji": "🦁",
-          "experience": "2× lion dance @ full weekend — visible heritage programming",
-          "own": "Lion team booking, heritage programming lane"
+          "own": "Lion team booking · 2× weekend performances"
         },
         {
-          "title": "Parade & Procession Director",
+          "title": "Parade & Procession",
           "phase2": true,
-          "experience": "Moving spectacle through the park",
-          "own": "Performers, staging, route — likely cut @ MVP unless registry funds",
-          "note": "Apply only if you want to hold the vision and help pitch sponsors; not a day-one ops lane."
+          "own": "Performer booking · staging · route plan (registry-gated)"
         }
       ]
     },
@@ -191,32 +179,32 @@
       "intro": "",
       "roles": [
         {
-          "title": "Sponsorship Director",
+          "title": "Sponsorship",
           "own": "Corporate pipeline, registry asks, sponsor deliverables",
           "fit": "Can build business relationships and follow through on sponsor commitments"
         },
         {
-          "title": "Marketing & Communications Director",
+          "title": "Marketing & Communications",
           "own": "Email, Instagram, website, organic promotion",
           "fit": "Write clearly and want Elk Grove families to find us"
         },
         {
-          "title": "Vendor Sales Director",
+          "title": "Vendor Sales",
           "own": "Pipeline, category caps, profitability playbook",
           "fit": "Can sell booth space fairly and hit category mix targets"
         },
         {
-          "title": "Vendor Operations Director",
+          "title": "Vendor Operations",
           "own": "Eventeny/Zeffy admin, booth layout handoff, TFF pass-through",
           "fit": "Are detail-oriented and fair — vendor committee experience a plus"
         },
         {
-          "title": "Volunteers Director",
+          "title": "Volunteers",
           "own": "Recruitment, shifts, waivers, appreciation event",
           "fit": "Know how to mobilize people and keep shifts covered"
         },
         {
-          "title": "Partnerships & Grants Director",
+          "title": "Partnerships & Grants",
           "own": "CCSD, City, SMUD, Yocha Dehe, grant renewals",
           "fit": "Build institutional relationships; comfortable with grant language"
         }
@@ -287,17 +275,61 @@
       "title": "Festival posters over the years",
       "intro": "Each season's festival poster reflects the zodiac year and the host neighborhood.",
       "posters": [
-        { "year": 2026, "venue": "Elk Grove Regional Park", "image": "posters/2026.png" },
-        { "year": 2025, "venue": "Elk Grove Regional Park", "image": "posters/2025.jpg" },
-        { "year": 2024, "venue": "Elk Grove Regional Park", "image": "posters/2024.jpg" },
-        { "year": 2023, "venue": "Florin Towne Centre", "image": "posters/2023.jpg" },
-        { "year": 2022, "venue": "Florin Towne Centre", "image": "posters/2022.jpg" },
-        { "year": 2020, "venue": "Stockton Boulevard", "image": "posters/2020.jpg" },
-        { "year": 2019, "venue": "Stockton Boulevard", "image": "posters/2019.jpg" },
-        { "year": 2018, "venue": "Cali Saigon Mall", "image": "posters/2018.png" },
-        { "year": 2017, "venue": "Stockton Boulevard", "image": "posters/2017.jpg" },
-        { "year": 2016, "venue": "Stockton Boulevard", "image": "posters/2016.jpg" },
-        { "year": 2012, "venue": "Stockton Boulevard", "image": "posters/2012.jpg" }
+        {
+          "year": 2026,
+          "venue": "Elk Grove Regional Park",
+          "image": "posters/2026.png"
+        },
+        {
+          "year": 2025,
+          "venue": "Elk Grove Regional Park",
+          "image": "posters/2025.jpg"
+        },
+        {
+          "year": 2024,
+          "venue": "Elk Grove Regional Park",
+          "image": "posters/2024.jpg"
+        },
+        {
+          "year": 2023,
+          "venue": "Florin Towne Centre",
+          "image": "posters/2023.jpg"
+        },
+        {
+          "year": 2022,
+          "venue": "Florin Towne Centre",
+          "image": "posters/2022.jpg"
+        },
+        {
+          "year": 2020,
+          "venue": "Stockton Boulevard",
+          "image": "posters/2020.jpg"
+        },
+        {
+          "year": 2019,
+          "venue": "Stockton Boulevard",
+          "image": "posters/2019.jpg"
+        },
+        {
+          "year": 2018,
+          "venue": "Cali Saigon Mall",
+          "image": "posters/2018.png"
+        },
+        {
+          "year": 2017,
+          "venue": "Stockton Boulevard",
+          "image": "posters/2017.jpg"
+        },
+        {
+          "year": 2016,
+          "venue": "Stockton Boulevard",
+          "image": "posters/2016.jpg"
+        },
+        {
+          "year": 2012,
+          "venue": "Stockton Boulevard",
+          "image": "posters/2012.jpg"
+        }
       ],
       "note": "2027 Year of the Goat poster coming soon. Want to contribute art? Email contact@eglny.com."
     }
@@ -305,14 +337,32 @@
   "footer": {
     "thankYou2026": "Thank you to our 2026 sponsors",
     "socialLinks": [
-      { "label": "Instagram", "href": "https://www.instagram.com/lunarnewyeartet/" },
-      { "label": "Facebook", "href": "https://www.facebook.com/LunarNewYearTet/" }
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/lunarnewyeartet/"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/LunarNewYearTet/"
+      }
     ],
     "coalitionLinks": [
-      { "label": "cPALSs", "href": "https://www.cpalss.com/" },
-      { "label": "VACOS", "href": "https://vacos.org/" },
-      { "label": "NVCC", "href": "https://www.facebook.com/norcalvietnamesechamber/" },
-      { "label": "2026 archive", "href": "https://www.elkgrovelunarnewyear.com/" }
+      {
+        "label": "cPALSs",
+        "href": "https://www.cpalss.com/"
+      },
+      {
+        "label": "VACOS",
+        "href": "https://vacos.org/"
+      },
+      {
+        "label": "NVCC",
+        "href": "https://www.facebook.com/norcalvietnamesechamber/"
+      },
+      {
+        "label": "2026 archive",
+        "href": "https://www.elkgrovelunarnewyear.com/"
+      }
     ]
   }
 }

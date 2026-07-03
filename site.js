@@ -365,25 +365,47 @@
     return res.json();
   }
 
+  function roleDirectorName(role) {
+    if (role.director) return role.director;
+    const note = role.note ?? "";
+    const match = note.match(/^Director:\s*([^·]+)/);
+    return match ? match[1].trim() : "";
+  }
+
   function renderRoleCard(role) {
     const title = role.emoji ? `${role.emoji} ${role.title}` : role.title;
     const phase2 = role.phase2 ? " phase2" : "";
-    let body = "";
 
-    if (role.experience) {
-      body += `<dl><dt>What guests experience</dt><dd>${escapeHtml(role.experience)}</dd>`;
-      body += `<dt>You'd own</dt><dd>${escapeHtml(role.own)}</dd>`;
-      if (role.fit) body += `<dt>Good fit if you</dt><dd>${escapeHtml(role.fit)}</dd>`;
-      body += "</dl>";
-    } else {
-      body += `<dl><dt>You'd own</dt><dd>${escapeHtml(role.own)}</dd>`;
-      if (role.fit) body += `<dt>Good fit if you</dt><dd>${escapeHtml(role.fit)}</dd>`;
-      body += "</dl>";
-    }
+    const test = role.test ? `<p class="role-test">${escapeHtml(role.test)}</p>` : "";
 
-    const note = role.note ? `<p class="role-note">${escapeHtml(role.note)}</p>` : "";
+    const directorName = roleDirectorName(role);
+    const director = directorName
+      ? `<p class="role-director">${escapeHtml(directorName)}, Director</p>`
+      : "";
+    const filled = directorName ? " role-card--filled" : "";
 
-    return `<article class="role-card${phase2}"><h3>${escapeHtml(title)}</h3>${body}${note}</article>`;
+    const deliverable = role.ship ?? role.own;
+    const shipBlock = deliverable
+      ? `<div class="role-field">
+        <p class="role-field-label">You'd ship</p>
+        <p class="role-field-text">${escapeHtml(deliverable)}</p>
+      </div>`
+      : "";
+
+    const fit = role.fit
+      ? `<div class="role-field">
+        <p class="role-field-label">Good fit if you</p>
+        <p class="role-field-text">${escapeHtml(role.fit)}</p>
+      </div>`
+      : "";
+
+    return `<article class="role-card${phase2}${filled}">
+      <h3>${escapeHtml(title)}</h3>
+      ${director}
+      ${test}
+      ${shipBlock}
+      ${fit}
+    </article>`;
   }
 
   function renderApplyBlock(site) {

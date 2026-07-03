@@ -982,7 +982,7 @@ body.nav-open {
   .lane-section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.25rem;
+    gap: 1.25rem;
   }
 
   .lane-header {
@@ -1005,43 +1005,69 @@ body.nav-open {
   color: var(--muted);
 }
 
+.site-doc-main .lane-section {
+  border-top: none;
+}
+
 .role-card {
-  margin: 1rem 0;
-  padding: 1rem 1.1rem;
+  margin: 0 0 1rem;
+  padding: 1.25rem 1.35rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
 
+.role-card--filled {
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.role-card--filled .role-director {
+  color: color-mix(in srgb, var(--accent) 72%, var(--muted));
+}
+
 .role-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.575rem, 3.6vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.role-test {
   margin: 0 0 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
 }
 
-.role-card dl {
-  margin: 0;
-  display: grid;
-  gap: 0.35rem;
+.role-director {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--muted);
 }
 
-.role-card dt {
+.role-field + .role-field {
+  margin-top: 0.85rem;
+}
+
+.role-field-label {
+  margin: 0 0 0.25rem;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--muted);
+  font-weight: 600;
 }
 
-.role-card dd {
-  margin: 0 0 0.5rem;
+.role-field-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.role-card .role-note {
-  margin: 0.5rem 0 0;
-  padding: 0.5rem 0.65rem;
-  background: var(--notice-bg, rgba(154, 168, 188, 0.12));
-  border-radius: 6px;
-  font-size: 0.9rem;
-  color: var(--muted);
+.role-field-text + .role-field-text {
+  margin-top: 0.5rem;
 }
 
 .role-card.phase2 {
