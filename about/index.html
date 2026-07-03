@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="About Lunar New Year Tết — Tết traditions, Sacramento history, and festival posters." />
-  <title>About the Festival — Lunar New Year Tết</title>
+  <title>About Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
   <script>
     (function () {
@@ -25,12 +25,12 @@
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, renderPosterWall, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, setPageTitle, escapeHtml } =
+      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, renderPosterWall, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
         window.EglnySite;
       initPageShell("about");
       try {
         const site = await loadSiteData();
-        setPageTitle(site, "About the Festival");
+        document.title = "About Lunar New Year Tết";
         const about = site.about;
         document.getElementById("main").innerHTML = `
           <section class="hero">
