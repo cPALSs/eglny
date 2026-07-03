@@ -557,6 +557,101 @@ body.nav-open {
   padding: 1rem 1.25rem 3rem;
 }
 
+.page-wrap--doc {
+  max-width: none;
+  padding: 0 0 3rem;
+}
+
+.page-wrap--doc > .hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.25rem 1rem;
+}
+
+.site-doc-layout {
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.site-doc-toc {
+  display: none;
+}
+
+.site-doc-main {
+  min-width: 0;
+}
+
+.site-doc-section {
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
+}
+
+.site-doc-main > .site-doc-section {
+  margin: 0;
+  padding: 2.5rem 0;
+}
+
+.site-doc-main > .site-doc-section + .site-doc-section {
+  border-top: 1px solid var(--border);
+}
+
+.site-doc-main > .site-doc-section:first-child {
+  padding-top: 2rem;
+}
+
+@media (min-width: 1100px) {
+  .site-doc-layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .site-doc-toc {
+    display: block;
+    position: sticky;
+    top: calc(var(--nav-height) + 1.5rem);
+    padding: 0.5rem 0;
+  }
+
+  .site-doc-toc-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .site-doc-toc-link {
+    display: block;
+    padding: 0.35rem 0 0.35rem 0.65rem;
+    margin-left: -0.65rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    border-left: 2px solid transparent;
+  }
+
+  .site-doc-toc-link:hover {
+    color: var(--text);
+  }
+
+  .site-doc-toc-link.is-active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 1099px) {
+  .site-doc-main > .lane-section.site-doc-section + .lane-section.site-doc-section {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+  }
+}
+
 .hero {
   padding: 0 0 1rem;
 }
@@ -769,6 +864,10 @@ body.nav-open {
   margin: 2rem 0;
 }
 
+.page-wrap--doc .about-section.site-doc-section {
+  margin: 0;
+}
+
 .about-section h2 {
   margin: 0 0 0.75rem;
   font-size: 1.35rem;
@@ -788,6 +887,10 @@ body.nav-open {
 
 .poster-wall {
   margin: 2.5rem 0;
+}
+
+.page-wrap--doc .poster-wall.site-doc-section {
+  margin: 0;
 }
 
 .poster-wall h2 {
@@ -851,6 +954,10 @@ body.nav-open {
 
 .lane-section {
   margin: 2.5rem 0;
+}
+
+.page-wrap--doc .lane-section.site-doc-section {
+  margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -1044,6 +1151,10 @@ body.nav-open {
 
 .sponsor-tier {
   margin: 2rem 0;
+}
+
+.page-wrap--doc .sponsor-tier.site-doc-section {
+  margin: 0;
 }
 
 .sponsor-tier h2 {

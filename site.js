@@ -442,16 +442,143 @@
     </div>`;
   }
 
+  function slugifyHeading(text) {
+    return String(text)
+      .toLowerCase()
+      .replace(/[^\p{L}\p{N}]+/gu, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function sectionId(section, fallbackTitle) {
+    return section?.id ?? slugifyHeading(fallbackTitle ?? section?.title ?? "section");
+  }
+
+  function renderDocToc(tocItems) {
+    const links = (tocItems ?? [])
+      .map(
+        (item) =>
+          `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
+      )
+      .join("");
+    return `<nav class="site-doc-toc" aria-label="On this page"><p class="site-doc-toc-label">On this page</p>${links}</nav>`;
+  }
+
+  function wrapDocLayout(tocHtml, mainHtml) {
+    return `<div class="site-doc-layout">${tocHtml}<div class="site-doc-main">${mainHtml}</div></div>`;
+  }
+
+  function buildAboutToc(about) {
+    const items = (about.sections ?? []).map((section) => ({
+      id: sectionId(section),
+      label: section.title,
+    }));
+    if (about.posterWall) {
+      items.push({
+        id: "posters",
+        label: about.posterWall.title ?? "Festival posters",
+      });
+    }
+    return items;
+  }
+
+  function buildTeamToc(site) {
+    return [
+      { id: "director-roles", label: "Director roles" },
+      ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
+      { id: "phase2", label: site.phase2?.title ?? "Phase 2" },
+      { id: "apply", label: "How to apply" },
+      { id: "faq", label: "FAQ" },
+    ];
+  }
+
+  function initDocToc() {
+    const tocLinks = document.querySelectorAll("[data-toc-target]");
+    const sections = document.querySelectorAll("[data-doc-section]");
+    if (!tocLinks.length || !sections.length) return;
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function setActiveSection(id) {
+      tocLinks.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("data-toc-target") === id);
+      });
+    }
+
+    tocLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        scrollToSection(link.getAttribute("data-toc-target"));
+      });
+    });
+
+    function getScrollSpyOffsetPx() {
+      const styles = getComputedStyle(document.documentElement);
+      const navHeight = parseFloat(styles.getPropertyValue("--nav-height")) || 52;
+      const rem = parseFloat(styles.fontSize) || 16;
+      return navHeight + rem;
+    }
+
+    function pickActiveSection(sectionList) {
+      if (!sectionList.length) return null;
+
+      const offset = getScrollSpyOffsetPx();
+      const doc = document.documentElement;
+      const nearBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - offset;
+
+      if (nearBottom) {
+        return sectionList[sectionList.length - 1].id;
+      }
+
+      let activeId = sectionList[0].id;
+      for (const section of sectionList) {
+        if (section.getBoundingClientRect().top <= offset + 1) {
+          activeId = section.id;
+        }
+      }
+      return activeId;
+    }
+
+    const sectionList = [...sections];
+    let scrollSpyScheduled = false;
+
+    function scheduleScrollSpyUpdate() {
+      if (scrollSpyScheduled) return;
+      scrollSpyScheduled = true;
+      requestAnimationFrame(() => {
+        scrollSpyScheduled = false;
+        const activeId = pickActiveSection(sectionList);
+        if (activeId) setActiveSection(activeId);
+      });
+    }
+
+    window.addEventListener("scroll", scheduleScrollSpyUpdate, { passive: true });
+    window.addEventListener("resize", scheduleScrollSpyUpdate, { passive: true });
+    if ("onscrollend" in window) {
+      window.addEventListener("scrollend", scheduleScrollSpyUpdate, { passive: true });
+    }
+    scheduleScrollSpyUpdate();
+
+    const hash = window.location.hash.replace("#", "");
+    if (hash) scrollToSection(hash);
+  }
+
   function renderAboutSections(about) {
     const sections = about.sections ?? [];
     if (sections.length) {
       return sections
         .map(
-          (section) => `
-      <section class="about-section">
+          (section) => {
+            const id = sectionId(section);
+            return `
+      <section class="about-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
         ${section.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
-      </section>`,
+      </section>`;
+          },
         )
         .join("");
     }
@@ -479,7 +606,7 @@
       .join("");
 
     return `
-    <section class="poster-wall">
+    <section class="poster-wall site-doc-section" id="posters" data-doc-section>
       <h2>${escapeHtml(posterWall.title ?? "Festival posters over the years")}</h2>
       ${posterWall.intro ? `<p class="muted">${escapeHtml(posterWall.intro)}</p>` : ""}
       <div class="poster-grid">${cards}</div>
@@ -493,17 +620,79 @@
     initNavMenu();
   }
 
+  function renderTeamPage(site) {
+    const intro = site.directorIntro;
+    const lanesHtml = site.lanes
+      .map(
+        (lane) => `
+          <section class="lane-section site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
+            <div class="lane-header">
+              <h2>${escapeHtml(lane.title)}</h2>
+              <p><strong>${escapeHtml(lane.subtitle)}</strong>${lane.intro ? " — " + escapeHtml(lane.intro) : ""}</p>
+            </div>
+            ${lane.roles.map(renderRoleCard).join("")}
+          </section>`,
+      )
+      .join("");
+
+    const phase2 = site.phase2;
+    const phase2Html = `
+          <section class="content-section site-doc-section" id="phase2" data-doc-section>
+            <h2>${escapeHtml(phase2.title)}</h2>
+            <p>${escapeHtml(phase2.intro)}</p>
+            <ul>${phase2.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
+            <p><a href="${escapeHtml(phase2.registryHref)}">See the registry →</a></p>
+          </section>`;
+
+    const faqHtml = site.faq
+      .map(
+        (f) => `
+          <div class="faq-item">
+            <h3>${escapeHtml(f.q)}</h3>
+            <p>${escapeHtml(f.a)}</p>
+          </div>`,
+      )
+      .join("");
+
+    const mainHtml = `
+          <section class="content-section site-doc-section" id="director-roles" data-doc-section>
+            <h2>Director roles — 2027 festival</h2>
+            <h3>${escapeHtml(intro.title)}</h3>
+            ${intro.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+            <ul>${intro.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join("")}</ul>
+          </section>
+          ${lanesHtml}
+          ${phase2Html}
+          <section class="content-section site-doc-section" id="apply" data-doc-section>
+            <h2>How to apply</h2>
+            ${renderApplyBlock(site)}
+            <div class="co-chairs">${renderCoChairs(site)}</div>
+          </section>
+          <section class="content-section site-doc-section" id="faq" data-doc-section>
+            <h2>FAQ</h2>
+            ${faqHtml}
+          </section>`;
+
+    return wrapDocLayout(renderDocToc(buildTeamToc(site)), mainHtml);
+  }
+
   window.EglnySite = {
     initPageShell,
     loadSiteData,
     mountFooter,
+    buildAboutToc,
     renderAboutSections,
     renderPosterWall,
     renderApplyBlock,
     renderCoChairs,
+    renderDocToc,
     renderEventSummary,
     renderRoleCard,
+    renderTeamPage,
     setPageTitle,
+    wrapDocLayout,
+    initDocToc,
+    slugifyHeading,
     escapeHtml,
     navPrefix,
   };

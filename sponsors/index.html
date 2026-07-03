@@ -18,14 +18,15 @@
 </head>
 <body>
   <div id="site-nav"></div>
-  <main class="page-wrap" id="main">
+  <main class="page-wrap page-wrap--doc" id="main">
     <p class="muted">Loading…</p>
   </main>
   <div id="site-footer"></div>
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, setPageTitle, escapeHtml } = window.EglnySite;
+      const { initPageShell, loadSiteData, mountFooter, renderDocToc, wrapDocLayout, initDocToc, slugifyHeading, setPageTitle, escapeHtml } =
+        window.EglnySite;
       initPageShell("sponsors");
       try {
         const site = await loadSiteData();
@@ -45,8 +46,13 @@
           ...tierOrder.filter((t) => byTier.has(t)),
           ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
         ];
+        const tocItems = [
+          ...sortedTiers.map((tier) => ({ id: slugifyHeading(tier), label: tier })),
+          { id: "sponsor-2027", label: "Sponsor the 2027 festival" },
+        ];
         const tiersHtml = sortedTiers
           .map((tier) => {
+            const tierId = slugifyHeading(tier);
             const cards = byTier
               .get(tier)
               .map((s) => {
@@ -59,22 +65,26 @@
                 return `<div class="sponsor-card">${inner}</div>`;
               })
               .join("");
-            return `<section class="sponsor-tier"><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
+            return `<section class="sponsor-tier site-doc-section" id="${escapeHtml(tierId)}" data-doc-section><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
           })
           .join("");
+
+        const mainHtml = `
+          ${tiersHtml || "<p>No sponsors to display.</p>"}
+          <section class="content-section site-doc-section" id="sponsor-2027" data-doc-section>
+            <h2>Sponsor the 2027 festival</h2>
+            <p>2027 sponsors will appear here when agreements are signed. Explore upgrade blocks families remember.</p>
+            <a class="btn btn-primary" href="/fund-the-festival/">Fund The Festival →</a>
+          </section>`;
 
         document.getElementById("main").innerHTML = `
           <section class="hero">
             <h1>Thank You — 2026 Festival Sponsors</h1>
             <p class="hero-lead">Our ${data.eventYear ?? 2026} festival was made possible by these partners and sponsors.</p>
           </section>
-          ${tiersHtml || "<p>No sponsors to display.</p>"}
-          <section class="content-section">
-            <h2>Sponsor the 2027 festival</h2>
-            <p>2027 sponsors will appear here when agreements are signed. Explore upgrade blocks families remember.</p>
-            <a class="btn btn-primary" href="/fund-the-festival/">Fund The Festival →</a>
-          </section>
+          ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}
         `;
+        initDocToc();
         mountFooter(site);
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
