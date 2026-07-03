@@ -21,10 +21,10 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #faf7f2;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-raised: #fff8ee;
-  --border: #e5ddd0;
+  --surface-raised: #f6f6f6;
+  --border: #e5e5e5;
   --text: #1a2332;
   --muted: #5c6b80;
   --accent: #c41e3a;
@@ -36,10 +36,10 @@
 @media (prefers-color-scheme: light) {
   :root[data-theme="auto"] {
     color-scheme: light;
-    --bg: #faf7f2;
+    --bg: #ffffff;
     --surface: #ffffff;
-    --surface-raised: #fff8ee;
-    --border: #e5ddd0;
+    --surface-raised: #f6f6f6;
+    --border: #e5e5e5;
     --text: #1a2332;
     --muted: #5c6b80;
     --accent: #c41e3a;
@@ -866,16 +866,6 @@ body.nav-open {
     border-top: 1px solid var(--border);
     padding-top: 2rem;
   }
-}
-
-/* Legacy card panels (e.g. fund-the-festival progress panels) */
-.panel.progress-panel,
-.panel.collapsible {
-  margin: 2rem 0;
-  padding: 1.25rem 1.35rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
 }
 
 .about-section {

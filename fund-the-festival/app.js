@@ -51,13 +51,12 @@ function giftBenefits(gift) {
 }
 
 const DEFAULT_SPONSOR_TIERS = [
-  { label: "Community supporter", min: 0 },
-  { label: "Supporter", min: 250 },
-  { label: "Bronze", min: 500 },
-  { label: "Silver", min: 1000 },
-  { label: "Gold", min: 2500 },
-  { label: "Diamond", min: 5000 },
-  { label: "Presenting", min: 10000 },
+  { label: "Community", min: 1500 },
+  { label: "Bronze", min: 3000 },
+  { label: "Silver", min: 5000 },
+  { label: "Gold", min: 7500 },
+  { label: "Diamond", min: 10000 },
+  { label: "Platinum", min: 15000 },
 ];
 
 function getSponsorTiers() {
@@ -130,12 +129,12 @@ const EGLNY_THEME_KEY = "eglny-theme";
 const LEGACY_THEME_KEY = "maf2026-theme";
 
 /** eglny.com embed — site nav owns theme UI + eglny-theme storage */
-function isEglnyEmbed() {
+function isSiteEmbed() {
   return !!document.querySelector(".site-nav, .build-shell");
 }
 
 function activeThemeStorageKey() {
-  return isEglnyEmbed() ? EGLNY_THEME_KEY : THEME_STORAGE_KEY;
+  return isSiteEmbed() ? EGLNY_THEME_KEY : THEME_STORAGE_KEY;
 }
 
 function estimatedSponsorsStorageKey(festivalId) {
@@ -148,6 +147,10 @@ function enabledStorageKey(festivalId) {
 
 function extraCashStorageKey(festivalId) {
   return `build-extra-cash:${festivalId}`;
+}
+
+function selectedTierStorageKey(festivalId) {
+  return `build-selected-tier:${festivalId}`;
 }
 
 const VALID_THEMES = new Set(["auto", "light", "dark"]);
@@ -170,7 +173,7 @@ function loadThemeFromStorage() {
     const key = activeThemeStorageKey();
     const theme =
       localStorage.getItem(key) ||
-      (isEglnyEmbed() ? localStorage.getItem(THEME_STORAGE_KEY) : null) ||
+      (isSiteEmbed() ? localStorage.getItem(THEME_STORAGE_KEY) : null) ||
       localStorage.getItem(LEGACY_THEME_KEY);
     return VALID_THEMES.has(theme) ? theme : "auto";
   } catch {
@@ -181,7 +184,7 @@ function loadThemeFromStorage() {
 function applyTheme(theme) {
   const next = VALID_THEMES.has(theme) ? theme : "auto";
   document.documentElement.setAttribute("data-theme", next);
-  if (isEglnyEmbed()) return;
+  if (isSiteEmbed()) return;
   renderThemeIcon(next);
   const select = document.getElementById("btf-theme-select");
   if (select && select.value !== next) select.value = next;
@@ -200,7 +203,7 @@ function setTheme(theme) {
 function initTheme() {
   applyTheme(loadThemeFromStorage());
 
-  if (isEglnyEmbed()) {
+  if (isSiteEmbed()) {
     window.addEventListener("storage", (e) => {
       if (e.key === EGLNY_THEME_KEY && VALID_THEMES.has(e.newValue)) applyTheme(e.newValue);
     });
@@ -224,7 +227,9 @@ const state = {
   data: null,
   enabled: {},
   extraCash: 0,
+  selectedTierMin: null,
   modalGiftId: null,
+  modalTierMin: null,
   modalTab: "guest",
   cartTab: "selection",
   estimatedSponsors: null,
@@ -265,8 +270,16 @@ function getSponsorRules() {
   return state.data?.sponsorRules ?? { boothUnlockThreshold: 2500, boothTierLabel: "Gold" };
 }
 
+function selectedTierAmount() {
+  return state.selectedTierMin || 0;
+}
+
+function selectedTier() {
+  return state.selectedTierMin != null ? findSponsorTier(state.selectedTierMin) : null;
+}
+
 function sponsorTotal() {
-  return sumEnabled(["registry", "core"]) + (state.extraCash || 0);
+  return sumEnabled(["registry", "core"]) + (state.extraCash || 0) + selectedTierAmount();
 }
 
 function giftsSubtotal() {
@@ -274,7 +287,7 @@ function giftsSubtotal() {
 }
 
 function cartTotal() {
-  return giftsSubtotal() + (state.extraCash || 0);
+  return giftsSubtotal() + (state.extraCash || 0) + selectedTierAmount();
 }
 
 function coreGiftName(giftId) {
@@ -282,8 +295,13 @@ function coreGiftName(giftId) {
   return gift ? gift.name : "base core gift";
 }
 
+function boothIncludedByTier() {
+  const { boothUnlockThreshold } = getSponsorRules();
+  return state.selectedTierMin != null && state.selectedTierMin >= boothUnlockThreshold;
+}
+
 function isOptionUnlocked(gift) {
-  const { boothUnlockThreshold, boothTierLabel } = getSponsorRules();
+  const { boothUnlockThreshold } = getSponsorRules();
   if (gift.requiresSponsorThreshold && sponsorTotal() < boothUnlockThreshold) return false;
   if (gift.requiresBoothSpot && !state.enabled.sponsor_booth) return false;
   if (gift.requiresCoreGift && !state.enabled[gift.requiresCoreGift]) return false;
@@ -293,6 +311,10 @@ function isOptionUnlocked(gift) {
 function unlockNotice(gift) {
   const { boothUnlockThreshold, boothTierLabel } = getSponsorRules();
   const parts = [];
+  if (gift.id === "sponsor_booth" && boothIncludedByTier()) {
+    const tier = selectedTier();
+    return `Included with your selected ${tier?.label ?? boothTierLabel} tier.`;
+  }
   if (gift.requiresSponsorThreshold && sponsorTotal() < boothUnlockThreshold) {
     parts.push(
       `Requires ${boothTierLabel} sponsorship (${fmt(boothUnlockThreshold)} minimum). Your build: ${fmt(sponsorTotal())}.`,
@@ -511,6 +533,9 @@ function enforceOptionLocks() {
       if (gift.requiresSponsorThreshold) delete state.enabled[gift.id];
     }
   }
+  if (boothIncludedByTier()) {
+    state.enabled.sponsor_booth = true;
+  }
   for (const gift of state.data?.gifts ?? []) {
     if (gift.requiresBoothSpot) {
       const boothGift = state.data.gifts.find(
@@ -614,9 +639,44 @@ function setGiftEnabled(id, checked) {
   const gift = state.data.gifts.find((g) => g.id === id);
   if (gift && !isSelectableGift(gift)) return;
   if (gift && !isOptionUnlocked(gift) && checked) return;
+  if (id === "sponsor_booth" && !checked && boothIncludedByTier()) return;
   if (checked) state.enabled[id] = true;
   else delete state.enabled[id];
   enforceOptionLocks();
+  persistEnabled();
+  renderAll();
+}
+
+function persistSelectedTier() {
+  if (!state.festivalId) return;
+  try {
+    if (state.selectedTierMin != null) {
+      localStorage.setItem(selectedTierStorageKey(state.festivalId), String(state.selectedTierMin));
+    } else {
+      localStorage.removeItem(selectedTierStorageKey(state.festivalId));
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
+function loadSelectedTierFromStorage(festivalId) {
+  try {
+    const raw = localStorage.getItem(selectedTierStorageKey(festivalId));
+    if (raw == null) return null;
+    const n = Math.round(Number(raw));
+    return Number.isFinite(n) && n > 0 ? n : null;
+  } catch {
+    return null;
+  }
+}
+
+function setSelectedTier(tierMin, checked) {
+  if (choicesLockedForEstimate()) return;
+  if (checked) state.selectedTierMin = tierMin;
+  else if (state.selectedTierMin === tierMin) state.selectedTierMin = null;
+  enforceOptionLocks();
+  persistSelectedTier();
   persistEnabled();
   renderAll();
 }
@@ -625,8 +685,10 @@ function clearSelections() {
   if (choicesLockedForEstimate()) return;
   state.enabled = {};
   state.extraCash = 0;
+  state.selectedTierMin = null;
   persistEnabled();
   persistExtraCash();
+  persistSelectedTier();
   renderAll();
 }
 
@@ -649,7 +711,8 @@ function selectedGifts() {
 }
 
 function renderCartBadge() {
-  const n = selectedGifts().length + (state.extraCash > 0 ? 1 : 0);
+  const n =
+    selectedGifts().length + (state.extraCash > 0 ? 1 : 0) + (state.selectedTierMin ? 1 : 0);
   const badge = document.getElementById("cart-count");
   badge.textContent = String(n);
   badge.hidden = n === 0;
@@ -657,15 +720,20 @@ function renderCartBadge() {
 
 function renderCartModal() {
   const selected = selectedGifts();
+  const tier = selectedTier();
   document.getElementById("cart-total").textContent = fmt(cartTotal());
-  document.getElementById("cart-clear").disabled = selected.length === 0 && !state.extraCash;
+  document.getElementById("cart-clear").disabled =
+    selected.length === 0 && !state.extraCash && !tier;
 
   const listEl = document.getElementById("cart-selection-list");
   const extraGift = variableAmountGift();
-  if (!selected.length && !state.extraCash) {
+  if (!selected.length && !state.extraCash && !tier) {
     listEl.innerHTML =
       `<p class="hint">No features selected yet. Toggle cards to build your sponsorship package.</p>`;
   } else {
+    const tierRow = tier
+      ? `<li><span>${escapeHtml(tier.label)}</span><span>${tierAmountLabel(tier)}</span></li>`
+      : "";
     const rows = selected
       .map(
         (g) =>
@@ -676,30 +744,39 @@ function renderCartModal() {
       state.extraCash > 0 && extraGift
         ? `<li><span>${giftLabel(extraGift)}</span><span>${fmt(state.extraCash)}</span></li>`
         : "";
-    listEl.innerHTML = `<ul class="cart-list">${rows}${extraRow}</ul>`;
+    listEl.innerHTML = `<ul class="cart-list">${tierRow}${rows}${extraRow}</ul>`;
   }
 
   const withBenefits = selected.filter((g) => giftBenefits(g).length);
+  const tierBenefitsList = tier ? tierBenefits(tier) : [];
   const global = globalPerkLines();
   const perksEl = document.getElementById("cart-perks");
 
-  if (!global.length && !withBenefits.length) {
+  if (!global.length && !withBenefits.length && !tierBenefitsList.length) {
     perksEl.innerHTML = `<p class="hint">Select features to see sponsor perks.</p>`;
     return;
   }
 
-  const tier = currentSponsorTier();
+  const reached = currentSponsorTier();
   const globalHtml = global.length
     ? `<div class="cart-global-perks">
         <h4>Global perks</h4>
-        <p class="cart-tier-note">Recognition tier for your build: <strong>${tier.label}</strong> (${fmt(sponsorTotal())})</p>
+        <p class="cart-tier-note">Recognition tier for your build: <strong>${reached.label}</strong> (${fmt(sponsorTotal())})</p>
         <ul>${global.map((p) => `<li><span class="cart-global-perk-label">${p.label}</span> — ${p.text}</li>`).join("")}</ul>
+      </div>`
+    : "";
+
+  const tierHtml = tierBenefitsList.length
+    ? `<div class="cart-perk-group">
+        <h4>${escapeHtml(tier.label)}</h4>
+        <ul>${tierBenefitsList.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
       </div>`
     : "";
 
   const giftHtml = withBenefits.length
     ? `<div class="cart-perk-groups">
-        ${withBenefits.length && global.length ? "<h4 class=\"cart-perk-groups-title\">Feature perks</h4>" : ""}
+        ${(withBenefits.length || tierHtml) && global.length ? "<h4 class=\"cart-perk-groups-title\">Feature perks</h4>" : ""}
+        ${tierHtml}
         ${withBenefits
           .map(
             (g) => `
@@ -712,7 +789,9 @@ function renderCartModal() {
           )
           .join("")}
       </div>`
-    : "";
+    : tierHtml
+      ? `<div class="cart-perk-groups">${global.length ? "<h4 class=\"cart-perk-groups-title\">Feature perks</h4>" : ""}${tierHtml}</div>`
+      : "";
 
   perksEl.innerHTML = globalHtml + giftHtml;
 }
@@ -740,7 +819,7 @@ function renderMeta() {
   if (summaryEl) {
     summaryEl.textContent = [e.venue, e.dates, attendance].filter(Boolean).join(" · ");
   }
-  document.title = `Fund The Festival — ${e.name}`;
+  document.title = `Fund The Festival — ${e.name ?? currentFestivalEntry()?.label ?? "Lunar New Year Tết"}`;
 }
 
 function renderSectionHints() {
@@ -754,10 +833,143 @@ function renderSectionHints() {
 
   const coreEl = document.getElementById("core-desc");
   const registryEl = document.getElementById("registry-desc");
+  const tiersEl = document.getElementById("tiers-desc");
   const optionsEl = document.getElementById("options-desc");
   if (coreEl) coreEl.textContent = replaceTokens(sections.core) || "";
   if (registryEl) registryEl.textContent = replaceTokens(sections.registry) || "";
+  if (tiersEl) {
+    tiersEl.textContent =
+      replaceTokens(sections.tiers) ||
+      "Recognition levels based on your total sponsorship. Tier benefits stack with any registry stories you fund.";
+  }
   if (optionsEl) optionsEl.textContent = replaceTokens(sections.options) || "";
+}
+
+function displaySponsorTiers() {
+  return getSponsorTiers().filter((tier) => tier.min > 0);
+}
+
+function tierAmountLabel(tier) {
+  return fmt(tier.min);
+}
+
+function tierBenefits(tier) {
+  const b = tier?.benefits;
+  if (!b) return [];
+  return Array.isArray(b) ? b : [b];
+}
+
+function findSponsorTier(tierMin) {
+  return getSponsorTiers().find((tier) => tier.min === tierMin) ?? null;
+}
+
+function renderTierModalContent(tierMin) {
+  const tier = findSponsorTier(tierMin);
+  if (!tier) return;
+
+  const on = state.selectedTierMin === tier.min;
+  const benefits = tierBenefits(tier);
+  const lockChoices = choicesLockedForEstimate();
+
+  document.getElementById("modal-title").textContent = tier.label;
+  document.getElementById("modal-amount").textContent = tierAmountLabel(tier);
+  document.getElementById("modal-tabs").hidden = true;
+  document.getElementById("modal-funds").classList.add("hidden");
+  document.getElementById("modal-guest").classList.remove("hidden");
+
+  const toggleWrap = document.getElementById("modal-toggle-wrap");
+  toggleWrap.hidden = false;
+  const toggle = document.getElementById("modal-toggle");
+  toggle.checked = on;
+  toggle.disabled = lockChoices;
+  toggle.onchange = () => {
+    if (choicesLockedForEstimate()) {
+      toggle.checked = state.selectedTierMin === tier.min;
+      return;
+    }
+    setSelectedTier(tier.min, toggle.checked);
+    toggle.checked = state.selectedTierMin === tier.min;
+  };
+
+  document.getElementById("modal-guest").innerHTML = `
+    ${tier.tagline ? `<p class="modal-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
+    ${tier.description ? `<p class="modal-description">${formatMarkdown(tier.description)}</p>` : ""}
+    ${
+      benefits.length
+        ? `<p class="modal-benefits-label">Benefits</p><ul class="modal-benefits">${benefits
+            .map((b) => `<li>${escapeHtml(b)}</li>`)
+            .join("")}</ul>`
+        : ""
+    }
+  `;
+}
+
+function openTierModal(tierMin) {
+  const tier = findSponsorTier(tierMin);
+  if (!tier) return;
+
+  state.modalGiftId = null;
+  state.modalTierMin = tierMin;
+  state.modalTab = "guest";
+  renderTierModalContent(tierMin);
+  document.getElementById("gift-modal").showModal();
+}
+
+function bindTierGrid() {
+  const el = document.getElementById("tiers-grid");
+  if (!el) return;
+
+  el.querySelectorAll("[data-tier-toggle]").forEach((input) => {
+    input.onchange = () => setSelectedTier(Number(input.dataset.tierToggle), input.checked);
+  });
+
+  el.querySelectorAll(".gift-card").forEach((card) => {
+    const tierMin = Number(card.dataset.tierMin);
+    const open = () => openTierModal(tierMin);
+    card.onclick = (e) => {
+      if (e.target.closest("[data-tier-toggle]")) return;
+      open();
+    };
+    card.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open();
+      }
+    };
+  });
+}
+
+function renderSponsorTiers() {
+  const grid = document.getElementById("tiers-grid");
+  if (!grid) return;
+
+  const tiers = displaySponsorTiers();
+  if (!tiers.length) {
+    grid.innerHTML = "";
+    return;
+  }
+
+  const lockChoices = choicesLockedForEstimate();
+
+  grid.innerHTML = tiers
+    .map((tier) => {
+      const on = state.selectedTierMin === tier.min;
+      return `<article class="gift-card gift-card--tier${on ? " enabled" : ""}" data-tier-min="${tier.min}" tabindex="0">
+      <div class="gift-card-head">
+        <div>
+          <h3>${escapeHtml(tier.label)}</h3>
+          <div class="gift-amount">${tierAmountLabel(tier)}</div>
+        </div>
+        <label class="toggle-wrap${lockChoices ? " toggle-wrap--disabled" : ""}" onclick="event.stopPropagation()">
+          <input type="checkbox" data-tier-toggle="${tier.min}"${on ? " checked" : ""}${lockChoices ? " disabled" : ""} aria-label="Select ${escapeHtml(tier.label)} tier" />
+        </label>
+      </div>
+      ${tier.tagline ? `<p class="gift-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
+    </article>`;
+    })
+    .join("");
+
+  bindTierGrid();
 }
 
 function cashOffsetLabel() {
@@ -938,6 +1150,8 @@ function giftCardHtml(gift) {
   const on = selectable && !!state.enabled[gift.id];
   const unlocked = isOptionUnlocked(gift);
   const lockChoices = choicesLockedForEstimate();
+  const includedByTier = gift.id === "sponsor_booth" && boothIncludedByTier();
+  const toggleLocked = !unlocked || lockChoices || includedByTier;
   return `
     <article class="gift-card${on ? " enabled" : ""}${selectable && !unlocked ? " locked" : ""}${selectable ? "" : " gift-card--readonly"}${estimatedSponsorCardClass(gift.id)}" data-id="${gift.id}" tabindex="0">
       <div class="gift-card-head">
@@ -947,13 +1161,14 @@ function giftCardHtml(gift) {
         </div>
         ${
           selectable
-            ? `<label class="toggle-wrap${unlocked && !lockChoices ? "" : " toggle-wrap--disabled"}" onclick="event.stopPropagation()">
-          <input type="checkbox" data-toggle="${gift.id}"${on ? " checked" : ""}${unlocked && !lockChoices ? "" : " disabled"} aria-label="Fund ${gift.name}" />
+            ? `<label class="toggle-wrap${toggleLocked ? " toggle-wrap--disabled" : ""}" onclick="event.stopPropagation()">
+          <input type="checkbox" data-toggle="${gift.id}"${on ? " checked" : ""}${toggleLocked ? " disabled" : ""} aria-label="Fund ${gift.name}" />
         </label>`
             : ""
         }
       </div>
       ${gift.tagline ? `<p class="gift-tagline">${gift.tagline}</p>` : ""}
+      ${includedByTier ? `<p class="gift-gap-hint">Included with your selected tier</p>` : ""}
       ${estimatedSponsorTagsHtml(gift.id)}
     </article>
   `;
@@ -1021,6 +1236,7 @@ function renderModalContent(giftId) {
   const unlocked = isOptionUnlocked(gift);
   const selectable = isSelectableGift(gift);
   const variable = isVariableAmountGift(gift);
+  const includedByTier = gift.id === "sponsor_booth" && boothIncludedByTier();
 
   document.getElementById("modal-title").textContent = giftLabel(gift);
   document.getElementById("modal-amount").textContent = giftAmountLabel(gift);
@@ -1028,9 +1244,9 @@ function renderModalContent(giftId) {
   toggleWrap.hidden = !selectable || variable;
   const toggle = document.getElementById("modal-toggle");
   toggle.checked = !!state.enabled[giftId];
-  toggle.disabled = !selectable || !unlocked || choicesLockedForEstimate();
+  toggle.disabled = !selectable || !unlocked || choicesLockedForEstimate() || includedByTier;
   toggle.onchange = () => {
-    if (choicesLockedForEstimate()) {
+    if (choicesLockedForEstimate() || includedByTier) {
       toggle.checked = !!state.enabled[giftId];
       return;
     }
@@ -1044,6 +1260,11 @@ function renderModalContent(giftId) {
 
   const benefits = giftBenefits(gift);
   const gapHint = variable ? boothGapHint() : "";
+  const notice = includedByTier
+    ? unlockNotice(gift)
+    : !unlocked && !variable
+      ? unlockNotice(gift)
+      : "";
   document.getElementById("modal-guest").innerHTML = `
     ${
       variable
@@ -1067,7 +1288,7 @@ function renderModalContent(giftId) {
     }
     ${gift.tagline ? `<p class="modal-tagline">${gift.tagline}</p>` : ""}
     ${estimatedSponsorTagsHtml(gift.id)}
-    ${!unlocked && !variable ? `<p class="modal-unlock-notice">${unlockNotice(gift)}</p>` : ""}
+    ${notice ? `<p class="modal-unlock-notice">${notice}</p>` : ""}
     <p class="modal-description">${formatMarkdown(gift.description)}</p>
     ${
       benefits.length
@@ -1095,16 +1316,19 @@ function renderModalContent(giftId) {
 
 function openModal(giftId) {
   state.modalGiftId = giftId;
+  state.modalTierMin = null;
   state.modalTab = "guest";
   const gift = state.data.gifts.find((g) => g.id === giftId);
   if (!gift) return;
 
+  document.getElementById("modal-tabs").hidden = false;
   renderModalContent(giftId);
   setModalTab("guest");
   document.getElementById("gift-modal").showModal();
 }
 
 function setModalTab(tab) {
+  if (state.modalTierMin != null) return;
   state.modalTab = tab;
   document.querySelectorAll(".gift-tab").forEach((t) => {
     t.classList.toggle("active", t.dataset.giftTab === tab);
@@ -1118,6 +1342,7 @@ function renderAll() {
   renderSectionHints();
   renderCoreProgress();
   renderProgress();
+  renderSponsorTiers();
   renderCartBadge();
   if (document.getElementById("cart-modal").open) {
     renderCartModal();
@@ -1126,11 +1351,16 @@ function renderAll() {
   bindGiftGrid("registry-grid", "registry");
   bindGiftGrid("options-grid", "options");
   bindGiftGrid("secondary-grid", "secondary");
-  if (state.modalGiftId && document.getElementById("gift-modal").open) {
-    const typingVariable = document.activeElement?.id === "modal-variable-amount-input";
-    if (!typingVariable) {
-      renderModalContent(state.modalGiftId);
-      setModalTab(state.modalTab);
+  if (document.getElementById("gift-modal").open) {
+    if (state.modalTierMin != null) {
+      renderTierModalContent(state.modalTierMin);
+    } else if (state.modalGiftId) {
+      const typingVariable = document.activeElement?.id === "modal-variable-amount-input";
+      if (!typingVariable) {
+        document.getElementById("modal-tabs").hidden = false;
+        renderModalContent(state.modalGiftId);
+        setModalTab(state.modalTab);
+      }
     }
   }
 }
@@ -1211,6 +1441,11 @@ async function loadFestivalData(festivalId) {
   state.enabled = loadEnabledFromStorage(festivalId, state.data.gifts.map((g) => g.id));
   state.extraCash = loadExtraCashFromStorage(festivalId);
   state.modalGiftId = null;
+  state.modalTierMin = null;
+  state.selectedTierMin = loadSelectedTierFromStorage(festivalId);
+  if (state.selectedTierMin != null && !findSponsorTier(state.selectedTierMin)) {
+    state.selectedTierMin = null;
+  }
   state.showEstimatedSponsors = loadEstimatedSponsorsToggle(festivalId);
   enforceOptionLocks();
   persistEnabled();
@@ -1263,8 +1498,8 @@ async function init() {
   } catch (err) {
     document.querySelector(".page").innerHTML = `
       <p class="error">Could not load festival data. Run from a local server:<br>
-      <code>cd "Projects - Lunar New Year/2027/Marketing/eglny-site" && python3 -m http.server 8765</code><br>
-      Then open http://localhost:8765/fund-the-festival/<br><br>${err.message}</p>`;
+      <code>cd "Projects - Lunar New Year/2027/Marketing/eglny-site" && python3 -m http.server 8766</code><br>
+      Then open http://localhost:8766/fund-the-festival/<br><br>${err.message}</p>`;
   }
 }
 

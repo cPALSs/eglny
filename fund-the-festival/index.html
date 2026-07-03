@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,6 +35,10 @@
           <select id="festival-select" class="festival-select" aria-label="Festival" hidden></select>
         </h1>
         <p class="event-summary" id="event-summary">Loading…</p>
+        <p class="sponsor-contact">
+          Interested in funding the festival?
+          <a href="mailto:contact@eglny.com?subject=LNY%202027%20sponsorship">contact@eglny.com</a>
+        </p>
       </div>
     </header>
 
@@ -112,6 +116,12 @@
     </details>
 
     <details class="panel collapsible" open>
+      <summary><span class="caret" aria-hidden="true"></span>Sponsor tiers</summary>
+      <p class="hint collapsible-desc" id="tiers-desc"></p>
+      <div class="gift-grid gift-grid--3" id="tiers-grid"></div>
+    </details>
+
+    <details class="panel collapsible" open>
       <summary><span class="caret" aria-hidden="true"></span>Perks and options</summary>
       <p class="hint collapsible-desc" id="options-desc"></p>
       <div class="gift-grid" id="options-grid"></div>
@@ -159,6 +169,10 @@
         <div id="cart-selection-list"></div>
       </div>
       <div class="modal-body hidden" id="cart-perks"></div>
+      <p class="sponsor-contact sponsor-contact--modal">
+        Ready to sponsor? Email
+        <a href="mailto:contact@eglny.com?subject=LNY%202027%20sponsorship">contact@eglny.com</a>
+      </p>
       <footer class="modal-footer modal-footer--split">
         <button type="button" class="btn btn-clear" id="cart-clear" disabled>Clear selection</button>
         <button type="submit" class="btn">Close</button>
@@ -176,7 +190,7 @@
         </label>
       </header>
       <div class="modal-tab-row">
-        <div class="modal-tabs">
+        <div class="modal-tabs" id="modal-tabs">
           <button type="button" class="gift-tab active" data-gift-tab="guest">What guests see</button>
           <button type="button" class="gift-tab" data-gift-tab="funds">What it funds</button>
         </div>

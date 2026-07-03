@@ -818,27 +818,94 @@
   "sponsorTiers": [
     {
       "label": "Community",
-      "min": 1500
+      "min": 1500,
+      "tagline": "Name on programs and web",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
+      "benefits": [
+        "Name on website sponsor page",
+        "Mention in email blast to mailing lists",
+        "MC stage thank-you"
+      ]
     },
     {
       "label": "Bronze",
-      "min": 3000
+      "min": 3000,
+      "tagline": "Logo recognition with booth",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund. Includes sponsor booth eligibility.",
+      "benefits": [
+        "Name on website sponsor page",
+        "Logo on website",
+        "Mention in email blast to mailing lists",
+        "Instagram / Facebook tag",
+        "MC stage thank-you",
+        "10\u00d710 sponsor booth"
+      ]
     },
     {
       "label": "Silver",
-      "min": 5000
+      "min": 5000,
+      "tagline": "Digital recognition with booth",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
+      "benefits": [
+        "Name on website sponsor page",
+        "Logo on website",
+        "Logo row in email blast to mailing lists",
+        "Instagram / Facebook post",
+        "MC stage thank-you",
+        "10\u00d710 sponsor booth",
+        "Website logo + link for 3 months"
+      ]
     },
     {
       "label": "Gold",
-      "min": 7500
+      "min": 7500,
+      "tagline": "Strong recognition with booth and speaking opportunity",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
+      "benefits": [
+        "Name on website sponsor page",
+        "Logo on website",
+        "Dedicated block in email blast to mailing lists",
+        "Instagram / Facebook post + Story",
+        "MC stage thank-you",
+        "10\u00d710 sponsor booth",
+        "Speaking opportunity",
+        "4\u00d74 stage / digital banner",
+        "Website logo + link for 6 months"
+      ]
     },
     {
       "label": "Diamond",
-      "min": 10000
+      "min": 10000,
+      "tagline": "Major recognition with booth and stage banner",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
+      "benefits": [
+        "Name on website sponsor page",
+        "Logo on website",
+        "Featured placement in email blast to mailing lists",
+        "Instagram / Facebook collaboration post",
+        "MC stage thank-you",
+        "10\u00d710 sponsor booth",
+        "Speaking opportunity",
+        "4\u00d76 stage / digital banner",
+        "Website logo + link for 6 months"
+      ]
     },
     {
       "label": "Platinum",
-      "min": 15000
+      "min": 15000,
+      "tagline": "Presenting partner recognition with booth and VIP",
+      "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
+      "benefits": [
+        "Name on website sponsor page",
+        "Featured logo on website",
+        "Headline placement in all email blasts",
+        "Hero Instagram / Facebook coverage (multiple posts)",
+        "Opening and recurring MC stage thank-you",
+        "Premium 10\u00d710 sponsor booth",
+        "Speaking opportunity + intro session",
+        "6\u00d710 stage / digital banner",
+        "Website logo + link for 12 months"
+      ]
     }
   ],
   "globalPerks": [
