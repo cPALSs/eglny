@@ -214,7 +214,7 @@
     <nav class="site-nav" aria-label="Main">
       <div class="site-nav-bar">
         <a class="site-nav-brand" href="${prefix}index.html">
-          <span class="site-nav-brand-full">Lunar New Year <span>Tết Festival &amp; Parade</span></span>
+          <span class="site-nav-brand-full">Lunar New Year <span>Tết</span></span>
           <span class="site-nav-brand-short">LNY <span>Tết</span></span>
         </a>
         <div class="site-nav-end">
@@ -348,7 +348,7 @@
     <footer class="site-footer">
       <nav class="site-footer-nav" aria-label="Footer">${navLinks}</nav>
       ${social}
-      <p class="site-footer-meta">LunarNewYear@cPALSs.com${coalition ? ` · (${coalition})` : ""}</p>
+      <p class="site-footer-meta">${escapeHtml(site.apply?.email ?? "contact@eglny.com")}${coalition ? ` · (${coalition})` : ""}</p>
     </footer>
   `;
   }
@@ -421,7 +421,7 @@
   }
 
   function setPageTitle(site, pageTitle) {
-    const suffix = site.meta?.titleSuffix ?? "Lunar New Year Tết Festival & Parade";
+    const suffix = site.meta?.titleSuffix ?? "Lunar New Year Tết";
     document.title = pageTitle
       ? `${toTitleCase(pageTitle)} — ${suffix}`
       : site.meta?.siteName ?? suffix;

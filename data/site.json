@@ -1,23 +1,23 @@
 {
   "meta": {
-    "siteName": "Lunar New Year Tết Festival & Parade",
-    "titleSuffix": "Lunar New Year Tết Festival & Parade",
+    "siteName": "Lunar New Year Tết",
+    "titleSuffix": "Lunar New Year Tết",
     "idealistUrl": null,
     "idealistNote": "Short link when Idealist listing is live"
   },
   "event": {
-    "name": "Lunar New Year Tết Festival & Parade",
+    "name": "Lunar New Year Tết",
     "dates": "Feb 13–14, 2027 · 11 AM–5 PM · to be finalized",
     "venue": "Elk Grove Regional Park, California",
     "city": "Elk Grove, CA",
-    "tagline": "free admission · family fair",
+    "tagline": "free admission · family fair · parade",
     "zodiacYear": "Year of the Goat",
     "hosts": "cPALSs + VACOS + NVCC",
     "attendanceNote": "Planning baseline ~6,000 attendees over the weekend"
   },
   "hero": {
     "headline": "Help build the 2027 festival",
-    "intro": "The Lunar New Year Tết Festival & Parade returns to Elk Grove Regional Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
+    "intro": "Lunar New Year Tết returns to Elk Grove Regional Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
     "subhead": "We're looking for directors — one owner per piece of the festival. Pick the lane you want to lead.",
     "body": "We need directors — people who own an outcome, build a small team, and see it through with co-chair support. Co-chairs Thuy Pham (VACOS) and Bao Thien Ngo (cPALSs) back every lane."
   },
@@ -32,14 +32,14 @@
     "archiveHref": "https://www.elkgrovelunarnewyear.com/"
   },
   "apply": {
-    "email": "LunarNewYear@cPALSs.com",
+    "email": "contact@eglny.com",
     "emailSubject": "LNY 2027 Director interest",
     "steps": [
       "Pick one role (or two if they're closely related — we'll talk). See the full list on Get involved.",
       "Apply on Idealist — name your role, preferred contact method (email, text, or phone), and any events you're already committed to this season.",
       "We'll follow up within a few business days — add you to the staff directory, introduce vendor partners or teammates, and set a first check-in."
     ],
-    "idealistFallback": "Can't use Idealist? Email LunarNewYear@cPALSs.com with the role name and one sentence on why you're interested."
+    "idealistFallback": "Can't use Idealist? Email contact@eglny.com with the role name and one sentence on why you're interested."
   },
   "directorIntro": {
     "title": "What is a director?",
@@ -277,7 +277,7 @@
       {
         "title": "Sacramento & Elk Grove",
         "paragraphs": [
-          "Today, the Lunar New Year Tết Festival & Parade in Elk Grove builds on decades of cultural celebrations in the Sacramento region — from Stockton Boulevard and Florin to Elk Grove Regional Park. The festival is a free, family-centered gathering that welcomes the whole community: carnival, lion dance, multicultural programming, and live music.",
+          "Today, Lunar New Year Tết in Elk Grove builds on decades of cultural celebrations in the Sacramento region — from Stockton Boulevard and Florin to Elk Grove Regional Park. The festival is a free, family-centered gathering that welcomes the whole community: carnival, lion dance, multicultural programming, and live music.",
           "The festival is co-hosted by Community Partners Advocate of Little Saigon Sacramento (cPALSs), Vietnamese American Community of Sacramento (VACOS), and Norcal Vietnamese Chamber of Commerce (NVCC), with generous support from sponsors, donors, and volunteers.",
           "We hope you consider supporting our culturally-oriented and community-driven festival as part of this historical moment for our community."
         ]
@@ -299,7 +299,7 @@
         { "year": 2016, "venue": "Stockton Boulevard", "image": "posters/2016.jpg" },
         { "year": 2012, "venue": "Stockton Boulevard", "image": "posters/2012.jpg" }
       ],
-      "note": "2027 Year of the Goat poster coming soon. Want to contribute art? Email LunarNewYear@cPALSs.com."
+      "note": "2027 Year of the Goat poster coming soon. Want to contribute art? Email contact@eglny.com."
     }
   },
   "footer": {

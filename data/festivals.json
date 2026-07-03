@@ -2,7 +2,7 @@
   "festivals": [
     {
       "id": "lny2027",
-      "label": "Lunar New Year Tết Festival & Parade 2027",
+      "label": "Lunar New Year Tết 2027",
       "file": "../data/lny-2027.json",
       "registryImpactSort": "desc",
       "estimatedSponsorsFile": "../data/lny-2026-sponsors.json",
