@@ -563,9 +563,13 @@ body.nav-open {
 }
 
 .page-wrap--doc > .hero {
-  max-width: var(--max-width);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 1.25rem 1rem;
+  padding: 1rem clamp(1.25rem, 4vw, 3rem) 1rem;
+}
+
+.hero + .site-doc-layout {
+  margin-top: 0;
 }
 
 .site-doc-layout {
@@ -601,6 +605,19 @@ body.nav-open {
 }
 
 @media (min-width: 1100px) {
+  .page-wrap--doc > .hero:has(+ .site-doc-layout) {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: end;
+    padding-bottom: 0.75rem;
+  }
+
+  .page-wrap--doc > .hero:has(+ .site-doc-layout) > :is(h1, .hero-lead, p) {
+    grid-column: 2;
+    min-width: 0;
+  }
+
   .site-doc-layout {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
@@ -626,11 +643,12 @@ body.nav-open {
 
   .site-doc-toc-link {
     display: block;
-    padding: 0.35rem 0 0.35rem 0.65rem;
+    padding: 0.45rem 0 0.45rem 0.65rem;
     margin-left: -0.65rem;
     color: var(--muted);
     text-decoration: none;
     font-size: 0.92rem;
+    line-height: 1.25;
     border-left: 2px solid transparent;
   }
 
@@ -1182,12 +1200,12 @@ body.nav-open {
   justify-content: center;
   min-height: 88px;
   padding: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid color-mix(in srgb, #1a2332 14%, transparent);
   border-radius: var(--radius);
   text-align: center;
   text-decoration: none;
-  color: var(--text);
+  color: #1a2332;
   font-weight: 600;
   font-size: 0.95rem;
 }
