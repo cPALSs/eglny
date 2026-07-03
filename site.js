@@ -1,4 +1,4 @@
-/** Shared shell for eglny.com — scoped to avoid clashing with build/app.js globals */
+/** Shared shell for eglny.com — scoped to avoid clashing with fund-the-festival/app.js globals */
 (function () {
   const SITE_DATA_URL = "data/site.json";
   const THEME_STORAGE_KEY = "eglny-theme";
@@ -132,14 +132,8 @@
   }
 
   function navPrefix() {
-    const inSubdir =
-      window.location.pathname.includes("/build/") ||
-      window.location.pathname.includes("/2026/");
-    if (
-      inSubdir ||
-      window.location.pathname.endsWith("/build") ||
-      window.location.pathname.endsWith("/2026")
-    ) {
+    const path = window.location.pathname;
+    if (/\/(fund-the-festival|about|team|sponsors|2026|build)(\/|$)/.test(path)) {
       return "../";
     }
     return "";
@@ -162,23 +156,29 @@
       .join("");
   }
 
-  function getNavPages(prefix) {
+  function navLinkLabel(item) {
+    return item.navLabel ?? toTitleCase(item.label);
+  }
+
+  function getNavPages() {
     return [
-      { id: "home", label: "Home", href: `${prefix}index.html` },
+      { id: "home", label: "Home", href: "/" },
       {
         id: "about",
         label: "About",
-        href: `${prefix}about.html`,
+        href: "/about/",
         children: [
           { id: "archive2026", label: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
         ],
       },
-      { id: "team", label: "Team", href: `${prefix}team.html` },
+      { id: "team", label: "Team", href: "/team/" },
       {
         id: "sponsors",
         label: "Sponsors",
-        href: `${prefix}sponsors.html`,
-        children: [{ id: "build", label: "Build the Festival", href: `${prefix}build/?festival=lny2027` }],
+        href: "/sponsors/",
+        children: [
+          { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
+        ],
       },
     ];
   }
@@ -193,27 +193,26 @@
             .map((child) => {
               const childCurrent = child.id === activePage ? ' aria-current="page"' : "";
               const external = child.external ? ' target="_blank" rel="noopener"' : "";
-              return `<a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(toTitleCase(child.label))}</a>`;
+              return `<a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a>`;
             })
             .join("");
-          return `<div class="site-nav-group${childActive ? " is-active" : ""}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(toTitleCase(page.label))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
+          return `<div class="site-nav-group${childActive ? " is-active" : ""}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
         }
         const current = page.id === activePage ? ' aria-current="page"' : "";
-        return `<a href="${page.href}"${current}>${escapeHtml(toTitleCase(page.label))}</a>`;
+        return `<a href="${page.href}"${current}>${escapeHtml(navLinkLabel(page))}</a>`;
       })
       .join("");
   }
 
   function renderNav(activePage) {
-    const prefix = navPrefix();
-    const pages = getNavPages(prefix);
+    const pages = getNavPages();
 
     const links = renderNavLinks(pages, activePage);
 
     return `
     <nav class="site-nav" aria-label="Main">
       <div class="site-nav-bar">
-        <a class="site-nav-brand" href="${prefix}index.html">
+        <a class="site-nav-brand" href="/">
           <span class="site-nav-brand-full">Lunar New Year <span>Tết</span></span>
           <span class="site-nav-brand-short">LNY <span>Tết</span></span>
         </a>
@@ -303,11 +302,11 @@
   function renderFooterNavLinks(pages) {
     return pages
       .flatMap((page) => {
-        const items = [`<a href="${page.href}">${escapeHtml(toTitleCase(page.label))}</a>`];
+        const items = [`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`];
         if (page.children?.length) {
           for (const child of page.children) {
             const external = child.external ? ' target="_blank" rel="noopener"' : "";
-            items.push(`<a href="${child.href}"${external}>${escapeHtml(toTitleCase(child.label))}</a>`);
+            items.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
           }
         }
         return items;
@@ -335,10 +334,10 @@
   }
 
   function renderFooter(site) {
-    const prefix = navPrefix();
-    const navLinks = renderFooterNavLinks(getNavPages(prefix));
+    const navLinks = renderFooterNavLinks(getNavPages());
     const footer = site?.footer ?? {};
     const social = renderFooterSocialLinks(footer.socialLinks);
+    const contactEmail = footer.contactEmail ?? site.apply?.email ?? "contact@eglny.com";
     const coalition = (footer.coalitionLinks ?? [])
       .filter((link) => link.href !== "https://www.elkgrovelunarnewyear.com/")
       .map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>`)
@@ -348,7 +347,7 @@
     <footer class="site-footer">
       <nav class="site-footer-nav" aria-label="Footer">${navLinks}</nav>
       ${social}
-      <p class="site-footer-meta">${escapeHtml(site.apply?.email ?? "contact@eglny.com")}${coalition ? ` · (${coalition})` : ""}</p>
+      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>${coalition ? ` · (${coalition})` : ""}</p>
     </footer>
   `;
   }

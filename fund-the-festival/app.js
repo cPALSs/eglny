@@ -1,4 +1,4 @@
-/** Build the Festival — multi-festival interactive model */
+/** Fund The Festival — multi-festival interactive model */
 
 const fmt = (n) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -734,10 +734,13 @@ function setCartTab(tab) {
 
 function renderMeta() {
   const e = state.data.event;
-  const attendance = e.attendance?.toLocaleString() ?? "—";
-  document.getElementById("event-meta").textContent =
-    `${e.venue} · ${e.dates} · ~${attendance} attendees`;
-  document.title = `Build the Festival — ${e.name}`;
+  const attendance = e.attendance != null ? `~${e.attendance.toLocaleString()} attendees` : null;
+  const summaryEl = document.getElementById("event-summary");
+
+  if (summaryEl) {
+    summaryEl.textContent = [e.venue, e.dates, attendance].filter(Boolean).join(" · ");
+  }
+  document.title = `Fund The Festival — ${e.name}`;
 }
 
 function renderSectionHints() {
@@ -1261,7 +1264,7 @@ async function init() {
     document.querySelector(".page").innerHTML = `
       <p class="error">Could not load festival data. Run from a local server:<br>
       <code>cd "Projects - Lunar New Year/2027/Marketing/eglny-site" && python3 -m http.server 8765</code><br>
-      Then open http://localhost:8765/build/?festival=lny2027<br><br>${err.message}</p>`;
+      Then open http://localhost:8765/fund-the-festival/<br><br>${err.message}</p>`;
   }
 }
 

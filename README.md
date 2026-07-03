@@ -2,23 +2,26 @@
 
 **Public site:** https://eglny.com · GitHub Pages repo [`cPALSs/eglny`](https://github.com/cPALSs/eglny)
 
-Unified LNY hub — home, get involved, about, **2026 sponsors**, **Build the Festival (LNY only)** at `/build/`.
+Unified LNY hub — home, team, about, **2026 sponsors**, **Fund The Festival (LNY only)** at `/fund-the-festival/`.
 
 ## Pages
 
 | Path | File |
 |------|------|
 | `/` | `index.html` |
-| `/team.html` | Director recruitment / join the team (from `data/site.json`) |
-| `/about.html` | Tết + coalition |
-| `/sponsors.html` | 2026 sponsor recognition |
-| `/build/?festival=lny2027` | Interactive sponsor builder (LNY only) |
-| `/2026/sponsors.html` | Redirects to `/sponsors.html` |
+| `/team/` | Director recruitment / join the team (from `data/site.json`) |
+| `/about/` | Tết + coalition |
+| `/sponsors/` | 2026 sponsor recognition |
+| `/fund-the-festival/` | Interactive sponsor registry (LNY only) |
+| `/build/` | Redirect → `/fund-the-festival/` |
+| `/2026/sponsors.html` | Legacy 2026 sponsors page |
+
+Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsors/`, `/get-involved.html` → `/team/`.
 
 ## Content
 
 - **`data/site.json`** — recruitment + about copy ([Open Leadership Roles](../Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
-- **`data/lny-2027.json`** — Build the Festival data (from `build_lny_budget.py`)
+- **`data/lny-2027.json`** — Fund The Festival data (from `build_lny_budget.py`)
 - **`data/lny-2026-sponsors-display.json`** — public sponsor logos/tiers *(reconcile tiers before launch)*
 
 ## Local preview
@@ -29,9 +32,9 @@ python3 -m http.server 8765
 ```
 
 - http://localhost:8765/
-- http://localhost:8765/team.html
-- http://localhost:8765/build/?festival=lny2027
-- http://localhost:8765/sponsors.html
+- http://localhost:8765/team/
+- http://localhost:8765/fund-the-festival/
+- http://localhost:8765/sponsors/
 
 ## Publish
 

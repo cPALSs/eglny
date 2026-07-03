@@ -1,84 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Thank you to our 2026 Lunar New Year Tết sponsors." />
-  <title>2026 Sponsors — Lunar New Year Tết</title>
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark" || t === "auto") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-  <link rel="stylesheet" href="site.css" />
+  <title>Redirecting…</title>
+  <link rel="canonical" href="/sponsors/" />
+  <script src="clean-urls.js"></script>
 </head>
 <body>
-  <div id="site-nav"></div>
-  <main class="page-wrap" id="main">
-    <p class="muted">Loading…</p>
-  </main>
-  <div id="site-footer"></div>
-  <script src="site.js"></script>
-  <script>
-    (async function () {
-      const { initPageShell, loadSiteData, mountFooter, setPageTitle, escapeHtml } = window.EglnySite;
-      initPageShell("sponsors");
-      try {
-        const site = await loadSiteData();
-        setPageTitle(site, "2026 sponsors");
-        const res = await fetch("data/lny-2026-sponsors-display.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`Could not load sponsors (${res.status})`);
-        const data = await res.json();
-        const sponsors = data.sponsors ?? [];
-        const tierOrder = data.tierOrder ?? [];
-        const byTier = new Map();
-        for (const s of sponsors) {
-          const tier = s.tier ?? "Partner";
-          if (!byTier.has(tier)) byTier.set(tier, []);
-          byTier.get(tier).push(s);
-        }
-        const sortedTiers = [
-          ...tierOrder.filter((t) => byTier.has(t)),
-          ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
-        ];
-        const tiersHtml = sortedTiers
-          .map((tier) => {
-            const cards = byTier
-              .get(tier)
-              .map((s) => {
-                const inner = s.logo
-                  ? `<img src="sponsors/${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />`
-                  : escapeHtml(s.name);
-                if (s.url) {
-                  return `<a class="sponsor-card" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
-                }
-                return `<div class="sponsor-card">${inner}</div>`;
-              })
-              .join("");
-            return `<section class="sponsor-tier"><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
-          })
-          .join("");
-
-        document.getElementById("main").innerHTML = `
-          <section class="hero">
-            <h1>Thank You — 2026 Festival Sponsors</h1>
-            <p class="hero-lead">Our ${data.eventYear ?? 2026} festival was made possible by these partners and sponsors.</p>
-          </section>
-          ${tiersHtml || "<p>No sponsors to display.</p>"}
-          <section class="panel">
-            <h2>Sponsor the 2027 festival</h2>
-            <p>2027 sponsors will appear here when agreements are signed. Explore upgrade blocks families remember.</p>
-            <a class="btn btn-primary" href="build/?festival=lny2027">Build the Festival →</a>
-          </section>
-        `;
-        mountFooter(site);
-      } catch (err) {
-        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
-      }
-    })();
-  </script>
+  <p>Redirecting to <a href="/sponsors/">Sponsors</a>…</p>
 </body>
 </html>

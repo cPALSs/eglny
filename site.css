@@ -562,6 +562,7 @@ body.nav-open {
 }
 
 .hero + .panel,
+.hero + .content-section,
 .hero + .lane-section {
   margin-top: 0;
 }
@@ -576,7 +577,8 @@ body.nav-open {
   line-height: 1.6;
 }
 
-.home-intro + .panel {
+.home-intro + .panel,
+.home-intro + .content-section {
   margin-top: 0;
 }
 
@@ -673,31 +675,94 @@ body.nav-open {
   color: var(--accent);
 }
 
-.panel {
-  margin: 2rem 0;
-  padding: 1.25rem 1.35rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+.panel,
+.content-section {
+  margin: 0;
+  padding: 2.5rem 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
-.panel h2 {
+.panel + .panel,
+.content-section + .content-section,
+.about-section + .about-section,
+.poster-wall {
+  border-top: 1px solid var(--border);
+}
+
+.panel h2,
+.content-section h2 {
   margin: 0 0 0.75rem;
   font-size: 1.35rem;
 }
 
-.panel h3 {
+.panel h3,
+.content-section h3 {
   margin: 1.25rem 0 0.35rem;
   font-size: 1.05rem;
 }
 
 .panel p,
-.panel li {
+.panel li,
+.content-section p,
+.content-section li {
   color: var(--text);
 }
 
-.panel .muted {
+.panel .muted,
+.content-section .muted {
   color: var(--muted);
+}
+
+.home-cta-columns {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.home-cta-columns > .content-section {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+}
+
+.home-cta-columns > .content-section + .content-section {
+  border-top: none;
+}
+
+@media (min-width: 720px) {
+  .home-cta-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .home-cta-columns > .home-cta-column:first-child {
+    padding-right: 1rem;
+  }
+
+  .home-cta-columns > .home-cta-column:last-child {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 719px) {
+  .home-cta-columns > .content-section + .content-section {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+}
+
+/* Legacy card panels (e.g. fund-the-festival progress panels) */
+.panel.progress-panel,
+.panel.collapsible {
+  margin: 2rem 0;
+  padding: 1.25rem 1.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .about-section {

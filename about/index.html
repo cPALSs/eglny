@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About Lunar New Year Tết — Tết traditions, Sacramento history, and festival posters." />
+  <title>About the Festival — Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark" || t === "auto") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap" id="main">
+    <p class="muted">Loading…</p>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, renderPosterWall, setPageTitle, escapeHtml } =
+        window.EglnySite;
+      initPageShell("about");
+      try {
+        const site = await loadSiteData();
+        setPageTitle(site, "About the Festival");
+        const about = site.about;
+        document.getElementById("main").innerHTML = `
+          <section class="hero">
+            <h1>${escapeHtml(about.headline)}</h1>
+          </section>
+          ${renderAboutSections(about)}
+          ${renderPosterWall(about.posterWall)}
+        `;
+        mountFooter(site);
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

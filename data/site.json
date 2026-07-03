@@ -23,11 +23,11 @@
   },
   "cta": {
     "primaryLabel": "Join the team",
-    "primaryHref": "team.html",
-    "buildLabel": "Build the Festival",
-    "buildHref": "build/?festival=lny2027",
-    "sponsorsLabel": "Sponsors",
-    "sponsorsHref": "sponsors.html",
+    "primaryHref": "/team/",
+    "buildLabel": "Fund The Festival",
+    "buildHref": "/fund-the-festival/",
+    "sponsorsLabel": "2026 sponsors",
+    "sponsorsHref": "/sponsors/",
     "archiveLabel": "2026 archive",
     "archiveHref": "https://www.elkgrovelunarnewyear.com/"
   },
@@ -119,7 +119,7 @@
       "id": "program",
       "title": "Program & experience",
       "subtitle": "What families see and remember",
-      "intro": "Stages, schedule, and signature moments — including sponsor-funded features from Build the Festival. Directors shape the plan, support sponsor asks when needed, and run the feature when funded.",
+      "intro": "Stages, schedule, and signature moments — including sponsor-funded features from Fund The Festival. Directors shape the plan, support sponsor asks when needed, and run the feature when funded.",
       "roles": [
         {
           "title": "Program & Entertainment Director",
@@ -225,14 +225,14 @@
   ],
   "phase2": {
     "title": "Sponsor unlocks — Phase 2",
-    "intro": "These director roles activate when sponsors fund the matching Build the Festival gift. Plan with the base director in the meantime; hold the vision until the block unlocks.",
+    "intro": "These director roles activate when sponsors fund the matching Fund The Festival gift. Plan with the base director in the meantime; hold the vision until the block unlocks.",
     "roles": [
       "Saturday Night Headliner Director — Sat 5–8 PM B-tier anchor",
       "Parade Production Director — Performers + staging",
       "Spread the Word Director — Paid Meta / Instagram reach",
       "Decor & Cây Nêu Director — Community pool + decor backlog"
     ],
-    "registryHref": "build/?festival=lny2027"
+    "registryHref": "/fund-the-festival/"
   },
   "faq": [
     {
