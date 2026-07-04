@@ -538,9 +538,11 @@
     });
 
     function getScrollSpyOffsetPx() {
-      const styles = getComputedStyle(document.documentElement);
-      const navHeight = parseFloat(styles.getPropertyValue("--nav-height")) || 52;
-      const rem = parseFloat(styles.fontSize) || 16;
+      // Measure the sticky nav in px — parseFloat("--nav-height") is wrong for "3.25rem".
+      const nav = document.getElementById("site-nav");
+      const navHeight = nav?.getBoundingClientRect().height || 52;
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      // Match .host-doc-section scroll-margin-top: nav + 1rem
       return navHeight + rem;
     }
 
