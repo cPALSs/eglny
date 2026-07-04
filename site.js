@@ -132,11 +132,9 @@
   }
 
   function navPrefix() {
-    const path = window.location.pathname;
-    if (/\/(fund-the-festival|about|team|sponsors|2026|build)(\/|$)/.test(path)) {
-      return "../";
-    }
-    return "";
+    const path = window.location.pathname.replace(/\/index\.html$/i, "").replace(/\/$/, "");
+    const depth = path.split("/").filter(Boolean).length;
+    return depth === 0 ? "" : "../".repeat(depth);
   }
 
   function toTitleCase(title) {
@@ -173,11 +171,20 @@
       },
       { id: "team", label: "Team", href: "/team/" },
       {
-        id: "sponsors",
-        label: "Sponsors",
-        href: "/sponsors/",
+        id: "production",
+        label: "Production",
+        href: "/fund-the-festival/",
         children: [
           { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
+        ],
+      },
+      {
+        id: "resources",
+        label: "Resources",
+        href: "/resources/",
+        children: [
+          { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
+          { id: "media", label: "Media", href: "/resources/media/" },
         ],
       },
     ];
@@ -644,6 +651,62 @@
     initNavMenu();
   }
 
+  function renderResourcesPage(resources) {
+    const links = resources?.links ?? [];
+    const cards = links
+      .map(
+        (link) => `
+      <a class="resource-card" href="${escapeHtml(link.href)}">
+        <h2>${escapeHtml(link.title)}</h2>
+        ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
+      </a>`,
+      )
+      .join("");
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(resources?.headline ?? "Resources")}</h1>
+        ${resources?.lead ? `<p class="hero-lead">${escapeHtml(resources.lead)}</p>` : ""}
+      </section>
+      <div class="resource-card-grid">${cards}</div>`;
+  }
+
+  function renderMediaPage(media) {
+    const videos = media?.videos ?? [];
+    const cards = videos
+      .map((video) => {
+        const title = video.title ?? "Festival video";
+        const embedSrc = `https://www.youtube.com/embed/${escapeHtml(video.youtubeId)}`;
+        return `
+      <figure class="video-card">
+        <div class="video-embed">
+          <iframe
+            src="${embedSrc}"
+            title="${escapeHtml(title)}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+        <figcaption class="video-caption">${escapeHtml(title)}</figcaption>
+      </figure>`;
+      })
+      .join("");
+
+    const contact = media?.contactNote
+      ? `<p class="muted media-contact-note">${escapeHtml(media.contactNote)}</p>`
+      : "";
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(media?.headline ?? "Media")}</h1>
+        ${media?.lead ? `<p class="hero-lead">${escapeHtml(media.lead)}</p>` : ""}
+      </section>
+      ${videos.length ? `<div class="video-grid">${cards}</div>` : `<p class="muted">Media coming soon.</p>`}
+      ${contact}`;
+  }
+
   function renderTeamPage(site) {
     const intro = site.directorIntro;
     const lanesHtml = site.lanes
@@ -711,6 +774,8 @@
     renderCoChairs,
     renderDocToc,
     renderEventSummary,
+    renderMediaPage,
+    renderResourcesPage,
     renderRoleCard,
     renderTeamPage,
     setPageTitle,

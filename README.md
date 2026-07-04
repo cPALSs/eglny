@@ -2,7 +2,7 @@
 
 **Public site:** https://eglny.com · GitHub Pages repo [`cPALSs/eglny`](https://github.com/cPALSs/eglny)
 
-Unified LNY hub — home, team, about, **2026 sponsors**, **Fund The Festival (LNY only)** at `/fund-the-festival/`.
+Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Resources** (sponsors + media).
 
 ## Pages
 
@@ -11,8 +11,10 @@ Unified LNY hub — home, team, about, **2026 sponsors**, **Fund The Festival (L
 | `/` | `index.html` |
 | `/team/` | Director recruitment / join the team (from `data/site.json`) |
 | `/about/` | Tết + coalition |
-| `/sponsors/` | 2026 sponsor recognition |
-| `/fund-the-festival/` | Interactive sponsor registry (LNY only) |
+| `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
+| `/resources/` | Resources hub |
+| `/sponsors/` | 2026 sponsor recognition — under **Resources** |
+| `/resources/media/` | Press and festival YouTube embeds — under **Resources** |
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 
@@ -34,7 +36,9 @@ python3 -m http.server 8765
 - http://localhost:8765/
 - http://localhost:8765/team/
 - http://localhost:8765/fund-the-festival/
+- http://localhost:8765/resources/
 - http://localhost:8765/sponsors/
+- http://localhost:8765/resources/media/
 
 ## Publish
 

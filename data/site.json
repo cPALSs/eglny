@@ -334,6 +334,53 @@
       "note": "2027 Year of the Goat poster coming soon. Want to contribute art? Email contact@eglny.com."
     }
   },
+  "resources": {
+    "headline": "Resources",
+    "lead": "Sponsor recognition, press coverage, and festival media.",
+    "links": [
+      {
+        "title": "Sponsors",
+        "body": "Thank you to our 2026 festival partners and sponsors.",
+        "href": "/sponsors/"
+      },
+      {
+        "title": "Media",
+        "body": "News coverage, ads, and festival videos from recent seasons.",
+        "href": "/resources/media/"
+      }
+    ]
+  },
+  "media": {
+    "headline": "Media",
+    "lead": "Press coverage, ads, and festival videos from Elk Grove Lunar New Year Tết.",
+    "contactNote": "Media inquiries: contact@eglny.com · #elkgrovelunarnewyear",
+    "videos": [
+      {
+        "youtubeId": "3lxgeY2KOIw",
+        "title": "ABC10 — Elk Grove Lunar New Year 2026"
+      },
+      {
+        "youtubeId": "yovQgGzthzI",
+        "title": "FOX40 — Elk Grove Lunar New Year Mardi Gras, segments 1 & 2"
+      },
+      {
+        "youtubeId": "yAXAjOzMjvQ",
+        "title": "FOX40 — Lunar New Year Mardi Gras"
+      },
+      {
+        "youtubeId": "a4h3VlrYvUg",
+        "title": "East meets West! Lunar New Year and Mardi Gras 2026 will be in Elk Grove!"
+      },
+      {
+        "youtubeId": "jZys5FO3f0U",
+        "title": "My58 — Lunar New Year Mardi Gras 30s ad spot"
+      },
+      {
+        "youtubeId": "a_AyZDBBOFE",
+        "title": "Lunar New Year 2024 Event"
+      }
+    ]
+  },
   "footer": {
     "thankYou2026": "Thank you to our 2026 sponsors",
     "socialLinks": [
