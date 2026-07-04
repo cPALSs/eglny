@@ -213,8 +213,8 @@
     <nav class="site-nav" aria-label="Main">
       <div class="site-nav-bar">
         <a class="site-nav-brand" href="/">
-          <span class="site-nav-brand-full">Lunar New Year <span>Tết</span></span>
-          <span class="site-nav-brand-short">LNY <span>Tết</span></span>
+          <span class="site-nav-brand-full">Elk Grove Lunar New Year <span>Tết</span></span>
+          <span class="site-nav-brand-short">EG LNY <span>Tết</span></span>
         </a>
         <div class="site-nav-end">
           ${renderThemeControl()}
