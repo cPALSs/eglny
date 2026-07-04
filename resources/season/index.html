@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
-  <title>Media — Elk Grove Lunar New Year Tết</title>
+  <meta name="description" content="Lunar New Year Season in Greater Sacramento — late January through early March events, including Elk Grove Lunar New Year Tết." />
+  <title>Lunar New Year Season — Elk Grove Lunar New Year Tết</title>
   <script src="../../clean-urls.js"></script>
   <script>
     (function () {
@@ -28,18 +28,19 @@
       const {
         initPageShell,
         loadSiteData,
+        loadSeasonEvents,
         mountFooter,
-        renderMediaPage,
-        initMediaPlayers,
+        renderSeasonPage,
+        initDocToc,
         setPageTitle,
         escapeHtml,
       } = window.EglnySite;
-      initPageShell("media");
+      initPageShell("season");
       try {
-        const site = await loadSiteData();
-        setPageTitle(site, "Media");
-        document.getElementById("main").innerHTML = renderMediaPage(site.media);
-        initMediaPlayers();
+        const [site, seasonData] = await Promise.all([loadSiteData(), loadSeasonEvents()]);
+        setPageTitle(site, "Lunar New Year Season");
+        document.getElementById("main").innerHTML = renderSeasonPage(site.season, seasonData);
+        initDocToc();
         mountFooter(site);
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;

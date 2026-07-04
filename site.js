@@ -161,14 +161,7 @@
   function getNavPages() {
     return [
       { id: "home", label: "Home", href: "/" },
-      {
-        id: "about",
-        label: "About",
-        href: "/about/",
-        children: [
-          { id: "archive2026", label: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
-        ],
-      },
+      { id: "about", label: "About", href: "/about/" },
       { id: "team", label: "Team", href: "/team/" },
       {
         id: "production",
@@ -183,8 +176,10 @@
         label: "Resources",
         href: "/resources/",
         children: [
+          { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
           { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
           { id: "media", label: "Media", href: "/resources/media/" },
+          { id: "archive2026", label: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
         ],
       },
     ];
@@ -200,7 +195,7 @@
             .map((child) => {
               const childCurrent = child.id === activePage ? ' aria-current="page"' : "";
               const external = child.external ? ' target="_blank" rel="noopener"' : "";
-              return `<a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a>`;
+              return `<div class="site-nav-sublink-wrap"><a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
             })
             .join("");
           return `<div class="site-nav-group${childActive ? " is-active" : ""}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
@@ -651,6 +646,59 @@
     initNavMenu();
   }
 
+  async function loadSeasonEvents() {
+    const prefix = navPrefix();
+    const res = await fetch(`${prefix}data/season-events.json`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Could not load season events (${res.status})`);
+    return res.json();
+  }
+
+  function externalLinkAttrs(href) {
+    if (!href || href.startsWith("/")) return "";
+    return ' target="_blank" rel="noopener"';
+  }
+
+  function renderSeasonEventItem(event) {
+    const capstoneClass = event.capstone ? " season-event-capstone" : "";
+    const nameHtml = event.href
+      ? `<a href="${escapeHtml(event.href)}"${externalLinkAttrs(event.href)}>${escapeHtml(event.name)}</a>`
+      : escapeHtml(event.name);
+    const hostPart = event.host ? ` · ${escapeHtml(event.host)}` : "";
+    return `<li class="season-event-item${capstoneClass}">
+      <span class="season-event-dates">${escapeHtml(event.dates)}</span>
+      <span class="season-event-title">${nameHtml}${hostPart}</span>
+      <span class="season-event-location">${escapeHtml(event.location)}</span>
+    </li>`;
+  }
+
+  function renderSeasonPage(season, seasonData) {
+    const events = seasonData?.events ?? [];
+    const seasonTitle = season?.title ?? "Lunar New Year Season";
+    const listItems = events.map(renderSeasonEventItem).join("");
+    const listNote = season?.listNote
+      ? `<p class="muted season-list-note">${escapeHtml(season.listNote)}</p>`
+      : "";
+    const contactNote = season?.contactNote
+      ? `<p class="muted season-contact-note">${escapeHtml(season.contactNote)}</p>`
+      : "";
+    const toc = [{ id: "season", label: seasonTitle }];
+    const seasonSection = `
+      <section class="about-section resources-season site-doc-section" id="season" data-doc-section>
+        <h2>${escapeHtml(seasonTitle)}</h2>
+        ${season?.intro ? `<p>${escapeHtml(season.intro)}</p>` : ""}
+        ${events.length ? `<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
+        ${listNote}
+        ${contactNote}
+      </section>`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(season?.headline ?? "Lunar New Year Season")}</h1>
+        ${season?.lead ? `<p class="hero-lead">${escapeHtml(season.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(toc), seasonSection)}`;
+  }
+
   function renderResourcesPage(resources) {
     const links = resources?.links ?? [];
     const cards = links
@@ -671,26 +719,42 @@
       <div class="resource-card-grid">${cards}</div>`;
   }
 
-  function renderMediaPage(media) {
-    const videos = media?.videos ?? [];
-    const cards = videos
-      .map((video) => {
-        const title = video.title ?? "Festival video";
-        const embedSrc = `https://www.youtube.com/embed/${escapeHtml(video.youtubeId)}`;
-        return `
+  function renderMediaVideoCard(video) {
+    const id = String(video.youtubeId ?? "").trim();
+    const title = video.title ?? "Festival video";
+    const watchUrl = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+    const embedSrc = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+    const poster = `https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`;
+    return `
       <figure class="video-card">
-        <div class="video-embed">
-          <iframe
-            src="${embedSrc}"
-            title="${escapeHtml(title)}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-          ></iframe>
+        <div class="video-embed" data-youtube-id="${escapeHtml(id)}" data-embed-src="${escapeHtml(embedSrc)}">
+          <button type="button" class="video-play" aria-label="Play ${escapeHtml(title)}">
+            <img class="video-poster" src="${escapeHtml(poster)}" alt="" loading="lazy" width="480" height="360" />
+            <span class="video-play-icon" aria-hidden="true"></span>
+          </button>
+          <a class="video-fallback-link" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener">Watch on YouTube</a>
         </div>
         <figcaption class="video-caption">${escapeHtml(title)}</figcaption>
       </figure>`;
+  }
+
+  function renderMediaPage(media) {
+    const videos = media?.videos ?? [];
+    const byYear = new Map();
+    for (const video of videos) {
+      const year = String(video.year ?? "Videos");
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(video);
+    }
+    const years = [...byYear.keys()].sort((a, b) => String(b).localeCompare(String(a)));
+    const sections = years
+      .map((year) => {
+        const cards = byYear.get(year).map(renderMediaVideoCard).join("");
+        return `
+      <section class="media-year-section" aria-labelledby="media-year-${escapeHtml(year)}">
+        <h2 class="media-year-heading" id="media-year-${escapeHtml(year)}">${escapeHtml(year)}</h2>
+        <div class="video-grid">${cards}</div>
+      </section>`;
       })
       .join("");
 
@@ -703,8 +767,30 @@
         <h1>${escapeHtml(media?.headline ?? "Media")}</h1>
         ${media?.lead ? `<p class="hero-lead">${escapeHtml(media.lead)}</p>` : ""}
       </section>
-      ${videos.length ? `<div class="video-grid">${cards}</div>` : `<p class="muted">Media coming soon.</p>`}
-      ${contact}`;
+      <div class="media-page-body">
+        ${videos.length ? sections : `<p class="muted">Media coming soon.</p>`}
+        ${contact}
+      </div>`;
+  }
+
+  function initMediaPlayers(root = document) {
+    root.querySelectorAll(".video-embed[data-embed-src]").forEach((embed) => {
+      const button = embed.querySelector(".video-play");
+      if (!button || button.dataset.bound === "1") return;
+      button.dataset.bound = "1";
+      button.addEventListener("click", () => {
+        const src = embed.getAttribute("data-embed-src");
+        const title = button.getAttribute("aria-label")?.replace(/^Play\s+/, "") || "Festival video";
+        if (!src) return;
+        embed.innerHTML = `<iframe
+          src="${src}"
+          title="${escapeHtml(title)}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>`;
+      });
+    });
   }
 
   function renderTeamPage(site) {
@@ -774,8 +860,11 @@
     renderCoChairs,
     renderDocToc,
     renderEventSummary,
+    loadSeasonEvents,
+    initMediaPlayers,
     renderMediaPage,
     renderResourcesPage,
+    renderSeasonPage,
     renderRoleCard,
     renderTeamPage,
     setPageTitle,

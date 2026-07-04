@@ -13,6 +13,7 @@ Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Res
 | `/about/` | Tết + coalition |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
 | `/resources/` | Resources hub |
+| `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
 | `/sponsors/` | 2026 sponsor recognition — under **Resources** |
 | `/resources/media/` | Press and festival YouTube embeds — under **Resources** |
 | `/build/` | Redirect → `/fund-the-festival/` |
@@ -24,7 +25,14 @@ Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html`
 
 - **`data/site.json`** — recruitment + about copy ([Open Leadership Roles](../Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
 - **`data/lny-2027.json`** — Fund The Festival data (from `build_lny_budget.py`)
+- **`data/season-events.json`** — LNY Season list (from LNY market landscape Sheet)
 - **`data/lny-2026-sponsors-display.json`** — public sponsor logos/tiers *(reconcile tiers before launch)*
+
+Refresh season events from the landscape Sheet:
+
+```bash
+node "Festival Network/scripts/export-eglny-season-events.mjs"
+```
 
 ## Local preview
 
@@ -37,6 +45,7 @@ python3 -m http.server 8765
 - http://localhost:8765/team/
 - http://localhost:8765/fund-the-festival/
 - http://localhost:8765/resources/
+- http://localhost:8765/resources/season/
 - http://localhost:8765/sponsors/
 - http://localhost:8765/resources/media/
 

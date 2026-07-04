@@ -126,11 +126,11 @@
         },
         {
           "title": "Main Outdoor Stage",
-          "own": "Outdoor stage tent, sound, Saturday daytime programming (AFG lot)"
+          "own": "Outdoor stage tent, sound, Saturday daytime programming"
         },
         {
-          "title": "Indoor Stage (KP International)",
-          "own": "KP International tent · borrow terms · indoor sound · Chinh Kieu vendor liaison"
+          "title": "Indoor Stage",
+          "own": "Indoor tent programming · borrow terms · indoor sound · class vendor liaison"
         },
         {
           "title": "Youth Culture Day",
@@ -336,8 +336,13 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Sponsor recognition, press coverage, and festival media.",
+    "lead": "Season calendar, sponsor recognition, and festival media.",
     "links": [
+      {
+        "title": "Lunar New Year Season",
+        "body": "Celebrate Lunar New Year Season across Greater Sacramento — late January through early March.",
+        "href": "/resources/season/"
+      },
       {
         "title": "Sponsors",
         "body": "Thank you to our 2026 festival partners and sponsors.",
@@ -350,32 +355,46 @@
       }
     ]
   },
+  "season": {
+    "headline": "Lunar New Year Season",
+    "title": "2027 season",
+    "lead": "Celebrate Lunar New Year Season in Greater Sacramento from late January through early March!",
+    "intro": "Greater Sacramento’s Lunar New Year, Tết, and Spring Festival calendar — free fairs, community celebrations, and our Elk Grove capstone weekend.",
+    "listNote": "Dates marked estimated or tentative may change — check organizer listings before you go.",
+    "contactNote": "Know a Lunar New Year event we missed? Email contact@eglny.com."
+  },
   "media": {
     "headline": "Media",
     "lead": "Press coverage, ads, and festival videos from Elk Grove Lunar New Year Tết.",
     "contactNote": "Media inquiries: contact@eglny.com · #elkgrovelunarnewyear",
     "videos": [
       {
+        "year": 2026,
         "youtubeId": "3lxgeY2KOIw",
         "title": "ABC10 — Elk Grove Lunar New Year 2026"
       },
       {
+        "year": 2026,
         "youtubeId": "yovQgGzthzI",
         "title": "FOX40 — Elk Grove Lunar New Year Mardi Gras, segments 1 & 2"
       },
       {
+        "year": 2026,
         "youtubeId": "yAXAjOzMjvQ",
         "title": "FOX40 — Lunar New Year Mardi Gras"
       },
       {
+        "year": 2026,
         "youtubeId": "a4h3VlrYvUg",
         "title": "East meets West! Lunar New Year and Mardi Gras 2026 will be in Elk Grove!"
       },
       {
+        "year": 2026,
         "youtubeId": "jZys5FO3f0U",
         "title": "My58 — Lunar New Year Mardi Gras 30s ad spot"
       },
       {
+        "year": 2024,
         "youtubeId": "a_AyZDBBOFE",
         "title": "Lunar New Year 2024 Event"
       }

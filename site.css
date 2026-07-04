@@ -295,11 +295,16 @@ body.nav-open {
 }
 
 .site-nav-group .site-nav-parent:last-child,
-.site-nav-submenu .site-nav-sublink:last-child {
+.site-nav-submenu .site-nav-sublink-wrap:last-child .site-nav-sublink {
   border-bottom: none;
 }
 
+.site-nav-sublink-wrap {
+  display: block;
+}
+
 .site-nav-sublink {
+  display: block;
   color: var(--muted);
   text-decoration: none;
   font-size: 0.875rem;
@@ -308,10 +313,7 @@ body.nav-open {
   border-bottom: 1px solid var(--border);
 }
 
-.site-nav-sublink:last-child {
-  border-bottom: none;
-}
-
+.site-nav-sublink-wrap:hover .site-nav-sublink,
 .site-nav-sublink:hover,
 .site-nav-sublink[aria-current="page"] {
   color: var(--accent);
@@ -350,6 +352,10 @@ body.nav-open {
   .site-nav-submenu {
     margin-left: 0.75rem;
     padding-left: 0.85rem;
+  }
+
+  .site-nav-links .site-nav-sublink-wrap {
+    padding: 0;
   }
 
   .site-nav-links .site-nav-sublink {
@@ -468,6 +474,7 @@ body.nav-open {
     z-index: 110;
     min-width: 12rem;
     padding: 0.35rem;
+    gap: 0;
     margin-left: 0;
     border-left: none;
     background: var(--surface);
@@ -498,16 +505,22 @@ body.nav-open {
     transform: translateY(0);
   }
 
-  .site-nav-sublink {
-    padding: 0.55rem 0.75rem;
-    font-size: 0.875rem;
-    border-bottom: none;
+  .site-nav-sublink-wrap {
+    padding: 0.55rem 0.85rem;
     border-radius: 6px;
-    white-space: nowrap;
   }
 
-  .site-nav-sublink:hover {
+  .site-nav-sublink-wrap:hover,
+  .site-nav-sublink-wrap:has(.site-nav-sublink[aria-current="page"]) {
     background: var(--surface-raised);
+  }
+
+  .site-nav-sublink {
+    display: block;
+    padding: 0;
+    font-size: 0.875rem;
+    border-bottom: none;
+    white-space: nowrap;
   }
 }
 
@@ -1300,6 +1313,23 @@ body.nav-open {
   line-height: 1.45;
 }
 
+.media-page-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.media-year-section + .media-year-section {
+  margin-top: 2.25rem;
+}
+
+.media-year-heading {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 .video-grid {
   display: grid;
   gap: 1.5rem;
@@ -1321,16 +1351,80 @@ body.nav-open {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--surface);
+  background: #111;
   border: 1px solid var(--border);
 }
 
-.video-embed iframe {
+.video-embed iframe,
+.video-poster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video-poster {
+  object-fit: cover;
+  display: block;
+}
+
+.video-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.video-play:hover .video-play-icon,
+.video-play:focus-visible .video-play-icon {
+  transform: scale(1.06);
+  background: #ff0000;
+}
+
+.video-play-icon {
+  position: relative;
+  z-index: 1;
+  width: 4rem;
+  height: 2.85rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.72);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.video-play-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0.55rem 0 0.55rem 0.9rem;
+  border-color: transparent transparent transparent #fff;
+  transform: translate(-50%, -50%);
+}
+
+.video-fallback-link {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.55rem;
+  z-index: 2;
+  font-size: 0.75rem;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+
+.video-fallback-link:hover {
+  text-decoration: underline;
 }
 
 .video-caption {
@@ -1342,4 +1436,61 @@ body.nav-open {
 
 .media-contact-note {
   margin-top: 1.75rem;
+}
+
+.resources-season .season-event-list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.season-event-item {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.season-event-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.season-event-dates {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.season-event-title {
+  display: block;
+}
+
+.season-event-location {
+  display: block;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.season-event-title a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.season-event-title a:hover {
+  text-decoration: underline;
+}
+
+.season-event-capstone .season-event-dates,
+.season-event-capstone .season-event-title {
+  font-weight: 700;
+}
+
+.season-year-note,
+.season-list-note,
+.season-contact-note {
+  margin-top: 1.25rem;
+}
+
+.season-year-note {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
 }
