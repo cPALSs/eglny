@@ -819,7 +819,7 @@ function renderMeta() {
   if (summaryEl) {
     summaryEl.textContent = [e.venue, e.dates, attendance].filter(Boolean).join(" · ");
   }
-  document.title = `Fund The Festival — ${e.name ?? currentFestivalEntry()?.label ?? "Lunar New Year Tết"}`;
+  document.title = `Fund The Festival — ${e.name ?? currentFestivalEntry()?.label ?? "Elk Grove Lunar New Year Tết"}`;
 }
 
 function renderSectionHints() {

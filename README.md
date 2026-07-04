@@ -38,13 +38,15 @@ python3 -m http.server 8765
 
 ## Publish
 
+From monorepo root (rsyncs this folder → [`Sites/eglny`](../../../../Sites/eglny); edit **here**, not in `Sites/`):
+
 ```bash
-git clone git@github.com:cPALSs/eglny.git ~/eglny   # once
-/Users/bao/cPALSs/scripts/publish_eglny_site.sh ~/eglny
-cd ~/eglny && git add -A && git commit -m "Update site" && git push
+git clone git@github.com:cPALSs/eglny.git Sites/eglny   # once
+./scripts/publish_eglny_site.sh
+cd Sites/eglny && git add -A && git commit -m "Update site" && git push
 ```
 
-Regenerates LNY JSON via `build_lny_budget.py`, then rsyncs this folder to the publish repo.
+Regenerates LNY JSON via `build_lny_budget.py`, then rsyncs this folder to the publish clone. See [`Sites/README.md`](../../../../Sites/README.md).
 
 ## Launch checklist
 

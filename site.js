@@ -442,7 +442,7 @@
   }
 
   function setPageTitle(site, pageTitle) {
-    const suffix = site.meta?.titleSuffix ?? "Lunar New Year Tết";
+    const suffix = site.meta?.titleSuffix ?? "Elk Grove Lunar New Year Tết";
     document.title = pageTitle
       ? `${toTitleCase(pageTitle)} — ${suffix}`
       : site.meta?.siteName ?? suffix;

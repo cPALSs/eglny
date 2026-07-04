@@ -1,14 +1,14 @@
 {
   "meta": {
-    "siteName": "Lunar New Year Tết",
-    "titleSuffix": "Lunar New Year Tết",
+    "siteName": "Elk Grove Lunar New Year Tết",
+    "titleSuffix": "Elk Grove Lunar New Year Tết",
     "idealistUrl": null,
     "idealistNote": "Short link when Idealist listing is live"
   },
   "event": {
-    "name": "Lunar New Year Tết",
+    "name": "Elk Grove Lunar New Year Tết",
     "dates": "Feb 13–14, 2027 · 11 AM–5 PM · to be finalized",
-    "venue": "Elk Grove Regional Park, California",
+    "venue": "Elk Grove Park, California",
     "city": "Elk Grove, CA",
     "tagline": "free admission · family fair · parade",
     "zodiacYear": "Year of the Goat",
@@ -17,7 +17,7 @@
   },
   "hero": {
     "headline": "Help build the 2027 festival",
-    "intro": "Lunar New Year Tết returns to Elk Grove Regional Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
+    "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
     "subhead": "We're looking for directors — one owner per piece of the festival. Pick the lane you want to lead.",
     "body": "We need directors — people who own an outcome, build a small team, and see it through with co-chair support. Co-chairs Thuy Pham (VACOS) and Bao Thien Ngo (cPALSs) back every lane."
   },
@@ -253,7 +253,7 @@
     }
   ],
   "about": {
-    "headline": "About Lunar New Year Tết",
+    "headline": "About Elk Grove Lunar New Year Tết",
     "sections": [
       {
         "title": "Tết",
@@ -265,7 +265,7 @@
       {
         "title": "Sacramento & Elk Grove",
         "paragraphs": [
-          "Today, Lunar New Year Tết in Elk Grove builds on decades of cultural celebrations in the Sacramento region — from Stockton Boulevard and Florin to Elk Grove Regional Park. The festival is a free, family-centered gathering that welcomes the whole community: carnival, lion dance, multicultural programming, and live music.",
+          "Today, Elk Grove Lunar New Year Tết builds on decades of cultural celebrations in the Sacramento region — from Stockton Boulevard and Florin to Elk Grove Park. The festival is a free, family-centered gathering that welcomes the whole community: carnival, lion dance, multicultural programming, and live music.",
           "The festival is co-hosted by Community Partners Advocate of Little Saigon Sacramento (cPALSs), Vietnamese American Community of Sacramento (VACOS), and Norcal Vietnamese Chamber of Commerce (NVCC), with generous support from sponsors, donors, and volunteers.",
           "We hope you consider supporting our culturally-oriented and community-driven festival as part of this historical moment for our community."
         ]
@@ -277,17 +277,17 @@
       "posters": [
         {
           "year": 2026,
-          "venue": "Elk Grove Regional Park",
+          "venue": "Elk Grove Park",
           "image": "posters/2026.png"
         },
         {
           "year": 2025,
-          "venue": "Elk Grove Regional Park",
+          "venue": "Elk Grove Park",
           "image": "posters/2025.jpg"
         },
         {
           "year": 2024,
-          "venue": "Elk Grove Regional Park",
+          "venue": "Elk Grove Park",
           "image": "posters/2024.jpg"
         },
         {
