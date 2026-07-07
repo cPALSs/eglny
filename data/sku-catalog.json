@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "festival": "Elk Grove Lunar New Year 2027",
+    "version": "2026-07-06",
+    "sourceOfTruth": "Inventory master for vendor Eventeny sync and food-curation engine booth_fee defaults",
+    "pricingConvention": "Weekend total — show ~$/day × 2 days on line items (Sat + Sun)"
+  },
+  "foodArchetypes": [
+    { "id": "boba_milk_tea", "label": "Boba / milk tea anchor", "vendorSkus": ["LNY-VENDOR-DR"] },
+    { "id": "sugarcane_fruit_refresher", "label": "Sugarcane / fruit refresher", "vendorSkus": ["LNY-VENDOR-DR"] },
+    { "id": "packaged_savory", "label": "Packaged savory treats", "vendorSkus": ["LNY-VENDOR-SN"] },
+    { "id": "packaged_sweets", "label": "Packaged sweets", "vendorSkus": ["LNY-VENDOR-SN"] },
+    { "id": "popcorn_fair", "label": "Popcorn & fair treats", "vendorSkus": ["LNY-VENDOR-SN"] },
+    { "id": "ice_treat", "label": "Shaved ice & frozen treats", "vendorSkus": ["LNY-VENDOR-SN"] },
+    { "id": "fast_handheld", "label": "Fast handheld", "vendorSkus": ["LNY-VENDOR-FT", "LNY-VENDOR-OC"] },
+    { "id": "rice_plates_bowls", "label": "Rice plates & bowls", "vendorSkus": ["LNY-VENDOR-FT", "LNY-VENDOR-OC"] },
+    { "id": "noodle_wok_soup", "label": "Noodle / wok / soup", "vendorSkus": ["LNY-VENDOR-FT", "LNY-VENDOR-OC"] },
+    { "id": "bbq_smoke_carved", "label": "BBQ / smoke / carved", "vendorSkus": ["LNY-VENDOR-FT", "LNY-VENDOR-OC"] }
+  ],
+  "vendors": [
+    {
+      "id": "LNY-VENDOR-FT",
+      "skuType": "catalog-vendor",
+      "name": "Food truck / trailer",
+      "vendorClass": "open_prep",
+      "footprint": "10×20 truck / trailer pad",
+      "slotCap": 10,
+      "publicDescription": "Licensed mobile food unit — hot meals (plates, handhelds, BBQ). MFF on vehicle.",
+      "requirements": ["MFF on vehicle", "Vehicle length on apply"],
+      "eventeny": {
+        "applyQuestionValue": "food_truck",
+        "tags": ["food-truck", "lny-vendor-ft"],
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$375/day × 2 days – Food truck/trailer (10×20) – ${amount}", "amount": 750 },
+          { "role": "booth_fee", "tier": "early_bird", "titleTemplate": "$300/day × 2 days – Food truck/trailer Early Bird – ${amount}", "amount": 600 }
+        ],
+        "depositApply": 75,
+        "depositApproval": 75,
+        "tffSku": "TFF-TRUCK"
+      }
+    },
+    {
+      "id": "LNY-VENDOR-OC",
+      "skuType": "catalog-vendor",
+      "name": "Open cooking",
+      "vendorClass": "open_prep",
+      "footprint": "10×20 canopy + equipment",
+      "slotCap": 10,
+      "publicDescription": "Live prep under canopy — plates, handhelds, BBQ. TFF PREP / MEV.",
+      "requirements": ["TFF PREP or MEV", "Generator setback if applicable"],
+      "eventeny": {
+        "applyQuestionValue": "open_cooking",
+        "tags": ["open-cooking", "lny-vendor-oc"],
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$375/day × 2 days – Open cooking (10×20) – ${amount}", "amount": 750 },
+          { "role": "booth_fee", "tier": "early_bird", "titleTemplate": "$300/day × 2 days – Open cooking Early Bird – ${amount}", "amount": 600 }
+        ],
+        "depositApply": 75,
+        "depositApproval": 75,
+        "tffSku": "TFF-OPEN"
+      }
+    },
+    {
+      "id": "LNY-VENDOR-DR",
+      "skuType": "catalog-vendor",
+      "name": "Beverage anchor",
+      "vendorClass": "drinks",
+      "footprint": "10×10 or truck/trailer (setup follow-up)",
+      "slotCap": 2,
+      "publicDescription": "Live-prep drink anchor — boba, sugarcane, aguas, coffee bar. Not snacks or sealed retail.",
+      "requirements": ["Pick footprint on follow-up: canopy, truck, trailer, or prepack booth", "Beverage exclusivity caps apply"],
+      "eventeny": {
+        "applyQuestionValue": "beverage_anchor",
+        "tags": ["drinks", "lny-vendor-dr"],
+        "setupQuestion": {
+          "prompt": "How will you set up on site?",
+          "options": [
+            { "label": "Open food · canopy", "setup_type": "open_food_canopy" },
+            { "label": "Open food · truck", "setup_type": "open_food_truck" },
+            { "label": "Open food · trailer", "setup_type": "open_food_trailer" },
+            { "label": "Prepack booth (sealed pour / pre-batch only)", "setup_type": "prepack_booth" }
+          ]
+        },
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$250/day × 2 days – Beverage anchor – ${amount}", "amount": 500 },
+          { "role": "booth_fee", "tier": "early_bird", "titleTemplate": "$200/day × 2 days – Beverage anchor Early Bird – ${amount}", "amount": 400 }
+        ],
+        "depositApply": 50,
+        "depositApproval": 50,
+        "tffSku": "TFF-PREPKG"
+      }
+    },
+    {
+      "id": "LNY-VENDOR-SN",
+      "skuType": "catalog-vendor",
+      "name": "Snack / treat booth",
+      "vendorClass": "snack",
+      "footprint": "10×10 prepack booth",
+      "slotCap": 4,
+      "publicDescription": "Optional walk-around treats — jerky, candy, popcorn, shaved ice. No meal service or drink anchor.",
+      "requirements": ["Prepack booth setup", "Treat archetype diversity caps apply"],
+      "eventeny": {
+        "applyQuestionValue": "snack_treat",
+        "tags": ["snack", "lny-vendor-sn"],
+        "setupQuestion": {
+          "fixed_setup_type": "prepack_booth"
+        },
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$200/day × 2 days – Snack/treat booth (10×10) – ${amount}", "amount": 400 },
+          { "role": "booth_fee", "tier": "early_bird", "titleTemplate": "$160/day × 2 days – Snack/treat Early Bird – ${amount}", "amount": 320 }
+        ],
+        "depositApply": 40,
+        "depositApproval": 35,
+        "tffSku": "TFF-PREPKG"
+      }
+    },
+    {
+      "id": "LNY-VENDOR-MF",
+      "skuType": "catalog-vendor",
+      "name": "Sealed food retail",
+      "vendorClass": "merchant",
+      "footprint": "10×10 prepack booth",
+      "slotCap": 2,
+      "requiresTffPrePkg": true,
+      "publicDescription": "Take-home sealed food only — frozen packs, jars, retail mooncakes. Not onsite meal or treat service.",
+      "requirements": ["TFF PRE-PKG required", "No open flame"],
+      "eventeny": {
+        "applyQuestionValue": "sealed_food_merchant",
+        "tags": ["merchant", "lny-vendor-mf"],
+        "setupQuestion": {
+          "fixed_setup_type": "prepack_booth"
+        },
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$175/day × 2 days – Sealed food retail (10×10) – ${amount}", "amount": 350 }
+        ],
+        "depositApply": 40,
+        "depositApproval": 35,
+        "tffSku": "TFF-PREPKG"
+      }
+    },
+    {
+      "id": "LNY-VENDOR-GEN",
+      "skuType": "catalog-vendor",
+      "name": "General exhibitor",
+      "vendorClass": "merchant",
+      "footprint": "10×10",
+      "slotCap": 16,
+      "publicDescription": "Retail, services, crafts — non-food or non-TFF merchandise.",
+      "requirements": ["No open flame without separate path"],
+      "eventeny": {
+        "applyQuestionValue": "general_exhibitor",
+        "tags": ["general", "lny-vendor-gen"],
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$250/day × 2 days – General exhibitor (10×10) – ${amount}", "amount": 500 },
+          { "role": "booth_fee", "tier": "early_bird", "titleTemplate": "$200/day × 2 days – General exhibitor Early Bird – ${amount}", "amount": 400 }
+        ],
+        "depositApply": 75,
+        "depositApproval": 75,
+        "tffSku": null
+      }
+    },
+    {
+      "id": "LNY-VENDOR-NP",
+      "skuType": "catalog-vendor",
+      "name": "Nonprofit",
+      "vendorClass": "merchant",
+      "footprint": "10×10",
+      "slotCap": 8,
+      "publicDescription": "501(c) or equivalent — mission-first tabling.",
+      "requirements": ["Nonprofit proof on apply"],
+      "eventeny": {
+        "applyQuestionValue": "nonprofit",
+        "tags": ["nonprofit", "lny-vendor-np"],
+        "lineItems": [
+          { "role": "booth_fee", "tier": "standard", "titleTemplate": "$75/day × 2 days – Nonprofit (10×10) – ${amount}", "amount": 150 }
+        ],
+        "depositApply": 0,
+        "depositApproval": 0,
+        "tffSku": null
+      }
+    }
+  ],
+  "retiredSkus": [
+    {
+      "id": "LNY-VENDOR-PF",
+      "replacedBy": ["LNY-VENDOR-DR", "LNY-VENDOR-SN", "LNY-VENDOR-MF"],
+      "note": "Legacy prepack food — split by vendor_class (drinks / snack / sealed merchant)"
+    }
+  ]
+}

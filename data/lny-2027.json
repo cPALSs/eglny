@@ -4,9 +4,9 @@
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
-    "vendorRev100": 18200,
+    "vendorRev100": 19300,
     "registryFull": 125790,
-    "vendorSlots": 37,
+    "vendorSlots": 40,
     "attendance": 6000
   },
   "scenario": {
@@ -15,17 +15,17 @@
     "fillRate": 1.0,
     "attendance": 6000,
     "mvpCap": 39940,
-    "vendorRevenue": 26435,
-    "headroomOrGap": 13505,
-    "vendorSlots": 37,
+    "vendorRevenue": 27535,
+    "headroomOrGap": 12405,
+    "vendorSlots": 40,
     "estimatedRevenue": {
-      "total": 26435,
-      "summary": "37 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
+      "total": 27535,
+      "summary": "40 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
       "lines": [
         {
           "label": "Vendor booth fees",
-          "amount": 18200,
-          "note": "37 paid booths @ weekend rate card"
+          "amount": 19300,
+          "note": "40 paid booths @ weekend rate card"
         },
         {
           "label": "Parking",

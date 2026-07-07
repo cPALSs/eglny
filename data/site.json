@@ -336,7 +336,7 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Season calendar, sponsor recognition, and festival media.",
+    "lead": "Season calendar, sponsor recognition, festival media, and planning notes.",
     "links": [
       {
         "title": "Lunar New Year Season",
@@ -352,6 +352,11 @@
         "title": "Media",
         "body": "News coverage, ads, and festival videos from recent seasons.",
         "href": "/resources/media/"
+      },
+      {
+        "title": "Blog",
+        "body": "How our teams plan sustainable community festivals — budgets, ownership, and regional coordination.",
+        "href": "/resources/blog/"
       }
     ]
   },

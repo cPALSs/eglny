@@ -179,6 +179,7 @@
           { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
           { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
           { id: "media", label: "Media", href: "/resources/media/" },
+          { id: "blog", label: "Blog", href: "/resources/blog/" },
           { id: "archive2026", label: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
         ],
       },
