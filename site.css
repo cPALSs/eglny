@@ -907,7 +907,8 @@ body.nav-open {
   margin-bottom: 0;
 }
 
-.hero + .about-section {
+.hero + .about-section,
+.hero + .resource-card-grid {
   margin-top: 0;
 }
 
@@ -1276,6 +1277,9 @@ body.nav-open {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
 }
 
 @media (min-width: 640px) {
