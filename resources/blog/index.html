@@ -49,6 +49,7 @@
     (async function () {
       const { initPageShell, loadSiteData, mountFooter } = window.EglnySite;
       initPageShell("blog");
+      
       try { mountFooter(await loadSiteData()); } catch (_) {}
     })();
   </script>
