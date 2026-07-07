@@ -631,7 +631,7 @@ body.nav-open {
     padding-bottom: 0.75rem;
   }
 
-  .page-wrap--doc > .hero:has(+ .site-doc-layout) > :is(h1, .hero-lead, p) {
+  .page-wrap--doc > .hero:has(+ .site-doc-layout) > :is(h1, .hero-lead, p, time) {
     grid-column: 2;
     min-width: 0;
   }
@@ -1500,16 +1500,10 @@ body.nav-open {
 }
 
 /* Blog — static pre-rendered pages */
-.page-wrap--doc > .blog-index,
-.page-wrap--doc > .blog-article {
+.page-wrap--doc > .blog-index {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 3rem);
-}
-
-.page-wrap--doc > .blog-article .site-doc-layout {
-  max-width: none;
-  padding: 0;
 }
 
 .blog-prose h2[data-doc-section],
@@ -1575,12 +1569,33 @@ body.nav-open {
 }
 
 .blog-article-header {
-  margin-bottom: 2rem;
-  max-width: 42rem;
+  margin-bottom: 0;
 }
 
-.blog-article-header h1 {
-  margin: 0.35rem 0 0.5rem;
+.hero.blog-article-header .blog-back {
+  margin: 0 0 0.35rem;
+}
+
+.hero.blog-article-header h1 {
+  margin: 0 0 0.35rem;
+}
+
+.blog-article-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 1rem;
+}
+
+.hero.blog-article-header .blog-article-byline .blog-meta {
+  margin: 0;
+}
+
+@media (min-width: 1100px) {
+  .page-wrap--doc > .hero.blog-article-header:has(+ .site-doc-layout) > .blog-article-intro {
+    grid-column: 2;
+    min-width: 0;
+  }
 }
 
 .blog-back {
