@@ -75,6 +75,26 @@ cd Sites/eglny && git add -A && git commit -m "Update site" && git push
 
 Regenerates LNY JSON via `build_lny_budget.py`, then rsyncs this folder to the publish clone. See [`Sites/README.md`](../../../../Sites/README.md).
 
+## SEO
+
+Built automatically on publish (`build-festival-site-seo.mjs` + `build-festival-site-sitemap.mjs`):
+
+- `robots.txt` and `sitemap.xml` at site root
+- Canonical, Open Graph, and Twitter meta on all primary pages
+- Prerendered static HTML in `<main>` for crawlers (from `data/site.json`)
+- Event + Organization JSON-LD on homepage
+
+Optional share image: add `assets/og-default.jpg` (1200×630) — see [`assets/README.md`](assets/README.md).
+
+**Google Search Console** (after property verified + OAuth re-run with webmasters scope):
+
+```bash
+node "Festival Network/scripts/search-console-eglny.mjs" submit-sitemap
+node "Festival Network/scripts/search-console-eglny.mjs" inspect-urls
+```
+
+Manual (UI only): URL Inspection → Request indexing for key pages; link GSC to GA4.
+
 ## Launch checklist
 
 See [EGLNY Website - Launch Checklist.md](../EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
