@@ -649,6 +649,101 @@ body.nav-open {
   scroll-margin-top: calc(var(--nav-height) + 1rem);
 }
 
+/* Heading permalinks — click # to copy section URL (doc-scroll.js) */
+.site-doc-main h2[id],
+.site-doc-main h3[id],
+.site-doc-main h4[id] {
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
+}
+
+.site-doc-main .doc-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.site-doc-main .doc-heading-anchor {
+  order: 2;
+  position: relative;
+  margin-left: 0.15rem;
+  padding: 0.1rem 0.35rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85em;
+  font-weight: normal;
+  opacity: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.site-doc-main .doc-heading-anchor:hover,
+.site-doc-main .doc-heading-anchor:focus {
+  color: var(--accent);
+  background: var(--surface-2, rgba(127, 127, 127, 0.08));
+}
+
+.site-doc-main .doc-heading-anchor.is-copied,
+.site-doc-main .doc-heading-anchor.is-copy-failed {
+  opacity: 1;
+}
+
+.site-doc-main .doc-heading-anchor.is-copied {
+  color: #137333;
+  background: #e6f4ea;
+}
+
+.site-doc-main .doc-heading-anchor.is-copied::after {
+  content: "Copied!";
+  position: absolute;
+  left: calc(100% + 0.35rem);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.12rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #137333;
+  background: #e6f4ea;
+  border: 1px solid #b7dfc2;
+  border-radius: 4px;
+}
+
+.site-doc-main .doc-heading-anchor.is-copy-failed {
+  color: #b42318;
+  background: #fdecea;
+}
+
+.site-doc-main .doc-heading-anchor.is-copy-failed::after {
+  content: "Copy failed";
+  position: absolute;
+  left: calc(100% + 0.35rem);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.12rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #b42318;
+  background: #fdecea;
+  border: 1px solid #f5c2c0;
+  border-radius: 4px;
+}
+
+.site-doc-main .doc-heading:hover .doc-heading-anchor,
+.site-doc-main .doc-heading-anchor:focus {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .site-doc-main .doc-heading-anchor {
+    opacity: 0.55;
+  }
+}
+
 .site-doc-main > .site-doc-section {
   margin: 0;
   padding: 2.5rem 0;
