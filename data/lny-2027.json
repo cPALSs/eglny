@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
     "vendorRev100": 19300,
-    "registryFull": 125790,
+    "registryFull": 125647,
     "vendorSlots": 40,
     "attendance": 6000
   },
@@ -679,7 +679,7 @@
       "id": "inflatable_carnival_games",
       "name": "Inflatable Carnival Games",
       "emoji": "\ud83c\udfaf",
-      "amount": 1900,
+      "amount": 1757,
       "category": "registry",
       "sortOrder": 15,
       "impactOrder": 15,
@@ -708,8 +708,8 @@
           "amount": 150
         },
         {
-          "label": "Storage amortization \u2014 U-Haul unit share (\u00f7 3 flagships; Finance confirms)",
-          "amount": 300
+          "label": "Storage amortization \u2014 games share (2 pallets \u00f7 3 flagships; Elk Grove U-Haul)",
+          "amount": 157
         }
       ]
     },
