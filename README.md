@@ -1,6 +1,8 @@
-# eglny.com — site source (monorepo)
+# eglny.com — site source
 
 **Public site:** https://eglny.com · GitHub Pages repo [`cPALSs/eglny`](https://github.com/cPALSs/eglny)
+
+**This folder (`Sites/eglny`) is the canonical source of truth.** Edit here; push from this git repo when ready.
 
 Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Resources** (sponsors + media).
 
@@ -25,7 +27,7 @@ Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html`
 
 ## Content
 
-- **`data/site.json`** — recruitment + about copy ([Open Leadership Roles](../Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
+- **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../Projects%20-%20Lunar%20New%20Year/2027/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
 - **`data/lny-2027.json`** — Fund The Festival data (from `build_lny_budget.py`)
 - **`data/season-events.json`** — LNY Season list (from LNY market landscape Sheet)
 - **`data/lny-2026-sponsors-display.json`** — public sponsor logos/tiers *(reconcile tiers before launch)*
@@ -33,7 +35,7 @@ Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html`
 
 ### Blog
 
-Source markdown lives in [`Festival Network/shared/content/blog/`](../../../../Festival%20Network/shared/content/blog/). Rebuild after editing:
+Source markdown lives in [`Festival Network/shared/content/blog/`](../../Festival%20Network/shared/content/blog/). Rebuild after editing:
 
 ```bash
 node "Festival Network/scripts/build-festival-site-blog.mjs" --site eglny
@@ -41,7 +43,9 @@ node "Festival Network/scripts/build-festival-site-blog.mjs" --site eglny
 npm run blog:build --prefix "Festival Network"
 ```
 
-The publish script runs this automatically before rsync.
+The refresh script runs this automatically.
+
+Refresh season events from the landscape Sheet:
 
 ```bash
 node "Festival Network/scripts/export-eglny-season-events.mjs"
@@ -50,7 +54,7 @@ node "Festival Network/scripts/export-eglny-season-events.mjs"
 ## Local preview
 
 ```bash
-cd "Projects - Lunar New Year/2027/Marketing/eglny-site"
+cd Sites/eglny
 python3 -m http.server 8765
 ```
 
@@ -63,21 +67,26 @@ python3 -m http.server 8765
 - http://localhost:8765/resources/media/
 - http://localhost:8765/resources/blog/
 
-Refresh season events from the landscape Sheet:
+## Refresh generated data
 
-From monorepo root (rsyncs this folder → [`Sites/eglny`](../../../../Sites/eglny); edit **here**, not in `Sites/`):
+From monorepo root (writes into this folder; does not push):
 
 ```bash
-git clone git@github.com:cPALSs/eglny.git Sites/eglny   # once
 ./scripts/publish_eglny_site.sh
-cd Sites/eglny && git add -A && git commit -m "Update site" && git push
 ```
 
-Regenerates LNY JSON via `build_lny_budget.py`, then rsyncs this folder to the publish clone. See [`Sites/README.md`](../../../../Sites/README.md).
+Then commit and push **from this repo** when ready:
+
+```bash
+cd Sites/eglny
+git add -A && git commit -m "Update site" && git push
+```
+
+See [`Sites/README.md`](../README.md).
 
 ## SEO
 
-Built automatically on publish (`build-festival-site-seo.mjs` + `build-festival-site-sitemap.mjs`):
+Built automatically on refresh (`build-festival-site-seo.mjs` + `build-festival-site-sitemap.mjs`):
 
 - `robots.txt` and `sitemap.xml` at site root
 - Canonical, Open Graph, and Twitter meta on all primary pages
@@ -97,8 +106,9 @@ Manual (UI only): URL Inspection → Request indexing for key pages; link GSC to
 
 ## Launch checklist
 
-See [EGLNY Website - Launch Checklist.md](../EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
+See [EGLNY Website - Launch Checklist.md](../../Projects%20-%20Lunar%20New%20Year/2027/Marketing/EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
 
-## Link policy
+## Related
 
-No monorepo paths in public JSON or HTML — [.cursor/rules/github-pages-public-sites.mdc](../../../../.cursor/rules/github-pages-public-sites.mdc)
+- Great Lantern Festival: https://greatlantern.com · [`Sites/greatlantern`](../greatlantern/)
+- Festival Season Network: https://festival.cpalss.com

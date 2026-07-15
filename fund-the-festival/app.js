@@ -154,28 +154,29 @@ function selectedTierStorageKey(festivalId) {
 }
 
 const VALID_THEMES = new Set(["auto", "light", "dark"]);
+const STORED_THEMES = new Set(["light", "dark"]);
 
 const THEME_ICON_SVG = {
   light: `<svg class="theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>`,
   dark: `<svg class="theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
-  auto: `<svg class="theme-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18V3z" fill="currentColor" stroke="none"/></svg>`,
 };
 
 function renderThemeIcon(theme) {
   const el = document.getElementById("theme-icon");
   if (!el) return;
-  const key = VALID_THEMES.has(theme) ? theme : "auto";
-  el.innerHTML = THEME_ICON_SVG[key];
+  const appearance =
+    theme === "light" || theme === "dark"
+      ? theme
+      : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+  el.innerHTML = THEME_ICON_SVG[appearance];
 }
 
 function loadThemeFromStorage() {
   try {
-    const key = activeThemeStorageKey();
-    const theme =
-      localStorage.getItem(key) ||
-      (isSiteEmbed() ? localStorage.getItem(THEME_STORAGE_KEY) : null) ||
-      localStorage.getItem(LEGACY_THEME_KEY);
-    return VALID_THEMES.has(theme) ? theme : "auto";
+    const theme = sessionStorage.getItem(activeThemeStorageKey());
+    return STORED_THEMES.has(theme) ? theme : "auto";
   } catch {
     return "auto";
   }
@@ -191,10 +192,11 @@ function applyTheme(theme) {
 }
 
 function setTheme(theme) {
-  const next = VALID_THEMES.has(theme) ? theme : "auto";
+  const next = STORED_THEMES.has(theme) ? theme : "auto";
   applyTheme(next);
   try {
-    localStorage.setItem(activeThemeStorageKey(), next);
+    if (STORED_THEMES.has(next)) sessionStorage.setItem(activeThemeStorageKey(), next);
+    else sessionStorage.removeItem(activeThemeStorageKey());
   } catch {
     /* ignore */
   }
@@ -203,22 +205,15 @@ function setTheme(theme) {
 function initTheme() {
   applyTheme(loadThemeFromStorage());
 
-  if (isSiteEmbed()) {
-    window.addEventListener("storage", (e) => {
-      if (e.key === EGLNY_THEME_KEY && VALID_THEMES.has(e.newValue)) applyTheme(e.newValue);
-    });
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-      if (loadThemeFromStorage() === "auto") applyTheme("auto");
-    });
-    return;
-  }
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (loadThemeFromStorage() === "auto") applyTheme("auto");
+  });
+
+  if (isSiteEmbed()) return;
 
   const select = document.getElementById("btf-theme-select") || document.getElementById("theme-select");
   if (!select) return;
   select.onchange = () => setTheme(select.value);
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-    if (loadThemeFromStorage() === "auto") applyTheme("auto");
-  });
 }
 
 const state = {
@@ -1498,7 +1493,7 @@ async function init() {
   } catch (err) {
     document.querySelector(".page").innerHTML = `
       <p class="error">Could not load festival data. Run from a local server:<br>
-      <code>cd "Projects - Lunar New Year/2027/Marketing/eglny-site" && python3 -m http.server 8766</code><br>
+      <code>cd "Sites/eglny" && python3 -m http.server 8766</code><br>
       Then open http://localhost:8766/fund-the-festival/<br><br>${err.message}</p>`;
   }
 }

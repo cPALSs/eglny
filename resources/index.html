@@ -22,8 +22,8 @@
   <script>
     (function () {
       try {
-        var t = localStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark" || t === "auto") document.documentElement.setAttribute("data-theme", t);
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
       } catch (_) {}
     })();
   </script>

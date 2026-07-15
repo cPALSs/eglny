@@ -3,6 +3,7 @@
   const SITE_DATA_URL = "data/site.json";
   const THEME_STORAGE_KEY = "eglny-theme";
   const VALID_THEMES = new Set(["auto", "light", "dark"]);
+  const STORED_THEMES = new Set(["light", "dark"]);
 
   function escapeHtml(text) {
     return String(text)
@@ -14,20 +15,24 @@
 
   function loadThemeFromStorage() {
     try {
-      const theme = localStorage.getItem(THEME_STORAGE_KEY);
-      return VALID_THEMES.has(theme) ? theme : "auto";
+      const theme = sessionStorage.getItem(THEME_STORAGE_KEY);
+      return STORED_THEMES.has(theme) ? theme : "auto";
     } catch {
       return "auto";
     }
   }
 
-  function themeIconMarkup(theme) {
+  function resolvedAppearance(preference = loadThemeFromStorage()) {
+    if (preference === "light" || preference === "dark") return preference;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function themeIconMarkup(appearance) {
     const icons = {
-      auto: `<svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg>`,
       light: `<svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>`,
       dark: `<svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
     };
-    return icons[theme] ?? icons.auto;
+    return icons[appearance] ?? icons.light;
   }
 
   function themeLabel(theme) {
@@ -35,22 +40,10 @@
   }
 
   function renderThemeControl() {
-    const options = ["auto", "light", "dark"]
-      .map(
-        (value) =>
-          `<button type="button" class="theme-menu-item" role="menuitemradio" data-theme-option="${value}" aria-checked="false">${themeLabel(value)}</button>`,
-      )
-      .join("");
-
     return `
-      <div class="theme-dropdown">
-        <button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-expanded="false" aria-haspopup="menu" aria-controls="theme-menu" aria-label="Color theme">
-          ${themeIconMarkup("auto")}
-        </button>
-        <div id="theme-menu" class="theme-menu" role="menu" hidden>
-          ${options}
-        </div>
-      </div>`;
+      <button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Color theme">
+        ${themeIconMarkup("light")}
+      </button>`;
   }
 
   function applyTheme(theme) {
@@ -59,19 +52,18 @@
 
     const toggle = document.getElementById("theme-toggle");
     if (toggle) {
-      toggle.innerHTML = `${themeIconMarkup(next)}<span class="sr-only">Color theme: ${themeLabel(next)}</span>`;
+      const appearance = resolvedAppearance(next);
+      toggle.innerHTML = `${themeIconMarkup(appearance)}<span class="sr-only">Color theme: ${themeLabel(next)}</span>`;
       toggle.setAttribute("aria-label", `Color theme: ${themeLabel(next)}`);
     }
-
-    document.querySelectorAll("[data-theme-option]").forEach((item) => {
-      item.setAttribute("aria-checked", item.dataset.themeOption === next ? "true" : "false");
-    });
   }
 
   function setTheme(theme) {
-    applyTheme(theme);
+    const next = STORED_THEMES.has(theme) ? theme : "auto";
+    applyTheme(next);
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
+      if (STORED_THEMES.has(next)) sessionStorage.setItem(THEME_STORAGE_KEY, next);
+      else sessionStorage.removeItem(THEME_STORAGE_KEY);
     } catch {
       /* ignore */
     }
@@ -79,53 +71,18 @@
 
   let closeNavMenu = () => {};
 
-  function closeThemeMenu() {
-    const dropdown = document.querySelector(".theme-dropdown");
+  function initThemeToggle() {
     const toggle = document.getElementById("theme-toggle");
-    const menu = document.getElementById("theme-menu");
-    if (!dropdown || !toggle || !menu) return;
-    dropdown.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-    menu.hidden = true;
-  }
+    if (!toggle) return;
 
-  function initThemeDropdown() {
-    const dropdown = document.querySelector(".theme-dropdown");
-    const toggle = document.getElementById("theme-toggle");
-    const menu = document.getElementById("theme-menu");
-    if (!dropdown || !toggle || !menu) return;
-
-    toggle.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const opening = !dropdown.classList.contains("is-open");
-      closeThemeMenu();
-      if (opening) {
-        closeNavMenu();
-        dropdown.classList.add("is-open");
-        toggle.setAttribute("aria-expanded", "true");
-        menu.hidden = false;
-      }
-    });
-
-    menu.querySelectorAll("[data-theme-option]").forEach((item) => {
-      item.addEventListener("click", () => {
-        setTheme(item.dataset.themeOption);
-        closeThemeMenu();
-      });
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!dropdown.contains(event.target)) closeThemeMenu();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeThemeMenu();
+    toggle.addEventListener("click", () => {
+      setTheme(resolvedAppearance() === "dark" ? "light" : "dark");
     });
   }
 
   function initTheme() {
     applyTheme(loadThemeFromStorage());
-    initThemeDropdown();
+    initThemeToggle();
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
       if (loadThemeFromStorage() === "auto") applyTheme("auto");
     });
@@ -260,7 +217,6 @@
         if (srLabel) srLabel.textContent = "Open menu";
         return;
       }
-      if (open) closeThemeMenu();
       nav.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       drawer.setAttribute("aria-hidden", open ? "false" : "true");
@@ -303,18 +259,26 @@
   }
 
   function renderFooterNavLinks(pages) {
-    return pages
-      .flatMap((page) => {
+    const leafItems = [];
+    const columns = [];
+
+    for (const page of pages) {
+      if (page.children?.length) {
         const items = [`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`];
-        if (page.children?.length) {
-          for (const child of page.children) {
-            const external = child.external ? ' target="_blank" rel="noopener"' : "";
-            items.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
-          }
+        for (const child of page.children) {
+          const external = child.external ? ' target="_blank" rel="noopener"' : "";
+          items.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
         }
-        return items;
-      })
-      .join("");
+        columns.push(`<div class="site-footer-nav-col">${items.join("")}</div>`);
+      } else {
+        leafItems.push(`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`);
+      }
+    }
+
+    if (leafItems.length) {
+      columns.unshift(`<div class="site-footer-nav-col">${leafItems.join("")}</div>`);
+    }
+    return columns.join("");
   }
 
   function renderSocialIcon(label) {
@@ -341,7 +305,7 @@
 
   function injectNavSocial(links) {
     const end = document.querySelector(".site-nav-end");
-    const theme = end?.querySelector(".theme-dropdown");
+    const theme = end?.querySelector("#theme-toggle");
     if (!end || !theme) return;
     end.querySelector(".site-nav-social")?.remove();
     const html = renderNavSocialLinks(links);
@@ -362,7 +326,7 @@
     const coalition = (footer.coalitionLinks ?? [])
       .filter((link) => link.href !== "https://www.elkgrovelunarnewyear.com/")
       .map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>`)
-      .join(" + ");
+      .join("\u00a0+\u00a0");
 
     return `
     <footer class="site-footer">
