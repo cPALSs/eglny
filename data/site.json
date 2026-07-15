@@ -55,6 +55,13 @@
       "Volunteers Director owns shifts; if a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
     ]
   },
+  "productionMeetings": {
+    "title": "Production meetings",
+    "intro": "Stay connected with festival production — join the weekly Zoom call or the Discord channel.",
+    "zoom": "Weekly Zoom calls are Mondays at 6:30 PM. To join as a guest, email contact@eglny.com.",
+    "discordLabel": "Join the Discord",
+    "discordHref": "https://discord.gg/h4hXXvWS"
+  },
   "coChairs": [
     {
       "name": "Thuy Pham",

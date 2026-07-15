@@ -174,7 +174,7 @@
       <div class="site-nav-bar">
         <a class="site-nav-brand" href="/">
           <span class="site-nav-brand-full">Elk Grove Lunar New Year <span>Tết</span></span>
-          <span class="site-nav-brand-short">EG LNY <span>Tết</span></span>
+          <span class="site-nav-brand-short">EGLNY <span>Tết</span></span>
         </a>
         <div class="site-nav-end">
           ${renderThemeControl()}
@@ -499,7 +499,9 @@
   }
 
   function buildTeamToc(site) {
+    const meetings = site.productionMeetings;
     return [
+      ...(meetings ? [{ id: "production-meetings", label: meetings.title ?? "Production meetings" }] : []),
       { id: "director-roles", label: "Director roles" },
       ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
       { id: "phase2", label: site.phase2?.title ?? "Phase 2" },
@@ -565,7 +567,10 @@
     initTheme();
     initNavMenu();
     loadSiteData()
-      .then((site) => injectNavSocial(site?.footer?.socialLinks))
+      .then((site) => {
+        injectNavSocial(site?.footer?.socialLinks);
+        mountFooter(site);
+      })
       .catch(() => {});
   }
 
@@ -718,6 +723,24 @@
 
   function renderTeamPage(site) {
     const intro = site.directorIntro;
+    const meetings = site.productionMeetings;
+    const contactEmail = site.apply?.email ?? "contact@eglny.com";
+
+    const meetingsHtml = meetings
+      ? `
+          <section class="content-section site-doc-section" id="production-meetings" data-doc-section>
+            <h2>${escapeHtml(meetings.title ?? "Production meetings")}</h2>
+            ${meetings.intro ? `<p>${escapeHtml(meetings.intro)}</p>` : ""}
+            <ul>
+              <li>${escapeHtml(meetings.zoom).replace(
+                escapeHtml(contactEmail),
+                `<a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>`,
+              )}</li>
+              <li><a href="${escapeHtml(meetings.discordHref)}"${externalLinkAttrs(meetings.discordHref)}>${escapeHtml(meetings.discordLabel ?? "Join the Discord")}</a></li>
+            </ul>
+          </section>`
+      : "";
+
     const lanesHtml = site.lanes
       .map(
         (lane) => `
@@ -751,6 +774,7 @@
       .join("");
 
     const mainHtml = `
+          ${meetingsHtml}
           <section class="content-section site-doc-section" id="director-roles" data-doc-section>
             <h2>Director roles — 2027 festival</h2>
             <h3>${escapeHtml(intro.title)}</h3>
