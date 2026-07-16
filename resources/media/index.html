@@ -7,15 +7,15 @@
   <script src="../../analytics.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
+  <meta name="description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, festival videos, and posters." />
   <link rel="canonical" href="https://eglny.com/resources/media/" />
   <meta property="og:title" content="Media — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
+  <meta property="og:description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, festival videos, and posters." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eglny.com/resources/media/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Media — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
+  <meta name="twitter:description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, festival videos, and posters." />
 
   <title>Media — Elk Grove Lunar New Year Tết</title>
   <script src="../../clean-urls.js"></script>
@@ -50,6 +50,7 @@
         mountFooter,
         renderMediaPage,
         initMediaPlayers,
+        initDocToc,
         setPageTitle,
         escapeHtml,
       } = window.EglnySite;
@@ -58,6 +59,7 @@
         const site = await loadSiteData();
         setPageTitle(site, "Media");
         document.getElementById("main").innerHTML = renderMediaPage(site.media);
+        initDocToc();
         initMediaPlayers();
         mountFooter(site);
       } catch (err) {

@@ -7,15 +7,15 @@
   <script src="../analytics.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="About Elk Grove Lunar New Year Tết — Tết traditions, Sacramento history, and festival posters." />
+  <meta name="description" content="About Elk Grove Lunar New Year Tết — Tết traditions and Sacramento history." />
   <link rel="canonical" href="https://eglny.com/about/" />
   <meta property="og:title" content="About Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="About Elk Grove Lunar New Year Tết — Tết traditions, Sacramento history, and festival posters." />
+  <meta property="og:description" content="About Elk Grove Lunar New Year Tết — Tết traditions and Sacramento history." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eglny.com/about/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="About Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="About Elk Grove Lunar New Year Tết — Tết traditions, Sacramento history, and festival posters." />
+  <meta name="twitter:description" content="About Elk Grove Lunar New Year Tết — Tết traditions and Sacramento history." />
 
   <title>About Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
@@ -44,7 +44,7 @@
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, renderPosterWall, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
+      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
         window.EglnySite;
       initPageShell("about");
       try {
@@ -57,7 +57,7 @@
           </section>
           ${wrapDocLayout(
             renderDocToc(buildAboutToc(about)),
-            `${renderAboutSections(about)}${renderPosterWall(about.posterWall)}`,
+            renderAboutSections(about),
           )}
         `;
         initDocToc();

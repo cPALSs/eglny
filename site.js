@@ -489,12 +489,6 @@
       id: sectionId(section),
       label: section.title,
     }));
-    if (about.posterWall) {
-      items.push({
-        id: "posters",
-        label: about.posterWall.title ?? "Festival posters",
-      });
-    }
     return items;
   }
 
@@ -668,6 +662,18 @@
 
   function renderMediaPage(media) {
     const videos = media?.videos ?? [];
+    const posterWall = media?.posterWall;
+    const videosHeading = media?.videosHeading ?? "Videos";
+    const hasPosters = (posterWall?.posters ?? []).length > 0;
+    const tocItems = [];
+    if (videos.length) tocItems.push({ id: "videos", label: videosHeading });
+    if (hasPosters) {
+      tocItems.push({
+        id: "posters",
+        label: posterWall.tocLabel ?? posterWall.title ?? "Past fliers",
+      });
+    }
+
     const byYear = new Map();
     for (const video of videos) {
       const year = String(video.year ?? "Videos");
@@ -675,30 +681,41 @@
       byYear.get(year).push(video);
     }
     const years = [...byYear.keys()].sort((a, b) => String(b).localeCompare(String(a)));
-    const sections = years
+    const yearBlocks = years
       .map((year) => {
         const cards = byYear.get(year).map(renderMediaVideoCard).join("");
         return `
-      <section class="media-year-section" aria-labelledby="media-year-${escapeHtml(year)}">
-        <h2 class="media-year-heading" id="media-year-${escapeHtml(year)}">${escapeHtml(year)}</h2>
+      <div class="media-year-section" aria-labelledby="media-year-${escapeHtml(year)}">
+        <h3 class="media-year-heading" id="media-year-${escapeHtml(year)}">${escapeHtml(year)}</h3>
         <div class="video-grid">${cards}</div>
-      </section>`;
+      </div>`;
       })
       .join("");
 
+    const videosHtml = videos.length
+      ? `
+      <section class="content-section site-doc-section" id="videos" data-doc-section>
+        <h2>${escapeHtml(videosHeading)}</h2>
+        ${yearBlocks}
+      </section>`
+      : "";
+
+    const postersHtml = hasPosters ? renderPosterWall(posterWall) : "";
     const contact = media?.contactNote
       ? `<p class="muted media-contact-note">${escapeHtml(media.contactNote)}</p>`
       : "";
+    const empty =
+      !videos.length && !hasPosters
+        ? `<p class="muted">Media coming soon.</p>`
+        : "";
+    const mainHtml = `${videosHtml}${postersHtml}${empty}${contact}`;
 
     return `
       <section class="hero">
         <h1>${escapeHtml(media?.headline ?? "Media")}</h1>
         ${media?.lead ? `<p class="hero-lead">${escapeHtml(media.lead)}</p>` : ""}
       </section>
-      <div class="media-page-body">
-        ${videos.length ? sections : `<p class="muted">Media coming soon.</p>`}
-        ${contact}
-      </div>`;
+      ${tocItems.length ? wrapDocLayout(renderDocToc(tocItems), mainHtml) : `<div class="media-page-body">${mainHtml}</div>`}`;
   }
 
   function initMediaPlayers(root = document) {
