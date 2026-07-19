@@ -27,7 +27,7 @@ Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html`
 
 ## Content
 
-- **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../Projects%20-%20Lunar%20New%20Year/2027/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
+- **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../../Programs/Lunar%20New%20Year/2027/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
 - **`data/lny-2027.json`** — Fund The Festival data (from `build_lny_budget.py`)
 - **`data/season-events.json`** — LNY Season list (from LNY market landscape Sheet)
 - **`data/lny-2026-sponsors-display.json`** — public sponsor logos/tiers *(reconcile tiers before launch)*
@@ -35,10 +35,10 @@ Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html`
 
 ### Blog
 
-Source markdown lives in [`Festival Network/shared/content/blog/`](../../Festival%20Network/shared/content/blog/). Rebuild after editing:
+Source markdown lives in [`Operations/Festival Network/shared/content/blog/`](../../Festival%20Network/shared/content/blog/). Rebuild after editing:
 
 ```bash
-node "Festival Network/scripts/build-festival-site-blog.mjs" --site eglny
+node "Operations/Festival Network/scripts/build-festival-site-blog.mjs" --site eglny
 # or both sites:
 npm run blog:build --prefix "Festival Network"
 ```
@@ -48,7 +48,7 @@ The refresh script runs this automatically.
 Refresh season events from the landscape Sheet:
 
 ```bash
-node "Festival Network/scripts/export-eglny-season-events.mjs"
+node "Operations/Festival Network/scripts/export-eglny-season-events.mjs"
 ```
 
 ## Local preview
@@ -98,15 +98,15 @@ Optional share image: add `assets/og-default.jpg` (1200×630) — see [`assets/R
 **Google Search Console** (after property verified + OAuth re-run with webmasters scope):
 
 ```bash
-node "Festival Network/scripts/search-console-eglny.mjs" submit-sitemap
-node "Festival Network/scripts/search-console-eglny.mjs" inspect-urls
+node "Operations/Festival Network/scripts/search-console-eglny.mjs" submit-sitemap
+node "Operations/Festival Network/scripts/search-console-eglny.mjs" inspect-urls
 ```
 
 Manual (UI only): URL Inspection → Request indexing for key pages; link GSC to GA4.
 
 ## Launch checklist
 
-See [EGLNY Website - Launch Checklist.md](../../Projects%20-%20Lunar%20New%20Year/2027/Marketing/EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
+See [EGLNY Website - Launch Checklist.md](../../../Programs/Lunar%20New%20Year/2027/Marketing/EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
 
 ## Related
 

@@ -679,7 +679,7 @@
       "id": "inflatable_carnival_games",
       "name": "Inflatable Carnival Games",
       "emoji": "\ud83c\udfaf",
-      "amount": 1750,
+      "amount": 1765,
       "category": "registry",
       "sortOrder": 15,
       "impactOrder": 15,
@@ -709,7 +709,7 @@
         },
         {
           "label": "Storage amortization \u2014 games share (2 pallets \u00f7 3 flagships; Elk Grove U-Haul)",
-          "amount": 150
+          "amount": 165
         }
       ]
     },
