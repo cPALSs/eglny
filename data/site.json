@@ -50,7 +50,7 @@
     ],
     "notes": [
       "Youth Culture Day (school multicultural rallies on stage) and Tết Relay Cup (open-age relay bracket on grass) are separate lanes with separate directors.",
-      "Parade & Procession is a sponsor-gated Phase 2 lane — likely cut at MVP unless a registry block funds it.",
+      "Parade is a sponsor-gated Phase 2 committee — Chair oversees Creative Director + Producer; likely cut at MVP unless a registry block funds it.",
       "Saturday 5–8 PM headliner is sponsor unlock, not MVP baseline.",
       "Volunteers Director owns shifts; if a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
     ]
@@ -173,9 +173,9 @@
           "own": "Lion team booking · 2× weekend performances"
         },
         {
-          "title": "Parade & Procession",
+          "title": "Parade",
           "phase2": true,
-          "own": "Performer booking · staging · route plan (registry-gated)"
+          "own": "Chair hires Creative Director (vision/route) + Producer (registry performers/staging)"
         }
       ]
     },
@@ -223,7 +223,6 @@
     "intro": "These director roles activate when sponsors fund the matching Fund The Festival gift. Plan with the base director in the meantime; hold the vision until the block unlocks.",
     "roles": [
       "Saturday Night Headliner Director — Sat 5–8 PM B-tier anchor",
-      "Parade Production Director — Performers + staging",
       "Spread the Word Director — Paid Meta / Instagram reach",
       "Decor & Cây Nêu Director — Community pool + decor backlog"
     ],
