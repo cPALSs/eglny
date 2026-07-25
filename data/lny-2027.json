@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
     "vendorRev100": 19300,
-    "registryFull": 125640,
+    "registryFull": 166655,
     "vendorSlots": 40,
     "attendance": 6000
   },
@@ -710,6 +710,144 @@
         {
           "label": "Storage amortization \u2014 games share (2 pallets \u00f7 3 flagships; Elk Grove U-Haul)",
           "amount": 165
+        }
+      ]
+    },
+    {
+      "id": "big_game_pavilion_watch",
+      "name": "Big Game Pavilion Watch",
+      "emoji": "\ud83d\udcfa",
+      "amount": 10000,
+      "category": "registry",
+      "sortOrder": 16,
+      "impactOrder": 16,
+      "tagline": "Sunday evening watch party in the Pavilion \u2014 LED screen, sound, and legal game feed.",
+      "description": "Turn Sunday evening Feb 14, 2027 (Big Game Sunday + Valentine\u2019s Day) into a reason to stay after daytime T\u1ebft. Indoor Pavilion screening with LED wall, sound, seating, and evening security. Includes budget for a commercial / public-exhibition streaming or cable license and a legal feed \u2014 go/no-go if rights cannot be secured. Free admission. Alcohol is not included \u2014 fund Beer Garden separately if you want a licensed pour.",
+      "benefits": [
+        "Big Game Pavilion Watch presented by [Sponsor]",
+        "MC thank-you + website / Facebook / Instagram feature",
+        "Named on Pavilion entry / screen bumper when production allows"
+      ],
+      "lineItems": [
+        {
+          "label": "LED wall rental + labor (Pavilion evening)",
+          "amount": 2000
+        },
+        {
+          "label": "Sound + AV tech",
+          "amount": 1000
+        },
+        {
+          "label": "Commercial / public-exhibition streaming license + legal feed",
+          "amount": 2500
+        },
+        {
+          "label": "Seating reconfig / chairs",
+          "amount": 800
+        },
+        {
+          "label": "Evening security",
+          "amount": 1500
+        },
+        {
+          "label": "Pavilion overtime, staff + cleanup",
+          "amount": 1200
+        },
+        {
+          "label": "Signage, hospitality + contingency",
+          "amount": 1000
+        }
+      ]
+    },
+    {
+      "id": "big_game_tent_watch",
+      "name": "Big Game Tent Watch",
+      "emoji": "\u26fa",
+      "amount": 25000,
+      "category": "registry",
+      "sortOrder": 17,
+      "impactOrder": 17,
+      "tagline": "Parking-lot walled tent \u2014 rain-safe LED, evening watch party, legal game feed.",
+      "description": "Outdoor Big Game watch in the parking lot under a large frame tent with walls \u2014 protects the LED from rain and creates a weather-safe hang for Sunday evening (Feb 14, 2027). Includes budget for a commercial / public-exhibition streaming or cable license and a legal feed \u2014 go/no-go if rights cannot be secured. Free admission. Alcohol is not included \u2014 fund Beer Garden separately for a licensed pour with 21+ wristbands.",
+      "benefits": [
+        "Big Game Tent Watch presented by [Sponsor]",
+        "MC thank-you + website / Facebook / Instagram feature",
+        "Named on tent entry signage + map pin when production allows"
+      ],
+      "lineItems": [
+        {
+          "label": "Walled frame tent (parking lot) \u2014 rental, walls, weights, install",
+          "amount": 8000
+        },
+        {
+          "label": "LED wall rental + labor (tent / evening)",
+          "amount": 3500
+        },
+        {
+          "label": "Generator / power for evening",
+          "amount": 1500
+        },
+        {
+          "label": "Sound + area lighting inside tent",
+          "amount": 2500
+        },
+        {
+          "label": "Commercial / public-exhibition streaming license + legal feed",
+          "amount": 4000
+        },
+        {
+          "label": "Evening security + door control",
+          "amount": 2500
+        },
+        {
+          "label": "Seating / heaters / guest comfort",
+          "amount": 2000
+        },
+        {
+          "label": "Signage, flooring mats buffer + contingency",
+          "amount": 1000
+        }
+      ]
+    },
+    {
+      "id": "beer_garden",
+      "name": "Beer Garden",
+      "emoji": "\ud83c\udf7a",
+      "amount": 6000,
+      "category": "registry",
+      "sortOrder": 18,
+      "impactOrder": 18,
+      "tagline": "Licensed festival pour \u2014 21+ wristbands, ABC, and extra security.",
+      "description": "Fund a Cosumnes CSD\u2013style beer garden for the festival weekend: 21+ wristbands, ABC coordination, liquor-liability support, and extra security for a licensed partner pour (e.g. Bob\u2019s Club\u2013model). Free festival admission; bar sales stay with the licensed partner. Independent of Big Game watch gifts \u2014 fund those separately if you want evening screening.",
+      "benefits": [
+        "Beer Garden presented by [Sponsor]",
+        "website / Facebook / Instagram feature",
+        "Named on pour-zone / wristband station signage when production allows"
+      ],
+      "lineItems": [
+        {
+          "label": "Extra security for alcohol service (festival hours)",
+          "amount": 2000
+        },
+        {
+          "label": "ID / wristband stations + supplies",
+          "amount": 500
+        },
+        {
+          "label": "ABC coordination + EGPD packet support",
+          "amount": 800
+        },
+        {
+          "label": "Liquor liability insurance rider / increment",
+          "amount": 1200
+        },
+        {
+          "label": "Licensed partner ops stipend / fencing soft costs",
+          "amount": 1000
+        },
+        {
+          "label": "Contingency",
+          "amount": 500
         }
       ]
     },
