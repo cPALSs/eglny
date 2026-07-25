@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
     "vendorRev100": 19300,
-    "registryFull": 166655,
+    "registryFull": 157655,
     "vendorSlots": 40,
     "attendance": 6000
   },
@@ -389,7 +389,7 @@
       "sortOrder": 7,
       "impactOrder": 1,
       "tagline": "~2-hour produced variety show \u2014 singers, comedy, cultural numbers, MC.",
-      "description": "Talent booking for a signature PBN-style revue on the MVP stage \u2014 singers, comedy, cultural acts, and MC. Assumes baseline stage, PA, and sound engineers; add Stage Production+ for upgraded sound and lights.",
+      "description": "Talent booking for a signature PBN-style revue on the MVP stage \u2014 singers, comedy, cultural acts, and MC. Assumes baseline stage, PA, and sound engineers; add Covered Main Stage for upgraded sound, lights, LED, and weather tent.",
       "benefits": [
         "Named revue block",
         "Hero billing",
@@ -460,25 +460,30 @@
     },
     {
       "id": "stage_production_plus",
-      "name": "Stage Production+",
-      "emoji": "\ud83d\udd0a",
-      "amount": 7000,
+      "name": "Covered Main Stage",
+      "emoji": "\ud83c\udfaa",
+      "amount": 15000,
       "category": "registry",
       "sortOrder": 10,
       "impactOrder": 4,
-      "tagline": "Upgrade outdoor stage to concert-quality sound, lights, and LED.",
-      "description": "Upgrade from baseline MVP PA to concert-quality outdoor sound gear, stage lights, and LED \u2014 sound engineers are in core stage ops; this block adds production quality for talent sponsors.",
+      "tagline": "Walled tent + LED + concert PA \u2014 the outdoor main stage weather shell.",
+      "description": "Turns the outdoor main stage into a covered venue: large frame tent with walls (rain/wind protection for audience and LED), concert-quality PA, stage lights, and LED wall. Daytime programming (lion dance, youth, music) and Saturday night headliner share this shell; Sunday evening Big Game Outdoor Evening is a separate add-on that reuses the same LED. Assumes core Outdoor Stage (APEX/riser, baseline engineer, daylight generators) is already in MVP.",
       "benefits": [
+        "Covered Main Stage presented by [Sponsor]",
         "Gold-tier stage mentions",
-        "website sponsor page"
+        "website sponsor page + MC thank-you"
       ],
       "lineItems": [
+        {
+          "label": "Walled frame tent \u2014 main stage audience shell (rental, walls, weights, install)",
+          "amount": 8000
+        },
         {
           "label": "Upgraded outdoor PA (concert quality)",
           "amount": 2500
         },
         {
-          "label": "Stage lights + LED",
+          "label": "Stage lights + LED wall",
           "amount": 3500
         },
         {
@@ -721,8 +726,8 @@
       "category": "registry",
       "sortOrder": 16,
       "impactOrder": 16,
-      "tagline": "Sunday evening watch party in the Pavilion \u2014 LED screen, sound, and legal game feed.",
-      "description": "Turn Sunday evening Feb 14, 2027 (Big Game Sunday + Valentine\u2019s Day) into a reason to stay after daytime T\u1ebft. Indoor Pavilion screening with LED wall, sound, seating, and evening security. Includes budget for a commercial / public-exhibition streaming or cable license and a legal feed \u2014 go/no-go if rights cannot be secured. Free admission. Alcohol is not included \u2014 fund Beer Garden separately if you want a licensed pour.",
+      "tagline": "Sunday evening watch party in the Pavilion \u2014 indoor alternate to the outdoor main stage.",
+      "description": "Indoor Big Game watch in the Pavilion on Sunday evening Feb 14, 2027 \u2014 the weatherproof alternate if Covered Main Stage is not funded. LED wall, sound, seating, evening security, and budget for a commercial / public-exhibition streaming or cable license plus legal feed (go/no-go if rights cannot be secured). Free admission. Alcohol is not included \u2014 fund Beer Garden separately.",
       "benefits": [
         "Big Game Pavilion Watch presented by [Sponsor]",
         "MC thank-you + website / Facebook / Instagram feature",
@@ -760,52 +765,36 @@
       ]
     },
     {
-      "id": "big_game_tent_watch",
-      "name": "Big Game Tent Watch",
-      "emoji": "\u26fa",
-      "amount": 25000,
+      "id": "big_game_outdoor_evening",
+      "name": "Big Game Outdoor Evening",
+      "emoji": "\ud83c\udfc8",
+      "amount": 8000,
       "category": "registry",
       "sortOrder": 17,
       "impactOrder": 17,
-      "tagline": "Parking-lot walled tent \u2014 rain-safe LED, evening watch party, legal game feed.",
-      "description": "Outdoor Big Game watch in the parking lot under a large frame tent with walls \u2014 protects the LED from rain and creates a weather-safe hang for Sunday evening (Feb 14, 2027). Includes budget for a commercial / public-exhibition streaming or cable license and a legal feed \u2014 go/no-go if rights cannot be secured. Free admission. Alcohol is not included \u2014 fund Beer Garden separately for a licensed pour with 21+ wristbands.",
+      "tagline": "Sunday evening on the covered main stage \u2014 license, security, comfort (reuses tent + LED).",
+      "description": "Add-on for Sunday evening Feb 14, 2027 on the Covered Main Stage LED \u2014 not a second venue. Funds commercial / public-exhibition streaming or cable license + legal feed (go/no-go if rights cannot be secured), evening security extension, and guest comfort (heaters/seating soft costs). Requires Covered Main Stage (walled tent + LED) already funded. Free admission. Alcohol is not included \u2014 fund Beer Garden separately.",
       "benefits": [
-        "Big Game Tent Watch presented by [Sponsor]",
+        "Big Game Outdoor Evening presented by [Sponsor]",
         "MC thank-you + website / Facebook / Instagram feature",
-        "Named on tent entry signage + map pin when production allows"
+        "Named on main-stage evening bumper / map pin when production allows"
       ],
       "lineItems": [
-        {
-          "label": "Walled frame tent (parking lot) \u2014 rental, walls, weights, install",
-          "amount": 8000
-        },
-        {
-          "label": "LED wall rental + labor (tent / evening)",
-          "amount": 3500
-        },
-        {
-          "label": "Generator / power for evening",
-          "amount": 1500
-        },
-        {
-          "label": "Sound + area lighting inside tent",
-          "amount": 2500
-        },
         {
           "label": "Commercial / public-exhibition streaming license + legal feed",
           "amount": 4000
         },
         {
-          "label": "Evening security + door control",
+          "label": "Sunday evening security extension",
           "amount": 2500
         },
         {
-          "label": "Seating / heaters / guest comfort",
-          "amount": 2000
+          "label": "Heaters / seating comfort soft costs",
+          "amount": 1000
         },
         {
-          "label": "Signage, flooring mats buffer + contingency",
-          "amount": 1000
+          "label": "Signage + contingency",
+          "amount": 500
         }
       ]
     },
@@ -818,7 +807,7 @@
       "sortOrder": 18,
       "impactOrder": 18,
       "tagline": "Licensed festival pour \u2014 21+ wristbands, ABC, and extra security.",
-      "description": "Fund a Cosumnes CSD\u2013style beer garden for the festival weekend: 21+ wristbands, ABC coordination, liquor-liability support, and extra security for a licensed partner pour (e.g. Bob\u2019s Club\u2013model). Free festival admission; bar sales stay with the licensed partner. Independent of Big Game watch gifts \u2014 fund those separately if you want evening screening.",
+      "description": "Fund a Cosumnes CSD\u2013style beer garden for the festival weekend: 21+ wristbands, ABC coordination, liquor-liability support, and extra security for a licensed partner pour (e.g. Bob\u2019s Club\u2013model). Free festival admission; bar sales stay with the licensed partner. Independent of Big Game evening gifts \u2014 fund those separately if you want screening.",
       "benefits": [
         "Beer Garden presented by [Sponsor]",
         "website / Facebook / Instagram feature",
