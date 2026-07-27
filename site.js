@@ -758,14 +758,12 @@
   function renderRosterMemberCard(m) {
     const photo = m.photo;
     const avatar = photo
-      ? `<img class="roster-photo" src="${escapeHtml(photo)}" alt="" width="72" height="72" loading="lazy" />`
+      ? `<img class="roster-photo" src="${escapeHtml(photo)}" alt="" width="88" height="88" loading="lazy" />`
       : `<span class="roster-photo roster-photo--placeholder" aria-hidden="true">${escapeHtml(rosterInitials(m.name))}</span>`;
     const vision =
       m.vision != null && String(m.vision).trim()
         ? `<p class="roster-vision">${escapeHtml(m.vision)}</p>`
-        : Object.prototype.hasOwnProperty.call(m, "vision")
-          ? `<p class="roster-vision roster-vision--placeholder muted">Vision statement coming soon</p>`
-          : "";
+        : "";
     return `
     <div class="roster-card">
       ${avatar}
