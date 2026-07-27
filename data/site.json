@@ -18,8 +18,8 @@
   "hero": {
     "headline": "Help build the 2027 festival",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
-    "subhead": "We're looking for directors — one owner per piece of the festival. Pick the lane you want to lead.",
-    "body": "We need directors — people who own an outcome, build a small team, and see it through with co-chair support. Co-chairs Thuy Pham (VACOS) and Bao Thien Ngo (cPALSs) back every lane."
+    "subhead": "Join weekly production calls, Discord, or own a director lane — we organize as a network of owners, not a stiff org chart.",
+    "body": "Start by showing up to production meetings. Prefer a traditional lane? Browse open director roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS)."
   },
   "cta": {
     "primaryLabel": "Join the team",
@@ -33,43 +33,82 @@
   },
   "apply": {
     "email": "contact@eglny.com",
-    "emailSubject": "LNY 2027 Director interest",
+    "emailSubject": "LNY 2027 team interest",
     "steps": [
-      "Pick one role (or two if they're closely related — we'll talk). See the full list on Get involved.",
-      "Apply on Idealist — name your role, preferred contact method (email, text, or phone), and any events you're already committed to this season.",
-      "We'll follow up within a few business days — add you to the staff directory, introduce vendor partners or teammates, and set a first check-in."
+      "Email contact@eglny.com — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.",
+      "We’ll follow up within a few business days — add you to the staff directory or introduce you to a visionary crew, and set a first check-in."
     ],
-    "idealistFallback": "Can't use Idealist? Email contact@eglny.com with the role name and one sentence on why you're interested."
+    "idealistFallback": "Idealist apply link coming soon — until then, email is the way in."
+  },
+  "teamPage": {
+    "headline": "Join the team",
+    "lead": "Show up to weekly production calls and Discord first. Traditional director lanes are still open — listed on their own page. We also welcome visionaries who want to express celebration through the festival journey.",
+    "join": {
+      "title": "Get involved",
+      "intro": "Join the conversation, browse open lanes, then email us to apply — we’ll place you on a director role or a visionary crew.",
+      "zoom": "Weekly Zoom production calls are Mondays at 6:30 PM. To join as a guest, email contact@eglny.com.",
+      "discordLabel": "Join the Discord",
+      "discordHref": "https://discord.gg/h4hXXvWS",
+      "discordNote": "Day-to-day asks, intros, and grapevine recruiting.",
+      "applyNote": "Email contact@eglny.com — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season. We’ll follow up within a few business days.",
+      "rolesCtaLabel": "Browse director roles",
+      "rolesHref": "/team/roles/"
+    },
+    "roster": {
+      "title": "Roster",
+      "groups": [
+        {
+          "title": "Steering Committee",
+          "members": [
+            {
+              "name": "Bao Thien Ngo",
+              "title": "cPALSs",
+              "photo": null
+            },
+            {
+              "name": "Thuy Pham",
+              "title": "VACOS",
+              "photo": null
+            }
+          ]
+        },
+        {
+          "title": "Visionaries",
+          "members": [
+            {
+              "name": "Lily Tran",
+              "title": "Lucky Wav",
+              "photo": null,
+              "vision": null
+            }
+          ]
+        }
+      ]
+    }
   },
   "directorIntro": {
     "title": "What is a director?",
     "paragraphs": [
-      "A director is the go-to person for one festival lane. You don't have to do every task yourself — you own the plan, coordinate vendors and volunteers, and report status to the co-chairs. Most roles are planning now through February 2027; peak workload is the two weeks before and event weekend.",
-      "Already covered: Festival co-chairs only — Thuy Pham (VACOS) and Bao Thien Ngo (cPALSs). Co-chairs hold coalition partnership-level decision authority; every lane director is open for 2027 recruitment.",
+      "A director is the go-to person for one festival lane. You don't have to do every task yourself — you own the plan, coordinate vendors and volunteers, and report status to the Steering Committee. Most roles are planning now through February 2027; peak workload is the two weeks before and event weekend.",
+      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority; every lane director is open for 2027 recruitment.",
       "23 director roles are open across site & ops, program & experience, and outreach & partners. Member and support roles fill in behind each director. Returning 2026 volunteers are welcome to apply — nothing is assumed until confirmed on the staff directory."
     ],
     "notes": [
+      "Prefer one accountable director per traditional lane. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
       "Youth Culture Day (school multicultural rallies on stage) and Tết Relay Cup (open-age relay bracket on grass) are separate lanes with separate directors.",
       "Parade is a sponsor-gated Phase 2 committee — Chair oversees Creative Director + Producer; likely cut at MVP unless a registry block funds it.",
       "Saturday 5–8 PM headliner is sponsor unlock, not MVP baseline.",
       "Volunteers Director owns shifts; if a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
     ]
   },
-  "productionMeetings": {
-    "title": "Production meetings",
-    "intro": "Stay connected with festival production — join the weekly Zoom call or the Discord channel.",
-    "zoom": "Weekly Zoom calls are Mondays at 6:30 PM. To join as a guest, email contact@eglny.com.",
-    "discordLabel": "Join the Discord",
-    "discordHref": "https://discord.gg/h4hXXvWS"
-  },
   "coChairs": [
     {
-      "name": "Thuy Pham",
-      "title": "LNY Co-Chair (VACOS)"
+      "name": "Bao Thien Ngo",
+      "title": "Steering Committee (cPALSs)"
     },
     {
-      "name": "Bao Thien Ngo",
-      "title": "LNY Co-Chair (cPALSs)"
+      "name": "Thuy Pham",
+      "title": "Steering Committee (VACOS)"
     }
   ],
   "lanes": [
@@ -234,28 +273,28 @@
       "a": "Helpful, not required. LNY 2026 runbooks and co-chairs back you up."
     },
     {
+      "q": "What's the difference between a director and a visionary?",
+      "a": "A director is the accountable owner of a traditional festival lane (one preferred name on the directory). A visionary owns a celebration vision and builds a crew around it — often along the journey to the weekend, not only day-of. Multiple visionaries can share a lane as co-equals until a director coordinates them."
+    },
+    {
       "q": "Is this paid?",
-      "a": "These are volunteer leadership roles. Sponsor-funded experiences may include modest stipends for performers or facilitators — not director compensation. If a lane stays unfilled past the steering trigger date, co-chairs may approve a contractor fallback from the ops budget."
+      "a": "Generally not — these are volunteer leadership roles. We are open to contractors when a role is funded. Full transparency: if you want paid marketing or similar work, we will likely ask you to pair that with a fundraising strategy and execute it to fund the role (and any campaign spend)."
     },
     {
       "q": "Can two people co-direct?",
-      "a": "One name on the directory as Director; co-leads listed as Members is fine."
+      "a": "We prefer one person accountable for a traditional director role on the staff directory. There may be situations where multiple visionaries live in the same lane and are treated as co-equals until we find a single director to oversee and coordinate them."
     },
     {
       "q": "What if my experience isn't funded yet?",
-      "a": "Plan anyway — directors help pitch sponsors and hold the vision until the block unlocks. Parade and Saturday night headliner are explicitly sponsor-gated."
-    },
-    {
-      "q": "What's the difference between site & ops and program?",
-      "a": "Site & ops keeps the gates open, power on, and guests comfortable. Program & experience is what families come for — stages, Tết Relay Cup, children's programming, and elder hospitality."
+      "a": "We operate as a network of owners. We put the word out when an experience is unfunded, but it is up to everyone to recruit help and spread the ask. We will create incentives so pitching in is worthwhile — gift registry blocks, sponsorship commission paths, and peer grapevine recruiting — not a single person carrying every fundraising ask."
     },
     {
       "q": "How big is the festival?",
       "a": "Planning baseline ~6,000 attendees over the weekend — a family fair, not a ticketed night market. Free gate, daylight hours (11 AM – 5 PM baseline)."
     },
     {
-      "q": "I'm already helping with Mid-Autumn Festival 2026 — can I do both?",
-      "a": "Yes — tell us your season commitments on Idealist and we'll coordinate lanes so nothing collides."
+      "q": "I'm working on other events — can I still help with LNY?",
+      "a": "Yes — tell us your season commitments by email and we'll coordinate so nothing collides."
     }
   ],
   "about": {

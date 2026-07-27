@@ -408,19 +408,20 @@
     const idealist = site.meta?.idealistUrl;
     const idealistBtn = idealist
       ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
-      : `<span class="btn btn-primary" style="opacity:0.65;cursor:default" title="Idealist link coming soon">Apply on Idealist</span>`;
+      : "";
 
     const mailto = `mailto:${apply.email}?subject=${encodeURIComponent(apply.emailSubject)}`;
+    const emailBtnClass = idealist ? "btn btn-secondary" : "btn btn-primary";
 
     return `
     <div class="cta-row">
       ${idealistBtn}
-      <a class="btn btn-secondary" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
+      <a class="${emailBtnClass}" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
     </div>
     <ol class="steps-list">
       ${apply.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}
     </ol>
-    <p class="muted">${escapeHtml(apply.idealistFallback)}</p>
+    ${apply.idealistFallback && idealist ? `<p class="muted">${escapeHtml(apply.idealistFallback)}</p>` : ""}
   `;
   }
 
@@ -493,14 +494,20 @@
   }
 
   function buildTeamToc(site) {
-    const meetings = site.productionMeetings;
+    const team = site.teamPage;
     return [
-      ...(meetings ? [{ id: "production-meetings", label: meetings.title ?? "Production meetings" }] : []),
+      ...(team?.join ? [{ id: "get-involved", label: team.join.title ?? "Get involved" }] : []),
+      ...(team?.roster ? [{ id: "roster", label: team.roster.title ?? "Roster" }] : []),
+      { id: "faq", label: "FAQ" },
+    ];
+  }
+
+  function buildDirectorRolesToc(site) {
+    return [
       { id: "director-roles", label: "Director roles" },
       ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
       { id: "phase2", label: site.phase2?.title ?? "Phase 2" },
       { id: "apply", label: "How to apply" },
-      { id: "faq", label: "FAQ" },
     ];
   }
 
@@ -738,27 +745,139 @@
     });
   }
 
-  function renderTeamPage(site) {
-    const intro = site.directorIntro;
-    const meetings = site.productionMeetings;
-    const contactEmail = site.apply?.email ?? "contact@eglny.com";
+  function rosterInitials(name) {
+    return String(name ?? "")
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join("")
+      .toUpperCase();
+  }
 
-    const meetingsHtml = meetings
-      ? `
-          <section class="content-section site-doc-section" id="production-meetings" data-doc-section>
-            <h2>${escapeHtml(meetings.title ?? "Production meetings")}</h2>
-            ${meetings.intro ? `<p>${escapeHtml(meetings.intro)}</p>` : ""}
-            <ul>
-              <li>${escapeHtml(meetings.zoom).replace(
-                escapeHtml(contactEmail),
-                `<a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>`,
-              )}</li>
-              <li><a href="${escapeHtml(meetings.discordHref)}"${externalLinkAttrs(meetings.discordHref)}>${escapeHtml(meetings.discordLabel ?? "Join the Discord")}</a></li>
-            </ul>
-          </section>`
+  function renderRosterMemberCard(m) {
+    const photo = m.photo;
+    const avatar = photo
+      ? `<img class="roster-photo" src="${escapeHtml(photo)}" alt="" width="72" height="72" loading="lazy" />`
+      : `<span class="roster-photo roster-photo--placeholder" aria-hidden="true">${escapeHtml(rosterInitials(m.name))}</span>`;
+    const vision = m.vision
+      ? `<p class="roster-vision">${escapeHtml(m.vision)}</p>`
+      : m.vision === null && m.title
+        ? `<p class="roster-vision roster-vision--placeholder muted">Vision statement coming soon</p>`
+        : "";
+    return `
+    <div class="roster-card">
+      ${avatar}
+      <div class="roster-card-text">
+        <p class="co-chair-name">${escapeHtml(m.name)}</p>
+        <p class="co-chair-title">${escapeHtml(m.title)}</p>
+        ${vision}
+      </div>
+    </div>`;
+  }
+
+  function renderRosterSection(site) {
+    const roster = site.teamPage?.roster;
+    if (!roster) return "";
+
+    const groups = roster.groups?.length
+      ? roster.groups
+      : roster.members?.length
+        ? [{ title: null, members: roster.members }]
+        : [];
+    if (!groups.length) return "";
+
+    const groupsHtml = groups
+      .map((group) => {
+        const heading = group.title
+          ? `<h3>${escapeHtml(group.title)}</h3>`
+          : "";
+        const cards = (group.members ?? []).map(renderRosterMemberCard).join("");
+        return `${heading}<div class="co-chairs roster-grid">${cards}</div>`;
+      })
+      .join("");
+
+    return `
+          <section class="content-section site-doc-section" id="roster" data-doc-section>
+            <h2>${escapeHtml(roster.title ?? "Roster")}</h2>
+            ${roster.intro ? `<p>${escapeHtml(roster.intro)}</p>` : ""}
+            ${groupsHtml}
+          </section>`;
+  }
+
+  function renderJoinSection(site) {
+    const join = site.teamPage?.join;
+    if (!join) return "";
+    const apply = site.apply;
+    const contactEmail = apply?.email ?? "contact@eglny.com";
+    const idealist = site.meta?.idealistUrl;
+    const zoomHtml = join.zoom ? `<li>${escapeHtml(join.zoom)}</li>` : "";
+    const discordHtml = join.discordHref
+      ? `<li><a href="${escapeHtml(join.discordHref)}"${externalLinkAttrs(join.discordHref)}>${escapeHtml(join.discordLabel ?? "Join the Discord")}</a>${join.discordNote ? ` — ${escapeHtml(join.discordNote)}` : ""}</li>`
       : "";
+    const applyHtml = join.applyNote ? `<li>${escapeHtml(join.applyNote)}</li>` : "";
+    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(apply?.emailSubject ?? "LNY 2027 team interest")}`;
+    const idealistBtn = idealist
+      ? `<a class="btn btn-secondary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
+      : "";
+    return `
+          <section class="content-section site-doc-section" id="get-involved" data-doc-section>
+            <h2>${escapeHtml(join.title ?? "Get involved")}</h2>
+            ${join.intro ? `<p>${escapeHtml(join.intro)}</p>` : ""}
+            <ul>
+              ${zoomHtml}
+              ${discordHtml}
+              ${applyHtml}
+            </ul>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
+              ${
+                join.rolesHref
+                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse director roles")}</a>`
+                  : ""
+              }
+              ${idealistBtn}
+            </div>
+          </section>`;
+  }
 
-    const lanesHtml = site.lanes
+  function renderFaqBlock(site) {
+    return (site.faq ?? [])
+      .map(
+        (f) => `
+          <div class="faq-item">
+            <h3>${escapeHtml(f.q)}</h3>
+            <p>${escapeHtml(f.a)}</p>
+          </div>`,
+      )
+      .join("");
+  }
+
+  function renderApplySection(site) {
+    return `
+          <section class="content-section site-doc-section" id="apply" data-doc-section>
+            <h2>How to apply</h2>
+            ${renderApplyBlock(site)}
+          </section>`;
+  }
+
+  function renderTeamPage(site) {
+    const mainHtml = `
+          ${renderJoinSection(site)}
+          ${renderRosterSection(site)}
+          <section class="content-section site-doc-section" id="faq" data-doc-section>
+            <h2>FAQ</h2>
+            ${renderFaqBlock(site)}
+          </section>`;
+
+    return wrapDocLayout(renderDocToc(buildTeamToc(site)), mainHtml);
+  }
+
+  function renderDirectorRolesPage(site) {
+    const intro = site.directorIntro;
+    const teamHref = "/team/";
+
+    const lanesHtml = (site.lanes ?? [])
       .map(
         (lane) => `
           <section class="lane-section site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
@@ -772,45 +891,29 @@
       .join("");
 
     const phase2 = site.phase2;
-    const phase2Html = `
+    const phase2Html = phase2
+      ? `
           <section class="content-section site-doc-section" id="phase2" data-doc-section>
             <h2>${escapeHtml(phase2.title)}</h2>
             <p>${escapeHtml(phase2.intro)}</p>
             <ul>${phase2.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
             <p><a href="${escapeHtml(phase2.registryHref)}">See the registry →</a></p>
-          </section>`;
-
-    const faqHtml = site.faq
-      .map(
-        (f) => `
-          <div class="faq-item">
-            <h3>${escapeHtml(f.q)}</h3>
-            <p>${escapeHtml(f.a)}</p>
-          </div>`,
-      )
-      .join("");
+          </section>`
+      : "";
 
     const mainHtml = `
-          ${meetingsHtml}
           <section class="content-section site-doc-section" id="director-roles" data-doc-section>
             <h2>Director roles — 2027 festival</h2>
+            <p class="muted"><a href="${escapeHtml(teamHref)}">← Back to Team</a> · weekly calls, Discord, FAQ, and how we organize</p>
             <h3>${escapeHtml(intro.title)}</h3>
             ${intro.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
             <ul>${intro.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join("")}</ul>
           </section>
           ${lanesHtml}
           ${phase2Html}
-          <section class="content-section site-doc-section" id="apply" data-doc-section>
-            <h2>How to apply</h2>
-            ${renderApplyBlock(site)}
-            <div class="co-chairs">${renderCoChairs(site)}</div>
-          </section>
-          <section class="content-section site-doc-section" id="faq" data-doc-section>
-            <h2>FAQ</h2>
-            ${faqHtml}
-          </section>`;
+          ${renderApplySection(site)}`;
 
-    return wrapDocLayout(renderDocToc(buildTeamToc(site)), mainHtml);
+    return wrapDocLayout(renderDocToc(buildDirectorRolesToc(site)), mainHtml);
   }
 
   window.EglnySite = {
@@ -831,6 +934,7 @@
     renderSeasonPage,
     renderRoleCard,
     renderTeamPage,
+    renderDirectorRolesPage,
     setPageTitle,
     wrapDocLayout,
     initDocToc,

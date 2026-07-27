@@ -11,7 +11,8 @@ Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Res
 | Path | File |
 |------|------|
 | `/` | `index.html` |
-| `/team/` | Director recruitment / join the team (from `data/site.json`) |
+| `/team/` | Join the team — weekly calls, Discord, director vs visionary, apply, FAQ |
+| `/team/roles/` | Traditional director role list (lanes + Phase 2) + how to apply |
 | `/about/` | Tết + coalition |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
 | `/custom-zones/` | Placeholder redirect → [greatlantern.com/custom-zones/](https://greatlantern.com/custom-zones/) until LNY launches its own page |
