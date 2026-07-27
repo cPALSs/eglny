@@ -1,7 +1,7 @@
 {
   "source": "2026 LNY sponsorship deposits — renewal baselines (one-offs excluded, e.g. AFG pageant weatherproofing). AFG pinned to outdoor stage; remaining gifts allocated by registry impact order (family market) with pooling.",
   "sponsors": [
-    { "name": "American Furniture Gallery", "amount": 15000, "giftId": "outdoor_stage" },
+    { "name": "American Furniture Galleries", "amount": 15000, "giftId": "outdoor_stage" },
     { "name": "Duc Huong", "amount": 15000 },
     { "name": "Fire Wings", "amount": 3000 },
     { "name": "Metro by T-Mobile", "amount": 3000 },
