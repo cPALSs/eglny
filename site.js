@@ -755,11 +755,31 @@
       .toUpperCase();
   }
 
+  function instagramEmbedSrc(url) {
+    const match = String(url ?? "").match(/instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/i);
+    if (!match) return null;
+    return `https://www.instagram.com/reel/${match[1]}/embed`;
+  }
+
   function renderRosterMemberCard(m) {
     const photo = m.photo;
-    const avatar = photo
+    const img = photo
       ? `<img class="roster-photo" src="${escapeHtml(photo)}" alt="" width="88" height="88" loading="lazy" />`
       : `<span class="roster-photo roster-photo--placeholder" aria-hidden="true">${escapeHtml(rosterInitials(m.name))}</span>`;
+    const embedSrc = m.instagramUrl ? instagramEmbedSrc(m.instagramUrl) : null;
+    const avatar =
+      embedSrc && photo
+        ? `<button
+            type="button"
+            class="roster-photo-btn"
+            data-instagram-embed="${escapeHtml(embedSrc)}"
+            data-instagram-url="${escapeHtml(m.instagramUrl)}"
+            aria-label="Play Instagram reel: ${escapeHtml(m.name)}"
+          >
+            ${img}
+            <span class="roster-play-icon" aria-hidden="true"></span>
+          </button>`
+        : img;
     const vision =
       m.vision != null && String(m.vision).trim()
         ? `<p class="roster-vision">${escapeHtml(m.vision)}</p>`
@@ -773,6 +793,56 @@
         ${vision}
       </div>
     </div>`;
+  }
+
+  function ensureRosterReelModal() {
+    let dialog = document.getElementById("roster-reel-modal");
+    if (dialog) return dialog;
+
+    dialog = document.createElement("dialog");
+    dialog.id = "roster-reel-modal";
+    dialog.className = "roster-reel-modal";
+    dialog.innerHTML = `
+      <div class="roster-reel-inner">
+        <form method="dialog" class="roster-reel-toolbar">
+          <a class="roster-reel-open" href="#" target="_blank" rel="noopener noreferrer">Open on Instagram</a>
+          <button type="submit" class="roster-reel-close" aria-label="Close">&times;</button>
+        </form>
+        <div class="roster-reel-frame">
+          <iframe title="Instagram reel" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>`;
+    document.body.appendChild(dialog);
+
+    dialog.addEventListener("close", () => {
+      const iframe = dialog.querySelector("iframe");
+      if (iframe) iframe.removeAttribute("src");
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    return dialog;
+  }
+
+  function initRosterMedia(root = document) {
+    const dialog = ensureRosterReelModal();
+    const iframe = dialog.querySelector("iframe");
+    const openLink = dialog.querySelector(".roster-reel-open");
+
+    root.querySelectorAll(".roster-photo-btn[data-instagram-embed]").forEach((button) => {
+      if (button.dataset.rosterBound === "1") return;
+      button.dataset.rosterBound = "1";
+      button.addEventListener("click", () => {
+        const embed = button.getAttribute("data-instagram-embed");
+        const url = button.getAttribute("data-instagram-url") || embed;
+        if (!embed || !iframe) return;
+        iframe.src = embed;
+        if (openLink) openLink.href = url;
+        dialog.showModal();
+      });
+    });
   }
 
   function renderRosterSection(site) {
@@ -928,6 +998,7 @@
     renderEventSummary,
     loadSeasonEvents,
     initMediaPlayers,
+    initRosterMedia,
     renderMediaPage,
     renderResourcesPage,
     renderSeasonPage,
