@@ -497,8 +497,8 @@
     const team = site.teamPage;
     return [
       ...(team?.join ? [{ id: "get-involved", label: team.join.title ?? "Get involved" }] : []),
-      ...(team?.roster ? [{ id: "roster", label: team.roster.title ?? "Roster" }] : []),
       { id: "faq", label: "FAQ" },
+      ...(team?.roster ? [{ id: "roster", label: team.roster.title ?? "Roster" }] : []),
     ];
   }
 
@@ -864,11 +864,11 @@
   function renderTeamPage(site) {
     const mainHtml = `
           ${renderJoinSection(site)}
-          ${renderRosterSection(site)}
           <section class="content-section site-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${renderFaqBlock(site)}
-          </section>`;
+          </section>
+          ${renderRosterSection(site)}`;
 
     return wrapDocLayout(renderDocToc(buildTeamToc(site)), mainHtml);
   }
