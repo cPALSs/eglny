@@ -784,11 +784,27 @@
       m.vision != null && String(m.vision).trim()
         ? `<p class="roster-vision">${escapeHtml(m.vision)}</p>`
         : "";
+    const handle = String(m.instagram ?? "")
+      .trim()
+      .replace(/^@/, "");
+    const ig =
+      handle
+        ? `<a
+            class="roster-ig"
+            href="https://www.instagram.com/${escapeHtml(handle)}/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="${escapeHtml(m.name)} on Instagram (@${escapeHtml(handle)})"
+          >${renderSocialIcon("Instagram")}</a>`
+        : "";
     return `
     <div class="roster-card">
       ${avatar}
       <div class="roster-card-text">
-        <p class="co-chair-name">${escapeHtml(m.name)}</p>
+        <div class="roster-name-row">
+          <p class="co-chair-name">${escapeHtml(m.name)}</p>
+          ${ig}
+        </div>
         <p class="co-chair-title">${escapeHtml(m.title)}</p>
         ${vision}
       </div>
