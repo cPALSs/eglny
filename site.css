@@ -1789,6 +1789,24 @@ body.nav-open {
   border-top: 1px solid var(--border);
 }
 
+/* Estimated / tentative / cancelled — slightly gray so firm dates read as the bright path */
+.season-event-item--soft {
+  background: color-mix(in srgb, var(--muted) 14%, var(--surface));
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+  margin-inline: -0.85rem;
+  border-radius: 8px;
+  border-bottom-color: transparent;
+}
+
+.season-event-item--soft + .season-event-item--soft {
+  margin-top: 0.15rem;
+}
+
+.season-event-item--soft:first-child {
+  border-top-color: transparent;
+}
+
 .season-event-dates {
   display: block;
   font-weight: 600;

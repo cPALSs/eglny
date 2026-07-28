@@ -587,13 +587,44 @@
     return ' target="_blank" rel="noopener"';
   }
 
+  function seasonEventCertainty(event) {
+    const explicit = String(event.certainty || "").toLowerCase().trim();
+    if (
+      explicit === "estimated" ||
+      explicit === "tentative" ||
+      explicit === "cancelled" ||
+      explicit === "canceled" ||
+      explicit === "confirmed"
+    ) {
+      return explicit === "canceled" ? "cancelled" : explicit;
+    }
+    const dates = String(event.dates || "").toLowerCase();
+    if (/not hosting|cancelled|canceled/.test(dates)) return "cancelled";
+    if (/\(estimated\)/.test(dates) || /\bestimated\b/.test(dates)) return "estimated";
+    if (
+      /\(tentative\)/.test(dates) ||
+      /\btentative\b/.test(dates) ||
+      /to be finalized|\btbd\b/.test(dates)
+    ) {
+      return "tentative";
+    }
+    return "confirmed";
+  }
+
   function renderSeasonEventItem(event) {
+    const certainty = seasonEventCertainty(event);
+    const soft =
+      certainty === "estimated" ||
+      certainty === "tentative" ||
+      certainty === "cancelled";
+    const softClass = soft ? " season-event-item--soft" : "";
+    const certaintyClass = soft ? ` season-event-item--${certainty}` : "";
     const capstoneClass = event.capstone ? " season-event-capstone" : "";
     const nameHtml = event.href
       ? `<a href="${escapeHtml(event.href)}"${externalLinkAttrs(event.href)}>${escapeHtml(event.name)}</a>`
       : escapeHtml(event.name);
     const hostPart = event.host ? ` · ${escapeHtml(event.host)}` : "";
-    return `<li class="season-event-item${capstoneClass}">
+    return `<li class="season-event-item${capstoneClass}${softClass}${certaintyClass}" data-certainty="${certainty}">
       <span class="season-event-dates">${escapeHtml(event.dates)}</span>
       <span class="season-event-title">${nameHtml}${hostPart}</span>
       <span class="season-event-location">${escapeHtml(event.location)}</span>
