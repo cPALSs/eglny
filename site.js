@@ -792,6 +792,31 @@
     return `https://www.instagram.com/reel/${match[1]}/embed`;
   }
 
+  function rosterVisionFullHtml(visionFull) {
+    if (!visionFull) return "";
+    if (Array.isArray(visionFull)) {
+      return visionFull
+        .map((section) => {
+          if (typeof section === "string") {
+            return `<p>${escapeHtml(section)}</p>`;
+          }
+          const heading = section?.heading
+            ? `<h3 class="roster-vision-modal-heading">${escapeHtml(section.heading)}</h3>`
+            : "";
+          const paragraphs = (section?.paragraphs ?? [])
+            .map((p) => `<p>${escapeHtml(p)}</p>`)
+            .join("");
+          return `<section class="roster-vision-modal-section">${heading}${paragraphs}</section>`;
+        })
+        .join("");
+    }
+    return String(visionFull)
+      .split(/\n\n+/)
+      .filter((p) => p.trim())
+      .map((p) => `<p>${escapeHtml(p.trim())}</p>`)
+      .join("");
+  }
+
   function renderRosterMemberCard(m) {
     const photo = m.photo;
     const img = photo
@@ -811,10 +836,17 @@
             <span class="roster-play-icon" aria-hidden="true"></span>
           </button>`
         : img;
+    const hasFull = m.visionFull != null && (Array.isArray(m.visionFull) ? m.visionFull.length : String(m.visionFull).trim());
+    const readMore = hasFull
+      ? `<button type="button" class="roster-vision-more" data-roster-vision="${escapeHtml(m.name)}" aria-haspopup="dialog">Read more</button>`
+      : "";
     const vision =
       m.vision != null && String(m.vision).trim()
-        ? `<p class="roster-vision">${escapeHtml(m.vision)}</p>`
+        ? `<p class="roster-vision">${escapeHtml(m.vision)}${readMore ? ` ${readMore}` : ""}</p>`
         : "";
+    const fullPayload = hasFull
+        ? `<template class="roster-vision-full" data-roster-vision="${escapeHtml(m.name)}">${rosterVisionFullHtml(m.visionFull)}</template>`
+      : "";
     const handle = String(m.instagram ?? "")
       .trim()
       .replace(/^@/, "");
@@ -838,6 +870,7 @@
         </div>
         <p class="co-chair-title">${escapeHtml(m.title)}</p>
         ${vision}
+        ${fullPayload}
       </div>
     </div>`;
   }
@@ -873,6 +906,30 @@
     return dialog;
   }
 
+  function ensureRosterVisionModal() {
+    let dialog = document.getElementById("roster-vision-modal");
+    if (dialog) return dialog;
+
+    dialog = document.createElement("dialog");
+    dialog.id = "roster-vision-modal";
+    dialog.className = "roster-vision-modal";
+    dialog.innerHTML = `
+      <div class="roster-vision-modal-inner">
+        <form method="dialog" class="roster-vision-modal-toolbar">
+          <h2 class="roster-vision-modal-title"></h2>
+          <button type="submit" class="roster-vision-modal-close" aria-label="Close">&times;</button>
+        </form>
+        <div class="roster-vision-modal-body"></div>
+      </div>`;
+    document.body.appendChild(dialog);
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    return dialog;
+  }
+
   function initRosterMedia(root = document) {
     const dialog = ensureRosterReelModal();
     const iframe = dialog.querySelector("iframe");
@@ -888,6 +945,28 @@
         iframe.src = embed;
         if (openLink) openLink.href = url;
         dialog.showModal();
+      });
+    });
+
+    const visionDialog = ensureRosterVisionModal();
+    const visionTitle = visionDialog.querySelector(".roster-vision-modal-title");
+    const visionBody = visionDialog.querySelector(".roster-vision-modal-body");
+
+    root.querySelectorAll(".roster-vision-more[data-roster-vision]").forEach((button) => {
+      if (button.dataset.rosterVisionBound === "1") return;
+      button.dataset.rosterVisionBound = "1";
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-roster-vision");
+        const template = Array.from(root.querySelectorAll(".roster-vision-full")).find(
+          (el) => el.getAttribute("data-roster-vision") === key,
+        );
+        if (!template || !visionBody || !visionTitle) return;
+        const card = button.closest(".roster-card");
+        const name = card?.querySelector(".co-chair-name")?.textContent?.trim() || key;
+        const role = card?.querySelector(".co-chair-title")?.textContent?.trim();
+        visionTitle.textContent = role ? `${name} — ${role}` : name;
+        visionBody.innerHTML = template.innerHTML;
+        visionDialog.showModal();
       });
     });
   }

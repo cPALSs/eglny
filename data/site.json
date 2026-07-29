@@ -85,6 +85,39 @@
               "instagram": "letmamiicook",
               "instagramUrl": "https://www.instagram.com/p/DUJYnVQlO4y/",
               "vision": "If you grew up celebrating Lunar New Year, you know what it means to keep culture and tradition alive — and that each generation has its own way of expressing that. When I was asked to lead music for Elk Grove LNY, I got space to create something different. That’s how Lucky Wav was born: Lucky for blessings ahead, Wav for music, movement, and a new wave of culture. This segment is about honoring where we come from and celebrating where we’re headed — for our community in Sacramento and Elk Grove."
+            },
+            {
+              "name": "Ellie King",
+              "title": "Car Show & Resource Hub",
+              "photo": "/assets/roster/ellie-king.jpg",
+              "vision": "East Meets West brings Chicano lowrider tradition and Vietnamese car culture together at the LNY Tết Car Show — craftsmanship, family pride, and mutual respect. Alongside that, I’m building a Resource Hub where churches, agencies, and neighbors help families find support and ways to give back. It has never just been about cars or booths — it has always been about people, stories, and community.",
+              "visionFull": [
+                {
+                  "heading": "Honoring the History and Future of Chicano & Vietnamese Car Culture",
+                  "paragraphs": [
+                    "The story of Chicano and Vietnamese collaboration is a beautiful reflection of California’s diverse communities coming together through shared experiences, creativity, and resilience.",
+                    "Chicano culture has deep roots in California, shaped by generations of Mexican American families who built communities, fought for representation, and created powerful expressions of identity through art, music, fashion, and car culture. Lowriding became more than a style of automobiles — it became a form of storytelling, family tradition, craftsmanship, and cultural pride.",
+                    "Following the Vietnam War, many Vietnamese refugees and immigrants made California their home, building new lives while preserving their traditions, language, food, and cultural identity. As Vietnamese communities grew throughout California, especially in areas with established Chicano communities, connections naturally developed through neighborhoods, schools, businesses, and shared community spaces.",
+                    "Over time, both communities discovered common ground through entrepreneurship, family values, and automotive culture. Vietnamese car enthusiasts brought their own creativity through custom imports, performance builds, and unique expressions of automotive artistry, while Chicano communities continued the legacy of lowriders as symbols of heritage, pride, and connection. These different styles came together through mutual appreciation and respect.",
+                    "Today, Chicano and Vietnamese car culture collaborations represent more than vehicles — they represent the power of communities recognizing their shared values. Car shows, cultural festivals, and community events have become places where generations can connect, stories can be exchanged, and traditions can be honored.",
+                    "As the LNY Tết Festival Car Show Director and LNY Carshow Queen 2026, I am honored to help create a space where these cultures can celebrate side by side. This is how I envisioned our theme, East Meets West.",
+                    "This vision was supported by Debbie “Tigerina” Martin and The Lady Lowriders United, whose dedication helped bring authenticity, passion, and community spirit to the celebration and the partnership of numerous car clubs.",
+                    "My vision is to continue growing this car show as a bridge between cultures — a place where Chicano and Vietnamese communities can celebrate their history, inspire future generations, and show that our differences are not barriers, but opportunities to learn, connect, and build something stronger together.",
+                    "Because at the heart of it all, it has never just been about cars. It has always been about people, stories, family, and community."
+                  ]
+                },
+                {
+                  "heading": "Resource Hub at LNY Tết Festival 2027",
+                  "paragraphs": [
+                    "I’m Ellie King, The NonProfit Girl™.",
+                    "I’ve spent most of my life serving my community, and one thing I know for sure is that real impact happens when real people come together with a shared heart and purpose.",
+                    "My hope is to take our Resource Hub to LNY Tết — where culture, community, and resources come together; a place where celebration meets connection and where families can discover opportunities, support, and pathways to thrive.",
+                    "My vision is to collaborate with churches, organizations, agencies, and service providers — where people can connect to learn about services, discover ways to give back, build partnerships, and find encouragement to turn their own ideas for helping others into action.",
+                    "I don’t show up because I have all the answers. I show up because I care about people. The titles may say nonprofit CEO, consultant, or community advocate, but at my core, I’m simply a woman of faith, a wife, a mom, and a friend who believes that when we come together, we have the power to change lives.",
+                    "Because community is built one connection, one conversation, and one act of kindness at a time."
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -274,32 +307,20 @@
   },
   "faq": [
     {
-      "q": "Do I need festival experience?",
-      "a": "Helpful, not required. LNY 2026 runbooks and co-chairs back you up."
-    },
-    {
       "q": "What's the difference between a director and a visionary?",
       "a": "A director is the accountable owner of a traditional festival lane (one preferred name on the directory). A visionary owns a celebration vision and builds a crew around it — often along the journey to the weekend, not only day-of. Multiple visionaries can share a lane as co-equals until a director coordinates them."
     },
     {
-      "q": "Is this paid?",
+      "q": "Is this a paid role?",
       "a": "Generally not — these are volunteer leadership roles. We are open to contractors when a role is funded. Full transparency: if you want paid marketing or similar work, we will likely ask you to pair that with a fundraising strategy and execute it to fund the role (and any campaign spend)."
     },
     {
-      "q": "Can two people co-direct?",
-      "a": "We prefer one person accountable for a traditional director role on the staff directory. There may be situations where multiple visionaries live in the same lane and are treated as co-equals until we find a single director to oversee and coordinate them."
+      "q": "Do I need festival experience?",
+      "a": "Helpful, not required. LNY 2026 runbooks and co-chairs back you up."
     },
     {
       "q": "What if my experience isn't funded yet?",
       "a": "We operate as a network of owners. We put the word out when an experience is unfunded, but it is up to everyone to recruit help and spread the ask. We will create incentives so pitching in is worthwhile — gift registry blocks, sponsorship commission paths, and peer grapevine recruiting — not a single person carrying every fundraising ask."
-    },
-    {
-      "q": "How big is the festival?",
-      "a": "Planning baseline ~6,000 attendees over the weekend — a family fair, not a ticketed night market. Free gate, daylight hours (11 AM – 5 PM baseline)."
-    },
-    {
-      "q": "I'm working on other events — can I still help with LNY?",
-      "a": "Yes — tell us your season commitments by email and we'll coordinate so nothing collides."
     }
   ],
   "about": {
