@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
     "vendorRev100": 19300,
-    "registryFull": 157655,
+    "registryFull": 160155,
     "vendorSlots": 40,
     "attendance": 6000
   },
@@ -531,6 +531,44 @@
         {
           "label": "Schedule production + program grid",
           "amount": 1000
+        }
+      ]
+    },
+    {
+      "id": "meme_dance_contest",
+      "name": "Meme Dance Contest",
+      "emoji": "\ud83d\udd7a",
+      "amount": 2500,
+      "category": "registry",
+      "sortOrder": 11.5,
+      "impactOrder": 12,
+      "tagline": "A drop-in dance challenge where kids recognize the music and join the action.",
+      "description": "Short, low-pressure dance heats built around current, family-safe songs and choreography kids recognize from their feeds. A DJ and host invite walk-up participation, the crowd cheers, and small prizes keep the contest playful. Includes a public-performance licensing allowance; final music coverage must be confirmed against the selected songs before the event.",
+      "benefits": [
+        "Meme Dance Contest presented by [Sponsor]",
+        "MC thank-you + program listing",
+        "Facebook/Instagram feature"
+      ],
+      "lineItems": [
+        {
+          "label": "Music public-performance licensing allowance",
+          "amount": 1000
+        },
+        {
+          "label": "DJ + contest host",
+          "amount": 700
+        },
+        {
+          "label": "Prizes + participant giveaways",
+          "amount": 300
+        },
+        {
+          "label": "Dance floor markings, signage + check-in supplies",
+          "amount": 250
+        },
+        {
+          "label": "Run-of-show + music clearance coordination",
+          "amount": 250
         }
       ]
     },
