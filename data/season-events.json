@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T06:58:33.908Z",
+  "generatedAt": "2026-07-29T02:59:36.737Z",
   "sourceSpreadsheetId": "1IB6beiKHC9R05r2o0imkh8MX_2u-qmhlVxTV3pxibs0",
   "seasonYear": "2027",
   "events": [
@@ -26,7 +26,7 @@
       "dates": "Feb 6, 2027 (estimated)",
       "name": "Lunar New Year Celebration",
       "host": "The Creative Space",
-      "location": "Old Town Plaza, Sacramento",
+      "location": "Old Town Plaza, Elk Grove",
       "href": "https://www.thecreativespacesac.com/events",
       "certainty": "estimated"
     },
@@ -86,6 +86,15 @@
       "certainty": "estimated"
     },
     {
+      "eventId": "fairytale-town-lny",
+      "dates": "Feb 14, 2027 10 AM-2 PM (estimated)",
+      "name": "Lunar New Year Celebration (Fairytale Town)",
+      "host": "Fairytale Town",
+      "location": "Fairytale Town - William Land Park, Sacramento",
+      "href": "https://www.fairytaletown.org/calendar/lunar-new-year-2/",
+      "certainty": "estimated"
+    },
+    {
       "eventId": "rice-bowl-tet-dance",
       "dates": "Feb 19, 2027 (estimated)",
       "name": "Tết Dinner Dance (Rice Bowl)",
@@ -93,6 +102,14 @@
       "location": "Rice Bowl Restaurant, Sacramento",
       "href": "https://ricebowlrestaurant.us/",
       "certainty": "estimated"
+    },
+    {
+      "eventId": "chasons-crab-stadium-lny",
+      "dates": "Feb 20, 2027",
+      "name": "Chinese/Lunar New Year Celebration (Chason's Crab Stadium)",
+      "host": "Chason's Crab Stadium",
+      "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
+      "href": "https://ccstadium.com/"
     },
     {
       "eventId": "honor-kung-fu-lny",
