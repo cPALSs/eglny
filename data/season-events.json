@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T02:59:36.737Z",
+  "generatedAt": "2026-07-29T03:03:51.094Z",
   "sourceSpreadsheetId": "1IB6beiKHC9R05r2o0imkh8MX_2u-qmhlVxTV3pxibs0",
   "seasonYear": "2027",
   "events": [
@@ -105,11 +105,12 @@
     },
     {
       "eventId": "chasons-crab-stadium-lny",
-      "dates": "Feb 20, 2027",
+      "dates": "Feb 20, 2027 (estimated)",
       "name": "Chinese/Lunar New Year Celebration (Chason's Crab Stadium)",
       "host": "Chason's Crab Stadium",
       "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
-      "href": "https://ccstadium.com/"
+      "href": "https://ccstadium.com/",
+      "certainty": "estimated"
     },
     {
       "eventId": "honor-kung-fu-lny",
