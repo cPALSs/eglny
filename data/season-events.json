@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T03:03:51.094Z",
+  "generatedAt": "2026-07-29T03:06:42.305Z",
   "sourceSpreadsheetId": "1IB6beiKHC9R05r2o0imkh8MX_2u-qmhlVxTV3pxibs0",
   "seasonYear": "2027",
   "events": [
@@ -46,6 +46,15 @@
       "host": "Arden Fair + Sacramento Asian Pacific Chamber of Commerce",
       "location": "Arden Fair (mall), Sacramento",
       "href": "https://sacasiancc.org/event/arden-fair-x-sacasian-chamber-lunar-new-year-celebration/",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "chasons-crab-stadium-lny",
+      "dates": "Feb 7, 2027 (estimated)",
+      "name": "Chinese/Lunar New Year Celebration (Chason's Crab Stadium)",
+      "host": "Chason's Crab Stadium",
+      "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
+      "href": "https://ccstadium.com/",
       "certainty": "estimated"
     },
     {
@@ -101,15 +110,6 @@
       "host": "Community organizers (Rice Bowl Restaurant host)",
       "location": "Rice Bowl Restaurant, Sacramento",
       "href": "https://ricebowlrestaurant.us/",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "chasons-crab-stadium-lny",
-      "dates": "Feb 20, 2027 (estimated)",
-      "name": "Chinese/Lunar New Year Celebration (Chason's Crab Stadium)",
-      "host": "Chason's Crab Stadium",
-      "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
-      "href": "https://ccstadium.com/",
       "certainty": "estimated"
     },
     {
