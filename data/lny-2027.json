@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
     "vendorRev100": 19300,
-    "registryFull": 160155,
+    "registryFull": 170155,
     "vendorSlots": 40,
     "attendance": 6000
   },
@@ -765,6 +765,111 @@
       ]
     },
     {
+      "id": "fashion_garden",
+      "name": "Fashion Garden",
+      "emoji": "\ud83d\udc57",
+      "amount": 4000,
+      "category": "registry",
+      "priority": true,
+      "sortOrder": 15.25,
+      "impactOrder": 15,
+      "tagline": "An all-weekend heritage-fashion garden \u2014 dress up, promenade, and take the family photo.",
+      "description": "Replaces the competitive pageant with an open, family-facing fashion experience in the Pavilion: styled garden photo sets, \u00e1o d\u00e0i ambassadors, public dress-up participation, rotating lighthearted contests, and a walking parade corps. Composed with Viet Cafe so parents can linger while families rotate through the sets. No crowning, interviews, dedicated stage, or booked show stack.",
+      "benefits": [
+        "Fashion Garden presented by [Sponsor]",
+        "Naming credit on photo-set and Pavilion signage",
+        "website + Facebook/Instagram feature"
+      ],
+      "lineItems": [
+        {
+          "label": "Styled garden backdrops + decor",
+          "amount": 2000
+        },
+        {
+          "label": "Photo-set lighting + signage",
+          "amount": 750
+        },
+        {
+          "label": "Rotation-contest prizes + light judging admin",
+          "amount": 500
+        },
+        {
+          "label": "Court / \u00e1o d\u00e0i ambassador hospitality",
+          "amount": 750
+        }
+      ]
+    },
+    {
+      "id": "viet_cafe",
+      "name": "Viet Cafe",
+      "emoji": "\u2615",
+      "amount": 3500,
+      "category": "registry",
+      "priority": true,
+      "sortOrder": 15.5,
+      "impactOrder": 15,
+      "tagline": "A warm Pavilion oasis \u2014 Vietnamese coffee, boba, seating, and charging for parents.",
+      "description": "An all-day parent-respite cafe composed with Fashion Garden in the Pavilion. A beverage vendor sells Vietnamese coffee, boba, and family drinks while this gift funds the shared environment: comfortable seating, cafe tables, charging, warm lighting, and decor. The cafe is the function; Fashion Garden is the photo-rich setting. If Pavilion space is tight, Viet Cafe keeps indoor priority as winter-weather insurance.",
+      "benefits": [
+        "Viet Cafe presented by [Sponsor]",
+        "Naming credit on cafe and charging-area signage",
+        "website + Facebook/Instagram feature"
+      ],
+      "lineItems": [
+        {
+          "label": "Cafe tables, lounge seating + family regroup area",
+          "amount": 1400
+        },
+        {
+          "label": "Safe guest charging stations + power distribution",
+          "amount": 600
+        },
+        {
+          "label": "Warm lighting, menu boards + cafe decor",
+          "amount": 500
+        },
+        {
+          "label": "Beverage-vendor setup subsidy + service supplies",
+          "amount": 1000
+        }
+      ]
+    },
+    {
+      "id": "community_yearbook_photo",
+      "name": "Community Yearbook Photo Set",
+      "emoji": "\ud83d\udcf8",
+      "amount": 2500,
+      "category": "registry",
+      "priority": true,
+      "sortOrder": 15.75,
+      "impactOrder": 15,
+      "tagline": "One annual whole-community portrait \u2014 free, open, and built for the archive.",
+      "description": "A scheduled all-community group portrait at the festival \u2014 the rare open gathering where families, organizations, and generations can appear in one frame. Funds a professional photographer, wide backdrop / group markers, an elevated camera position subject to CCSD approval, and crowd coordination. Delivers a high-resolution annual artifact for families, archives, sponsor decks, and grant reach reporting. Distinct from Fashion Garden's individual photo sets and \u00e1o d\u00e0i corps portrait.",
+      "benefits": [
+        "Community Yearbook Photo presented by [Sponsor]",
+        "Sponsor credit with the published annual portrait",
+        "High-resolution commemorative image + website feature"
+      ],
+      "lineItems": [
+        {
+          "label": "Professional event photographer + edit/delivery",
+          "amount": 1000
+        },
+        {
+          "label": "Approved elevated vantage / camera platform",
+          "amount": 750
+        },
+        {
+          "label": "Wide backdrop, group markers + photo signage",
+          "amount": 500
+        },
+        {
+          "label": "Timed gather, crowd coordination + accessibility support",
+          "amount": 250
+        }
+      ]
+    },
+    {
       "id": "big_game_pavilion_watch",
       "name": "Big Game Pavilion Watch",
       "emoji": "\ud83d\udcfa",
@@ -942,25 +1047,6 @@
         {
           "label": "10\u00d710 tent + weights (weekend)",
           "amount": 900
-        }
-      ]
-    },
-    {
-      "id": "pageant",
-      "name": "Pageant",
-      "amount": 4000,
-      "category": "secondary",
-      "sortOrder": 2,
-      "tagline": "Off-year 2027 \u2014 pageant segments if steering brings them back.",
-      "description": "Miss/community pageant segments on indoor or outdoor stage \u2014 talent, staging, and run-of-show. Off-year in 2027; only if steering revives pageant programming.",
-      "benefits": [
-        "Dedicated email block",
-        "Facebook/Instagram feature"
-      ],
-      "lineItems": [
-        {
-          "label": "Pageant talent + staging",
-          "amount": 4000
         }
       ]
     },
