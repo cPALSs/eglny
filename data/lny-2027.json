@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
     "mvpCap": 39940,
     "vendorRev100": 19300,
-    "registryFull": 170155,
+    "registryFull": 181655,
     "vendorSlots": 40,
     "attendance": 6000
   },
@@ -503,7 +503,7 @@
       "sortOrder": 11,
       "impactOrder": 12,
       "tagline": "Kids stage \u2014 short sets parents can actually sit through.",
-      "description": "Sac County Fair Kids Zone model \u2014 **30\u201345 min blocks, 2\u20133 sets per day** on the family stage (local magic, storytelling, puppetry, character participation). Participation beats spectacle; not a headliner stack. Assumes baseline stage, PA, and sound engineers in core ops. Pair with **Children's Village** (in-ground activities + anchor hosts), **Youth Culture Day** (school multicultural rallies), and **T\u1ebft Relay Cup** (open-age relay bracket \u2014 see `tet_relay_cup`).",
+      "description": "Sac County Fair Kids Zone model \u2014 **30\u201345 min blocks, 2\u20133 sets per day** on the family stage (local magic, storytelling, puppetry, character participation). Participation beats spectacle; not a headliner stack. Assumes baseline stage, PA, and sound engineers in core ops. Pair with **Children's Village** (in-ground activities + anchor hosts), **Moditional Dance Battle** (HS fusion crew battle \u2014 see `moditional_dance_battle`), and **T\u1ebft Relay Cup** (open-age relay bracket \u2014 see `tet_relay_cup`).",
       "benefits": [
         "Children's Show presented by [Sponsor]",
         "MC scripts + Facebook/Instagram feature",
@@ -576,7 +576,7 @@
       ]
     },
     {
-      "id": "youth_culture_day",
+      "id": "moditional_dance_battle",
       "name": "Moditional Dance Battle",
       "emoji": "\ud83e\udead",
       "amount": 3500,
@@ -585,7 +585,7 @@
       "sortOrder": 12,
       "impactOrder": 10,
       "tagline": "Modern-meets-traditional crew battle \u2014 schools remix \u00e1o d\u00e0i, lion, and fan with hip-hop and K-pop.",
-      "description": "**Moditional Dance Battle** \u2014 the 2027 format for the **Youth Culture Day** lane. **EGUSD high school** crews and cultural clubs compete head-to-head in a judged bracket, but every routine must **fuse modern + traditional** (\u00e1o d\u00e0i, lion, fan, or heritage movement remixed with hip-hop / K-pop / cover). Scoring blends a **light panel** with a **crowd-hype meter**, so the audience has a job. **Participation guardrail:** between rounds, a near-peer leader runs an **open-floor learn-along** (shared with the Meme Dance Contest mechanic) so little kids and families jump in \u2014 not a watch-only stage. **Medals + traveling title to crews, no individual crowning** \u2014 celebrates craft, not a pageant pedestal. **Pan-APIDA / multicultural** \u2014 open to all school clubs, not VN-only. Battle crews also supply the near-peer leaders for the Meme Dance Contest. **Separate from T\u1ebft Relay Cup** (grass athletics) and the **Meme Dance Contest** (under-12 follow-along). College / campus orgs route to **Sac State APIDA LNY**.",
+      "description": "**Moditional Dance Battle** \u2014 a **judged, cross-school modern + traditional fusion crew competition**. **EGUSD high school** crews and cultural clubs compete head-to-head, but every routine must **fuse modern + traditional** (\u00e1o d\u00e0i, lion, fan, or heritage movement remixed with hip-hop / K-pop / cover). Scoring blends a **light panel** with a **crowd-hype meter**, so the audience has a job. **Participation guardrail:** between rounds, a near-peer leader runs an **open-floor learn-along** (shared with the Meme Dance Contest mechanic) so little kids and families jump in \u2014 not a watch-only stage. **Medals + traveling title to crews, no individual crowning** \u2014 celebrates craft, not a pageant pedestal. **Pan-APIDA / multicultural** \u2014 open to all school clubs, not VN-only. Battle crews also supply the near-peer leaders for the Meme Dance Contest. **Separate from T\u1ebft Relay Cup** (grass athletics) and the **Meme Dance Contest** (under-12 follow-along). College / campus orgs route to **Sac State APIDA LNY**. *(Successor to the 2026 Youth Culture Day stage showcase.)*",
       "benefits": [
         "Moditional Dance Battle presented by [Sponsor]",
         "Facebook/Instagram feature + school tags on the bracket grid",
@@ -625,7 +625,7 @@
       "sortOrder": 13,
       "impactOrder": 11,
       "tagline": "Open-age relay bracket \u2014 clubs, leagues, and community teams on the grass.",
-      "description": "**T\u1ebft Relay Cup** \u2014 festival-run **relay tournament** on the grass corral beside Children's Village. **Not a youth-only product** \u2014 open **age brackets** (adult rec, parish teams, school clubs, service orgs). **2027 MVP:** one featured bracket (often HS-heavy); expand divisions as registration fills. Single-elimination heats, East/West or age pools, prizes to winning teams. **Youth Culture Day** (stage rallies) is a **separate registry block** \u2014 schools may do both. College org performance routes to Sac State APIDA LNY.",
+      "description": "**T\u1ebft Relay Cup** \u2014 festival-run **relay tournament** on the grass corral beside Children's Village. **Not a youth-only product** \u2014 open **age brackets** (adult rec, parish teams, school clubs, service orgs). **2027 MVP:** one featured bracket (often HS-heavy); expand divisions as registration fills. Single-elimination heats, East/West or age pools, prizes to winning teams. **Moditional Dance Battle** (stage) is a **separate registry block** \u2014 schools may do both. College org performance routes to Sac State APIDA LNY.",
       "benefits": [
         "T\u1ebft Relay Cup presented by [Sponsor]",
         "Facebook/Instagram feature + public bracket on website program",
@@ -870,6 +870,37 @@
       ]
     },
     {
+      "id": "costumed_characters",
+      "name": "Costumed Characters",
+      "emoji": "\ud83d\udc78",
+      "amount": 2500,
+      "category": "registry",
+      "priority": true,
+      "sortOrder": 15.9,
+      "impactOrder": 15,
+      "tagline": "Characters kids already recognize \u2014 scheduled photo windows with a Snow Princess and friends.",
+      "description": "A rotating cast of **2\u20134 hired character performers** for scheduled meet-and-greet and photo windows \u2014 recognizable archetypes such as a **Snow Princess**, storybook royalty, heroes, or seasonal characters. **Recognition is the product:** children arrive anticipating someone they already know, then leave with photo-proof. **Different from Fashion Garden:** Fashion Garden features real attendees and \u00e1o d\u00e0i ambassadors presenting **heritage fashion / their own crafted looks**; Costumed Characters are performers intentionally portraying **well-known fictional archetypes for children**. **IP guardrail:** use legally distinct names and costumes in all festival advertising (for example, \u201cSnow Princess,\u201d never a trademarked character name); do not imply official studio affiliation. This is a dedicated photo role, separate from stage performance, so characters remain presentable and the line keeps moving.",
+      "benefits": [
+        "Costumed Characters presented by [Sponsor]",
+        "Sponsor credit on character schedule + photo-line signage",
+        "website + Facebook/Instagram family feature"
+      ],
+      "lineItems": [
+        {
+          "label": "Character performers \u2014 2\u20134 rotating appearances (placeholder pending quotes)",
+          "amount": 1500
+        },
+        {
+          "label": "Character-ready photo backdrop + lighting",
+          "amount": 500
+        },
+        {
+          "label": "Photo-line host, queue management + performer breaks/hospitality",
+          "amount": 500
+        }
+      ]
+    },
+    {
       "id": "big_game_pavilion_watch",
       "name": "Big Game Pavilion Watch",
       "emoji": "\ud83d\udcfa",
@@ -1051,21 +1082,66 @@
       ]
     },
     {
-      "id": "influencer",
-      "name": "Influencer",
-      "amount": 2500,
-      "category": "secondary",
-      "sortOrder": 3,
-      "tagline": "Creator activations \u2014 eating contest, collab posts, on-site spectacle.",
-      "description": "Invited creators for festival activations (e.g. eating contest) plus collaboration posts that carry the festival into feeds beyond word of mouth.",
+      "id": "influencer_meet_greet",
+      "name": "Influencer Meet & Greet",
+      "emoji": "\ud83e\udd33",
+      "amount": 5000,
+      "category": "registry",
+      "sortOrder": 19,
+      "impactOrder": 19,
+      "tagline": "The right creator can draw young people \u2014 scheduled meet & greet, photo line, and collab posts.",
+      "description": "Books a **regional creator young people already follow** (Raina / LovelyMimi tier) for a **scheduled meet & greet with a photo line**, plus **collaboration posts** that carry the festival into feeds beyond word of mouth. **2026 proof:** LovelyMimi and Raina brought out a substantial young audience, especially **high schoolers**. The lesson is **creator fit matters** \u2014 not that influencers lack draw. For 2027, make that draw legible and usable: announce a fixed appearance window, capture the creator-attributed audience, and convert recognition into a meet-and-greet photo moment. **Dual-purpose spend:** part programming, part **marketing** \u2014 the collab posts are paid reach we would otherwise buy. **Pricing is a placeholder:** this tier can retail near **$10K**; **$5,000** is our working number pending real quotes, and the ask scales with the creator. Staff the **photo line separately from any stage set** so the line keeps moving.",
       "benefits": [
+        "Influencer Meet & Greet presented by [Sponsor]",
         "Instagram collaboration post",
-        "Activation naming credit"
+        "Activation naming credit + photo-line signage"
       ],
       "lineItems": [
         {
-          "label": "Creator fees + activation production",
-          "amount": 2500
+          "label": "Creator fee \u2014 appearance + meet & greet window (placeholder; scales with tier)",
+          "amount": 3500
+        },
+        {
+          "label": "Collab / paid-reach posts (marketing value)",
+          "amount": 800
+        },
+        {
+          "label": "Photo-line staffing, backdrop, queue management + signage",
+          "amount": 700
+        }
+      ]
+    },
+    {
+      "id": "community_heritage_performance_showcase",
+      "name": "Community Heritage Performance Showcase",
+      "emoji": "\ud83c\udf0e",
+      "amount": 4000,
+      "category": "registry",
+      "sortOrder": 19.5,
+      "impactOrder": 19.5,
+      "tagline": "Community traditions take the stage \u2014 hula, folkl\u00f3rico, folk dance, taiko, and more.",
+      "description": "A curated, **noncompetitive community heritage showcase** featuring short performance sets from traditions represented across the region \u2014 for example, **h\u0101lau hula, Mexican folkl\u00f3rico, Filipino folk dance, taiko, and other community ensembles**. This is a welcome-and-share stage block: **no judges, rankings, brackets, prizes, or winner language**. Modest group honoraria recognize preparation and travel; a producer curates a balanced run-of-show and clean stage handoffs. Assumes the baseline stage, PA, and sound engineer are already funded through core ops. Unlike the **Moditional Dance Battle**, this gift does not turn heritage performance into a contest; unlike the **Vietnamese Heritage Fund**, it supports broad community representation within the family fair.",
+      "benefits": [
+        "Community Heritage Performance Showcase presented by [Sponsor]",
+        "Sponsor credit on the showcase schedule and stage signage",
+        "Website + Facebook/Instagram feature tagging participating groups"
+      ],
+      "lineItems": [
+        {
+          "label": "Community ensemble honoraria \u2014 curated mix of groups",
+          "amount": 2800
+        },
+        {
+          "label": "Producer, booking + run-of-show coordination",
+          "amount": 500
+        },
+        {
+          "label": "Performer hospitality, load-in + stage handoffs",
+          "amount": 400
+        },
+        {
+          "label": "Showcase schedule, group credits + promotion",
+          "amount": 300
         }
       ]
     }

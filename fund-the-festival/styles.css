@@ -1125,6 +1125,11 @@ dialog::backdrop {
   margin: 0 0 12px;
 }
 
+.modal-description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 .modal-description strong {
   font-weight: 600;
 }

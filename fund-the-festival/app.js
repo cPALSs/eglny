@@ -992,10 +992,10 @@ function coreFundingState() {
   const cashOffset = Math.min(mvpCap, rawCash);
   const sponsorGap = Math.max(0, mvpCap - cashOffset);
   const estimatedCore = sumEstimatedAssigned(["core"]);
-  const sponsorFill =
-    estimatedCore !== null
-      ? Math.min(estimatedCore, sponsorGap)
-      : Math.min(sumEnabled(["core"]) + (state.extraCash || 0), sponsorGap);
+  const coreContrib =
+    estimatedCore !== null ? estimatedCore : sumEnabled(["core"]) + (state.extraCash || 0);
+  const sponsorFill = Math.min(coreContrib, sponsorGap);
+  const coreSurplus = coreContrib - sponsorFill;
   const remainingGap = Math.max(0, sponsorGap - sponsorFill);
   const fundedTotal = cashOffset + sponsorFill;
 
@@ -1004,6 +1004,7 @@ function coreFundingState() {
     cashOffset,
     sponsorGap,
     sponsorFill,
+    coreSurplus,
     remainingGap,
     fundedTotal,
     cashPct: (cashOffset / mvpCap) * 100,
@@ -1091,14 +1092,18 @@ function renderProgress() {
   const core = coreFundingState();
   const registryFunded = registryFundedAmount();
   const target = state.data.event.registryFull;
-  const fundedBlue = core.cashOffset + core.sponsorFill + registryFunded;
+  const visionRoom = Math.max(0, target - s.mvpCap);
+  // Core gifts past the core gap are still real dollars — they displace the cash ops that
+  // would have paid that line, so the overflow is credited against the registry half.
+  const visionFunded = Math.min(visionRoom, registryFunded + core.coreSurplus);
+  const fundedBlue = core.fundedTotal + visionFunded;
   const toFullVision = Math.max(0, target - fundedBlue);
 
   document.getElementById("vision-label").textContent = `Core ops ${fmt(s.mvpCap)}`;
   document.getElementById("target-label").textContent = `Target ${fmt(target)}`;
 
   const coreGap = core.remainingGap;
-  const visionGap = Math.max(0, target - s.mvpCap - registryFunded);
+  const visionGap = Math.max(0, visionRoom - visionFunded);
   const fundedPct = (fundedBlue / target) * 100;
   const coreGapPct = (coreGap / target) * 100;
   const visionGapPct = (visionGap / target) * 100;
@@ -1109,7 +1114,7 @@ function renderProgress() {
     <div class="progress-seg vision-unfunded" style="width:${visionGapPct}%" title="Unfunded full vision"></div>
   `;
 
-  document.getElementById("vision-total-value").textContent = fmt(core.fundedTotal + registryFunded);
+  document.getElementById("vision-total-value").textContent = fmt(fundedBlue);
   document.getElementById("registry-funded-value").textContent = fmt(registryFunded);
   document.getElementById("to-vision-value").textContent = fmt(toFullVision);
 }
