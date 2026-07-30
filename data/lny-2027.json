@@ -577,41 +577,41 @@
     },
     {
       "id": "youth_culture_day",
-      "name": "Youth Culture Day",
-      "emoji": "\ud83c\udf8c",
+      "name": "Moditional Dance Battle",
+      "emoji": "\ud83e\udead",
       "amount": 3500,
       "category": "registry",
       "priority": true,
       "sortOrder": 12,
       "impactOrder": 10,
-      "tagline": "Multicultural rallies \u2014 high schools take the stage together.",
-      "description": "**Youth Culture Day** \u2014 a **Sunday showcase block** for **EGUSD high school** dance crews, cultural clubs, and performance groups from **multiple schools** on one bill (2026 proof: Sheldon, Cosumnes Oaks, Florin VSA, etc.). Think **multicultural rally energy** \u2014 schools bring their communities, parents in the audience, MC introduces each group. **Separate product from T\u1ebft Relay Cup** (competition on grass, open-age brackets). College / campus orgs route to **Sac State APIDA LNY**, not this stage.",
+      "tagline": "Modern-meets-traditional crew battle \u2014 schools remix \u00e1o d\u00e0i, lion, and fan with hip-hop and K-pop.",
+      "description": "**Moditional Dance Battle** \u2014 the 2027 format for the **Youth Culture Day** lane. **EGUSD high school** crews and cultural clubs compete head-to-head in a judged bracket, but every routine must **fuse modern + traditional** (\u00e1o d\u00e0i, lion, fan, or heritage movement remixed with hip-hop / K-pop / cover). Scoring blends a **light panel** with a **crowd-hype meter**, so the audience has a job. **Participation guardrail:** between rounds, a near-peer leader runs an **open-floor learn-along** (shared with the Meme Dance Contest mechanic) so little kids and families jump in \u2014 not a watch-only stage. **Medals + traveling title to crews, no individual crowning** \u2014 celebrates craft, not a pageant pedestal. **Pan-APIDA / multicultural** \u2014 open to all school clubs, not VN-only. Battle crews also supply the near-peer leaders for the Meme Dance Contest. **Separate from T\u1ebft Relay Cup** (grass athletics) and the **Meme Dance Contest** (under-12 follow-along). College / campus orgs route to **Sac State APIDA LNY**.",
       "benefits": [
-        "Youth Culture Day presented by [Sponsor]",
-        "Facebook/Instagram feature + school tags on program grid",
-        "MC thank-you for participating schools",
+        "Moditional Dance Battle presented by [Sponsor]",
+        "Facebook/Instagram feature + school tags on the bracket grid",
+        "MC thank-you for participating schools + crew photo-op",
         "Listed on website weekend schedule"
       ],
       "lineItems": [
         {
-          "label": "Stage block production + MC (school intros, run-of-show)",
-          "amount": 800
+          "label": "Crew prize pool + traveling title / medals",
+          "amount": 1200
         },
         {
-          "label": "School liaison / registration coordination",
-          "amount": 600
+          "label": "DJ + hype MC/host (battle energy + open-floor learn-along calls)",
+          "amount": 900
         },
         {
-          "label": "Per-group hospitality + green-room supplies",
+          "label": "Judging panel hospitality + scoring / run-of-show admin",
           "amount": 400
         },
         {
-          "label": "Program grid + social assets (school-by-school)",
+          "label": "Public-performance music licensing allowance (confirm vs final tracks)",
           "amount": 500
         },
         {
-          "label": "Optional modest stipends / travel support (2\u20133 anchor groups)",
-          "amount": 1200
+          "label": "Open participation floor, crew staging, bracket signage + program",
+          "amount": 500
         }
       ]
     },
