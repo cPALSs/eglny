@@ -126,13 +126,22 @@
       <summary><span class="caret" aria-hidden="true"></span>Gift registry</summary>
       <p class="hint collapsible-desc" id="registry-desc"></p>
 
-      <h3 class="registry-subhead" id="registry-priority-title">High Priority — kid-friendly / our audience</h3>
+      <div class="cohort-filters" id="cohort-filters" role="group" aria-label="Filter by age band">
+        <span class="cohort-filters-label">Ages</span>
+        <div class="cohort-filter-pills" id="cohort-filter-pills"></div>
+      </div>
+
+      <h3 class="registry-subhead" id="registry-priority-title">High Priority — shared parent–child experiences</h3>
       <p class="hint registry-subdesc" id="registry-priority-desc"></p>
       <div class="gift-grid" id="registry-priority-grid"></div>
 
       <h3 class="registry-subhead" id="registry-elective-title">Electives</h3>
       <p class="hint registry-subdesc" id="registry-elective-desc"></p>
       <div class="gift-grid" id="registry-elective-grid"></div>
+
+      <p class="registry-filter-empty" id="registry-filter-empty" hidden>
+        No gift stories match the selected age bands.
+      </p>
 
       <p class="registry-idea-cta" id="registry-idea-cta">
         Have an idea for the gift registry?

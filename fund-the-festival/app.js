@@ -11,12 +11,104 @@ function escapeHtml(text) {
     .replace(/"/g, "&quot;");
 }
 
-/** Subset of markdown used in gift copy — **bold**, *italic* */
-function formatMarkdown(text) {
-  if (!text) return "";
+/** Public labels for Age-Band C0–C4 — show age ranges only, never the C-codes. */
+const COHORT_LABELS = {
+  C0: { label: "0–2", title: "Ages ~0–2 — stroller & carrier" },
+  C1: { label: "2–4", title: "Ages ~2–4 — walking toddler" },
+  C2: { label: "4–6", title: "Ages ~4–6 — preschool" },
+  C3: { label: "6–12", title: "Ages ~6–12 — school-age & tween" },
+  C4: { label: "13–17", title: "Ages ~13–17 — teen" },
+};
+
+/** Subset of markdown used in gift copy — **bold**, *italic*, [links](url) */
+function formatMarkdownInline(text) {
   return escapeHtml(text)
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>");
+}
+
+function formatMarkdown(text) {
+  if (!text) return "";
+  const src = String(text);
+  const linkRe = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/gi;
+  let html = "";
+  let last = 0;
+  let match;
+  while ((match = linkRe.exec(src))) {
+    html += formatMarkdownInline(src.slice(last, match.index));
+    html += `<a href="${escapeHtml(match[2])}" target="_blank" rel="noopener noreferrer">${escapeHtml(match[1])}</a>`;
+    last = match.index + match[0].length;
+  }
+  html += formatMarkdownInline(src.slice(last));
+  return html;
+}
+
+function giftCohortsHtml(gift) {
+  const codes = Array.isArray(gift?.cohorts) ? gift.cohorts : [];
+  const tags = codes
+    .map((code) => COHORT_LABELS[code])
+    .filter(Boolean)
+    .map(
+      (c) =>
+        `<span class="gift-cohort-tag" title="${escapeHtml(c.title)}">${escapeHtml(c.label)}</span>`,
+    );
+  if (!tags.length) return "";
+  return `<div class="gift-cohort-tags" aria-label="Best for">${tags.join("")}</div>`;
+}
+
+const COHORT_FILTER_ORDER = ["C0", "C1", "C2", "C3", "C4"];
+
+function giftMatchesCohortFilters(gift) {
+  if (!state.cohortFilters.size) return true;
+  const codes = Array.isArray(gift?.cohorts) ? gift.cohorts : [];
+  return codes.some((code) => state.cohortFilters.has(code));
+}
+
+function toggleCohortFilter(code) {
+  if (!COHORT_LABELS[code]) return;
+  if (state.cohortFilters.has(code)) state.cohortFilters.delete(code);
+  else state.cohortFilters.add(code);
+  renderCohortFilters();
+  bindRegistryGrids();
+}
+
+function renderCohortFilters() {
+  const pills = document.getElementById("cohort-filter-pills");
+  if (!pills) return;
+  const hasFilters = state.cohortFilters.size > 0;
+  pills.innerHTML =
+    COHORT_FILTER_ORDER.map((code) => {
+      const meta = COHORT_LABELS[code];
+      const on = state.cohortFilters.has(code);
+      return `<button
+      type="button"
+      class="cohort-filter-pill${on ? " is-active" : ""}"
+      data-cohort-filter="${code}"
+      aria-pressed="${on ? "true" : "false"}"
+      title="${escapeHtml(meta.title)}"
+    >${escapeHtml(meta.label)}</button>`;
+    }).join("") +
+    `<button
+      type="button"
+      class="cohort-filter-clear"
+      data-cohort-clear
+      ${hasFilters ? "" : "disabled"}
+    >Clear</button>`;
+
+  pills.querySelectorAll("[data-cohort-filter]").forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleCohortFilter(btn.dataset.cohortFilter);
+    };
+  });
+  pills.querySelector("[data-cohort-clear]")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    state.cohortFilters.clear();
+    renderCohortFilters();
+    bindRegistryGrids();
+  });
 }
 
 /** Most important → most optional within each section */
@@ -110,7 +202,17 @@ function giftSortKey(gift, category) {
   return gift.sortOrder ?? GIFT_SORT[gift.id] ?? 99;
 }
 
+function giftCohortCount(gift) {
+  return Array.isArray(gift?.cohorts) ? gift.cohorts.length : 0;
+}
+
 function compareGifts(a, b, category) {
+  // Registry: highly versatile (more age cohorts) first within each lane.
+  if (category === "registry") {
+    const ca = giftCohortCount(a);
+    const cb = giftCohortCount(b);
+    if (ca !== cb) return cb - ca;
+  }
   const ka = giftSortKey(a, category);
   const kb = giftSortKey(b, category);
   if (ka !== kb) return registrySortMultiplier(category) * (ka - kb);
@@ -230,6 +332,7 @@ const state = {
   estimatedSponsors: null,
   estimatedSponsorMap: {},
   showEstimatedSponsors: false,
+  cohortFilters: new Set(),
 };
 
 function currentFestivalEntry() {
@@ -1150,6 +1253,7 @@ function variableAmountCardHtml(gift) {
         </div>
       </div>
       ${gift.tagline ? `<p class="gift-tagline">${gift.tagline}</p>` : ""}
+      ${giftCohortsHtml(gift)}
       ${gapHint ? `<p class="gift-gap-hint">${gapHint}</p>` : ""}
       ${estimatedSponsorTagsHtml(gift.id)}
     </article>
@@ -1180,6 +1284,7 @@ function giftCardHtml(gift) {
         }
       </div>
       ${gift.tagline ? `<p class="gift-tagline">${gift.tagline}</p>` : ""}
+      ${giftCohortsHtml(gift)}
       ${includedByTier ? `<p class="gift-gap-hint">Included with your selected tier</p>` : ""}
       ${estimatedSponsorTagsHtml(gift.id)}
     </article>
@@ -1253,7 +1358,7 @@ function bindGiftGrid(containerId, category) {
 
 /** Registry = one financial bucket, two UI lanes (High Priority vs Elective). */
 function bindRegistryGrids() {
-  const all = giftsInCategory(state.data.gifts, "registry");
+  const all = giftsInCategory(state.data.gifts, "registry").filter(giftMatchesCohortFilters);
   const priority = all.filter((g) => g.priority);
   const elective = all.filter((g) => !g.priority);
   bindGiftGridEl(document.getElementById("registry-priority-grid"), priority);
@@ -1261,12 +1366,18 @@ function bindRegistryGrids() {
 
   const priTitle = document.getElementById("registry-priority-title");
   const priDesc = document.getElementById("registry-priority-desc");
+  const priGrid = document.getElementById("registry-priority-grid");
   const eleTitle = document.getElementById("registry-elective-title");
   const eleDesc = document.getElementById("registry-elective-desc");
+  const eleGrid = document.getElementById("registry-elective-grid");
+  const emptyEl = document.getElementById("registry-filter-empty");
   if (priTitle) priTitle.hidden = priority.length === 0;
   if (priDesc) priDesc.hidden = priority.length === 0;
+  if (priGrid) priGrid.hidden = priority.length === 0;
   if (eleTitle) eleTitle.hidden = elective.length === 0;
   if (eleDesc) eleDesc.hidden = elective.length === 0;
+  if (eleGrid) eleGrid.hidden = elective.length === 0;
+  if (emptyEl) emptyEl.hidden = !(state.cohortFilters.size && priority.length === 0 && elective.length === 0);
 }
 
 function renderModalContent(giftId) {
@@ -1327,6 +1438,7 @@ function renderModalContent(giftId) {
         : ""
     }
     ${gift.tagline ? `<p class="modal-tagline">${gift.tagline}</p>` : ""}
+    ${giftCohortsHtml(gift)}
     ${estimatedSponsorTagsHtml(gift.id)}
     ${notice ? `<p class="modal-unlock-notice">${notice}</p>` : ""}
     <p class="modal-description">${formatMarkdown(gift.description)}</p>
@@ -1388,6 +1500,7 @@ function renderAll() {
     renderCartModal();
   }
   bindGiftGrid("core-grid", "core");
+  renderCohortFilters();
   bindRegistryGrids();
   bindGiftGrid("options-grid", "options");
   bindGiftGrid("secondary-grid", "secondary");

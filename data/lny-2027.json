@@ -201,6 +201,13 @@
       "emoji": "\ud83e\udd41",
       "amount": 3700,
       "category": "registry",
+      "priority": true,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2",
+        "C3"
+      ],
       "sortOrder": 1,
       "impactOrder": 9,
       "tagline": "Marching band, hired units, and day-of parade production \u2014 a parade worth watching.",
@@ -240,6 +247,10 @@
       "amount": 4800,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C0",
+        "C4"
+      ],
       "sortOrder": 2,
       "impactOrder": 8,
       "tagline": "Lanterns, stage flowers, and site accents \u2014 visual T\u1ebft atmosphere across the park.",
@@ -413,6 +424,9 @@
       "emoji": "\ud83c\udfa7",
       "amount": 6000,
       "category": "registry",
+      "cohorts": [
+        "C4"
+      ],
       "sortOrder": 8,
       "impactOrder": 3,
       "tagline": "Younger-skewed stage block \u2014 DJs, R&B, rap, dance.",
@@ -500,6 +514,11 @@
       "amount": 3500,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2"
+      ],
       "sortOrder": 11,
       "impactOrder": 12,
       "tagline": "Kids stage \u2014 short sets parents can actually sit through.",
@@ -543,6 +562,10 @@
       "amount": 2500,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C2",
+        "C3"
+      ],
       "sortOrder": 11.5,
       "impactOrder": 12,
       "tagline": "A drop-in dance challenge \u2014 a high schooler leads from the stage, kids follow on the floor.",
@@ -582,6 +605,10 @@
       "amount": 3500,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C3",
+        "C4"
+      ],
       "sortOrder": 12,
       "impactOrder": 10,
       "tagline": "Modern-meets-traditional crew battle \u2014 schools remix \u00e1o d\u00e0i, lion, and fan with hip-hop and K-pop.",
@@ -622,6 +649,10 @@
       "amount": 3000,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C3",
+        "C4"
+      ],
       "sortOrder": 13,
       "impactOrder": 11,
       "tagline": "Open-age relay bracket \u2014 clubs, leagues, and community teams on the grass.",
@@ -658,6 +689,11 @@
       "amount": 6000,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2"
+      ],
       "sortOrder": 13,
       "impactOrder": 13,
       "tagline": "Shade, activities, anchor hosts \u2014 families regroup and kids do T\u1ebft.",
@@ -701,6 +737,10 @@
       "amount": 1950,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C2",
+        "C3"
+      ],
       "sortOrder": 14,
       "impactOrder": 14,
       "tagline": "Rented bounce houses \u2014 vendor delivers, sets up, and hauls away.",
@@ -732,6 +772,9 @@
       "amount": 1765,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C3"
+      ],
       "sortOrder": 15,
       "impactOrder": 15,
       "tagline": "Our 8-station carnival games \u2014 funded deploy labor, not a rental fee.",
@@ -771,6 +814,13 @@
       "amount": 4000,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
       "sortOrder": 15.25,
       "impactOrder": 15,
       "tagline": "An all-weekend heritage-fashion garden \u2014 dress up, promenade, and take the family photo.",
@@ -805,7 +855,6 @@
       "emoji": "\u2615",
       "amount": 3500,
       "category": "registry",
-      "priority": true,
       "sortOrder": 15.5,
       "impactOrder": 15,
       "tagline": "A warm Pavilion oasis \u2014 Vietnamese coffee, boba, seating, and charging for parents.",
@@ -841,6 +890,10 @@
       "amount": 2500,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C0",
+        "C4"
+      ],
       "sortOrder": 15.75,
       "impactOrder": 15,
       "tagline": "One annual whole-community portrait \u2014 free, open, and built for the archive.",
@@ -876,6 +929,11 @@
       "amount": 2500,
       "category": "registry",
       "priority": true,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2"
+      ],
       "sortOrder": 15.9,
       "impactOrder": 15,
       "tagline": "Characters kids already recognize \u2014 scheduled photo windows with a Snow Princess and friends.",
@@ -906,6 +964,11 @@
       "emoji": "\ud83d\udcfa",
       "amount": 10000,
       "category": "registry",
+      "priority": true,
+      "cohorts": [
+        "C3",
+        "C4"
+      ],
       "sortOrder": 16,
       "impactOrder": 16,
       "tagline": "Sunday evening watch party in the Pavilion \u2014 indoor alternate to the outdoor main stage.",
@@ -952,6 +1015,11 @@
       "emoji": "\ud83c\udfc8",
       "amount": 8000,
       "category": "registry",
+      "priority": true,
+      "cohorts": [
+        "C3",
+        "C4"
+      ],
       "sortOrder": 17,
       "impactOrder": 17,
       "tagline": "Sunday evening on the covered main stage \u2014 license, security, comfort (reuses tent + LED).",
@@ -1028,7 +1096,6 @@
       "amount": 0,
       "category": "options",
       "sortOrder": 0,
-      "variableAmount": true,
       "tagline": "Top up your package toward the next tier.",
       "description": "Add any dollar amount on top of your selected gifts \u2014 for example, $500 toward Bronze ($3,000+) to unlock sponsor booth spot. Does not fund a named registry feature.",
       "benefits": [
@@ -1039,7 +1106,8 @@
           "label": "Additional sponsorship (flexible)",
           "amount": 0
         }
-      ]
+      ],
+      "variableAmount": true
     },
     {
       "id": "sponsor_booth",
@@ -1047,7 +1115,6 @@
       "amount": 0,
       "category": "options",
       "sortOrder": 1,
-      "requiresSponsorThreshold": true,
       "tagline": "On-site sponsor activation \u2014 bring your own tent.",
       "description": "10\u00d710 sponsor activation footprint at the festival (not a vendor booth application). You provide the tent; cPALSs assigns your on-site location and recognizes you on the website.",
       "benefits": [
@@ -1059,7 +1126,8 @@
           "label": "Sponsor booth slot assignment",
           "amount": 0
         }
-      ]
+      ],
+      "requiresSponsorThreshold": true
     },
     {
       "id": "tent_rental",
@@ -1067,7 +1135,6 @@
       "amount": 900,
       "category": "options",
       "sortOrder": 2,
-      "requiresBoothSpot": true,
       "tagline": "Optional \u2014 we rent the 10\u00d710 for your sponsor booth.",
       "description": "Capitol Tent City 10\u00d710 tent + weights for Sat\u2013Sun festival. Add alongside sponsor booth spot if you prefer not to bring your own tent.",
       "benefits": [
@@ -1079,7 +1146,8 @@
           "label": "10\u00d710 tent + weights (weekend)",
           "amount": 900
         }
-      ]
+      ],
+      "requiresBoothSpot": true
     },
     {
       "id": "influencer_meet_greet",
@@ -1087,6 +1155,9 @@
       "emoji": "\ud83e\udd33",
       "amount": 5000,
       "category": "registry",
+      "cohorts": [
+        "C4"
+      ],
       "sortOrder": 19,
       "impactOrder": 19,
       "tagline": "The right creator can draw young people \u2014 scheduled meet & greet, photo line, and collab posts.",
@@ -1117,6 +1188,12 @@
       "emoji": "\ud83c\udf0e",
       "amount": 4000,
       "category": "registry",
+      "priority": true,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2"
+      ],
       "sortOrder": 19.5,
       "impactOrder": 19.5,
       "tagline": "Community traditions take the stage \u2014 hula, folkl\u00f3rico, folk dance, taiko, and more.",
