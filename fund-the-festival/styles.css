@@ -521,6 +521,39 @@ select {
   margin-top: 12px;
 }
 
+.registry-subhead {
+  margin: 1.25rem 0 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.registry-subhead:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.registry-subdesc {
+  margin: 0 0 0.25rem;
+}
+
+.registry-idea-cta {
+  margin: 1.25rem 0 0;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 85%, var(--accent) 8%);
+}
+
+.registry-idea-cta a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .gift-grid--3 {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }

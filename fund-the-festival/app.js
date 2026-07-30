@@ -828,10 +828,22 @@ function renderSectionHints() {
 
   const coreEl = document.getElementById("core-desc");
   const registryEl = document.getElementById("registry-desc");
+  const registryPriorityEl = document.getElementById("registry-priority-desc");
+  const registryElectiveEl = document.getElementById("registry-elective-desc");
   const tiersEl = document.getElementById("tiers-desc");
   const optionsEl = document.getElementById("options-desc");
   if (coreEl) coreEl.textContent = replaceTokens(sections.core) || "";
   if (registryEl) registryEl.textContent = replaceTokens(sections.registry) || "";
+  if (registryPriorityEl) {
+    registryPriorityEl.textContent =
+      replaceTokens(sections.registryPriority) ||
+      "Kid-friendly experiences we lead with in asks. Still sponsor-funded; no funding guarantee.";
+  }
+  if (registryElectiveEl) {
+    registryElectiveEl.textContent =
+      replaceTokens(sections.registryElective) ||
+      "Other registry stories — funded items run; unfunded ones wait.";
+  }
   if (tiersEl) {
     tiersEl.textContent =
       replaceTokens(sections.tiers) ||
@@ -1169,12 +1181,13 @@ function giftCardHtml(gift) {
   `;
 }
 
-function bindGiftGrid(containerId, category) {
-  const gifts = giftsInCategory(state.data.gifts, category);
-  const el = document.getElementById(containerId);
-  const activeVar = document.activeElement?.matches?.("[data-variable-amount]")
-    ? document.activeElement
-    : null;
+function bindGiftGridEl(el, gifts, { category = null, preserveVariableFocus = false } = {}) {
+  if (!el) return;
+
+  const activeVar =
+    preserveVariableFocus && document.activeElement?.matches?.("[data-variable-amount]")
+      ? document.activeElement
+      : null;
   const selStart = activeVar?.selectionStart ?? null;
   const selEnd = activeVar?.selectionEnd ?? null;
 
@@ -1222,6 +1235,33 @@ function bindGiftGrid(containerId, category) {
     const panel = document.getElementById("secondary-panel");
     if (panel) panel.hidden = gifts.length === 0;
   }
+}
+
+function bindGiftGrid(containerId, category) {
+  const gifts = giftsInCategory(state.data.gifts, category);
+  const el = document.getElementById(containerId);
+  bindGiftGridEl(el, gifts, {
+    category,
+    preserveVariableFocus: category === "options",
+  });
+}
+
+/** Registry = one financial bucket, two UI lanes (High Priority vs Elective). */
+function bindRegistryGrids() {
+  const all = giftsInCategory(state.data.gifts, "registry");
+  const priority = all.filter((g) => g.priority);
+  const elective = all.filter((g) => !g.priority);
+  bindGiftGridEl(document.getElementById("registry-priority-grid"), priority);
+  bindGiftGridEl(document.getElementById("registry-elective-grid"), elective);
+
+  const priTitle = document.getElementById("registry-priority-title");
+  const priDesc = document.getElementById("registry-priority-desc");
+  const eleTitle = document.getElementById("registry-elective-title");
+  const eleDesc = document.getElementById("registry-elective-desc");
+  if (priTitle) priTitle.hidden = priority.length === 0;
+  if (priDesc) priDesc.hidden = priority.length === 0;
+  if (eleTitle) eleTitle.hidden = elective.length === 0;
+  if (eleDesc) eleDesc.hidden = elective.length === 0;
 }
 
 function renderModalContent(giftId) {
@@ -1343,7 +1383,7 @@ function renderAll() {
     renderCartModal();
   }
   bindGiftGrid("core-grid", "core");
-  bindGiftGrid("registry-grid", "registry");
+  bindRegistryGrids();
   bindGiftGrid("options-grid", "options");
   bindGiftGrid("secondary-grid", "secondary");
   if (document.getElementById("gift-modal").open) {
