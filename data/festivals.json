@@ -8,12 +8,12 @@
       "estimatedSponsorsFile": "../data/lny-2026-sponsors.json",
       "cashOffsetLabel": "Vendors, parking & carnival",
       "sections": {
-        "core": "Cash ops cover most of core (~$26K of ~$40K). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
-        "registry": "Sponsor unlocks beyond core ops. High Priority stories create value for both parents and their children. Electives may serve parents, youth, marketing, or production without delivering that shared family payoff.",
-        "registryPriority": "Shared parent–child experiences we lead with in asks — family moments for babies, active play for young kids, and genuine school-age or teen enjoyment that parents can share. Still sponsor-funded; no funding guarantee.",
-        "registryElective": "Parent-only support, youth-only draws, production infrastructure, marketing, and other optional stories. Funded items run; unfunded ones wait.",
+        "core": "Earned cash (vendors, parking, carnival) covers most of core (~$34K of ~$50K). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
+        "registry": "Sponsor unlocks beyond core ops. High Priority covers Saturday’s theatrical day, Sunday’s Tết Tailgate (Super Bowl), and the family moments that run both chapters. Electives are optional stories we may not lead with in asks.",
+        "registryPriority": "Family linger, Saturday stage stories, and Sunday Tết Tailgate screens — still sponsor-funded, with no funding guarantee.",
+        "registryElective": "Optional stories — stage performances, creator meet & greets, Relay Cup, beer garden, elders, décor accents, and more. Funded items run; unfunded ones wait.",
         "tiers": "Recognition levels based on your total sponsorship. Tier benefits stack with any registry stories you fund — your build highlights the tier you reach.",
-        "options": "Sponsor booth spot unlocks at Bronze ($3,000+). Bring your own tent, or add tent rental. Tent rental requires sponsor booth spot."
+        "options": "Sponsor booth spot unlocks at Bronze ($3,000+). Bring your own tent, or add Premium Tent Rental. Premium Tent Rental requires sponsor booth spot."
       }
     }
   ],

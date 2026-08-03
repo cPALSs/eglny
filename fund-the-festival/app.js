@@ -935,24 +935,27 @@ function renderSectionHints() {
   const registryElectiveEl = document.getElementById("registry-elective-desc");
   const tiersEl = document.getElementById("tiers-desc");
   const optionsEl = document.getElementById("options-desc");
-  if (coreEl) coreEl.textContent = replaceTokens(sections.core) || "";
-  if (registryEl) registryEl.textContent = replaceTokens(sections.registry) || "";
+  if (coreEl) coreEl.innerHTML = formatMarkdown(replaceTokens(sections.core) || "");
+  if (registryEl) registryEl.innerHTML = formatMarkdown(replaceTokens(sections.registry) || "");
   if (registryPriorityEl) {
-    registryPriorityEl.textContent =
+    registryPriorityEl.innerHTML = formatMarkdown(
       replaceTokens(sections.registryPriority) ||
-      "Kid-friendly experiences we lead with in asks. Still sponsor-funded; no funding guarantee.";
+        "Kid-friendly experiences we lead with in asks. Still sponsor-funded; no funding guarantee.",
+    );
   }
   if (registryElectiveEl) {
-    registryElectiveEl.textContent =
+    registryElectiveEl.innerHTML = formatMarkdown(
       replaceTokens(sections.registryElective) ||
-      "Other registry stories — funded items run; unfunded ones wait.";
+        "Other registry stories — funded items run; unfunded ones wait.",
+    );
   }
   if (tiersEl) {
-    tiersEl.textContent =
+    tiersEl.innerHTML = formatMarkdown(
       replaceTokens(sections.tiers) ||
-      "Recognition levels based on your total sponsorship. Tier benefits stack with any registry stories you fund.";
+        "Recognition levels based on your total sponsorship. Tier benefits stack with any registry stories you fund.",
+    );
   }
-  if (optionsEl) optionsEl.textContent = replaceTokens(sections.options) || "";
+  if (optionsEl) optionsEl.innerHTML = formatMarkdown(replaceTokens(sections.options) || "");
 }
 
 function displaySponsorTiers() {
@@ -1002,12 +1005,12 @@ function renderTierModalContent(tierMin) {
   };
 
   document.getElementById("modal-guest").innerHTML = `
-    ${tier.tagline ? `<p class="modal-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
+    ${tier.tagline ? `<p class="modal-tagline">${formatMarkdown(tier.tagline)}</p>` : ""}
     ${tier.description ? `<p class="modal-description">${formatMarkdown(tier.description)}</p>` : ""}
     ${
       benefits.length
         ? `<p class="modal-benefits-label">Benefits</p><ul class="modal-benefits">${benefits
-            .map((b) => `<li>${escapeHtml(b)}</li>`)
+            .map((b) => `<li>${formatMarkdown(b)}</li>`)
             .join("")}</ul>`
         : ""
     }
@@ -1074,7 +1077,7 @@ function renderSponsorTiers() {
           <input type="checkbox" data-tier-toggle="${tier.min}"${on ? " checked" : ""}${lockChoices ? " disabled" : ""} aria-label="Select ${escapeHtml(tier.label)} tier" />
         </label>
       </div>
-      ${tier.tagline ? `<p class="gift-tagline">${escapeHtml(tier.tagline)}</p>` : ""}
+      ${tier.tagline ? `<p class="gift-tagline">${formatMarkdown(tier.tagline)}</p>` : ""}
     </article>`;
     })
     .join("");
@@ -1143,18 +1146,24 @@ function renderRevenueModal() {
     )
     .join("");
 
+  const totalLabel = er.totalLabel || "Total estimated revenue (pre-sponsorship)";
   body.innerHTML = `
     ${er.summary ? `<p class="revenue-modal-summary">${er.summary}</p>` : ""}
     <table>
       <tbody>${rows}</tbody>
       <tfoot>
         <tr>
-          <th>Total estimated revenue</th>
+          <th>${totalLabel}</th>
           <td>${fmt(er.total ?? er.lines.reduce((s, l) => s + l.amount, 0))}</td>
         </tr>
       </tfoot>
     </table>
   `;
+
+  const titleEl = document.querySelector("#revenue-modal .modal-header h3");
+  if (titleEl) {
+    titleEl.textContent = er.title || "Estimated revenue (pre-sponsorship)";
+  }
 }
 
 function openRevenueModal() {
@@ -1174,7 +1183,7 @@ function renderCoreProgress() {
 
   const pct = Math.min(100, Math.round(core.fundedPct));
 
-  labelEl.textContent = `Est. revenue ${fmt(core.cashOffset)}`;
+  labelEl.textContent = `Est. earned (pre-sponsor) ${fmt(core.cashOffset)}`;
   targetEl.textContent = `Target ${fmt(core.mvpCap)}`;
 
   barEl.setAttribute("aria-valuenow", String(pct));
@@ -1252,7 +1261,7 @@ function variableAmountCardHtml(gift) {
           />
         </div>
       </div>
-      ${gift.tagline ? `<p class="gift-tagline">${gift.tagline}</p>` : ""}
+      ${gift.tagline ? `<p class="gift-tagline">${formatMarkdown(gift.tagline)}</p>` : ""}
       ${giftCohortsHtml(gift)}
       ${gapHint ? `<p class="gift-gap-hint">${gapHint}</p>` : ""}
       ${estimatedSponsorTagsHtml(gift.id)}
@@ -1272,18 +1281,18 @@ function giftCardHtml(gift) {
     <article class="gift-card${on ? " enabled" : ""}${selectable && !unlocked ? " locked" : ""}${selectable ? "" : " gift-card--readonly"}${estimatedSponsorCardClass(gift.id)}" data-id="${gift.id}" tabindex="0">
       <div class="gift-card-head">
         <div>
-          <h3>${gift.emoji ? `<span class="gift-emoji">${gift.emoji}</span>` : ""}${gift.name}</h3>
+          <h3>${gift.emoji ? `<span class="gift-emoji">${gift.emoji}</span>` : ""}${escapeHtml(gift.name)}</h3>
           <div class="gift-amount">${giftAmountLabel(gift)}</div>
         </div>
         ${
           selectable
             ? `<label class="toggle-wrap${toggleLocked ? " toggle-wrap--disabled" : ""}" onclick="event.stopPropagation()">
-          <input type="checkbox" data-toggle="${gift.id}"${on ? " checked" : ""}${toggleLocked ? " disabled" : ""} aria-label="Fund ${gift.name}" />
+          <input type="checkbox" data-toggle="${gift.id}"${on ? " checked" : ""}${toggleLocked ? " disabled" : ""} aria-label="Fund ${escapeHtml(gift.name)}" />
         </label>`
             : ""
         }
       </div>
-      ${gift.tagline ? `<p class="gift-tagline">${gift.tagline}</p>` : ""}
+      ${gift.tagline ? `<p class="gift-tagline">${formatMarkdown(gift.tagline)}</p>` : ""}
       ${giftCohortsHtml(gift)}
       ${includedByTier ? `<p class="gift-gap-hint">Included with your selected tier</p>` : ""}
       ${estimatedSponsorTagsHtml(gift.id)}
@@ -1356,11 +1365,41 @@ function bindGiftGrid(containerId, category) {
   });
 }
 
+/** High Priority: both-days → Saturday → Sunday, then versatility / impact within band. */
+const CHAPTER_DAY_RANK = { both: 0, saturday: 1, sunday: 2 };
+
+function chapterDayRank(gift) {
+  const raw = (gift?.chapterDays || "").toLowerCase();
+  if (raw in CHAPTER_DAY_RANK) return CHAPTER_DAY_RANK[raw];
+  return 99;
+}
+
+function comparePriorityGifts(a, b) {
+  const da = chapterDayRank(a);
+  const db = chapterDayRank(b);
+  if (da !== db) return da - db;
+  return compareGifts(a, b, "registry");
+}
+
+/** Electives: keep stage performances consecutive, then other electives by impact/cohort. */
+function compareElectiveGifts(a, b) {
+  const stageA = a.electiveGroup === "stage" ? 0 : 1;
+  const stageB = b.electiveGroup === "stage" ? 0 : 1;
+  if (stageA !== stageB) return stageA - stageB;
+  if (stageA === 0) {
+    const sa = a.sortOrder ?? 0;
+    const sb = b.sortOrder ?? 0;
+    if (sa !== sb) return sa - sb;
+    return (a.name || "").localeCompare(b.name || "");
+  }
+  return compareGifts(a, b, "registry");
+}
+
 /** Registry = one financial bucket, two UI lanes (High Priority vs Elective). */
 function bindRegistryGrids() {
   const all = giftsInCategory(state.data.gifts, "registry").filter(giftMatchesCohortFilters);
-  const priority = all.filter((g) => g.priority);
-  const elective = all.filter((g) => !g.priority);
+  const priority = all.filter((g) => g.priority).sort(comparePriorityGifts);
+  const elective = all.filter((g) => !g.priority).sort(compareElectiveGifts);
   bindGiftGridEl(document.getElementById("registry-priority-grid"), priority);
   bindGiftGridEl(document.getElementById("registry-elective-grid"), elective);
 
@@ -1437,14 +1476,14 @@ function renderModalContent(giftId) {
     </div>`
         : ""
     }
-    ${gift.tagline ? `<p class="modal-tagline">${gift.tagline}</p>` : ""}
+    ${gift.tagline ? `<p class="modal-tagline">${formatMarkdown(gift.tagline)}</p>` : ""}
     ${giftCohortsHtml(gift)}
     ${estimatedSponsorTagsHtml(gift.id)}
     ${notice ? `<p class="modal-unlock-notice">${notice}</p>` : ""}
     <p class="modal-description">${formatMarkdown(gift.description)}</p>
     ${
       benefits.length
-        ? `<p class="modal-benefits-label">Benefits</p><ul class="modal-benefits">${benefits.map((b) => `<li>${b}</li>`).join("")}</ul>`
+        ? `<p class="modal-benefits-label">Benefits</p><ul class="modal-benefits">${benefits.map((b) => `<li>${formatMarkdown(b)}</li>`).join("")}</ul>`
         : ""
     }
   `;
@@ -1456,7 +1495,7 @@ function renderModalContent(giftId) {
   }
 
   const rows = gift.lineItems
-    .map((li) => `<tr><td>${li.label}</td><td>${li.amount ? fmt(li.amount) : "Included"}</td></tr>`)
+    .map((li) => `<tr><td>${formatMarkdown(li.label)}</td><td>${li.amount ? fmt(li.amount) : "Included"}</td></tr>`)
     .join("");
   document.getElementById("modal-funds").innerHTML = `
     <table>
