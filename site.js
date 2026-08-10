@@ -100,6 +100,8 @@
       .split(/(\s+|—|--)/)
       .map((part, index, parts) => {
         if (/^(\s+|—|--)$/.test(part)) return part;
+        // Keep acronyms / ALL-CAPS tokens (RFP, RFPs, EGLNY, …)
+        if (/^[A-Z0-9]{2,}s?$/.test(part)) return part;
         const lower = part.toLowerCase();
         const wordIndex = parts.slice(0, index).filter((p) => !/^(\s+|—|--)$/.test(p)).length;
         if (wordIndex > 0 && small.has(lower)) return lower;
