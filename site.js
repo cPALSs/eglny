@@ -126,6 +126,7 @@
         href: "/fund-the-festival/",
         children: [
           { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
+          { id: "rfp", label: "Vendor RFPs", navLabel: "Vendor RFPs", href: "/rfp/" },
         ],
       },
       {
@@ -1111,9 +1112,129 @@
     return wrapDocLayout(renderDocToc(buildDirectorRolesToc(site)), mainHtml);
   }
 
+  function formatBriefProse(text) {
+    return escapeHtml(text ?? "").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  }
+
+  function renderBriefTable(table) {
+    if (!table?.headers?.length) return "";
+    const head = table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
+    const body = (table.rows ?? [])
+      .map((row) => `<tr>${row.map((cell) => `<td>${formatBriefProse(cell)}</td>`).join("")}</tr>`)
+      .join("");
+    return `<div class="site-doc-table-wrap"><table class="site-doc-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+
+  function renderBriefOrderedItems(items) {
+    if (!items?.length) return "";
+    return `<ol class="brief-ordered">${items
+      .map((item) => {
+        if (typeof item === "string") return `<li>${formatBriefProse(item)}</li>`;
+        const label = item.label ? `<strong>${escapeHtml(item.label)}.</strong> ` : "";
+        return `<li>${label}${formatBriefProse(item.text ?? "")}</li>`;
+      })
+      .join("")}</ol>`;
+  }
+
+  function renderBriefBullets(bullets) {
+    if (!bullets?.length) return "";
+    return `<ul>${bullets.map((b) => `<li>${formatBriefProse(typeof b === "string" ? b : b.text ?? "")}</li>`).join("")}</ul>`;
+  }
+
+  function renderVendorRfpSection(section) {
+    const paragraphs = (section.paragraphs ?? []).map((p) => `<p>${formatBriefProse(p)}</p>`).join("");
+    return `
+      <section class="content-section site-doc-section" id="${escapeHtml(section.id)}" data-doc-section>
+        <h2>${escapeHtml(section.title)}</h2>
+        ${paragraphs}
+        ${renderBriefTable(section.table)}
+        ${renderBriefOrderedItems(section.orderedItems)}
+        ${renderBriefBullets(section.bullets)}
+      </section>`;
+  }
+
+  function renderVendorRfpContact(contact) {
+    if (!contact) return "";
+    const email = contact.email ?? "contact@cpalss.com";
+    const subject = contact.emailSubject ?? "cPALSs vendor RFP";
+    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+    const label = contact.buttonLabel ?? "Email your proposal";
+    return `
+      <section class="content-section site-doc-section" id="${escapeHtml(contact.id ?? "contact")}" data-doc-section>
+        <h2>${escapeHtml(contact.title ?? "Submit a proposal")}</h2>
+        ${contact.intro ? `<p>${formatBriefProse(contact.intro)}</p>` : ""}
+        <p><a class="btn btn-primary" href="${escapeHtml(mailto)}">${escapeHtml(label)}</a></p>
+        <p class="muted"><a href="${escapeHtml(mailto)}">${escapeHtml(email)}</a></p>
+      </section>`;
+  }
+
+  function renderVendorRfpPage(rfp) {
+    const sections = rfp?.sections ?? [];
+    const contact = rfp?.contact;
+    const toc = sections.map((section) => ({
+      id: section.id,
+      label: section.tocLabel || section.title,
+    }));
+    if (contact) {
+      toc.push({
+        id: contact.id ?? "contact",
+        label: contact.tocLabel || contact.title || "Contact",
+      });
+    }
+    const related = rfp?.related
+      ? `<p class="muted"><strong>${escapeHtml(rfp.related.label ?? "Related")}:</strong> ${formatBriefProse(rfp.related.text ?? "")} ${
+          rfp.related.href
+            ? `<a href="${escapeHtml(rfp.related.href)}">${escapeHtml(rfp.related.linkLabel ?? "Learn more")}</a>`
+            : ""
+        }</p>`
+      : "";
+    const status = rfp?.statusLine ? `<p class="hero-kicker">${escapeHtml(rfp.statusLine)}</p>` : "";
+    const main =
+      sections.map(renderVendorRfpSection).join("") + renderVendorRfpContact(contact);
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(rfp?.headline ?? "Vendor RFP")}</h1>
+        ${status}
+        ${rfp?.lead ? `<p class="hero-lead">${escapeHtml(rfp.lead)}</p>` : ""}
+        ${related}
+      </section>
+      ${wrapDocLayout(renderDocToc(toc), main)}`;
+  }
+
+  function renderVendorRfpIndexPage(index) {
+    const lots = (index?.lots ?? [])
+      .map(
+        (lot) => `
+        <article class="site-doc-section">
+          <h2><a href="${escapeHtml(lot.href)}">${escapeHtml(lot.title)}</a></h2>
+          <p>${escapeHtml(lot.summary ?? "")}</p>
+          <p><a href="${escapeHtml(lot.href)}">Read the RFP →</a></p>
+        </article>`,
+      )
+      .join("");
+    const status = index?.statusLine ? `<p class="hero-kicker">${escapeHtml(index.statusLine)}</p>` : "";
+    const main = `${lots}${index?.note ? `<p class="muted">${escapeHtml(index.note)}</p>` : ""}`;
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(index?.headline ?? "Vendor RFPs")}</h1>
+        ${status}
+        ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
+      </section>
+      <div class="site-doc-layout site-doc-layout--solo">
+        <div class="site-doc-main">${main}</div>
+      </div>`;
+  }
+
+  async function loadJsonData(relativePath) {
+    const res = await fetch(`${navPrefix()}${relativePath}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to load ${relativePath} (${res.status})`);
+    return res.json();
+  }
+
   window.EglnySite = {
     initPageShell,
     loadSiteData,
+    loadJsonData,
     mountFooter,
     buildAboutToc,
     renderAboutSections,
@@ -1131,6 +1252,8 @@
     renderRoleCard,
     renderTeamPage,
     renderDirectorRolesPage,
+    renderVendorRfpPage,
+    renderVendorRfpIndexPage,
     setPageTitle,
     wrapDocLayout,
     initDocToc,

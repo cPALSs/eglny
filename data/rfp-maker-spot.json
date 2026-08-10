@@ -1,0 +1,138 @@
+{
+  "headline": "RFP — Tween / Teen Maker Spot",
+  "lead": "Open solicitation for a spot vendor to run maker / challenge / hang activities for ages ~11–17 at Elk Grove Lunar New Year 2027 — not Children’s Village. Toy Drive 2026 optional this season.",
+  "meta": {
+    "pageTitle": "RFP — Tween / Teen Maker Spot",
+    "description": "Request for proposals: tween/teen Maker Spot vendor for Elk Grove Lunar New Year 2027. Photo-worthy DIY and challenges for ages 11–17. Proposals due Nov 21, 2026."
+  },
+  "statusLine": "Open for proposals · Due Fri Nov 21, 2026 · First event EGLNY Feb 2027",
+  "related": {
+    "label": "Related lots",
+    "text": "Children’s Theater and Children’s Village are separate RFPs for younger cohorts. You may bid more than one lot; awards may split.",
+    "href": "/rfp/",
+    "linkLabel": "All vendor RFPs"
+  },
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "tocLabel": "Overview",
+      "paragraphs": [
+        "cPALSs seeks a spot vendor to run a tween / teen Maker Spot — table and booth activities with status: photo-worthy DIY, scored or crew challenges, peer hang — so roughly ages 11–17 have something to do that isn’t little-kid craft land.",
+        "This is not Children’s Village. Do not brand, sign, or staff it as a kids village.",
+        "The festival keeps map placement, seasonal skins, and adjacency rules. You own the activity menu, staffing, and day-of run.",
+        "Primary audience: roughly ages 11–17. Younger kids may wander through; do not redesign the spot for ages 2–10."
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Events in scope",
+      "tocLabel": "Events",
+      "table": {
+        "headers": ["Event", "When (working)", "Maker Spot"],
+        "rows": [
+          ["Elk Grove Lunar New Year (EGLNY)", "Feb 13–14, 2027 · Elk Grove Park", "Weekend footprint (dry days; rain cancels the park day)"],
+          ["Elk Grove Toy Drive", "Sun Dec 6, 2026 · District 56", "Optional this season — slim maker / challenge pocket if you bid the add-on"],
+          ["Great Lantern Festival (GLF)", "Next produced season (not 2026)", "Slim maker / challenge pocket when that festival returns"]
+        ]
+      },
+      "bullets": [
+        "Season note: Toy Drive 2026 is optional. In following seasons we expect to require (or strongly prefer) Maker Spot on the Toy Drive celebration as well.",
+        "Out of scope: Children’s Village · Children’s Theater · carnival rides / bounce houses · hiring for Moditional Dance Battle, Meme Dance Contest, or Spirit Break / main-stage culture shows."
+      ]
+    },
+    {
+      "id": "deliverables",
+      "title": "Deliverables",
+      "tocLabel": "Deliverables",
+      "orderedItems": [
+        {
+          "label": "Activity menu",
+          "text": "Fit for ages ~11–17 (maker / challenge / hang — not preschool make-and-take)."
+        },
+        {
+          "label": "Adaptation plan",
+          "text": "How you’d skin it for Tết (EGLNY) and later lantern season."
+        },
+        {
+          "label": "Footprint plan",
+          "text": "Tables, shade, power, preferred adjacency."
+        },
+        {
+          "label": "Staffing plan",
+          "text": "Crew count · shifts · day-of lead."
+        },
+        {
+          "label": "Compliance & references",
+          "text": "Insurance · W-9 · references (festival or school / youth events preferred)."
+        },
+        {
+          "label": "Quotes",
+          "text": "A — EGLNY 2027 only. B — EGLNY 2027 + next GLF (preferred for a repeating festival lane). Optional — Toy Drive 2026 add-on (not required to win A or B)."
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "Product rules",
+      "tocLabel": "Rules",
+      "bullets": [
+        "No “Children’s Village” naming on wayfinding, shirts, or social.",
+        "Peer / crew energy over parent-led craft circle.",
+        "Prefer photo-worthy, keepable, or challenge outcomes.",
+        "Optional spend / upsells OK; no paywall to start a core activity.",
+        "Coordinate map adjacency with Program; do not own Moditional stage cues."
+      ]
+    },
+    {
+      "id": "evaluation",
+      "title": "Evaluation",
+      "tocLabel": "Evaluation",
+      "table": {
+        "headers": ["Weight", "Criterion"],
+        "rows": [
+          ["High", "Menu proven with tweens/teens (not only preschool craft catalogs)"],
+          ["High", "Clear non-Village brand approach"],
+          ["High", "Staffing reliability · insurance · outdoor festival logistics"],
+          ["Med", "Price clarity"],
+          ["Med", "Local Sacramento / Elk Grove corridor · school or youth-org experience"],
+          ["Low", "Ability to grow to peer festivals"]
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "title": "Timeline",
+      "tocLabel": "Timeline",
+      "table": {
+        "headers": ["Step", "Target"],
+        "rows": [
+          ["RFP issued", "Aug 2026"],
+          ["Questions due", "Fri Oct 31, 2026"],
+          ["Proposals due", "Fri Nov 21, 2026"],
+          ["Award", "By Fri Dec 12, 2026"],
+          ["First event", "EGLNY · Feb 2027"]
+        ]
+      }
+    },
+    {
+      "id": "respond",
+      "title": "How to respond",
+      "tocLabel": "How to respond",
+      "paragraphs": [
+        "Email your proposal to contact@cpalss.com with subject: cPALSs Tween/Teen Maker Spot RFP.",
+        "Include: company overview · activity menu · footprint · staffing · quote table (A/B) · insurance summary · references.",
+        "Questions before the proposal deadline: same inbox, same subject line with — question appended."
+      ]
+    }
+  ],
+  "contact": {
+    "id": "contact",
+    "title": "Submit a proposal",
+    "tocLabel": "Contact",
+    "intro": "Prefer email. Attach PDFs or links; keep proposals readable.",
+    "email": "contact@cpalss.com",
+    "emailSubject": "cPALSs Tween/Teen Maker Spot RFP",
+    "buttonLabel": "Email your proposal"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "headline": "RFP — Children’s Theater Producer",
+  "lead": "Open solicitation for an independent producer to own a repeatable ~90–120 minute kids theater block across cPALSs family events — starting Toy Drive 2026 and Elk Grove Lunar New Year 2027.",
+  "meta": {
+    "pageTitle": "RFP — Children’s Theater",
+    "description": "Request for proposals: Children’s Theater producer for Elk Grove Toy Drive 2026 and Elk Grove Lunar New Year 2027. Short Fairytale Town–style sets. Proposals due Oct 17, 2026."
+  },
+  "statusLine": "Open for proposals · Due Fri Oct 17, 2026 · First show Toy Drive Dec 6, 2026",
+  "related": {
+    "label": "Related lot",
+    "text": "Children’s Village (activities / crafts) is a separate RFP. You may bid one or both; awards may split.",
+    "href": "/rfp/childrens-village/",
+    "linkLabel": "Children’s Village RFP"
+  },
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "tocLabel": "Overview",
+      "paragraphs": [
+        "cPALSs seeks an independent Children’s Theater producer to own a repeatable kids stage-show product across our family events — short story sets in a Fairytale Town–style grammar (narrator / activator reads · 2–4 characters enact · roam / linger between sets) — so Program is not reinventing the bill each season.",
+        "Primary audience: roughly ages 2–8 (preschool through early elementary), with parents/caregivers in the room. Toddlers under 2 may attend as lap listeners; tweens/teens are out of scope for this product.",
+        "This is a ~90–120 minute kids block per contracted event, not ownership of the full venue clock."
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Events in scope",
+      "tocLabel": "Events",
+      "table": {
+        "headers": ["Event", "When (working)", "Kids theater block"],
+        "rows": [
+          ["Elk Grove Toy Drive", "Sun Dec 6, 2026 · ~3:30–7:30 PM guest window", "~90–120 min early in the day · short sets + one optional repeat for trickle-in families"],
+          ["Elk Grove Lunar New Year (EGLNY)", "Feb 13–14, 2027 (to be finalized) · Elk Grove Park", "Sat daylight ~90–120 min (meet / collect the protectors)"],
+          ["Great Lantern Festival (GLF)", "Next produced season (not 2026)", "Same ~90–120 min family theater pocket when that festival returns"]
+        ]
+      },
+      "bullets": [
+        "Out of scope: Children’s Village / craft tables (separate RFP) · carnival / inflatables · Toy Drive non-kids stage remainder · EGLNY evening Spirit Break / main-stage culture show."
+      ]
+    },
+    {
+      "id": "deliverables",
+      "title": "Deliverables",
+      "tocLabel": "Deliverables",
+      "orderedItems": [
+        {
+          "label": "Run-of-show template",
+          "text": "One reusable ~90–120 min ROS — short sets + roam; not one continuous full-length play; not a multi-hour kids marathon."
+        },
+        {
+          "label": "Talent plan",
+          "text": "Activator · 2–4 character performers · optional magic set(s) · linger book / library table partner (separate from the activator)."
+        },
+        {
+          "label": "Day-of stage management",
+          "text": "For the kids block only at each contracted event."
+        },
+        {
+          "label": "Quotes",
+          "text": "A — Toy Drive 2026 only. B — Toy Drive 2026 + EGLNY 2027 (preferred). Optional add — next Great Lantern Festival when dates are announced. State clearly whether talent fees are inside or outside the producer fee."
+        },
+        {
+          "label": "Compliance & references",
+          "text": "Insurance · W-9 · references (2 outdoor / festival kids-stage days preferred)."
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "Product rules",
+      "tocLabel": "Rules",
+      "bullets": [
+        "Activator ≠ bookshop — retail / library linger is a separate partner.",
+        "Vietnamese / APIDA faces are welcome; the bill is not Vietnamese-only.",
+        "IP-safe — no trademarked commercial characters in our story pocket.",
+        "Coordinate pocket adjacency with the Village vendor; do not own Village activity tables.",
+        "Prefer independent producers / Productions LLCs / freelancers (fair or park employees may refer; moonlighting only if conflict-cleared)."
+      ]
+    },
+    {
+      "id": "evaluation",
+      "title": "Evaluation",
+      "tocLabel": "Evaluation",
+      "table": {
+        "headers": ["Weight", "Criterion"],
+        "rows": [
+          ["High", "Proven outdoor / festival kids-stage producing (not only indoor birthday shows)"],
+          ["High", "Willing to own the multi-event 90–120 min template — not the full Toy Drive clock"],
+          ["High", "Fairytale Town–class grammar (read + enact · short sets)"],
+          ["Med", "Price clarity and fit to our working budget envelope"],
+          ["Med", "Local Sacramento / Elk Grove corridor"],
+          ["Low", "Ability to grow the show to peer kids festivals"]
+        ]
+      },
+      "paragraphs": [
+        "Working planning math for the EGLNY kids-show talent stack is on the order of a few thousand dollars; a producer + talent package for two (or three) events may require a cross-program budget. Submit honest quotes — we will reconcile before award."
+      ]
+    },
+    {
+      "id": "timeline",
+      "title": "Timeline",
+      "tocLabel": "Timeline",
+      "table": {
+        "headers": ["Step", "Target"],
+        "rows": [
+          ["RFP issued", "Aug 2026"],
+          ["Questions due", "Fri Sep 26, 2026"],
+          ["Proposals due", "Fri Oct 17, 2026"],
+          ["Award", "By Fri Oct 31, 2026"],
+          ["First show", "Toy Drive · Sun Dec 6, 2026"],
+          ["Second show", "EGLNY · Feb 2027"]
+        ]
+      }
+    },
+    {
+      "id": "respond",
+      "title": "How to respond",
+      "tocLabel": "How to respond",
+      "paragraphs": [
+        "Email your proposal to contact@cpalss.com with subject: cPALSs Children’s Theater Producer RFP.",
+        "Include: company / producer bio · sample run-of-show · quote options A/B (+ optional GLF) · talent approach · insurance summary · references.",
+        "Questions before the proposal deadline: same inbox, same subject line with — question appended."
+      ]
+    }
+  ],
+  "contact": {
+    "id": "contact",
+    "title": "Submit a proposal",
+    "tocLabel": "Contact",
+    "intro": "Prefer email. Attach PDFs or links; keep proposals readable.",
+    "email": "contact@cpalss.com",
+    "emailSubject": "cPALSs Children’s Theater Producer RFP",
+    "buttonLabel": "Email your proposal"
+  }
+}

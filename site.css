@@ -596,6 +596,10 @@ body.nav-open {
   padding: 0 clamp(1.25rem, 4vw, 3rem);
 }
 
+.site-doc-layout--solo {
+  display: block;
+}
+
 .site-doc-toc {
   display: none;
 }
@@ -737,6 +741,10 @@ body.nav-open {
     align-items: start;
   }
 
+  .site-doc-layout--solo {
+    display: block;
+  }
+
   .site-doc-toc {
     display: block;
     position: sticky;
@@ -842,6 +850,47 @@ body.nav-open {
   margin: 0 0 1rem;
   font-size: 1.125rem;
   color: var(--muted);
+}
+
+.hero-kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+}
+
+.site-doc-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.25rem;
+}
+
+.site-doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.site-doc-table th,
+.site-doc-table td {
+  border: 1px solid color-mix(in srgb, var(--muted) 28%, var(--surface));
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.site-doc-table th {
+  background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+  font-weight: 600;
+}
+
+.brief-ordered {
+  margin: 0.75rem 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.brief-ordered li {
+  margin: 0.4rem 0;
 }
 
 .hero-body {

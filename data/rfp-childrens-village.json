@@ -1,0 +1,137 @@
+{
+  "headline": "RFP — Children’s Village Vendor",
+  "lead": "Open solicitation for a preferred vendor to run Children’s Village / kids activity zones across cPALSs family events — starting Toy Drive 2026 and Elk Grove Lunar New Year 2027.",
+  "meta": {
+    "pageTitle": "RFP — Children’s Village",
+    "description": "Request for proposals: Children’s Village vendor for Elk Grove Toy Drive 2026 and Elk Grove Lunar New Year 2027. Activity menu + staffing. Proposals due Oct 17, 2026."
+  },
+  "statusLine": "Open for proposals · Due Fri Oct 17, 2026 · First event Toy Drive Dec 6, 2026",
+  "related": {
+    "label": "Related lot",
+    "text": "Children’s Theater (kids stage show) is a separate RFP. You may bid one or both; awards may split.",
+    "href": "/rfp/childrens-theater/",
+    "linkLabel": "Children’s Theater RFP"
+  },
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "tocLabel": "Overview",
+      "paragraphs": [
+        "cPALSs seeks a preferred vendor to organize Children’s Village / kids activity zones — ideally with an existing menu of activities you can adapt across our major family events — so Program is not inventing a new craft row each season.",
+        "Primary audience: roughly ages 2–10 (preschool through grade school), including toddler-friendly / early-exit options for younger siblings. Tweens/teens are out of scope for this Village product — see the separate Tween / Teen Maker Spot RFP.",
+        "The festival keeps product ownership: seasonal craft themes (for example collect the protectors at Lunar New Year), map placement, theater adjacency, and public story. You run the zone ops."
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Events in scope",
+      "tocLabel": "Events",
+      "table": {
+        "headers": ["Event", "When (working)", "Village footprint"],
+        "rows": [
+          ["Elk Grove Toy Drive", "Sun Dec 6, 2026 · ~4 hr guest celebration · District 56", "Kids activity / crafts footprint adapted to the indoor–outdoor venue"],
+          ["Elk Grove Lunar New Year (EGLNY)", "Feb 13–14, 2027 · Elk Grove Park", "Sat + Sun Village (dry days; rain cancels the park day)"],
+          ["Great Lantern Festival (GLF)", "Next produced season (not 2026)", "Slim Village / craft pocket with lantern-season skin when that festival returns"]
+        ]
+      },
+      "bullets": [
+        "Out of scope: carnival rides · bounce houses · festival-owned inflatables · Children’s Theater stage bill (separate RFP) · writing our myth / World Bible content.",
+        "Prefer a vendor who already runs a catalog of kids activities and can show how you’d skin it for Christmas Toy Drive, Tết, and (later) lantern season — not only a one-off backyard birthday package."
+      ]
+    },
+    {
+      "id": "deliverables",
+      "title": "Deliverables",
+      "tocLabel": "Deliverables",
+      "orderedItems": [
+        {
+          "label": "Activity menu",
+          "text": "What you already offer + adaptation plan for Toy Drive · EGLNY · (optional) next GLF."
+        },
+        {
+          "label": "Site / footprint plan",
+          "text": "Per event."
+        },
+        {
+          "label": "Staffing plan",
+          "text": "Crew count · shifts · day-of lead."
+        },
+        {
+          "label": "Insurance",
+          "text": "Certificates meeting venue / festival requirements."
+        },
+        {
+          "label": "Quotes",
+          "text": "A — Toy Drive 2026 only. B — Toy Drive 2026 + EGLNY 2027 (preferred). Optional add — next Great Lantern Festival when dates are announced."
+        },
+        {
+          "label": "Festival kits",
+          "text": "Willingness statement: run festival-supplied craft kits / stickers when we provide them."
+        }
+      ]
+    },
+    {
+      "id": "constraints",
+      "title": "Constraints",
+      "tocLabel": "Constraints",
+      "bullets": [
+        "No purchase required for a child to join a craft (optional spend OK elsewhere on site).",
+        "Theater pocket may sit in or near the Village — coordinate with the Theater producer; do not own that bill.",
+        "For outdoor park days: rain cancels the day — no indoor Village pivot is required in this scope.",
+        "Working planning envelopes exist per event; quotes may require a budget revisit — submit clear numbers."
+      ]
+    },
+    {
+      "id": "evaluation",
+      "title": "Evaluation",
+      "tocLabel": "Evaluation",
+      "table": {
+        "headers": ["Weight", "Criterion"],
+        "rows": [
+          ["High", "Existing activity menu + clear adaptation across Toy Drive + EGLNY (+ GLF when scheduled)"],
+          ["High", "Festival-scale experience (not only backyard birthday)"],
+          ["High", "Staffing reliability · insurance · venue logistics"],
+          ["High", "Comfort running our craft kits when supplied"],
+          ["Med", "Price clarity and fit"],
+          ["Low", "Extra games / concessions (nice, not the core job)"]
+        ]
+      }
+    },
+    {
+      "id": "timeline",
+      "title": "Timeline",
+      "tocLabel": "Timeline",
+      "table": {
+        "headers": ["Step", "Target"],
+        "rows": [
+          ["RFP issued", "Aug 2026"],
+          ["Questions due", "Fri Sep 26, 2026"],
+          ["Proposals due", "Fri Oct 17, 2026"],
+          ["Award", "By Fri Oct 31, 2026"],
+          ["First event", "Toy Drive · Sun Dec 6, 2026"],
+          ["Second event", "EGLNY · Feb 2027"]
+        ]
+      }
+    },
+    {
+      "id": "respond",
+      "title": "How to respond",
+      "tocLabel": "How to respond",
+      "paragraphs": [
+        "Email your proposal to contact@cpalss.com with subject: cPALSs Children’s Village RFP.",
+        "Include: company overview · insurance summary · activity menu + adaptation plan · quote table (A/B + optional GLF) · staffing approach · references (2 festival or large outdoor kids events preferred).",
+        "Questions before the proposal deadline: same inbox, same subject line with — question appended."
+      ]
+    }
+  ],
+  "contact": {
+    "id": "contact",
+    "title": "Submit a proposal",
+    "tocLabel": "Contact",
+    "intro": "Prefer email. Attach PDFs or links; keep proposals readable.",
+    "email": "contact@cpalss.com",
+    "emailSubject": "cPALSs Children’s Village RFP",
+    "buttonLabel": "Email your proposal"
+  }
+}
