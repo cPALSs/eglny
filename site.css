@@ -606,7 +606,7 @@ body.nav-open {
 
 .site-doc-toc-back {
   display: inline-block;
-  margin: 0 0 0.85rem;
+  margin: 0 0 2.7rem;
   color: var(--muted);
   text-decoration: none;
   font-size: 0.9rem;
