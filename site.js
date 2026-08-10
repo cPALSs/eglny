@@ -1200,6 +1200,7 @@
       sections.map(renderVendorRfpSection).join("") + renderVendorRfpContact(contact);
     return `
       <section class="hero">
+        <p class="hero-back"><a href="/rfp/">← All RFPs</a></p>
         <h1>${escapeHtml(rfp?.headline ?? "Vendor RFP")}</h1>
         ${status}
         ${rfp?.lead ? `<p class="hero-lead">${escapeHtml(rfp.lead)}</p>` : ""}
