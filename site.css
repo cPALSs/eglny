@@ -604,6 +604,30 @@ body.nav-open {
   display: none;
 }
 
+/* RFP detail: keep hub back-link visible when the sticky TOC is collapsed */
+.site-doc-toc--with-back {
+  display: block;
+  padding: 0 0 0.75rem;
+}
+
+.site-doc-toc--with-back .site-doc-toc-label,
+.site-doc-toc--with-back .site-doc-toc-link {
+  display: none;
+}
+
+.site-doc-toc-back {
+  display: inline-block;
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.site-doc-toc-back:hover {
+  color: var(--accent);
+}
+
 .site-doc-main {
   min-width: 0;
 }
@@ -751,6 +775,15 @@ body.nav-open {
     position: sticky;
     top: calc(var(--nav-height) + 1.5rem);
     padding: 0.5rem 0;
+  }
+
+  .site-doc-toc--with-back {
+    padding: 0.5rem 0;
+  }
+
+  .site-doc-toc--with-back .site-doc-toc-label,
+  .site-doc-toc--with-back .site-doc-toc-link {
+    display: block;
   }
 
   .site-doc-toc-label {

@@ -472,14 +472,21 @@
     return section?.id ?? slugifyHeading(fallbackTitle ?? section?.title ?? "section");
   }
 
-  function renderDocToc(tocItems) {
+  function renderDocToc(tocItems, options = {}) {
     const links = (tocItems ?? [])
       .map(
         (item) =>
           `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
       )
       .join("");
-    return `<nav class="site-doc-toc" aria-label="On this page"><p class="site-doc-toc-label">On this page</p>${links}</nav>`;
+    const back =
+      options.backHref != null
+        ? `<a class="site-doc-toc-back" href="${escapeHtml(options.backHref)}">${escapeHtml(
+            options.backLabel ?? "← Back",
+          )}</a>`
+        : "";
+    const navClass = options.backHref != null ? "site-doc-toc site-doc-toc--with-back" : "site-doc-toc";
+    return `<nav class="${navClass}" aria-label="On this page">${back}<p class="site-doc-toc-label">On this page</p>${links}</nav>`;
   }
 
   function wrapDocLayout(tocHtml, mainHtml) {
@@ -1198,7 +1205,10 @@
         ${rfp?.lead ? `<p class="hero-lead">${escapeHtml(rfp.lead)}</p>` : ""}
         ${related}
       </section>
-      ${wrapDocLayout(renderDocToc(toc), main)}`;
+      ${wrapDocLayout(
+        renderDocToc(toc, { backHref: "/rfp/", backLabel: "← All RFPs" }),
+        main,
+      )}`;
   }
 
   function renderVendorRfpIndexPage(index) {
