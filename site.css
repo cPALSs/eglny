@@ -721,7 +721,8 @@ body.nav-open {
 }
 
 @media (min-width: 1100px) {
-  .page-wrap--doc > .hero:has(+ .site-doc-layout) {
+  /* TOC gutter: skip when layout is --solo (no sticky nav column) */
+  .page-wrap--doc > .hero:has(+ .site-doc-layout:not(.site-doc-layout--solo)) {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
     gap: 2.5rem;
@@ -729,7 +730,7 @@ body.nav-open {
     padding-bottom: 0.75rem;
   }
 
-  .page-wrap--doc > .hero:has(+ .site-doc-layout) > :is(h1, .hero-lead, p, time) {
+  .page-wrap--doc > .hero:has(+ .site-doc-layout:not(.site-doc-layout--solo)) > :is(h1, .hero-lead, p, time) {
     grid-column: 2;
     min-width: 0;
   }
