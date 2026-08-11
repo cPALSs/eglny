@@ -365,17 +365,24 @@
     },
     {
       "id": "sat_night_headliner",
-      "name": "Soul Torrent",
+      "name": "Soul Torrent Spirit Break Show",
       "emoji": "\ud83c\udf19",
       "amount": 9500,
       "category": "registry",
       "sortOrder": 6,
-      "impactOrder": 2,
-      "tagline": "T\u1ee5 V\u00eda circle + dusk defeat \u2014 gather v\u00eda, then lions vs malignant spirits. Glow, e-pop, VJ. Not a late-night concert.",
-      "description": "**Soul Torrent** (*T\u1ee5 V\u00eda*) \u2014 Saturday dusk chapter with **two beats**: (1) **circular procession** \u2014 guests walk the circle and **gather v\u00eda**; (2) **finale** \u2014 protectors, lions, and the crowd **defeat the malignant spirits** (electronic-pop, glow sticks, VJ LED cues). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, **audience glow sticks**, and a **VJ** who builds and cues **Soul Torrent LED animations** on the main-stage wall (ball fight \u00b7 drop \u00b7 win beats). LED hardware is already in festival **Main Stage core**. Content is **human-directed** \u2014 **not** generative-AI filler. Closing arc lands **~6\u20137 PM** inside the 11 AM\u20137:30 PM public day \u2014 not a 5\u20138 PM concert stack. Listed **$9,500** pending quotes.",
+      "impactOrder": 17,
+      "cohorts": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "tagline": "Dusk Spirit Break show \u2014 e-pop, glow, VJ, lions vs malignant spirits. Not the afternoon T\u1ee5 V\u00eda walk.",
+      "description": "**Soul Torrent Spirit Break Show** \u2014 the **Saturday dusk finale** on the Main Stage (~6\u20137 PM): protectors, lions, and the crowd **defeat the malignant spirits** with electronic-pop, glow sticks, and **VJ LED cues** (ball fight \u00b7 drop \u00b7 win beats). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, **audience glow sticks**, and a **VJ** who builds and cues **Soul Torrent LED animations**. LED hardware is already in festival **Main Stage core**. Content is **human-directed** \u2014 **not** generative-AI filler. **Does not fund the afternoon T\u1ee5 V\u00eda Walking Procession** \u2014 that is a **separate High Priority gift**. This gift is the **Spirit Break stage show only**, inside the 11 AM\u20137:30 PM public day \u2014 not a 5\u20138 PM concert stack. Listed **$9,500** pending quotes.",
       "benefits": [
-        "Soul Torrent presented by [Sponsor]",
-        "Sponsor credit on Soul Torrent / T\u1ee5 V\u00eda chapter posts + dusk program cue",
+        "Soul Torrent Spirit Break Show presented by [Sponsor]",
+        "Sponsor credit on Spirit Break / dusk show posts + program cue",
         "website + Facebook/Instagram night-of feature"
       ],
       "lineItems": [
@@ -932,7 +939,7 @@
       "amount": 2500,
       "category": "registry",
       "sortOrder": 15.5,
-      "impactOrder": 15,
+      "impactOrder": 0.5,
       "tagline": "Pavilion cafe \u2014 tables, charging, warm lighting. Exclusive beverage vendor pays their own setup.",
       "description": "An all-day parent-respite cafe composed with Fashion Garden in the Pavilion. An exclusive beverage vendor sells Vietnamese coffee, boba, and family drinks \u2014 **exclusivity is their benefit; this gift does not subsidize vendor setup.** Gift funds the shared environment: comfortable seating (prefer CCSD Pavilion tables/chairs in-kind where possible), charging, warm lighting, and decor. The cafe is the function; Fashion Garden is the photo-rich setting.",
       "benefits": [
