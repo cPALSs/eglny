@@ -2,8 +2,8 @@
   "meta": {
     "siteName": "Elk Grove Lunar New Year Tết",
     "titleSuffix": "Elk Grove Lunar New Year Tết",
-    "idealistUrl": null,
-    "idealistNote": "Short link when Idealist listing is live"
+    "idealistUrl": "https://ideali.st/5fecvF",
+    "idealistNote": "LNY 2027 Directors — published 2026-08-11 · volop c958abf16a9e4d24b0d79684e33a129f"
   },
   "event": {
     "name": "Elk Grove Lunar New Year Tết",
@@ -18,8 +18,8 @@
   "hero": {
     "headline": "Help build the 2027 festival",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
-    "subhead": "Join weekly production calls, Discord, or own a director lane — we organize as a network of owners, not a stiff org chart.",
-    "body": "Start by showing up to production meetings. Prefer a traditional lane? Browse open director roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS)."
+    "subhead": "Join weekly production calls, Discord, own a Program or Outreach lane, or step into the Site & Ops Supercommittee — we organize as a network of owners, not a stiff org chart.",
+    "body": "Start by showing up to production meetings. Prefer a gift DRI or outreach Director seat? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS)."
   },
   "cta": {
     "primaryLabel": "Join the team",
@@ -35,23 +35,24 @@
     "email": "contact@eglny.com",
     "emailSubject": "LNY 2027 team interest",
     "steps": [
-      "Email contact@eglny.com — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.",
+      "Browse open seats on Team — Program gift DRIs, Outreach Directors, optional Site & Ops Chair, or Site & Ops Supercommittee + preferred workstream.",
+      "Apply on Idealist — name your seat, preferred contact method (email, text, or phone), and any events you’re already committed to this season.",
       "We’ll follow up within a few business days — add you to the staff directory or introduce you to a visionary crew, and set a first check-in."
     ],
-    "idealistFallback": "Idealist apply link coming soon — until then, email is the way in."
+    "idealistFallback": "Can't use Idealist? Email contact@eglny.com with the seat or vision and one sentence on why you're interested."
   },
   "teamPage": {
     "headline": "Join the team",
-    "lead": "Show up to weekly production calls and Discord first. Traditional director lanes are still open — listed on their own page. We also welcome visionaries who want to express celebration through the festival journey.",
+    "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed on their own page. We also welcome visionaries who want to express celebration through the festival journey.",
     "join": {
       "title": "Get involved",
-      "intro": "Join the conversation, browse open lanes, then email us to apply — we’ll place you on a director role or a visionary crew.",
+      "intro": "Join the conversation, browse open seats, then apply on Idealist — we’ll place you on a Director / DRI seat, the Site & Ops Supercommittee, or a visionary crew.",
       "zoom": "Weekly Zoom production calls are Mondays at 6:30 PM. To join as a guest, email contact@eglny.com.",
       "discordLabel": "Join the Discord",
       "discordHref": "https://discord.gg/h4hXXvWS",
       "discordNote": "Day-to-day asks, intros, and grapevine recruiting.",
-      "applyNote": "Email contact@eglny.com — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season. We’ll follow up within a few business days.",
-      "rolesCtaLabel": "Browse director roles",
+      "applyNote": "Apply on Idealist (primary) — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season. Can’t use Idealist? Email contact@eglny.com.",
+      "rolesCtaLabel": "Browse open seats",
       "rolesHref": "/team/roles/"
     },
     "roster": {
@@ -128,16 +129,16 @@
   "directorIntro": {
     "title": "What is a director?",
     "paragraphs": [
-      "A director is the go-to person for one festival lane. You don't have to do every task yourself — you own the plan, coordinate vendors and volunteers, and report status to the Steering Committee. Most roles are planning now through February 2027; peak workload is the two weeks before and event weekend.",
-      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority; every lane director is open for 2027 recruitment.",
-      "23 director roles are open across site & ops, program & experience, and outreach & partners. Member and support roles fill in behind each director. Returning 2026 volunteers are welcome to apply — nothing is assumed until confirmed on the staff directory."
+      "A director (or DRI) is the accountable owner of one festival lane or Fund The Festival gift. You recommend and decide budget for your lane, including whether to contract out work. You recruit help, hire or place pros (paid or pro bono), and report status to the Steering Committee. You are not assumed to build sets, hang decor, or personally perform the craft.",
+      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority.",
+      "Open seats: 16 Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are Phase 2. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
     ],
     "notes": [
-      "Prefer one accountable director per traditional lane. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
-      "Youth Culture Day (school multicultural rallies on stage) and Tết Relay Cup (open-age relay bracket on grass) are separate lanes with separate directors.",
-      "Parade is a sponsor-gated Phase 2 committee — Chair oversees Creative Director + Producer; likely cut at MVP unless a registry block funds it.",
-      "Saturday 5–8 PM headliner is sponsor unlock, not MVP baseline.",
-      "Volunteers Director owns shifts; if a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
+      "Prefer one accountable DRI per Program gift. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
+      "Site & Ops is a supercommittee (optional Chair + Members), not separate Director titles per workstream.",
+      "Directors own budget and contracting decisions — craft labor is often hired.",
+      "Soft gifts (Relay Cup, Elders, Spread the Word, Cây Nêu) are Phase 2 — sponsor-gated or elective.",
+      "If a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
     ]
   },
   "coChairs": [
@@ -154,47 +155,52 @@
     {
       "id": "site-ops",
       "title": "Site & operations",
-      "subtitle": "Keep the festival running",
-      "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline — directors work with booked vendors and co-chairs on contracts and event weekend.",
+      "subtitle": "Supercommittee — keep the festival running",
+      "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline. One supercommittee with an optional Chair — members claim workstreams when tasks demand. Claiming a workstream includes budget and contract scope for that task.",
       "roles": [
         {
-          "title": "Finance & Administration",
-          "own": "Budget, AP, vendor payments, post-event closeout",
-          "fit": "Are detail-oriented and comfortable tracking money in and out"
+          "title": "Site & Ops Chair",
+          "own": "Convene the Supercommittee · ops critical path with festival chair · budget recommendations/decisions and contracting across workstreams as needed",
+          "fit": "Can coordinate many moving parts without personally doing every ops task"
         },
         {
-          "title": "Foundation",
-          "own": "Insurance, CCSD/City permits, ops tents, contingency",
+          "title": "Supercommittee Member — Finance & Administration",
+          "own": "Claim when needed: budget tracking, AP, vendor payments, closeout",
+          "fit": "Detail-oriented; comfortable tracking money in and out"
+        },
+        {
+          "title": "Supercommittee Member — Foundation",
+          "own": "Claim when needed: insurance, CCSD/City permits, ops tents, contingency",
           "fit": "Like checklists, deadlines, and make-it-official work"
         },
         {
-          "title": "Operations & Logistics",
-          "own": "Site map, load-in/out, day-of ops radio, Capitol Tent City",
+          "title": "Supercommittee Member — Operations & Logistics",
+          "own": "Claim when needed: site map, load-in/out, day-of ops radio, tent city",
           "fit": "Love maps, timelines, and where does the truck go?"
         },
         {
-          "title": "Security",
-          "own": "Guard schedule (Sat–Sun festival hours)",
-          "fit": "Are calm under pressure; can liaise with Golden Protection"
+          "title": "Supercommittee Member — Security",
+          "own": "Claim when needed: solutions-provider liaison, guard/traffic plan",
+          "fit": "Calm under pressure; can brief a security contractor"
         },
         {
-          "title": "Amenities",
-          "own": "Restrooms, ADA unit, hand-wash placement, porter service",
-          "fit": "Think about guest comfort, site flow, and stocked units through Sunday close"
+          "title": "Supercommittee Member — Amenities",
+          "own": "Claim when needed: restrooms, ADA, hand-wash, porter service",
+          "fit": "Think about guest comfort and stocked units through Sunday close"
         },
         {
-          "title": "Power & Lighting",
-          "own": "Generators, light towers, electrical zones",
-          "fit": "Can coordinate Rental Guys delivery and diesel logistics"
+          "title": "Supercommittee Member — Power & Lighting",
+          "own": "Claim when needed: generators, light towers, electrical zones · Main Stage core adjacency",
+          "fit": "Can coordinate rental delivery and diesel logistics"
         },
         {
-          "title": "Parking & Transport",
-          "own": "Parking lots, overflow, golf carts",
-          "fit": "Can coordinate lot assignments, signage, and transport for a large regional park event"
+          "title": "Supercommittee Member — Parking & Transport",
+          "own": "Claim when needed: lots, overflow, golf carts, light-collect parking",
+          "fit": "Can coordinate lot assignments and signage for a large park event"
         },
         {
-          "title": "Carnival Logistics",
-          "own": "Fun & Game profit-share, operator liaison, zero ops bleed",
+          "title": "Supercommittee Member — Carnival",
+          "own": "Claim when needed: Fun & Game profit-share · bounce/jumper exclusivity · zero ops bleed",
           "fit": "Can negotiate with carnival operators and keep rides off the ops budget"
         }
       ]
@@ -202,58 +208,87 @@
     {
       "id": "program",
       "title": "Program & experience",
-      "subtitle": "What families see and remember",
-      "intro": "Stages, schedule, and signature moments — including sponsor-funded features from Fund The Festival. Directors shape the plan, support sponsor asks when needed, and run the feature when funded.",
+      "subtitle": "Gift DRIs",
+      "intro": "One DRI per Program Fund The Festival gift. Directors shape the plan, own the gift budget (including contracting producers, vendors, and artists), and run the feature when funded. You are not assumed to do the craft labor yourself.",
       "roles": [
         {
           "title": "Program & Entertainment",
-          "own": "MC scripts, talent cues, and master schedule for outdoor + indoor stages"
-        },
-        {
-          "title": "Main Outdoor Stage",
-          "own": "Outdoor stage tent, sound, Saturday daytime programming"
-        },
-        {
-          "title": "Indoor Stage",
-          "own": "Indoor tent programming · borrow terms · indoor sound · class vendor liaison"
-        },
-        {
-          "title": "Youth Culture Day",
-          "emoji": "🎌",
-          "own": "School outreach · Sunday run-of-show · MC intros · group hospitality",
-          "fit": "Know high school advisors, club presidents, or multicultural student programming — this is the stage showcase, not the relay cup"
-        },
-        {
-          "title": "Tết Relay Cup",
-          "emoji": "🏃",
-          "own": "Bracket ops · corral layout · prizes · registration",
-          "fit": "Can run tournament logistics — sports, rec league, or festival games background"
-        },
-        {
-          "title": "Children's Show",
-          "emoji": "🎭",
-          "own": "Talent booking · MC coordination · children's run-of-show"
+          "own": "Weekend run-of-show · MC scripts · talent cues across funded gifts · schedule coordination"
         },
         {
           "title": "Children's Village",
           "emoji": "🧒",
-          "own": "Village layout · crafts · gym/PTA activations · bounce houses or inflatables when funded",
-          "fit": "Can juggle family programming and two different play models — rent vs owned asset + labor"
+          "own": "Gift budget · vendor/RFP decisions · layout · PTA/gym activations · coordinate with Inflatable Games when funded"
         },
         {
-          "title": "Honor our Elders",
-          "emoji": "🍵",
-          "own": "Rest zone layout · elder tea station staffing (sponsor-driven)"
+          "title": "Inflatable Carnival Games",
+          "emoji": "🎯",
+          "own": "Gift budget · deploy contract/crew · wind-weight rules · zone handoff with Village"
         },
         {
-          "title": "Lion Dance & Heritage",
-          "emoji": "🦁",
-          "own": "Lion team booking · 2× weekend performances"
+          "title": "Viet Cafe",
+          "emoji": "☕",
+          "own": "Gift budget · seating/decor contracting · linger experience (not food-truck ops)"
         },
         {
-          "title": "Parade",
-          "phase2": true,
-          "own": "Chair hires Creative Director (vision/route) + Producer (registry performers/staging)"
+          "title": "Community Yearbook Photo",
+          "emoji": "📸",
+          "own": "Gift budget · photo vendor or volunteer crew contract · backdrop/ops handoff"
+        },
+        {
+          "title": "Spirit Design",
+          "emoji": "✨",
+          "own": "Gift budget · hire/license human artists · style keys · marketing crops · rights (no generative-AI deliverables)"
+        },
+        {
+          "title": "Tween / Teen Maker Spot",
+          "emoji": "🛠️",
+          "own": "Gift budget · preferred vendor / RFP · map placement · day-of staffing contract"
+        },
+        {
+          "title": "Children's Show / Theater",
+          "emoji": "🎭",
+          "own": "Gift budget · talent booking / theater producer contract · MC coordination"
+        },
+        {
+          "title": "Tụ Vía / Obon Procession",
+          "emoji": "🏮",
+          "own": "Gift budget · walking-circle route/units · production contracts · day-of staging (not a motor parade)"
+        },
+        {
+          "title": "Moditional Dance Battle",
+          "emoji": "🪭",
+          "own": "Gift budget · hire culture-show producer · school outreach · judges/DJ · A1 handoff"
+        },
+        {
+          "title": "Decor",
+          "emoji": "🎀",
+          "own": "Gift budget · materials + crew contract · install calendar"
+        },
+        {
+          "title": "Soul Torrent / Spirit Break",
+          "emoji": "⛈️",
+          "own": "Gift budget · producer/music direction contracts · dusk run-of-show · VJ/glow package"
+        },
+        {
+          "title": "Fashion Garden",
+          "emoji": "👗",
+          "own": "Gift budget · styled-set contracts · ambassador corps · Pavilion handoff with Cafe"
+        },
+        {
+          "title": "Spirit Actors",
+          "emoji": "👻",
+          "own": "Gift budget · performer/costume contracts · cue with Soul Torrent / procession"
+        },
+        {
+          "title": "Tết Tailgate",
+          "emoji": "🏈",
+          "own": "Gift budget · Sunday Tailgate chapter · Big Game licensing · vendor/contract path · handoff to Main-Stage Watch when separate"
+        },
+        {
+          "title": "Main-Stage Watch",
+          "emoji": "📺",
+          "own": "Gift budget · Tailgate outdoor watch ops contracts · peak security coordination with Site & Ops"
         }
       ]
     },
@@ -261,7 +296,7 @@
       "id": "outreach",
       "title": "Outreach & partners",
       "subtitle": "Get people there and build allies",
-      "intro": "",
+      "intro": "Named Directors — same budget and contracting ownership as Program DRIs.",
       "roles": [
         {
           "title": "Sponsorship",
@@ -270,7 +305,7 @@
         },
         {
           "title": "Marketing & Communications",
-          "own": "Email, Instagram, website, organic promotion",
+          "own": "Email, Instagram, website, organic promotion · budget/contract for creatives when needed",
           "fit": "Write clearly and want Elk Grove families to find us"
         },
         {
@@ -298,29 +333,34 @@
   ],
   "phase2": {
     "title": "Sponsor unlocks — Phase 2",
-    "intro": "These director roles activate when sponsors fund the matching Fund The Festival gift. Plan with the base director in the meantime; hold the vision until the block unlocks.",
+    "intro": "Soft / elective gifts. Hold the vision until the block funds; not the primary recruiting push.",
     "roles": [
-      "Saturday Night Headliner Director — Sat 5–8 PM B-tier anchor",
+      "Tết Relay Cup Director — Open-age relay bracket on grass",
+      "Honor our Elders Director — Shade, seating, tea hospitality",
       "Spread the Word Director — Paid Meta / Instagram reach",
-      "Decor & Cây Nêu Director — Community pool + decor backlog"
+      "Cây Nêu — Community pool pole (often pairs with Decor when funded)"
     ],
     "registryHref": "/fund-the-festival/"
   },
   "faq": [
     {
       "q": "What's the difference between a director and a visionary?",
-      "a": "A director is the accountable owner of a traditional festival lane (one preferred name on the directory). A visionary owns a celebration vision and builds a crew around it — often along the journey to the weekend, not only day-of. Multiple visionaries can share a lane as co-equals until a director coordinates them."
+      "a": "A director / DRI is the accountable owner of a lane or Program gift — including budget and contracting decisions. A visionary owns a celebration vision and builds a crew around it — often along the journey to the weekend, not only day-of. Multiple visionaries can share a lane as co-equals until a director coordinates them."
+    },
+    {
+      "q": "Do directors have to do the physical work?",
+      "a": "No. Directors decide budget and whether to hire contractors. Building sets, hang crew, stage production, and similar craft are often contracted. You own the outcome, not every task."
     },
     {
       "q": "Is this a paid role?",
-      "a": "Generally not — these are volunteer leadership roles. We are open to contractors when a role is funded. Full transparency: if you want paid marketing or similar work, we will likely ask you to pair that with a fundraising strategy and execute it to fund the role (and any campaign spend)."
+      "a": "Generally not — these are volunteer leadership roles. We are open to contractors when a role or gift is funded. Full transparency: if you want paid marketing or similar work, we will likely ask you to pair that with a fundraising strategy and execute it to fund the role (and any campaign spend)."
     },
     {
       "q": "Do I need festival experience?",
       "a": "Helpful, not required. LNY 2026 runbooks and co-chairs back you up."
     },
     {
-      "q": "What if my experience isn't funded yet?",
+      "q": "What if my gift isn't funded yet?",
       "a": "We operate as a network of owners. We put the word out when an experience is unfunded, but it is up to everyone to recruit help and spread the ask. We will create incentives so pitching in is worthwhile — gift registry blocks, sponsorship commission paths, and peer grapevine recruiting — not a single person carrying every fundraising ask."
     }
   ],

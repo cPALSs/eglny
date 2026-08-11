@@ -1034,8 +1034,9 @@
     const applyHtml = join.applyNote ? `<li>${escapeHtml(join.applyNote)}</li>` : "";
     const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(apply?.emailSubject ?? "LNY 2027 team interest")}`;
     const idealistBtn = idealist
-      ? `<a class="btn btn-secondary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
+      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
       : "";
+    const emailBtnClass = idealist ? "btn btn-secondary" : "btn btn-primary";
     return `
           <section class="content-section site-doc-section" id="get-involved" data-doc-section>
             <h2>${escapeHtml(join.title ?? "Get involved")}</h2>
@@ -1046,13 +1047,13 @@
               ${applyHtml}
             </ul>
             <div class="cta-row">
-              <a class="btn btn-primary" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
+              ${idealistBtn}
+              <a class="${emailBtnClass}" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
               ${
                 join.rolesHref
                   ? `<a class="btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse director roles")}</a>`
                   : ""
               }
-              ${idealistBtn}
             </div>
           </section>`;
   }
