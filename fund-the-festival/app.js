@@ -130,6 +130,7 @@ const GIFT_SORT = {
   children_show: 11,
   tet_relay_cup: 12,
   children_village: 13,
+  maker_spot: 13.5,
   stage_production_plus: 10,
   sponsor_booth: 1,
   tent_rental: 2,
@@ -362,6 +363,62 @@ function registryFundedAmount() {
   const estimated = sumEstimatedAssigned(["registry", "secondary"]);
   if (estimated !== null) return estimated;
   return sumEnabled(["registry"]);
+}
+
+/** Catalog $ for registry gifts (skips variable/extra-cash gift). */
+function registryCatalogAmount({ priorityOnly = null } = {}) {
+  if (!state.data) return 0;
+  return state.data.gifts
+    .filter((g) => g.category === "registry" && !g.draft && !isVariableAmountGift(g))
+    .filter((g) => (priorityOnly == null ? true : priorityOnly ? !!g.priority : !g.priority))
+    .reduce((s, g) => s + (g.amount || 0), 0);
+}
+
+/** Core gifts + optional registry variable amount (extra cash). */
+function coreContribAmount() {
+  const estimatedCore = sumEstimatedAssigned(["core"]);
+  if (estimatedCore !== null) return estimatedCore;
+  return sumEnabled(["core"]) + (state.extraCash || 0);
+}
+
+/**
+ * Festival vision caps + waterfall funding.
+ * Target = core + High Priority · Stretch = core + all registry gifts.
+ */
+function festivalVisionState() {
+  const core = coreFundingState();
+  if (!core) return null;
+
+  const hpCatalog = registryCatalogAmount({ priorityOnly: true });
+  const electiveCatalog = registryCatalogAmount({ priorityOnly: false });
+  const stretch = core.mvpCap + hpCatalog + electiveCatalog;
+  const target = core.mvpCap + hpCatalog;
+
+  const totalMoney = core.rawCash + coreContribAmount() + registryFundedAmount();
+  let rem = totalMoney;
+  const intoCore = Math.min(core.mvpCap, rem);
+  rem -= intoCore;
+  const intoHp = Math.min(hpCatalog, rem);
+  rem -= intoHp;
+  const intoElective = Math.min(electiveCatalog, rem);
+  rem -= intoElective;
+  const financed = intoCore + intoHp + intoElective;
+
+  const toGo = Math.max(0, target - (intoCore + intoHp));
+  const toStretch = Math.max(0, stretch - financed);
+
+  return {
+    core,
+    mvpCap: core.mvpCap,
+    target,
+    stretch,
+    financed,
+    toGo,
+    toStretch,
+    intoCore,
+    intoHp,
+    intoElective,
+  };
 }
 
 function getSponsorRules() {
@@ -1097,6 +1154,8 @@ function coreFundingState() {
 
   const rawCash = state.data.scenario.vendorRevenue ?? 0;
   const cashOffset = Math.min(mvpCap, rawCash);
+  /** Earned cash above MVP — still real dollars; credit toward full-vision bar. */
+  const cashOverage = Math.max(0, rawCash - mvpCap);
   const sponsorGap = Math.max(0, mvpCap - cashOffset);
   const estimatedCore = sumEstimatedAssigned(["core"]);
   const coreContrib =
@@ -1104,19 +1163,25 @@ function coreFundingState() {
   const sponsorFill = Math.min(coreContrib, sponsorGap);
   const coreSurplus = coreContrib - sponsorFill;
   const remainingGap = Math.max(0, sponsorGap - sponsorFill);
+  /** Toward MVP only (cash clamped) — bar / vision core segment. */
   const fundedTotal = cashOffset + sponsorFill;
+  /** Core panel running total — earnéd cash uncapped + sponsor fill into the gap. */
+  const runningTotal = rawCash + sponsorFill;
 
   return {
     mvpCap,
+    rawCash,
     cashOffset,
+    cashOverage,
     sponsorGap,
     sponsorFill,
     coreSurplus,
     remainingGap,
     fundedTotal,
+    runningTotal,
     cashPct: (cashOffset / mvpCap) * 100,
     sponsorPct: (sponsorFill / mvpCap) * 100,
-    fundedPct: (fundedTotal / mvpCap) * 100,
+    fundedPct: Math.min(100, (fundedTotal / mvpCap) * 100),
     cashOpsOnly: sponsorGap === 0,
   };
 }
@@ -1175,17 +1240,18 @@ function openRevenueModal() {
 function renderCoreProgress() {
   const core = coreFundingState();
   const labelEl = document.getElementById("core-label");
-  const targetEl = document.getElementById("core-target-label");
+  const neededLabelEl = document.getElementById("core-needed-label");
   const barEl = document.getElementById("core-progress-bar");
   const fundedEl = document.getElementById("core-funded-value");
-  const sponsoredEl = document.getElementById("core-sponsored-value");
-  const neededEl = document.getElementById("core-needed-value");
-  if (!core || !labelEl || !targetEl || !barEl || !fundedEl || !sponsoredEl || !neededEl) return;
+  const targetEl = document.getElementById("core-target-value");
+  if (!core || !labelEl || !neededLabelEl || !barEl || !fundedEl || !targetEl) return;
 
   const pct = Math.min(100, Math.round(core.fundedPct));
 
-  labelEl.textContent = `Est. earned (pre-sponsor) ${fmt(core.cashOffset)}`;
-  targetEl.textContent = `Target ${fmt(core.mvpCap)}`;
+  labelEl.textContent = `Est. pre-sponsor revenue ${fmt(core.rawCash)}`;
+  neededLabelEl.textContent =
+    core.remainingGap === 0 ? "✓ Target met" : `${fmt(core.remainingGap)} to go`;
+  neededLabelEl.classList.toggle("progress-metric-value--closed", core.remainingGap === 0);
 
   barEl.setAttribute("aria-valuenow", String(pct));
   barEl.setAttribute("aria-valuemin", "0");
@@ -1194,42 +1260,39 @@ function renderCoreProgress() {
     <div class="progress-seg funded" style="width:${core.fundedPct}%" title="Core funded"></div>
   `;
 
-  fundedEl.textContent = fmt(core.fundedTotal);
-  sponsoredEl.textContent = fmt(core.sponsorFill);
-  neededEl.textContent = core.remainingGap === 0 ? "✓" : fmt(core.remainingGap);
-  neededEl.classList.toggle("progress-metric-value--closed", core.remainingGap === 0);
+  fundedEl.textContent = fmt(core.runningTotal);
+  targetEl.textContent = fmt(core.mvpCap);
 }
 
 function renderProgress() {
-  const s = state.data.scenario;
-  const core = coreFundingState();
-  const registryFunded = registryFundedAmount();
-  const target = state.data.event.registryFull;
-  const visionRoom = Math.max(0, target - s.mvpCap);
-  // Core gifts past the core gap are still real dollars — they displace the cash ops that
-  // would have paid that line, so the overflow is credited against the registry half.
-  const visionFunded = Math.min(visionRoom, registryFunded + core.coreSurplus);
-  const fundedBlue = core.fundedTotal + visionFunded;
-  const toFullVision = Math.max(0, target - fundedBlue);
+  const vision = festivalVisionState();
+  if (!vision) return;
 
-  document.getElementById("vision-label").textContent = `Core ops ${fmt(s.mvpCap)}`;
-  document.getElementById("target-label").textContent = `Target ${fmt(target)}`;
+  const { mvpCap, target, stretch, financed, toGo, toStretch } = vision;
 
-  const coreGap = core.remainingGap;
-  const visionGap = Math.max(0, visionRoom - visionFunded);
-  const fundedPct = (fundedBlue / target) * 100;
-  const coreGapPct = (coreGap / target) * 100;
-  const visionGapPct = (visionGap / target) * 100;
+  document.getElementById("vision-label").textContent = `Core ops ${fmt(mvpCap)}`;
+
+  const toGoEl = document.getElementById("vision-to-go-label");
+  toGoEl.textContent = toGo === 0 ? "✓ Target met" : `${fmt(toGo)} to go`;
+  toGoEl.classList.toggle("progress-metric-value--closed", toGo === 0);
+
+  const toStretchEl = document.getElementById("vision-to-stretch-label");
+  toStretchEl.textContent = toStretch === 0 ? "✓ Stretch met" : `${fmt(toStretch)} to stretch`;
+  toStretchEl.classList.toggle("progress-metric-value--closed", toStretch === 0);
+
+  const fundedPct = stretch > 0 ? (financed / stretch) * 100 : 0;
+  const toGoPct = stretch > 0 ? (toGo / stretch) * 100 : 0;
+  const stretchGapPct = stretch > 0 ? Math.max(0, 100 - fundedPct - toGoPct) : 0;
 
   document.getElementById("progress-bar").innerHTML = `
     <div class="progress-seg funded" style="width:${fundedPct}%" title="Funded"></div>
-    <div class="progress-seg core-unfunded" style="width:${coreGapPct}%" title="Unfunded core ops"></div>
-    <div class="progress-seg vision-unfunded" style="width:${visionGapPct}%" title="Unfunded full vision"></div>
+    <div class="progress-seg core-unfunded" style="width:${toGoPct}%" title="To Target (core + High Priority)"></div>
+    <div class="progress-seg vision-unfunded" style="width:${stretchGapPct}%" title="To Stretch (electives)"></div>
   `;
 
-  document.getElementById("vision-total-value").textContent = fmt(fundedBlue);
-  document.getElementById("registry-funded-value").textContent = fmt(registryFunded);
-  document.getElementById("to-vision-value").textContent = fmt(toFullVision);
+  document.getElementById("vision-total-value").textContent = fmt(financed);
+  document.getElementById("vision-target-value").textContent = fmt(target);
+  document.getElementById("vision-stretch-value").textContent = fmt(stretch);
 }
 
 function giftLabel(gift) {

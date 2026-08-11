@@ -346,6 +346,21 @@ select {
   margin-bottom: 6px;
 }
 
+.progress-labels--3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-labels__center {
+  text-align: center;
+}
+
+.progress-labels__end {
+  text-align: right;
+}
+
 .progress-label-group {
   display: inline-flex;
   align-items: center;
@@ -438,9 +453,13 @@ select {
 
 .progress-footnote {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
   margin-top: 8px;
+}
+
+.progress-footnote--3 {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .progress-metric {

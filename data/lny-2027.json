@@ -2,40 +2,40 @@
   "event": {
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
-    "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20135 PM \u00b7 to be finalized",
+    "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
     "mvpCap": 39940,
-    "vendorRev100": 19300,
-    "registryFull": 156340,
-    "vendorSlots": 40,
-    "attendance": 6000
+    "vendorRev100": 21225,
+    "registryFull": 160340,
+    "vendorSlots": 74,
+    "attendance": 9000
   },
   "scenario": {
     "id": "planning",
     "label": "Planning baseline",
     "fillRate": 1.0,
-    "attendance": 6000,
+    "attendance": 9000,
     "mvpCap": 39940,
-    "vendorRevenue": 27535,
-    "headroomOrGap": 12405,
-    "vendorSlots": 40,
+    "vendorRevenue": 49625,
+    "headroomOrGap": 0,
+    "vendorSlots": 78,
     "estimatedRevenue": {
-      "total": 27535,
-      "summary": "40 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
+      "total": 49625,
+      "summary": "78 paid booths \u00b7 9,000 attendance \u00b7 100% fill",
       "lines": [
         {
           "label": "Vendor booth fees",
-          "amount": 19300,
-          "note": "40 paid booths @ weekend rate card"
+          "amount": 24225,
+          "note": "78 paid \u00b7 Market Modeling card (OC $750 \u00b7 DR $500 \u00b7 fill-first $150 \u00b7 GEN $500 \u00b7 NP $75)"
         },
         {
           "label": "Parking",
-          "amount": 5164,
-          "note": "Scaled from 2026 $5,164 deposited"
+          "amount": 17568,
+          "note": "1098 paid stalls (N=bazaar) \u00b7 100% util \u00b7 $10/car \u00b7 2d \u00b7 net after 20% ops \u00b7 3/car \u00b7 9,000 weekend uniques"
         },
         {
           "label": "Carnival share",
-          "amount": 3071,
-          "note": "cPALSs 20% commission, scaled from 2026"
+          "amount": 7832,
+          "note": "cPALSs 20% \u00b7 2026 Sat-only $3,071 \u00d7 1.7 Tailgate weekend \u00d7 9,000/6,000 guests"
         }
       ]
     }
@@ -187,7 +187,7 @@
     },
     {
       "id": "parade_plus",
-      "name": "Walking Procession (gather v\u00eda walking the circle)",
+      "name": "T\u1ee5 V\u00eda Walking Procession",
       "emoji": "\ud83e\udd41",
       "amount": 3700,
       "category": "registry",
@@ -358,7 +358,7 @@
       "sortOrder": 6,
       "impactOrder": 2,
       "tagline": "T\u1ee5 V\u00eda circle + dusk defeat \u2014 gather v\u00eda, then lions vs malignant spirits. Glow, e-pop, VJ. Not a late-night concert.",
-      "description": "**Soul Torrent** (*T\u1ee5 V\u00eda*) \u2014 Saturday dusk chapter with **two beats**: (1) **circular procession** \u2014 guests walk the circle and **gather v\u00eda**; (2) **finale** \u2014 protectors, lions, and the crowd **defeat the malignant spirits** (electronic-pop, glow sticks, VJ LED cues). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, **audience glow sticks**, and a **VJ** who builds and cues **Soul Torrent LED animations** on the main-stage wall (ball fight \u00b7 drop \u00b7 win beats). LED hardware is already in festival **Main Stage core**. Content is **human-directed** \u2014 **not** generative-AI filler. Closing arc lands **~6\u20137 PM** inside the 11 AM\u20137 PM public day \u2014 not a 5\u20138 PM concert stack. Listed **$9,500** pending quotes.",
+      "description": "**Soul Torrent** (*T\u1ee5 V\u00eda*) \u2014 Saturday dusk chapter with **two beats**: (1) **circular procession** \u2014 guests walk the circle and **gather v\u00eda**; (2) **finale** \u2014 protectors, lions, and the crowd **defeat the malignant spirits** (electronic-pop, glow sticks, VJ LED cues). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, **audience glow sticks**, and a **VJ** who builds and cues **Soul Torrent LED animations** on the main-stage wall (ball fight \u00b7 drop \u00b7 win beats). LED hardware is already in festival **Main Stage core**. Content is **human-directed** \u2014 **not** generative-AI filler. Closing arc lands **~6\u20137 PM** inside the 11 AM\u20137:30 PM public day \u2014 not a 5\u20138 PM concert stack. Listed **$9,500** pending quotes.",
       "benefits": [
         "Soul Torrent presented by [Sponsor]",
         "Sponsor credit on Soul Torrent / T\u1ee5 V\u00eda chapter posts + dusk program cue",
@@ -739,6 +739,46 @@
         },
         {
           "label": "Village zone lead stipend",
+          "amount": 300
+        }
+      ],
+      "chapterDays": "both"
+    },
+    {
+      "id": "maker_spot",
+      "name": "Tween / Teen Maker Spot",
+      "emoji": "\ud83d\udee0\ufe0f",
+      "amount": 4000,
+      "category": "registry",
+      "priority": true,
+      "cohorts": [
+        "C3",
+        "C4"
+      ],
+      "sortOrder": 13.5,
+      "impactOrder": 13.5,
+      "tagline": "Maker / challenge / hang zone for ages ~11\u201317 \u2014 not little-kid craft land.",
+      "description": "**Tween / teen activity spot** \u2014 table and booth stations with **status** (photo-worthy DIY, scored or crew challenges, peer hang) so roughly ages **11\u201317** have something to *do* that isn\u2019t Children\u2019s Village and isn\u2019t only watching Moditional. Festival keeps map placement and non-Village brand rules; a preferred **spot vendor** runs the activity menu + day-of staffing. Freemium preferred (free core to start). **Separate lot from Children\u2019s Village and Children\u2019s Theater** \u2014 see the open Maker Spot RFP at [eglny.com/rfp/maker-spot/](https://eglny.com/rfp/maker-spot/). Primary for **EGLNY** weekend; Toy Drive / GLF slim add-ons are quote options, not this gift\u2019s core envelope.",
+      "benefits": [
+        "Tween / Teen Maker Spot presented by [Sponsor]",
+        "website + Facebook/Instagram feature",
+        "Named on activity signage + festival map"
+      ],
+      "lineItems": [
+        {
+          "label": "Preferred Maker Spot vendor \u2014 EGLNY weekend menu + staffing",
+          "amount": 2600
+        },
+        {
+          "label": "Shade / tables / power top-up for maker footprint",
+          "amount": 700
+        },
+        {
+          "label": "Non-Village wayfinding + map pin + station signage",
+          "amount": 400
+        },
+        {
+          "label": "Spot volunteer attach + day-of lead stipend",
           "amount": 300
         }
       ],

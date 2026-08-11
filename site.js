@@ -1218,24 +1218,24 @@
     const lots = (index?.lots ?? [])
       .map(
         (lot) => `
-        <article class="site-doc-section">
-          <h2><a href="${escapeHtml(lot.href)}">${escapeHtml(lot.title)}</a></h2>
-          <p>${escapeHtml(lot.summary ?? "")}</p>
-          <p><a href="${escapeHtml(lot.href)}">Read the RFP →</a></p>
-        </article>`,
+      <a class="resource-card" href="${escapeHtml(lot.href)}">
+        <h2>${escapeHtml(lot.title)}</h2>
+        ${lot.summary ? `<p>${escapeHtml(lot.summary)}</p>` : ""}
+      </a>`,
       )
       .join("");
     const status = index?.statusLine ? `<p class="hero-kicker">${escapeHtml(index.statusLine)}</p>` : "";
-    const main = `${lots}${index?.note ? `<p class="muted">${escapeHtml(index.note)}</p>` : ""}`;
+    const note = index?.note
+      ? `<p class="muted rfp-index-note">${escapeHtml(index.note)}</p>`
+      : "";
     return `
       <section class="hero">
         <h1>${escapeHtml(index?.headline ?? "Vendor RFPs")}</h1>
         ${status}
         ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
       </section>
-      <div class="site-doc-layout site-doc-layout--solo">
-        <div class="site-doc-main">${main}</div>
-      </div>`;
+      <div class="resource-card-grid">${lots}</div>
+      ${note}`;
   }
 
   async function loadJsonData(relativePath) {

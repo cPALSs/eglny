@@ -753,7 +753,8 @@ body.nav-open {
   .page-wrap--doc > .hero:has(+ .site-doc-layout:not(.site-doc-layout--solo)) {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
-    gap: 2.5rem;
+    column-gap: 2.5rem;
+    row-gap: 0;
     align-items: end;
     padding-bottom: 0.75rem;
   }
@@ -1837,6 +1838,12 @@ body.nav-open {
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.45;
+}
+
+.rfp-index-note {
+  max-width: 1200px;
+  margin: 1.25rem auto 0;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
 }
 
 .media-page-body {
