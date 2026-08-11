@@ -499,14 +499,21 @@ function choicesLockedForEstimate() {
 }
 
 /**
- * Estimated sponsor pool: fund gifts in the same order as registry cards
- * (impact desc per festival). Last card on the grid is least likely covered.
+ * Estimated sponsor pool: High Priority registry first (impact order within
+ * that lane), then electives, then secondary, then core. Earned cash covers
+ * most core; renewals unlock vision chapters. Last funded lane is least likely.
  */
 function compareGiftsForEstimate(a, b) {
-  const rank = { registry: 0, secondary: 1, core: 2 };
-  const ra = rank[a.category] ?? 3;
-  const rb = rank[b.category] ?? 3;
-  if (ra !== rb) return ra - rb;
+  const lane = (g) => {
+    if (g.category === "registry" && g.priority) return 0;
+    if (g.category === "registry") return 1;
+    if (g.category === "secondary") return 2;
+    if (g.category === "core") return 3;
+    return 4;
+  };
+  const la = lane(a);
+  const lb = lane(b);
+  if (la !== lb) return la - lb;
   const category = a.category === "registry" ? "registry" : a.category;
   return compareGifts(a, b, category);
 }
@@ -515,6 +522,7 @@ function compareGiftsForEstimate(a, b) {
 function isAllocatableEstimateGift(g) {
   return (
     g.amount > 0 &&
+    !g.draft &&
     !g.variableAmount &&
     !g.requiresBoothSpot &&
     !g.requiresSponsorThreshold &&
@@ -587,7 +595,7 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload) {
     }
   }
 
-  // Phase 2 — pool balances; same impact order as registry cards (top card funded first)
+  // Phase 2 — pool balances; High Priority first, then electives, then core
   const openGifts = gifts
     .filter((g) => isAllocatableEstimateGift(g) && !funded.has(g.id))
     .sort(compareGiftsForEstimate);
