@@ -417,6 +417,35 @@
     </article>`;
   }
 
+  function renderResponsibilityList(roles) {
+    const items = (roles ?? [])
+      .map((role) => {
+        const detail = role.own ?? role.ship ?? "";
+        return `<li><strong>${escapeHtml(role.title)}</strong>${
+          detail ? ` — ${escapeHtml(detail)}` : ""
+        }</li>`;
+      })
+      .join("");
+    return `<ul class="responsibility-list">${items}</ul>`;
+  }
+
+  function renderLaneSection(lane) {
+    const body =
+      lane.layout === "responsibility-list"
+        ? renderResponsibilityList(lane.roles)
+        : (lane.roles ?? []).map(renderRoleCard).join("");
+    const layoutClass =
+      lane.layout === "responsibility-list" ? " lane-section--list" : "";
+    return `
+          <section class="lane-section${layoutClass} site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
+            <div class="lane-header">
+              <h2>${escapeHtml(lane.title)}</h2>
+              <p><strong>${escapeHtml(lane.subtitle)}</strong>${lane.intro ? " — " + escapeHtml(lane.intro) : ""}</p>
+            </div>
+            ${body}
+          </section>`;
+  }
+
   function renderApplyBlock(site) {
     const apply = site.apply;
     const idealist = site.meta?.idealistUrl;
@@ -1094,18 +1123,7 @@
     const intro = site.directorIntro;
     const teamHref = "/team/";
 
-    const lanesHtml = (site.lanes ?? [])
-      .map(
-        (lane) => `
-          <section class="lane-section site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
-            <div class="lane-header">
-              <h2>${escapeHtml(lane.title)}</h2>
-              <p><strong>${escapeHtml(lane.subtitle)}</strong>${lane.intro ? " — " + escapeHtml(lane.intro) : ""}</p>
-            </div>
-            ${lane.roles.map(renderRoleCard).join("")}
-          </section>`,
-      )
-      .join("");
+    const lanesHtml = (site.lanes ?? []).map(renderLaneSection).join("");
 
     const phase2 = site.phase2;
     const phase2Html = phase2

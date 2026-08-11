@@ -157,51 +157,43 @@
       "title": "Site & operations",
       "subtitle": "Supercommittee — keep the festival running",
       "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline. One supercommittee with an optional Chair — members claim workstreams when tasks demand. Claiming a workstream includes budget and contract scope for that task.",
+      "layout": "responsibility-list",
       "roles": [
         {
-          "title": "Site & Ops Chair",
-          "own": "Convene the Supercommittee · ops critical path with festival chair · budget recommendations/decisions and contracting across workstreams as needed",
-          "fit": "Can coordinate many moving parts without personally doing every ops task"
+          "title": "Site & Ops Chair (optional)",
+          "own": "Convene the Supercommittee · ops critical path with festival chair · budget and contracting across workstreams as needed"
         },
         {
-          "title": "Supercommittee Member — Finance & Administration",
-          "own": "Claim when needed: budget tracking, AP, vendor payments, closeout",
-          "fit": "Detail-oriented; comfortable tracking money in and out"
+          "title": "Finance & Administration",
+          "own": "Budget tracking, AP, vendor payments, closeout"
         },
         {
-          "title": "Supercommittee Member — Foundation",
-          "own": "Claim when needed: insurance, CCSD/City permits, ops tents, contingency",
-          "fit": "Like checklists, deadlines, and make-it-official work"
+          "title": "Foundation",
+          "own": "Insurance, CCSD/City permits, ops tents, contingency"
         },
         {
-          "title": "Supercommittee Member — Operations & Logistics",
-          "own": "Claim when needed: site map, load-in/out, day-of ops radio, tent city",
-          "fit": "Love maps, timelines, and where does the truck go?"
+          "title": "Operations & Logistics",
+          "own": "Site map, load-in/out, day-of ops radio, tent city"
         },
         {
-          "title": "Supercommittee Member — Security",
-          "own": "Claim when needed: solutions-provider liaison, guard/traffic plan",
-          "fit": "Calm under pressure; can brief a security contractor"
+          "title": "Security",
+          "own": "Solutions-provider liaison, guard/traffic plan"
         },
         {
-          "title": "Supercommittee Member — Amenities",
-          "own": "Claim when needed: restrooms, ADA, hand-wash, porter service",
-          "fit": "Think about guest comfort and stocked units through Sunday close"
+          "title": "Amenities",
+          "own": "Restrooms, ADA, hand-wash, porter service"
         },
         {
-          "title": "Supercommittee Member — Power & Lighting",
-          "own": "Claim when needed: generators, light towers, electrical zones · Main Stage core adjacency",
-          "fit": "Can coordinate rental delivery and diesel logistics"
+          "title": "Power & Lighting",
+          "own": "Generators, light towers, electrical zones · Main Stage core adjacency"
         },
         {
-          "title": "Supercommittee Member — Parking & Transport",
-          "own": "Claim when needed: lots, overflow, golf carts, light-collect parking",
-          "fit": "Can coordinate lot assignments and signage for a large park event"
+          "title": "Parking & Transport",
+          "own": "Lots, overflow, golf carts, light-collect parking"
         },
         {
-          "title": "Supercommittee Member — Carnival",
-          "own": "Claim when needed: Fun & Game profit-share · bounce/jumper exclusivity · zero ops bleed",
-          "fit": "Can negotiate with carnival operators and keep rides off the ops budget"
+          "title": "Carnival",
+          "own": "Fun & Game profit-share · bounce/jumper exclusivity · zero ops bleed"
         }
       ]
     },
@@ -251,7 +243,7 @@
           "own": "Gift budget · talent booking / theater producer contract · MC coordination"
         },
         {
-          "title": "Tụ Vía / Obon Procession",
+          "title": "Tụ Vía Procession",
           "emoji": "🏮",
           "own": "Gift budget · walking-circle route/units · production contracts · day-of staging (not a motor parade)"
         },

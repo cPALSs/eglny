@@ -1177,17 +1177,17 @@ body.nav-open {
 }
 
 @media (min-width: 768px) {
-  .lane-section {
+  .lane-section:not(.lane-section--list) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
   }
 
-  .lane-header {
+  .lane-section:not(.lane-section--list) .lane-header {
     grid-column: 1 / -1;
   }
 
-  .lane-section .role-card {
+  .lane-section:not(.lane-section--list) .role-card {
     margin: 0;
     height: 100%;
   }
@@ -1226,9 +1226,37 @@ body.nav-open {
 
 .role-card h3 {
   margin: 0 0 0.35rem;
-  font-size: clamp(1.575rem, 3.6vw, 2.25rem);
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 700;
   line-height: 1.15;
+}
+
+.lane-section--list {
+  display: block;
+}
+
+.lane-section--list .lane-header {
+  grid-column: auto;
+}
+
+.responsibility-list {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: var(--text);
+}
+
+.responsibility-list li {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.responsibility-list li:last-child {
+  margin-bottom: 0;
+}
+
+.responsibility-list strong {
+  font-weight: 600;
 }
 
 .role-test {
