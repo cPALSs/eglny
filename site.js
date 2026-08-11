@@ -117,6 +117,10 @@
     return item.navLabel ?? toTitleCase(item.label);
   }
 
+  /** Public Drive PDF — keep in sync with Business Dev export. */
+  const SPONSORSHIP_PACKET_PDF_URL =
+    "https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view";
+
   function getNavPages() {
     return [
       { id: "home", label: "Home", href: "/" },
@@ -128,6 +132,13 @@
         href: "/fund-the-festival/",
         children: [
           { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
+          {
+            id: "sponsorship-packet",
+            label: "Sponsorship Packet",
+            navLabel: "Sponsorship Packet",
+            href: SPONSORSHIP_PACKET_PDF_URL,
+            external: true,
+          },
           { id: "rfp", label: "Vendor RFPs", navLabel: "Vendor RFPs", href: "/rfp/" },
         ],
       },
@@ -1245,6 +1256,7 @@
   }
 
   window.EglnySite = {
+    SPONSORSHIP_PACKET_PDF_URL,
     initPageShell,
     loadSiteData,
     loadJsonData,
