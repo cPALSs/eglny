@@ -3,7 +3,7 @@
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
-    "mvpCap": 39940,
+    "mvpCap": 47940,
     "vendorRev100": 21225,
     "registryFull": 160340,
     "vendorSlots": 74,
@@ -14,7 +14,7 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 9000,
-    "mvpCap": 39940,
+    "mvpCap": 47940,
     "vendorRevenue": 49625,
     "headroomOrGap": 0,
     "vendorSlots": 78,
@@ -44,11 +44,11 @@
     {
       "id": "festival_foundation",
       "name": "Festival Foundation",
-      "amount": 15900,
+      "amount": 14000,
       "category": "core",
       "sortOrder": 0,
       "tagline": "Insurance, permits, lions, and infrastructure every festival needs.",
-      "description": "CGL insurance, CCSD permit + TFF coordinator, lion dances (Sat + Sun), transport and traffic, ops tents, organic digital marketing, volunteer meals, and festival coordination \u2014 embedded in the MVP cap.",
+      "description": "CGL insurance, CCSD permit + TFF coordinator, lion dances (Sat + Sun), transport and traffic, ops tents, organic digital marketing, volunteer meals, and festival coordination \u2014 embedded in the MVP cap. Weather cancel reserve is a separate core gift (Weather / Cancel Fund).",
       "benefits": [
         "Foundation sponsor recognition on website + email"
       ],
@@ -84,10 +84,6 @@
         {
           "label": "Lion dances (Sat + Sun)",
           "amount": 700
-        },
-        {
-          "label": "5% contingency buffer",
-          "amount": 1900
         }
       ]
     },
@@ -182,6 +178,24 @@
         {
           "label": "Hired porters + trash haul (heavy/gross waste)",
           "amount": 1000
+        }
+      ]
+    },
+    {
+      "id": "weather_cancel_fund",
+      "name": "Weather / Cancel Fund",
+      "amount": 8000,
+      "category": "core",
+      "sortOrder": 5,
+      "tagline": "First-tranche reserve for a washed weekend \u2014 sunk ops only, not gift-registry spending.",
+      "description": "**Self-insurance for weather cancel.** Mid-February outdoor weekends in the Sacramento region wet enough to cancel a park day are **common enough to plan for** \u2014 on the order of **~3 in 10 seasons** over the long run (not a single-weekend forecast). **2025** is the worked example: rain crushed turnout (**~80% attendance drop** vs 2024), and expensive cover tents did not save the day. Target cash held for a full-weekend cancel so we can absorb **non-refundable sunk core** (insurance/permit already paid, deposits, early installs) without raiding next year\u2019s program. **Vendor booth fees are reversed from fees collected** (100% if both days cancel \u00b7 50% if one day) \u2014 refunds are a liquidity reverse, not an add-on to this fund. This **$8,000** is a **first tranche** (~one-third of a mid-case max wash); dry-year earned surplus and Great Lantern Festival surplus refill until the pot grows. **Not** available for High Priority or elective registry gifts.",
+      "benefits": [
+        "Weather resilience sponsor recognition on website + email"
+      ],
+      "lineItems": [
+        {
+          "label": "Weather / cancel reserve (first tranche toward ~$20\u201326K sunk-core target)",
+          "amount": 8000
         }
       ]
     },
