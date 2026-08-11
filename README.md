@@ -107,7 +107,7 @@ Manual (UI only): URL Inspection → Request indexing for key pages; link GSC to
 
 ## Launch checklist
 
-See [EGLNY Website - Launch Checklist.md](../../../Programs/Lunar%20New%20Year/2027/Marketing/EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
+See [EGLNY Website - Launch Checklist.md](../../../Programs/Lunar%20New%20Year/2027/Marketing/Campaign/EGLNY%20Website%20-%20Launch%20Checklist.md) — Cloudflare DNS cutover, GitHub Pages custom domain, sponsor asset migration.
 
 ## Related
 

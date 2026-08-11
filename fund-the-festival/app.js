@@ -221,7 +221,7 @@ function compareGifts(a, b, category) {
 
 function giftsInCategory(gifts, category) {
   return gifts
-    .filter((g) => g.category === category)
+    .filter((g) => g.category === category && !g.draft)
     .sort((a, b) => compareGifts(a, b, category));
 }
 
@@ -432,6 +432,7 @@ function isVariableAmountGift(gift) {
 }
 
 function isSelectableGift(gift) {
+  if (gift.draft) return false;
   if (gift.selectable === false) return false;
   return gift.category !== "secondary" && !isVariableAmountGift(gift);
 }
