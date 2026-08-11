@@ -106,7 +106,8 @@
   <script src="site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml } = window.EglnySite;
+      const { initPageShell, loadSiteData, mountFooter, renderEventSummary, setPageTitle, escapeHtml, SPONSORSHIP_PACKET_PDF_URL } =
+        window.EglnySite;
       initPageShell("home");
       try {
         const site = await loadSiteData();
@@ -134,6 +135,7 @@
             <p>Vendor fees fund baseline operations. Sponsors unlock the blocks families remember — stages, Tết Relay Cup, children's programming, and more.</p>
             <div class="cta-row">
               <a class="btn btn-secondary" href="${escapeHtml(c.buildHref)}">${escapeHtml(c.buildLabel)}</a>
+              <a class="btn btn-tertiary" href="${escapeHtml(SPONSORSHIP_PACKET_PDF_URL)}" target="_blank" rel="noopener">Sponsorship packet</a>
             </div>
           </section>
         `;
