@@ -1469,6 +1469,15 @@
           <h2 id="booths-heading">${escapeHtml(booths.title ?? "Booth vendors")}</h2>
           ${booths.statusLine ? `<p class="hero-kicker">${escapeHtml(booths.statusLine)}</p>` : ""}
           ${booths.body ? `<p>${escapeHtml(booths.body)}</p>` : ""}
+          ${
+            booths.waitlist?.href
+              ? `<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(booths.waitlist.href)}" target="_blank" rel="noopener">${escapeHtml(booths.waitlist.label ?? "Join the vendor waitlist")}</a></p>${
+                  booths.waitlist.note
+                    ? `<p class="muted vendors-waitlist-note">${escapeHtml(booths.waitlist.note)}</p>`
+                    : ""
+                }`
+              : ""
+          }
           ${booths.note ? `<p class="muted rfp-index-note">${escapeHtml(booths.note)}</p>` : ""}
         </section>
         <section class="vendors-section" id="custom-zones" aria-labelledby="custom-zones-heading">
