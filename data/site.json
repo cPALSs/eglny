@@ -36,6 +36,8 @@
   "cta": {
     "primaryLabel": "Join the team",
     "primaryHref": "/team/",
+    "vendorLabel": "Register as vendor",
+    "vendorHref": "/vendors/",
     "buildLabel": "Fund The Festival",
     "buildHref": "/fund-the-festival/",
     "sponsorsLabel": "2026 sponsors",
