@@ -8,19 +8,30 @@
   },
   "event": {
     "name": "Elk Grove Lunar New Year Tết",
-    "dates": "Feb 13–14, 2027 · 11 AM–7:30 PM",
+    "dates": "Feb 13–14, 2027 · 11\u00a0AM–7:30\u00a0PM",
+    "startDate": "2027-02-13",
+    "endDate": "2027-02-14",
+    "weekdayHint": "SAT & SUN",
     "venue": "Elk Grove Park, California",
+    "venueShort": "Elk Grove Park",
+    "address": "9950 Elk Grove Florin Rd, Elk Grove, CA",
     "city": "Elk Grove, CA",
     "tagline": "free admission · family fair · parade",
+    "admissionLabel": "Free community celebration",
     "zodiacYear": "Year of the Goat",
     "hosts": "cPALSs + VACOS + NVCC",
     "attendanceNote": "Planning baseline ~6,000 attendees over the weekend"
   },
   "hero": {
+    "festivalHeadline": "Celebrate Lunar New Year Tết in Elk\u00a0Grove",
+    "festivalLead": "A free family weekend of heritage, food, and community — and the debut of Soul Torrent, a new full-day theatrical festival experience.",
     "headline": "Help build the 2027 festival",
+    "homeLead": "Join the team shaping this year’s celebration.",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
     "subhead": "Join weekly production calls, Discord, own a Program or Outreach lane, or step into the Site & Ops Supercommittee — we organize as a network of owners, not a stiff org chart.",
-    "body": "Start by showing up to production meetings. Prefer a gift DRI or outreach Director seat? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS)."
+    "body": "Start by showing up to production meetings. Prefer a gift DRI or outreach Director seat? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS).",
+    "fundHeadline": "Fund the experience",
+    "fundLead": "Sponsors unlock the blocks families remember."
   },
   "cta": {
     "primaryLabel": "Join the team",

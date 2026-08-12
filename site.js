@@ -567,6 +567,139 @@
     </div>`;
   }
 
+  function splitEventDates(event) {
+    const keepTimeMeridiem = (s) =>
+      String(s).replace(/(\d{1,2}(?::\d{2})?)\s+(AM|PM)\b/gi, "$1\u00A0$2");
+    const raw = String(event?.dates || "");
+    const parts = raw.split("·").map((part) => part.trim()).filter(Boolean);
+    return {
+      datePrimary: (parts[0] || raw).toUpperCase(),
+      timePrimary: keepTimeMeridiem(parts[1] || ""),
+      weekdayHint: event?.weekdayHint || "SAT & SUN",
+    };
+  }
+
+  function festivalMetaIcon(kind) {
+    const icons = {
+      calendar: `<svg class="festival-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>`,
+      pin: `<svg class="festival-meta-icon festival-meta-icon--pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>`,
+      people: `<svg class="festival-meta-icon festival-meta-icon--people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    };
+    return icons[kind] ?? "";
+  }
+
+  /** Local calendar day from YYYY-MM-DD (avoids UTC shift). */
+  function parseEventDay(iso) {
+    const m = String(iso || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return null;
+    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  }
+
+  /**
+   * Soul Torrent “sky” malevolence — cloud language by days until the festival.
+   * After the prior year → clear; mid-cycle → building; month of → dangerous.
+   * Orb intensity scales 1 (clear) → 10 (dangerous).
+   */
+  const MALEVOLENCE_INTENSITY = {
+    clear: 1,
+    fair: 3,
+    building: 5,
+    gathering: 7,
+    stormy: 8,
+    dangerous: 10,
+  };
+
+  function malevolenceStatus(event, now = new Date()) {
+    const start = parseEventDay(event?.startDate) || parseEventDay("2027-02-13");
+    const end = parseEventDay(event?.endDate) || parseEventDay("2027-02-14") || start;
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let status = "dangerous";
+    if (today > end) status = "clear";
+    else if (today >= start) status = "dangerous";
+    else {
+      const days = Math.round((start - today) / 86400000);
+      if (days > 300) status = "clear";
+      else if (days > 240) status = "fair";
+      else if (days > 150) status = "building";
+      else if (days > 90) status = "gathering";
+      else if (days > 45) status = "stormy";
+      else status = "dangerous";
+    }
+    return {
+      status,
+      intensity: MALEVOLENCE_INTENSITY[status] ?? 5,
+    };
+  }
+
+  function renderFestivalHero(site) {
+    const event = site.event ?? {};
+    const hero = site.hero ?? {};
+    const dates = splitEventDates(event);
+    const venue = event.venueShort || event.venue || "Elk\u00A0Grove Park";
+    const address = event.address || "";
+    const freeLine = event.admissionLabel || "Free community celebration";
+    const headline = hero.festivalHeadline || "Celebrate Lunar New Year Tết in Elk\u00A0Grove";
+    const lead =
+      hero.festivalLead ||
+      "A joyful celebration of heritage, community, and new beginnings. Enjoy traditional performances, delicious food, music, and activities for the whole family.";
+    const keepElkGrove = (s) => String(s).replace(/Elk Grove/g, "Elk\u00A0Grove");
+    const { status: malevolence, intensity } = malevolenceStatus(event);
+    const malevolenceDisplay = malevolence.charAt(0).toUpperCase() + malevolence.slice(1);
+
+    return `
+      <section class="festival-hero" aria-label="Festival highlight">
+        <div class="festival-hero-inner">
+          <div class="festival-hero-main">
+            <div class="festival-hero-copy">
+              <h1>${escapeHtml(keepElkGrove(headline))}</h1>
+              <p class="festival-hero-lead">${escapeHtml(lead).replace(/Soul Torrent/g, "<strong>Soul Torrent</strong>")}</p>
+            </div>
+            <div class="festival-hero-meta" role="group" aria-label="Event details">
+              <div class="festival-meta-item">
+                ${festivalMetaIcon("calendar")}
+                <div>
+                  <p class="festival-meta-label festival-meta-label--tabular">${escapeHtml(dates.datePrimary)}</p>
+                  <p class="festival-meta-detail">${escapeHtml(
+                    [dates.weekdayHint, dates.timePrimary].filter(Boolean).join(" · "),
+                  )}</p>
+                </div>
+              </div>
+              <div class="festival-meta-item">
+                ${festivalMetaIcon("pin")}
+                <div>
+                  <p class="festival-meta-label">${escapeHtml(keepElkGrove(String(venue)).toUpperCase())}</p>
+                  ${address ? `<p class="festival-meta-detail">${escapeHtml(keepElkGrove(address))}</p>` : ""}
+                </div>
+              </div>
+              <div class="festival-meta-item">
+                ${festivalMetaIcon("people")}
+                <div>
+                  <p class="festival-meta-label">Free Admission</p>
+                  <p class="festival-meta-detail">${escapeHtml(
+                    String(freeLine).replace(/^free(\s+admission)?\s+/i, "").toUpperCase() ||
+                      "COMMUNITY CELEBRATION",
+                  )}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="festival-hero-art">
+            <div
+              id="festival-hero-orb"
+              class="festival-hero-orb"
+              data-intensity="${intensity}"
+              role="img"
+              aria-label="Abstract colorful twisted sphere animation"
+            ></div>
+            <p class="festival-malevolence" data-malevolence="${escapeHtml(malevolence)}">
+              Malevolence:\u00A0<span>${escapeHtml(malevolenceDisplay)}</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
   function slugifyHeading(text) {
     return String(text)
       .toLowerCase()
@@ -1357,6 +1490,7 @@
     renderCoChairs,
     renderDocToc,
     renderEventSummary,
+    renderFestivalHero,
     loadSeasonEvents,
     initMediaPlayers,
     initRosterMedia,
