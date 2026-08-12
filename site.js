@@ -1464,19 +1464,21 @@
         <h1>${escapeHtml(index?.headline ?? "Vendors")}</h1>
         ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
       </section>
-      <section class="vendors-section" id="booths" aria-labelledby="booths-heading">
-        <h2 id="booths-heading">${escapeHtml(booths.title ?? "Booth vendors")}</h2>
-        ${booths.statusLine ? `<p class="hero-kicker">${escapeHtml(booths.statusLine)}</p>` : ""}
-        ${booths.body ? `<p>${escapeHtml(booths.body)}</p>` : ""}
-        ${booths.note ? `<p class="muted rfp-index-note">${escapeHtml(booths.note)}</p>` : ""}
-      </section>
-      <section class="vendors-section" id="custom-zones" aria-labelledby="custom-zones-heading">
-        <h2 id="custom-zones-heading">${escapeHtml(zones.title ?? "Custom zones")}</h2>
-        ${zones.statusLine ? `<p class="hero-kicker">${escapeHtml(zones.statusLine)}</p>` : ""}
-        ${zones.lead ? `<p>${escapeHtml(zones.lead)}</p>` : ""}
-        <div class="resource-card-grid">${lots}</div>
-        ${zones.note ? `<p class="muted rfp-index-note">${escapeHtml(zones.note)}</p>` : ""}
-      </section>`;
+      <div class="vendors-columns">
+        <section class="vendors-section" id="booths" aria-labelledby="booths-heading">
+          <h2 id="booths-heading">${escapeHtml(booths.title ?? "Booth vendors")}</h2>
+          ${booths.statusLine ? `<p class="hero-kicker">${escapeHtml(booths.statusLine)}</p>` : ""}
+          ${booths.body ? `<p>${escapeHtml(booths.body)}</p>` : ""}
+          ${booths.note ? `<p class="muted rfp-index-note">${escapeHtml(booths.note)}</p>` : ""}
+        </section>
+        <section class="vendors-section" id="custom-zones" aria-labelledby="custom-zones-heading">
+          <h2 id="custom-zones-heading">${escapeHtml(zones.title ?? "Custom zones")}</h2>
+          ${zones.statusLine ? `<p class="hero-kicker">${escapeHtml(zones.statusLine)}</p>` : ""}
+          ${zones.lead ? `<p>${escapeHtml(zones.lead)}</p>` : ""}
+          <div class="resource-card-grid">${lots}</div>
+          ${zones.note ? `<p class="muted rfp-index-note">${escapeHtml(zones.note)}</p>` : ""}
+        </section>
+      </div>`;
   }
 
   /** @deprecated Prefer renderVendorsPage — kept for any stale callers */

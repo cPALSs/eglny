@@ -1942,10 +1942,26 @@ body.nav-open {
   padding: 0 clamp(1.25rem, 4vw, 3rem);
 }
 
-.vendors-section {
+.vendors-columns {
   max-width: 1200px;
   margin: 2.5rem auto 0;
   padding: 0 clamp(1.25rem, 4vw, 3rem);
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .vendors-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 2.75rem;
+    align-items: start;
+  }
+}
+
+.vendors-section {
+  margin: 0;
+  padding: 0;
+  max-width: none;
 }
 
 .vendors-section h2 {
@@ -1967,6 +1983,7 @@ body.nav-open {
 .vendors-section .rfp-index-note {
   padding: 0;
   margin-top: 1rem;
+  max-width: none;
 }
 
 .media-page-body {
