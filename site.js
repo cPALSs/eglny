@@ -912,7 +912,7 @@
       .map(
         (link) => `
       <a class="resource-card" href="${escapeHtml(link.href)}">
-        <h2>${escapeHtml(link.title)}</h2>
+        <h3>${escapeHtml(link.title)}</h3>
         ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
       </a>`,
       )
@@ -1454,7 +1454,7 @@
       .map(
         (lot) => `
       <a class="resource-card" href="${escapeHtml(lot.href)}">
-        <h2>${escapeHtml(lot.title)}</h2>
+        <h3>${escapeHtml(lot.title)}</h3>
         ${lot.summary ? `<p>${escapeHtml(lot.summary)}</p>` : ""}
       </a>`,
       )

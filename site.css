@@ -1923,10 +1923,13 @@ body.nav-open {
   background: var(--surface-raised, var(--surface));
 }
 
-.resource-card h2 {
-  margin: 0 0 0.4rem;
-  font-size: 1.15rem;
-  line-height: 1.3;
+.resource-card h2,
+.resource-card h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.15;
   color: var(--text);
 }
 
