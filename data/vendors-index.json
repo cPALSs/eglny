@@ -1,0 +1,37 @@
+{
+  "headline": "Vendors",
+  "lead": "Two paths for Lunar New Year Tết 2027 — standard booth registration, and scoped custom-zone RFPs.",
+  "meta": {
+    "pageTitle": "Vendors",
+    "description": "Booth vendor registration (aiming to open October 2026) and open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết."
+  },
+  "booths": {
+    "title": "Booth vendors",
+    "statusLine": "Applications aiming to open October 2026",
+    "body": "Food trucks, open cooking, drinks, snacks, craft and merchant booths, and nonprofit info tables will apply through Eventeny when registration opens. Returning 2026 vendors will get an email when the form is live.",
+    "note": "Not open yet. Earliest target: October 2026 — we need time to finish the Eventeny booth form and food-curation questions. Watch this page or wait for our returning-vendor email."
+  },
+  "customZones": {
+    "title": "Custom zones",
+    "statusLine": "RFPs open",
+    "lead": "Scoped producer and activity-zone lots — not the same as a standard booth application. Bid one or more; awards may split.",
+    "lots": [
+      {
+        "title": "Children’s Theater Producer",
+        "href": "/rfp/childrens-theater/",
+        "summary": "Own a repeatable ~90–120 minute Fairytale Town–style kids stage block (short sets + roam). Ages ~2–8."
+      },
+      {
+        "title": "Children’s Village Vendor",
+        "href": "/rfp/childrens-village/",
+        "summary": "Organize kids activity / craft zones with an adaptable activity menu. Ages ~2–10."
+      },
+      {
+        "title": "Tween / Teen Maker Spot",
+        "href": "/rfp/maker-spot/",
+        "summary": "Maker / challenge / hang activities for ages ~11–17 — not Children’s Village branding."
+      }
+    ],
+    "note": "Questions and proposals go to the contact listed on each RFP."
+  }
+}

@@ -139,7 +139,7 @@
             href: SPONSORSHIP_PACKET_PDF_URL,
             external: true,
           },
-          { id: "rfp", label: "Vendor RFPs", navLabel: "Vendor RFPs", href: "/rfp/" },
+          { id: "vendors", label: "Vendors", navLabel: "Vendors", href: "/vendors/" },
         ],
       },
       {
@@ -1435,20 +1435,22 @@
       sections.map(renderVendorRfpSection).join("") + renderVendorRfpContact(contact);
     return `
       <section class="hero">
-        <p class="hero-back"><a href="/rfp/">← All RFPs</a></p>
+        <p class="hero-back"><a href="/vendors/#custom-zones">← Vendors</a></p>
         <h1>${escapeHtml(rfp?.headline ?? "Vendor RFP")}</h1>
         ${status}
         ${rfp?.lead ? `<p class="hero-lead">${escapeHtml(rfp.lead)}</p>` : ""}
         ${related}
       </section>
       ${wrapDocLayout(
-        renderDocToc(toc, { backHref: "/rfp/", backLabel: "← All RFPs" }),
+        renderDocToc(toc, { backHref: "/vendors/#custom-zones", backLabel: "← Vendors" }),
         main,
       )}`;
   }
 
-  function renderVendorRfpIndexPage(index) {
-    const lots = (index?.lots ?? [])
+  function renderVendorsPage(index) {
+    const booths = index?.booths ?? {};
+    const zones = index?.customZones ?? {};
+    const lots = (zones.lots ?? [])
       .map(
         (lot) => `
       <a class="resource-card" href="${escapeHtml(lot.href)}">
@@ -1457,18 +1459,29 @@
       </a>`,
       )
       .join("");
-    const status = index?.statusLine ? `<p class="hero-kicker">${escapeHtml(index.statusLine)}</p>` : "";
-    const note = index?.note
-      ? `<p class="muted rfp-index-note">${escapeHtml(index.note)}</p>`
-      : "";
     return `
       <section class="hero">
-        <h1>${escapeHtml(index?.headline ?? "Vendor RFPs")}</h1>
-        ${status}
+        <h1>${escapeHtml(index?.headline ?? "Vendors")}</h1>
         ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
       </section>
-      <div class="resource-card-grid">${lots}</div>
-      ${note}`;
+      <section class="vendors-section" id="booths" aria-labelledby="booths-heading">
+        <h2 id="booths-heading">${escapeHtml(booths.title ?? "Booth vendors")}</h2>
+        ${booths.statusLine ? `<p class="hero-kicker">${escapeHtml(booths.statusLine)}</p>` : ""}
+        ${booths.body ? `<p>${escapeHtml(booths.body)}</p>` : ""}
+        ${booths.note ? `<p class="muted rfp-index-note">${escapeHtml(booths.note)}</p>` : ""}
+      </section>
+      <section class="vendors-section" id="custom-zones" aria-labelledby="custom-zones-heading">
+        <h2 id="custom-zones-heading">${escapeHtml(zones.title ?? "Custom zones")}</h2>
+        ${zones.statusLine ? `<p class="hero-kicker">${escapeHtml(zones.statusLine)}</p>` : ""}
+        ${zones.lead ? `<p>${escapeHtml(zones.lead)}</p>` : ""}
+        <div class="resource-card-grid">${lots}</div>
+        ${zones.note ? `<p class="muted rfp-index-note">${escapeHtml(zones.note)}</p>` : ""}
+      </section>`;
+  }
+
+  /** @deprecated Prefer renderVendorsPage — kept for any stale callers */
+  function renderVendorRfpIndexPage(index) {
+    return renderVendorsPage(index);
   }
 
   async function loadJsonData(relativePath) {
@@ -1502,6 +1515,7 @@
     renderDirectorRolesPage,
     renderSkillsProjectsPage,
     renderVendorRfpPage,
+    renderVendorsPage,
     renderVendorRfpIndexPage,
     setPageTitle,
     wrapDocLayout,

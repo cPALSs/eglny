@@ -16,7 +16,10 @@ Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Res
 | `/team/skills/` | Skills-based / pro bono Idealist projects |
 | `/about/` | Tết + coalition |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
-| `/custom-zones/` | Placeholder redirect → [greatlantern.com/custom-zones/](https://greatlantern.com/custom-zones/) until LNY launches its own page |
+| `/vendors/` | Booth registration timing + custom-zone RFPs (Children’s Theater · Village · Maker Spot) |
+| `/rfp/` | Redirect → `/vendors/` |
+| `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual custom-zone RFP detail pages |
+| `/custom-zones/` | Redirect → `/vendors/#custom-zones` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
 | `/sponsors/` | 2026 sponsor recognition — under **Resources** |
