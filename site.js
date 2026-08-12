@@ -449,8 +449,9 @@
   function renderApplyBlock(site) {
     const apply = site.apply;
     const idealist = site.meta?.idealistUrl;
+    const idealistLabel = site.meta?.idealistCtaLabel ?? "Apply on Idealist";
     const idealistBtn = idealist
-      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
+      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
       : "";
 
     const mailto = `mailto:${apply.email}?subject=${encodeURIComponent(apply.emailSubject)}`;
@@ -466,6 +467,69 @@
     </ol>
     ${apply.idealistFallback && idealist ? `<p class="muted">${escapeHtml(apply.idealistFallback)}</p>` : ""}
   `;
+  }
+
+  function renderSkillsProjectsSection(site, { showHeading = true } = {}) {
+    const block = site.teamPage?.skillsProjects;
+    const projects = block?.projects ?? [];
+    if (!projects.length) return "";
+    const cards = projects
+      .map((p) => {
+        const cta = p.idealistUrl
+          ? `<p class="cta-row"><a class="btn btn-primary" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
+          : "";
+        return `
+            <article class="role-card skills-project-card" id="${escapeHtml(p.id)}">
+              <h3>${escapeHtml(p.title)}</h3>
+              ${p.blurb ? `<p>${escapeHtml(p.blurb)}</p>` : ""}
+              ${p.commitment ? `<p class="muted"><strong>Commitment:</strong> ${escapeHtml(p.commitment)}</p>` : ""}
+              ${cta}
+              ${p.idealistNote ? `<p class="muted">${escapeHtml(p.idealistNote)}</p>` : ""}
+            </article>`;
+      })
+      .join("");
+    const heading = showHeading
+      ? `<h2>${escapeHtml(block.title ?? "Skills projects")}</h2>
+            ${block.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}`
+      : block.intro
+        ? `<p>${escapeHtml(block.intro)}</p>`
+        : "";
+    return `
+          <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
+            ${heading}
+            <div class="skills-projects-grid">${cards}</div>
+          </section>`;
+  }
+
+  function renderSkillsProjectsPage(site) {
+    const block = site.teamPage?.skillsProjects;
+    const teamHref = "/team/";
+    const rolesHref = site.teamPage?.join?.rolesHref ?? "/team/roles/";
+    const mainHtml = `
+          <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
+            <h2>${escapeHtml(block?.title ?? "Skills projects")}</h2>
+            <p class="muted"><a href="${escapeHtml(teamHref)}">← Back to Team</a> · <a href="${escapeHtml(rolesHref)}">Director open seats</a></p>
+            ${block?.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}
+            <div class="skills-projects-grid">${(block?.projects ?? [])
+              .map((p) => {
+                const cta = p.idealistUrl
+                  ? `<p class="cta-row"><a class="btn btn-primary" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
+                  : "";
+                return `
+            <article class="role-card skills-project-card" id="${escapeHtml(p.id)}">
+              <h3>${escapeHtml(p.title)}</h3>
+              ${p.blurb ? `<p>${escapeHtml(p.blurb)}</p>` : ""}
+              ${p.commitment ? `<p class="muted"><strong>Commitment:</strong> ${escapeHtml(p.commitment)}</p>` : ""}
+              ${cta}
+              ${p.idealistNote ? `<p class="muted">${escapeHtml(p.idealistNote)}</p>` : ""}
+            </article>`;
+              })
+              .join("")}</div>
+          </section>`;
+    return wrapDocLayout(
+      renderDocToc([{ id: "skills-projects", label: block?.title ?? "Skills projects" }]),
+      mainHtml,
+    );
   }
 
   function renderCoChairs(site) {
@@ -1056,6 +1120,7 @@
     const apply = site.apply;
     const contactEmail = apply?.email ?? "contact@eglny.com";
     const idealist = site.meta?.idealistUrl;
+    const idealistLabel = site.meta?.idealistCtaLabel ?? "Apply on Idealist";
     const zoomHtml = join.zoom ? `<li>${escapeHtml(join.zoom)}</li>` : "";
     const discordHtml = join.discordHref
       ? `<li><a href="${escapeHtml(join.discordHref)}"${externalLinkAttrs(join.discordHref)}>${escapeHtml(join.discordLabel ?? "Join the Discord")}</a>${join.discordNote ? ` — ${escapeHtml(join.discordNote)}` : ""}</li>`
@@ -1063,7 +1128,7 @@
     const applyHtml = join.applyNote ? `<li>${escapeHtml(join.applyNote)}</li>` : "";
     const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(apply?.emailSubject ?? "LNY 2027 team interest")}`;
     const idealistBtn = idealist
-      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">Apply on Idealist</a>`
+      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
       : "";
     const emailBtnClass = idealist ? "btn btn-secondary" : "btn btn-primary";
     return `
@@ -1077,12 +1142,17 @@
             </ul>
             <div class="cta-row">
               ${idealistBtn}
-              <a class="${emailBtnClass}" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
               ${
                 join.rolesHref
-                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse director roles")}</a>`
+                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse open seats")}</a>`
                   : ""
               }
+              ${
+                join.skillsHref && (site.teamPage?.skillsProjects?.projects?.length ?? 0) > 0
+                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.skillsHref)}">${escapeHtml(join.skillsCtaLabel ?? "Browse skills projects")}</a>`
+                  : ""
+              }
+              <a class="${emailBtnClass}" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
             </div>
           </section>`;
   }
@@ -1296,6 +1366,7 @@
     renderRoleCard,
     renderTeamPage,
     renderDirectorRolesPage,
+    renderSkillsProjectsPage,
     renderVendorRfpPage,
     renderVendorRfpIndexPage,
     setPageTitle,

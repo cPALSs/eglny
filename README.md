@@ -11,8 +11,9 @@ Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Res
 | Path | File |
 |------|------|
 | `/` | `index.html` |
-| `/team/` | Join the team — weekly calls, Discord, director vs visionary, apply, FAQ |
+| `/team/` | Join the team — weekly calls, Discord, apply, FAQ |
 | `/team/roles/` | Traditional director role list (lanes + Phase 2) + how to apply |
+| `/team/skills/` | Skills-based / pro bono Idealist projects |
 | `/about/` | Tết + coalition |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
 | `/custom-zones/` | Placeholder redirect → [greatlantern.com/custom-zones/](https://greatlantern.com/custom-zones/) until LNY launches its own page |
@@ -59,8 +60,9 @@ cd Sites/eglny
 python3 -m http.server 8765
 ```
 
-- http://localhost:8765/
 - http://localhost:8765/team/
+- http://localhost:8765/team/roles/
+- http://localhost:8765/team/skills/
 - http://localhost:8765/fund-the-festival/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/

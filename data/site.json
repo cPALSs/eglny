@@ -3,7 +3,8 @@
     "siteName": "Elk Grove Lunar New Year Tết",
     "titleSuffix": "Elk Grove Lunar New Year Tết",
     "idealistUrl": "https://ideali.st/5fecvF",
-    "idealistNote": "LNY 2027 Directors — published 2026-08-11 · volop c958abf16a9e4d24b0d79684e33a129f"
+    "idealistNote": "LNY 2027 Directors — published 2026-08-11 · volop c958abf16a9e4d24b0d79684e33a129f",
+    "idealistCtaLabel": "Apply as Director on Idealist"
   },
   "event": {
     "name": "Elk Grove Lunar New Year Tết",
@@ -53,7 +54,25 @@
       "discordNote": "Day-to-day asks, intros, and grapevine recruiting.",
       "applyNote": "Apply on Idealist (primary) — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season. Can’t use Idealist? Email contact@eglny.com.",
       "rolesCtaLabel": "Browse open seats",
-      "rolesHref": "/team/roles/"
+      "rolesHref": "/team/roles/",
+      "skillsCtaLabel": "Browse skills projects",
+      "skillsHref": "/team/skills/"
+    },
+    "skillsProjects": {
+      "title": "Skills projects",
+      "headline": "Skills projects",
+      "lead": "Scoped pro bono / skills-based roles — separate Idealist listings from Director seats.",
+      "intro": "Apply on the project link for each listing. Director / DRI seats stay on the open seats page.",
+      "projects": [
+        {
+          "id": "sponsorship-packet-designer",
+          "title": "Sponsorship packet graphic designer",
+          "blurb": "Visually redesign our cash sponsorship PDF leave-behind (about 6–11 pages). Copy, logos, and photos are ready — layout and design only. Canva or Affinity preferred (we have free Canva); InDesign / Figma / Illustrator also OK.",
+          "commitment": "Remote · ~2–5 hrs/week · 4–6 weeks · ideal finish end of Sept / mid-Oct 2026",
+          "idealistUrl": "https://www.idealist.org/en/volunteer-opportunity/e554228278b143f1a787506dbb555ee7-elk-grove-lunar-new-year-2027-sponsorship-packet-graphic-designer-community-partners-advocate-of-little-saigon-sacramento-sacramento",
+          "idealistCtaLabel": "Apply as designer on Idealist"
+        }
+      ]
     },
     "roster": {
       "title": "Roster",

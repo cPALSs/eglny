@@ -939,6 +939,21 @@ body.nav-open {
   margin: 1.5rem 0;
 }
 
+.skills-projects-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .skills-projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+.skills-project-card .cta-row {
+  margin-bottom: 0.35rem;
+}
+
 @media (max-width: 479px) {
   .cta-row {
     flex-direction: column;
