@@ -1482,6 +1482,7 @@
         </section>
         <section class="vendors-section" id="custom-zones" aria-labelledby="custom-zones-heading">
           <h2 id="custom-zones-heading">${escapeHtml(zones.title ?? "Custom zones")}</h2>
+          ${zones.body ? `<p>${escapeHtml(zones.body)}</p>` : ""}
           ${zones.statusLine ? `<p class="hero-kicker">${escapeHtml(zones.statusLine)}</p>` : ""}
           ${zones.lead ? `<p>${escapeHtml(zones.lead)}</p>` : ""}
           <div class="resource-card-grid">${lots}</div>
