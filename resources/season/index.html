@@ -2,11 +2,33 @@
 <html lang="en" data-theme="auto">
 <head>
   <meta charset="UTF-8" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="../../analytics.js"></script>
-
+  <style>
+    html { background: #030d29; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lunar New Year Season — Elk Grove Lunar New Year Tết</title>
+  <script src="../../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../../site.css" />
   <meta name="description" content="Lunar New Year Season in Greater Sacramento — late January through early March events, including Elk Grove Lunar New Year Tết." />
   <link rel="canonical" href="https://eglny.com/resources/season/" />
   <meta property="og:title" content="Lunar New Year Season — Elk Grove Lunar New Year Tết" />
@@ -169,18 +191,10 @@
 }
   </script>
 
-  <title>Lunar New Year Season — Elk Grove Lunar New Year Tết</title>
-  <script src="../../clean-urls.js"></script>
-  <script>
-    (function () {
-      try {
-        var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-  <link rel="stylesheet" href="../../site.css" />
-</head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../../analytics.js"></script>
+  </head>
 <body>
   <div id="site-nav"></div>
   <main class="page-wrap page-wrap--doc" id="main">
@@ -189,6 +203,8 @@
         <h1>Lunar New Year Season</h1>
         <p>Celebrate Lunar New Year Season in Greater Sacramento from late January through early March!</p>
         <p>Greater Sacramento’s Lunar New Year, Tết, and Spring Festival calendar — free fairs, community celebrations, and our Elk Grove capstone weekend.</p>
+        <p>Dates marked estimated or tentative may change — check organizer listings before you go.</p>
+        <p>Know a Lunar New Year event we missed? Email contact@eglny.com.</p>
       </section>
       <section>
         <h2>Season events</h2>
@@ -216,16 +232,14 @@
   <script src="../../site.js"></script>
   <script>
     (async function () {
-      const {
-        initPageShell,
+      const {initPageShell,
         loadSiteData,
         loadSeasonEvents,
         mountFooter,
         renderSeasonPage,
         initDocToc,
         setPageTitle,
-        escapeHtml,
-      } = window.EglnySite;
+        escapeHtml, revealPage} = window.EglnySite;
       initPageShell("season");
       try {
         const [site, seasonData] = await Promise.all([loadSiteData(), loadSeasonEvents()]);
@@ -233,8 +247,10 @@
         document.getElementById("main").innerHTML = renderSeasonPage(site.season, seasonData);
         initDocToc();
         mountFooter(site);
+        if (typeof revealPage === "function") revealPage();
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+        if (typeof revealPage === "function") revealPage();
       }
     })();
   </script>

@@ -15,8 +15,8 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roster — Elk Grove Lunar New Year Tết</title>
-  <script src="../clean-urls.js"></script>
+  <title>Volunteer — Elk Grove Lunar New Year Tết</title>
+  <script src="../../clean-urls.js"></script>
   <script>
     (function () {
       try {
@@ -28,69 +28,69 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
-  <link rel="stylesheet" href="../site.css" />
-  <meta name="description" content="Meet the Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027." />
-  <link rel="canonical" href="https://eglny.com/team/" />
-  <meta property="og:title" content="Roster — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Meet the Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027." />
+  <link rel="stylesheet" href="../../site.css" />
+  <meta name="description" content="Volunteer for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <link rel="canonical" href="https://eglny.com/production/volunteer/" />
+  <meta property="og:title" content="Volunteer — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Volunteer for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eglny.com/team/" />
+  <meta property="og:url" content="https://eglny.com/production/volunteer/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Roster — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Meet the Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027." />
+  <meta name="twitter:title" content="Volunteer — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Volunteer for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="../analytics.js"></script>
-  </head>
+  <script src="../../analytics.js"></script>
+</head>
 <body>
   <div id="site-nav"></div>
   <main class="page-wrap page-wrap--doc" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
-        <h1>Roster</h1>
-        <p>Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027.</p>
+        <h1>Volunteer</h1>
+        <p>Thank you for wanting to help make Tết happen. Skills projects and day-of shifts live here — for planning seats and Director / DRI work, go to <a href="/team/roles/">Open roles</a>.</p>
       </section>
-      <section><h2>Steering Committee</h2><p>Bao Thien Ngo, Thuy Pham</p></section>
+      <section>
+        <h2>Skills projects</h2>
+      </section>
+      <section>
+        <h2>Day-of help</h2>
+        <p>We’d love your energy on festival weekend — greeters, load-in hands, zone helpers, and the little jobs that keep families smiling. Shift registration isn’t open yet; come back here when it is.</p>
+      </section>
     </div>
   </main>
   <div id="site-footer"></div>
-  <script src="../doc-scroll.js"></script>
-  <script src="../site.js"></script>
+  <script src="../../doc-scroll.js"></script>
+  <script src="../../site.js"></script>
   <script>
     (async function () {
       const {
         initPageShell,
         loadSiteData,
         mountFooter,
-        renderRosterPage,
+        renderVolunteerPage,
         initDocToc,
-        initRosterMedia,
         setPageTitle,
         escapeHtml,
+        linkFirstOpenRoles,
         revealPage,
       } = window.EglnySite;
-      initPageShell("roster");
+      initPageShell("volunteer");
       try {
         const site = await loadSiteData();
-        setPageTitle(site, "Roster");
-        const rosterPage = site.teamPage?.rosterPage ?? {};
-        const roster = site.teamPage?.roster ?? {};
+        const block = site.teamPage?.skillsProjects;
+        setPageTitle(site, block?.headline ?? block?.title ?? "Volunteer");
         document.getElementById("main").innerHTML = `
           <section class="hero">
-            <h1>${escapeHtml(rosterPage.headline ?? roster.title ?? "Roster")}</h1>
-            ${
-              rosterPage.lead || roster.intro
-                ? `<p class="hero-lead">${escapeHtml(rosterPage.lead ?? roster.intro)}</p>`
-                : ""
-            }
+            <h1>${escapeHtml(block?.headline ?? block?.title ?? "Volunteer")}</h1>
+            ${block?.lead ? `<p class="hero-lead">${linkFirstOpenRoles(escapeHtml(block.lead))}</p>` : ""}
           </section>
-          ${renderRosterPage(site)}
+          ${renderVolunteerPage(site)}
         `;
         initDocToc();
-        initRosterMedia(document.getElementById("main"));
         mountFooter(site);
         if (typeof revealPage === "function") revealPage();
       } catch (err) {

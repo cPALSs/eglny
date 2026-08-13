@@ -13,7 +13,7 @@
     "/about.html": "/about/",
     "/team.html": "/team/",
     "/sponsors.html": "/sponsors/",
-    "/get-involved.html": "/team/",
+    "/get-involved.html": "/team/roles/",
   };
 
   if (legacy[pathname]) {

@@ -2,12 +2,35 @@
 <html lang="en" data-theme="auto">
 <head>
   <meta charset="UTF-8" />
+  <style>
+    html { background: #030d29; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../../../site.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
   <script src="../../../analytics.js"></script>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="How cPALSs and VACOS plan Elk Grove's Lunar New Year and Mid-Autumn festivals with honest budgets, clear ownership, and regional coordination." />
+<meta name="description" content="How cPALSs and VACOS plan Elk Grove's Lunar New Year and Mid-Autumn festivals with honest budgets, clear ownership, and regional coordination." />
   <link rel="canonical" href="https://eglny.com/resources/blog/planning-sustainable-community-festivals/" />
   <meta property="og:title" content="Planning Sustainable Community Festivals — Elk Grove Lunar New Year Tết" />
   <meta property="og:description" content="How cPALSs and VACOS plan Elk Grove's Lunar New Year and Mid-Autumn festivals with honest budgets, clear ownership, and regional coordination." />
@@ -18,15 +41,6 @@
   <meta name="twitter:description" content="How cPALSs and VACOS plan Elk Grove's Lunar New Year and Mid-Autumn festivals with honest budgets, clear ownership, and regional coordination." />
   <title>Planning Sustainable Community Festivals — Elk Grove Lunar New Year Tết</title>
   <script src="../../../clean-urls.js"></script>
-  <script>
-    (function () {
-      try {
-        var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-  <link rel="stylesheet" href="../../../site.css" />
 </head>
 <body>
   <div id="site-nav"></div>
@@ -100,10 +114,11 @@
   <script src="../../../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, initDocToc } = window.EglnySite;
+      const { initPageShell, loadSiteData, mountFooter, revealPage, initDocToc } = window.EglnySite;
       initPageShell("blog");
       initDocToc();
       try { mountFooter(await loadSiteData()); } catch (_) {}
+      if (typeof revealPage === "function") revealPage();
     })();
   </script>
 </body>

@@ -2,11 +2,33 @@
 <html lang="en" data-theme="auto">
 <head>
   <meta charset="UTF-8" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="../analytics.js"></script>
-
+  <style>
+    html { background: #030d29; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Elk Grove Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../site.css" />
   <meta name="description" content="About Elk Grove Lunar New Year Tết — Tết traditions, Sacramento history, and festival posters." />
   <link rel="canonical" href="https://eglny.com/about/" />
   <meta property="og:title" content="About Elk Grove Lunar New Year Tết" />
@@ -19,18 +41,10 @@
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
 
-  <title>About Elk Grove Lunar New Year Tết</title>
-  <script src="../clean-urls.js"></script>
-  <script>
-    (function () {
-      try {
-        var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-  <link rel="stylesheet" href="../site.css" />
-</head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+  </head>
 <body>
   <div id="site-nav"></div>
   <main class="page-wrap page-wrap--doc" id="main">
@@ -39,6 +53,7 @@
         <h1>About Elk Grove Lunar New Year Tết</h1>
       </section>
       <section><h2>Tết</h2><p>Lunar New Year, known as Tết in Vietnamese culture, is one of the most significant and cherished celebrations in Asian communities worldwide. This ancient festival marks the beginning of the lunar calendar year and symbolizes renewal, family reunion, and hope for prosperity. For Vietnamese families, Tết represents a time to honor ancestors, strengthen family bonds, and welcome good fortune for the year ahead. Traditional celebrations include preparing special foods, decorating homes with flowers and symbols of luck, exchanging red envelopes (lì xì) for good fortune, and gathering with loved ones to reflect on the past year while embracing new beginnings.</p></section>
+      <section><h2>Soul Torrent</h2><p>For 2027 we’re introducing Soul Torrent — a new theatrical festival concept for Saturday at Elk Grove Park. Too many festivals feel fragmented: random stage acts, random booths, random programming that never quite add up to a day you can tell someone about. Soul Torrent is our answer — one story guests can feel from daylight to dusk: dark spirits gather at the gates, protectors and families push back, and by dusk the crowd helps finish the fight.</p></section>
     </div>
   </main>
   <div id="site-footer"></div>
@@ -46,7 +61,7 @@
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const { initPageShell, loadSiteData, mountFooter, renderAboutSections, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml } =
+      const {initPageShell, loadSiteData, mountFooter, renderAboutSections, buildAboutToc, renderDocToc, wrapDocLayout, initDocToc, escapeHtml, revealPage} =
         window.EglnySite;
       initPageShell("about");
       try {
@@ -64,8 +79,10 @@
         `;
         initDocToc();
         mountFooter(site);
+        if (typeof revealPage === "function") revealPage();
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+        if (typeof revealPage === "function") revealPage();
       }
     })();
   </script>

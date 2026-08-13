@@ -13,6 +13,19 @@
       .replace(/"/g, "&quot;");
   }
 
+  /** First “Fund The Festival” in already-escaped HTML → link to the registry. */
+  function linkFirstFundTheFestival(html) {
+    return String(html).replace(
+      /Fund The Festival/,
+      '<a href="/fund-the-festival/">Fund The Festival</a>',
+    );
+  }
+
+  /** First “Open roles” in already-escaped HTML → link to the roles page. */
+  function linkFirstOpenRoles(html) {
+    return String(html).replace(/Open roles/, '<a href="/team/roles/">Open roles</a>');
+  }
+
   function loadThemeFromStorage() {
     try {
       const theme = sessionStorage.getItem(THEME_STORAGE_KEY);
@@ -125,11 +138,19 @@
     return [
       { id: "home", label: "Home", href: "/" },
       { id: "about", label: "About", href: "/about/" },
-      { id: "team", label: "Team", href: "/team/" },
+      {
+        id: "team",
+        label: "Team",
+        href: "/team/",
+        children: [
+          { id: "roster", label: "Roster", href: "/team/" },
+          { id: "roles", label: "Open Roles", href: "/team/roles/" },
+        ],
+      },
       {
         id: "production",
         label: "Production",
-        href: "/fund-the-festival/",
+        href: "/production/",
         children: [
           { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
           {
@@ -140,6 +161,7 @@
             external: true,
           },
           { id: "vendors", label: "Vendors", navLabel: "Vendors", href: "/vendors/" },
+          { id: "volunteer", label: "Volunteer", href: "/production/volunteer/" },
         ],
       },
       {
@@ -147,7 +169,7 @@
         label: "Resources",
         href: "/resources/",
         children: [
-          { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
+          { id: "season", label: "LNY Season", href: "/resources/season/" },
           { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
           { id: "media", label: "Media", href: "/resources/media/" },
           { id: "blog", label: "Blog", href: "/resources/blog/" },
@@ -450,22 +472,19 @@
     const apply = site.apply;
     const idealist = site.meta?.idealistUrl;
     const idealistLabel = site.meta?.idealistCtaLabel ?? "Apply on Idealist";
-    const idealistBtn = idealist
-      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
-      : "";
-
-    const mailto = `mailto:${apply.email}?subject=${encodeURIComponent(apply.emailSubject)}`;
-    const emailBtnClass = idealist ? "btn btn-secondary" : "btn btn-primary";
+    if (!idealist) {
+      const mailto = `mailto:${apply.email}?subject=${encodeURIComponent(apply.emailSubject)}`;
+      return `
+    <div class="cta-row">
+      <a class="btn btn-primary" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
+    </div>`;
+    }
 
     return `
     <div class="cta-row">
-      ${idealistBtn}
-      <a class="${emailBtnClass}" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
+      <a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>
     </div>
-    <ol class="steps-list">
-      ${apply.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}
-    </ol>
-    ${apply.idealistFallback && idealist ? `<p class="muted">${escapeHtml(apply.idealistFallback)}</p>` : ""}
+    ${apply.idealistFallback ? `<p class="muted">${escapeHtml(apply.idealistFallback)}</p>` : ""}
   `;
   }
 
@@ -489,7 +508,7 @@
       })
       .join("");
     const heading = showHeading
-      ? `<h2>${escapeHtml(block.title ?? "Skills projects")}</h2>
+      ? `<h2>${escapeHtml(block.sectionTitle ?? "Skills projects")}</h2>
             ${block.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}`
       : block.intro
         ? `<p>${escapeHtml(block.intro)}</p>`
@@ -501,15 +520,13 @@
           </section>`;
   }
 
-  function renderSkillsProjectsPage(site) {
+  function renderVolunteerPage(site) {
     const block = site.teamPage?.skillsProjects;
-    const teamHref = "/team/";
-    const rolesHref = site.teamPage?.join?.rolesHref ?? "/team/roles/";
-    const mainHtml = `
+    const skillsTitle = block?.sectionTitle ?? "Skills projects";
+    const dayOf = block?.dayOfHelp;
+    const skillsHtml = `
           <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
-            <h2>${escapeHtml(block?.title ?? "Skills projects")}</h2>
-            <p class="muted"><a href="${escapeHtml(teamHref)}">← Back to Team</a> · <a href="${escapeHtml(rolesHref)}">Director open seats</a></p>
-            ${block?.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}
+            <h2>${escapeHtml(skillsTitle)}</h2>
             <div class="skills-projects-grid">${(block?.projects ?? [])
               .map((p) => {
                 const cta = p.idealistUrl
@@ -526,10 +543,23 @@
               })
               .join("")}</div>
           </section>`;
-    return wrapDocLayout(
-      renderDocToc([{ id: "skills-projects", label: block?.title ?? "Skills projects" }]),
-      mainHtml,
-    );
+    const dayOfHtml = dayOf
+      ? `
+          <section class="content-section site-doc-section" id="day-of-help" data-doc-section>
+            <h2>${escapeHtml(dayOf.title ?? "Day-of help")}</h2>
+            <p>${escapeHtml(dayOf.body ?? "Registration is not yet available — come back later.")}</p>
+          </section>`
+      : "";
+    const toc = [
+      { id: "skills-projects", label: skillsTitle },
+      ...(dayOf ? [{ id: "day-of-help", label: dayOf.title ?? "Day-of help" }] : []),
+    ];
+    return wrapDocLayout(renderDocToc(toc), `${skillsHtml}${dayOfHtml}`);
+  }
+
+  /** @deprecated Prefer renderVolunteerPage */
+  function renderSkillsProjectsPage(site) {
+    return renderVolunteerPage(site);
   }
 
   function renderCoChairs(site) {
@@ -652,7 +682,10 @@
           <div class="festival-hero-main">
             <div class="festival-hero-copy">
               <h1>${escapeHtml(keepElkGrove(headline))}</h1>
-              <p class="festival-hero-lead">${escapeHtml(lead).replace(/Soul Torrent/g, "<strong>Soul Torrent</strong>")}</p>
+              <p class="festival-hero-lead">${escapeHtml(lead).replace(
+                /Soul Torrent/g,
+                '<a href="/about/#soul-torrent">Soul Torrent</a>',
+              )}</p>
             </div>
             <div class="festival-hero-meta" role="group" aria-label="Event details">
               <div class="festival-meta-item">
@@ -740,22 +773,41 @@
     return items;
   }
 
-  function buildTeamToc(site) {
+  function buildJoinToc(site) {
     const team = site.teamPage;
     return [
       ...(team?.join ? [{ id: "get-involved", label: team.join.title ?? "Get involved" }] : []),
       { id: "faq", label: "FAQ" },
-      ...(team?.roster ? [{ id: "roster", label: team.roster.title ?? "Roster" }] : []),
+    ];
+  }
+
+  function buildRosterToc(site) {
+    const groups = site.teamPage?.roster?.groups ?? [];
+    return groups
+      .filter((group) => group.title)
+      .map((group) => ({
+        id: slugifyHeading(group.title),
+        label: group.title,
+      }));
+  }
+
+  function buildTeamToc(site) {
+    return buildJoinToc(site);
+  }
+
+  function buildOpenRolesToc(site) {
+    const unlock = site.phase2;
+    return [
+      { id: "what-is-a-director", label: site.directorIntro?.title ?? "What is a director?" },
+      { id: "apply", label: "Apply & get involved" },
+      { id: "faq", label: "FAQ" },
+      ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
+      ...(unlock ? [{ id: "sponsor-unlocks", label: unlock.title ?? "Sponsor unlocks" }] : []),
     ];
   }
 
   function buildDirectorRolesToc(site) {
-    return [
-      { id: "director-roles", label: "Director roles" },
-      ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
-      { id: "phase2", label: site.phase2?.title ?? "Phase 2" },
-      { id: "apply", label: "How to apply" },
-    ];
+    return buildOpenRolesToc(site);
   }
 
   function initDocToc() {
@@ -772,7 +824,7 @@
             return `
       <section class="about-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
-        ${section.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+        ${section.paragraphs.map((p) => `<p>${linkFirstFundTheFestival(escapeHtml(p))}</p>`).join("")}
       </section>`;
           },
         )
@@ -810,16 +862,29 @@
     </section>`;
   }
 
-  function initPageShell(activePage) {
+  function revealPage() {
+    document.documentElement.classList.add("is-hydrated");
+  }
+
+  /**
+   * @param {string} activePage
+   * @param {{ autoReveal?: boolean }} [options] autoReveal for pages with static main (blog, FTF)
+   */
+  function initPageShell(activePage, options = {}) {
     mountNav(activePage);
     initTheme();
     initNavMenu();
-    loadSiteData()
+    const ready = loadSiteData()
       .then((site) => {
         injectNavSocial(site?.footer?.socialLinks);
         mountFooter(site);
+        return site;
       })
-      .catch(() => {});
+      .catch(() => null);
+    if (options.autoReveal) {
+      ready.finally(() => revealPage());
+    }
+    return ready;
   }
 
   async function loadSeasonEvents() {
@@ -893,9 +958,9 @@
       <section class="about-section resources-season site-doc-section" id="season" data-doc-section>
         <h2>${escapeHtml(seasonTitle)}</h2>
         ${season?.intro ? `<p>${escapeHtml(season.intro)}</p>` : ""}
-        ${events.length ? `<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
         ${listNote}
         ${contactNote}
+        ${events.length ? `<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
       </section>`;
 
     return `
@@ -909,13 +974,14 @@
   function renderResourcesPage(resources) {
     const links = resources?.links ?? [];
     const cards = links
-      .map(
-        (link) => `
-      <a class="resource-card" href="${escapeHtml(link.href)}">
+      .map((link) => {
+        const external = link.external ? ' target="_blank" rel="noopener"' : "";
+        return `
+      <a class="resource-card" href="${escapeHtml(link.href)}"${external}>
         <h3>${escapeHtml(link.title)}</h3>
         ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
-      </a>`,
-      )
+      </a>`;
+      })
       .join("");
 
     return `
@@ -924,6 +990,14 @@
         ${resources?.lead ? `<p class="hero-lead">${escapeHtml(resources.lead)}</p>` : ""}
       </section>
       <div class="resource-card-grid">${cards}</div>`;
+  }
+
+  function renderProductionPage(production) {
+    return renderResourcesPage({
+      headline: production?.headline ?? "Production",
+      lead: production?.lead,
+      links: production?.links,
+    });
   }
 
   function renderMediaVideoCard(video) {
@@ -1229,25 +1303,30 @@
         : [];
     if (!groups.length) return "";
 
-    const groupsHtml = groups
+    return groups
       .map((group) => {
+        const id = group.title ? slugifyHeading(group.title) : "roster";
         const heading = group.title
-          ? `<h3>${escapeHtml(group.title)}</h3>`
-          : "";
+          ? `<h2>${escapeHtml(group.title)}</h2>`
+          : `<h2>${escapeHtml(roster.title ?? "Roster")}</h2>`;
         const cards = (group.members ?? []).map(renderRosterMemberCard).join("");
-        return `${heading}<div class="co-chairs roster-grid">${cards}</div>`;
+        return `
+          <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+            ${heading}
+            <div class="co-chairs roster-grid">${cards}</div>
+          </section>`;
       })
       .join("");
-
-    return `
-          <section class="content-section site-doc-section" id="roster" data-doc-section>
-            <h2>${escapeHtml(roster.title ?? "Roster")}</h2>
-            ${roster.intro ? `<p>${escapeHtml(roster.intro)}</p>` : ""}
-            ${groupsHtml}
-          </section>`;
   }
 
-  function renderJoinSection(site) {
+  function renderRosterPage(site) {
+    const toc = buildRosterToc(site);
+    const mainHtml = renderRosterSection(site);
+    if (!toc.length) return mainHtml;
+    return wrapDocLayout(renderDocToc(toc), mainHtml);
+  }
+
+  function renderJoinSection(site, { hideRolesCta = false } = {}) {
     const join = site.teamPage?.join;
     if (!join) return "";
     const apply = site.apply;
@@ -1263,7 +1342,6 @@
     const idealistBtn = idealist
       ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
       : "";
-    const emailBtnClass = idealist ? "btn btn-secondary" : "btn btn-primary";
     return `
           <section class="content-section site-doc-section" id="get-involved" data-doc-section>
             <h2>${escapeHtml(join.title ?? "Get involved")}</h2>
@@ -1276,16 +1354,16 @@
             <div class="cta-row">
               ${idealistBtn}
               ${
-                join.rolesHref
+                !hideRolesCta && join.rolesHref
                   ? `<a class="btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse open seats")}</a>`
                   : ""
               }
               ${
                 join.skillsHref && (site.teamPage?.skillsProjects?.projects?.length ?? 0) > 0
-                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.skillsHref)}">${escapeHtml(join.skillsCtaLabel ?? "Browse skills projects")}</a>`
+                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.skillsHref)}">${escapeHtml(join.skillsCtaLabel ?? "Browse small projects")}</a>`
                   : ""
               }
-              <a class="${emailBtnClass}" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
+              <a class="btn btn-tertiary" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
             </div>
           </section>`;
   }
@@ -1303,55 +1381,84 @@
   }
 
   function renderApplySection(site) {
+    const join = site.teamPage?.join ?? {};
+    const apply = site.apply ?? {};
+    const contactEmail = apply.email ?? "contact@eglny.com";
+    const mailtoGuest = `mailto:${contactEmail}?subject=${encodeURIComponent("LNY 2027 Zoom guest")}`;
+
+    const discordBtn = join.discordHref
+      ? `<p class="cta-row"><a class="btn btn-tertiary" href="${escapeHtml(join.discordHref)}"${externalLinkAttrs(join.discordHref)}>${escapeHtml(join.discordLabel ?? "Join the Discord")}</a></p>`
+      : "";
+
     return `
           <section class="content-section site-doc-section" id="apply" data-doc-section>
-            <h2>How to apply</h2>
+            <h2>Apply &amp; get involved</h2>
+            <h3>Apply to an open role</h3>
+            <p>${escapeHtml(join.applyNote ?? "Apply on Idealist — name the role or vision you’re interested in.")}</p>
             ${renderApplyBlock(site)}
+            <h3>Attend Zoom calls</h3>
+            <p>${escapeHtml(join.zoom ?? "Weekly Zoom production calls are Mondays at 6:30 PM.")}</p>
+            <p class="cta-row"><a class="btn btn-tertiary" href="${mailtoGuest}">Email ${escapeHtml(contactEmail)}</a></p>
+            <h3>Join Discord</h3>
+            ${join.discordNote ? `<p>${escapeHtml(join.discordNote)}</p>` : ""}
+            ${discordBtn}
           </section>`;
   }
 
-  function renderTeamPage(site) {
+  function renderJoinPage(site) {
     const mainHtml = `
           ${renderJoinSection(site)}
           <section class="content-section site-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${renderFaqBlock(site)}
-          </section>
-          ${renderRosterSection(site)}`;
+          </section>`;
 
-    return wrapDocLayout(renderDocToc(buildTeamToc(site)), mainHtml);
+    return wrapDocLayout(renderDocToc(buildJoinToc(site)), mainHtml);
   }
 
-  function renderDirectorRolesPage(site) {
+  /** @deprecated Prefer renderJoinPage — kept for any stale callers */
+  function renderTeamPage(site) {
+    return renderJoinPage(site);
+  }
+
+  function renderOpenRolesPage(site) {
     const intro = site.directorIntro;
-    const teamHref = "/team/";
 
     const lanesHtml = (site.lanes ?? []).map(renderLaneSection).join("");
 
-    const phase2 = site.phase2;
-    const phase2Html = phase2
+    const unlock = site.phase2;
+    const unlockHtml = unlock
       ? `
-          <section class="content-section site-doc-section" id="phase2" data-doc-section>
-            <h2>${escapeHtml(phase2.title)}</h2>
-            <p>${escapeHtml(phase2.intro)}</p>
-            <ul>${phase2.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
-            <p><a href="${escapeHtml(phase2.registryHref)}">See the registry →</a></p>
+          <section class="content-section site-doc-section" id="sponsor-unlocks" data-doc-section>
+            <h2>${escapeHtml(unlock.title ?? "Sponsor unlocks")}</h2>
+            <p>${escapeHtml(unlock.intro)}</p>
+            <ul>${unlock.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
+            <p><a href="${escapeHtml(unlock.registryHref)}">See the registry →</a></p>
           </section>`
       : "";
 
     const mainHtml = `
-          <section class="content-section site-doc-section" id="director-roles" data-doc-section>
-            <h2>Director roles — 2027 festival</h2>
-            <p class="muted"><a href="${escapeHtml(teamHref)}">← Back to Team</a> · weekly calls, Discord, FAQ, and how we organize</p>
-            <h3>${escapeHtml(intro.title)}</h3>
-            ${intro.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+          <section class="content-section site-doc-section" id="what-is-a-director" data-doc-section>
+            <h2>${escapeHtml(intro.title)}</h2>
+            ${linkFirstFundTheFestival(
+              intro.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join(""),
+            )}
             <ul>${intro.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join("")}</ul>
           </section>
+          ${renderApplySection(site)}
+          <section class="content-section site-doc-section" id="faq" data-doc-section>
+            <h2>FAQ</h2>
+            ${renderFaqBlock(site)}
+          </section>
           ${lanesHtml}
-          ${phase2Html}
-          ${renderApplySection(site)}`;
+          ${unlockHtml}`;
 
-    return wrapDocLayout(renderDocToc(buildDirectorRolesToc(site)), mainHtml);
+    return wrapDocLayout(renderDocToc(buildOpenRolesToc(site)), mainHtml);
+  }
+
+  /** @deprecated Prefer renderOpenRolesPage */
+  function renderDirectorRolesPage(site) {
+    return renderOpenRolesPage(site);
   }
 
   function formatBriefProse(text) {
@@ -1504,6 +1611,7 @@
 
   window.EglnySite = {
     SPONSORSHIP_PACKET_PDF_URL,
+    revealPage,
     initPageShell,
     loadSiteData,
     loadJsonData,
@@ -1521,11 +1629,16 @@
     initRosterMedia,
     renderMediaPage,
     renderResourcesPage,
+    renderProductionPage,
     renderSeasonPage,
     renderRoleCard,
     renderTeamPage,
+    renderJoinPage,
+    renderRosterPage,
     renderDirectorRolesPage,
+    renderOpenRolesPage,
     renderSkillsProjectsPage,
+    renderVolunteerPage,
     renderVendorRfpPage,
     renderVendorsPage,
     renderVendorRfpIndexPage,
@@ -1534,6 +1647,8 @@
     initDocToc,
     slugifyHeading,
     escapeHtml,
+    linkFirstFundTheFestival,
+    linkFirstOpenRoles,
     navPrefix,
   };
 })();

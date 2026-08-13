@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="Redirecting to https://eglny.com/about/" />
+  <meta charset="UTF-8" />
+  <style>
+    html { background: #030d29; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="analytics.js"></script>
+
+  <title>About — Elk Grove Lunar New Year Tết</title>
+  <script src="clean-urls.js"></script>
+                                          <meta name="description" content="Redirecting to https://eglny.com/about/" />
   <link rel="canonical" href="https://eglny.com/about/" />
   <meta property="og:title" content="About — Elk Grove Lunar New Year Tết" />
   <meta property="og:description" content="Redirecting to https://eglny.com/about/" />
@@ -12,14 +32,6 @@
   <meta name="twitter:description" content="Redirecting to https://eglny.com/about/" />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
-
-  <meta charset="UTF-8" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="analytics.js"></script>
-
-  <title>About — Elk Grove Lunar New Year Tết</title>
-  <script src="clean-urls.js"></script>
 </head>
 <body>
   <p>Redirecting to <a href="/about/">About</a>…</p>

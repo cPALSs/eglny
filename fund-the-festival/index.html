@@ -2,23 +2,19 @@
 <html lang="en" data-theme="auto">
 <head>
   <meta charset="UTF-8" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="../analytics.js"></script>
-
+  <style>
+    html { background: #030d29; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Fund Elk Grove Lunar New Year Tết 2027 — sponsor registry, tiers, and program blocks at Elk Grove Park." />
-  <link rel="canonical" href="https://eglny.com/fund-the-festival/" />
-  <meta property="og:title" content="Fund The Festival — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Fund Elk Grove Lunar New Year Tết 2027 — sponsor registry, tiers, and program blocks at Elk Grove Park." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eglny.com/fund-the-festival/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Fund The Festival — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Fund Elk Grove Lunar New Year Tết 2027 — sponsor registry, tiers, and program blocks at Elk Grove Park." />
-  <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
-  <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
-
   <title>Fund The Festival — Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
   <script>
@@ -31,8 +27,26 @@
       } catch (_) {}
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
   <link rel="stylesheet" href="../site.css" />
   <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Fund Elk Grove Lunar New Year Tết 2027 — sponsor registry, tiers, and program blocks at Elk Grove Park." />
+  <link rel="canonical" href="https://eglny.com/fund-the-festival/" />
+  <meta property="og:title" content="Fund The Festival — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Fund Elk Grove Lunar New Year Tết 2027 — sponsor registry, tiers, and program blocks at Elk Grove Park." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eglny.com/fund-the-festival/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fund The Festival — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Fund Elk Grove Lunar New Year Tết 2027 — sponsor registry, tiers, and program blocks at Elk Grove Park." />
+  <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
+  <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
   <style>
     body { margin: 0; }
     .build-shell .page { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 2rem; }
@@ -50,7 +64,7 @@
         <p class="event-summary" id="event-summary">Elk Grove Lunar New Year Tết — Feb 13–14, 2027 · 11 AM–7:30 PM · Elk Grove Park, California</p>
         <p class="sponsor-contact">
           Interested in funding the festival?
-          <a href="mailto:contact@eglny.com?subject=LNY%202027%20sponsorship">contact@eglny.com</a>
+          <a href="mailto:sponsorship@eglny.com?subject=LNY%202027%20sponsorship">sponsorship@eglny.com</a>
           ·
           <a href="https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view" target="_blank" rel="noopener">Sponsorship Packet (PDF)</a>
         </p>
@@ -144,7 +158,7 @@
 
       <p class="registry-idea-cta" id="registry-idea-cta">
         Have an idea for the gift registry?
-        <a href="mailto:contact@eglny.com?subject=Fund%20The%20Festival%20%E2%80%94%20registry%20idea">Email us</a>
+        <a href="mailto:sponsorship@eglny.com?subject=Fund%20The%20Festival%20%E2%80%94%20registry%20idea">Email us</a>
         — we’ll help you shape it into a sponsor story.
       </p>
     </details>
@@ -205,7 +219,7 @@
       <div class="modal-body hidden" id="cart-perks"></div>
       <p class="sponsor-contact sponsor-contact--modal">
         Ready to sponsor? Email
-        <a href="mailto:contact@eglny.com?subject=LNY%202027%20sponsorship">contact@eglny.com</a>
+        <a href="mailto:sponsorship@eglny.com?subject=LNY%202027%20sponsorship">sponsorship@eglny.com</a>
       </p>
       <footer class="modal-footer modal-footer--split">
         <button type="button" class="btn btn-clear" id="cart-clear" disabled>Clear selection</button>
@@ -254,7 +268,7 @@
   <script src="../doc-scroll.js"></script>
   <script src="../site.js"></script>
   <script>
-    if (window.EglnySite) window.EglnySite.initPageShell("build");
+    if (window.EglnySite) window.EglnySite.initPageShell("build", { autoReveal: true });
   </script>
   <script src="app.js"></script>
 </body>

@@ -4,17 +4,18 @@
 
 **This folder (`Sites/eglny`) is the canonical source of truth.** Edit here; push from this git repo when ready.
 
-Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Resources** (sponsors + media).
+Unified LNY hub — home, team, about, **Production** (registry + vendors), **Resources** (sponsors + media).
 
 ## Pages
 
 | Path | File |
 |------|------|
 | `/` | `index.html` |
-| `/team/` | Join the team — weekly calls, Discord, apply, FAQ |
-| `/team/roles/` | Traditional director role list (lanes + Phase 2) + how to apply |
-| `/team/skills/` | Skills-based / pro bono Idealist projects |
+| `/team/` | **Roster** — Steering Committee and visionaries (Team nav) |
+| `/team/roles/` | **Open roles** — join path (calls, Discord) + open seats + apply + FAQ |
+| `/production/volunteer/` | **Volunteer** — skills projects + day-of help (under **Production**) |
 | `/about/` | Tết + coalition |
+| `/production/` | Production hub — Fund The Festival, sponsorship packet, vendors, volunteer |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
 | `/vendors/` | Booth registration timing + custom-zone RFPs (Children’s Theater · Village · Maker Spot) |
 | `/rfp/` | Redirect → `/vendors/` |
@@ -28,7 +29,7 @@ Unified LNY hub — home, team, about, **Production** (Fund The Festival), **Res
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 
-Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsors/`, `/get-involved.html` → `/team/`.
+Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsors/`, `/get-involved.html` → `/team/roles/`. `/team/join/` redirects to `/team/roles/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`.
 
 ## Content
 
@@ -65,7 +66,8 @@ python3 -m http.server 8765
 
 - http://localhost:8765/team/
 - http://localhost:8765/team/roles/
-- http://localhost:8765/team/skills/
+- http://localhost:8765/production/volunteer/
+- http://localhost:8765/production/
 - http://localhost:8765/fund-the-festival/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/

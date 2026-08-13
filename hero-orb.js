@@ -225,7 +225,12 @@ export function initFestivalHeroOrb(root = document) {
     h: Math.max(1, mount.clientHeight),
   });
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch {
+    return;
+  }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   const { w, h } = size();
   renderer.setSize(w, h);
@@ -263,6 +268,7 @@ export function initFestivalHeroOrb(root = document) {
 
   let frame = 0;
   let running = true;
+  let revealed = false;
 
   function onResize() {
     const next = size();
@@ -283,6 +289,10 @@ export function initFestivalHeroOrb(root = document) {
     material.uniforms.uAmplitude.value = settings.amplitude;
     material.uniforms.uIntensity.value = intensity;
     renderer.render(scene, camera);
+    if (!revealed) {
+      revealed = true;
+      mount.classList.add("is-live");
+    }
   }
 
   const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(onResize) : null;

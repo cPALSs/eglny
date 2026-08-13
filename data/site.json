@@ -35,7 +35,7 @@
   },
   "cta": {
     "primaryLabel": "Join the team",
-    "primaryHref": "/team/",
+    "primaryHref": "/team/roles/",
     "vendorLabel": "Register as vendor",
     "vendorHref": "/vendors/",
     "buildLabel": "Fund The Festival",
@@ -56,26 +56,34 @@
     "idealistFallback": "Can't use Idealist? Email contact@eglny.com with the seat or vision and one sentence on why you're interested."
   },
   "teamPage": {
-    "headline": "Join the team",
-    "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed on their own page. We also welcome visionaries who want to express celebration through the festival journey.",
+    "headline": "Open roles",
+    "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.",
+    "rosterPage": {
+      "headline": "Roster",
+      "lead": "Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027."
+    },
     "join": {
       "title": "Get involved",
       "intro": "Join the conversation, browse open seats, then apply on Idealist — we’ll place you on a Director / DRI seat, the Site & Ops Supercommittee, or a visionary crew.",
-      "zoom": "Weekly Zoom production calls are Mondays at 6:30 PM. To join as a guest, email contact@eglny.com.",
+      "zoom": "Weekly Zoom production calls are Mondays at 6:30 PM. Email us if you’d like to join as a guest.",
       "discordLabel": "Join the Discord",
       "discordHref": "https://discord.gg/h4hXXvWS",
       "discordNote": "Day-to-day asks, intros, and grapevine recruiting.",
-      "applyNote": "Apply on Idealist (primary) — name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season. Can’t use Idealist? Email contact@eglny.com.",
+      "applyNote": "Name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.",
       "rolesCtaLabel": "Browse open seats",
       "rolesHref": "/team/roles/",
-      "skillsCtaLabel": "Browse skills projects",
-      "skillsHref": "/team/skills/"
+      "skillsCtaLabel": "Browse volunteer openings",
+      "skillsHref": "/production/volunteer/"
     },
     "skillsProjects": {
-      "title": "Skills projects",
-      "headline": "Skills projects",
-      "lead": "Scoped pro bono / skills-based roles — separate Idealist listings from Director seats.",
-      "intro": "Apply on the project link for each listing. Director / DRI seats stay on the open seats page.",
+      "title": "Volunteer",
+      "headline": "Volunteer",
+      "lead": "Thank you for wanting to help make Tết happen. Skills projects and day-of shifts live here — for planning seats and Director / DRI work, go to Open roles.",
+      "sectionTitle": "Skills projects",
+      "dayOfHelp": {
+        "title": "Day-of help",
+        "body": "We’d love your energy on festival weekend — greeters, load-in hands, zone helpers, and the little jobs that keep families smiling. Shift registration isn’t open yet; come back here when it is."
+      },
       "projects": [
         {
           "id": "sponsorship-packet-designer",
@@ -163,13 +171,13 @@
     "paragraphs": [
       "A director (or DRI) is the accountable owner of one festival lane or Fund The Festival gift. You recommend and decide budget for your lane, including whether to contract out work. You recruit help, hire or place pros (paid or pro bono), and report status to the Steering Committee. You are not assumed to build sets, hang decor, or personally perform the craft.",
       "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority.",
-      "Open seats: 16 Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are Phase 2. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
+      "Open seats: 16 Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are sponsor unlocks. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
     ],
     "notes": [
       "Prefer one accountable DRI per Program gift. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
       "Site & Ops is a supercommittee (optional Chair + Members), not separate Director titles per workstream.",
       "Directors own budget and contracting decisions — craft labor is often hired.",
-      "Soft gifts (Relay Cup, Elders, Spread the Word, Cây Nêu) are Phase 2 — sponsor-gated or elective.",
+      "Soft gifts (Relay Cup, Elders, Spread the Word, Cây Nêu) are sponsor unlocks — sponsor-gated or elective.",
       "If a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
     ]
   },
@@ -186,7 +194,7 @@
   "lanes": [
     {
       "id": "site-ops",
-      "title": "Site & operations",
+      "title": "Site & ops",
       "subtitle": "Supercommittee — keep the festival running",
       "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline. One supercommittee with an optional Chair — members claim workstreams when tasks demand. Claiming a workstream includes budget and contract scope for that task.",
       "layout": "responsibility-list",
@@ -356,7 +364,7 @@
     }
   ],
   "phase2": {
-    "title": "Sponsor unlocks — Phase 2",
+    "title": "Sponsor unlocks",
     "intro": "Soft / elective gifts. Hold the vision until the block funds; not the primary recruiting push.",
     "roles": [
       "Tết Relay Cup Director — Open-age relay bracket on grass",
@@ -405,6 +413,41 @@
           "The festival is co-hosted by Community Partners Advocate of Little Saigon Sacramento (cPALSs), Vietnamese American Community of Sacramento (VACOS), and Norcal Vietnamese Chamber of Commerce (NVCC), with generous support from sponsors, donors, and volunteers.",
           "We hope you consider supporting our culturally-oriented and community-driven festival as part of this historical moment for our community."
         ]
+      },
+      {
+        "title": "Soul Torrent",
+        "paragraphs": [
+          "For 2027 we’re introducing Soul Torrent — a new theatrical festival concept for Saturday at Elk Grove Park. Too many festivals feel fragmented: random stage acts, random booths, random programming that never quite add up to a day you can tell someone about. Soul Torrent is our answer — one story guests can feel from daylight to dusk: dark spirits gather at the gates, protectors and families push back, and by dusk the crowd helps finish the fight.",
+          "Soul Torrent has two chapters under one name. In the afternoon, Tụ Vía invites guests into a walking circle — gathering vía (vital spirit) the way a community gathers strength together. At dusk, Spirit Break is the monsoon release: lions, heroes, music, and glow on the main stage as the malaise breaks and the park exhales before hard close.",
+          "Think of it as interactive theater woven through a free family fair — kids theater and village in daylight, teens and jackets for the dusk climax — not a nightclub and not a lecture on myth. Human-made spirit art, live performers, and cue-driven moments make the fight visible all day. Soul Torrent is the Saturday product we’re building toward; Sunday stays Tailgate and Big Game watch energy. Want to help unlock it? See Fund The Festival."
+        ]
+      }
+    ]
+  },
+  "production": {
+    "headline": "Production",
+    "lead": "Sponsor registry, vendor applications, and the tools that build the festival weekend.",
+    "links": [
+      {
+        "title": "Fund The Festival",
+        "body": "Interactive gift registry — sponsors unlock named program blocks families experience on the ground.",
+        "href": "/fund-the-festival/"
+      },
+      {
+        "title": "Sponsorship Packet",
+        "body": "PDF overview of sponsorship opportunities, benefits, and how to partner with the festival.",
+        "href": "https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view",
+        "external": true
+      },
+      {
+        "title": "Vendors",
+        "body": "Booth registration timing plus open RFPs for Children’s Village, Children’s Theater, and Maker Spot.",
+        "href": "/vendors/"
+      },
+      {
+        "title": "Volunteer",
+        "body": "Skills projects, day-of help, and a path to Open roles for planning work.",
+        "href": "/production/volunteer/"
       }
     ]
   },

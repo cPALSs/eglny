@@ -81,13 +81,30 @@
     function sectionFromViewport() {
       if (!sectionList.length) return null;
       const offset = getScrollSpyOffsetPx();
-      let chosen = sectionList[0];
+      let chosen = null;
       for (let i = 0; i < sectionList.length; i++) {
         if (sectionList[i].getBoundingClientRect().top <= offset + 1) {
           chosen = sectionList[i];
         }
       }
-      return chosen.id;
+      return chosen ? chosen.id : null;
+    }
+
+    function clearLocationHash() {
+      if (!location.hash) return;
+      if (history.replaceState) {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+    }
+
+    function clearActive(updateHash) {
+      if (activeSectionId) {
+        activeSectionId = null;
+        tocLinks.forEach(function (link) {
+          link.classList.remove("is-active");
+        });
+      }
+      if (updateHash) clearLocationHash();
     }
 
     function setActive(id, updateHash, force) {
@@ -115,6 +132,7 @@
       }
       const id = sectionFromViewport();
       if (id) setActive(id, true);
+      else clearActive(true);
     }
 
     function finalizeProgrammaticScroll() {
