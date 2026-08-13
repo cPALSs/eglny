@@ -5,7 +5,7 @@
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
     "mvpCap": 51667,
     "vendorRev100": 21225,
-    "registryFull": 172067,
+    "registryFull": 168567,
     "vendorSlots": 74,
     "attendance": 9000
   },
@@ -450,15 +450,15 @@
       "id": "lucky_wav",
       "name": "Lucky Wav Edition",
       "emoji": "\ud83c\udfa7",
-      "amount": 6000,
+      "amount": 2500,
       "category": "registry",
       "cohorts": [
         "C4"
       ],
       "sortOrder": 53,
       "impactOrder": 3,
-      "tagline": "Younger-skewed stage block \u2014 DJs, R&B, rap, dance.",
-      "description": "Named Lucky Wav stage segment \u2014 one selectable programming block among PBN revue, Sat night headliner, and other talent sponsors.",
+      "tagline": "Younger-skewed stage block \u2014 DJ Uni anchors the set.",
+      "description": "Named Lucky Wav stage segment \u2014 **DJ Uni (Trang Tran)** as the booked talent for 2027 (other 2026 Lucky Wav performers cut from the budget). One selectable programming block among PBN revue, Soul Torrent / Spirit Break, and other talent sponsors.",
       "benefits": [
         "Lucky Wav presented by [Sponsor]",
         "Facebook/Instagram Reel + collab post",
@@ -466,8 +466,8 @@
       ],
       "lineItems": [
         {
-          "label": "DJ + R&B/rap/dance talent",
-          "amount": 4500
+          "label": "DJ Uni (Trang Tran)",
+          "amount": 1000
         },
         {
           "label": "Production + social clips",
