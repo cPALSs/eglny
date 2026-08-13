@@ -3,9 +3,9 @@
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
-    "mvpCap": 47940,
+    "mvpCap": 51667,
     "vendorRev100": 21225,
-    "registryFull": 160340,
+    "registryFull": 172067,
     "vendorSlots": 74,
     "attendance": 9000
   },
@@ -14,7 +14,7 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 9000,
-    "mvpCap": 47940,
+    "mvpCap": 51667,
     "vendorRevenue": 49625,
     "headroomOrGap": 0,
     "vendorSlots": 78,
@@ -44,11 +44,11 @@
     {
       "id": "festival_foundation",
       "name": "Festival Foundation",
-      "amount": 14000,
+      "amount": 17550,
       "category": "core",
       "sortOrder": 0,
-      "tagline": "Insurance, permits, lions, and infrastructure every festival needs.",
-      "description": "CGL insurance, CCSD permit + TFF coordinator, lion dances (Sat + Sun), transport and traffic, ops tents, organic digital marketing, volunteer meals, and festival coordination \u2014 embedded in the MVP cap. Weather cancel reserve is a separate core gift (Weather / Cancel Fund).",
+      "tagline": "Insurance, permits, lions, recognition plaques/banners, and infrastructure every festival needs.",
+      "description": "CGL insurance, CCSD permit + TFF coordinator, lion dances (Sat + Sun), transport and traffic, ops tents, organic digital marketing, volunteer meals, festival coordination, **sponsor & VIP recognition plaques**, and **main stage banner printing** \u2014 embedded in the MVP cap. Plaques and stage banners are Festival Foundation costs (how we thank sponsors and VIPs and dress the main stage) \u2014 funded by overall sponsorship, **not** sold as a separate gift a sponsor is asked to cover. Weather cancel reserve is a separate core gift (Weather / Cancel Fund).",
       "benefits": [
         "Foundation sponsor recognition on website + email"
       ],
@@ -84,6 +84,14 @@
         {
           "label": "Lion dances (Sat + Sun)",
           "amount": 700
+        },
+        {
+          "label": "Sponsor & VIP recognition plaques",
+          "amount": 1550
+        },
+        {
+          "label": "Main stage banner printing",
+          "amount": 2000
         }
       ]
     },
