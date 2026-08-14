@@ -1,140 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <style>
-    html { background: #030d29; color-scheme: dark; }
-    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
-    @media (prefers-color-scheme: light) {
-      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
-    }
-    html.js:not(.is-hydrated) body { visibility: hidden; }
-  </style>
-  <script>
-    document.documentElement.classList.add("js");
-    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2026 Sponsors — Elk Grove Lunar New Year Tết</title>
-  <script src="../clean-urls.js"></script>
-  <script>
-    (function () {
-      try {
-        var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
-  <link rel="stylesheet" href="../site.css" />
-  <meta name="description" content="Thank you to our 2026 sponsors — Elk Grove Lunar New Year Tết." />
-  <link rel="canonical" href="https://eglny.com/sponsors/" />
-  <meta property="og:title" content="2026 Sponsors — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Thank you to our 2026 sponsors — Elk Grove Lunar New Year Tết." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eglny.com/sponsors/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="2026 Sponsors — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Thank you to our 2026 sponsors — Elk Grove Lunar New Year Tết." />
-  <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
-  <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
-
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
   <script src="../analytics.js"></script>
-  </head>
+  <link rel="canonical" href="https://eglny.com/sponsorship/" />
+  <meta http-equiv="refresh" content="0; url=https://eglny.com/sponsorship/#thank-you-2026" />
+  <title>Redirecting to Sponsorship — Elk Grove Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+</head>
 <body>
-  <div id="site-nav"></div>
-  <main class="page-wrap page-wrap--doc" id="main">
-    <div id="seo-prerender" class="seo-prerender">
-      <section class="hero">
-        <h1>Thank You, 2026 Festival Sponsors</h1>
-        <p>Our 2026 festival was made possible by these partners and sponsors.</p>
-      </section>
-      <section><h2>Partners</h2><p>Cosumnes Community Services District, City of Elk Grove</p></section>
-      <section><h2>Platinum Sponsors</h2><p>American Furniture Galleries, Duc Huong, SMUD</p></section>
-      <section><h2>Bronze Sponsors</h2><p>Fire Wings, Hydro City, Metro by T-Mobile, Parkwest Casino Lotus, Phoong Law, SF Supermarket, Verizon, Xfinity</p></section>
-      <section><h2>Community Sponsors</h2><p>Asian American Business Club, Chason's, Hook &amp; Reel, Darren Suen, Rod Brewer, Thien Ho, Pat Hume, Golden Protection Security Services, KP International Market, Journey to the Dumpling, Anthem, California Waste Solutions, Vietnamese American Business Association</p></section>
-      <section><h2>Media Sponsors</h2><p>MY58, Messenger Publishing Group</p></section>
-    </div>
-  </main>
-  <div id="site-footer"></div>
-  <script src="../doc-scroll.js"></script>
-  <script src="../site.js"></script>
-  <script>
-    (async function () {
-      const {initPageShell, loadSiteData, mountFooter, renderDocToc, wrapDocLayout, initDocToc, slugifyHeading, setPageTitle, escapeHtml, revealPage} =
-        window.EglnySite;
-      initPageShell("sponsors");
-      try {
-        const site = await loadSiteData();
-        setPageTitle(site, "2026 sponsors");
-        const res = await fetch("../data/lny-2026-sponsors-display.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`Could not load sponsors (${res.status})`);
-        const data = await res.json();
-        const sponsors = data.sponsors ?? [];
-        const tierOrder = data.tierOrder ?? [];
-        const byTier = new Map();
-        for (const s of sponsors) {
-          const tier = s.tier ?? "Partner";
-          if (!byTier.has(tier)) byTier.set(tier, []);
-          byTier.get(tier).push(s);
-        }
-        const sortedTiers = [
-          ...tierOrder.filter((t) => byTier.has(t)),
-          ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
-        ];
-        const tocItems = [
-          ...sortedTiers.map((tier) => ({ id: slugifyHeading(tier), label: tier })),
-          { id: "sponsor-2027", label: "Sponsor the 2027 festival" },
-        ];
-        const tiersHtml = sortedTiers
-          .map((tier) => {
-            const tierId = slugifyHeading(tier);
-            const cards = byTier
-              .get(tier)
-              .map((s) => {
-                const inner = s.logo
-                  ? `<img src="../sponsors/${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />`
-                  : escapeHtml(s.name);
-                if (s.url) {
-                  return `<a class="sponsor-card" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
-                }
-                return `<div class="sponsor-card">${inner}</div>`;
-              })
-              .join("");
-            return `<section class="sponsor-tier site-doc-section" id="${escapeHtml(tierId)}" data-doc-section><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
-          })
-          .join("");
-
-        const mainHtml = `
-          ${tiersHtml || "<p>No sponsors to display.</p>"}
-          <section class="content-section site-doc-section" id="sponsor-2027" data-doc-section>
-            <h2>Sponsor the 2027 festival</h2>
-            <p>2027 sponsors will appear here when agreements are signed. Explore upgrade blocks families remember.</p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="/fund-the-festival/">Fund The Festival →</a>
-              <a class="btn btn-secondary" href="${escapeHtml(window.EglnySite.SPONSORSHIP_PACKET_PDF_URL)}" target="_blank" rel="noopener">Sponsorship Packet (PDF)</a>
-            </div>
-          </section>`;
-
-        document.getElementById("main").innerHTML = `
-          <section class="hero">
-            <h1>Thank You, 2026 Festival Sponsors</h1>
-            <p class="hero-lead">Our ${data.eventYear ?? 2026} festival was made possible by these partners and sponsors.</p>
-          </section>
-          ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}
-        `;
-        initDocToc();
-        mountFooter(site);
-        if (typeof revealPage === "function") revealPage();
-      } catch (err) {
-        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
-        if (typeof revealPage === "function") revealPage();
-      }
-    })();
-  </script>
+  <p>Sponsor recognition lives on Sponsorship. Redirecting to <a href="/sponsorship/#thank-you-2026">eglny.com/sponsorship/</a>…</p>
+  <script>location.replace("/sponsorship/#thank-you-2026");</script>
 </body>
 </html>

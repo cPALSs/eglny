@@ -15,9 +15,9 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Booth vendor registration (aiming to open October 2026) and open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết." />
+  <meta name="description" content="Join the vendor booth waitlist and learn the two-round application process for Elk Grove Lunar New Year Tết 2027." />
   <link rel="canonical" href="https://eglny.com/vendors/" />
-  <title>Vendors — Elk Grove Lunar New Year Tết</title>
+  <title>Vendor booths — Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
   <script>
     (function () {
@@ -44,16 +44,29 @@
   <script src="../site.js"></script>
   <script>
     (async function () {
-      const {initPageShell, loadSiteData, loadJsonData, mountFooter, renderVendorsPage, setPageTitle, escapeHtml, revealPage} =
-        window.EglnySite;
-      initPageShell("vendors");
+      const {
+        initPageShell,
+        loadSiteData,
+        loadJsonData,
+        mountFooter,
+        renderVendorsBoothsPage,
+        initDocToc,
+        setPageTitle,
+        escapeHtml,
+        revealPage,
+      } = window.EglnySite;
+      initPageShell("booths");
       try {
-        const [site, index] = await Promise.all([loadSiteData(), loadJsonData("data/vendors-index.json")]);
-        setPageTitle(site, index?.meta?.pageTitle ?? "Vendors");
-        if (index?.meta?.description) {
-          document.querySelector('meta[name="description"]').setAttribute("content", index.meta.description);
+        const [site, page] = await Promise.all([
+          loadSiteData(),
+          loadJsonData("data/vendors-booths.json"),
+        ]);
+        setPageTitle(site, page?.meta?.pageTitle ?? "Vendor booths");
+        if (page?.meta?.description) {
+          document.querySelector('meta[name="description"]').setAttribute("content", page.meta.description);
         }
-        document.getElementById("main").innerHTML = renderVendorsPage(index);
+        document.getElementById("main").innerHTML = renderVendorsBoothsPage(page);
+        initDocToc();
         mountFooter(site);
         if (typeof revealPage === "function") revealPage();
       } catch (err) {

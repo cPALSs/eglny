@@ -8,7 +8,7 @@
   },
   "event": {
     "name": "Elk Grove Lunar New Year Tết",
-    "dates": "Feb 13–14, 2027 · 11\u00a0AM–7:30\u00a0PM",
+    "dates": "Feb 13–14, 2027 · 11 AM–7:30 PM",
     "startDate": "2027-02-13",
     "endDate": "2027-02-14",
     "weekdayHint": "SAT & SUN",
@@ -23,7 +23,7 @@
     "attendanceNote": "Planning baseline ~6,000 attendees over the weekend"
   },
   "hero": {
-    "festivalHeadline": "Celebrate Lunar New Year Tết in Elk\u00a0Grove",
+    "festivalHeadline": "Celebrate Lunar New Year Tết in Elk Grove",
     "festivalLead": "A free family weekend of heritage, food, and community — and the debut of Soul Torrent, a new full-day theatrical festival experience.",
     "headline": "Help build the 2027 festival",
     "homeLead": "Join the team shaping this year’s celebration.",
@@ -41,7 +41,7 @@
     "buildLabel": "Fund The Festival",
     "buildHref": "/fund-the-festival/",
     "sponsorsLabel": "2026 sponsors",
-    "sponsorsHref": "/sponsors/",
+    "sponsorsHref": "/sponsorship/#thank-you-2026",
     "archiveLabel": "2026 archive",
     "archiveHref": "https://www.elkgrovelunarnewyear.com/"
   },
@@ -426,26 +426,35 @@
   },
   "production": {
     "headline": "Production",
-    "lead": "Sponsor registry, vendor applications, and the tools that build the festival weekend.",
+    "lead": "Sponsorship, vendor booths, custom zones, RFPs, and the tools that build the festival weekend.",
     "links": [
+      {
+        "title": "Sponsorship",
+        "body": "Partner pathways — Fund The Festival, sponsorship packet, and thank you to our 2026 sponsors.",
+        "href": "/sponsorship/"
+      },
       {
         "title": "Fund The Festival",
         "body": "Interactive gift registry — sponsors unlock named program blocks families experience on the ground.",
         "href": "/fund-the-festival/"
       },
       {
-        "title": "Sponsorship Packet",
-        "body": "PDF overview of sponsorship opportunities, benefits, and how to partner with the festival.",
-        "href": "https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view",
-        "external": true
-      },
-      {
-        "title": "Vendors",
-        "body": "Booth registration timing plus open RFPs for Children’s Village, Children’s Theater, and Maker Spot.",
+        "title": "Vendor booths",
+        "body": "Booth waitlist, selection rounds, and how food and craft vendors join the festival map.",
         "href": "/vendors/"
       },
       {
-        "title": "Volunteer",
+        "title": "Custom Zones",
+        "body": "Named corners on the festival map — decorate yourself or ask us to help bring your block to life.",
+        "href": "/custom-zones/"
+      },
+      {
+        "title": "RFPs",
+        "body": "Open preferred-provider RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot.",
+        "href": "/rfp/"
+      },
+      {
+        "title": "Volunteering",
         "body": "Skills projects, day-of help, and a path to Open roles for planning work.",
         "href": "/production/volunteer/"
       }
@@ -453,17 +462,12 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Season calendar, sponsor recognition, festival media, and planning notes.",
+    "lead": "Season calendar, festival media, and planning notes.",
     "links": [
       {
         "title": "Lunar New Year Season",
         "body": "Celebrate Lunar New Year Season across Greater Sacramento — late January through early March.",
         "href": "/resources/season/"
-      },
-      {
-        "title": "Sponsors",
-        "body": "Thank you to our 2026 festival partners and sponsors.",
-        "href": "/sponsors/"
       },
       {
         "title": "Media",
@@ -613,6 +617,237 @@
       {
         "label": "2026 archive",
         "href": "https://www.elkgrovelunarnewyear.com/"
+      }
+    ]
+  },
+  "hostActivations": {
+    "meta": {
+      "pageTitle": "Custom Zones",
+      "description": "Custom Zones at Elk Grove Lunar New Year Tết 2027 — your name on the map. Decorate your corner yourself or ask us to help bring it to life."
+    },
+    "hero": {
+      "displayTitle": "Custom Zones",
+      "tagline": "Your name on the map. Your community in the crowd."
+    },
+    "prompts": {
+      "diy": {
+        "label": "I want to decorate it myself",
+        "mode": "diy",
+        "scrollTo": "decorate-yourself",
+        "mailtoSubject": "LNY 2027 — Custom zone (decorate myself)"
+      },
+      "help": {
+        "label": "Help me bring it to life",
+        "mode": "help",
+        "scrollTo": "bring-to-life",
+        "mailtoSubject": "LNY 2027 — Custom zone (help bringing it to life)"
+      },
+      "vendor": {
+        "label": "I just want a booth spot",
+        "href": "/vendors/"
+      }
+    },
+    "diySection": {
+      "id": "decorate-yourself",
+      "title": "Decorate it yourself",
+      "intro": "You get a named corner of the festival — yours to decorate as you see fit. We assign the footprint on the map. You bring popup shade, your look, volunteers, and programming for your community. Baseline BYO pricing is below; add-ons quoted separately.",
+      "plazaHint": "Tables, chairs, decor allowed"
+    },
+    "helpSection": {
+      "id": "bring-to-life",
+      "title": "Help me bring it to life",
+      "intro": "Pick only what you need — we quote shade, tables, identity, lighting, hosted activities, and microstage on top of your zone. Festival staff install and strike rigged items."
+    },
+    "toc": [
+      {
+        "id": "examples",
+        "label": "Examples"
+      },
+      {
+        "id": "decorate-yourself",
+        "label": "Decorate it yourself"
+      },
+      {
+        "id": "bring-to-life",
+        "label": "Bring it to life"
+      },
+      {
+        "id": "contact",
+        "label": "Contact"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      }
+    ],
+    "featuredStoryIds": [
+      "open-mic-club",
+      "toddler-meetup",
+      "filipino-village"
+    ],
+    "storiesSection": {
+      "title": "Examples",
+      "intro": "What it can look like — not price quotes. Diagrams on this page show spot + plaza footprints; example cards are text-only."
+    },
+    "caseStudies": [
+      {
+        "id": "open-mic-club",
+        "mode": "help",
+        "pathLabel": "Help bringing it to life",
+        "title": "Open mic, coffee-shop vibes",
+        "persona": "Music club or songwriter circle — acoustic sets, not a main-stage slot",
+        "baselineSku": "LNY-ZONE-M",
+        "addons": [
+          "LNY-ADD-SOUND-MICROSTAGE",
+          "LNY-ADD-MICROSTAGE-SEATING",
+          "LNY-ADD-TENT-10X10",
+          "LNY-ADD-LIGHT-ZONE",
+          "LNY-ADD-SIGNAGE-ZONE"
+        ],
+        "tenantBrings": [
+          "Performers and sign-up list",
+          "Run-of-show",
+          "Mailing list"
+        ],
+        "platformProvides": [
+          "Portable PA on one spot",
+          "Plaza chair ring",
+          "Zone lighting and signage"
+        ],
+        "summary": "String lights, café tables, and a small plaza stage — members take five-minute sets while the crowd lingers with boba and acoustic sets."
+      },
+      {
+        "id": "toddler-meetup",
+        "mode": "help",
+        "pathLabel": "Help bringing it to life",
+        "title": "Toddler parents' meetup",
+        "persona": "Parents' group — ages 1–4, busy families who need a clear home base",
+        "baselineSku": "LNY-ZONE-S",
+        "addons": [
+          "LNY-ADD-TABLES",
+          "LNY-ADD-TENT-10X10",
+          "LNY-ADD-SIGNAGE-ZONE",
+          "LNY-ADD-ACT-STORY-CIRCLE",
+          "LNY-ADD-FACILITATOR-SLOT"
+        ],
+        "tenantBrings": [
+          "Mailing list",
+          "Volunteers to greet families"
+        ],
+        "platformProvides": [
+          "Shade, tables, and chairs on arrival",
+          "Toddler-ready activities and story time",
+          "Your group's name on the map"
+        ],
+        "summary": "Shade, tables, and toddler activities ready when families arrive — bubble play, story mat, and a map pin so nobody hunts for each other in the crowd."
+      },
+      {
+        "id": "filipino-village",
+        "mode": "diy",
+        "pathLabel": "DIY Village Scale",
+        "title": "Filipino Village",
+        "persona": "Filipino cultural org — barangay-scale identity on the map",
+        "baselineSku": "LNY-ZONE-L",
+        "addons": [
+          "LNY-ADD-BANNER-WELCOME",
+          "LNY-ADD-SIGNAGE-ZONE",
+          "LNY-ADD-LIGHT-ZONE"
+        ],
+        "tenantBrings": [
+          "Parol-inspired décor",
+          "Tinikling and cultural performers",
+          "Community following"
+        ],
+        "platformProvides": [
+          "Eight adjacent spots + plaza",
+          "Welcome arch and map legend",
+          "Insurance umbrella"
+        ],
+        "summary": "Parol-inspired lanterns over the plaza, a welcome arch, and tinikling in the open — the map says Filipino Village, not a single vendor table."
+      }
+    ],
+    "addonsIntro": "Add-ons stack in four tiers — decor, setup, hosted activities, and microstage. Rigged items (lighting, backdrop, PA) are install-inclusive — festival staff set up and strike. Partnerships quotes per deal; no public price list.",
+    "addonCategories": [
+      {
+        "id": "decor",
+        "label": "Identity & decor",
+        "description": "Signage, welcome banner, photo backdrop, zone lighting — festival installs rigged decor; BYO popups are shade-only."
+      },
+      {
+        "id": "setup",
+        "label": "Shade & setup",
+        "description": "Frame tent rental, **tables & chairs** (popular with parent groups), portable power."
+      },
+      {
+        "id": "programming",
+        "label": "Hosted activities",
+        "description": "Crafts, story time, games, photo moments — optional facilitator slots."
+      },
+      {
+        "id": "microstage",
+        "label": "Microstage setup",
+        "description": "Portable PA + plaza seating — you bring performers. Festival organizers do not book zone talent for you."
+      }
+    ],
+    "apply": {
+      "title": "Start your inquiry",
+      "email": "contact@eglny.com",
+      "emailSubject": "LNY 2027 — custom zone inquiry",
+      "intro": "Tell us about your organization — Partnerships will follow up within a few business days with a recommended setup. They may ask about shade, lighting, and artwork; you don't need answers on day one.",
+      "detailNote": "Looking for Children’s Village, Children’s Theater, or Maker Spot? Those are scoped RFPs — not this page.",
+      "vendorNote": "Standard food, craft, and nonprofit booths: join the waitlist on Vendor booths."
+    },
+    "faq": [
+      {
+        "q": "What's a spot in a custom zone?",
+        "a": "One mapped 10×10 tent pad inside your zone. The baseline also includes the **plaza in front of the spot row** — open area for photos and mini programming. Bring popup shade (or add **frame tent** rental). A zone spot is not an assigned vendor-ring booth."
+      },
+      {
+        "q": "Can I BYO popup tents and still get zone lighting?",
+        "a": "Yes — popup shade is fine. String lighting installs on **frame tents**, a **festival pole kit**, or **ground uplights** — festival staff rig and strike; we do not hang lights on popups."
+      },
+      {
+        "q": "Why rent a zone instead of three vendor spots?",
+        "a": "Three vendor registrations get you three commerce spots in the vendor ring. A custom zone gives you adjacent spots **plus the plaza in front** — a named corner where your community can linger."
+      },
+      {
+        "q": "Is this the same as Children’s Village or Maker Spot?",
+        "a": "No. Those are **preferred-provider RFPs** for kids / tween programming the festival product owns. Custom zones are **named corners** for community tribes and organizers who want identity on the map. Open RFPs live on the RFPs page."
+      },
+      {
+        "q": "Are Tailgate camps the same as custom zones?",
+        "a": "No. Sunday **camps** are jersey-crew patches by the Big Game screen inside Kloss. Custom zones are themed villages / plazas elsewhere on the map — different product, different intake."
+      },
+      {
+        "q": "Do festival organizers book singers for my zone?",
+        "a": "Not for LNY 2027. Microstage add-ons cover portable PA and plaza seating only. You bring your own performers and run-of-show — karaoke crew, church singers, community talent."
+      },
+      {
+        "q": "Can we rent a zone if we're not Vietnamese-led?",
+        "a": "Yes — activation zones are for any tribe with a community and an identity to express. Cross-community villages (e.g. Chinese, Filipino, Russian) are welcome."
+      }
+    ]
+  },
+  "sponsorship": {
+    "headline": "Sponsorship",
+    "lead": "Partner with Elk Grove Lunar New Year Tết 2027 — unlock named experiences on the ground, or start from the leave-behind packet.",
+    "partnerTitle": "Partner with us",
+    "partnerIntro": "Two ways to start: build a package in Fund The Festival, or download the cash sponsorship packet PDF.",
+    "partnerContactNote": "Questions? Email sponsorship@eglny.com.",
+    "partnerContactEmail": "sponsorship@eglny.com",
+    "thankYouTitle": "Thank You, 2026 Festival Sponsors",
+    "thankYouLead": "Our 2026 festival was made possible by these partners and sponsors.",
+    "links": [
+      {
+        "title": "Fund The Festival",
+        "body": "Interactive gift registry — sponsors unlock named program blocks families experience on the ground.",
+        "href": "/fund-the-festival/"
+      },
+      {
+        "title": "Sponsorship Packet",
+        "body": "PDF overview of sponsorship opportunities, benefits, and how to partner with the festival.",
+        "href": "https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view",
+        "external": true
       }
     ]
   }

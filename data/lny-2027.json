@@ -4,9 +4,9 @@
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
     "mvpCap": 50617,
-    "vendorRev100": 21225,
+    "vendorRev100": 20375,
     "registryFull": 167517,
-    "vendorSlots": 74,
+    "vendorSlots": 76,
     "attendance": 9000
   },
   "scenario": {
@@ -15,17 +15,17 @@
     "fillRate": 1.0,
     "attendance": 9000,
     "mvpCap": 50617,
-    "vendorRevenue": 49625,
+    "vendorRevenue": 45775,
     "headroomOrGap": 0,
-    "vendorSlots": 78,
+    "vendorSlots": 76,
     "estimatedRevenue": {
-      "total": 49625,
-      "summary": "78 paid booths \u00b7 9,000 attendance \u00b7 100% fill",
+      "total": 45775,
+      "summary": "76 paid booths \u00b7 9,000 attendance \u00b7 100% fill",
       "lines": [
         {
           "label": "Vendor booth fees",
-          "amount": 24225,
-          "note": "78 paid \u00b7 Market Modeling card (OC $750 \u00b7 DR $500 \u00b7 fill-first $150 \u00b7 GEN $500 \u00b7 NP $75)"
+          "amount": 20375,
+          "note": "76 paid \u00b7 Market Modeling card (OC $750\u00d711 \u00b7 DR $500\u00d75 [2+1+1+1 coffee] \u00b7 goods $150\u00d740 \u00b7 GEN $500\u00d75 \u00b7 NP $75\u00d715; no early bird)"
         },
         {
           "label": "Parking",

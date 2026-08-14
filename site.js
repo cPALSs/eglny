@@ -1,6 +1,7 @@
 /** Shared shell for eglny.com — scoped to avoid clashing with fund-the-festival/app.js globals */
 (function () {
   const SITE_DATA_URL = "data/site.json";
+  const SKU_CATALOG_URL = "data/sku-catalog.json";
   const THEME_STORAGE_KEY = "eglny-theme";
   const VALID_THEMES = new Set(["auto", "light", "dark"]);
   const STORED_THEMES = new Set(["light", "dark"]);
@@ -152,16 +153,12 @@
         label: "Production",
         href: "/production/",
         children: [
+          { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
-          {
-            id: "sponsorship-packet",
-            label: "Sponsorship Packet",
-            navLabel: "Sponsorship Packet",
-            href: SPONSORSHIP_PACKET_PDF_URL,
-            external: true,
-          },
-          { id: "vendors", label: "Vendors", navLabel: "Vendors", href: "/vendors/" },
-          { id: "volunteer", label: "Volunteer", href: "/production/volunteer/" },
+          { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
+          { id: "host", label: "Custom Zones", navLabel: "Custom Zones", href: "/custom-zones/" },
+          { id: "rfp", label: "RFPs", navLabel: "RFPs", href: "/rfp/" },
+          { id: "volunteer", label: "Volunteering", navLabel: "Volunteering", href: "/production/volunteer/" },
         ],
       },
       {
@@ -170,7 +167,6 @@
         href: "/resources/",
         children: [
           { id: "season", label: "LNY Season", href: "/resources/season/" },
-          { id: "sponsors", label: "Sponsors", href: "/sponsors/" },
           { id: "media", label: "Media", href: "/resources/media/" },
           { id: "blog", label: "Blog", href: "/resources/blog/" },
           { id: "archive2026", label: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
@@ -492,10 +488,11 @@
     const block = site.teamPage?.skillsProjects;
     const projects = block?.projects ?? [];
     if (!projects.length) return "";
+    const ctaClass = projects.length === 1 ? "btn btn-primary" : "btn btn-secondary";
     const cards = projects
       .map((p) => {
         const cta = p.idealistUrl
-          ? `<p class="cta-row"><a class="btn btn-primary" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
+          ? `<p class="cta-row"><a class="${ctaClass}" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
           : "";
         return `
             <article class="role-card skills-project-card" id="${escapeHtml(p.id)}">
@@ -524,13 +521,15 @@
     const block = site.teamPage?.skillsProjects;
     const skillsTitle = block?.sectionTitle ?? "Skills projects";
     const dayOf = block?.dayOfHelp;
+    const projects = block?.projects ?? [];
+    const ctaClass = projects.length === 1 ? "btn btn-primary" : "btn btn-secondary";
     const skillsHtml = `
           <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
             <h2>${escapeHtml(skillsTitle)}</h2>
-            <div class="skills-projects-grid">${(block?.projects ?? [])
+            <div class="skills-projects-grid">${projects
               .map((p) => {
                 const cta = p.idealistUrl
-                  ? `<p class="cta-row"><a class="btn btn-primary" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
+                  ? `<p class="cta-row"><a class="${ctaClass}" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
                   : "";
                 return `
             <article class="role-card skills-project-card" id="${escapeHtml(p.id)}">
@@ -576,9 +575,7 @@
 
   function setPageTitle(site, pageTitle) {
     const suffix = site.meta?.titleSuffix ?? "Elk Grove Lunar New Year Tết";
-    document.title = pageTitle
-      ? `${toTitleCase(pageTitle)} — ${suffix}`
-      : site.meta?.siteName ?? suffix;
+    document.title = pageTitle ? `${pageTitle} — ${suffix}` : site.meta?.siteName ?? suffix;
   }
 
   function eventMetaLine1(event) {
@@ -746,10 +743,14 @@
 
   function renderDocToc(tocItems, options = {}) {
     const links = (tocItems ?? [])
-      .map(
-        (item) =>
-          `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
-      )
+      .map((item) => {
+        if (item?.type === "divider" || item?.divider) {
+          return `<p class="site-doc-toc-label site-doc-toc-label--section">${escapeHtml(
+            item.label ?? "",
+          )}</p>`;
+        }
+        return `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`;
+      })
       .join("");
     const back =
       options.backHref != null
@@ -998,6 +999,111 @@
       lead: production?.lead,
       links: production?.links,
     });
+  }
+
+  function renderSponsorTierHtml(sponsorsData, options = {}) {
+    const sponsors = sponsorsData?.sponsors ?? [];
+    const tierOrder = sponsorsData?.tierOrder ?? [];
+    const byTier = new Map();
+    for (const s of sponsors) {
+      const tier = s.tier ?? "Partner";
+      if (!byTier.has(tier)) byTier.set(tier, []);
+      byTier.get(tier).push(s);
+    }
+    const sortedTiers = [
+      ...tierOrder.filter((t) => byTier.has(t)),
+      ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
+    ];
+    const logoPrefix = options.logoPrefix ?? "/sponsors/";
+    return sortedTiers
+      .map((tier) => {
+        const tierId = slugifyHeading(tier);
+        const cards = byTier
+          .get(tier)
+          .map((s) => {
+            const inner = s.logo
+              ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />`
+              : escapeHtml(s.name);
+            if (s.url) {
+              return `<a class="sponsor-card" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
+            }
+            return `<div class="sponsor-card">${inner}</div>`;
+          })
+          .join("");
+        return `<section class="sponsor-tier site-doc-section" id="${escapeHtml(tierId)}" data-doc-section><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
+      })
+      .join("");
+  }
+
+  function renderSponsorshipPage(sponsorship, sponsorsData) {
+    const links = sponsorship?.links ?? [];
+    const partnerCards = links
+      .map((link) => {
+        const external = link.external ? ' target="_blank" rel="noopener"' : "";
+        return `
+      <a class="resource-card" href="${escapeHtml(link.href)}"${external}>
+        <h3>${escapeHtml(link.title)}</h3>
+        ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
+      </a>`;
+      })
+      .join("");
+
+    const year = sponsorsData?.eventYear ?? 2026;
+    const thankYouTitle = sponsorship?.thankYouTitle ?? `Thank You, ${year} Festival Sponsors`;
+    const thankYouLead =
+      sponsorship?.thankYouLead ??
+      `Our ${year} festival was made possible by these partners and sponsors.`;
+
+    const sponsors = sponsorsData?.sponsors ?? [];
+    const tierOrder = sponsorsData?.tierOrder ?? [];
+    const byTier = new Map();
+    for (const s of sponsors) {
+      const tier = s.tier ?? "Partner";
+      if (!byTier.has(tier)) byTier.set(tier, []);
+      byTier.get(tier).push(s);
+    }
+    const sortedTiers = [
+      ...tierOrder.filter((t) => byTier.has(t)),
+      ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
+    ];
+    const tiersHtml = renderSponsorTierHtml(sponsorsData);
+
+    const tocItems = [
+      { id: "partner", label: sponsorship?.partnerTitle ?? "Partner with us" },
+      {
+        type: "divider",
+        label: sponsorship?.sponsorsTocLabel ?? `${year} Sponsors`,
+      },
+      ...sortedTiers.map((tier) => ({ id: slugifyHeading(tier), label: tier })),
+    ];
+
+    const partnerEmail = sponsorship?.partnerContactEmail ?? "sponsorship@eglny.com";
+    const partnerContactNote = sponsorship?.partnerContactNote
+      ? `<p class="muted">${escapeHtml(sponsorship.partnerContactNote).replace(
+          escapeHtml(partnerEmail),
+          `<a href="mailto:${escapeHtml(partnerEmail)}?subject=${encodeURIComponent("LNY 2027 sponsorship")}">${escapeHtml(partnerEmail)}</a>`,
+        )}</p>`
+      : "";
+
+    const mainHtml = `
+      <section class="content-section site-doc-section" id="partner" data-doc-section>
+        <h2>${escapeHtml(sponsorship?.partnerTitle ?? "Partner with us")}</h2>
+        ${sponsorship?.partnerIntro ? `<p>${escapeHtml(sponsorship.partnerIntro)}</p>` : ""}
+        <div class="resource-card-grid">${partnerCards}</div>
+        ${partnerContactNote}
+      </section>
+      <div class="sponsorship-thank-you" id="thank-you-2026">
+        <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYouTitle)}</h2>
+        <p>${escapeHtml(thankYouLead)}</p>
+      </div>
+      ${tiersHtml || "<p>No sponsors to display.</p>"}`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(sponsorship?.headline ?? "Sponsorship")}</h1>
+        ${sponsorship?.lead ? `<p class="hero-lead">${escapeHtml(sponsorship.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
   }
 
   function renderMediaVideoCard(video) {
@@ -1433,7 +1539,7 @@
             <h2>${escapeHtml(unlock.title ?? "Sponsor unlocks")}</h2>
             <p>${escapeHtml(unlock.intro)}</p>
             <ul>${unlock.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
-            <p><a href="${escapeHtml(unlock.registryHref)}">See the registry →</a></p>
+            <p class="cta-row"><a class="btn btn-tertiary" href="${escapeHtml(unlock.registryHref)}">See the registry</a></p>
           </section>`
       : "";
 
@@ -1517,6 +1623,484 @@
       </section>`;
   }
 
+
+  async function loadSkuCatalog() {
+    const prefix = navPrefix();
+    const res = await fetch(`${prefix}${SKU_CATALOG_URL}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Could not load SKU catalog (${res.status})`);
+    return res.json();
+  }
+
+  function formatProse(text) {
+    return formatBriefProse(text);
+  }
+
+  function zoneStandardSpaceCount(zone) {
+    return zone.standardSpaceCount ?? zone.boothPadCapacity ?? 0;
+  }
+
+  function formatStandardSpaces(count) {
+    if (count === 1) return "1 adjacent spot (10×10)";
+    return `${count} adjacent spots (10×10 each)`;
+  }
+
+  function zoneOpenCookingCap(zone) {
+    return zone.openCookingSpotCap ?? 0;
+  }
+
+  function zoneZonesRemaining(zone) {
+    const remaining = zone.inventory?.zonesRemaining;
+    return remaining === undefined || remaining === null ? null : Number(remaining);
+  }
+
+  function formatZoneRemainingShort(zone) {
+    const remaining = zoneZonesRemaining(zone);
+    if (remaining === null) return "";
+    if (remaining <= 0) return "Sold out";
+    return `${remaining} left`;
+  }
+
+  function formatZoneFoodLine(zone) {
+    const openCook = zoneOpenCookingCap(zone);
+    if (openCook === 0) return "No open-cooking spots. Any spot can sell prepacked food.";
+    if (openCook === 1) return "Up to 1 open-cooking spot 🍳. Any spot can sell prepacked food.";
+    return `Up to ${openCook} open-cooking spots 🍳. Any spot can sell prepacked food.`;
+  }
+
+  function sortZonesBySize(zones) {
+    const order = { Small: 0, Medium: 1, Large: 2 };
+    return [...zones].sort((a, b) => (order[a.sizeLabel] ?? 99) - (order[b.sizeLabel] ?? 99));
+  }
+
+  function formatUsd(amount) {
+    return Number(amount).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    });
+  }
+
+  function vendorBoothFeeStandard(catalog, applyQuestionValue) {
+    const vendor = (catalog.vendors ?? []).find((v) => v.eventeny?.applyQuestionValue === applyQuestionValue);
+    const line = (vendor?.eventeny?.lineItems ?? []).find(
+      (item) => item.role === "booth_fee" && item.tier === "standard",
+    );
+    return line?.amount ?? null;
+  }
+
+  function zoneByoStartingPrices(catalog, zone) {
+    const count = zoneStandardSpaceCount(zone);
+    const generalPerSpace = vendorBoothFeeStandard(catalog, "merchant_craft_goods");
+    const nonprofitPerSpace = vendorBoothFeeStandard(catalog, "nonprofit");
+    if (!count || generalPerSpace == null || nonprofitPerSpace == null) return null;
+    return {
+      nonprofit: nonprofitPerSpace * count,
+      general: generalPerSpace * count,
+    };
+  }
+
+  function renderZoneByoPrice(zone, catalog) {
+    const prices = zoneByoStartingPrices(catalog, zone);
+    if (!prices) return "";
+    return `
+      <div class="zone-tier-price">
+        <p class="zone-tier-price-main">
+          <span class="zone-tier-price-label">Starting at</span>
+          <span class="zone-tier-price-amount">${escapeHtml(formatUsd(prices.general))}</span>
+        </p>
+        <p class="zone-tier-price-detail muted">${escapeHtml(formatUsd(prices.nonprofit))} nonprofit</p>
+      </div>`;
+  }
+
+  function renderZoneDiagramSvg(zone, plazaHint, options = {}) {
+    const count = zoneStandardSpaceCount(zone);
+    const openCook = zoneOpenCookingCap(zone);
+    const hint = plazaHint ?? "Tables, chairs, decor allowed";
+    const tierLayout = options.layout === "tier";
+
+    let spotSize;
+    let gap;
+    let padX;
+    let spotY;
+    let plazaY;
+    let plazaH;
+    let svgW;
+    let svgH;
+    let rowWidth;
+    let spotsX;
+    let plazaW;
+    let plazaX;
+
+    if (tierLayout) {
+      svgW = 320;
+      padX = 20;
+      gap = 8;
+      spotY = 14;
+      plazaH = 52;
+      plazaY = 66;
+      svgH = plazaY + plazaH + 8;
+      const usableW = svgW - padX * 2;
+      spotSize = Math.min(40, Math.floor((usableW - (count - 1) * gap) / count));
+      rowWidth = count * spotSize + (count - 1) * gap;
+      spotsX = (svgW - rowWidth) / 2;
+      plazaW = Math.min(rowWidth + 24, svgW - padX);
+      plazaX = (svgW - plazaW) / 2;
+    } else {
+      spotSize = count > 6 ? 36 : 44;
+      gap = count > 6 ? 8 : 10;
+      rowWidth = count * spotSize + (count - 1) * gap;
+      padX = 20;
+      spotY = 20;
+      plazaY = spotY + spotSize + 14;
+      plazaH = 56;
+      svgW = Math.max(rowWidth + padX * 2, 260);
+      svgH = plazaY + plazaH + 8;
+      plazaW = rowWidth + 24;
+      plazaX = (svgW - plazaW) / 2;
+      spotsX = (svgW - rowWidth) / 2;
+    }
+
+    const spotLabelSize = spotSize <= 32 ? 8 : spotSize <= 36 ? 9 : 10;
+    const flameSize = spotSize <= 32 ? 11 : spotSize <= 36 ? 12 : 14;
+    const spots = Array.from({ length: count }, (_, i) => {
+      const x = spotsX + i * (spotSize + gap);
+      const cx = x + spotSize / 2;
+      const cy = spotY + spotSize / 2 + (spotLabelSize <= 8 ? 2.5 : 3.5);
+      const isCooking = i < openCook;
+      const spotClass = isCooking ? "zone-diagram-spot zone-diagram-spot--open" : "zone-diagram-spot";
+      const label = isCooking
+        ? `<text class="zone-diagram-cook-icon" x="${cx}" y="${cy}" text-anchor="middle" font-size="${flameSize}" aria-hidden="true">🍳</text>`
+        : `<text class="zone-diagram-spot-label" x="${cx}" y="${cy}" text-anchor="middle" font-size="${spotLabelSize}">10×10</text>`;
+      return `<rect class="${spotClass}" x="${x}" y="${spotY}" width="${spotSize}" height="${spotSize}" rx="4"/>${label}`;
+    }).join("");
+
+    const svgClass = tierLayout ? "zone-diagram-svg zone-diagram-svg--tier" : "zone-diagram-svg";
+
+    return `
+    <svg class="${svgClass}" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${escapeHtml(zone.sizeLabel)} zone — ${count} spots above plaza">
+      ${spots}
+      <rect class="zone-diagram-plaza" x="${plazaX}" y="${plazaY}" width="${plazaW}" height="${plazaH}" rx="6"/>
+      <text class="zone-diagram-plaza-label" x="${svgW / 2}" y="${plazaY + 22}" text-anchor="middle">Plaza</text>
+      <text class="zone-diagram-plaza-hint" x="${svgW / 2}" y="${plazaY + 40}" text-anchor="middle">${escapeHtml(hint)}</text>
+    </svg>`;
+  }
+
+  function renderZoneTierCard(zone, diy, catalog) {
+    const count = zoneStandardSpaceCount(zone);
+    const remaining = formatZoneRemainingShort(zone);
+    const soldOut = zoneZonesRemaining(zone) !== null && zoneZonesRemaining(zone) <= 0;
+    const badge = remaining
+      ? `<span class="zone-availability-badge${soldOut ? " zone-availability-badge--sold-out" : ""}">${escapeHtml(remaining)}</span>`
+      : "";
+
+    return `
+    <article class="zone-tier-card">
+      <header class="zone-tier-header">
+        <div class="zone-tier-header-main">
+          <h3 class="zone-tier-name">${escapeHtml(zone.sizeLabel)}</h3>
+          <p class="zone-tier-audience">${escapeHtml(zone.guestCapacityGuide ?? "")}</p>
+        </div>
+        ${badge}
+      </header>
+      <div class="zone-tier-diagram">${renderZoneDiagramSvg(zone, diy?.plazaHint, { layout: "tier" })}</div>
+      ${renderZoneByoPrice(zone, catalog)}
+      <dl class="zone-tier-stats">
+        <div><dt>Spots</dt><dd>${escapeHtml(formatStandardSpaces(count))}</dd></div>
+        <div><dt>Food</dt><dd>${escapeHtml(formatZoneFoodLine(zone))}</dd></div>
+      </dl>
+    </article>`;
+  }
+
+  function renderZonePricingTiers(zones, diy, catalog) {
+    const sorted = sortZonesBySize(zones);
+    const cards = sorted.map((zone) => renderZoneTierCard(zone, diy, catalog)).join("");
+    return `<div class="zone-pricing-grid" role="list">${cards}</div>`;
+  }
+
+  function renderDiySection(diy, catalog) {
+    if (!diy) return "";
+    const zones = catalog.zoneBaselines ?? [];
+    const sectionId = diy.id ?? "decorate-yourself";
+    return `
+    <section id="${escapeHtml(sectionId)}" class="host-doc-section host-diy-section" data-host-section data-path="diy">
+      <h2>${escapeHtml(diy.title ?? "Decorate it yourself")}</h2>
+      <p class="host-diy-lead">${escapeHtml(diy.intro ?? "")}</p>
+      ${renderZonePricingTiers(zones, diy, catalog)}
+      ${diy.inventoryNote ? `<p class="muted host-diy-inventory-note">${escapeHtml(diy.inventoryNote)}</p>` : ""}
+    </section>`;
+  }
+
+  function renderAddonCategorySlide(cat, addons, index, defaultIndex) {
+    const items = addons.filter((a) => a.category === cat.id);
+    const list = items
+      .map(
+        (addon) => `
+        <li class="host-addon-item">
+          <p class="host-addon-name">${escapeHtml(addon.name)}</p>
+          <p class="muted host-addon-desc">${escapeHtml(addon.publicDescription)}</p>
+        </li>`,
+      )
+      .join("");
+
+    return `
+    <article class="zone-carousel-slide help-addon-slide${index === defaultIndex ? " is-active" : ""}" data-slide="${index}" aria-hidden="${index === defaultIndex ? "false" : "true"}">
+      ${cat.description ? `<p class="muted help-addon-slide-desc">${formatProse(cat.description)}</p>` : ""}
+      <ul class="host-addon-list host-addon-list--cols">${list}</ul>
+    </article>`;
+  }
+
+  function renderAddonCard(addons, categories) {
+    const cats = (categories ?? []).filter((cat) => addons.some((a) => a.category === cat.id));
+    if (!cats.length) return "";
+    const activeIndex = 0;
+    const tabs = cats
+      .map(
+        (cat, i) =>
+          `<button type="button" class="zone-size-tab help-addon-tab${i === activeIndex ? " is-active" : ""}" role="tab" aria-selected="${i === activeIndex ? "true" : "false"}" data-slide-to="${i}">${escapeHtml(cat.label)}</button>`,
+      )
+      .join("");
+    const slides = cats.map((cat, i) => renderAddonCategorySlide(cat, addons, i, activeIndex)).join("");
+
+    return `
+    <div class="zone-size-card help-addon-card" data-addon-carousel data-default-slide="${activeIndex}">
+      <header class="zone-size-card-header help-addon-card-header">
+        <div class="help-addon-tabs" role="tablist" aria-label="Add-on categories">${tabs}</div>
+      </header>
+      <div class="zone-size-card-body">
+        <div class="zone-carousel-track">${slides}</div>
+      </div>
+    </div>`;
+  }
+
+  function renderHelpSection(helpSection, ha, catalog) {
+    if (!helpSection) return "";
+    const sectionId = helpSection.id ?? "bring-to-life";
+    const addons = catalog.addons ?? [];
+    const categories = ha.addonCategories ?? [];
+    return `
+    <section id="${escapeHtml(sectionId)}" class="host-doc-section host-help-section" data-host-section data-path="help">
+      <h2>${escapeHtml(helpSection.title ?? "Help me bring it to life")}</h2>
+      <p class="host-help-lead">${escapeHtml(helpSection.intro ?? "")}</p>
+      ${renderAddonCard(addons, categories)}
+      ${helpSection.note ? `<p class="muted host-help-note">${escapeHtml(helpSection.note)}</p>` : ""}
+    </section>`;
+  }
+
+  function renderHostStoryCard(study) {
+    const you = (study.tenantBrings ?? []).slice(0, 3).join(" · ");
+    const us = (study.platformProvides ?? []).slice(0, 2).join(" · ");
+    const modeAttr = study.mode ? ` data-mode="${escapeHtml(study.mode)}"` : "";
+    return `
+    <article class="host-story-card"${modeAttr}>
+      <div class="host-story-body">
+        <p class="host-story-path">${escapeHtml(study.pathLabel ?? study.title)}</p>
+        <h3>${escapeHtml(study.title)}</h3>
+        <p>${escapeHtml(study.summary)}</p>
+        <p class="host-story-meta"><span>You bring</span> ${escapeHtml(you)}</p>
+        <p class="host-story-meta"><span>We provide</span> ${escapeHtml(us)}</p>
+      </div>
+    </article>`;
+  }
+
+  function renderHostPrompts(prompts) {
+    const diy = prompts.diy;
+    const help = prompts.help;
+    const vendor = prompts.vendor;
+    const vendorHref = vendor?.href ?? "/vendors/";
+    return `
+    <div class="host-prompt-row">
+      <button type="button" class="btn btn-secondary" data-host-prompt="diy">${escapeHtml(diy.label)}</button>
+      <button type="button" class="btn btn-secondary" data-host-prompt="help">${escapeHtml(help.label)}</button>
+      <a class="host-prompt-vendor" href="${escapeHtml(vendorHref)}">${escapeHtml(vendor.label)}</a>
+    </div>`;
+  }
+
+  function renderHostToc(tocItems) {
+    const links = (tocItems ?? [])
+      .map(
+        (item) =>
+          `<a class="host-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
+      )
+      .join("");
+    return `<nav class="host-doc-toc" aria-label="On this page"><p class="host-doc-toc-label">On this page</p>${links}</nav>`;
+  }
+
+  function renderHostApplyBlock(hostApply, prominent) {
+    const formUrl = hostApply.formUrl ?? "";
+    const formLabel = hostApply.formLabel ?? "Fill out the inquiry form";
+    const mailto = hostApply.email
+      ? `mailto:${hostApply.email}?subject=${encodeURIComponent(hostApply.emailSubject ?? "LNY 2027 — custom zone inquiry")}`
+      : "";
+    const primary = mailto
+      ? `<a class="btn btn-primary" id="host-contact-email" href="${mailto}">Email ${escapeHtml(hostApply.email)}</a>`
+      : formUrl
+        ? `<a class="btn btn-primary" id="host-contact-form" href="${escapeHtml(formUrl)}">${escapeHtml(formLabel)}</a>`
+        : "";
+    const secondary =
+      mailto && formUrl
+        ? `<a class="btn btn-secondary" id="host-contact-form" href="${escapeHtml(formUrl)}">${escapeHtml(formLabel)}</a>`
+        : "";
+    return `
+    <div class="apply-block${prominent ? " apply-block--prominent" : ""}">
+      <p>${escapeHtml(hostApply.intro ?? "")}</p>
+      <div class="cta-row">
+        ${primary}
+        ${secondary}
+      </div>
+      ${hostApply.detailNote
+        ? `<p class="muted">${escapeHtml(hostApply.detailNote).replace(
+            /scoped RFPs/,
+            '<a href="/rfp/">scoped RFPs</a>',
+          )}</p>`
+        : ""}
+      ${hostApply.vendorNote
+        ? `<p class="muted">${escapeHtml(hostApply.vendorNote).replace(
+            /Vendor booths/,
+            '<a href="/vendors/">Vendor booths</a>',
+          )}</p>`
+        : ""}
+      ${hostApply.responseNote ? `<p class="muted">${escapeHtml(hostApply.responseNote)}</p>` : ""}
+    </div>`;
+  }
+
+  function initZoneCarousel() {
+    document.querySelectorAll("[data-addon-carousel]").forEach((root) => {
+      const slides = [...root.querySelectorAll(".zone-carousel-slide")];
+      const tabs = [...root.querySelectorAll(".zone-size-tab")];
+      if (!slides.length) return;
+
+      let index = Number(root.getAttribute("data-default-slide"));
+      if (Number.isNaN(index) || index < 0) {
+        index = slides.findIndex((slide) => slide.classList.contains("is-active"));
+      }
+      if (index < 0) index = 0;
+
+      function setSlide(nextIndex) {
+        index = (nextIndex + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle("is-active", active);
+          slide.setAttribute("aria-hidden", active ? "false" : "true");
+        });
+        tabs.forEach((tab, i) => {
+          tab.classList.toggle("is-active", i === index);
+          tab.setAttribute("aria-selected", i === index ? "true" : "false");
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const to = Number(tab.getAttribute("data-slide-to"));
+          if (!Number.isNaN(to)) setSlide(to);
+        });
+      });
+      setSlide(index);
+    });
+  }
+
+  function initHostPageToc(hostApply, prompts) {
+    const { navigateToSection } = window.DocScroll.init();
+
+    function updateMailto(mode) {
+      const emailLink = document.getElementById("host-contact-email");
+      if (!emailLink || !hostApply?.email) return;
+      const subject =
+        mode === "diy"
+          ? prompts?.diy?.mailtoSubject
+          : mode === "help"
+            ? prompts?.help?.mailtoSubject
+            : hostApply.emailSubject;
+      if (subject) {
+        emailLink.href = `mailto:${hostApply.email}?subject=${encodeURIComponent(subject)}`;
+      }
+    }
+
+    function highlightStories(mode) {
+      document.querySelectorAll(".host-story-card").forEach((card) => {
+        const cardMode = card.getAttribute("data-mode");
+        card.classList.toggle("is-dimmed", mode && cardMode && cardMode !== mode);
+        card.classList.toggle("is-highlighted", mode && cardMode === mode);
+      });
+    }
+
+    document.querySelectorAll("[data-host-prompt]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const prompt = btn.getAttribute("data-host-prompt");
+        highlightStories(null);
+        updateMailto(prompt);
+        const scrollTarget =
+          prompt === "diy"
+            ? prompts?.diy?.scrollTo ?? "decorate-yourself"
+            : prompt === "help"
+              ? prompts?.help?.scrollTo ?? "bring-to-life"
+              : "examples";
+        navigateToSection(scrollTarget, "smooth");
+      });
+    });
+
+    const hash = window.location.hash.replace("#", "");
+    if (hash === "diy" || hash === "decorate-yourself") updateMailto("diy");
+    else if (hash === "help" || hash === "bring-to-life") updateMailto("help");
+  }
+
+  function renderHostActivations(site, catalog) {
+    const ha = site.hostActivations;
+    if (!ha) return `<p class="error-panel">Custom Zones content not configured.</p>`;
+
+    const featuredIds = new Set(ha.featuredStoryIds ?? []);
+    const featuredStories = (ha.caseStudies ?? []).filter((s) => featuredIds.has(s.id));
+    const featuredHtml = featuredStories.map((s) => renderHostStoryCard(s)).join("");
+    const faqHtml = (ha.faq ?? [])
+      .map((f) => {
+        const paragraphs = String(f.a ?? "")
+          .split(/\n\n+/)
+          .filter(Boolean)
+          .map((p) => `<p>${formatProse(p)}</p>`)
+          .join("");
+        return `<div class="faq-item"><h3>${escapeHtml(f.q)}</h3>${paragraphs}</div>`;
+      })
+      .join("");
+
+    const heroTitle = ha.hero?.displayTitle ?? "Custom Zones";
+    const heroTag = ha.hero?.tagline
+      ? `<p class="hero-lead">${escapeHtml(ha.hero.tagline)}</p>`
+      : "";
+
+    return `
+    <section class="hero">
+      <h1>${escapeHtml(heroTitle)}</h1>
+      ${heroTag}
+    </section>
+
+    <section class="host-prompts-section">
+      ${renderHostPrompts(ha.prompts ?? {})}
+    </section>
+
+    <div class="host-doc-layout">
+      ${renderHostToc(ha.toc)}
+      <div class="host-doc-main">
+        <section id="examples" class="host-doc-section" data-host-section>
+          <h2>${escapeHtml(ha.storiesSection?.title ?? "Examples")}</h2>
+          <p class="muted">${escapeHtml(ha.storiesSection?.intro ?? "")}</p>
+          <div class="host-story-grid">${featuredHtml}</div>
+        </section>
+
+        ${renderDiySection(ha.diySection, catalog)}
+        ${renderHelpSection(ha.helpSection, ha, catalog)}
+
+        <section id="contact" class="host-doc-section" data-host-section>
+          <h2>${escapeHtml(ha.apply?.title ?? "Email us to start")}</h2>
+          ${renderHostApplyBlock(ha.apply, true)}
+        </section>
+
+        <section id="faq" class="host-doc-section" data-host-section>
+          <h2>FAQ</h2>
+          ${faqHtml}
+        </section>
+      </div>
+    </div>`;
+  }
+
   function renderVendorRfpPage(rfp) {
     const sections = rfp?.sections ?? [];
     const contact = rfp?.contact;
@@ -1542,22 +2126,110 @@
       sections.map(renderVendorRfpSection).join("") + renderVendorRfpContact(contact);
     return `
       <section class="hero">
-        <p class="hero-back"><a href="/vendors/#custom-zones">← Vendors</a></p>
+        <p class="hero-back"><a href="/rfp/">← RFPs</a></p>
         <h1>${escapeHtml(rfp?.headline ?? "Vendor RFP")}</h1>
         ${status}
         ${rfp?.lead ? `<p class="hero-lead">${escapeHtml(rfp.lead)}</p>` : ""}
         ${related}
       </section>
       ${wrapDocLayout(
-        renderDocToc(toc, { backHref: "/vendors/#custom-zones", backLabel: "← Vendors" }),
+        renderDocToc(toc, { backHref: "/rfp/", backLabel: "← RFPs" }),
         main,
       )}`;
   }
 
-  function renderVendorsPage(index) {
-    const booths = index?.booths ?? {};
-    const zones = index?.customZones ?? {};
-    const lots = (zones.lots ?? [])
+  function renderVendorsBoothsPage(page) {
+    const waitlist = page?.waitlist ?? {};
+    const timeline = page?.timeline ?? {};
+    const tocItems = [
+      { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Waitlist" },
+      { id: timeline.id ?? "timeline", label: timeline.tocLabel ?? timeline.title ?? "Timeline" },
+    ];
+
+    const roundsHtml = (timeline.rounds ?? [])
+      .map(
+        (round) => `
+      <article class="booth-round-card">
+        <h3>${escapeHtml(round.label)}</h3>
+        ${round.window ? `<p class="booth-round-window">${escapeHtml(round.window)}</p>` : ""}
+        ${round.note ? `<p>${escapeHtml(round.note)}</p>` : ""}
+      </article>`,
+      )
+      .join("");
+
+    const flowSteps = (timeline.steps ?? []).filter((s) => s.id !== "branch" && s.id !== "paid");
+    const paidStep = (timeline.steps ?? []).find((s) => s.id === "paid");
+    const flowHtml = flowSteps
+      .map(
+        (step, i) => `
+      <li class="booth-flow-step">
+        <span class="booth-flow-num" aria-hidden="true">${i + 1}</span>
+        <div>
+          <h3>${escapeHtml(step.title)}</h3>
+          <p>${formatBriefProse(step.body)}</p>
+        </div>
+      </li>`,
+      )
+      .join("");
+
+    const outcomesHtml = (timeline.steps ?? [])
+      .find((s) => s.id === "branch")
+      ?.outcomes?.map(
+        (outcome) => `
+      <article class="booth-outcome-card booth-outcome-card--${escapeHtml(outcome.id)}" role="listitem">
+        <h4>${escapeHtml(outcome.title)}</h4>
+        <p>${formatBriefProse(outcome.body)}</p>
+        ${outcome.next ? `<p class="muted">${formatBriefProse(outcome.next)}</p>` : ""}
+      </article>`,
+      )
+      .join("") ?? "";
+
+    const waitlistCta =
+      waitlist.cta?.href
+        ? `<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(waitlist.cta.href)}" target="_blank" rel="noopener">${escapeHtml(waitlist.cta.label ?? "Join the vendor waitlist")}</a></p>${
+            waitlist.cta.note
+              ? `<p class="muted vendors-waitlist-note">${escapeHtml(waitlist.cta.note)}</p>`
+              : ""
+          }`
+        : "";
+
+    const mainHtml = `
+      <section class="content-section site-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
+        <h2>${escapeHtml(waitlist.title ?? "Join the waitlist")}</h2>
+        ${waitlist.body ? `<p>${formatBriefProse(waitlist.body)}</p>` : ""}
+        ${waitlistCta}
+      </section>
+      <section class="content-section site-doc-section" id="${escapeHtml(timeline.id ?? "timeline")}" data-doc-section>
+        <h2>${escapeHtml(timeline.title ?? "How selection works")}</h2>
+        ${timeline.intro ? `<p>${formatBriefProse(timeline.intro)}</p>` : ""}
+        <div class="booth-rounds-grid">${roundsHtml}</div>
+        <h3 class="booth-path-heading">${escapeHtml(timeline.pathTitle ?? "Your path after you apply")}</h3>
+        ${timeline.pathIntro ? `<p>${formatBriefProse(timeline.pathIntro)}</p>` : ""}
+        <ul class="booth-flow-list">${flowHtml}</ul>
+        <p class="booth-outcomes-label">Then one of three outcomes</p>
+        <div class="booth-outcomes" role="list">${outcomesHtml}</div>
+        ${
+          paidStep
+            ? `<div class="booth-paid-callout">
+          <h3>${escapeHtml(paidStep.title)}</h3>
+          <p>${formatBriefProse(paidStep.body)}</p>
+        </div>`
+            : ""
+        }
+        ${timeline.footnote ? `<p class="muted rfp-index-note">${escapeHtml(timeline.footnote)}</p>` : ""}
+      </section>`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(page?.headline ?? "Vendor booths")}</h1>
+        ${page?.statusLine ? `<p class="hero-kicker">${escapeHtml(page.statusLine)}</p>` : ""}
+        ${page?.lead ? `<p class="hero-lead">${escapeHtml(page.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
+  }
+
+  function renderRfpIndexPage(index) {
+    const lots = (index?.lots ?? [])
       .map(
         (lot) => `
       <a class="resource-card" href="${escapeHtml(lot.href)}">
@@ -1566,41 +2238,29 @@
       </a>`,
       )
       .join("");
+    const tocItems = [{ id: "lots", label: "Open lots" }];
+    const mainHtml = `
+      <section class="content-section site-doc-section" id="lots" data-doc-section aria-labelledby="lots-heading">
+        <h2 id="lots-heading">Open lots</h2>
+        <div class="resource-card-grid">${lots}</div>
+        ${index?.note ? `<p class="muted">${escapeHtml(index.note)}</p>` : ""}
+      </section>`;
     return `
       <section class="hero">
-        <h1>${escapeHtml(index?.headline ?? "Vendors")}</h1>
+        <h1>${escapeHtml(index?.headline ?? "RFPs")}</h1>
         ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
       </section>
-      <div class="vendors-columns">
-        <section class="vendors-section" id="booths" aria-labelledby="booths-heading">
-          <h2 id="booths-heading">${escapeHtml(booths.title ?? "Booth vendors")}</h2>
-          ${booths.statusLine ? `<p class="hero-kicker">${escapeHtml(booths.statusLine)}</p>` : ""}
-          ${booths.body ? `<p>${escapeHtml(booths.body)}</p>` : ""}
-          ${
-            booths.waitlist?.href
-              ? `<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(booths.waitlist.href)}" target="_blank" rel="noopener">${escapeHtml(booths.waitlist.label ?? "Join the vendor waitlist")}</a></p>${
-                  booths.waitlist.note
-                    ? `<p class="muted vendors-waitlist-note">${escapeHtml(booths.waitlist.note)}</p>`
-                    : ""
-                }`
-              : ""
-          }
-          ${booths.note ? `<p class="muted rfp-index-note">${escapeHtml(booths.note)}</p>` : ""}
-        </section>
-        <section class="vendors-section" id="custom-zones" aria-labelledby="custom-zones-heading">
-          <h2 id="custom-zones-heading">${escapeHtml(zones.title ?? "Custom zones")}</h2>
-          ${zones.body ? `<p>${escapeHtml(zones.body)}</p>` : ""}
-          ${zones.statusLine ? `<p class="hero-kicker">${escapeHtml(zones.statusLine)}</p>` : ""}
-          ${zones.lead ? `<p>${escapeHtml(zones.lead)}</p>` : ""}
-          <div class="resource-card-grid">${lots}</div>
-          ${zones.note ? `<p class="muted rfp-index-note">${escapeHtml(zones.note)}</p>` : ""}
-        </section>
-      </div>`;
+      ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
   }
 
-  /** @deprecated Prefer renderVendorsPage — kept for any stale callers */
+  /** @deprecated Prefer renderRfpIndexPage */
   function renderVendorRfpIndexPage(index) {
-    return renderVendorsPage(index);
+    return renderRfpIndexPage(index);
+  }
+
+  /** @deprecated Hub retired — use renderRfpIndexPage or booths page */
+  function renderVendorsPage(index) {
+    return renderRfpIndexPage(index);
   }
 
   async function loadJsonData(relativePath) {
@@ -1630,6 +2290,11 @@
     renderMediaPage,
     renderResourcesPage,
     renderProductionPage,
+    renderSponsorshipPage,
+    loadSkuCatalog,
+    renderHostActivations,
+    initHostPageToc,
+    initZoneCarousel,
     renderSeasonPage,
     renderRoleCard,
     renderTeamPage,
@@ -1640,7 +2305,9 @@
     renderSkillsProjectsPage,
     renderVolunteerPage,
     renderVendorRfpPage,
+    renderRfpIndexPage,
     renderVendorsPage,
+    renderVendorsBoothsPage,
     renderVendorRfpIndexPage,
     setPageTitle,
     wrapDocLayout,

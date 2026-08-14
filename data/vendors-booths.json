@@ -1,0 +1,83 @@
+{
+  "headline": "Vendor booths",
+  "lead": "Food trucks, open cooking, drinks, snacks, craft and merchant booths, and nonprofit info tables for Elk Grove Lunar New Year Tết 2027.",
+  "meta": {
+    "pageTitle": "Vendor booths",
+    "description": "Join the vendor booth waitlist and learn the two-round application process for Elk Grove Lunar New Year Tết 2027 — apply, selection, offer, pay, or waitlist / decline."
+  },
+  "statusLine": "Applications aiming to open October 2026",
+  "waitlist": {
+    "id": "waitlist",
+    "tocLabel": "Waitlist",
+    "title": "Join the waitlist",
+    "body": "Full booth applications are not open yet. Earliest target: October 2026. Join the waitlist so we can email you when Eventeny opens — returning 2026 vendors will also get a direct note.",
+    "cta": {
+      "label": "Join the vendor waitlist",
+      "href": "https://docs.google.com/forms/d/1eN8ydyWLI_i4JeBDS2AoFM8KdCX8Dpwv7FlbGwXyn9g/viewform",
+      "note": "Placement is not guaranteed — this list helps us plan outreach when registration opens."
+    }
+  },
+  "timeline": {
+    "id": "timeline",
+    "tocLabel": "Timeline",
+    "title": "How selection works",
+    "intro": "We run a **two-round** process so early applicants can lock a seat with certainty, while we still hold room for strong late applications. The path is the same in both rounds.",
+    "rounds": [
+      {
+        "label": "Round 1 — Priority",
+        "window": "Oct 1 → Oct 25, 2026",
+        "note": "Most seats (~70–80%). Decisions around Oct 30. Selected vendors pay by Nov 13 to lock the booth. Miss that pay-by and you move to the Round 2 selection waitlist."
+      },
+      {
+        "label": "Round 2 — Open",
+        "window": "Through Jan 15, 2027",
+        "note": "Remaining seats (~20–30%) plus any Round 1 seats that don’t pay on time. Decisions around Jan 22 — including waitlisted Round 1 selectees. Pay by Jan 29."
+      }
+    ],
+    "pathTitle": "Your path after you apply",
+    "pathIntro": "Every applicant waits for a decision batch. From there the path branches:",
+    "steps": [
+      {
+        "id": "apply",
+        "title": "Apply",
+        "body": "Submit through Eventeny when applications open (deposit required to be considered)."
+      },
+      {
+        "id": "wait",
+        "title": "Wait for selection",
+        "body": "We review the round’s pool together — not first-come, first-served. Food booths are ranked for menu fit; other booths by staff fit."
+      },
+      {
+        "id": "branch",
+        "title": "Decision",
+        "body": "You’ll land on one of three outcomes.",
+        "outcomes": [
+          {
+            "id": "offer",
+            "title": "Offer sent",
+            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay the booth fee by the pay-by date**.",
+            "next": "Once paid, you’re officially part of the festival — seat locked."
+          },
+          {
+            "id": "waitlist",
+            "title": "Selection waitlist",
+            "body": "You’re a ranked runner-up for that lane — **or** you were selected in Round 1 but didn’t pay by Nov 13. Unpaid Round 1 selectees are moved here automatically and **must wait for Round 2 decisions** (around Jan 22).",
+            "next": "A waitlist spot is not a reserved booth until you receive an offer and pay."
+          },
+          {
+            "id": "declined",
+            "title": "Declined",
+            "body": "Not selected for this festival season. Apply deposits are refunded on reject.",
+            "next": null
+          }
+        ]
+      },
+      {
+        "id": "paid",
+        "title": "Pay → official vendor",
+        "body": "Selection holds only through the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s pay-by** and you’re placed on the **Round 2 selection waitlist** — you wait for the Round 2 decision batch; that seat goes back into Round 2 inventory."
+      }
+    ],
+    "footnote": "Dates are planning targets published for vendors. Exact seat counts by booth type post after park capacity is confirmed."
+  }
+}

@@ -12,7 +12,7 @@
   var legacy = {
     "/about.html": "/about/",
     "/team.html": "/team/",
-    "/sponsors.html": "/sponsors/",
+    "/sponsors.html": "/sponsorship/",
     "/get-involved.html": "/team/roles/",
   };
 

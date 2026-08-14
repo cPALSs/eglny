@@ -15,9 +15,9 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết 2027." />
-  <link rel="canonical" href="https://eglny.com/rfp/" />
-  <title>RFPs — Elk Grove Lunar New Year Tết</title>
+  <meta name="description" content="Sponsor Elk Grove Lunar New Year Tết 2027 — Fund The Festival, sponsorship packet, and thank you to our 2026 partners." />
+  <link rel="canonical" href="https://eglny.com/sponsorship/" />
+  <title>Sponsorship — Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
   <script>
     (function () {
@@ -49,20 +49,24 @@
         loadSiteData,
         loadJsonData,
         mountFooter,
-        renderRfpIndexPage,
+        renderSponsorshipPage,
         initDocToc,
         setPageTitle,
         escapeHtml,
         revealPage,
       } = window.EglnySite;
-      initPageShell("rfp");
+      initPageShell("sponsorship");
       try {
-        const [site, index] = await Promise.all([loadSiteData(), loadJsonData("data/rfp-index.json")]);
-        setPageTitle(site, index?.meta?.pageTitle ?? "RFPs");
-        if (index?.meta?.description) {
-          document.querySelector('meta[name="description"]').setAttribute("content", index.meta.description);
-        }
-        document.getElementById("main").innerHTML = renderRfpIndexPage(index);
+        const [site, sponsorsData] = await Promise.all([
+          loadSiteData(),
+          loadJsonData("data/lny-2026-sponsors-display.json"),
+        ]);
+        setPageTitle(site, site.sponsorship?.headline ?? "Sponsorship");
+        document.querySelector('meta[name="description"]').setAttribute(
+          "content",
+          "Sponsor Elk Grove Lunar New Year Tết 2027 — Fund The Festival, sponsorship packet, and thank you to our 2026 partners.",
+        );
+        document.getElementById("main").innerHTML = renderSponsorshipPage(site.sponsorship, sponsorsData);
         initDocToc();
         mountFooter(site);
         if (typeof revealPage === "function") revealPage();

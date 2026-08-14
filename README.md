@@ -4,6 +4,8 @@
 
 **This folder (`Sites/eglny`) is the canonical source of truth.** Edit here; push from this git repo when ready.
 
+**Style:** [STYLE.md](STYLE.md) — brands (Fund The Festival, Custom Zones), capitalization, buttons vs links, CTA hierarchy.
+
 Unified LNY hub — home, team, about, **Production** (registry + vendors), **Resources** (sponsors + media).
 
 ## Pages
@@ -15,21 +17,22 @@ Unified LNY hub — home, team, about, **Production** (registry + vendors), **Re
 | `/team/roles/` | **Open roles** — join path (calls, Discord) + open seats + apply + FAQ |
 | `/production/volunteer/` | **Volunteer** — skills projects + day-of help (under **Production**) |
 | `/about/` | Tết + coalition |
-| `/production/` | Production hub — Fund The Festival, sponsorship packet, vendors, volunteer |
+| `/production/` | Production hub — Fund The Festival, sponsorship, custom zones, vendor booths, RFPs, volunteer |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
-| `/vendors/` | Booth registration timing + custom-zone RFPs (Children’s Theater · Village · Maker Spot) |
-| `/rfp/` | Redirect → `/vendors/` |
-| `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual custom-zone RFP detail pages |
-| `/custom-zones/` | Redirect → `/vendors/#custom-zones` |
+| `/sponsorship/` | Sponsorship — partner pathways (FTF + packet) + 2026 sponsor recognition |
+| `/custom-zones/` | Custom Zones — named corners (GLF-style); diagrams, DIY / help paths |
+| `/vendors/` | **Vendor booths** — waitlist + two-round selection process |
+| `/rfp/` | **RFPs** — open lots (Children’s Theater, Village, Maker Spot) |
+| `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual RFP detail pages |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
-| `/sponsors/` | 2026 sponsor recognition — under **Resources** |
+| `/sponsors/` | Redirect → `/sponsorship/#thank-you-2026` |
 | `/resources/media/` | Press and festival YouTube embeds — under **Resources** |
 | `/resources/blog/` | **Blog** — SEO-safe planning notes (generated from shared markdown) — under **Resources** |
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 
-Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsors/`, `/get-involved.html` → `/team/roles/`. `/team/join/` redirects to `/team/roles/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`.
+Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/roles/`. `/team/join/` redirects to `/team/roles/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`.
 
 ## Content
 
@@ -69,9 +72,12 @@ python3 -m http.server 8765
 - http://localhost:8765/production/volunteer/
 - http://localhost:8765/production/
 - http://localhost:8765/fund-the-festival/
+- http://localhost:8765/sponsorship/
+- http://localhost:8765/custom-zones/
+- http://localhost:8765/vendors/
+- http://localhost:8765/rfp/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/
-- http://localhost:8765/sponsors/
 - http://localhost:8765/resources/media/
 - http://localhost:8765/resources/blog/
 
