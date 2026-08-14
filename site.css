@@ -2842,7 +2842,7 @@ body.nav-open {
   border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
 }
 
-/* Food menu — Production listing (menu-viewer embed) */
+/* Food menu — Attendees listing (menu-viewer embed) */
 .page-wrap--food-menu {
   max-width: 1200px;
   margin: 0 auto;
@@ -2878,12 +2878,90 @@ body.nav-open {
 
 .food-menu-viewer .menu-layout {
   font-family: var(--font);
+  padding: 0;
+  max-width: none;
+  margin: 0;
 }
 
 .food-menu-viewer .vendor-card h2,
 .food-menu-viewer .category-block h3 {
   font-family: var(--font-display);
   color: var(--heading);
+}
+
+/* Match document TOC: stack until 1100px, then 200px rail + main */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .food-menu-viewer .menu-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: 0;
+  }
+
+  .food-menu-viewer .menu-sidebar {
+    flex: none;
+    width: 100%;
+    max-height: none;
+    position: static;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-wrap--food-menu > .hero {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 2.5rem;
+    row-gap: 0;
+    align-items: end;
+    padding-bottom: 0.75rem;
+  }
+
+  .page-wrap--food-menu > .hero > :is(h1, .hero-kicker, .hero-lead, p) {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .food-menu-viewer > header {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 2.5rem;
+  }
+
+  .food-menu-viewer > header > * {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .food-menu-viewer .menu-layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 2.5rem;
+    align-items: start;
+    flex-direction: unset;
+  }
+
+  .food-menu-viewer .menu-sidebar {
+    flex: none;
+    width: auto;
+    min-width: 0;
+    position: sticky;
+    top: calc(var(--nav-height) + 1.5rem);
+    max-height: calc(100vh - var(--nav-height) - 2rem);
+    overflow-y: auto;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .food-menu-viewer .menu-main {
+    flex: none;
+    min-width: 0;
+  }
 }
 
 .page-wrap--host > .hero {
