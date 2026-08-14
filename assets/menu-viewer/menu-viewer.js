@@ -1,5 +1,11 @@
 import { WARNING_EMOJI, tagEmojiMeta, setupIconLegendToggle } from "./menu-legend.js";
-import { renderFilterGroupsHtml, attachFilterHandlers, filterMatchesTag } from "./menu-filters.js";
+import {
+  FILTER_GROUPS,
+  FILTER_LABELS,
+  renderFilterGroupsHtml,
+  attachFilterHandlers,
+  filterMatchesTag,
+} from "./menu-filters.js";
 
 function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -100,68 +106,26 @@ function sortVendorsByLocation(vendors) {
   return [...vendors].sort(compareVendorsByLocation);
 }
 
-function formatCoverageStatus(status) {
-  if (status === "well_served") return "Well served";
-  if (status === "limited") return "Limited";
-  if (status === "gap") return "Recruiting";
-  return status;
-}
-
-function coverageToggleHint(coverage) {
-  const recruiting = (coverage.needs || []).filter((n) => n.recruiting);
-  if (recruiting.length) {
-    const labels = recruiting.slice(0, 3).map((n) => n.label);
-    const extra = recruiting.length > 3 ? ` +${recruiting.length - 3}` : "";
-    return `Recruiting: ${labels.join(", ")}${extra}`;
-  }
-  if (coverage.summary) return coverage.summary;
-  return "Attendee need coverage across the roster";
-}
-
-function renderRosterCoverage(coverage, { open = false } = {}) {
-  if (!coverage?.needs?.length) return "";
-  const summary = coverage.summary;
-  const updated = coverage.computed_at
-    ? new Date(coverage.computed_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })
-    : "";
-  const recruiting = coverage.needs.filter((n) => n.recruiting);
-  const chips = coverage.needs
-    .filter((n) => n.regional_pct >= 0.04)
-    .map((n) => {
-      const count = n.vendor_level ? n.vendor_count : n.item_count;
-      const unit = n.vendor_level ? "vendor" : "item";
-      return `<li class="coverage-chip coverage-chip-${escapeHtml(n.status)}">
-        <span class="coverage-chip-label">${escapeHtml(n.label)}</span>
-        <span class="coverage-chip-meta">${count} ${unit}${count === 1 ? "" : "s"} · ${escapeHtml(formatCoverageStatus(n.status))}</span>
-      </li>`;
-    })
-    .join("");
-  const hint = coverageToggleHint(coverage);
-  return `
-    <details class="roster-coverage"${open ? " open" : ""}>
-      <summary class="roster-coverage-toggle">
-        <span class="roster-coverage-toggle-label">Dietary coverage</span>
-        <span class="roster-coverage-toggle-hint">${escapeHtml(hint)}</span>
-      </summary>
-      <div class="roster-coverage-body">
-        ${summary ? `<p class="roster-coverage-summary">${escapeHtml(summary)}</p>` : ""}
-        ${recruiting.length ? `<p class="roster-coverage-recruiting muted">We're still building roster coverage for: ${recruiting.map((n) => escapeHtml(n.label)).join(", ")}.</p>` : ""}
-        <ul class="roster-coverage-chips">${chips}</ul>
-        ${updated ? `<p class="roster-coverage-updated muted">Coverage updated ${escapeHtml(updated)}</p>` : ""}
-      </div>
-    </details>`;
-}
-
 function renderVendorView(vendors) {
-  return sortVendorsByLocation(vendors).map((v) => `
+  return sortVendorsByLocation(vendors)
+    .map(
+      (v) => `
     <article class="vendor-card">
-      <h2>${escapeHtml(v.name)}</h2>
-      ${v.booth_label ? `<p class="booth">${escapeHtml(v.booth_label)}</p>` : ""}
-      <ul class="items">${v.items.map((i) => `
+      <div class="vendor-card-head">
+        <h2>${escapeHtml(v.name)}</h2>
+        ${v.booth_label ? `<p class="booth">${escapeHtml(v.booth_label)}</p>` : ""}
+      </div>
+      <ul class="items">${v.items
+        .map(
+          (i) => `
         <li><span>${escapeHtml(i.name)}${renderDietaryBadges(i)}</span>
-        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`).join("")}
+        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
+        )
+        .join("")}
       </ul>
-    </article>`).join("");
+    </article>`,
+    )
+    .join("");
 }
 
 function renderCategoryView(vendors) {
@@ -172,17 +136,69 @@ function renderCategoryView(vendors) {
       (byCat[cat] = byCat[cat] || []).push({ ...i, vendorName: v.name });
     });
   });
-  return Object.entries(byCat).filter(([, items]) => items.length).map(([cat, items]) => {
-    items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
-    return `
+  return Object.entries(byCat)
+    .filter(([, items]) => items.length)
+    .map(([cat, items]) => {
+      items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+      return `
     <section class="category-block">
       <h3>${cat.charAt(0).toUpperCase() + cat.slice(1)}</h3>
-      <ul class="items">${items.map((i) => `
+      <ul class="items">${items
+        .map(
+          (i) => `
         <li><span>${escapeHtml(i.name)}${renderDietaryBadges(i)} <em>— ${escapeHtml(i.vendorName)}</em></span>
-        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`).join("")}
+        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
+        )
+        .join("")}
       </ul>
     </section>`;
-  }).join("");
+    })
+    .join("");
+}
+
+function dietFacetOrder(facets) {
+  const available = new Set(facets || []);
+  const grouped = new Set(FILTER_GROUPS.flatMap((g) => g.facets));
+  return [
+    ...FILTER_GROUPS.flatMap((g) => g.facets.filter((f) => available.has(f))),
+    ...(facets || []).filter((f) => !grouped.has(f)),
+  ];
+}
+
+function renderDietView(vendors, facets) {
+  const sections = dietFacetOrder(facets)
+    .map((facet) => {
+      const items = [];
+      vendors.forEach((v) => {
+        v.items.forEach((i) => {
+          if (itemMatchesFilter(i, v, facet)) {
+            items.push({ ...i, vendorName: v.name });
+          }
+        });
+      });
+      if (!items.length) return "";
+      items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+      const label = FILTER_LABELS[facet] || facet;
+      return `
+    <section class="category-block diet-block">
+      <h3>${escapeHtml(label)}</h3>
+      <ul class="items">${items
+        .map(
+          (i) => `
+        <li><span>${escapeHtml(i.name)}${renderDietaryBadges(i)} <em>— ${escapeHtml(i.vendorName)}</em></span>
+        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
+        )
+        .join("")}
+      </ul>
+    </section>`;
+    })
+    .filter(Boolean)
+    .join("");
+
+  return (
+    sections ||
+    "<p class='muted'>No dietary tags on the current menu items. Try clearing filters or switch to By vendor.</p>"
+  );
 }
 
 /**
@@ -194,19 +210,17 @@ export function mountMenuViewer(container, menu) {
   let view = "vendor";
   let query = "";
   let currentMenu = menu;
-  let coverageOpen = false;
 
   container.innerHTML = `
     <header>
       <h1 class="menu-title"></h1>
-      <p class="menu-disclaimer muted"></p>
-      <div class="roster-coverage-host"></div>
-      <p class="menu-updated muted"></p>
+      <p class="menu-meta muted"><span class="menu-disclaimer"></span><span class="menu-updated"></span></p>
     </header>
     <div class="menu-layout">
       <aside class="menu-sidebar">
         <input type="search" id="menu-search-input" class="menu-search" placeholder="Search items or vendors..." aria-label="Search items or vendors" />
         <div class="menu-filter-panel">
+          <p class="menu-filter-label">Meets all criteria:</p>
           <div class="menu-filters filters"></div>
           <button type="button" class="filter-reset" disabled>Reset filters</button>
         </div>
@@ -216,6 +230,7 @@ export function mountMenuViewer(container, menu) {
           <nav class="menu-view-tabs" role="tablist" aria-label="Menu view">
             <button type="button" class="view-btn active" data-view="vendor" role="tab" aria-selected="true">By vendor</button>
             <button type="button" class="view-btn" data-view="category" role="tab" aria-selected="false">By category</button>
+            <button type="button" class="view-btn" data-view="diet" role="tab" aria-selected="false">By diet</button>
           </nav>
           <button type="button" class="icon-legend-link" aria-expanded="false" aria-controls="menu-icon-legend">Icon legend</button>
         </div>
@@ -227,7 +242,6 @@ export function mountMenuViewer(container, menu) {
 
   const titleEl = container.querySelector(".menu-title");
   const disclaimerEl = container.querySelector(".menu-disclaimer");
-  const coverageEl = container.querySelector(".roster-coverage-host");
   const updatedEl = container.querySelector(".menu-updated");
   const filtersEl = container.querySelector(".menu-filters");
   const resetFiltersEl = container.querySelector(".filter-reset");
@@ -242,13 +256,11 @@ export function mountMenuViewer(container, menu) {
 
   function render() {
     titleEl.textContent = currentMenu.festival || "Festival Food";
-    disclaimerEl.textContent = currentMenu.disclaimer || "";
-    if (coverageEl) {
-      const existing = coverageEl.querySelector(".roster-coverage");
-      if (existing) coverageOpen = existing.open;
-      coverageEl.innerHTML = renderRosterCoverage(currentMenu.roster_coverage, { open: coverageOpen });
-    }
-    updatedEl.textContent = currentMenu.published_at ? `Menu updated ${currentMenu.published_at}` : "";
+    const disclaimer = currentMenu.disclaimer || "";
+    disclaimerEl.textContent = disclaimer;
+    updatedEl.textContent = currentMenu.published_at
+      ? `${disclaimer ? " · " : ""}Menu updated ${currentMenu.published_at}`
+      : "";
     renderFilters();
 
     const vendors = filteredVendors(currentMenu, activeFilters, query);
@@ -257,7 +269,8 @@ export function mountMenuViewer(container, menu) {
       return;
     }
     if (view === "vendor") contentEl.innerHTML = renderVendorView(vendors);
-    else contentEl.innerHTML = renderCategoryView(vendors);
+    else if (view === "category") contentEl.innerHTML = renderCategoryView(vendors);
+    else contentEl.innerHTML = renderDietView(vendors, currentMenu.filter_facets);
   }
 
   searchEl.addEventListener("input", (e) => {

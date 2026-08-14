@@ -133,6 +133,13 @@
   gap: 0.5rem;
 }
 
+.menu-layout .menu-filter-label {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text, #1c1917);
+}
+
 .menu-layout .menu-filters,
 .menu-layout .filters {
   display: flex;
@@ -142,7 +149,7 @@
 
 .menu-layout .filter-reset {
   align-self: flex-start;
-  margin: 0;
+  margin: 0.5rem 0 0;
   padding: 0;
   border: none;
   background: none;
@@ -179,7 +186,7 @@
   gap: 1rem;
   border-bottom: 1px solid var(--border, #e7e5e4);
   margin-bottom: 0;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0;
 }
 
 .menu-layout .menu-view-tabs {
@@ -309,6 +316,7 @@
 }
 
 .menu-layout .vendor-card {
+  position: relative;
   background: var(--surface, #ffffff);
   border: 1px solid var(--border, #e7e5e4);
   border-radius: 8px;
@@ -317,15 +325,29 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+.menu-layout .vendor-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .menu-layout .vendor-card h2 {
-  margin: 0 0 0.25rem;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
   font-size: 1.15rem;
 }
 
 .menu-layout .booth {
+  margin: 0;
+  flex-shrink: 0;
   font-family: system-ui, sans-serif;
   font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--muted, #78716c);
+  line-height: 1.2;
 }
 
 .menu-layout .items {

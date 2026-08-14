@@ -2846,7 +2846,7 @@ body.nav-open {
 .page-wrap--food-menu {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 3rem) 3rem;
+  padding: 1rem clamp(1.25rem, 4vw, 3rem) 3rem;
 }
 
 .page-wrap--food-menu > .hero {
@@ -2860,7 +2860,7 @@ body.nav-open {
 .food-menu-viewer > header {
   padding: 0 0 1rem;
   text-align: left;
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
   margin-bottom: 1.25rem;
 }
 
@@ -2869,9 +2869,8 @@ body.nav-open {
   display: none;
 }
 
-.food-menu-viewer .menu-disclaimer,
-.food-menu-viewer .menu-updated {
-  margin: 0.35rem 0 0;
+.food-menu-viewer .menu-meta {
+  margin: 0;
   font-size: 0.95rem;
   color: var(--muted);
 }
@@ -2889,27 +2888,36 @@ body.nav-open {
   color: var(--heading);
 }
 
-/* Match document TOC: stack until 1100px, then 200px rail + main */
+/* Stack filters below 1100px (same breakpoint as site-doc TOC) */
 @media (min-width: 768px) and (max-width: 1099px) {
   .food-menu-viewer .menu-layout {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 1.25rem;
     padding: 0;
   }
 
-  .food-menu-viewer .menu-sidebar {
+  .food-menu-viewer .menu-layout .menu-sidebar {
     flex: none;
     width: 100%;
+    max-width: none;
     max-height: none;
     position: static;
+    align-self: stretch;
     padding: 0;
     border: none;
     border-radius: 0;
     background: transparent;
   }
+
+  .food-menu-viewer .menu-layout .menu-main {
+    flex: none;
+    width: 100%;
+  }
 }
 
+/* Wide: TOC-width rail (200px); sidebar must fill the track (override menu-viewer 35%) */
 @media (min-width: 1100px) {
   .page-wrap--food-menu > .hero {
     display: grid;
@@ -2920,7 +2928,7 @@ body.nav-open {
     padding-bottom: 0.75rem;
   }
 
-  .page-wrap--food-menu > .hero > :is(h1, .hero-kicker, .hero-lead, p) {
+  .page-wrap--food-menu > .hero > :is(h1, .hero-lead, p) {
     grid-column: 2;
     min-width: 0;
   }
@@ -2931,7 +2939,7 @@ body.nav-open {
     column-gap: 2.5rem;
   }
 
-  .food-menu-viewer > header > * {
+  .food-menu-viewer > header > :is(.menu-title, .menu-meta) {
     grid-column: 2;
     min-width: 0;
   }
@@ -2941,13 +2949,15 @@ body.nav-open {
     grid-template-columns: 200px minmax(0, 1fr);
     column-gap: 2.5rem;
     align-items: start;
-    flex-direction: unset;
   }
 
-  .food-menu-viewer .menu-sidebar {
+  .food-menu-viewer .menu-layout .menu-sidebar {
     flex: none;
-    width: auto;
+    width: 100%;
+    max-width: none;
     min-width: 0;
+    justify-self: stretch;
+    align-self: start;
     position: sticky;
     top: calc(var(--nav-height) + 1.5rem);
     max-height: calc(100vh - var(--nav-height) - 2rem);
@@ -2956,11 +2966,36 @@ body.nav-open {
     border: none;
     border-radius: 0;
     background: transparent;
+    box-sizing: border-box;
   }
 
-  .food-menu-viewer .menu-main {
+  .food-menu-viewer .menu-layout .menu-search,
+  .food-menu-viewer .menu-layout .menu-filter-panel,
+  .food-menu-viewer .menu-layout .menu-filters,
+  .food-menu-viewer .menu-layout .filters {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .food-menu-viewer .menu-layout .menu-main {
     flex: none;
+    width: auto;
     min-width: 0;
+  }
+
+  /* By vendor: two card columns in the main pane */
+  .food-menu-viewer .menu-content:has(> .vendor-card) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .food-menu-viewer .menu-content > .vendor-card {
+    margin-bottom: 0;
+    height: 100%;
+    box-sizing: border-box;
   }
 }
 

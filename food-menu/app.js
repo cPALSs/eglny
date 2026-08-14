@@ -32,7 +32,6 @@ async function init() {
     main.innerHTML = `
       <section class="hero">
         <h1>Food menu</h1>
-        <p class="hero-kicker">2026 festival archive</p>
         <p class="hero-lead">Meals, drinks, and snacks from Elk Grove Lunar New Year Tết 2026 — ${vendorCount} food vendors, ${itemCount} items. Search and filter by dietary needs. 2027 menus publish after vendor selection.</p>
       </section>
       <div id="menu-root" class="food-menu-viewer" aria-live="polite"></div>

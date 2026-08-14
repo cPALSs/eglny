@@ -1,7 +1,7 @@
 {
   "festival": "Elk Grove Lunar New Year Tết 2026",
   "published_at": "2026-02-15",
-  "disclaimer": "Archive of Elk Grove Lunar New Year Tết 2026 — meals, drinks, and snacks from fielded food vendors (kitchen capability menus). 2027 menus publish after vendor selection. Filters reflect vendor self-report — not medical advice.",
+  "disclaimer": "Filters reflect vendor self-report — not medical advice.",
   "vendors": [
     {
       "id": "fusion-bites",
@@ -1713,7 +1713,7 @@
     {
       "id": "zummi-food-llc",
       "name": "Zummi Food LLC",
-      "booth_label": "FOOD TRUCK 01",
+      "booth_label": "FT01",
       "booth_kind": "food_truck",
       "dietary": [],
       "items": [
@@ -1788,7 +1788,7 @@
     {
       "id": "pinorrito-food-truck",
       "name": "Pinorrito Food Truck",
-      "booth_label": "FOOD TRUCK 02",
+      "booth_label": "FT02",
       "booth_kind": "food_truck",
       "dietary": [],
       "items": [
@@ -1881,7 +1881,7 @@
     {
       "id": "ray-s-kitchen",
       "name": "Ray's Kitchen",
-      "booth_label": "FOOD TRUCK 03",
+      "booth_label": "FT03",
       "booth_kind": "food_trailer",
       "dietary": [
         "halal_certified"
@@ -1964,7 +1964,7 @@
     {
       "id": "wonton-crunchies",
       "name": "Wonton Crunchies",
-      "booth_label": "FOOD TRUCK 04",
+      "booth_label": "FT04",
       "booth_kind": "food_trailer",
       "dietary": [],
       "items": [
@@ -2028,7 +2028,7 @@
     {
       "id": "baboy-boys",
       "name": "Baboy Boys",
-      "booth_label": "FOOD TRUCK 05",
+      "booth_label": "FT05",
       "booth_kind": "food_truck",
       "dietary": [],
       "items": [
@@ -2085,7 +2085,7 @@
     {
       "id": "maiz-restaurant",
       "name": "Maiz Restaurant",
-      "booth_label": "FOOD TRUCK 08",
+      "booth_label": "FT08",
       "booth_kind": "food_truck",
       "dietary": [],
       "items": [
@@ -2154,7 +2154,7 @@
     {
       "id": "pizza-lovers-sacramento",
       "name": "Pizza Lovers Sacramento",
-      "booth_label": "FOOD TRUCK 09",
+      "booth_label": "FT09",
       "booth_kind": "food_trailer",
       "dietary": [],
       "items": [
