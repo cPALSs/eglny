@@ -17,6 +17,27 @@
       "note": "Placement is not guaranteed — this list helps us plan outreach when registration opens."
     }
   },
+  "inventory": {
+    "id": "inventory",
+    "tocLabel": "Inventory",
+    "title": "Booth inventory",
+    "intro": "**Tentative** planning caps for ~9,000 weekend attendance. Seat counts and **booth fees are not final** — both wait on park capacity confirmation with Cosumnes CSD and may change before applications open.",
+    "table": {
+      "headers": ["Booth type", "Tentative seats", "Weekend fee (not final)"],
+      "rows": [
+        ["Open food / truck (10×20)", "11", "$750"],
+        ["Field drinks (2 boba/matcha · 1 sugarcane · 1 aguas · 1 coffee)", "5", "$500"],
+        ["Shared pad pool — corporate / marketing · merchant, craft, and snack / treat · nonprofit / mission and kids-owned", "60", "$75–$500 by type"],
+        ["**Paid field total**", "**~76**", ""]
+      ]
+    },
+    "notes": [
+      "Open food and drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), and nonprofit/kids ($75) compete for the same seats (not separate caps).",
+      "Fees shown as weekend totals (**$/day × 2 days**) and are **not final**. No early-bird discount — early apply buys **certainty** in Round 1.",
+      "Refundable deposits at apply or approval: **$500** cleanup for open cook / truck · **$100** trash for other paid booths."
+    ],
+    "footnote": "Seat counts, booth fees, and deposits are planning targets — not final. We publish the locked rate card when applications open."
+  },
   "timeline": {
     "id": "timeline",
     "tocLabel": "Timeline",
@@ -35,7 +56,7 @@
       }
     ],
     "pathTitle": "Your path after you apply",
-    "pathIntro": "Every applicant waits for a decision batch. From there the path branches:",
+    "pathIntro": "Every applicant waits for a decision batch. From there:",
     "steps": [
       {
         "id": "apply",
@@ -49,8 +70,8 @@
       },
       {
         "id": "branch",
-        "title": "Decision",
-        "body": "You’ll land on one of three outcomes.",
+        "title": "One of three outcomes",
+        "body": "You’ll land on one of these paths.",
         "outcomes": [
           {
             "id": "offer",
@@ -90,10 +111,10 @@
     "factors": {
       "headers": ["Factor", "Working weight"],
       "rows": [
-        ["Compelling menu offering / festival fit", "~30%"],
+        ["Compelling menu offering / festival fit — see [Food menu](/food-menu/) for examples", "~30%"],
         ["Booth economics (can this lane succeed at our attendance)", "~15%"],
         ["Focused brand (clear specialty vs sprawling menu)", "~10%"],
-        ["Dietary and guest-need coverage", "~10%"],
+        ["Dietary and guest-need coverage — see [Food menu](/food-menu/) for examples", "~10%"],
         ["Previous festival relationship", "~5%"],
         ["Social media presence (active food posts — not just a handle or follower count)", "~5%"]
       ]

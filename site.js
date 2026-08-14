@@ -1584,7 +1584,9 @@
   }
 
   function formatBriefProse(text) {
-    return escapeHtml(text ?? "").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    return escapeHtml(text ?? "")
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\[([^\]]+)\]\((\/[^)\s]+)\)/g, '<a href="$2">$1</a>');
   }
 
   function renderBriefTable(table) {
@@ -2156,13 +2158,18 @@
 
   function renderVendorsBoothsPage(page) {
     const waitlist = page?.waitlist ?? {};
+    const inventory = page?.inventory ?? {};
     const criteria = page?.criteria ?? {};
     const timeline = page?.timeline ?? {};
+    const hasInventory = Boolean(inventory.title || inventory.table?.rows?.length);
     const hasCriteria = Boolean(
       criteria.title || criteria.deny?.length || criteria.factors?.rows?.length,
     );
     const tocItems = [
       { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Waitlist" },
+      ...(hasInventory
+        ? [{ id: inventory.id ?? "inventory", label: inventory.tocLabel ?? inventory.title ?? "Inventory" }]
+        : []),
       { id: timeline.id ?? "timeline", label: timeline.tocLabel ?? timeline.title ?? "Timeline" },
       ...(hasCriteria
         ? [{ id: criteria.id ?? "criteria", label: criteria.tocLabel ?? criteria.title ?? "Criteria" }]
@@ -2180,32 +2187,35 @@
       )
       .join("");
 
-    const flowSteps = (timeline.steps ?? []).filter((s) => s.id !== "branch" && s.id !== "paid");
-    const paidStep = (timeline.steps ?? []).find((s) => s.id === "paid");
-    const flowHtml = flowSteps
-      .map(
-        (step, i) => `
-      <li class="booth-flow-step">
-        <span class="booth-flow-num" aria-hidden="true">${i + 1}</span>
-        <div>
-          <h3>${escapeHtml(step.title)}</h3>
-          <p>${formatBriefProse(step.body)}</p>
-        </div>
-      </li>`,
-      )
-      .join("");
-
-    const outcomesHtml = (timeline.steps ?? [])
-      .find((s) => s.id === "branch")
-      ?.outcomes?.map(
-        (outcome) => `
+    const outcomesHtml = (outcomes) =>
+      (outcomes ?? [])
+        .map(
+          (outcome) => `
       <article class="booth-outcome-card booth-outcome-card--${escapeHtml(outcome.id)}" role="listitem">
         <h4>${escapeHtml(outcome.title)}</h4>
         <p>${formatBriefProse(outcome.body)}</p>
         ${outcome.next ? `<p class="muted">${formatBriefProse(outcome.next)}</p>` : ""}
       </article>`,
-      )
-      .join("") ?? "";
+        )
+        .join("");
+
+    const flowHtml = (timeline.steps ?? [])
+      .map((step, i) => {
+        const nested =
+          step.id === "branch" && step.outcomes?.length
+            ? `<div class="booth-outcomes" role="list">${outcomesHtml(step.outcomes)}</div>`
+            : "";
+        return `
+      <li class="booth-flow-step${step.id === "branch" ? " booth-flow-step--branch" : ""}">
+        <span class="booth-flow-num" aria-hidden="true">${i + 1}</span>
+        <div>
+          <h3>${escapeHtml(step.title)}</h3>
+          ${step.body ? `<p>${formatBriefProse(step.body)}</p>` : ""}
+          ${nested}
+        </div>
+      </li>`;
+      })
+      .join("");
 
     const waitlistCta =
       waitlist.cta?.href
@@ -2215,6 +2225,16 @@
               : ""
           }`
         : "";
+
+    const inventoryHtml = hasInventory
+      ? `<section class="content-section site-doc-section" id="${escapeHtml(inventory.id ?? "inventory")}" data-doc-section>
+        <h2>${escapeHtml(inventory.title ?? "Booth inventory")}</h2>
+        ${inventory.intro ? `<p>${formatBriefProse(inventory.intro)}</p>` : ""}
+        ${renderBriefTable(inventory.table)}
+        ${renderBriefBullets(inventory.notes)}
+        ${inventory.footnote ? `<p class="muted">${escapeHtml(inventory.footnote)}</p>` : ""}
+      </section>`
+      : "";
 
     const criteriaHtml = hasCriteria
         ? `<section class="content-section site-doc-section" id="${escapeHtml(criteria.id ?? "criteria")}" data-doc-section>
@@ -2252,6 +2272,7 @@
         ${waitlist.body ? `<p>${formatBriefProse(waitlist.body)}</p>` : ""}
         ${waitlistCta}
       </section>
+      ${inventoryHtml}
       <section class="content-section site-doc-section" id="${escapeHtml(timeline.id ?? "timeline")}" data-doc-section>
         <h2>${escapeHtml(timeline.title ?? "How selection works")}</h2>
         ${timeline.intro ? `<p>${formatBriefProse(timeline.intro)}</p>` : ""}
@@ -2259,16 +2280,6 @@
         <h3 class="booth-path-heading">${escapeHtml(timeline.pathTitle ?? "Your path after you apply")}</h3>
         ${timeline.pathIntro ? `<p>${formatBriefProse(timeline.pathIntro)}</p>` : ""}
         <ul class="booth-flow-list">${flowHtml}</ul>
-        <p class="booth-outcomes-label">Then one of three outcomes</p>
-        <div class="booth-outcomes" role="list">${outcomesHtml}</div>
-        ${
-          paidStep
-            ? `<div class="booth-paid-callout">
-          <h3>${escapeHtml(paidStep.title)}</h3>
-          <p>${formatBriefProse(paidStep.body)}</p>
-        </div>`
-            : ""
-        }
         ${timeline.footnote ? `<p class="muted">${escapeHtml(timeline.footnote)}</p>` : ""}
       </section>
       ${criteriaHtml}`;
