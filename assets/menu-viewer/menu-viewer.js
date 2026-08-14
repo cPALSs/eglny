@@ -1,5 +1,5 @@
 import { WARNING_EMOJI, tagEmojiMeta, setupIconLegendToggle } from "./menu-legend.js";
-import { renderFilterGroupsHtml, attachFilterHandlers } from "./menu-filters.js";
+import { renderFilterGroupsHtml, attachFilterHandlers, filterMatchesTag } from "./menu-filters.js";
 
 function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -49,8 +49,9 @@ function setupDietBadgeHandlers(root) {
 
 function itemMatchesFilter(item, vendor, f) {
   const tags = new Set([...(item.dietary_tags || []), ...(vendor.dietary || [])]);
-  if (tags.has(f) || tags.has(f.replace("_free", ""))) return true;
-  if (f === "halal" && tags.has("halal_certified")) return true;
+  for (const t of tags) {
+    if (filterMatchesTag(f, t)) return true;
+  }
   return false;
 }
 
@@ -99,6 +100,58 @@ function sortVendorsByLocation(vendors) {
   return [...vendors].sort(compareVendorsByLocation);
 }
 
+function formatCoverageStatus(status) {
+  if (status === "well_served") return "Well served";
+  if (status === "limited") return "Limited";
+  if (status === "gap") return "Recruiting";
+  return status;
+}
+
+function coverageToggleHint(coverage) {
+  const recruiting = (coverage.needs || []).filter((n) => n.recruiting);
+  if (recruiting.length) {
+    const labels = recruiting.slice(0, 3).map((n) => n.label);
+    const extra = recruiting.length > 3 ? ` +${recruiting.length - 3}` : "";
+    return `Recruiting: ${labels.join(", ")}${extra}`;
+  }
+  if (coverage.summary) return coverage.summary;
+  return "Attendee need coverage across the roster";
+}
+
+function renderRosterCoverage(coverage, { open = false } = {}) {
+  if (!coverage?.needs?.length) return "";
+  const summary = coverage.summary;
+  const updated = coverage.computed_at
+    ? new Date(coverage.computed_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })
+    : "";
+  const recruiting = coverage.needs.filter((n) => n.recruiting);
+  const chips = coverage.needs
+    .filter((n) => n.regional_pct >= 0.04)
+    .map((n) => {
+      const count = n.vendor_level ? n.vendor_count : n.item_count;
+      const unit = n.vendor_level ? "vendor" : "item";
+      return `<li class="coverage-chip coverage-chip-${escapeHtml(n.status)}">
+        <span class="coverage-chip-label">${escapeHtml(n.label)}</span>
+        <span class="coverage-chip-meta">${count} ${unit}${count === 1 ? "" : "s"} · ${escapeHtml(formatCoverageStatus(n.status))}</span>
+      </li>`;
+    })
+    .join("");
+  const hint = coverageToggleHint(coverage);
+  return `
+    <details class="roster-coverage"${open ? " open" : ""}>
+      <summary class="roster-coverage-toggle">
+        <span class="roster-coverage-toggle-label">Dietary coverage</span>
+        <span class="roster-coverage-toggle-hint">${escapeHtml(hint)}</span>
+      </summary>
+      <div class="roster-coverage-body">
+        ${summary ? `<p class="roster-coverage-summary">${escapeHtml(summary)}</p>` : ""}
+        ${recruiting.length ? `<p class="roster-coverage-recruiting muted">We're still building roster coverage for: ${recruiting.map((n) => escapeHtml(n.label)).join(", ")}.</p>` : ""}
+        <ul class="roster-coverage-chips">${chips}</ul>
+        ${updated ? `<p class="roster-coverage-updated muted">Coverage updated ${escapeHtml(updated)}</p>` : ""}
+      </div>
+    </details>`;
+}
+
 function renderVendorView(vendors) {
   return sortVendorsByLocation(vendors).map((v) => `
     <article class="vendor-card">
@@ -141,11 +194,13 @@ export function mountMenuViewer(container, menu) {
   let view = "vendor";
   let query = "";
   let currentMenu = menu;
+  let coverageOpen = false;
 
   container.innerHTML = `
     <header>
       <h1 class="menu-title"></h1>
       <p class="menu-disclaimer muted"></p>
+      <div class="roster-coverage-host"></div>
       <p class="menu-updated muted"></p>
     </header>
     <div class="menu-layout">
@@ -172,6 +227,7 @@ export function mountMenuViewer(container, menu) {
 
   const titleEl = container.querySelector(".menu-title");
   const disclaimerEl = container.querySelector(".menu-disclaimer");
+  const coverageEl = container.querySelector(".roster-coverage-host");
   const updatedEl = container.querySelector(".menu-updated");
   const filtersEl = container.querySelector(".menu-filters");
   const resetFiltersEl = container.querySelector(".filter-reset");
@@ -187,6 +243,11 @@ export function mountMenuViewer(container, menu) {
   function render() {
     titleEl.textContent = currentMenu.festival || "Festival Food";
     disclaimerEl.textContent = currentMenu.disclaimer || "";
+    if (coverageEl) {
+      const existing = coverageEl.querySelector(".roster-coverage");
+      if (existing) coverageOpen = existing.open;
+      coverageEl.innerHTML = renderRosterCoverage(currentMenu.roster_coverage, { open: coverageOpen });
+    }
     updatedEl.textContent = currentMenu.published_at ? `Menu updated ${currentMenu.published_at}` : "";
     renderFilters();
 

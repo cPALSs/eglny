@@ -1,3 +1,103 @@
+.roster-coverage {
+  margin: 0.75rem 0 0;
+  border: 1px solid var(--border, #e7e5e4);
+  border-radius: 8px;
+  background: var(--surface, #ffffff);
+}
+.roster-coverage-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  padding: 0.65rem 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: system-ui, sans-serif;
+  user-select: none;
+}
+.roster-coverage-toggle::-webkit-details-marker {
+  display: none;
+}
+.roster-coverage-toggle:focus-visible {
+  outline: 2px solid var(--accent, #b91c1c);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+.roster-coverage-toggle::before {
+  content: "▸";
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--muted, #78716c);
+  transition: transform 0.15s ease;
+}
+.roster-coverage[open] > .roster-coverage-toggle::before {
+  transform: rotate(90deg);
+}
+.roster-coverage-toggle-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text, #1c1917);
+}
+.roster-coverage-toggle-hint {
+  flex: 1 1 12rem;
+  min-width: 0;
+  font-size: 0.82rem;
+  color: var(--muted, #78716c);
+  font-weight: 400;
+}
+.roster-coverage-body {
+  padding: 0 0.9rem 0.75rem;
+  border-top: 1px solid var(--border, #e7e5e4);
+}
+.roster-coverage-summary {
+  margin: 0.65rem 0 0.5rem;
+  font-size: 0.95rem;
+}
+.roster-coverage-recruiting {
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+}
+.roster-coverage-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.coverage-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid var(--border, #e7e5e4);
+  font-size: 0.78rem;
+  min-width: 7rem;
+}
+.coverage-chip-well_served {
+  border-color: rgba(45, 138, 94, 0.35);
+  background: rgba(45, 138, 94, 0.08);
+}
+.coverage-chip-limited {
+  border-color: rgba(196, 120, 40, 0.35);
+  background: rgba(196, 120, 40, 0.1);
+}
+.coverage-chip-gap {
+  border-color: rgba(196, 30, 58, 0.3);
+  background: rgba(196, 30, 58, 0.08);
+}
+.coverage-chip-label {
+  font-weight: 600;
+}
+.coverage-chip-meta {
+  color: var(--muted, #78716c);
+}
+.roster-coverage-updated {
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+}
+
 .menu-layout {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,23 @@
 /** Public menu filter labels and sidebar grouping. */
 
+const NEED_TAG_ALIASES = {
+  halal: "halal_certified",
+  vegan: "vegan_options",
+  vegetarian: "vegetarian_options",
+  gluten_free: "gluten_free_options",
+  dairy_free: "dairy_free_options",
+};
+
+function normalizeNeedTag(tag) {
+  return NEED_TAG_ALIASES[tag] || tag;
+}
+
+export function filterMatchesTag(filterFacet, itemTag) {
+  const facet = normalizeNeedTag(filterFacet);
+  const tag = normalizeNeedTag(itemTag);
+  return filterFacet === itemTag || facet === itemTag || filterFacet === tag || facet === tag;
+}
+
 export const FILTER_LABELS = {
   nut_free: "Nut-free",
   gluten_free: "Gluten-free",

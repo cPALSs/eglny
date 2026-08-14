@@ -6,7 +6,7 @@
 
 **Style:** [STYLE.md](STYLE.md) — brands (Fund The Festival, Custom Zones), capitalization, buttons vs links, CTA hierarchy.
 
-Unified LNY hub — home, team, about, **Production** (registry + vendors), **Resources** (sponsors + media).
+Unified LNY hub — home, team, about, **Production** (registry + vendors), **Attendees** (guest guides), **Resources** (sponsors + media).
 
 ## Pages
 
@@ -18,12 +18,15 @@ Unified LNY hub — home, team, about, **Production** (registry + vendors), **Re
 | `/production/volunteer/` | **Volunteer** — skills projects + day-of help (under **Production**) |
 | `/about/` | Tết + coalition |
 | `/production/` | Production hub — Fund The Festival, sponsorship, custom zones, vendor booths, RFPs, volunteer |
+| `/attendees/` | **Attendees** hub — guest guides for the festival weekend |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
 | `/sponsorship/` | Sponsorship — partner pathways (FTF + packet) + 2026 sponsor recognition |
 | `/custom-zones/` | Custom Zones — named corners (GLF-style); diagrams, DIY / help paths |
 | `/vendors/` | **Vendor booths** — waitlist + two-round selection process |
 | `/rfp/` | **RFPs** — open lots (Children’s Theater, Village, Maker Spot) |
 | `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual RFP detail pages |
+| `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Attendees**) |
+| `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
 | `/sponsors/` | Redirect → `/sponsorship/#thank-you-2026` |
@@ -71,11 +74,13 @@ python3 -m http.server 8765
 - http://localhost:8765/team/roles/
 - http://localhost:8765/production/volunteer/
 - http://localhost:8765/production/
+- http://localhost:8765/attendees/
 - http://localhost:8765/fund-the-festival/
 - http://localhost:8765/sponsorship/
 - http://localhost:8765/custom-zones/
 - http://localhost:8765/vendors/
 - http://localhost:8765/rfp/
+- http://localhost:8765/food-menu/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/
 - http://localhost:8765/resources/media/

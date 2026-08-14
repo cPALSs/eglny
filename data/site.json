@@ -460,6 +460,17 @@
       }
     ]
   },
+  "attendees": {
+    "headline": "Attendees",
+    "lead": "Guest guides for the festival weekend — food, maps, and what to expect on site.",
+    "links": [
+      {
+        "title": "Food menu",
+        "body": "Browse 2026 meals, drinks, and snacks — search and filter by dietary needs. 2027 menus publish after selection.",
+        "href": "/food-menu/"
+      }
+    ]
+  },
   "resources": {
     "headline": "Resources",
     "lead": "Season calendar, festival media, and planning notes.",

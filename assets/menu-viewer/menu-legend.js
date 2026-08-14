@@ -21,8 +21,15 @@ export const TAG_EMOJI = {
 };
 
 export function tagEmojiMeta(tag) {
-  if (tag === "halal" || tag === "halal_certified") return TAG_EMOJI.halal;
-  return TAG_EMOJI[tag];
+  const displayKey = {
+    halal_certified: "halal",
+    vegetarian_options: "vegetarian",
+    vegan_options: "vegan",
+    gluten_free_options: "gluten_free",
+    dairy_free_options: "dairy_free",
+  }[tag] || tag;
+  if (displayKey === "halal" || tag === "halal_certified") return TAG_EMOJI.halal;
+  return TAG_EMOJI[displayKey];
 }
 
 function escapeHtml(s) {

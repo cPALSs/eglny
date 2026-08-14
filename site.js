@@ -162,6 +162,14 @@
         ],
       },
       {
+        id: "attendees",
+        label: "Attendees",
+        href: "/attendees/",
+        children: [
+          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
+        ],
+      },
+      {
         id: "resources",
         label: "Resources",
         href: "/resources/",
@@ -998,6 +1006,14 @@
       headline: production?.headline ?? "Production",
       lead: production?.lead,
       links: production?.links,
+    });
+  }
+
+  function renderAttendeesPage(attendees) {
+    return renderResourcesPage({
+      headline: attendees?.headline ?? "Attendees",
+      lead: attendees?.lead,
+      links: attendees?.links,
     });
   }
 
@@ -2140,10 +2156,17 @@
 
   function renderVendorsBoothsPage(page) {
     const waitlist = page?.waitlist ?? {};
+    const criteria = page?.criteria ?? {};
     const timeline = page?.timeline ?? {};
+    const hasCriteria = Boolean(
+      criteria.title || criteria.deny?.length || criteria.factors?.rows?.length,
+    );
     const tocItems = [
       { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Waitlist" },
       { id: timeline.id ?? "timeline", label: timeline.tocLabel ?? timeline.title ?? "Timeline" },
+      ...(hasCriteria
+        ? [{ id: criteria.id ?? "criteria", label: criteria.tocLabel ?? criteria.title ?? "Criteria" }]
+        : []),
     ];
 
     const roundsHtml = (timeline.rounds ?? [])
@@ -2193,6 +2216,36 @@
           }`
         : "";
 
+    const criteriaHtml = hasCriteria
+        ? `<section class="content-section site-doc-section" id="${escapeHtml(criteria.id ?? "criteria")}" data-doc-section>
+        <h2>${escapeHtml(criteria.title ?? "Selection criteria")}</h2>
+        ${criteria.intro ? `<p>${formatBriefProse(criteria.intro)}</p>` : ""}
+        ${
+          criteria.factors?.rows?.length
+            ? `<h3 class="booth-path-heading">${escapeHtml(criteria.factorsTitle ?? "Food ranking factors")}</h3>
+        ${criteria.factorsIntro ? `<p>${formatBriefProse(criteria.factorsIntro)}</p>` : ""}
+        ${renderBriefTable(criteria.factors)}
+        ${criteria.factorsNote ? `<p class="muted">${formatBriefProse(criteria.factorsNote)}</p>` : ""}`
+            : ""
+        }
+        ${
+          criteria.deny?.length
+            ? `<h3 class="booth-path-heading">${escapeHtml(criteria.denyTitle ?? "We do not accept")}</h3>
+        ${criteria.denyIntro ? `<p>${formatBriefProse(criteria.denyIntro)}</p>` : ""}
+        ${renderBriefBullets(criteria.deny)}`
+            : ""
+        }
+        ${
+          criteria.sales?.length
+            ? `<h3 class="booth-path-heading">${escapeHtml(criteria.salesTitle ?? "Prohibited sales items")}</h3>
+        ${criteria.salesIntro ? `<p>${formatBriefProse(criteria.salesIntro)}</p>` : ""}
+        ${renderBriefBullets(criteria.sales)}`
+            : ""
+        }
+        ${criteria.footnote ? `<p class="muted">${escapeHtml(criteria.footnote)}</p>` : ""}
+      </section>`
+        : "";
+
     const mainHtml = `
       <section class="content-section site-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
         <h2>${escapeHtml(waitlist.title ?? "Join the waitlist")}</h2>
@@ -2216,8 +2269,9 @@
         </div>`
             : ""
         }
-        ${timeline.footnote ? `<p class="muted rfp-index-note">${escapeHtml(timeline.footnote)}</p>` : ""}
-      </section>`;
+        ${timeline.footnote ? `<p class="muted">${escapeHtml(timeline.footnote)}</p>` : ""}
+      </section>
+      ${criteriaHtml}`;
 
     return `
       <section class="hero">
@@ -2290,6 +2344,7 @@
     renderMediaPage,
     renderResourcesPage,
     renderProductionPage,
+    renderAttendeesPage,
     renderSponsorshipPage,
     loadSkuCatalog,
     renderHostActivations,

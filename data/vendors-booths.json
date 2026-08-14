@@ -79,5 +79,42 @@
       }
     ],
     "footnote": "Dates are planning targets published for vendors. Exact seat counts by booth type post after park capacity is confirmed."
+  },
+  "criteria": {
+    "id": "criteria",
+    "tocLabel": "Criteria",
+    "title": "Selection criteria",
+    "intro": "We pick from each round’s full pool — not first paid. Food applicants are ranked inside their lane; craft, merchant, and info booths use staff fit review.",
+    "factorsTitle": "Food ranking factors",
+    "factorsIntro": "Working weights for open-cook and drink applicants. **Not final** — we may tune these before applications open.",
+    "factors": {
+      "headers": ["Factor", "Working weight"],
+      "rows": [
+        ["Compelling menu offering / festival fit", "~30%"],
+        ["Booth economics (can this lane succeed at our attendance)", "~15%"],
+        ["Focused brand (clear specialty vs sprawling menu)", "~10%"],
+        ["Dietary and guest-need coverage", "~10%"],
+        ["Previous festival relationship", "~5%"],
+        ["Social media presence (active food posts — not just a handle or follower count)", "~5%"]
+      ]
+    },
+    "factorsNote": "Deposit timing only breaks ties when scores are equal. Other soft factors (local Elk Grove connection, cultural anchors) may also apply at smaller weights.",
+    "denyTitle": "We do not accept",
+    "denyIntro": "These applications are declined:",
+    "deny": [
+      "Adult-oriented businesses or products — including tobacco, drugs, pornography, firearms, and dating services",
+      "Organizations that practice or promote discrimination in employment or services",
+      "Political organizations or campaign booths"
+    ],
+    "salesTitle": "Prohibited sales items",
+    "salesIntro": "Even approved vendors may not display or sell:",
+    "sales": [
+      "Alcoholic beverages",
+      "Illicit drugs",
+      "Cigarettes, cannabis, or vaping products",
+      "Firecrackers, fireworks, firearms, weapons, or other dangerous items",
+      "Vulgar, offensive, sexually explicit, or obscene materials"
+    ],
+    "footnote": "We may ask you to remove any product or service we deem unsuitable for a family festival. That call is final."
   }
 }

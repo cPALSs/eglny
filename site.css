@@ -1961,12 +1961,6 @@ body.nav-open {
   line-height: 1.45;
 }
 
-.rfp-index-note {
-  max-width: 1200px;
-  margin: 1.25rem auto 0;
-  padding: 0 clamp(1.25rem, 4vw, 3rem);
-}
-
 .vendors-columns {
   max-width: 1200px;
   margin: 2.5rem auto 0;
@@ -2021,12 +2015,6 @@ body.nav-open {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;
   line-height: 1.45;
-}
-
-.vendors-section .rfp-index-note {
-  padding: 0;
-  margin-top: 1rem;
-  max-width: none;
 }
 
 .media-page-body {
@@ -2879,6 +2867,50 @@ body.nav-open {
 
 .booth-paid-callout p {
   margin: 0;
+}
+
+/* Food menu — Production listing (menu-viewer embed) */
+.page-wrap--food-menu {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) 3rem;
+}
+
+.page-wrap--food-menu > .hero {
+  margin-bottom: 0.5rem;
+}
+
+.food-menu-viewer {
+  margin-top: 0.5rem;
+}
+
+.food-menu-viewer > header {
+  padding: 0 0 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.25rem;
+}
+
+.food-menu-viewer .menu-title {
+  /* Page H1 lives in .hero — avoid duplicate festival title */
+  display: none;
+}
+
+.food-menu-viewer .menu-disclaimer,
+.food-menu-viewer .menu-updated {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.food-menu-viewer .menu-layout {
+  font-family: var(--font);
+}
+
+.food-menu-viewer .vendor-card h2,
+.food-menu-viewer .category-block h3 {
+  font-family: var(--font-display);
+  color: var(--heading);
 }
 
 .page-wrap--host > .hero {

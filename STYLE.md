@@ -36,13 +36,14 @@ URL paths stay kebab-case (`/fund-the-festival/`, `/custom-zones/`) — paths ar
 
 Use **Title Case** for top-level and submenu destinations that are proper names or short page names:
 
-- Home, About, Team, Production, Resources
+- Home, About, Team, Production, Attendees, Resources
 - Roster, Open Roles, Sponsorship, Volunteering, Media, Blog
 - Brands as locked: Fund The Festival, Custom Zones, RFPs
 
 **Exceptions (sentence case in nav)** — descriptive phrases, not product names:
 
 - Vendor booths
+- Food menu
 - 2026 archive (year + common noun)
 
 Acronyms stay as acronyms: **RFPs**, **LNY**, **FAQ**, **EGLNY**.
@@ -89,7 +90,7 @@ Path-finder controls that only scroll the page (e.g. Custom Zones DIY / Help) ar
 
 ## Back links
 
-- Top-level Production destinations (Vendor booths, Custom Zones, RFPs, Sponsorship, …) — **no** “← Production” back link; the main nav is enough.
+- Top-level Production / Attendees destinations — **no** “← Production” / “← Attendees” back link; the main nav is enough.
 - Nested detail pages (individual RFPs) — **yes** back to the parent index (`← RFPs`).
 
 ---
