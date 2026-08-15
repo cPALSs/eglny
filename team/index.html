@@ -15,7 +15,7 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roster — Elk Grove Lunar New Year Tết</title>
+  <title>Team — Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
   <script>
     (function () {
@@ -31,12 +31,12 @@
   <link rel="stylesheet" href="../site.css" />
   <meta name="description" content="Meet the Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027." />
   <link rel="canonical" href="https://eglny.com/team/" />
-  <meta property="og:title" content="Roster — Elk Grove Lunar New Year Tết" />
+  <meta property="og:title" content="Team — Elk Grove Lunar New Year Tết" />
   <meta property="og:description" content="Meet the Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eglny.com/team/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Roster — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:title" content="Team — Elk Grove Lunar New Year Tết" />
   <meta name="twitter:description" content="Meet the Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027." />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
@@ -50,7 +50,7 @@
   <main class="page-wrap page-wrap--doc" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
-        <h1>Roster</h1>
+        <h1>Team</h1>
         <p>Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027.</p>
       </section>
       <section><h2>Steering Committee</h2><p>Bao Thien Ngo, Thuy Pham</p></section>
@@ -72,15 +72,15 @@
         escapeHtml,
         revealPage,
       } = window.EglnySite;
-      initPageShell("roster");
+      initPageShell("team");
       try {
         const site = await loadSiteData();
-        setPageTitle(site, "Roster");
+        setPageTitle(site, "Team");
         const rosterPage = site.teamPage?.rosterPage ?? {};
         const roster = site.teamPage?.roster ?? {};
         document.getElementById("main").innerHTML = `
           <section class="hero">
-            <h1>${escapeHtml(rosterPage.headline ?? roster.title ?? "Roster")}</h1>
+            <h1>${escapeHtml(rosterPage.headline ?? roster.title ?? "Team")}</h1>
             ${
               rosterPage.lead || roster.intro
                 ? `<p class="hero-lead">${escapeHtml(rosterPage.lead ?? roster.intro)}</p>`

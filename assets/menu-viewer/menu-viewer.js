@@ -6,6 +6,12 @@ import {
   attachFilterHandlers,
   filterMatchesTag,
 } from "./menu-filters.js";
+import {
+  CUISINE_ORDER,
+  CUISINE_LABELS,
+  cuisineSectionsForItem,
+  ITEM_NOTE_MAX_LEN,
+} from "./menu-cuisine.js";
 
 function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -106,6 +112,22 @@ function sortVendorsByLocation(vendors) {
   return [...vendors].sort(compareVendorsByLocation);
 }
 
+function itemNoteText(item) {
+  const note = String(item?.note || "").trim();
+  if (!note) return "";
+  return note.length > ITEM_NOTE_MAX_LEN ? `${note.slice(0, ITEM_NOTE_MAX_LEN - 1)}…` : note;
+}
+
+function renderItemPrimary(item, { showVendor = false } = {}) {
+  const note = itemNoteText(item);
+  const vendorBit =
+    showVendor && item.vendorName
+      ? ` <em>— ${escapeHtml(item.vendorName)}</em>`
+      : "";
+  const noteBit = note ? `<span class="item-note muted">${escapeHtml(note)}</span>` : "";
+  return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${renderDietaryBadges(item)}${vendorBit}</span>${noteBit}</span>`;
+}
+
 function renderVendorView(vendors) {
   return sortVendorsByLocation(vendors)
     .map(
@@ -118,7 +140,7 @@ function renderVendorView(vendors) {
       <ul class="items">${v.items
         .map(
           (i) => `
-        <li><span>${escapeHtml(i.name)}${renderDietaryBadges(i)}</span>
+        <li>${renderItemPrimary(i)}
         ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
         )
         .join("")}
@@ -128,27 +150,28 @@ function renderVendorView(vendors) {
     .join("");
 }
 
-function renderCategoryView(vendors) {
-  const byCat = { meals: [], snacks: [], drinks: [] };
+function renderCuisineView(vendors) {
+  const bySection = Object.fromEntries(CUISINE_ORDER.map((id) => [id, []]));
   vendors.forEach((v) => {
     v.items.forEach((i) => {
-      const cat = i.category || "meals";
-      (byCat[cat] = byCat[cat] || []).push({ ...i, vendorName: v.name });
+      const row = { ...i, vendorName: v.name };
+      for (const section of cuisineSectionsForItem(i, v)) {
+        (bySection[section] = bySection[section] || []).push(row);
+      }
     });
   });
-  return Object.entries(byCat)
-    .filter(([, items]) => items.length)
-    .map(([cat, items]) => {
+  return CUISINE_ORDER.filter((id) => (bySection[id] || []).length)
+    .map((section) => {
+      const items = bySection[section];
       items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
-      const id = `menu-cat-${cat}`;
-      const title = cat.charAt(0).toUpperCase() + cat.slice(1);
+      const id = `menu-cuisine-${section}`;
       return `
     <section class="category-block" id="${id}">
-      <h3>${escapeHtml(title)}</h3>
+      <h3>${escapeHtml(CUISINE_LABELS[section] || section)}</h3>
       <ul class="items">${items
         .map(
           (i) => `
-        <li><span>${escapeHtml(i.name)}${renderDietaryBadges(i)} <em>— ${escapeHtml(i.vendorName)}</em></span>
+        <li>${renderItemPrimary(i, { showVendor: true })}
         ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
         )
         .join("")}
@@ -188,7 +211,7 @@ function renderDietView(vendors, facets) {
       <ul class="items">${items
         .map(
           (i) => `
-        <li><span>${escapeHtml(i.name)}${renderDietaryBadges(i)} <em>— ${escapeHtml(i.vendorName)}</em></span>
+        <li>${renderItemPrimary(i, { showVendor: true })}
         ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
         )
         .join("")}
@@ -210,7 +233,7 @@ function renderDietView(vendors, facets) {
  */
 export function mountMenuViewer(container, menu) {
   let activeFilters = new Set();
-  let view = "vendor";
+  let view = "cuisine";
   let query = "";
   let currentMenu = menu;
 
@@ -252,8 +275,8 @@ export function mountMenuViewer(container, menu) {
         <div class="menu-main-sticky">
           <div class="menu-tabs-row">
             <nav class="menu-view-tabs" role="tablist" aria-label="Menu view">
-              <button type="button" class="view-btn active" data-view="vendor" role="tab" aria-selected="true">By vendor</button>
-              <button type="button" class="view-btn" data-view="category" role="tab" aria-selected="false">By category</button>
+              <button type="button" class="view-btn active" data-view="cuisine" role="tab" aria-selected="true">By cuisine</button>
+              <button type="button" class="view-btn" data-view="vendor" role="tab" aria-selected="false">By vendor</button>
               <button type="button" class="view-btn" data-view="diet" role="tab" aria-selected="false">By diet</button>
             </nav>
           </div>
@@ -506,7 +529,7 @@ export function mountMenuViewer(container, menu) {
       return;
     }
     if (view === "vendor") contentEl.innerHTML = renderVendorView(vendors);
-    else if (view === "category") contentEl.innerHTML = renderCategoryView(vendors);
+    else if (view === "cuisine") contentEl.innerHTML = renderCuisineView(vendors);
     else contentEl.innerHTML = renderDietView(vendors, currentMenu.filter_facets);
     setupSectionNav();
     requestAnimationFrame(syncStickyMetrics);

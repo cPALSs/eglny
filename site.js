@@ -137,15 +137,13 @@
 
   function getNavPages() {
     return [
-      { id: "home", label: "Home", href: "/" },
-      { id: "about", label: "About", href: "/about/" },
       {
-        id: "team",
-        label: "Team",
-        href: "/team/",
+        id: "about",
+        label: "About",
+        href: "/about/",
         children: [
-          { id: "roster", label: "Roster", href: "/team/" },
-          { id: "roles", label: "Open Roles", href: "/team/roles/" },
+          { id: "blog", label: "Blog", href: "/resources/blog/" },
+          { id: "media", label: "Media", href: "/resources/media/" },
         ],
       },
       {
@@ -153,17 +151,19 @@
         label: "Production",
         href: "/production/",
         children: [
+          { id: "team", label: "Team", href: "/team/" },
+          { id: "roles", label: "Open roles", navLabel: "Open roles", href: "/team/roles/" },
+          { id: "volunteer", label: "Volunteering", navLabel: "Volunteering", href: "/production/volunteer/" },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
           { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
           { id: "host", label: "Custom Zones", navLabel: "Custom Zones", href: "/custom-zones/" },
           { id: "rfp", label: "RFPs", navLabel: "RFPs", href: "/rfp/" },
-          { id: "volunteer", label: "Volunteering", navLabel: "Volunteering", href: "/production/volunteer/" },
         ],
       },
       {
-        id: "attendees",
-        label: "Attendees",
+        id: "visit",
+        label: "Visit",
         href: "/attendees/",
         children: [
           { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
@@ -174,10 +174,8 @@
         label: "Resources",
         href: "/resources/",
         children: [
-          { id: "season", label: "LNY Season", href: "/resources/season/" },
-          { id: "media", label: "Media", href: "/resources/media/" },
-          { id: "blog", label: "Blog", href: "/resources/blog/" },
-          { id: "archive2026", label: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
+          { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
+          { id: "archive2026", label: "2026 archive", navLabel: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
         ],
       },
     ];
@@ -304,7 +302,12 @@
 
     for (const page of pages) {
       if (page.children?.length) {
-        const items = [`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`];
+        const items = [];
+        // Top nav uses the logotype for home; footer keeps an explicit Home link above About.
+        if (page.id === "about") {
+          items.push(`<a href="/">Home</a>`);
+        }
+        items.push(`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`);
         for (const child of page.children) {
           const external = child.external ? ' target="_blank" rel="noopener"' : "";
           items.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
@@ -1011,7 +1014,7 @@
 
   function renderAttendeesPage(attendees) {
     return renderResourcesPage({
-      headline: attendees?.headline ?? "Attendees",
+      headline: attendees?.headline ?? "Visit",
       lead: attendees?.lead,
       links: attendees?.links,
     });
@@ -1430,7 +1433,7 @@
         const id = group.title ? slugifyHeading(group.title) : "roster";
         const heading = group.title
           ? `<h2>${escapeHtml(group.title)}</h2>`
-          : `<h2>${escapeHtml(roster.title ?? "Roster")}</h2>`;
+          : `<h2>${escapeHtml(roster.title ?? "Team")}</h2>`;
         const cards = (group.members ?? []).map(renderRosterMemberCard).join("");
         return `
           <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>

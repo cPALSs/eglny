@@ -6,32 +6,32 @@
 
 **Style:** [STYLE.md](STYLE.md) — brands (Fund The Festival, Custom Zones), capitalization, buttons vs links, CTA hierarchy.
 
-Unified LNY hub — home, team, about, **Production** (registry + vendors), **Attendees** (guest guides), **Resources** (sponsors + media).
+Unified LNY hub — logotype home, **About** (story + media + blog), **Production** (team + partners), **Visit** (guest guides), **Resources** (season + archive).
 
 ## Pages
 
 | Path | File |
 |------|------|
-| `/` | `index.html` |
-| `/team/` | **Roster** — Steering Committee and visionaries (Team nav) |
-| `/team/roles/` | **Open roles** — join path (calls, Discord) + open seats + apply + FAQ |
-| `/production/volunteer/` | **Volunteer** — skills projects + day-of help (under **Production**) |
-| `/about/` | Tết + coalition |
-| `/production/` | Production hub — Fund The Festival, sponsorship, custom zones, vendor booths, RFPs, volunteer |
-| `/attendees/` | **Attendees** hub — guest guides for the festival weekend |
+| `/` | `index.html` — home via logotype (no Home nav item) |
+| `/about/` | Tết + coalition story (About umbrella) |
+| `/team/` | **Team** — Steering Committee and visionaries (under **Production**) |
+| `/team/roles/` | **Open roles** — join path (calls, Discord) + open seats + apply + FAQ (under **Production**) |
+| `/production/volunteer/` | **Volunteering** — skills projects + day-of help (under **Production**) |
+| `/production/` | Production hub — team, open roles, volunteering, Fund The Festival, sponsorship, custom zones, vendor booths, RFPs |
+| `/attendees/` | **Visit** hub — guest guides for the festival weekend |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
 | `/sponsorship/` | Sponsorship — partner pathways (FTF + packet) + 2026 sponsor recognition |
 | `/custom-zones/` | Custom Zones — named corners (GLF-style); diagrams, DIY / help paths |
 | `/vendors/` | **Vendor booths** — waitlist + two-round selection process |
 | `/rfp/` | **RFPs** — open lots (Children’s Theater, Village, Maker Spot) |
 | `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual RFP detail pages |
-| `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Attendees**) |
+| `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Visit**) |
 | `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
 | `/sponsors/` | Redirect → `/sponsorship/#thank-you-2026` |
-| `/resources/media/` | Press and festival YouTube embeds — under **Resources** |
-| `/resources/blog/` | **Blog** — SEO-safe planning notes (generated from shared markdown) — under **Resources** |
+| `/resources/media/` | Press and festival YouTube embeds — under **About** |
+| `/resources/blog/` | **Blog** — SEO-safe planning notes (generated from shared markdown) — under **About** |
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 

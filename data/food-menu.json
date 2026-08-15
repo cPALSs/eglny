@@ -63,7 +63,8 @@
             "mild_spice",
             "kid_friendly"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Mexican street corn"
         },
         {
           "name": "Gumbo",
@@ -112,7 +113,7 @@
         {
           "name": "Funnel cakes",
           "price": null,
-          "category": "meals",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -261,7 +262,7 @@
           "dietary_warnings": []
         },
         {
-          "name": "Soda",
+          "name": "Canned soda",
           "price": null,
           "category": "drinks",
           "allergens": [],
@@ -322,7 +323,7 @@
           "dietary_warnings": []
         },
         {
-          "name": "Sausages (polish, cajun, hot dog)",
+          "name": "Sausages",
           "price": null,
           "category": "snacks",
           "allergens": [],
@@ -334,7 +335,8 @@
           ],
           "dietary_warnings": [
             "contains_pork"
-          ]
+          ],
+          "note": "Polish · Cajun · hot dog"
         }
       ]
     },
@@ -683,7 +685,7 @@
         {
           "name": "Cotton candy",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "vegetarian_options",
@@ -732,7 +734,8 @@
           ],
           "dietary_warnings": [
             "contains_dairy"
-          ]
+          ],
+          "note": "Ube (purple yam) with coconut"
         }
       ]
     },
@@ -753,7 +756,8 @@
           ],
           "dietary_warnings": [
             "contains_dairy"
-          ]
+          ],
+          "note": "Cheese-filled Korean-style corn dog"
         },
         {
           "name": "Egg rolls",
@@ -885,7 +889,8 @@
             "mild_spice",
             "kid_friendly"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Aguas frescas — sweetened fruit drinks"
         },
         {
           "name": "Fruit cups",
@@ -933,7 +938,8 @@
           ],
           "dietary_warnings": [
             "contains_gluten"
-          ]
+          ],
+          "note": "Spam over rice, wrapped in nori seaweed"
         },
         {
           "name": "Lao sausage musubi",
@@ -949,7 +955,8 @@
           "dietary_warnings": [
             "contains_gluten",
             "contains_meat"
-          ]
+          ],
+          "note": "Lao sausage over rice, wrapped in nori seaweed"
         },
         {
           "name": "Lemongrass steak sandwich",
@@ -977,7 +984,20 @@
           "dietary_warnings": []
         },
         {
-          "name": "Bottled water & canned soda",
+          "name": "Bottled water",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": [
+            "nut_free",
+            "gluten_free_options",
+            "dairy_free_options",
+            "mild_spice"
+          ],
+          "dietary_warnings": []
+        },
+        {
+          "name": "Canned soda",
           "price": null,
           "category": "drinks",
           "allergens": [],
@@ -1001,7 +1021,7 @@
         {
           "name": "Fried banana",
           "price": null,
-          "category": "meals",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "vegetarian_options",
@@ -1020,7 +1040,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Lao curry rice-noodle soup"
         },
         {
           "name": "Egg rolls",
@@ -1057,7 +1078,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Lao rice-noodle soup"
         },
         {
           "name": "Meatballs",
@@ -1091,7 +1113,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Lao stir-fried dish"
         },
         {
           "name": "Sushi roll",
@@ -1113,7 +1136,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Lao stir-fried noodles"
         },
         {
           "name": "BBQ dragon roll",
@@ -1147,7 +1171,8 @@
           ],
           "dietary_warnings": [
             "contains_pork"
-          ]
+          ],
+          "note": "Filipino soy-vinegar braised pork belly"
         },
         {
           "name": "Musubi lumpia",
@@ -1163,7 +1188,8 @@
           ],
           "dietary_warnings": [
             "contains_gluten"
-          ]
+          ],
+          "note": "Musubi filling in a lumpia (spring roll) wrapper"
         },
         {
           "name": "Cheeseburger lumpia",
@@ -1192,7 +1218,7 @@
           ]
         },
         {
-          "name": "The gang wangs",
+          "name": "The Gang Wangs",
           "price": null,
           "category": "meals",
           "allergens": [],
@@ -1200,7 +1226,10 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [
+            "contains_meat"
+          ],
+          "note": "Crispy chicken wings"
         },
         {
           "name": "Dynamite lumpia",
@@ -1232,24 +1261,26 @@
         {
           "name": "Ube sago",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Ube (purple yam) with sago pearls"
         },
         {
           "name": "Buko pandan sago",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Young coconut (buko), pandan, and sago pearls"
         },
         {
           "name": "Melon refresher",
@@ -1267,7 +1298,7 @@
         {
           "name": "Puto pao",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -1293,7 +1324,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Batter-fried corn dogs, Korean street style"
         },
         {
           "name": "Noodle soup",
@@ -1397,7 +1429,7 @@
           ]
         },
         {
-          "name": "Pork belly",
+          "name": "Pork belly over rice",
           "price": null,
           "category": "meals",
           "allergens": [],
@@ -1440,7 +1472,7 @@
         {
           "name": "Fried banana",
           "price": null,
-          "category": "meals",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "vegetarian_options",
@@ -1464,7 +1496,7 @@
           "dietary_warnings": []
         },
         {
-          "name": "Soda",
+          "name": "Canned soda",
           "price": null,
           "category": "drinks",
           "allergens": [],
@@ -1477,7 +1509,7 @@
           "dietary_warnings": []
         },
         {
-          "name": "Water",
+          "name": "Bottled water",
           "price": null,
           "category": "drinks",
           "allergens": [],
@@ -1632,7 +1664,7 @@
         {
           "name": "Rainbow tapioca dessert drink",
           "price": null,
-          "category": "meals",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -1730,10 +1762,11 @@
           ],
           "dietary_warnings": [
             "contains_gluten"
-          ]
+          ],
+          "note": "Vietnamese baguette sandwich"
         },
         {
-          "name": "Bánh tráng trộn (rice paper salad)",
+          "name": "Bánh tráng trộn",
           "price": null,
           "category": "meals",
           "allergens": [],
@@ -1744,7 +1777,8 @@
             "gluten_free_options",
             "dairy_free_options"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Rice paper salad"
         },
         {
           "name": "Bún thịt nướng",
@@ -1756,7 +1790,8 @@
             "nut_free",
             "easy_chew"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Vermicelli (thin rice noodles) with grilled pork"
         },
         {
           "name": "Garlic noodles",
@@ -1805,7 +1840,8 @@
           ],
           "dietary_warnings": [
             "contains_pork"
-          ]
+          ],
+          "note": "Sweet cured Filipino pork over rice"
         },
         {
           "name": "Sisig rice plate",
@@ -1820,7 +1856,8 @@
           ],
           "dietary_warnings": [
             "contains_pork"
-          ]
+          ],
+          "note": "Filipino chopped pork over rice"
         },
         {
           "name": "Tacos",
@@ -1860,7 +1897,8 @@
           ],
           "dietary_warnings": [
             "contains_gluten"
-          ]
+          ],
+          "note": "Filipino spring rolls"
         },
         {
           "name": "Calamansi juice",
@@ -2042,7 +2080,8 @@
           ],
           "dietary_warnings": [
             "contains_pork"
-          ]
+          ],
+          "note": "Filipino roast pork"
         },
         {
           "name": "Sisig",
@@ -2056,7 +2095,8 @@
           ],
           "dietary_warnings": [
             "contains_pork"
-          ]
+          ],
+          "note": "Filipino chopped pork (sizzling)"
         },
         {
           "name": "Oxtail adobo",
@@ -2067,7 +2107,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Filipino soy-vinegar braised oxtail"
         },
         {
           "name": "Grilled balut",
@@ -2078,7 +2119,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Fertilized duck egg — Filipino street snack"
         }
       ]
     },
@@ -2098,7 +2140,8 @@
             "pork_free",
             "nut_free"
           ],
-          "dietary_warnings": []
+          "dietary_warnings": [],
+          "note": "Oval masa (corn dough) with toppings"
         },
         {
           "name": "Tacos",
@@ -2137,7 +2180,7 @@
           "dietary_warnings": []
         },
         {
-          "name": "Soda",
+          "name": "Canned soda",
           "price": null,
           "category": "drinks",
           "allergens": [],
@@ -2332,7 +2375,7 @@
         {
           "name": "Pre-packaged freeze-dried candies and snacks",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -2352,7 +2395,7 @@
         {
           "name": "Caramel corn",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -2363,7 +2406,7 @@
         {
           "name": "Kettle corn",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -2385,7 +2428,7 @@
         {
           "name": "Caramel apple & lightly salted popcorn",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -2396,7 +2439,7 @@
         {
           "name": "Fluffy cotton candy",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "vegetarian_options",
@@ -2419,7 +2462,7 @@
         {
           "name": "Prepackaged dessert treats",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",
@@ -2439,7 +2482,7 @@
         {
           "name": "Colombian candy",
           "price": null,
-          "category": "snacks",
+          "category": "sweets",
           "allergens": [],
           "dietary_tags": [
             "pork_free",

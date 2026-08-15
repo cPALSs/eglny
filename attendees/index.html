@@ -15,7 +15,7 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Attendees — Elk Grove Lunar New Year Tết</title>
+  <title>Visit — Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
   <script>
     (function () {
@@ -29,15 +29,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
   <link rel="stylesheet" href="../site.css" />
-  <meta name="description" content="Attendee guides for Elk Grove Lunar New Year Tết — food menu and what to expect on site." />
+  <meta name="description" content="Visit Elk Grove Lunar New Year Tết — food menu and what to expect on site." />
   <link rel="canonical" href="https://eglny.com/attendees/" />
-  <meta property="og:title" content="Attendees — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Attendee guides for Elk Grove Lunar New Year Tết — food menu and what to expect on site." />
+  <meta property="og:title" content="Visit — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Visit Elk Grove Lunar New Year Tết — food menu and what to expect on site." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eglny.com/attendees/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Attendees — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Attendee guides for Elk Grove Lunar New Year Tết — food menu and what to expect on site." />
+  <meta name="twitter:title" content="Visit — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Visit Elk Grove Lunar New Year Tết — food menu and what to expect on site." />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
   <script src="../analytics.js"></script>
 </head>
@@ -46,7 +46,7 @@
   <main class="page-wrap page-wrap--doc" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
-        <h1>Attendees</h1>
+        <h1>Visit</h1>
         <p>Guest guides for the festival weekend — food, maps, and what to expect on site.</p>
       </section>
     </div>
@@ -58,10 +58,10 @@
     (async function () {
       const { initPageShell, loadSiteData, mountFooter, renderAttendeesPage, setPageTitle, escapeHtml, revealPage } =
         window.EglnySite;
-      initPageShell("attendees");
+      initPageShell("visit");
       try {
         const site = await loadSiteData();
-        setPageTitle(site, "Attendees");
+        setPageTitle(site, "Visit");
         document.getElementById("main").innerHTML = renderAttendeesPage(site.attendees);
         mountFooter(site);
         if (typeof revealPage === "function") revealPage();

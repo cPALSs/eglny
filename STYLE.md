@@ -36,15 +36,18 @@ URL paths stay kebab-case (`/fund-the-festival/`, `/custom-zones/`) — paths ar
 
 Use **Title Case** for top-level and submenu destinations that are proper names or short page names:
 
-- Home, About, Team, Production, Attendees, Resources
-- Roster, Open Roles, Sponsorship, Volunteering, Media, Blog
+- About, Production, Visit, Resources
+- Team, Sponsorship, Volunteering, Blog, Media, Lunar New Year Season
 - Brands as locked: Fund The Festival, Custom Zones, RFPs
 
 **Exceptions (sentence case in nav)** — descriptive phrases, not product names:
 
 - Vendor booths
 - Food menu
+- Open roles
 - 2026 archive (year + common noun)
+- Menu view tabs: **By cuisine**, **By vendor**, **By diet** (sentence-case “By …”)
+- Optional item **note** — muted second line (translation / flavors); not Title Case
 
 Acronyms stay as acronyms: **RFPs**, **LNY**, **FAQ**, **EGLNY**.
 
@@ -90,7 +93,7 @@ Path-finder controls that only scroll the page (e.g. Custom Zones DIY / Help) ar
 
 ## Back links
 
-- Top-level Production / Attendees destinations — **no** “← Production” / “← Attendees” back link; the main nav is enough.
+- Top-level Production / Visit destinations — **no** “← Production” / “← Visit” back link; the main nav is enough.
 - Nested detail pages (individual RFPs) — **yes** back to the parent index (`← RFPs`).
 
 ---
@@ -110,4 +113,4 @@ Path-finder controls that only scroll the page (e.g. Custom Zones DIY / Help) ar
 3. Section headings: sentence case.
 4. Exactly **one** `.btn-primary` visible on the page.
 5. Cross-references in muted notes → inline text links, not extra primaries.
-6. No hub back-link if the page is already in Production (or Resources) nav.
+6. No hub back-link if the page is already in Production, Visit, About, or Resources nav.

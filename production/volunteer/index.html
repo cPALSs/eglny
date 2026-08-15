@@ -15,7 +15,7 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Volunteer — Elk Grove Lunar New Year Tết</title>
+  <title>Volunteering — Elk Grove Lunar New Year Tết</title>
   <script src="../../clean-urls.js"></script>
   <script>
     (function () {
@@ -29,15 +29,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
   <link rel="stylesheet" href="../../site.css" />
-  <meta name="description" content="Volunteer for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <meta name="description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
   <link rel="canonical" href="https://eglny.com/production/volunteer/" />
-  <meta property="og:title" content="Volunteer — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Volunteer for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <meta property="og:title" content="Volunteering — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eglny.com/production/volunteer/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Volunteer — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Volunteer for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <meta name="twitter:title" content="Volunteering — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
 
@@ -50,7 +50,7 @@
   <main class="page-wrap page-wrap--doc" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
-        <h1>Volunteer</h1>
+        <h1>Volunteering</h1>
         <p>Thank you for wanting to help make Tết happen. Skills projects and day-of shifts live here — for planning seats and Director / DRI work, go to <a href="/team/roles/">Open roles</a>.</p>
       </section>
       <section>
@@ -82,10 +82,10 @@
       try {
         const site = await loadSiteData();
         const block = site.teamPage?.skillsProjects;
-        setPageTitle(site, block?.headline ?? block?.title ?? "Volunteer");
+        setPageTitle(site, block?.headline ?? block?.title ?? "Volunteering");
         document.getElementById("main").innerHTML = `
           <section class="hero">
-            <h1>${escapeHtml(block?.headline ?? block?.title ?? "Volunteer")}</h1>
+            <h1>${escapeHtml(block?.headline ?? block?.title ?? "Volunteering")}</h1>
             ${block?.lead ? `<p class="hero-lead">${linkFirstOpenRoles(escapeHtml(block.lead))}</p>` : ""}
           </section>
           ${renderVolunteerPage(site)}

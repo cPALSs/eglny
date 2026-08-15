@@ -2842,7 +2842,7 @@ body.nav-open {
   border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
 }
 
-/* Food menu — Attendees listing (menu-viewer embed) */
+/* Food menu — Visit listing (menu-viewer embed) */
 .page-wrap--food-menu {
   max-width: 1200px;
   margin: 0 auto;
@@ -2995,8 +2995,8 @@ body.nav-open {
     align-self: start;
     position: sticky;
     top: calc(var(--nav-height) + 1.5rem);
-    max-height: calc(100vh - var(--nav-height) - 2rem);
-    overflow-y: auto;
+    max-height: none;
+    overflow: visible;
     padding: 0;
     border: none;
     border-radius: 0;

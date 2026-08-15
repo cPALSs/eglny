@@ -59,7 +59,7 @@
     "headline": "Open roles",
     "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.",
     "rosterPage": {
-      "headline": "Roster",
+      "headline": "Team",
       "lead": "Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027."
     },
     "join": {
@@ -76,8 +76,8 @@
       "skillsHref": "/production/volunteer/"
     },
     "skillsProjects": {
-      "title": "Volunteer",
-      "headline": "Volunteer",
+      "title": "Volunteering",
+      "headline": "Volunteering",
       "lead": "Thank you for wanting to help make Tết happen. Skills projects and day-of shifts live here — for planning seats and Director / DRI work, go to Open roles.",
       "sectionTitle": "Skills projects",
       "dayOfHelp": {
@@ -96,7 +96,7 @@
       ]
     },
     "roster": {
-      "title": "Roster",
+      "title": "Team",
       "groups": [
         {
           "title": "Steering Committee",
@@ -426,8 +426,23 @@
   },
   "production": {
     "headline": "Production",
-    "lead": "Sponsorship, vendor booths, custom zones, RFPs, and the tools that build the festival weekend.",
+    "lead": "Team, open roles, volunteering, sponsorship, vendor booths, custom zones, RFPs, and the tools that build the festival weekend.",
     "links": [
+      {
+        "title": "Team",
+        "body": "Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027.",
+        "href": "/team/"
+      },
+      {
+        "title": "Open roles",
+        "body": "Director / DRI seats, Site & Ops Supercommittee, and visionary crews — join weekly calls and apply.",
+        "href": "/team/roles/"
+      },
+      {
+        "title": "Volunteering",
+        "body": "Skills projects, day-of help, and a path to Open roles for planning work.",
+        "href": "/production/volunteer/"
+      },
       {
         "title": "Sponsorship",
         "body": "Partner pathways — Fund The Festival, sponsorship packet, and thank you to our 2026 sponsors.",
@@ -452,16 +467,11 @@
         "title": "RFPs",
         "body": "Open preferred-provider RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot.",
         "href": "/rfp/"
-      },
-      {
-        "title": "Volunteering",
-        "body": "Skills projects, day-of help, and a path to Open roles for planning work.",
-        "href": "/production/volunteer/"
       }
     ]
   },
   "attendees": {
-    "headline": "Attendees",
+    "headline": "Visit",
     "lead": "Guest guides for the festival weekend — food, maps, and what to expect on site.",
     "links": [
       {
@@ -473,7 +483,7 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Season calendar, festival media, and planning notes.",
+    "lead": "Season calendar and prior-year festival archive.",
     "links": [
       {
         "title": "Lunar New Year Season",
@@ -481,14 +491,10 @@
         "href": "/resources/season/"
       },
       {
-        "title": "Media",
-        "body": "News coverage, ads, festival videos, and posters from recent seasons.",
-        "href": "/resources/media/"
-      },
-      {
-        "title": "Blog",
-        "body": "How our teams plan sustainable community festivals — budgets, ownership, and regional coordination.",
-        "href": "/resources/blog/"
+        "title": "2026 archive",
+        "body": "Prior-year Elk Grove Lunar New Year site — photos, recap, and archive pages.",
+        "href": "https://www.elkgrovelunarnewyear.com/",
+        "external": true
       }
     ]
   },
