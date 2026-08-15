@@ -2850,11 +2850,16 @@ body.nav-open {
 }
 
 .page-wrap--food-menu > .hero {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+  padding-bottom: 0.75rem;
+}
+
+.page-wrap--food-menu > .hero .hero-lead {
+  margin-bottom: 0;
 }
 
 .food-menu-viewer {
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .food-menu-viewer > header {
@@ -2882,14 +2887,8 @@ body.nav-open {
   margin: 0;
 }
 
-.food-menu-viewer .vendor-card h2,
-.food-menu-viewer .category-block h3 {
-  font-family: var(--font-display);
-  color: var(--heading);
-}
-
-/* Stack filters below 1100px (same breakpoint as site-doc TOC) */
-@media (min-width: 768px) and (max-width: 1099px) {
+/* Below wide TOC: sticky search + Filters/Legend buttons; sheets are modals */
+@media (max-width: 1099px) {
   .food-menu-viewer .menu-layout {
     display: flex;
     flex-direction: column;
@@ -2899,22 +2898,59 @@ body.nav-open {
   }
 
   .food-menu-viewer .menu-layout .menu-sidebar {
+    position: sticky;
+    top: calc(var(--nav-height) + 0.5rem);
+    z-index: 6;
     flex: none;
     width: 100%;
     max-width: none;
-    max-height: none;
-    position: static;
     align-self: stretch;
-    padding: 0;
+    max-height: none;
+    overflow: visible;
+    background: var(--bg);
+    box-sizing: border-box;
+    box-shadow: 0 0.55rem 0.55rem -0.3rem var(--bg);
+    padding: 0.5rem 0 0.35rem;
     border: none;
     border-radius: 0;
-    background: transparent;
   }
 
   .food-menu-viewer .menu-layout .menu-main {
     flex: none;
     width: 100%;
   }
+
+  .food-menu-viewer .menu-layout .menu-main-sticky {
+    position: sticky;
+    top: calc(var(--nav-height) + 0.5rem + var(--menu-mobile-toolbar-height, 3.85rem));
+    z-index: 5;
+    background: var(--bg);
+    padding-top: 0.4rem;
+    padding-bottom: 0.35rem;
+    box-shadow: 0 0.55rem 0.55rem -0.3rem var(--bg);
+  }
+
+  .food-menu-viewer .menu-filters-sheet.is-open,
+  .food-menu-viewer .menu-legend-sheet.is-open {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .food-menu-viewer .menu-filters-sheet-panel,
+  .food-menu-viewer .menu-legend-sheet-panel {
+    background: var(--bg);
+  }
+
+  .food-menu-viewer .menu-filters-sheet-bar,
+  .food-menu-viewer .menu-legend-sheet-bar {
+    background: var(--bg);
+    box-shadow: 0 0.5rem 0.5rem -0.35rem var(--bg);
+  }
+}
+
+.food-menu-viewer .vendor-card h2,
+.food-menu-viewer .category-block h3 {
+  font-family: var(--font-display);
+  color: var(--heading);
 }
 
 /* Wide: TOC-width rail (200px); sidebar must fill the track (override menu-viewer 35%) */
@@ -2925,7 +2961,6 @@ body.nav-open {
     column-gap: 2.5rem;
     row-gap: 0;
     align-items: end;
-    padding-bottom: 0.75rem;
   }
 
   .page-wrap--food-menu > .hero > :is(h1, .hero-lead, p) {
@@ -2978,10 +3013,45 @@ body.nav-open {
     box-sizing: border-box;
   }
 
+  /* Narrow rail: label, then chips, then Reset below last chip */
+  .food-menu-viewer .menu-layout .menu-filter-heading {
+    display: contents;
+  }
+
+  .food-menu-viewer .menu-layout .menu-filter-label {
+    order: 1;
+  }
+
+  .food-menu-viewer .menu-layout .menu-filter-chips {
+    order: 2;
+  }
+
+  .food-menu-viewer .menu-layout .filter-reset {
+    order: 3;
+    margin-left: 0;
+    margin-top: 0.35rem;
+    align-self: flex-start;
+  }
+
   .food-menu-viewer .menu-layout .menu-main {
     flex: none;
     width: auto;
     min-width: 0;
+  }
+
+  .food-menu-viewer .menu-layout .menu-main-sticky {
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 4;
+    background: var(--bg);
+    padding-top: 1.5rem;
+    margin-top: -1.5rem;
+    padding-bottom: 0.35rem;
+    box-shadow: 0 0.65rem 0.65rem -0.35rem var(--bg);
+  }
+
+  .food-menu-viewer .menu-layout .menu-tabs-row {
+    border-bottom-color: var(--border);
   }
 
   /* By vendor: two card columns in the main pane */
