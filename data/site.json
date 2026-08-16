@@ -332,33 +332,27 @@
       "roles": [
         {
           "title": "Sponsorship",
-          "own": "Corporate pipeline, registry asks, sponsor deliverables",
-          "fit": "Can build business relationships and follow through on sponsor commitments"
+          "own": "Corporate pipeline, registry asks, sponsor deliverables"
         },
         {
           "title": "Marketing & Communications",
-          "own": "Email, Instagram, website, organic promotion · budget/contract for creatives when needed",
-          "fit": "Write clearly and want Elk Grove families to find us"
+          "own": "Email, Instagram, website, organic promotion · budget/contract for creatives when needed"
         },
         {
           "title": "Vendor Sales",
-          "own": "Pipeline, category caps, profitability playbook",
-          "fit": "Can sell booth space fairly and hit category mix targets"
+          "own": "Pipeline, category caps, profitability playbook"
         },
         {
           "title": "Vendor Operations",
-          "own": "Eventeny/Zeffy admin, booth layout handoff, TFF pass-through",
-          "fit": "Are detail-oriented and fair — vendor committee experience a plus"
+          "own": "Eventeny/Zeffy admin, booth layout handoff, TFF pass-through"
         },
         {
           "title": "Volunteers",
-          "own": "Recruitment, shifts, waivers, appreciation event",
-          "fit": "Know how to mobilize people and keep shifts covered"
+          "own": "Recruitment, shifts, waivers, appreciation event"
         },
         {
           "title": "Partnerships & Grants",
-          "own": "CCSD, City, SMUD, Yocha Dehe, grant renewals",
-          "fit": "Build institutional relationships; comfortable with grant language"
+          "own": "CCSD, City, SMUD, Yocha Dehe, grant renewals"
         }
       ]
     }

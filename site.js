@@ -430,19 +430,11 @@
       </div>`
       : "";
 
-    const fit = role.fit
-      ? `<div class="role-field">
-        <p class="role-field-label">Good fit if you</p>
-        <p class="role-field-text">${escapeHtml(role.fit)}</p>
-      </div>`
-      : "";
-
     return `<article class="role-card${phase2}${filled}">
       <h3>${escapeHtml(title)}</h3>
       ${director}
       ${test}
       ${shipBlock}
-      ${fit}
     </article>`;
   }
 
