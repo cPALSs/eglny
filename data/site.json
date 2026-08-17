@@ -129,11 +129,19 @@
             },
             {
               "name": "Ellie King",
-              "title": "Car Show & Resource Hub",
+              "title": "Tụ Vía Procession",
               "photo": "/assets/roster/ellie-king.jpg",
               "instagram": "iamthenonprofitgirl",
-              "vision": "East Meets West brings Chicano lowrider tradition and Vietnamese car culture together at the LNY Tết Car Show — craftsmanship, family pride, and mutual respect. Alongside that, I’m building a Resource Hub where churches, agencies, and neighbors help families find support and ways to give back. It has never just been about cars or booths — it has always been about people, stories, and community.",
+              "vision": "Saturday afternoon, we walk the Pavilion circle together. Tụ Vía — gathering vía as a community before Soul Torrent’s dusk. Lions, dance crews, banners, families in the ring. This year the procession is on foot: no cars, no floats. A walking circle we can staff well and enjoy. Street parades can wait until they’re properly funded.",
               "visionFull": [
+                {
+                  "heading": "Tụ Vía — walking circle, not a motor parade",
+                  "paragraphs": [
+                    "I’m taking Soul Torrent’s afternoon chapter: Tụ Vía, the walking Obon-style circle at the Pavilion roundabout.",
+                    "Guests gather vía together — lions, clubs, banners, families in the ring — then dusk is Spirit Break on the main stage. One Saturday product; two chapters.",
+                    "Cars and floats in a parade are logistically heavy. For 2027 we scale that back. The park product is a walking procession we can actually run. A funded street parade is a later year, when we can staff and pay for it properly."
+                  ]
+                },
                 {
                   "heading": "Honoring the History and Future of Chicano & Vietnamese Car Culture",
                   "paragraphs": [
@@ -170,8 +178,8 @@
     "title": "What is a director?",
     "paragraphs": [
       "A director (or DRI) is the accountable owner of one festival lane or Fund The Festival gift. You recommend and decide budget for your lane, including whether to contract out work. You recruit help, hire or place pros (paid or pro bono), and report status to the Steering Committee. You are not assumed to build sets, hang decor, or personally perform the craft.",
-      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority.",
-      "Open seats: 16 Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are sponsor unlocks. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
+      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority. Tụ Vía Procession — Ellie King (walking circle; not a motor parade).",
+      "Open seats: 15 Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are sponsor unlocks. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
     ],
     "notes": [
       "Prefer one accountable DRI per Program gift. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
@@ -285,6 +293,7 @@
         {
           "title": "Tụ Vía Procession",
           "emoji": "🏮",
+          "director": "Ellie King",
           "own": "Gift budget · walking-circle route/units · production contracts · day-of staging (not a motor parade)"
         },
         {
