@@ -2,13 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <style>
+    html { background: #030d29; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
   <script src="../analytics.js"></script>
   <meta http-equiv="refresh" content="0; url=/sponsorship/#thank-you-2026" />
-  <title>Redirecting to Sponsorship — Elk Grove Lunar New Year Tết</title>
+  <title>2026 Sponsors — Elk Grove Lunar New Year Tết</title>
   <script>location.replace("/sponsorship/#thank-you-2026");</script>
-  <meta name="description" content="Redirecting to https://eglny.com/sponsorship/" />
-  <link rel="canonical" href="https://eglny.com/sponsorship/" />
+        <meta name="description" content="Redirecting to https://eglny.com/sponsors/" />
+  <link rel="canonical" href="https://eglny.com/sponsors/" />
+  <meta property="og:title" content="2026 Sponsors — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Redirecting to https://eglny.com/sponsors/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eglny.com/sponsors/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="2026 Sponsors — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Redirecting to https://eglny.com/sponsors/" />
+  <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
+  <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
 </head>
 <body>
   <p><a href="/sponsorship/#thank-you-2026">Continue to Sponsorship</a></p>

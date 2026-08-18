@@ -19,6 +19,7 @@
   --accent-dim: #5b1a1c;
   --gold: #efa52b;
   --on-gold: #030d29;
+  --season-intended-bg: color-mix(in srgb, var(--gold) 22%, var(--surface));
   --success: #3dd68c;
   --on-accent: #fff;
   --overlay: rgba(0, 0, 0, 0.55);
@@ -47,6 +48,7 @@
   --gold: #c4891a;
   --on-gold: #ffffff;
   --heading: var(--lead);
+  --season-intended-bg: #fff6d4;
 }
 
 @media (prefers-color-scheme: light) {
@@ -66,6 +68,7 @@
     --gold: #c4891a;
     --on-gold: #ffffff;
     --heading: var(--lead);
+    --season-intended-bg: #fff6d4;
   }
 }
 
@@ -2144,8 +2147,46 @@ body.nav-open {
 
 .resources-season .season-event-list {
   list-style: none;
-  margin: 1.25rem 0 0;
+  margin: 0.5rem 0 0;
   padding: 0;
+}
+
+.season-date-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.15rem;
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.season-date-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.season-date-legend-swatch {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.season-date-legend-swatch--estimated {
+  background: color-mix(in srgb, var(--muted) 14%, var(--surface));
+}
+
+.season-date-legend-swatch--intended {
+  background: var(--season-intended-bg);
+}
+
+.season-date-legend-swatch--confirmed {
+  background: var(--surface);
 }
 
 .season-event-item {
@@ -2166,6 +2207,11 @@ body.nav-open {
   margin-inline: -0.85rem;
   border-radius: 8px;
   border-bottom-color: transparent;
+}
+
+/* Organizer intends this date; not a public listing yet */
+.season-event-item--intended {
+  background: var(--season-intended-bg);
 }
 
 .season-event-item--soft + .season-event-item--soft {

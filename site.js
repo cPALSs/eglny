@@ -907,6 +907,7 @@
     const explicit = String(event.certainty || "").toLowerCase().trim();
     if (
       explicit === "estimated" ||
+      explicit === "intended" ||
       explicit === "tentative" ||
       explicit === "cancelled" ||
       explicit === "canceled" ||
@@ -916,6 +917,7 @@
     }
     const dates = String(event.dates || "").toLowerCase();
     if (/not hosting|cancelled|canceled/.test(dates)) return "cancelled";
+    if (/\bintended\b/.test(dates)) return "intended";
     if (/\(estimated\)/.test(dates) || /\bestimated\b/.test(dates)) return "estimated";
     if (
       /\(tentative\)/.test(dates) ||
@@ -931,6 +933,7 @@
     const certainty = seasonEventCertainty(event);
     const soft =
       certainty === "estimated" ||
+      certainty === "intended" ||
       certainty === "tentative" ||
       certainty === "cancelled";
     const softClass = soft ? " season-event-item--soft" : "";
@@ -945,6 +948,23 @@
       <span class="season-event-title">${nameHtml}${hostPart}</span>
       <span class="season-event-location">${escapeHtml(event.location)}</span>
     </li>`;
+  }
+
+  function renderSeasonDateLegend() {
+    return `<ul class="season-date-legend" aria-label="Date key">
+      <li class="season-date-legend-item">
+        <span class="season-date-legend-swatch season-date-legend-swatch--estimated" aria-hidden="true"></span>
+        Estimated
+      </li>
+      <li class="season-date-legend-item">
+        <span class="season-date-legend-swatch season-date-legend-swatch--intended" aria-hidden="true"></span>
+        Intended, not confirmed
+      </li>
+      <li class="season-date-legend-item">
+        <span class="season-date-legend-swatch season-date-legend-swatch--confirmed" aria-hidden="true"></span>
+        Confirmed listing
+      </li>
+    </ul>`;
   }
 
   function renderSeasonPage(season, seasonData) {
@@ -962,9 +982,9 @@
       <section class="about-section resources-season site-doc-section" id="season" data-doc-section>
         <h2>${escapeHtml(seasonTitle)}</h2>
         ${season?.intro ? `<p>${escapeHtml(season.intro)}</p>` : ""}
+        ${events.length ? `${renderSeasonDateLegend()}<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
         ${listNote}
         ${contactNote}
-        ${events.length ? `<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
       </section>`;
 
     return `
