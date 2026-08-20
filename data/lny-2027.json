@@ -3,7 +3,7 @@
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
-    "mvpCap": 50617,
+    "mvpCap": 65000,
     "vendorRev100": 20375,
     "registryFull": 167517,
     "vendorSlots": 76,
@@ -14,7 +14,7 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 9000,
-    "mvpCap": 50617,
+    "mvpCap": 65000,
     "vendorRevenue": 45775,
     "headroomOrGap": 0,
     "vendorSlots": 76,
@@ -44,11 +44,11 @@
     {
       "id": "festival_foundation",
       "name": "Festival Foundation",
-      "amount": 17550,
+      "amount": 14000,
       "category": "core",
       "sortOrder": 0,
-      "tagline": "Insurance, permits, lions, recognition plaques/banners, and infrastructure every festival needs.",
-      "description": "CGL insurance, CCSD permit + TFF coordinator, lion dances (Sat + Sun), transport and traffic, ops tents, organic digital marketing, volunteer meals, festival coordination, **sponsor & VIP recognition plaques**, and **main stage banner printing** \u2014 embedded in the MVP cap. Plaques and stage banners are Festival Foundation costs (how we thank sponsors and VIPs and dress the main stage) \u2014 funded by overall sponsorship, **not** sold as a separate gift a sponsor is asked to cover. Weather cancel reserve is a separate core gift (Weather / Cancel Fund).",
+      "tagline": "Insurance, permits, lions, and infrastructure every festival needs.",
+      "description": "Opens a safe, insured public festival: liability insurance, park permit and on-site coordination, lion dances both days, transport and traffic support, ops tents, organic digital promotion, volunteer meals, and festival coordination. A separate Weather / Cancel Fund holds a cash buffer if rain washes the weekend.",
       "benefits": [
         "Foundation sponsor recognition on website + email"
       ],
@@ -84,14 +84,6 @@
         {
           "label": "Lion dances (Sat + Sun)",
           "amount": 700
-        },
-        {
-          "label": "Sponsor & VIP recognition plaques",
-          "amount": 1550
-        },
-        {
-          "label": "Main stage banner printing",
-          "amount": 2000
         }
       ]
     },
@@ -102,7 +94,7 @@
       "category": "core",
       "sortOrder": 1,
       "tagline": "40\u00d760 canopy over wide dance floor + LED \u2014 sun shelter for crews; gear cover for sun/rain teardown (rain day still cancels).",
-      "description": "Festival **main stage** under a **~40\u00d760 frame canopy/tent** with a **wide dance floor** (Moditional / spirit cast \u2014 **not** a narrow APEX trailer stage that forced crews onto open ground). Canopy jobs: (1) **shelter dancers from sun**, (2) **protect LED + PA from sun and rain**, (3) buy time for **orderly teardown** if weather turns \u2014 rain still **cancels the festival day** (we are **not** renting a guest rain hall or planning a wet show). Includes dance deck as needed, ADA, **changing-room trailer(s)**, stay-put **LED** + lights, PA, generators. LED doubles as **Saturday Soul Torrent / Fashion backdrop** and **Sunday Tailgate watch** surface. Big Game **broadcast rights** stay a separate Tailgate gift. Confirm 40\u00d760 + trailer quotes.",
+      "description": "Festival main stage under a ~40\u00d760 frame canopy/tent with a wide dance floor (Moditional / spirit cast \u2014 not a narrow APEX trailer stage that forced crews onto open ground). Canopy jobs: (1) shelter dancers from sun, (2) protect LED + PA from sun and rain, (3) buy time for orderly teardown if weather turns \u2014 rain still cancels the festival day (we are not renting a guest rain hall or planning a wet show). Includes dance deck as needed, ADA, changing-room trailer(s), stay-put LED + lights, PA, generators. LED doubles as Saturday Soul Torrent / Fashion backdrop and Sunday Tailgate watch surface. Big Game broadcast rights stay a separate Tailgate gift. Confirm 40\u00d760 + trailer quotes.",
       "benefits": [
         "Main stage sponsor recognition on website + digital sponsor slide"
       ],
@@ -142,13 +134,43 @@
       ]
     },
     {
+      "id": "partnership_operations",
+      "name": "Partnership Operations",
+      "amount": 8700,
+      "category": "core",
+      "sortOrder": 2,
+      "tagline": "Recognition, thank-you gifts, and partnership care that keep sponsors close.",
+      "description": "Funds how we thank and stay in relationship with sponsors: recognition plaques, main-stage banners, small thank-you gifts, and business development support that helps grow and renew partnerships year to year.",
+      "benefits": [
+        "Partnership Operations sponsor recognition on website + email"
+      ],
+      "lineItems": [
+        {
+          "label": "Sponsor & VIP recognition plaques",
+          "amount": 1550
+        },
+        {
+          "label": "Main stage banner printing",
+          "amount": 2000
+        },
+        {
+          "label": "Sponsor gratitude gifts",
+          "amount": 850
+        },
+        {
+          "label": "Business development services",
+          "amount": 4300
+        }
+      ]
+    },
+    {
       "id": "safe_festival",
       "name": "Safe Festival",
       "amount": 4800,
       "category": "core",
       "sortOrder": 3,
       "tagline": "Private security \u2014 peak grounds, traffic/parking direction, and overnight site/stage cover.",
-      "description": "One private-security contractor, three posts: (1) peak festival-grounds crowd safety, (2) traffic and parking direction at entries and crossings, and (3) **overnight Sat\u2192Sun** to cover main stage and site assets \u2014 required whether or not Tailgate camps stake overnight. Daytime hours remap with dusk Sat / Tailgate as product locks.",
+      "description": "One private-security contractor, three posts: (1) peak festival-grounds crowd safety, (2) traffic and parking direction at entries and crossings, and (3) overnight Sat\u2192Sun to cover main stage and site assets \u2014 required whether or not Tailgate camps stake overnight. Daytime coverage hours adjust with Saturday dusk and Sunday Tailgate.",
       "benefits": [
         "Safety sponsor recognition on website + email"
       ],
@@ -195,8 +217,8 @@
       "amount": 8000,
       "category": "core",
       "sortOrder": 5,
-      "tagline": "First-tranche reserve for a washed weekend \u2014 sunk ops only, not gift-registry spending.",
-      "description": "**Self-insurance for weather cancel.** Mid-February outdoor weekends in the Sacramento region wet enough to cancel a park day are **common enough to plan for** \u2014 on the order of **~3 in 10 seasons** over the long run (not a single-weekend forecast). **2025** is the worked example: rain crushed turnout (**~80% attendance drop** vs 2024), and expensive cover tents did not save the day. Target cash held for a full-weekend cancel so we can absorb **non-refundable sunk core** (insurance/permit already paid, deposits, early installs) without raiding next year\u2019s program. **Vendor booth fees are reversed from fees collected** (100% if both days cancel \u00b7 50% if one day) \u2014 refunds are a liquidity reverse, not an add-on to this fund. This **$8,000** is a **first tranche** (~one-third of a mid-case max wash); dry-year earned surplus and Great Lantern Festival surplus refill until the pot grows. **Not** available for High Priority or elective registry gifts.",
+      "tagline": "Cash buffer so a washed weekend does not wipe next year\u2019s program.",
+      "description": "A rainy February weekend can cancel the park day \u2014 as it did in 2025, when turnout dropped sharply and cover tents did not save the day. This fund is a first cash reserve so the festival can absorb costs that are already paid (insurance, permits, deposits, early installs) without draining next year\u2019s program. Vendor booth fees are refunded from fees already collected if days cancel. Dry-year surplus and future season surplus help grow the reserve toward a fuller buffer. This money is for weather resilience \u2014 not for upgrading guest experiences.",
       "benefits": [
         "Weather resilience sponsor recognition on website + email"
       ],
@@ -223,7 +245,7 @@
       "sortOrder": 1,
       "impactOrder": 9,
       "tagline": "Obon-style walking circle at the Pavilion \u2014 charge good energy; no motor parade.",
-      "description": "Paid parade performers and hired units, plus parade production polish: route staging, lineup and spacing, MC/cue coordination, and unit check-in \u2014 the ops that turn hired performers into a coherent parade. Without Parade+, there is no parade at MVP.",
+      "description": "Paid parade performers and hired units, plus parade production polish: route staging, lineup and spacing, MC/cue coordination, and unit check-in \u2014 the ops that turn hired performers into a coherent parade. Without Parade+, there is no walking procession.",
       "benefits": [
         "Parade program listing",
         "Facebook/Instagram shout-out",
@@ -267,7 +289,7 @@
       "sortOrder": 2,
       "impactOrder": 8,
       "tagline": "Lanterns, stage flowers, and site accents \u2014 visual T\u1ebft atmosphere across the park.",
-      "description": "Site decor registry block: lanterns, pole and entrance accents, stage flowers, and install labor \u2014 what families photograph on the grounds. Parade route production lives under Parade Performers.",
+      "description": "Lanterns, pole and entrance accents, stage flowers, and install labor \u2014 the visual T\u1ebft atmosphere families photograph on the grounds. Parade route production lives under Parade Performers.",
       "benefits": [
         "Logo on decor assets photographed for social",
         "Decor presented by [Sponsor]"
@@ -320,7 +342,7 @@
       "sortOrder": 4,
       "impactOrder": 10,
       "tagline": "Shade tents, seating, and tea \u2014 a rest zone for grandparents.",
-      "description": "Named elder rest zone with shade, seating, and tea service. Not in MVP ops \u2014 grass fallback without sponsor.",
+      "description": "Named elder rest zone with shade, seating, and tea service. Without this gift, elders share open grass seating.",
       "benefits": [
         "Honor our Elders presented by [Sponsor]",
         "website + Facebook/Instagram feature"
@@ -387,7 +409,7 @@
         "C4"
       ],
       "tagline": "Dusk Spirit Break show \u2014 e-pop, glow, VJ, lions vs malignant spirits. Not the afternoon T\u1ee5 V\u00eda walk.",
-      "description": "**Soul Torrent Spirit Break Show** \u2014 the **Saturday dusk finale** on the Main Stage (~6\u20137 PM): protectors, lions, and the crowd **defeat the malignant spirits** with electronic-pop, glow sticks, and **VJ LED cues** (ball fight \u00b7 drop \u00b7 win beats). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, **audience glow sticks**, and a **VJ** who builds and cues **Soul Torrent LED animations**. LED hardware is already in festival **Main Stage core**. Content is **human-directed** \u2014 **not** generative-AI filler. **Does not fund the afternoon T\u1ee5 V\u00eda Walking Procession** \u2014 that is a **separate High Priority gift**. This gift is the **Spirit Break stage show only**, inside the 11 AM\u20137:30 PM public day \u2014 not a 5\u20138 PM concert stack. Listed **$9,500** pending quotes.",
+      "description": "Soul Torrent Spirit Break Show \u2014 the Saturday dusk finale on the Main Stage (~6\u20137 PM): protectors, lions, and the crowd defeat the malignant spirits with electronic-pop, glow sticks, and VJ LED cues (ball fight \u00b7 drop \u00b7 win beats). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, audience glow sticks, and a VJ who builds and cues Soul Torrent LED animations. LED hardware is already in festival Main Stage core. Content is human-directed \u2014 not generative-AI filler. Does not fund the afternoon T\u1ee5 V\u00eda Walking Procession \u2014 that is a separate High Priority gift. This gift is the Spirit Break stage show only, inside the 11 AM\u20137:30 PM public day \u2014 not a 5\u20138 PM concert stack. Listed $9,500 pending quotes.",
       "benefits": [
         "Soul Torrent Spirit Break Show presented by [Sponsor]",
         "Sponsor credit on Spirit Break / dusk show posts + program cue",
@@ -427,7 +449,7 @@
       "sortOrder": 54,
       "impactOrder": 1,
       "tagline": "~2-hour produced variety show \u2014 singers, comedy, cultural numbers, MC.",
-      "description": "Talent booking for a signature PBN-style revue on the MVP stage \u2014 singers, comedy, cultural acts, and MC. Assumes baseline stage, PA, and sound engineers; add Covered Main Stage for upgraded sound, lights, LED, and weather tent.",
+      "description": "Talent booking for a signature PBN-style revue on the main stage \u2014 singers, comedy, cultural acts, and MC. Assumes baseline stage, PA, and sound engineers; add Covered Main Stage for upgraded sound, lights, LED, and weather tent.",
       "benefits": [
         "Named revue block",
         "Hero billing",
@@ -458,7 +480,7 @@
       "sortOrder": 53,
       "impactOrder": 3,
       "tagline": "Younger-skewed stage block \u2014 DJ Uni anchors the set.",
-      "description": "Named Lucky Wav stage segment \u2014 **DJ Uni (Trang Tran)** as the booked talent for 2027 (other 2026 Lucky Wav performers cut from the budget). One selectable programming block among PBN revue, Soul Torrent / Spirit Break, and other talent sponsors.",
+      "description": "Named Lucky Wav stage segment \u2014 DJ Uni (Trang Tran) as the booked talent for 2027 (other 2026 Lucky Wav performers cut from the budget). One selectable programming block among PBN revue, Soul Torrent / Spirit Break, and other talent sponsors.",
       "benefits": [
         "Lucky Wav presented by [Sponsor]",
         "Facebook/Instagram Reel + collab post",
@@ -486,7 +508,7 @@
       "sortOrder": 52,
       "impactOrder": 5,
       "tagline": "~2\u20133 hour programming block \u2014 Gulf Coast bands, fusion acts, and MC.",
-      "description": "Booked Asian Cajun / Louisiana lineup on the MVP indoor or outdoor stage \u2014 existing PA and sound engineers are in core ops. Zydeco, R&B, and fusion acts for a 2\u20133 hour show block, like the programming families gathered around at Asian Cajun Village in 2026.",
+      "description": "Booked Asian Cajun / Louisiana lineup on the indoor or outdoor main stage \u2014 existing PA and sound engineers are already covered by core festival operations. Zydeco, R&B, and fusion acts for a 2\u20133 hour show block, like the programming families gathered around at Asian Cajun Village in 2026.",
       "benefits": [
         "Asian Cajun Show presented by [Sponsor]",
         "Show block naming credit",
@@ -520,7 +542,7 @@
       "sortOrder": 11,
       "impactOrder": 12,
       "tagline": "Kids stage \u2014 short sets parents can actually sit through.",
-      "description": "Sac County Fair Kids Zone model \u2014 **30\u201345 min blocks, 2\u20133 sets per day** on the family stage (local magic, storytelling, puppetry, character participation). Participation beats spectacle; not a headliner stack. Assumes baseline stage, PA, and sound engineers in core ops. Pair with **Children's Village** (in-ground activities + anchor hosts), **Moditional Dance Battle** (HS fusion crew battle \u2014 see `moditional_dance_battle`), and **T\u1ebft Relay Cup** (open-age relay bracket \u2014 see `tet_relay_cup`).",
+      "description": "Sac County Fair Kids Zone model \u2014 30\u201345 min blocks, 2\u20133 sets per day on the family stage (local magic, storytelling, puppetry, character participation). Participation beats spectacle; not a headliner stack. Assumes baseline stage, PA, and sound engineers in core ops. Pair with Children's Village (in-ground activities + anchor hosts), Moditional Dance Battle (HS fusion crew battle \u2014 see `moditional_dance_battle`), and T\u1ebft Relay Cup (open-age relay bracket \u2014 see `tet_relay_cup`).",
       "benefits": [
         "Children's Show presented by [Sponsor]",
         "MC scripts + Facebook/Instagram feature",
@@ -614,7 +636,7 @@
       "sortOrder": 52,
       "impactOrder": 18,
       "tagline": "Draft placeholder \u2014 kids speech / singing / cultural contests with L\u1ea1c H\u1ed3ng; format TBD.",
-      "description": "**Draft gift \u2014 not yet open for sponsors.** Working capture of Ch\u1ecb Nhung / **L\u1ea1c H\u1ed3ng Vietnamese School** interest in children's speech, singing, and cultural contests at EGLNY. **Still to define with the partner:** which contests run, how heats are run, age bands, open vs member eligibility, judging criteria, stage time, and real prize/ops dollars. Steering eligibility gate (when published): festival grounds require a real **open/public tier** alongside any L\u1ea1c H\u1ed3ng member tier; members-only stays at school. Amount (~$3,000) is a placeholder until that conversation. Separate from Meme Dance Contest and Moditional Dance Battle.",
+      "description": "Draft gift \u2014 not yet open for sponsors. Working capture of Ch\u1ecb Nhung / L\u1ea1c H\u1ed3ng Vietnamese School interest in children's speech, singing, and cultural contests at EGLNY. Still to define with the partner: which contests run, how heats are run, age bands, open vs member eligibility, judging criteria, stage time, and real prize/ops dollars. Steering eligibility gate (when published): festival grounds require a real open/public tier alongside any L\u1ea1c H\u1ed3ng member tier; members-only stays at school. Amount (~$3,000) is a placeholder until that conversation. Separate from Meme Dance Contest and Moditional Dance Battle.",
       "benefits": [
         "TBD once contest product is locked with L\u1ea1c H\u1ed3ng"
       ],
@@ -653,7 +675,7 @@
       "sortOrder": 12,
       "impactOrder": 10,
       "tagline": "Modern-meets-traditional crew battle \u2014 schools remix \u00e1o d\u00e0i, lion, and fan with hip-hop and K-pop.",
-      "description": "**Moditional Dance Battle** \u2014 a **judged, cross-school modern + traditional fusion crew competition**. **EGUSD high school** crews and cultural clubs compete head-to-head, but every routine must **fuse modern + traditional** (\u00e1o d\u00e0i, lion, fan, or heritage movement remixed with hip-hop / K-pop / cover). Scoring blends a **light panel** with a **crowd-hype meter**, so the audience has a job. **Participation guardrail:** between rounds, a near-peer leader runs an **open-floor learn-along** (shared with the Meme Dance Contest mechanic) so little kids and families jump in \u2014 not a watch-only stage. **Medals + traveling title to crews, no individual crowning** \u2014 celebrates craft, not a pageant pedestal. **Pan-APIDA / multicultural** \u2014 open to all school clubs, not VN-only. Battle crews also supply the near-peer leaders for the Meme Dance Contest. **Separate from T\u1ebft Relay Cup** (grass athletics) and the **Meme Dance Contest** (under-12 follow-along). **EGUSD HS anchors** the bill; **college / Sac State crews welcome as guests** (same fusion rule \u2014 do not crowd out HS slots). Gen Z *audience* lane still assumed at Sac State when they launch. *(Successor to the 2026 Youth Culture Day stage showcase.)*",
+      "description": "Moditional Dance Battle \u2014 a judged, cross-school modern + traditional fusion crew competition. EGUSD high school crews and cultural clubs compete head-to-head, but every routine must fuse modern + traditional (\u00e1o d\u00e0i, lion, fan, or heritage movement remixed with hip-hop / K-pop / cover). Scoring blends a light panel with a crowd-hype meter, so the audience has a job. Participation guardrail: between rounds, a near-peer leader runs an open-floor learn-along (shared with the Meme Dance Contest mechanic) so little kids and families jump in \u2014 not a watch-only stage. Medals + traveling title to crews, no individual crowning \u2014 celebrates craft, not a pageant pedestal. Pan-APIDA / multicultural \u2014 open to all school clubs, not VN-only. Battle crews also supply the near-peer leaders for the Meme Dance Contest. Separate from T\u1ebft Relay Cup (grass athletics) and the Meme Dance Contest (under-12 follow-along). EGUSD HS anchors the bill; college / Sac State crews welcome as guests (same fusion rule \u2014 do not crowd out HS slots). Gen Z *audience* lane still assumed at Sac State when they launch. *(Successor to the 2026 Youth Culture Day stage showcase.)*",
       "benefits": [
         "Moditional Dance Battle presented by [Sponsor]",
         "Facebook/Instagram feature + school tags on the bracket grid",
@@ -698,7 +720,7 @@
       "sortOrder": 13,
       "impactOrder": 11,
       "tagline": "Open-age relay bracket \u2014 clubs, leagues, and community teams on the grass.",
-      "description": "**T\u1ebft Relay Cup** \u2014 festival-run **relay tournament** on the grass corral beside Children's Village. **Not a youth-only product** \u2014 open **age brackets** (adult rec, parish teams, school clubs, service orgs). **2027 MVP:** one featured bracket (often HS-heavy); expand divisions as registration fills. Single-elimination heats, East/West or age pools, prizes to winning teams. **Moditional Dance Battle** (stage) is a **separate registry block** \u2014 schools may do both. College org performance routes to Sac State APIDA LNY.",
+      "description": "T\u1ebft Relay Cup \u2014 festival-run relay tournament on the grass corral beside Children's Village. Not a youth-only product \u2014 open age brackets (adult rec, parish teams, school clubs, service orgs). 2027: Not offered this year \u2014 Sunday Feb 14 is Super Bowl LXI, so the park runs T\u1ebft Tailgate (camps + screen + light games), not a relay bracket. Unlocks a non\u2013Super Bowl year. Moditional Dance Battle (stage) is a separate gift. College org performance routes to Sac State APIDA LNY.",
       "benefits": [
         "T\u1ebft Relay Cup presented by [Sponsor]",
         "Facebook/Instagram feature + public bracket on website program",
@@ -739,7 +761,7 @@
       "sortOrder": 13,
       "impactOrder": 13,
       "tagline": "Shade, activities, anchor hosts \u2014 families regroup and kids do T\u1ebft.",
-      "description": "**Family home base** \u2014 compact zone with shade, stroller corral, benches, and cultural **do** stations (lantern craft, red-envelope play, scavenger). **Anchor hosts** run repeat parent\u2013toddler sessions (bilingual sing-along, story circle \u2014 a person families already know, not an empty org tent). **Turnkey activations** for gyms/PTAs: partner forwards one email; festival runs the slot. **Family meetup corral** with labeled stations on the map. Adjacent to T\u1ebft Relay Cup corral. **Owned inflatable carnival games** (deploy labor) are a **separate registry block** \u2014 same **Children's Village** director when funded. Carnival bounce / jumpers sit with the carnival rides package, not this Village gift. Not in MVP ops.",
+      "description": "Family home base \u2014 compact zone with shade, stroller corral, benches, and cultural do stations (lantern craft, red-envelope play, scavenger). Anchor hosts run repeat parent\u2013toddler sessions (bilingual sing-along, story circle \u2014 a person families already know, not an empty org tent). Turnkey activations for gyms/PTAs: partner forwards one email; festival runs the slot. Family meetup corral with labeled stations on the map. Adjacent to T\u1ebft Relay Cup corral. Owned inflatable carnival games (deploy labor) are a separate gift \u2014 same Children's Village director when funded. Carnival bounce / jumpers sit with the carnival rides package, not this Village gift. Not in the core festival ops.",
       "benefits": [
         "Children's Village presented by [Sponsor]",
         "website + Facebook/Instagram feature",
@@ -787,7 +809,7 @@
       "sortOrder": 13.5,
       "impactOrder": 13.5,
       "tagline": "Maker / challenge / hang zone for ages ~11\u201317 \u2014 not little-kid craft land.",
-      "description": "**Tween / teen activity spot** \u2014 table and booth stations with **status** (photo-worthy DIY, scored or crew challenges, peer hang) so roughly ages **11\u201317** have something to *do* that isn\u2019t Children\u2019s Village and isn\u2019t only watching Moditional. Festival keeps map placement and non-Village brand rules; a preferred **spot vendor** runs the activity menu + day-of staffing. Freemium preferred (free core to start). **Separate lot from Children\u2019s Village and Children\u2019s Theater** \u2014 see the open Maker Spot RFP at [eglny.com/rfp/maker-spot/](https://eglny.com/rfp/maker-spot/). Primary for **EGLNY** weekend; Toy Drive / GLF slim add-ons are quote options, not this gift\u2019s core envelope.",
+      "description": "Tween / teen activity spot \u2014 table and booth stations with status (photo-worthy DIY, scored or crew challenges, peer hang) so roughly ages 11\u201317 have something to *do* that isn\u2019t Children\u2019s Village and isn\u2019t only watching Moditional. Festival keeps map placement and non-Village brand rules; a preferred spot vendor runs the activity menu + day-of staffing. Freemium preferred (free core to start). Separate lot from Children\u2019s Village and Children\u2019s Theater \u2014 see the open Maker Spot RFP at [eglny.com/rfp/maker-spot/](https://eglny.com/rfp/maker-spot/). Primary for EGLNY weekend; Toy Drive / GLF slim add-ons are quote options, not this gift\u2019s core envelope.",
       "benefits": [
         "Tween / Teen Maker Spot presented by [Sponsor]",
         "website + Facebook/Instagram feature",
@@ -828,7 +850,7 @@
       "sortOrder": 14,
       "impactOrder": 14,
       "tagline": "Retired \u2014 carnival rides package already includes bounce / jumper units.",
-      "description": "**Draft / not for sale (2027).** Carnival rides vendor (Fun & Game or successor) already provides bounce / jumper / obstacle inflatables under the carnival profit-share footprint \u2014 do not double-book a separate party-rental bounce gift. Kept in registry only as a fallback if carnival is not contracted. Coalition-owned **Inflatable Carnival Games** (8-station deploy) remain a separate sponsorable block.",
+      "description": "Draft / not for sale (2027). Carnival rides vendor (Fun & Game or successor) already provides bounce / jumper / obstacle inflatables under the carnival profit-share footprint \u2014 do not double-book a separate party-rental bounce gift. Kept in registry only as a fallback if carnival is not contracted. Coalition-owned Inflatable Carnival Games (8-station deploy) remain a separate sponsorable block.",
       "benefits": [
         "Bounce House Rentals presented by [Sponsor]",
         "website + Facebook/Instagram feature",
@@ -863,7 +885,7 @@
       "sortOrder": 15,
       "impactOrder": 15,
       "tagline": "Our 8-station carnival games \u2014 deploy + wind weights (2026 lesson).",
-      "description": "cPALSs + VACOS **already own** the Magic Jump\u2013class **8-station inflatable games** bundle ([product reference](https://www.magicjump.com/blog/inflatable-carnival-games/)). This block pays **deploy cost only** \u2014 U-Haul trailer, setup/teardown crew, cleaning, **weighted ballast** (blocks/barrels) to **secure against wind** \u2014 **2026 gap:** games were not weighted enough \u2014 plus **6K portable generator + weekend fuel**, and **storage amortization**. **Not** carnival bounce / jumpers (those come with the carnival rides package). **Children's Village** director runs the zone; do not open stations without ballast per manufacturer / park wind rules.",
+      "description": "cPALSs + VACOS already own the Magic Jump\u2013class 8-station inflatable games bundle ([product reference](https://www.magicjump.com/blog/inflatable-carnival-games/)). This block pays deploy cost only \u2014 U-Haul trailer, setup/teardown crew, cleaning, weighted ballast (blocks/barrels) to secure against wind \u2014 2026 gap: games were not weighted enough \u2014 plus 6K portable generator + weekend fuel, and storage amortization. Not carnival bounce / jumpers (those come with the carnival rides package). Children's Village director runs the zone; do not open stations without ballast per manufacturer / park wind rules.",
       "benefits": [
         "Inflatable Carnival Games presented by [Sponsor]",
         "website + Facebook/Instagram feature",
@@ -949,7 +971,7 @@
       "sortOrder": 15.5,
       "impactOrder": 0.5,
       "tagline": "Pavilion cafe \u2014 tables, charging, warm lighting. Exclusive beverage vendor pays their own setup.",
-      "description": "An all-day parent-respite cafe composed with Fashion Garden in the Pavilion. An exclusive beverage vendor sells Vietnamese coffee, boba, and family drinks \u2014 **exclusivity is their benefit; this gift does not subsidize vendor setup.** Gift funds the shared environment: comfortable seating (prefer CCSD Pavilion tables/chairs in-kind where possible), charging, warm lighting, and decor. The cafe is the function; Fashion Garden is the photo-rich setting.",
+      "description": "An all-day parent-respite cafe composed with Fashion Garden in the Pavilion. An exclusive beverage vendor sells Vietnamese coffee, boba, and family drinks \u2014 exclusivity is their benefit; this gift does not subsidize vendor setup. Gift funds the shared environment: comfortable seating (prefer CCSD Pavilion tables/chairs in-kind where possible), charging, warm lighting, and decor. The cafe is the function; Fashion Garden is the photo-rich setting.",
       "benefits": [
         "Viet Cafe presented by [Sponsor]",
         "Naming credit on cafe and charging-area signage",
@@ -1027,7 +1049,7 @@
       "sortOrder": 15.85,
       "impactOrder": 14,
       "tagline": "Hire human artists for the first festival-owned spirit cast \u2014 silhouettes, color keys, and shareable key art. No AI-generated art.",
-      "description": "Commissions the **first festival-owned spirit set** from **hired human artists** for Linhhonology soft myth \u2014 the lookbook kids \u201ccollect\u201d and marketing shows before anyone meets a body on the grass. Pays art direction plus character commissions for **about 4\u20136 spirits** (epithets, silhouettes / color keys, key art) and crop packs for host cards, web, social, Children\u2019s Village crafts, and Soul Torrent promotion. **Artistic integrity lock:** deliverables must be **human-made** (drawn / painted / designed by people under contract). **No generative-AI image tools** for final spirit art, key art, or published crops \u2014 audience trust and brand integrity depend on it. Festival retains assignment / work-for-hire rights for Elk Grove T\u1ebft and stewarded peer-festival reuse. **Not** day-of costume performers \u2014 that is **Spirit Actors & Forms**. Working dollars pending real quotes; later seasons can open community contribution under the same style keys and the same no-AI rule.",
+      "description": "Commissions the first festival-owned spirit set from hired human artists for Linhhonology soft myth \u2014 the lookbook kids \u201ccollect\u201d and marketing shows before anyone meets a body on the grass. Pays art direction plus character commissions for about 4\u20136 spirits (epithets, silhouettes / color keys, key art) and crop packs for host cards, web, social, Children\u2019s Village crafts, and Soul Torrent promotion. Artistic integrity lock: deliverables must be human-made (drawn / painted / designed by people under contract). No generative-AI image tools for final spirit art, key art, or published crops \u2014 audience trust and brand integrity depend on it. Festival retains assignment / work-for-hire rights for Elk Grove T\u1ebft and stewarded peer-festival reuse. Not day-of costume performers \u2014 that is Spirit Actors & Forms. Working dollars pending real quotes; later seasons can open community contribution under the same style keys and the same no-AI rule.",
       "benefits": [
         "Spirit Design \u2014 First Set presented by [Sponsor]",
         "Sponsor credit on spirit reveal cards + web feature",
@@ -1064,7 +1086,7 @@
       "sortOrder": 15.9,
       "impactOrder": 15,
       "tagline": "Live spirit meet-and-greets \u2014 festival forms kids can pose with after the art set exists.",
-      "description": "Day-of **Spirit Actors & Forms**: 2\u20134 hired performers (or costumed hosts) for scheduled meet-and-greet and photo windows in festival-owned spirit looks. **Recognition is the product** \u2014 kids arrive wanting a form they already saw on cards and feeds. Pulls costume / silhouette direction from **Spirit Design \u2014 First Set** when that gift is funded; without design art, stay silhouette-simple and festival-original (no trademarked characters, no studio names). Different from Fashion Garden (real guests and \u00e1o d\u00e0i ambassadors). Dedicated photo-line role so performers stay presentable and the line keeps moving.",
+      "description": "Day-of Spirit Actors & Forms: 2\u20134 hired performers (or costumed hosts) for scheduled meet-and-greet and photo windows in festival-owned spirit looks. Recognition is the product \u2014 kids arrive wanting a form they already saw on cards and feeds. Pulls costume / silhouette direction from Spirit Design \u2014 First Set when that gift is funded; without design art, stay silhouette-simple and festival-original (no trademarked characters, no studio names). Different from Fashion Garden (real guests and \u00e1o d\u00e0i ambassadors). Dedicated photo-line role so performers stay presentable and the line keeps moving.",
       "benefits": [
         "Spirit Actors & Forms presented by [Sponsor]",
         "Sponsor credit on spirit meet schedule + photo-line signage",
@@ -1101,7 +1123,7 @@
       "sortOrder": 15.95,
       "impactOrder": 18,
       "tagline": "Commercial / public-exhibition rights + legal feed \u2014 fund before any Tailgate watch gift.",
-      "description": "**Broadcast / exhibition rights first.** Pays the commercial or public-exhibition streaming/cable license and legal feed so the festival may show Super Bowl Sunday on-site. **Go/no-go if rights cannot be secured.** Does **not** include LED (already in Main Stage core) or Main-Stage Watch kickoff peak security. Fund this before **Main-Stage Watch** or optional Kloss camp screen \u2014 those gifts assume rights are clear.",
+      "description": "Broadcast / exhibition rights first. Pays the commercial or public-exhibition streaming/cable license and legal feed so the festival may show Super Bowl Sunday on-site. This gift only works if broadcast rights can be secured. Does not include LED (already in Main Stage core) or Main-Stage Watch kickoff peak security. Fund this before Main-Stage Watch or optional Kloss camp screen \u2014 those gifts assume rights are clear.",
       "benefits": [
         "Named Big Game rights sponsor on website + digital sponsor slide"
       ],
@@ -1126,7 +1148,7 @@
       "sortOrder": 16,
       "impactOrder": 17,
       "tagline": "Kickoff peak security/traffic add when the crowd gathers at the main-stage screen \u2014 grass is the seat.",
-      "description": "Sunday Tailgate **watch on the Main Stage LED** (LED already in festival core). **Requires Big Game \u2014 Core (Licensing).** This gift is only a **Tailgate kickoff peak security / traffic soft add** when the crowd gathers at the outdoor stage \u2014 not a seating, heater, wayfinding, or hospitality package. Guests find the big screen and sit on the grass (or bring what they bring). **No indoor Pavilion LED.** Optional Kloss camp screen is separate and also needs Core licensing.",
+      "description": "Sunday Tailgate watch on the Main Stage LED (LED already in festival core). Requires Big Game \u2014 Core (Licensing). This gift is only a Tailgate kickoff peak security / traffic soft add when the crowd gathers at the outdoor stage \u2014 not a seating, heater, wayfinding, or hospitality package. Guests find the big screen and sit on the grass (or bring what they bring). No indoor Pavilion LED. Optional Kloss camp screen is separate and also needs Core licensing.",
       "benefits": [
         "Big Game \u2014 Main-Stage Watch presented by [Sponsor]",
         "Named on Tailgate kickoff / watch chapter recognition"
@@ -1153,7 +1175,7 @@
       "sortOrder": 17,
       "impactOrder": 16,
       "tagline": "Optional Kloss camp screen + camp-watch security \u2014 needs Core licensing; not a second rights buy.",
-      "description": "Optional outdoor LED **inside Kloss** for Tailgate camps. **Requires Big Game \u2014 Core (Licensing)** \u2014 rights are not in this gift. Only if camps stay watching in Kloss; otherwise gather at main stage. Funds **camp screen package** and **Sunday security extension** for that gather \u2014 no heaters, seating, or hospitality package. Camps bring their own chairs.",
+      "description": "Optional outdoor LED inside Kloss for Tailgate camps. Requires Big Game \u2014 Core (Licensing) \u2014 rights are not in this gift. Only if camps stay watching in Kloss; otherwise gather at main stage. Funds camp screen package and Sunday security extension for that gather \u2014 no heaters, seating, or hospitality package. Camps bring their own chairs.",
       "benefits": [
         "Big Game Outdoor Evening presented by [Sponsor]",
         "MC thank-you + website / Facebook / Instagram feature",
@@ -1217,7 +1239,7 @@
       "category": "options",
       "sortOrder": 0,
       "tagline": "Top up your package toward the next tier.",
-      "description": "Add any dollar amount on top of your selected gifts \u2014 for example, $500 toward Bronze ($3,000+) to unlock sponsor booth spot. Does not fund a named registry feature.",
+      "description": "Add any dollar amount on top of your selected gifts \u2014 for example, $500 toward Bronze ($3,000+) to unlock sponsor booth spot. Does not unlock a named guest experience on its own.",
       "benefits": [
         "Counts toward recognition tier minimum"
       ],
@@ -1281,7 +1303,7 @@
       "sortOrder": 19,
       "impactOrder": 19,
       "tagline": "Creator tent / micro-stage meet & greet + collab posts \u2014 not a main-stage revue.",
-      "description": "Books a **regional creator young people already follow** (Raina / LovelyMimi tier) for a **scheduled meet & greet with a photo line** at a **sponsor tent or micro-stage pad** (not a main-stage revue block), plus **collaboration posts** that carry the festival into feeds beyond word of mouth. **2026 proof:** LovelyMimi and Raina brought out a substantial young audience, especially **high schoolers**. The lesson is **creator fit matters** \u2014 not that influencers lack draw. For 2027, make that draw legible and usable: announce a fixed appearance window, capture the creator-attributed audience, and convert recognition into a meet-and-greet photo moment. **Dual-purpose spend:** part programming, part **marketing** \u2014 the collab posts are paid reach we would otherwise buy. **Pricing is a placeholder:** this tier can retail near **$10K**; **$5,000** is our working number pending real quotes, and the ask scales with the creator. Staff the **photo line separately from any brief micro-set** so the line keeps moving.",
+      "description": "Books a regional creator young people already follow (Raina / LovelyMimi tier) for a scheduled meet & greet with a photo line at a sponsor tent or micro-stage pad (not a main-stage revue block), plus collaboration posts that carry the festival into feeds beyond word of mouth. 2026 proof: LovelyMimi and Raina brought out a substantial young audience, especially high schoolers. The lesson is creator fit matters \u2014 not that influencers lack draw. For 2027, make that draw legible and usable: announce a fixed appearance window, capture the creator-attributed audience, and convert recognition into a meet-and-greet photo moment. Dual-purpose spend: part programming, part marketing \u2014 the collab posts are paid reach we would otherwise buy. Pricing is a working amount: this tier can retail near $10K; $5,000 is our working number pending real quotes, and the ask scales with the creator. Staff the photo line separately from any brief micro-set so the line keeps moving.",
       "benefits": [
         "Influencer Meet & Greet presented by [Sponsor]",
         "Instagram collaboration post",
@@ -1318,7 +1340,7 @@
       "sortOrder": 50,
       "impactOrder": 19.5,
       "tagline": "Community traditions take the stage \u2014 hula, folkl\u00f3rico, folk dance, taiko, and more.",
-      "description": "A curated, **noncompetitive community heritage showcase** featuring short performance sets from traditions represented across the region \u2014 for example, **h\u0101lau hula, Mexican folkl\u00f3rico, Filipino folk dance, taiko, and other community ensembles**. This is a welcome-and-share stage block: **no judges, rankings, brackets, prizes, or winner language**. Modest group honoraria recognize preparation and travel; a producer curates a balanced run-of-show and clean stage handoffs. Assumes the baseline stage, PA, and sound engineer are already funded through core ops. Unlike the **Moditional Dance Battle**, this gift does not turn heritage performance into a contest; unlike the **Vietnamese Heritage Fund**, it supports broad community representation within the family fair.",
+      "description": "A curated, noncompetitive community heritage showcase featuring short performance sets from traditions represented across the region \u2014 for example, h\u0101lau hula, Mexican folkl\u00f3rico, Filipino folk dance, taiko, and other community ensembles. This is a welcome-and-share stage block: no judges, rankings, brackets, prizes, or winner language. Modest group honoraria recognize preparation and travel; a producer curates a balanced run-of-show and clean stage handoffs. Assumes the baseline stage, PA, and sound engineer are already funded through core ops. Unlike the Moditional Dance Battle, this gift does not turn heritage performance into a contest; unlike the Vietnamese Heritage Fund, it supports broad community representation within the family fair.",
       "benefits": [
         "Community Heritage Performance Showcase presented by [Sponsor]",
         "Sponsor credit on the showcase schedule and stage signage",
