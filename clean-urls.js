@@ -23,5 +23,10 @@
 
   if (pathname === "/build" || pathname === "/build/") {
     location.replace("/fund-the-festival/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/ig" || pathname === "/ig/") {
+    location.replace("https://links.cpalss.com/lunarnewyeartet/" + search + hash);
   }
 })();
