@@ -1,53 +1,9 @@
 {
-  "generatedAt": "2026-08-18T01:25:00.000Z",
-  "sourceSpreadsheetId": "1IB6beiKHC9R05r2o0imkh8MX_2u-qmhlVxTV3pxibs0",
+  "generatedAt": "2026-08-22T05:21:11.178Z",
+  "source": "community-graph",
+  "seasonKind": "lny",
   "seasonYear": "2027",
   "events": [
-    {
-      "eventId": "iu-mien-sacramento",
-      "dates": "Sat, Jan 16, 2027 (estimated Sat before LNY; low confidence)",
-      "name": "Sacramento Iu Mien New Year",
-      "host": "Iu Mien community (Sacramento)",
-      "location": "Rice Bowl Restaurant, Sacramento",
-      "href": "https://www.unitediumien.org/",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "ari-lny",
-      "dates": "Fri, Jan 29, 2027 (estimated Fri before LNY; low confidence)",
-      "name": "ARI Lunar New Year Celebration",
-      "host": "Asian Resources, Inc. (ARI)",
-      "location": "ARI Headquarters, Sacramento",
-      "href": "https://www.arisacramento.org/",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "creative-space-lny",
-      "dates": "Sat, Jan 30, 2027 (estimated Sat before LNY; low confidence)",
-      "name": "Lunar New Year Celebration",
-      "host": "The Creative Space",
-      "location": "Old Town Plaza, Elk Grove",
-      "href": "https://www.thecreativespacesac.com/events",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "scncca-lny",
-      "dates": "Sat, Jan 30, 2027 (estimated Sat before LNY; low confidence)",
-      "name": "Sacramento Chinese New Year Culture Association Festival",
-      "host": "Sacramento Chinese New Year Culture Association (SCNCCA)",
-      "location": "Luther Burbank High School, Sacramento",
-      "href": "http://www.cnyca.net/php/",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "arden-fair-lny",
-      "dates": "Sat, Jan 30, 2027 (estimated Sat before LNY; low confidence)",
-      "name": "Lunar New Year Celebration",
-      "host": "Arden Fair + Sacramento Asian Pacific Chamber of Commerce",
-      "location": "Arden Fair (mall), Sacramento",
-      "href": "https://sacasiancc.org/event/arden-fair-x-sacasian-chamber-lunar-new-year-celebration/",
-      "certainty": "estimated"
-    },
     {
       "eventId": "ca-is-my-home-lny",
       "dates": "Sat, Jan 30, 2027 (intended; not confirmed)",
@@ -58,8 +14,63 @@
       "certainty": "intended"
     },
     {
+      "eventId": "cpalss-lny-capstone",
+      "dates": "Sat–Sun Feb 13–14, 2027 · 11 AM–7:30 PM (intended; not confirmed)",
+      "name": "Elk Grove Lunar New Year Tết",
+      "host": "cPALSs / VACOS / NVCC",
+      "location": "Elk Grove Park, Elk Grove",
+      "href": "/",
+      "certainty": "intended",
+      "capstone": true
+    },
+    {
+      "eventId": "ari-lny",
+      "dates": "–Sat, Jan 29–30, 2027 (estimated Fri before LNY; low confidence)",
+      "name": "ARI Lunar New Year Celebration",
+      "host": "Asian Resources, Inc. (ARI)",
+      "location": "ARI Headquarters, Sacramento",
+      "href": "https://www.arisacramento.org/",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "creative-space-lny",
+      "dates": "–Fri, Jan 28–29, 2027 (estimated Sat before LNY; low confidence)",
+      "name": "Lunar New Year Celebration",
+      "host": "The Creative Space",
+      "location": "Old Town Plaza, Elk Grove",
+      "href": "https://www.thecreativespacesac.com/events",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "arden-fair-lny",
+      "dates": "–Sun, Feb 6–7, 2027 (estimated Sat before LNY; low confidence)",
+      "name": "Lunar New Year Celebration",
+      "host": "Arden Fair + Sacramento Asian Pacific Chamber of Commerce",
+      "location": "Arden Fair (mall), Sacramento",
+      "href": "https://sacasiancc.org/event/arden-fair-x-sacasian-chamber-lunar-new-year-celebration/",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "cache-creek-tet-concert",
+      "dates": "–Thu, Feb 24–25, 2027 (estimated Sat after LNY; low confidence)",
+      "name": "Mừng Xuân Concert",
+      "host": "Cache Creek Casino Resort / promoter",
+      "location": "Cache Creek Casino Resort, Brooks",
+      "href": "https://www.cachecreek.com/entertainment",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "scncca-lny",
+      "dates": "–Fri, Feb 11–12, 2027 (estimated Sat before LNY; low confidence)",
+      "name": "Sacramento Chinese New Year Culture Association Festival",
+      "host": "Sacramento Chinese New Year Culture Association (SCNCCA)",
+      "location": "Luther Burbank High School, Sacramento",
+      "href": "http://www.cnyca.net/php/",
+      "certainty": "estimated"
+    },
+    {
       "eventId": "locke-cny",
-      "dates": "Sat, Feb 6, 2027 noon-4 PM (estimated Sat before LNY; low confidence)",
+      "dates": "–Sun, Feb 20–21, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Chinese New Year Celebration",
       "host": "Locke Foundation / State Parks partners",
       "location": "Locke Boarding House Museum State Park",
@@ -67,54 +78,8 @@
       "certainty": "estimated"
     },
     {
-      "eventId": "vietnamese-martyrs-tet",
-      "dates": "Sat, Feb 6, 2027 7-11 PM (estimated Sat before LNY; low confidence)",
-      "name": "Hội Chợ Tết Mừng Xuân",
-      "host": "Vietnamese Martyrs Church",
-      "location": "Vietnamese Martyrs Church, Sacramento",
-      "href": "https://www.scd.org/parish/vietnamese-martyrs-parish-sacramento",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "fairytale-town-lny",
-      "dates": "Sun, Feb 7, 2027 10 AM-2 PM (estimated Sun before LNY; low confidence)",
-      "name": "Lunar New Year Celebration (Fairytale Town)",
-      "host": "Fairytale Town",
-      "location": "Fairytale Town - William Land Park, Sacramento",
-      "href": "https://www.fairytaletown.org/calendar/lunar-new-year-2/",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "rice-bowl-tet-dance",
-      "dates": "Fri, Feb 12, 2027 (estimated Fri after LNY; low confidence)",
-      "name": "Tết Dinner Dance (Rice Bowl)",
-      "host": "Community organizers (Rice Bowl Restaurant host)",
-      "location": "Rice Bowl Restaurant, Sacramento",
-      "href": "https://ricebowlrestaurant.us/",
-      "certainty": "estimated"
-    },
-    {
-      "eventId": "cpalss-lny-capstone",
-      "dates": "Sat–Sun Feb 13–14, 2027 · 11 AM–7:30 PM (intended; not confirmed)",
-      "name": "Elk Grove Lunar New Year Tết",
-      "host": "cPALSs / VACOS / NVCC",
-      "location": "Elk Grove Park, Elk Grove",
-      "href": "/",
-      "capstone": true,
-      "certainty": "intended"
-    },
-    {
-      "eventId": "honor-kung-fu-lny",
-      "dates": "Sun, Feb 21, 2027 (estimated Sun after LNY; low confidence)",
-      "name": "Lunar New Year Celebration",
-      "host": "Honor Kung Fu",
-      "location": "Honor Kung Fu Academy, Sacramento",
-      "href": "https://www.honorkungfu.com/",
-      "certainty": "estimated"
-    },
-    {
       "eventId": "chasons-crab-stadium-lny",
-      "dates": "Sun, Feb 21, 2027 (estimated Sun after LNY; low confidence)",
+      "dates": "–Sat, Feb 12–13, 2027 (estimated Sun after LNY; low confidence)",
       "name": "Chinese/Lunar New Year Celebration (Chason's Crab Stadium)",
       "host": "Chason's Crab Stadium",
       "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
@@ -122,12 +87,48 @@
       "certainty": "estimated"
     },
     {
-      "eventId": "cache-creek-tet-concert",
-      "dates": "Sat, Feb 27, 2027 (estimated Sat after LNY; low confidence)",
-      "name": "Mừng Xuân Concert",
-      "host": "Cache Creek Casino Resort / promoter",
-      "location": "Cache Creek Casino Resort, Brooks",
-      "href": "https://www.cachecreek.com/entertainment",
+      "eventId": "vietnamese-martyrs-tet",
+      "dates": "–Thu, Feb 3–4, 2027 (estimated Sat before LNY; low confidence)",
+      "name": "Hội Chợ Tết Mừng Xuân",
+      "host": "Vietnamese Martyrs Church",
+      "location": "Vietnamese Martyrs Church, Sacramento",
+      "href": "https://www.scd.org/parish/vietnamese-martyrs-parish-sacramento",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "honor-kung-fu-lny",
+      "dates": "–Fri, Feb 18–19, 2027 (estimated Sun after LNY; low confidence)",
+      "name": "Lunar New Year Celebration",
+      "host": "Honor Kung Fu",
+      "location": "Honor Kung Fu Academy, Sacramento",
+      "href": "https://www.honorkungfu.com/",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "fairytale-town-lny",
+      "dates": "–Tue, Feb 8–9, 2027 (estimated Sun before LNY; low confidence)",
+      "name": "Lunar New Year Celebration (Fairytale Town)",
+      "host": "Fairytale Town",
+      "location": "Fairytale Town - William Land Park, Sacramento",
+      "href": "https://www.fairytaletown.org/calendar/lunar-new-year-2/",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "iu-mien-sacramento",
+      "dates": "–Thu, Jan 13–14, 2027 (estimated Sat before LNY; low confidence)",
+      "name": "Sacramento Iu Mien New Year",
+      "host": "Iu Mien community (Sacramento)",
+      "location": "Rice Bowl Restaurant, Sacramento",
+      "href": "https://www.unitediumien.org/",
+      "certainty": "estimated"
+    },
+    {
+      "eventId": "rice-bowl-tet-dance",
+      "dates": "–Wed, Feb 9–10, 2027 (estimated Fri after LNY; low confidence)",
+      "name": "Tết Dinner Dance (Rice Bowl)",
+      "host": "Community organizers (Rice Bowl Restaurant host)",
+      "location": "Rice Bowl Restaurant, Sacramento",
+      "href": "https://ricebowlrestaurant.us/",
       "certainty": "estimated"
     }
   ]

@@ -3,9 +3,9 @@
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
-    "mvpCap": 65000,
+    "mvpCap": 50617,
     "vendorRev100": 20375,
-    "registryFull": 167517,
+    "registryFull": 165517,
     "vendorSlots": 76,
     "attendance": 9000
   },
@@ -14,7 +14,7 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 9000,
-    "mvpCap": 65000,
+    "mvpCap": 50617,
     "vendorRevenue": 45775,
     "headroomOrGap": 0,
     "vendorSlots": 76,
@@ -372,7 +372,7 @@
       "sortOrder": 5,
       "impactOrder": 6,
       "tagline": "Traditional centerpiece \u2014 the pole families gather around at T\u1ebft.",
-      "description": "Traditional T\u1ebft pole centerpiece. 2027 community pool pilot \u2014 materials, decor labor, and volunteer meals.",
+      "description": "Traditional T\u1ebft pole centerpiece. Proposal \u2014 community pool for materials, decor labor, and volunteer meals.",
       "benefits": [
         "Named on website + Facebook/Instagram unlock post",
         "Community pool co-credit where applicable"
@@ -391,7 +391,8 @@
           "amount": 400
         }
       ],
-      "priority": false
+      "priority": false,
+      "draft": true
     },
     {
       "id": "sat_night_headliner",
