@@ -15,7 +15,7 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Media — Elk Grove Lunar New Year Tết</title>
+  <title>History — Elk Grove Lunar New Year Tết</title>
   <script src="../../clean-urls.js"></script>
   <script>
     (function () {
@@ -29,15 +29,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" />
   <link rel="stylesheet" href="../../site.css" />
-  <meta name="description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
-  <link rel="canonical" href="https://eglny.com/resources/media/" />
-  <meta property="og:title" content="Media — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
+  <meta name="description" content="History of Elk Grove Lunar New Year Tết — from Stockton Blvd hội chợ to Elk Grove Park, with Civic Tết Trung Thu and the faith-house weekends beside it." />
+  <link rel="canonical" href="https://eglny.com/about/history/" />
+  <meta property="og:title" content="History — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="History of Elk Grove Lunar New Year Tết — from Stockton Blvd hội chợ to Elk Grove Park, with Civic Tết Trung Thu and the faith-house weekends beside it." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eglny.com/resources/media/" />
+  <meta property="og:url" content="https://eglny.com/about/history/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Media — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Elk Grove Lunar New Year Tết media — press coverage, ads, and festival videos." />
+  <meta name="twitter:title" content="History — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="History of Elk Grove Lunar New Year Tết — from Stockton Blvd hội chợ to Elk Grove Park, with Civic Tết Trung Thu and the faith-house weekends beside it." />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1785296280" />
 
@@ -50,8 +50,12 @@
   <main class="page-wrap page-wrap--doc" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
-        <h1>Media</h1>
-        <p>Press coverage, ads, festival videos, and posters from Elk Grove Lunar New Year Tết.</p>
+        <h1>History</h1>
+        <p>Greater Sacramento has hosted four ongoing festival products around Tết (Lunar New Year) and Tết Trung Thu (Mid-Autumn Festival).</p>
+      </section>
+      <section>
+        <h2>Four products in Greater Sacramento</h2>
+        <p>A civic Hội Chợ Tết later moved to Elk Grove Park; from 2027 that park weekend is billed EGLNY (Elk Grove Lunar New Year). A civic Tết Trung Thu began in 2019 as a moon and family fair. A reboot is in the works, with the name Great Lantern Festival. Kim Quang Buddhist Temple stages văn nghệ around Tết. Vietnamese Martyrs Parish holds Xuân celebrations and, in some years, a parish-hall Tết Trung Thu.</p>
       </section>
     </div>
   </main>
@@ -62,21 +66,29 @@
     (async function () {
       const {initPageShell,
         loadSiteData,
+        loadJsonData,
         mountFooter,
-        renderMediaPage,
-        initMediaPlayers,
+        renderHistoryPage,
+        initHistoryFilter,
         initHistoryLightbox,
+        initHistoryCarousels,
+        initMediaPlayers,
+        initInstagramEmbeds,
         initDocToc,
         setPageTitle,
         escapeHtml, revealPage} = window.EglnySite;
-      initPageShell("media");
+      initPageShell("history");
       try {
         const site = await loadSiteData();
-        setPageTitle(site, "Media");
-        document.getElementById("main").innerHTML = renderMediaPage(site.media);
+        const history = await loadJsonData("data/history.json");
+        setPageTitle(site, "History");
+        document.getElementById("main").innerHTML = renderHistoryPage(history);
         initDocToc();
-        initMediaPlayers();
+        initHistoryFilter();
         initHistoryLightbox();
+        initHistoryCarousels();
+        initMediaPlayers();
+        initInstagramEmbeds();
         mountFooter(site);
         if (typeof revealPage === "function") revealPage();
       } catch (err) {

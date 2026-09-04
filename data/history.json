@@ -1,0 +1,788 @@
+{
+  "headline": "History",
+  "lead": "Greater Sacramento has hosted four ongoing festival products around Tết (Lunar New Year) and Tết Trung Thu (Mid-Autumn Festival): a civic Hội Chợ Tết that later moved to Elk Grove Park, a civic moon and family fair, and separate calendars at Kim Quang Buddhist Temple and Vietnamese Martyrs Parish.",
+  "intro": [
+    "Hội Chợ Tết is a public Tết market fair — carnival rides, a stage, and in some years a street parade — that began on the Stockton Blvd–Florin corridor. Hosts have included the Vietnamese American Community of Sacramento (VACOS), the Greater Sacramento Vietnamese American Chamber of Commerce (GSVACC, later the Norcal Vietnamese Chamber of Commerce, NVCC), and Community Partners Advocate of Little Saigon Sacramento (cPALSs). The civic weekend later moved to Elk Grove Park. Elk Grove Lunar New Year (EGLNY) is the acronym used for that park weekend from 2027.",
+    "Two faith campuses keep their own calendars. Kim Quang Buddhist Temple, on Alta Arden, stages Gia Đình Phật Tử (GĐPT) văn nghệ — a youth variety show — around Tết, with lễ (ceremony) and lân (lion dance). Vietnamese Martyrs Parish, on Florin Road, has held Xuân (spring / Tết) celebrations: a weekend fair in the early 2010s, then a ticketed Saturday evening from 2024.",
+    "A second civic season, Tết Trung Thu, began in 2019 as a moon and family fair. A reboot is in the works, with the name Great Lantern Festival."
+  ],
+  "hideMafLabel": "Hide Tết Trung Thu",
+  "hideMafHelp": "Hides Civic Tết Trung Thu, parish-hall Mid-Autumn, and Kim Quang lantern walks — so the page is Tết only.",
+  "tracksTitle": "Four products in Greater Sacramento",
+  "tracks": [
+    {
+      "title": "Civic Hội Chợ Tết → Elk Grove Park",
+      "body": "The public weekend fair — carnival and stage, later a parade — on Stockton Blvd–Florin lots and plazas, then Florin Towne Centre, then Elk Grove Park. From 2027 the park weekend is billed EGLNY."
+    },
+    {
+      "id": "civic-trung-thu",
+      "maf": true,
+      "title": "Civic Tết Trung Thu",
+      "body": "A civic moon and family fair. VACOS and Lac Hong Center hosted a 2019 community-center night; later editions were at Florin Towne Centre and Laguna Town Hall, with NVCC and cPALSs among the named presenters. A reboot is in the works, with the name Great Lantern Festival."
+    },
+    {
+      "title": "Kim Quang Buddhist Temple",
+      "body": "On-campus GĐPT văn nghệ around Tết, plus lễ and lân at Alta Arden. Some years a campus lantern walk for Tết Trung Thu."
+    },
+    {
+      "title": "Vietnamese Martyrs Parish",
+      "body": "Florin campus Tết / Xuân: a weekend fair in the early 2010s, then ticketed Saturday evenings from 2024. The parish hall has also hosted a Tết Trung Thu night in some years."
+    }
+  ],
+  "cta": {
+    "label": "Celebrate with us in 2027",
+    "href": "/",
+    "note": "Festival posters and press tapes also live on [Media](/resources/media/)."
+  },
+  "eras": [
+    {
+      "id": "2007-2008",
+      "title": "2007–2008 · Civic hội chợ on the corridor",
+      "blocks": [
+        {
+          "kicker": "2007",
+          "title": "First named Sacramento Hội Chợ Tết on tape",
+          "paragraphs": [
+            "Đinh Hợi — a corridor fair, not a documented Stockton Blvd street parade. The exact weekend is not on a dated flyer yet; contemporary tape is how the name Hội Chợ Tết shows up."
+          ],
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Hội Chợ Tết Đinh Hợi 2007 — Chau Truong",
+              "items": [
+                { "kind": "youtube", "id": "JFLedkXe5nA", "title": "Hội Chợ Tết tại Sacramento — opening, Sat Feb 10" },
+                { "kind": "youtube", "id": "7Rlx5ETjpYg", "title": "Hội Chợ Tết tại Sacramento — Sun Feb 11" },
+                { "kind": "youtube", "id": "klOtZ0JDpyU", "title": "Hội Chợ Tết Đinh Hợi 2007 — Ánh Minh" },
+                { "kind": "youtube", "id": "Fsat2bHb9-U", "title": "Hội Chợ Tết tại Sacramento — parish kids" },
+                { "kind": "youtube", "id": "Rzsk7ae2Hl4", "title": "Hội Chợ Tết Đinh Hợi 2007 tại Sacramento" },
+                { "kind": "youtube", "id": "qjaXjOz5Qeg", "title": "Hội Chợ Tết Đinh Hợi 2007 tại Sacramento — church dance" },
+                { "kind": "youtube", "id": "rk4RMnTSdQQ", "title": "Hội Chợ Tết 2007" },
+                { "kind": "youtube", "id": "h2xZpE3QGR0", "title": "Hội Chợ Tết 2007 — Sacramento" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2008",
+          "kicker": "Saturday, February 9, 2008",
+          "title": "Carnival, stage, and lô tô",
+          "paragraphs": [
+            "The lot-fair formula is already on tape — rides, a stage, and lô tô. Not a parade year."
+          ],
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Hội Chợ Tết 2008 — Chau Truong",
+              "items": [
+                { "kind": "youtube", "id": "7tcCV_XBJGY", "title": "Hội Chợ Tết tại Sacramento (2)" },
+                { "kind": "youtube", "id": "u0ZnW7CRu9M", "title": "Vietnamese Tet Festival in Sacramento (3)" },
+                { "kind": "youtube", "id": "xJrYqiKyIdw", "title": "Hội Chợ Tết tại Sacramento (4)" },
+                { "kind": "youtube", "id": "-98niWwmCIU", "title": "Vietnamese Tet Festival in Sacramento 2008 (5)" },
+                { "kind": "youtube", "id": "Ca9RryphECs", "title": "Xỗ Loto ở Hội Chợ Tết 2008 tại Sacramento (10)" },
+                { "kind": "youtube", "id": "FBR-AGOiTKE", "title": "sinh viên UC Davis trình diễn trong Hội Chợ (12)" },
+                { "kind": "youtube", "id": "v4K_kjfUoF0", "title": "Thi trẻ em nói tiếng Việt trong Hội Chợ Tết (13)" },
+                { "kind": "youtube", "id": "rfgo4m-_gHw", "title": "Hội Chợ Tết 2008 tại Sacramento (14)" },
+                { "kind": "youtube", "id": "szu0g7kUdJE", "title": "sinh viên UC Davis đóng góp trong Hội Chợ (16)" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2009",
+      "title": "2009 · Civic hội chợ, then faith campuses",
+      "blocks": [
+        {
+          "kicker": "2009",
+          "title": "Civic Hội Chợ Tết on the corridor",
+          "paragraphs": [
+            "The civic fair is on tape (Kỷ Sửu). The exact weekend is not dated yet — Tết-season, before the summer campus openings."
+          ],
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Hội Chợ Tết 2009 — Chau Truong",
+              "items": [
+                { "kind": "youtube", "id": "gsiyj7snNGI", "title": "Hội Chợ Tết Kỷ Sửu tại Sacramento" },
+                { "kind": "youtube", "id": "EYcGaJ2qz_c", "title": "Hội Chợ Tết tại Sacramento (2)" },
+                { "kind": "youtube", "id": "xiSckirHry8", "title": "Hội Chợ Tết tại Sacramento (3)" },
+                { "kind": "youtube", "id": "-CZ1ybiebz0", "title": "Hội Chợ Tết Kỷ Sửu tại Sacramento (4)" },
+                { "kind": "youtube", "id": "-t11KW9SIA8", "title": "Hội Chợ Tết 2009 tại Sacramento" },
+                { "kind": "youtube", "id": "KsbfO_mf3WU", "title": "Hội Chợ Tết Kỷ Sửu 2009 tại Sacto" },
+                { "kind": "youtube", "id": "YiBB15QLPtM", "title": "Hội Chợ Tết 2009 in Sacramento" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "Sunday, June 28, 2009",
+          "title": "Vietnamese Martyrs Parish dedicates the sanctuary",
+          "paragraphs": [
+            "The parish opens 8181 Florin Road. Sundays had stayed on Jackson Road until this Mass. The personal parish is erected Sunday, November 29, 2009. There is no Florin Tết fair this year — Tết Kỷ Sửu was Monday, January 26, before the dedication."
+          ]
+        },
+        {
+          "kicker": "Saturday, July 4, 2009",
+          "title": "Kim Quang Buddhist Temple reconstruction finished",
+          "paragraphs": [
+            "The temple site is complete. Campus Tết stays lễ, GĐPT văn nghệ, and lân."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2010",
+      "title": "2010 · A Tết parade on Stockton Blvd",
+      "blocks": [
+        {
+          "kicker": "Saturday, February 13, 2010",
+          "title": "Little Saigon designation weekend",
+          "paragraphs": [
+            "Neighbors marched Tết down Stockton Blvd that designation Saturday, then filled the hội chợ. The civic weekend had a parade on the street."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "ANC-khvKp8c", "title": "Little Saigon parade — J Lees" },
+            {
+              "kind": "carousel",
+              "title": "Hội chợ 2010 — Chau Truong",
+              "items": [
+                { "kind": "youtube", "id": "I5PL7bg5dOU", "title": "Hội Chợ Tết 2010 tại Sacramento (1)" },
+                { "kind": "youtube", "id": "GJN6Xlq23_4", "title": "Hội Chợ Tết 2010 tại Sacramento (2)" },
+                { "kind": "youtube", "id": "IRk4RdyI60Q", "title": "Hội Chợ Tết 2010 tại Sacramento (3)" },
+                { "kind": "youtube", "id": "6Z6SHfYfURo", "title": "Hội Chợ Tết Canh Dần tại Sacramento" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2011",
+      "title": "2011 · Civic hội chợ on the corridor",
+      "blocks": [
+        {
+          "kicker": "Saturday, January 29, 2011",
+          "title": "Civic Hội Chợ Tết — Sacramento Vietnamese New Year Festival",
+          "paragraphs": [
+            "The civic hội chợ is still a Stockton Blvd–Florin corridor lot fair — not yet Elk Grove Park. Anthony Ha taped the weekend in numbered parts (same camera, same Saturday)."
+          ],
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Sacramento Vietnamese New Year Festival 2011 — Anthony Ha",
+              "items": [
+                { "kind": "youtube", "id": "bdreoZiF6fw", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 2)" },
+                { "kind": "youtube", "id": "dZbA2V627CM", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 3)" },
+                { "kind": "youtube", "id": "0PQAGMsP2PU", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 4)" },
+                { "kind": "youtube", "id": "TADrDIf8r18", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 7)" },
+                { "kind": "youtube", "id": "vxf_BfckRbI", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 8)" },
+                { "kind": "youtube", "id": "s7rU5lyeHT8", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 9)" },
+                { "kind": "youtube", "id": "_voBT_njHIw", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 10)" },
+                { "kind": "youtube", "id": "084ufwFXY8Q", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 11)" },
+                { "kind": "youtube", "id": "kP81rsqtndc", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 12)" },
+                { "kind": "youtube", "id": "meTtQ8BsuKE", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 13)" },
+                { "kind": "youtube", "id": "JUPtFFcqJbE", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 14)" },
+                { "kind": "youtube", "id": "iNDXneS7Nbw", "title": "Sacramento Vietnamese New Year Festival 2011 (Part 15)" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2012-2013",
+      "title": "2012–2013 · Church fair, branded weekend, temple văn nghệ",
+      "blocks": [
+        {
+          "kicker": "Friday–Sunday, January 27–29, 2012",
+          "title": "First confirmed Vietnamese Martyrs Parish Hội Chợ Xuân",
+          "paragraphs": [
+            "The parish fair at 8181 Florin. Tết Nhâm Thìn was Monday, January 23 — a split from the civic weekend that follows."
+          ],
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Hội Chợ Xuân 2012 — Anthany Nguyen",
+              "items": [
+                { "kind": "youtube", "id": "eRYmLjilBdQ", "title": "HOI CHO XUAN 2012" },
+                { "kind": "youtube", "id": "jxnvGREPp_U", "title": "HOI CHO XUAN 2012 CA SI" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "Saturday, February 4, 2012",
+          "title": "Little Saigon Street Festival Parade",
+          "paragraphs": [
+            "Civic Tết lands this Saturday (rain-moved from January 21). Split weekends: church first, then the corridor."
+          ],
+          "poster": {
+            "src": "posters/2012.jpg",
+            "alt": "2012 Little Saigon Street Festival Parade poster",
+            "year": 2012,
+            "caption": "Stockton Blvd"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "RJj3ae7AQ9w", "title": "Little Saigon Street Festival Parade — LITTLE SAIGON TV" }
+          ]
+        },
+        {
+          "kicker": "2012",
+          "title": "Kim Quang văn nghệ around Tết",
+          "paragraphs": [
+            "First GĐPT văn nghệ-around-Tết tapes, plus lân. An on-campus culture show."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "cr0EhO9XLy8", "title": "Tết 2012 @ GĐPT Kim Quang" }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "2012",
+          "title": "Kim Quang campus Trung Thu lân",
+          "paragraphs": [
+            "A lantern-season lân on campus."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "mvXh2ZCGqNc", "title": "Lion dance Tết Trung Thu @ Chùa Kim Quang" }
+          ]
+        },
+        {
+          "kicker": "Friday–Sunday, February 1–3, 2013",
+          "title": "Vietnamese Martyrs Parish Hội Tết Xuân Quý Tỵ",
+          "paragraphs": [
+            "Tết was Sunday, February 10. Church week −1; civic week +1."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "8OQA032N_gA", "title": "Hội Tết Xuân Quý Tỵ — SBTN" }
+          ]
+        },
+        {
+          "kicker": "Saturday–Sunday, February 16–17, 2013",
+          "title": "Civic corridor fair — Stockton Blvd / Florin lot",
+          "paragraphs": [
+            "The civic weekend after the parish fair. SN&R called the season “Going lunar.”"
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "3MSGEIvwvqQ", "title": "Hội Chợ Tết 2013 — SBTN" },
+            {
+              "kind": "carousel",
+              "title": "Hội Chợ Tết 2013 — HyRo",
+              "items": [
+                { "kind": "youtube", "id": "stOon8INhxw", "title": "Sacramento 2013 — Tet Parade" },
+                { "kind": "youtube", "id": "hZpfPC_gPJQ", "title": "Tet Mua Lan — Sacramento 2013" },
+                { "kind": "youtube", "id": "ZjHqS6xzpDQ", "title": "Hoi Cho Tet — Sacramento 2013 — Part 1" },
+                { "kind": "youtube", "id": "a9_GsULdNGU", "title": "Hoi Cho Tet Sacramento 2013 — Part 2" },
+                { "kind": "youtube", "id": "snwRKv-Fzp8", "title": "Hoi Cho Tet — Sacramento 2013" },
+                { "kind": "youtube", "id": "wVHjOdJx8uc", "title": "Xo Loto 2013 — Hoi Cho Tet Sacramento" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2014-2020",
+      "title": "2014–2020 · Lunar Flower Fest years",
+      "blocks": [
+        {
+          "kicker": "Saturday–Sunday, February 15–16, 2014",
+          "title": "Hội Chợ Tết Giáp Ngọ",
+          "paragraphs": [
+            "Diễn hành and hội chợ on the corridor. The Florin Road Partnership rain notice puts the weekend at NE Florin & Stockton Blvd. Tết was Friday, January 31."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "D7YkG2jEErs", "title": "Hội Chợ Tết Giáp Ngọ — SBTN" }
+          ]
+        },
+        {
+          "kicker": "Saturday, February 14, 2015",
+          "title": "Lunar Flower Fest at 6820 Stockton Blvd",
+          "paragraphs": [
+            "Lunar Flower Fest branding is named in press and Facebook from this year. Tết Ất Mùi was Thursday, February 19."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "A_ykdzRhZWM", "title": "Lunar Flower Fest 2015 — SBTN" },
+            {
+              "kind": "carousel",
+              "title": "Lunar Flower Fest 2015 — HyRo",
+              "items": [
+                { "kind": "youtube", "id": "YLYVkGtRwi4", "title": "Ho Loto 1 — Lunar Flower Fest 2015" },
+                { "kind": "youtube", "id": "BcA5PLUhIpM", "title": "Ho Loto 2 — Lunar Flower Fest 2015" },
+                { "kind": "youtube", "id": "Yj2KHIJh4Dc", "title": "Ho Loto Nhac — Lunar Flower Fest 2015" },
+                { "kind": "youtube", "id": "eXe29x4So0Y", "title": "Tet Ho Loto Nhac Sacramento 2015" },
+                { "kind": "youtube", "id": "_o_TJu1X-ss", "title": "Dieu Quang Lion Dance — Lunar Flower Fest 2015" },
+                { "kind": "youtube", "id": "bAVv5npSPpg", "title": "SacVVA 500 — Lunar Flower Fest" },
+                { "kind": "youtube", "id": "h9q3nENsGWM", "title": "Sac VoViNam — Lunar Flower Fest 2015" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "Saturday, February 6, 2016",
+          "title": "Little Saigon Tet Parade + Lunar Flower Festival",
+          "paragraphs": [
+            "Parade at 9 AM, Stockton Blvd & Fruitridge. Tết was Monday, February 8. Parade and hội chợ the same Saturday."
+          ],
+          "poster": {
+            "src": "posters/2016.jpg",
+            "alt": "2016 Little Saigon Tet Parade and Lunar Flower Festival poster",
+            "year": 2016,
+            "caption": "Stockton Blvd"
+          },
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Lunar Flower Festival 2016 — GS VACC",
+              "items": [
+                { "kind": "youtube", "id": "PY5N-LVkoTg", "title": "Little Saigon Tet Parade & Lunar Flower Fest" },
+                { "kind": "youtube", "id": "yP-8MMwxioY", "title": "Lunar Flower Fest 2016 — Sacramento (Vietnamese)" }
+              ]
+            },
+            {
+              "kind": "carousel",
+              "title": "Little Saigon Lunar Flower Fest 2016 — HeuFamilyEnt",
+              "items": [
+                { "kind": "youtube", "id": "8AjGTpvWePI", "title": "Little Saigon Lunar Flower Fest 2016 — Parade" },
+                { "kind": "youtube", "id": "Y_3bJQDu4pU", "title": "Little Saigon Lunar Flower Fest 2016 — Lion Dance" },
+                { "kind": "youtube", "id": "FIp5CIVrVFs", "title": "Little Saigon Lunar Flower Fest 2016 — Mien Girls Dance" },
+                { "kind": "youtube", "id": "atrAktWDiOA", "title": "Little Saigon Lunar Flower Fest 2016 — Fireworks and Lion Twerks" },
+                { "kind": "youtube", "id": "GVNyC0sWD5c", "title": "Sensational Taiko Drummers in Little Saigon" },
+                { "kind": "youtube", "id": "G2nljDHhy14", "title": "Little Saigon Intense Taiko Drumming" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "2017",
+          "title": "Three dated listings — not one locked weekend",
+          "paragraphs": [
+            "SN&R’s Taste of Little Saigon bills Saturday–Sunday, February 4–5 (Florin & Stockton Blvd; “12th annual”). Facebook also lists a parade Saturday, January 28 (Tết Đinh Dậu) and a Tet Festival Saturday, February 11. Those stay three listings — not one collapsed weekend."
+          ],
+          "poster": {
+            "src": "posters/2017.jpg",
+            "alt": "2017 Lunar Flower Fest poster",
+            "year": 2017,
+            "caption": "Stockton Blvd"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "2-vJQF7ddiQ", "title": "Hội Tết 2017 — SBTN" },
+            {
+              "kind": "carousel",
+              "title": "Diễn hành 2017 — vobidalatsacramento",
+              "items": [
+                { "kind": "youtube", "id": "3jFhh_zZg-4", "title": "DIỄN HÀNH TẾT ĐINH DẬU TẠI SACRAMENTO 2017" },
+                { "kind": "youtube", "id": "h0FahzAfYgA", "title": "Cựu Quân Nhân QLVNCH Sacramento Diễn Hành Tết Đinh Dậu 2017" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "Saturday–Sunday, February 17–18 and 24–25, 2018",
+          "title": "Two weekends at Cali Saigon Mall",
+          "paragraphs": [
+            "Little Saigon Lunar Flower Fest + Tet Festival, two weekends, 4562 Mack Rd. Tết Mậu Tuất was Friday, February 16."
+          ],
+          "poster": {
+            "src": "posters/2018.jpg",
+            "alt": "2018 Lunar Flower Fest poster — Cali Saigon Mall",
+            "year": 2018,
+            "caption": "Cali Saigon Mall"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "qWeZyfhnh3Q", "title": "Hội Xuân 2018 — SBTN" }
+          ]
+        },
+        {
+          "kicker": "2018",
+          "title": "Kim Quang văn nghệ Tết",
+          "paragraphs": [
+            "Campus văn nghệ around Tết continues."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "w1eV9L7r5MQ", "title": "Văn nghệ Tết Kim Quang 2018" }
+          ]
+        },
+        {
+          "kicker": "2019",
+          "title": "Civic Tết on Stockton Blvd",
+          "paragraphs": [
+            "Tết was Tuesday, February 5. The hội chợ sat on Stockton Blvd; the exact Saturday–Sunday is not on a dated flyer."
+          ],
+          "poster": {
+            "src": "posters/2019.jpg",
+            "alt": "2019 civic Tết poster — Stockton Blvd",
+            "year": 2019,
+            "caption": "Stockton Blvd"
+          },
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Lô tô 2019 — Trung Huynh",
+              "items": [
+                { "kind": "youtube", "id": "mEQgbUrKT6g", "title": "Lô Tô Hội Xuân Kỷ Hợi 2019 Tại Thủ Phủ Sacramento" },
+                { "kind": "youtube", "id": "U-C_9P-3IEU", "title": "lô tô Hội Chợ Tết Sacramento 2019" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "2019",
+          "title": "Kim Quang văn nghệ Tết recap",
+          "paragraphs": [
+            "GĐPT Kim Quang’s campus show around Tết."
+          ],
+          "videos": [
+            { "kind": "youtube", "id": "l9ZyyDFy088", "title": "Văn nghệ Tết 2019 recap — GĐPT Kim Quang" }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, September 14, 2019",
+          "title": "Moon Festival 2019 — first civic Tết Trung Thu",
+          "paragraphs": [
+            "A community-center evening at the Vietnamese Community Center, 6270 Elder Creek Road. The night was billed Moon Festival 2019; VACOS page copy also said Tết Trung Thu 2019. Hosts were VACOS and Lac Hong Center. Free; 5:00 PM; kids contests. Lunar Mid-Autumn was Friday, September 13. This is not the later Florin Towne plaza fair."
+          ],
+          "poster": {
+            "src": "posters/maf-2019.jpg",
+            "alt": "2019 Moon Festival flyer — Vietnamese Community Center",
+            "year": 2019
+          }
+        },
+        {
+          "kicker": "Saturday–Sunday, February 1–2, 2020",
+          "title": "Last pre-COVID corridor year",
+          "paragraphs": [
+            "Lunar Flower Tet Festival / Hội Chợ Tết Canh Tý. One source pins 5901 Florin Road; the season art bills Stockton Blvd. Tết was Saturday, January 25. Both addresses stay on the record."
+          ],
+          "poster": {
+            "src": "posters/2020.jpg",
+            "alt": "2020 Lunar Flower Tet Festival poster",
+            "year": 2020,
+            "caption": "Stockton Blvd"
+          },
+          "videos": [
+            {
+              "kind": "carousel",
+              "title": "Lunar Flower Tet Festival 2020 — born4quest",
+              "items": [
+                { "kind": "youtube", "id": "vyrMNF8rhhI", "title": "Dean — Hội chợ Tết tại Sacramento CA. Tết 2020" },
+                { "kind": "youtube", "id": "llS7pAHjQ5Q", "title": "Tết 2020 Sacramento Hội Chợ — dance" },
+                { "kind": "youtube", "id": "MJB7uukRfqM", "title": "Celebration — Hannah — Tết 2020" },
+                { "kind": "youtube", "id": "zDwIvxwUXxE", "title": "Celebration — Tết 2020" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2021-2023",
+      "title": "2021–2023 · Civic Tết pauses, then Florin Towne",
+      "blocks": [
+        {
+          "kicker": "2021",
+          "title": "Civic Tết — no annual parade",
+          "paragraphs": [
+            "COVID year. CapRadio: no annual parade. Parish: Mass."
+          ]
+        },
+        {
+          "kicker": "2021",
+          "title": "Kim Quang văn nghệ around Tết",
+          "paragraphs": [
+            "The temple show still happened — văn nghệ on campus during COVID."
+          ],
+          "videos": [
+            {
+              "kind": "facebook",
+              "href": "https://www.facebook.com/thailand.tran.5/videos/10218772649962668/",
+              "title": "Văn nghệ Tết 2021 — GĐPT Kim Quang (Thailand Tran)"
+            }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, October 2, 2021",
+          "title": "First Florin Towne civic Tết Trung Thu",
+          "paragraphs": [
+            "Mid-Autumn Moon Celebration / Mừng Tết Trung Thu 2021 at the Sears parking lot, 5901 Florin Road (postponed from Saturday, September 25). 11:00 AM–10:00 PM; Little Saigon Night Market 6:00–10:00 PM. Presented by NVCC + cPALSs. KCRA billed a “first annual” plaza night market — that is this product, after the 2019 Elder Creek evening."
+          ],
+          "poster": {
+            "src": "posters/maf-2021.jpg",
+            "alt": "2021 Mid-Autumn Moon Celebration poster",
+            "year": 2021,
+            "caption": "Sears lot, Florin Road"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "QVbWwLDlUbk", "title": "Mid-Autumn Moon Festival 2021 — KCRA" }
+          ]
+        },
+        {
+          "kicker": "Saturday–Sunday, February 5–6, 2022",
+          "title": "Tết Nhâm Dần at Florin Towne — NVCC + cPALSs",
+          "paragraphs": [
+            "NVCC and cPALSs hosted Tết Nhâm Dần at Florin Towne / the Sears lot, Saturday–Sunday, February 5–6. Tết was Tuesday, February 1.",
+            "VACOS canceled a different weekend — Saturday–Sunday, January 29–30."
+          ],
+          "poster": {
+            "src": "posters/2022.jpg",
+            "alt": "2022 Tết Nhâm Dần poster — Florin Towne Centre",
+            "year": 2022,
+            "caption": "Florin Towne Centre"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "oVcF2sJGj-c", "title": "Tết 2022 Florin Towne — Honda Nguyen" },
+            { "kind": "youtube", "id": "DAKJxB6sSyM", "title": "Tết 2022 Florin Towne — Andy Sacto" }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, September 10, 2022",
+          "title": "Annual Mid-Autumn Multicultural Festival & Night Market",
+          "paragraphs": [
+            "Little Saigon Celebration of Diversity at 5901 Florin Road (old Sears lot). 11:00 AM–10:00 PM."
+          ],
+          "poster": {
+            "src": "posters/maf-2022.jpg",
+            "alt": "2022 Mid-Autumn Multicultural Festival poster",
+            "year": 2022,
+            "caption": "5901 Florin Road"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "rJjRBX0QJA4", "title": "Mid-Autumn 2022 — Honda Nguyen" },
+            { "kind": "youtube", "id": "ejK0kXkSeTI", "title": "Mid-Autumn 2022 — Amazing Insurance" }
+          ]
+        },
+        {
+          "kicker": "Saturday–Sunday, January 28–29, 2023",
+          "title": "Last corridor-adjacent Lunar New Year weekend",
+          "paragraphs": [
+            "Florin Towne again. Tết was Sunday, January 22."
+          ],
+          "poster": {
+            "src": "posters/2023.jpg",
+            "alt": "2023 civic Tết poster — Florin Towne Centre",
+            "year": 2023,
+            "caption": "Florin Towne Centre"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "1Nll3I2QLBA", "title": "Lân 2023 — Bich Tram Tra" },
+            {
+              "kind": "carousel",
+              "title": "Florin Towne Tết 2023 — XXL",
+              "items": [
+                { "kind": "youtube", "id": "NQ4v6uTYRfI", "title": "Hoi Cho Tet Sacramento 1-28-23" },
+                { "kind": "youtube", "id": "cdxMR2ejlLQ", "title": "Quyet Minh hát — Hoi Cho Tet Sacramento" },
+                { "kind": "youtube", "id": "usrqzTnva2w", "title": "Chu Tin Ly tại Hoi Cho Tet" }
+              ]
+            }
+          ]
+        },
+        {
+          "kicker": "2023",
+          "title": "Kim Quang đêm văn nghệ",
+          "paragraphs": [
+            "Campus văn nghệ around Tết — the temple show."
+          ],
+          "videos": [
+            {
+              "kind": "facebook",
+              "href": "https://www.facebook.com/khoebach/videos/1239467333448241/",
+              "title": "Đêm văn nghệ Tết 2023 — GĐPT Kim Quang (Phe X. Bach)"
+            }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, September 23, 2023",
+          "title": "Mid Autumn Festival! — first civic moon fair off Stockton Blvd / Florin",
+          "paragraphs": [
+            "Laguna Town Hall, 3020 Renwick Ave, Elk Grove. 11:00 AM–9:00 PM."
+          ],
+          "poster": {
+            "src": "posters/maf-2023.jpg",
+            "alt": "2023 Mid Autumn Festival poster — Laguna Town Hall",
+            "year": 2023,
+            "caption": "Laguna Town Hall"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "7snhoOFQQc4", "title": "Mid-Autumn 2023 — Honda Nguyen" },
+            { "kind": "youtube", "id": "6TGva0Fgqdg", "title": "Mid-Autumn 2023 — OneStopGuy" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2024",
+      "title": "2024 · Park Tết and a ticketed parish night",
+      "blocks": [
+        {
+          "kicker": "Saturday, February 3, 2024",
+          "title": "Vietnamese Martyrs Parish Xuân Hiệp Nhất",
+          "paragraphs": [
+            "A ticketed Saturday evening — hội chợ plus concert, 7–11 PM. Parish week, then the park."
+          ],
+          "poster": {
+            "src": "posters/vnmp-2024.jpg",
+            "alt": "2024 Vietnamese Martyrs Parish Xuân Hiệp Nhất flyer",
+            "year": 2024
+          }
+        },
+        {
+          "kicker": "Saturday–Sunday, February 10–11, 2024",
+          "title": "Civic Tết moves to Elk Grove Park",
+          "paragraphs": [
+            "The civic weekend moves to the park. Tết (Year of the Dragon) was Saturday, February 10 — civic on the Lunar New Year weekend; the parish had already fired the Saturday before. Nhịp Sống Cali taped the park parade that weekend."
+          ],
+          "poster": {
+            "src": "posters/2024.jpg",
+            "alt": "2024 Elk Grove Lunar New Year Tết poster — Elk Grove Park",
+            "year": 2024,
+            "caption": "Elk Grove Park"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "aWixB1PqwLk", "title": "Elk Grove Park Tết parade 2024 — Nhịp Sống Cali" },
+            { "kind": "youtube", "id": "UaXKm5uWsXM", "title": "Elk Grove Lunar New Year 2024 — CBS" }
+          ]
+        },
+        {
+          "kicker": "Saturday–Sunday, February 24–25, 2024",
+          "title": "South Sacramento lot fair",
+          "paragraphs": [
+            "South Sacramento Tet Celebration / Hội Chợ Tết Xuân Giáp Thìn at 4562 Mack Rd (SF Supermarket / Cali Saigon Mall). Hosts billed: Siêu thị Thuận Phát and Hiệp Hội Mack Road. Rain-moved from Saturday–Sunday, February 17–18. A complementary third weekend that season."
+          ],
+          "poster": {
+            "src": "posters/south-sac-2024.jpg",
+            "alt": "2024 South Sacramento Tet Celebration flyer — 4562 Mack Rd",
+            "year": 2024
+          }
+        },
+        {
+          "maf": true,
+          "kicker": "Friday–Saturday, September 20–21, 2024",
+          "title": "Civic Tết Trung Thu — last Laguna year",
+          "paragraphs": [
+            "Mid-Autumn Festival at 3020 Renwick Ave, Elk Grove. Friday 5:00–9:00 PM night market; Saturday 11:00 AM–8:00 PM."
+          ],
+          "poster": {
+            "src": "posters/maf-2024.jpg",
+            "alt": "2024 Mid-Autumn Festival poster — Laguna Town Hall",
+            "year": 2024,
+            "caption": "Laguna Town Hall"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "7ZxWfivxN0k", "title": "Mid-Autumn 2024 — OneStopGuy" }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, September 21, 2024",
+          "title": "Kim Quang Đêm hội rước đèn Trung Thu",
+          "paragraphs": [
+            "Campus lantern walk, 5:00–9:00 PM at 3119 Alta Arden. Same Saturday evening as civic Laguna day two."
+          ],
+          "poster": {
+            "src": "posters/kim-quang-2024.jpg",
+            "alt": "2024 Kim Quang Buddhist Temple Trung Thu lantern-walk flyer",
+            "year": 2024
+          }
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, September 28, 2024",
+          "title": "Parish-hall Tết Trung Thu",
+          "paragraphs": [
+            "Campus Tết Trung Thu / Mid Autumn Moon Festival, 6:30–9:00 PM, Hội Trường Giáo Xứ. Đoàn Thiếu Nhi Thánh Thể Kitô Vua. Week after civic Laguna / Kim Quang. The official art is the [parish bulletin](https://cttd.org/bulletins)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2025-2026",
+      "title": "2025–2026 · Civic Tết at the park",
+      "blocks": [
+        {
+          "kicker": "Saturday, February 1, 2025",
+          "title": "Vietnamese Martyrs Parish Xuân Hy Vọng",
+          "paragraphs": [
+            "A ticketed Saturday evening — ẩm thực and văn nghệ, 7–11 PM. Same Saturday as the park weekend."
+          ],
+          "poster": {
+            "src": "posters/vnmp-2025.jpg",
+            "alt": "2025 Vietnamese Martyrs Parish Xuân Hy Vọng flyer",
+            "year": 2025
+          }
+        },
+        {
+          "kicker": "Saturday–Sunday, February 1–2, 2025",
+          "title": "Tết at Elk Grove Park",
+          "paragraphs": [
+            "Lunar New Year was Wednesday, January 29. Same Saturday: Vietnamese Martyrs Parish Xuân Hy Vọng."
+          ],
+          "poster": {
+            "src": "posters/2025.jpg",
+            "alt": "2025 Elk Grove Lunar New Year Tết poster — Elk Grove Park",
+            "year": 2025,
+            "caption": "Elk Grove Park"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "3ZRGtlPhMa4", "title": "Elk Grove Lunar New Year 2025 — Nhịp Sống Cali" },
+            { "kind": "youtube", "id": "5A7m9xjqqb4", "title": "Elk Grove Lunar New Year 2025 — Honda Nguyen" }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, October 4, 2025",
+          "title": "Parish-hall and temple Trung Thu — same Saturday",
+          "paragraphs": [
+            "Vietnamese Martyrs Parish Tết Trung Thu / Mid Autumn Moon Festival, 6:30–9:00 PM, Hội Trường Giáo Xứ (8181 Florin). Kim Quang campus Tết Trung Thu, 6–9 PM at Alta Arden — lantern, lân, moon cake. Lunar Mid-Autumn was Monday, October 6."
+          ]
+        },
+        {
+          "kicker": "Saturday, February 14, 2026",
+          "title": "Vietnamese Martyrs Parish Văn Nghệ Xuân",
+          "paragraphs": [
+            "A ticketed Saturday evening — ẩm thực and văn nghệ, 7–11 PM. Same Saturday as the park weekend."
+          ],
+          "poster": {
+            "src": "posters/vnmp-2026.jpg",
+            "alt": "2026 Vietnamese Martyrs Parish Văn Nghệ Xuân flyer",
+            "year": 2026
+          }
+        },
+        {
+          "kicker": "Saturday–Sunday, February 14–15, 2026",
+          "title": "Tết at Elk Grove Park",
+          "paragraphs": [
+            "Lunar New Year was Tuesday, February 17. Vietnamese Martyrs Parish Văn Nghệ Xuân Saturday evening. Kim Quang GĐPT văn nghệ around Tết billed Sunday, February 15."
+          ],
+          "poster": {
+            "src": "posters/2026.jpg",
+            "alt": "2026 Elk Grove Lunar New Year Tết poster — Elk Grove Park",
+            "year": 2026,
+            "caption": "Elk Grove Park"
+          },
+          "videos": [
+            { "kind": "youtube", "id": "3lxgeY2KOIw", "title": "Elk Grove Lunar New Year 2026 — ABC10 (cPALSs)" },
+            {
+              "kind": "instagram",
+              "href": "https://www.instagram.com/p/Dcp9TEDPpHM/",
+              "poster": "assets/history/lny-2026-recap.jpg",
+              "title": "Recap of 2026 Lunar New Year Tết"
+            }
+          ]
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, September 26, 2026",
+          "title": "Kim Quang Tết Trung Thu billed",
+          "paragraphs": [
+            "On the Bính Ngọ year calendar (time not on the flyer). Lunar Mid-Autumn is Friday, September 25. Civic Tết Trung Thu is not hosting in 2026 — see [greatlantern.com](https://greatlantern.com)."
+          ]
+        }
+      ]
+    }
+  ]
+}

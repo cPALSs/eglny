@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T18:32:08.603Z",
+  "generatedAt": "2026-08-27T00:43:12.666Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -25,7 +25,7 @@
     },
     {
       "eventId": "ari-lny",
-      "dates": "–Sat, Jan 29–30, 2027 (estimated Fri before LNY; low confidence)",
+      "dates": "–Sun, Jan 28–31, 2027 (estimated Fri before LNY; low confidence)",
       "name": "ARI Lunar New Year Celebration",
       "host": "Asian Resources, Inc. (ARI)",
       "location": "ARI Headquarters, Sacramento",
@@ -33,8 +33,17 @@
       "certainty": "estimated"
     },
     {
+      "eventId": "scncca-lny",
+      "dates": "–Wed, Feb 6–17, 2027 (estimated Sat before LNY; low confidence)",
+      "name": "Chinese New Year Gala & Carnival",
+      "host": "Chinese New Year Culture Association (CNYCA)",
+      "location": "Luther Burbank High School, Sacramento",
+      "href": "http://www.cnyca.net/php/",
+      "certainty": "estimated"
+    },
+    {
       "eventId": "creative-space-lny",
-      "dates": "–Fri, Jan 28–29, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "–Sat, Jan 28–30, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Lunar New Year Celebration",
       "host": "The Creative Space",
       "location": "Old Town Plaza, Elk Grove",
@@ -43,7 +52,7 @@
     },
     {
       "eventId": "arden-fair-lny",
-      "dates": "–Sun, Feb 6–7, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "–Thu, Feb 3–11, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Lunar New Year Celebration",
       "host": "Arden Fair + Sacramento Asian Pacific Chamber of Commerce",
       "location": "Arden Fair (mall), Sacramento",
@@ -60,17 +69,8 @@
       "certainty": "estimated"
     },
     {
-      "eventId": "scncca-lny",
-      "dates": "–Fri, Feb 11–12, 2027 (estimated Sat before LNY; low confidence)",
-      "name": "Sacramento Chinese New Year Culture Association Festival",
-      "host": "Sacramento Chinese New Year Culture Association (SCNCCA)",
-      "location": "Luther Burbank High School, Sacramento",
-      "href": "http://www.cnyca.net/php/",
-      "certainty": "estimated"
-    },
-    {
       "eventId": "locke-cny",
-      "dates": "–Sun, Feb 20–21, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "Tue, Feb 16, 2027 – Mar 2, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Chinese New Year Celebration",
       "host": "Locke Foundation / State Parks partners",
       "location": "Locke Boarding House Museum State Park",
@@ -79,7 +79,7 @@
     },
     {
       "eventId": "chasons-crab-stadium-lny",
-      "dates": "–Sat, Feb 12–13, 2027 (estimated Sun after LNY; low confidence)",
+      "dates": "Sun, Feb 14, 2027 (estimated Sun after LNY; low confidence)",
       "name": "Chinese/Lunar New Year Celebration (Chason's Crab Stadium)",
       "host": "Chason's Crab Stadium",
       "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
@@ -106,7 +106,7 @@
     },
     {
       "eventId": "fairytale-town-lny",
-      "dates": "–Tue, Feb 8–9, 2027 (estimated Sun before LNY; low confidence)",
+      "dates": "–Thu, Feb 7–11, 2027 (estimated Sun before LNY; low confidence)",
       "name": "Lunar New Year Celebration (Fairytale Town)",
       "host": "Fairytale Town",
       "location": "Fairytale Town - William Land Park, Sacramento",

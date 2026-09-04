@@ -142,6 +142,7 @@
         label: "About",
         href: "/about/",
         children: [
+          { id: "history", label: "History", href: "/about/history/" },
           { id: "blog", label: "Blog", href: "/resources/blog/" },
           { id: "media", label: "Media", href: "/resources/media/" },
         ],
@@ -761,8 +762,9 @@
             options.backLabel ?? "← Back",
           )}</a>`
         : "";
+    const foot = options.footHtml ? `<div class="toc-foot">${options.footHtml}</div>` : "";
     const navClass = options.backHref != null ? "site-doc-toc site-doc-toc--with-back" : "site-doc-toc";
-    return `<nav class="${navClass}" aria-label="On this page">${back}<p class="site-doc-toc-label">On this page</p>${links}</nav>`;
+    return `<nav class="${navClass}" aria-label="On this page">${back}<p class="site-doc-toc-label">On this page</p>${links}${foot}</nav>`;
   }
 
   function wrapDocLayout(tocHtml, mainHtml) {
@@ -843,8 +845,11 @@
     const cards = (posterWall.posters ?? [])
       .map((poster) => {
         const alt = `Lunar New Year ${poster.year} festival poster — ${poster.venue}`;
-        const image = poster.image
-          ? `<img class="poster-image" src="${escapeHtml(prefix + poster.image)}" alt="${escapeHtml(alt)}" loading="lazy" />`
+        const src = poster.image ? `${prefix}${poster.image}` : "";
+        const image = src
+          ? `<button type="button" class="history-poster-open" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+          <img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />
+        </button>`
           : "";
         return `
       <figure class="poster-card">
@@ -1137,21 +1142,40 @@
       ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
   }
 
-  function renderMediaVideoCard(video) {
-    const id = String(video.youtubeId ?? "").trim();
-    const title = video.title ?? "Festival video";
+  function youtubePosterInner(id, title) {
     const watchUrl = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
-    const embedSrc = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
     const poster = `https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`;
     return `
-      <figure class="video-card">
-        <div class="video-embed" data-youtube-id="${escapeHtml(id)}" data-embed-src="${escapeHtml(embedSrc)}">
           <button type="button" class="video-play" aria-label="Play ${escapeHtml(title)}">
             <img class="video-poster" src="${escapeHtml(poster)}" alt="" loading="lazy" width="480" height="360" />
             <span class="video-play-icon" aria-hidden="true"></span>
           </button>
-          <a class="video-fallback-link" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener">Watch on YouTube</a>
-        </div>
+          <a class="video-fallback-link" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener">Watch on YouTube</a>`;
+  }
+
+  function renderYoutubeEmbed(id, title) {
+    const embedSrc = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+    return `
+        <div class="video-embed" data-youtube-id="${escapeHtml(id)}" data-embed-src="${escapeHtml(embedSrc)}">
+          ${youtubePosterInner(id, title)}
+        </div>`;
+  }
+
+  function restoreYoutubePoster(embed) {
+    const id = embed.getAttribute("data-youtube-id");
+    if (!id || !embed.querySelector("iframe")) return;
+    const button = embed.querySelector(".video-play");
+    const title = button?.getAttribute("aria-label")?.replace(/^Play\s+/, "") || "Festival video";
+    embed.innerHTML = youtubePosterInner(id, title);
+    initMediaPlayers(embed);
+  }
+
+  function renderMediaVideoCard(video) {
+    const id = String(video.youtubeId ?? "").trim();
+    const title = video.title ?? "Festival video";
+    return `
+      <figure class="video-card">
+        ${renderYoutubeEmbed(id, title)}
         <figcaption class="video-caption">${escapeHtml(title)}</figcaption>
       </figure>`;
   }
@@ -1215,7 +1239,10 @@
   }
 
   function initMediaPlayers(root = document) {
-    root.querySelectorAll(".video-embed[data-embed-src]").forEach((embed) => {
+    const embeds = root.matches?.(".video-embed[data-embed-src]")
+      ? [root]
+      : [...root.querySelectorAll(".video-embed[data-embed-src]")];
+    embeds.forEach((embed) => {
       const button = embed.querySelector(".video-play");
       if (!button || button.dataset.bound === "1") return;
       button.dataset.bound = "1";
@@ -1232,6 +1259,119 @@
         ></iframe>`;
       });
     });
+  }
+
+  function instagramPermalink(url) {
+    const match = String(url ?? "").match(/instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/i);
+    if (!match) return String(url ?? "").trim();
+    return `https://www.instagram.com/p/${match[1]}/`;
+  }
+
+  function markInstagramEmbedFailed(wrap) {
+    wrap.classList.add("is-embed-failed");
+    wrap.style.height = "";
+    const iframe = wrap.querySelector("iframe");
+    if (iframe) iframe.remove();
+    wrap.querySelectorAll("blockquote.instagram-media").forEach((el) => el.remove());
+  }
+
+  const INSTAGRAM_EMBED_NATIVE_WIDTH = 326;
+  /* Official embed.js card (measured 2026-09 on /p/…/embed): 54px profile
+     header, then a 4:5 media well with a centered 9:16 reel (blurred sides),
+     then likes / “View more” / comments. No query param hides that chrome —
+     clip to the 9:16 reel and scale to the YouTube column. */
+  const INSTAGRAM_EMBED_HEADER_PX = 54;
+  const INSTAGRAM_EMBED_STAGE_HEIGHT_RATIO = 5 / 4;
+
+  function fitInstagramEmbed(wrap) {
+    const iframe = wrap.querySelector("iframe");
+    if (!iframe || wrap.classList.contains("is-embed-failed")) {
+      wrap.style.height = "";
+      return;
+    }
+    const colW = wrap.getBoundingClientRect().width;
+    if (colW < 1) return;
+    const nativeW = INSTAGRAM_EMBED_NATIVE_WIDTH;
+    const stageH = nativeW * INSTAGRAM_EMBED_STAGE_HEIGHT_RATIO;
+    const videoW = stageH * (9 / 16);
+    const leftCrop = (nativeW - videoW) / 2;
+    const scale = colW / videoW;
+    iframe.style.width = `${nativeW}px`;
+    iframe.style.maxWidth = `${nativeW}px`;
+    iframe.style.minWidth = `${nativeW}px`;
+    iframe.style.transformOrigin = "top left";
+    iframe.style.transform = `scale(${scale}) translate(-${leftCrop}px, -${INSTAGRAM_EMBED_HEADER_PX}px)`;
+    iframe.style.margin = "0";
+    wrap.style.height = `${Math.round(colW * (16 / 9))}px`;
+  }
+
+  function watchInstagramEmbedFit(wrap) {
+    if (wrap.dataset.igFitBound === "1") {
+      fitInstagramEmbed(wrap);
+      return;
+    }
+    wrap.dataset.igFitBound = "1";
+    const apply = () => fitInstagramEmbed(wrap);
+    const ro = new ResizeObserver(apply);
+    ro.observe(wrap);
+    const observeFrame = (iframe) => {
+      if (!iframe || iframe.dataset.igRo === "1") return;
+      iframe.dataset.igRo = "1";
+      ro.observe(iframe);
+    };
+    observeFrame(wrap.querySelector("iframe"));
+    const mo = new MutationObserver(() => {
+      observeFrame(wrap.querySelector("iframe"));
+      apply();
+    });
+    mo.observe(wrap, { childList: true, subtree: true });
+    apply();
+  }
+
+  function initInstagramEmbeds(root = document) {
+    const wraps = [...root.querySelectorAll(".video-embed-instagram")];
+    if (!wraps.length) return;
+
+    const finish = (ok) => {
+      wraps.forEach((wrap) => {
+        if (!ok || !wrap.querySelector("iframe")) markInstagramEmbedFailed(wrap);
+        else watchInstagramEmbedFit(wrap);
+      });
+    };
+
+    const process = () => {
+      const run = () => {
+        try {
+          window.instgrm?.Embeds?.process();
+        } catch (_) {
+          finish(false);
+          return;
+        }
+        wraps.forEach(watchInstagramEmbedFit);
+        window.setTimeout(() => finish(true), 4000);
+      };
+      requestAnimationFrame(() => requestAnimationFrame(run));
+    };
+
+    if (window.instgrm?.Embeds?.process) {
+      process();
+      return;
+    }
+
+    const existing = document.querySelector('script[data-eglny-instagram-embed="1"]');
+    if (existing) {
+      existing.addEventListener("load", process, { once: true });
+      existing.addEventListener("error", () => finish(false), { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.instagram.com/embed.js";
+    script.dataset.eglnyInstagramEmbed = "1";
+    script.addEventListener("load", process, { once: true });
+    script.addEventListener("error", () => finish(false), { once: true });
+    document.body.appendChild(script);
   }
 
   function rosterInitials(name) {
@@ -2349,6 +2489,475 @@
     return res.json();
   }
 
+  /** History JSON is public prose. Only [label](https://…|/path) becomes a link — no *italic* or **bold**. */
+  function formatHistoryText(text) {
+    return escapeHtml(String(text ?? "")).replace(
+      /\[([^\]]+)\]\((https?:\/\/[^)]+|\/[^)]+)\)/g,
+      (match, label, href) => {
+        const external = href.startsWith("http");
+        const extra = external ? ' target="_blank" rel="noopener"' : "";
+        return `<a href="${escapeHtml(href)}"${extra}>${label}</a>`;
+      },
+    );
+  }
+
+  function renderHistoryPoster(poster) {
+    if (!poster?.src) return "";
+    const prefix = navPrefix();
+    const src = /^https?:\/\//i.test(poster.src) ? poster.src : `${prefix}${poster.src}`;
+    const alt = poster.alt ?? "Festival poster";
+    return `
+      <figure class="history-poster poster-card">
+        <button type="button" class="history-poster-open" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+          <img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />
+        </button>
+      </figure>`;
+  }
+
+  function ensureHistoryLightbox() {
+    let dialog = document.getElementById("history-poster-lightbox");
+    if (dialog) return dialog;
+
+    dialog = document.createElement("dialog");
+    dialog.id = "history-poster-lightbox";
+    dialog.className = "history-lightbox";
+    dialog.setAttribute("aria-label", "Festival poster");
+    dialog.innerHTML = `
+      <button type="button" class="history-lightbox-close" aria-label="Close">&times;</button>
+      <img class="history-lightbox-image" alt="" />`;
+    document.body.appendChild(dialog);
+
+    const img = dialog.querySelector(".history-lightbox-image");
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.querySelector(".history-lightbox-close")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("close", () => {
+      if (img) {
+        img.removeAttribute("src");
+        img.alt = "";
+      }
+    });
+    return dialog;
+  }
+
+  function initHistoryLightbox(root = document) {
+    const dialog = ensureHistoryLightbox();
+    const img = dialog.querySelector(".history-lightbox-image");
+
+    root.querySelectorAll(".history-poster-open").forEach((button) => {
+      if (button.dataset.lightboxBound === "1") return;
+      button.dataset.lightboxBound = "1";
+      button.addEventListener("click", () => {
+        const src = button.getAttribute("data-lightbox-src");
+        const alt = button.getAttribute("data-lightbox-alt") || "Festival poster";
+        if (!src || !img) return;
+        img.src = src;
+        img.alt = alt;
+        dialog.showModal();
+      });
+    });
+  }
+
+  function renderHistoryVideoCard(video) {
+    const kind = video?.kind || "youtube";
+    if (kind === "instagram") {
+      const href = instagramPermalink(video.href);
+      if (!href) return "";
+      const title = video.title ?? "Festival video";
+      const poster = String(video.poster ?? "").trim();
+      const posterSrc = poster && !/^https?:\/\//i.test(poster) ? `${navPrefix()}${poster}` : poster;
+      const fallbackInner = posterSrc
+        ? `<img class="video-poster" src="${escapeHtml(posterSrc)}" alt="" width="326" height="580" loading="lazy" />
+           <span class="video-play-icon" aria-hidden="true"></span>
+           <span class="video-play-badge video-play-badge--instagram">Instagram</span>
+           <span class="video-fallback-link">Watch recap on Instagram</span>`
+        : `<span class="video-fallback-link">Watch recap on Instagram</span>`;
+      return `
+      <figure class="video-card video-card--instagram">
+        <div class="video-embed-instagram">
+          <blockquote
+            class="instagram-media"
+            data-instgrm-permalink="${escapeHtml(href)}"
+            data-instgrm-version="14"
+          >
+            <a href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(title)}</a>
+          </blockquote>
+          <a class="instagram-embed-fallback" href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="Watch recap on Instagram: ${escapeHtml(title)}">
+            ${fallbackInner}
+          </a>
+        </div>
+        <figcaption class="video-caption">${escapeHtml(title)}</figcaption>
+      </figure>`;
+    }
+    if (kind === "facebook") {
+      const href = String(video.href ?? "").trim();
+      if (!href) return "";
+      const title = video.title ?? "Festival video";
+      const pluginSrc = String(video.pluginSrc ?? "").trim();
+      const width = Number(video.width);
+      const height = Number(video.height);
+      if (pluginSrc && width && height) {
+        const portrait = height > width;
+        return `
+      <figure class="video-card${portrait ? " video-card--portrait" : ""}">
+        <div class="video-embed video-embed--facebook${portrait ? " video-embed--facebook-portrait" : ""}">
+          <iframe
+            src="${escapeHtml(pluginSrc)}"
+            width="${width}"
+            height="${height}"
+            style="border:none;overflow:hidden"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            allowFullScreen="true"
+            title="${escapeHtml(title)}"
+          ></iframe>
+          <a class="video-fallback-link" href="${escapeHtml(href)}" target="_blank" rel="noopener">Watch on Facebook</a>
+        </div>
+        <figcaption class="video-caption">${escapeHtml(title)}</figcaption>
+      </figure>`;
+      }
+      const embedSrc = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(href)}&show_text=false&width=560`;
+      return `
+      <figure class="video-card">
+        <div class="video-embed video-embed--facebook" data-embed-src="${escapeHtml(embedSrc)}">
+          <button type="button" class="video-play" aria-label="Play ${escapeHtml(title)}">
+            <span class="video-play-icon" aria-hidden="true"></span>
+            <span class="video-play-badge">Facebook</span>
+          </button>
+          <a class="video-fallback-link" href="${escapeHtml(href)}" target="_blank" rel="noopener">Watch on Facebook</a>
+        </div>
+        <figcaption class="video-caption">${escapeHtml(title)}</figcaption>
+      </figure>`;
+    }
+    return renderMediaVideoCard({
+      youtubeId: video.id ?? video.youtubeId,
+      title: video.title,
+    });
+  }
+
+  function isInstagramHistoryVideo(video) {
+    return (video?.kind || "youtube") === "instagram";
+  }
+
+  function isHistoryCarousel(video) {
+    return video?.kind === "carousel" || Array.isArray(video?.items);
+  }
+
+  function historyVideoUnits(videoList) {
+    return (videoList ?? [])
+      .map((video) => {
+        const items = isHistoryCarousel(video) ? video.items ?? [] : null;
+        if (items && items.length > 1) {
+          return { carousel: true, title: video.title, items, isIg: false };
+        }
+        const item = items?.length === 1 ? items[0] : video;
+        return { carousel: false, item, isIg: isInstagramHistoryVideo(item) };
+      })
+      .filter((unit) => (unit.carousel ? unit.items.length : unit.item));
+  }
+
+  let historyCarouselSeq = 0;
+
+  function historyCarouselChevron(dir) {
+    const d = dir === "prev" ? "M10 4 L6 8 L10 12" : "M6 4 L10 8 L6 12";
+    return `<svg class="video-carousel-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  }
+
+  function renderHistoryCarousel(unit) {
+    const items = unit.items.filter((item) => (item?.kind || "youtube") === "youtube" && (item.id || item.youtubeId));
+    if (items.length < 2) {
+      return items[0] ? renderHistoryVideoCard(items[0]) : "";
+    }
+    const carouselId = `history-carousel-${++historyCarouselSeq}`;
+    const groupTitle = unit.title || items[0].title || "Festival videos";
+    const slides = items
+      .map((item, index) => {
+        const id = String(item.id ?? item.youtubeId ?? "").trim();
+        const title = item.title || groupTitle;
+        return `
+        <div class="video-carousel-slide${index === 0 ? " is-active" : ""}" data-slide="${index}" data-slide-title="${escapeHtml(title)}" ${index === 0 ? "" : "hidden"}>
+          ${renderYoutubeEmbed(id, title)}
+        </div>`;
+      })
+      .join("");
+    const dots = items
+      .map(
+        (item, index) =>
+          `<button type="button" class="video-carousel-dot${index === 0 ? " is-active" : ""}" data-slide-to="${index}" aria-label="Show video ${index + 1} of ${items.length}" aria-selected="${index === 0 ? "true" : "false"}"></button>`,
+      )
+      .join("");
+    const firstTitle = items[0].title || groupTitle;
+    return `
+      <figure class="video-card video-card--carousel" data-video-carousel id="${escapeHtml(carouselId)}" tabindex="0">
+        <div class="video-carousel">
+          <div class="video-carousel-viewport">
+            ${slides}
+          </div>
+          <div class="video-carousel-chrome">
+            <button type="button" class="video-carousel-nav video-carousel-prev" aria-label="Previous video" aria-controls="${escapeHtml(carouselId)}">
+              ${historyCarouselChevron("prev")}
+            </button>
+            <div class="video-carousel-dots" role="tablist" aria-label="${escapeHtml(groupTitle)}">${dots}</div>
+            <button type="button" class="video-carousel-nav video-carousel-next" aria-label="Next video" aria-controls="${escapeHtml(carouselId)}">
+              ${historyCarouselChevron("next")}
+            </button>
+          </div>
+        </div>
+        <figcaption class="video-caption"><span class="video-carousel-count" data-carousel-count>1 / ${items.length}</span>&nbsp;<span data-carousel-title>${escapeHtml(firstTitle)}</span></figcaption>
+      </figure>`;
+  }
+
+  function renderHistoryVideoUnit(unit) {
+    if (unit.carousel) return renderHistoryCarousel(unit);
+    return renderHistoryVideoCard(unit.item);
+  }
+
+  function initHistoryCarousels(root = document) {
+    root.querySelectorAll("[data-video-carousel]").forEach((card) => {
+      if (card.dataset.carouselBound === "1") return;
+      card.dataset.carouselBound = "1";
+      const slides = [...card.querySelectorAll(".video-carousel-slide")];
+      const dots = [...card.querySelectorAll(".video-carousel-dot")];
+      const titleEl = card.querySelector("[data-carousel-title]");
+      const countEl = card.querySelector("[data-carousel-count]");
+      if (slides.length < 2) return;
+      let index = 0;
+
+      function setSlide(nextIndex) {
+        index = (nextIndex + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle("is-active", active);
+          slide.hidden = !active;
+          if (!active) {
+            slide.querySelectorAll(".video-embed[data-youtube-id]").forEach(restoreYoutubePoster);
+          }
+        });
+        dots.forEach((dot, i) => {
+          const active = i === index;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        const title = slides[index].getAttribute("data-slide-title") || "";
+        if (titleEl) titleEl.textContent = title;
+        if (countEl) countEl.textContent = `${index + 1} / ${slides.length}`;
+      }
+
+      card.querySelector(".video-carousel-prev")?.addEventListener("click", () => setSlide(index - 1));
+      card.querySelector(".video-carousel-next")?.addEventListener("click", () => setSlide(index + 1));
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const to = Number(dot.getAttribute("data-slide-to"));
+          if (!Number.isNaN(to)) setSlide(to);
+        });
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setSlide(index - 1);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setSlide(index + 1);
+        }
+      });
+    });
+  }
+
+  function renderHistoryBlock(block) {
+    const mafAttr = block.maf ? ' data-maf="1"' : "";
+    const idAttr = block.id ? ` id="${escapeHtml(block.id)}"` : "";
+    const kicker = block.kicker ? `<p class="history-kicker">${escapeHtml(block.kicker)}</p>` : "";
+    const heading = block.title ? `<h3 class="history-block-title">${escapeHtml(block.title)}</h3>` : "";
+    const paras = (block.paragraphs ?? []).map((p) => `<p>${formatHistoryText(p)}</p>`).join("");
+    const copy = `<div class="history-year-copy">${kicker}${heading}${paras}</div>`;
+    const poster = renderHistoryPoster(block.poster);
+    const units = historyVideoUnits(block.videos);
+    const igCards = units.filter((u) => u.isIg).map(renderHistoryVideoUnit).filter(Boolean);
+    const otherCards = units.filter((u) => !u.isIg).map(renderHistoryVideoUnit).filter(Boolean);
+    const videoCards = [...otherCards, ...igCards];
+    const videos = videoCards.join("");
+
+    /* Special case: poster + Instagram share a dedicated two-column row
+       (same 1fr 1fr widths as the video grid). YouTube stays out of that row. */
+    if (poster && igCards.length) {
+      const pair = `
+        <div class="video-grid history-video-grid history-poster-ig-row">
+          ${poster}
+          ${igCards.join("")}
+        </div>`;
+      if (otherCards.length === 1) {
+        return `
+      <article class="history-block"${idAttr}${mafAttr}>
+        <div class="video-grid history-year-grid">
+          ${copy}
+          ${otherCards[0]}
+        </div>
+        ${pair}
+      </article>`;
+      }
+      const extra =
+        otherCards.length > 1
+          ? `<div class="video-grid history-video-grid">${otherCards.join("")}</div>`
+          : "";
+      return `
+      <article class="history-block"${idAttr}${mafAttr}>
+        ${copy}
+        ${pair}
+        ${extra}
+      </article>`;
+    }
+
+    if (poster) {
+      return `
+      <article class="history-block"${idAttr}${mafAttr}>
+        <div class="video-grid history-year-grid">
+          ${copy}
+          ${poster}
+          ${videos}
+        </div>
+      </article>`;
+    }
+    if (videoCards.length === 1) {
+      return `
+      <article class="history-block"${idAttr}${mafAttr}>
+        <div class="video-grid history-year-grid">
+          ${copy}
+          ${videos}
+        </div>
+      </article>`;
+    }
+    if (videoCards.length > 1) {
+      return `
+      <article class="history-block"${idAttr}${mafAttr}>
+        ${copy}
+        <div class="video-grid history-video-grid">${videos}</div>
+      </article>`;
+    }
+    return `
+      <article class="history-block"${idAttr}${mafAttr}>
+        ${copy}
+      </article>`;
+  }
+
+  function renderHistoryPage(history) {
+    const tracks = (history.tracks ?? [])
+      .map((track) => {
+        const mafAttr = track.maf ? ' data-maf="1"' : "";
+        return `
+        <article class="history-track"${mafAttr}>
+          <h3>${escapeHtml(track.title)}</h3>
+          <p>${formatHistoryText(track.body)}</p>
+        </article>`;
+      })
+      .join("");
+
+    const tocItems = [
+      { id: "four-tracks", label: history.tracksTitle ?? "Four products" },
+      ...(history.eras ?? []).map((era) => ({
+        id: era.id,
+        label: era.title,
+        maf: era.maf || (era.blocks ?? []).every((b) => b.maf),
+      })),
+    ];
+
+    const erasHtml = (history.eras ?? [])
+      .map((era) => {
+        const eraMaf = era.maf || (era.blocks ?? []).every((b) => b.maf);
+        const mafAttr = eraMaf ? ' data-maf="1"' : "";
+        const blocks = (era.blocks ?? []).map(renderHistoryBlock).join("");
+        return `
+      <section class="content-section site-doc-section history-era" id="${escapeHtml(era.id)}" data-doc-section${mafAttr}>
+        <h2>${escapeHtml(era.title)}</h2>
+        ${blocks}
+      </section>`;
+      })
+      .join("");
+
+    const filterId = "history-hide-maf";
+    const filterLabel = history.hideMafLabel ?? "Hide Tết Trung Thu";
+    const filter = `
+      <label class="site-doc-toc-filter" for="${filterId}">
+        <input type="checkbox" id="${filterId}" />
+        <span>${escapeHtml(filterLabel)}</span>
+      </label>
+      ${
+        history.hideMafHelp
+          ? `<p class="sr-only" id="${filterId}-help">${escapeHtml(history.hideMafHelp)}</p>`
+          : ""
+      }`;
+
+    const intro = (history.intro ?? []).map((p) => `<p>${formatHistoryText(p)}</p>`).join("");
+    const cta = history.cta
+      ? `<p class="history-cta"><a class="btn btn-primary" href="${escapeHtml(history.cta.href)}">${escapeHtml(history.cta.label)}</a></p>
+         ${history.cta.note ? `<p class="muted">${formatHistoryText(history.cta.note)}</p>` : ""}`
+      : "";
+
+    const mainHtml = `
+      <section class="content-section site-doc-section" id="four-tracks" data-doc-section>
+        <h2>${escapeHtml(history.tracksTitle ?? "Four products in Greater Sacramento")}</h2>
+        ${intro}
+        <div class="history-track-grid">${tracks}</div>
+      </section>
+      ${erasHtml}
+      <section class="content-section site-doc-section" id="join-2027" data-doc-section>
+        <h2>Still going</h2>
+        <p>The park weekend is the civic line we are still building — same corridor pride, a lawn families can walk.</p>
+        ${cta}
+      </section>`;
+
+    const toc = renderDocToc(
+      [
+        ...tocItems,
+        { id: "join-2027", label: "Still going" },
+      ],
+      { footHtml: filter },
+    );
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(history.headline ?? "History")}</h1>
+        ${history.lead ? `<p class="hero-lead">${escapeHtml(history.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(toc, `<div class="history-page" id="history-page">${mainHtml}</div>`)}`;
+  }
+
+  function initHistoryFilter(root = document) {
+    const page = root.querySelector("#history-page") || root;
+    const checkbox = root.querySelector("#history-hide-maf");
+    if (!checkbox) return;
+
+    const apply = (hide) => {
+      page.classList.toggle("is-hiding-maf", hide);
+      root.querySelectorAll("[data-maf]").forEach((el) => {
+        el.hidden = hide;
+      });
+      root.querySelectorAll(".site-doc-toc-link").forEach((link) => {
+        const target = root.getElementById?.(link.dataset.tocTarget) || document.getElementById(link.dataset.tocTarget);
+        if (target?.hasAttribute("data-maf")) {
+          link.hidden = hide;
+        }
+      });
+      try {
+        sessionStorage.setItem("eglny-history-hide-maf", hide ? "1" : "0");
+      } catch (_) {}
+      if (window.DocScroll && typeof window.DocScroll.refreshTocPager === "function") {
+        window.DocScroll.refreshTocPager();
+      }
+    };
+
+    let saved = false;
+    try {
+      saved = sessionStorage.getItem("eglny-history-hide-maf") === "1";
+    } catch (_) {}
+    checkbox.checked = saved;
+    checkbox.setAttribute("aria-describedby", "history-hide-maf-help");
+    apply(saved);
+    checkbox.addEventListener("change", () => apply(checkbox.checked));
+  }
+
   window.EglnySite = {
     SPONSORSHIP_PACKET_PDF_URL,
     revealPage,
@@ -2366,8 +2975,13 @@
     renderFestivalHero,
     loadSeasonEvents,
     initMediaPlayers,
+    initInstagramEmbeds,
     initRosterMedia,
     renderMediaPage,
+    renderHistoryPage,
+    initHistoryFilter,
+    initHistoryLightbox,
+    initHistoryCarousels,
     renderResourcesPage,
     renderProductionPage,
     renderAttendeesPage,
