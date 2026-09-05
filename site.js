@@ -847,7 +847,7 @@
         const alt = `Lunar New Year ${poster.year} festival poster — ${poster.venue}`;
         const src = poster.image ? `${prefix}${poster.image}` : "";
         const image = src
-          ? `<button type="button" class="history-poster-open" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+          ? `<button type="button" class="history-poster-open" style="background-image: url('${escapeHtml(src)}')" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
           <img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />
         </button>`
           : "";
@@ -2508,7 +2508,7 @@
     const alt = poster.alt ?? "Festival poster";
     return `
       <figure class="history-poster poster-card">
-        <button type="button" class="history-poster-open" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+        <button type="button" class="history-poster-open" style="background-image: url('${escapeHtml(src)}')" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
           <img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />
         </button>
       </figure>`;
@@ -2843,25 +2843,11 @@
   }
 
   function renderHistoryPage(history) {
-    const tracks = (history.tracks ?? [])
-      .map((track) => {
-        const mafAttr = track.maf ? ' data-maf="1"' : "";
-        return `
-        <article class="history-track"${mafAttr}>
-          <h3>${escapeHtml(track.title)}</h3>
-          <p>${formatHistoryText(track.body)}</p>
-        </article>`;
-      })
-      .join("");
-
-    const tocItems = [
-      { id: "four-tracks", label: history.tracksTitle ?? "Four products" },
-      ...(history.eras ?? []).map((era) => ({
-        id: era.id,
-        label: era.title,
-        maf: era.maf || (era.blocks ?? []).every((b) => b.maf),
-      })),
-    ];
+    const tocItems = (history.eras ?? []).map((era) => ({
+      id: era.id,
+      label: era.title,
+      maf: era.maf || (era.blocks ?? []).every((b) => b.maf),
+    }));
 
     const erasHtml = (history.eras ?? [])
       .map((era) => {
@@ -2889,18 +2875,12 @@
           : ""
       }`;
 
-    const intro = (history.intro ?? []).map((p) => `<p>${formatHistoryText(p)}</p>`).join("");
     const cta = history.cta
       ? `<p class="history-cta"><a class="btn btn-primary" href="${escapeHtml(history.cta.href)}">${escapeHtml(history.cta.label)}</a></p>
          ${history.cta.note ? `<p class="muted">${formatHistoryText(history.cta.note)}</p>` : ""}`
       : "";
 
     const mainHtml = `
-      <section class="content-section site-doc-section" id="four-tracks" data-doc-section>
-        <h2>${escapeHtml(history.tracksTitle ?? "Four products in Greater Sacramento")}</h2>
-        ${intro}
-        <div class="history-track-grid">${tracks}</div>
-      </section>
       ${erasHtml}
       <section class="content-section site-doc-section" id="join-2027" data-doc-section>
         <h2>Still going</h2>

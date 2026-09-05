@@ -1363,13 +1363,24 @@ body.nav-open {
   overflow: hidden;
 }
 
+.poster-card .history-poster-open {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background-color: var(--surface);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .poster-image {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: auto;
-  object-fit: contain;
-  background: var(--surface);
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .poster-caption {
@@ -4620,19 +4631,19 @@ body.nav-open {
   margin: 0;
 }
 
-.history-poster .poster-image {
-  aspect-ratio: auto;
-  height: auto;
-  object-fit: contain;
-}
-
 .history-poster-open {
+  position: relative;
   display: block;
   width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   border: 0;
-  background: none;
+  background-color: var(--surface);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   cursor: zoom-in;
   color: inherit;
 }

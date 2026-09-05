@@ -1,34 +1,8 @@
 {
   "headline": "History",
-  "lead": "Greater Sacramento has hosted four ongoing festival products around Tết (Lunar New Year) and Tết Trung Thu (Mid-Autumn Festival): a civic Hội Chợ Tết that later moved to Elk Grove Park, a civic moon and family fair, and separate calendars at Kim Quang Buddhist Temple and Vietnamese Martyrs Parish.",
-  "intro": [
-    "Hội Chợ Tết is a public Tết market fair — carnival rides, a stage, and in some years a street parade — that began on the Stockton Blvd–Florin corridor. Hosts have included the Vietnamese American Community of Sacramento (VACOS), the Greater Sacramento Vietnamese American Chamber of Commerce (GSVACC, later the Norcal Vietnamese Chamber of Commerce, NVCC), and Community Partners Advocate of Little Saigon Sacramento (cPALSs). The civic weekend later moved to Elk Grove Park. Elk Grove Lunar New Year (EGLNY) is the acronym used for that park weekend from 2027.",
-    "Two faith campuses keep their own calendars. Kim Quang Buddhist Temple, on Alta Arden, stages Gia Đình Phật Tử (GĐPT) văn nghệ — a youth variety show — around Tết, with lễ (ceremony) and lân (lion dance). Vietnamese Martyrs Parish, on Florin Road, has held Xuân (spring / Tết) celebrations: a weekend fair in the early 2010s, then a ticketed Saturday evening from 2024.",
-    "A second civic season, Tết Trung Thu, began in 2019 as a moon and family fair. A reboot is in the works, with the name Great Lantern Festival."
-  ],
+  "lead": "Greater Sacramento has hosted civic Tết (Lunar New Year) and Tết Trung Thu (Mid-Autumn Festival): a civic Hội Chợ Tết that later moved to Elk Grove Park, a civic moon and family fair, and separate calendars at Kim Quang Buddhist Temple and Vietnamese Martyrs Parish.",
   "hideMafLabel": "Hide Tết Trung Thu",
   "hideMafHelp": "Hides Civic Tết Trung Thu, parish-hall Mid-Autumn, and Kim Quang lantern walks — so the page is Tết only.",
-  "tracksTitle": "Four products in Greater Sacramento",
-  "tracks": [
-    {
-      "title": "Civic Hội Chợ Tết → Elk Grove Park",
-      "body": "The public weekend fair — carnival and stage, later a parade — on Stockton Blvd–Florin lots and plazas, then Florin Towne Centre, then Elk Grove Park. From 2027 the park weekend is billed EGLNY."
-    },
-    {
-      "id": "civic-trung-thu",
-      "maf": true,
-      "title": "Civic Tết Trung Thu",
-      "body": "A civic moon and family fair. VACOS and Lac Hong Center hosted a 2019 community-center night; later editions were at Florin Towne Centre and Laguna Town Hall, with NVCC and cPALSs among the named presenters. A reboot is in the works, with the name Great Lantern Festival."
-    },
-    {
-      "title": "Kim Quang Buddhist Temple",
-      "body": "On-campus GĐPT văn nghệ around Tết, plus lễ and lân at Alta Arden. Some years a campus lantern walk for Tết Trung Thu."
-    },
-    {
-      "title": "Vietnamese Martyrs Parish",
-      "body": "Florin campus Tết / Xuân: a weekend fair in the early 2010s, then ticketed Saturday evenings from 2024. The parish hall has also hosted a Tết Trung Thu night in some years."
-    }
-  ],
   "cta": {
     "label": "Celebrate with us in 2027",
     "href": "/",
