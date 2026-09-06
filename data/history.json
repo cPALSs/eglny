@@ -667,8 +667,13 @@
           "kicker": "Saturday, September 28, 2024",
           "title": "Parish-hall Tết Trung Thu",
           "paragraphs": [
-            "Campus Tết Trung Thu / Mid Autumn Moon Festival, 6:30–9:00 PM, Hội Trường Giáo Xứ. Đoàn Thiếu Nhi Thánh Thể Kitô Vua. Week after civic Laguna / Kim Quang. The official art is the [parish bulletin](https://cttd.org/bulletins)."
-          ]
+            "Campus Tết Trung Thu / Mid Autumn Moon Festival, 6:30–9:00 PM, Hội Trường Giáo Xứ at Vietnamese Martyrs Parish. Đoàn Thiếu Nhi Thánh Thể Kitô Vua. Week after civic Laguna / Kim Quang."
+          ],
+          "poster": {
+            "src": "posters/vnmp-trung-thu-2024.jpg",
+            "alt": "2024 Vietnamese Martyrs Parish Tết Trung Thu / Mid Autumn Moon Festival flyer",
+            "year": 2024
+          }
         }
       ]
     },
@@ -708,10 +713,28 @@
         {
           "maf": true,
           "kicker": "Saturday, October 4, 2025",
-          "title": "Parish-hall and temple Trung Thu — same Saturday",
+          "title": "Parish-hall Tết Trung Thu",
           "paragraphs": [
-            "Vietnamese Martyrs Parish Tết Trung Thu / Mid Autumn Moon Festival, 6:30–9:00 PM, Hội Trường Giáo Xứ (8181 Florin). Kim Quang campus Tết Trung Thu, 6–9 PM at Alta Arden — lantern, lân, moon cake. Lunar Mid-Autumn was Monday, October 6."
-          ]
+            "Vietnamese Martyrs Parish Tết Trung Thu / Mid Autumn Moon Festival, 6:30–9:00 PM, Hội Trường Giáo Xứ (8181 Florin). Đoàn Kitô Vua Sacramento. Same Saturday evening as Kim Quang Buddhist Temple. Lunar Mid-Autumn was Monday, October 6."
+          ],
+          "poster": {
+            "src": "posters/vnmp-trung-thu-2025.jpg",
+            "alt": "2025 Vietnamese Martyrs Parish Tết Trung Thu / Mid Autumn Moon Festival flyer",
+            "year": 2025
+          }
+        },
+        {
+          "maf": true,
+          "kicker": "Saturday, October 4, 2025",
+          "title": "Kim Quang Tết Trung Thu",
+          "paragraphs": [
+            "Kim Quang Buddhist Temple campus Tết Trung Thu, 6–9 PM at 3119 Alta Arden — lantern, lân, moon cake. Same Saturday evening as the parish hall. Lunar Mid-Autumn was Monday, October 6."
+          ],
+          "poster": {
+            "src": "posters/kim-quang-2025.jpg",
+            "alt": "2025 Kim Quang Buddhist Temple Tết Trung Thu flyer",
+            "year": 2025
+          }
         },
         {
           "kicker": "Saturday, February 14, 2026",
