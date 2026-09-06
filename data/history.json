@@ -366,7 +366,7 @@
           "kicker": "Saturday–Sunday, February 17–18 and 24–25, 2018",
           "title": "Two weekends at Cali Saigon Mall",
           "paragraphs": [
-            "Little Saigon Lunar Flower Fest + Tet Festival, two weekends, 4562 Mack Rd. Tết Mậu Tuất was Friday, February 16."
+            "Little Saigon Lunar Flower Fest + Tet Festival, two weekends, 4562 Mack Rd. Tết Mậu Tuất was Friday, February 16. Trong Tran taped a Tết march on Stockton Blvd."
           ],
           "poster": {
             "src": "posters/2018.jpg",
@@ -375,6 +375,7 @@
             "caption": "Cali Saigon Mall"
           },
           "videos": [
+            { "kind": "youtube", "id": "fl7yPG-Ynhk", "title": "Diễn hành Tết 2018 — Stockton Blvd (Trong Tran)" },
             { "kind": "youtube", "id": "qWeZyfhnh3Q", "title": "Hội Xuân 2018 — SBTN" }
           ]
         },
