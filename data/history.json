@@ -397,14 +397,7 @@
             "caption": "Stockton Blvd"
           },
           "videos": [
-            {
-              "kind": "carousel",
-              "title": "Lô tô 2019 — Trung Huynh",
-              "items": [
-                { "kind": "youtube", "id": "mEQgbUrKT6g", "title": "Lô Tô Hội Xuân Kỷ Hợi 2019 Tại Thủ Phủ Sacramento" },
-                { "kind": "youtube", "id": "U-C_9P-3IEU", "title": "lô tô Hội Chợ Tết Sacramento 2019" }
-              ]
-            }
+            { "kind": "youtube", "id": "mEQgbUrKT6g", "title": "Lô Tô Hội Xuân Kỷ Hợi 2019 — Trung Huynh" }
           ]
         },
         {
