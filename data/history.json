@@ -317,14 +317,7 @@
             "caption": "Stockton Blvd"
           },
           "videos": [
-            {
-              "kind": "carousel",
-              "title": "Lunar Flower Festival 2016 — GS VACC",
-              "items": [
-                { "kind": "youtube", "id": "PY5N-LVkoTg", "title": "Little Saigon Tet Parade & Lunar Flower Fest" },
-                { "kind": "youtube", "id": "yP-8MMwxioY", "title": "Lunar Flower Fest 2016 — Sacramento (Vietnamese)" }
-              ]
-            },
+            { "kind": "youtube", "id": "NiC_ztYHnfw", "title": "Thi Hoa Hậu Áo Dài Sacramento 2016 — Chau Truong" },
             {
               "kind": "carousel",
               "title": "Little Saigon Lunar Flower Fest 2016 — HeuFamilyEnt",
