@@ -28,6 +28,8 @@
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   /* Cormorant’s small x-height — bump optical size for display headings */
   --font-display-scale: 1.5;
+  /* Body is 1.55; wrapping display h2s need tight leading (matches .hero h1) */
+  --heading-line-height: 1.15;
   --max-width: 960px;
   --nav-height: 3.25rem;
 }
@@ -91,6 +93,10 @@ body {
 
 h1 {
   text-wrap: balance;
+}
+
+h2 {
+  line-height: var(--heading-line-height);
 }
 
 a {
@@ -2631,7 +2637,7 @@ body.nav-open {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: calc(1.35rem * var(--font-display-scale));
-  line-height: 1.3;
+  line-height: var(--heading-line-height);
   color: var(--heading);
 }
 
