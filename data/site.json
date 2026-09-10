@@ -524,6 +524,13 @@
             "avatar": "/assets/lion-dance/eastern_ways.jpg"
           },
           {
+            "name": "Honor Kung Fu Academy",
+            "instagram": "https://www.instagram.com/honorkungfu_academy/",
+            "handle": "@honorkungfu_academy",
+            "website": "https://www.honorkungfu.com",
+            "avatar": "/assets/lion-dance/honorkungfu_academy.jpg"
+          },
+          {
             "name": "Jade Rabbit Dragon and Lion Dance",
             "instagram": "https://www.instagram.com/jaderabbitld/",
             "handle": "@jaderabbitld",
@@ -599,6 +606,13 @@
             "instagram": "https://www.instagram.com/frhsliondance/",
             "handle": "@frhsliondance",
             "avatar": "/assets/lion-dance/frhsliondance.jpg"
+          },
+          {
+            "name": "Laguna Creek Chinese Culture Club",
+            "aka": "Lion Dance Team",
+            "instagram": "https://www.instagram.com/lchsccc/",
+            "handle": "@lchsccc",
+            "avatar": "/assets/lion-dance/lchsccc.jpg"
           },
           {
             "name": "Monterey Trail Lion Dance Club",
