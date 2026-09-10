@@ -2487,6 +2487,94 @@ body.nav-open {
   font-weight: 700;
 }
 
+/* Lane headings stay; no hairline between Civic / Temple / College / High school. */
+.site-doc-main > .resources-lion-groups.site-doc-section + .resources-lion-groups.site-doc-section,
+.about-section.resources-lion-groups + .about-section.resources-lion-groups {
+  border-top: none;
+}
+
+.resources-lion-groups .lion-group-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.lion-group-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.lion-group-avatar-link {
+  flex: 0 0 auto;
+  display: block;
+  line-height: 0;
+}
+
+.lion-group-avatar {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.lion-group-text {
+  min-width: 0;
+}
+
+.lion-group-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.lion-group-name {
+  display: block;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.lion-group-aka {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.lion-group-aka::before {
+  content: " · ";
+}
+
+.lion-group-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-top: 0.05rem;
+  line-height: 1.3;
+}
+
+.lion-group-ig a,
+.lion-group-web a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.lion-group-ig a:hover,
+.lion-group-web a:hover {
+  text-decoration: underline;
+}
+
+.lion-group-web::before {
+  content: "·";
+  color: var(--muted);
+  margin: 0 0.4rem;
+}
+
+.lion-groups-note {
+  margin-top: 1.25rem;
+}
+
 .season-year-note,
 .season-list-note,
 .season-contact-note {

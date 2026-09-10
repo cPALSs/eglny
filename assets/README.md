@@ -1,5 +1,9 @@
 # Site assets
 
+## Lion dance group avatars (`lion-dance/`)
+
+Cached Instagram profile pictures for `/resources/lion-dance-groups/`. Named after the handle (`eastern_ways.jpg`, `redlotus-official.jpg`). Do not hotlink Instagram CDN URLs — they expire. Re-download from the live profile if an avatar goes stale.
+
 ## Social share image
 
 Add `og-default.jpg` here (1200×630 recommended). The SEO build script will automatically emit `og:image` and `twitter:image` tags when this file exists.

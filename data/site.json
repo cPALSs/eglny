@@ -486,7 +486,7 @@
   },
   "resources": {
     "headline": "Resources",
-    "lead": "Season calendar and prior-year festival archive.",
+    "lead": "Season calendar, local lion dance groups, and prior-year festival archive.",
     "links": [
       {
         "title": "Lunar New Year Season",
@@ -494,10 +494,132 @@
         "href": "/resources/season/"
       },
       {
+        "title": "Lion dance groups",
+        "body": "Greater Sacramento civic, temple, college, and high school lion dance troupes — Instagram links for families and bookers.",
+        "href": "/resources/lion-dance-groups/"
+      },
+      {
         "title": "2026 archive",
         "body": "Prior-year Elk Grove Lunar New Year site — photos, recap, and archive pages.",
         "href": "https://www.elkgrovelunarnewyear.com/",
         "external": true
+      }
+    ]
+  },
+  "lionDanceGroups": {
+    "headline": "Lion dance groups",
+    "lead": "Greater Sacramento lion dance groups — civic studios, temple teams, college troupes, and high school clubs.",
+    "intro": "Families and bookers can reach these local troupes on Instagram. This is a public roster, not a booking desk — contact each group directly.",
+    "contactNote": "Know a local lion dance group we missed? Email contact@eglny.com.",
+    "lanes": [
+      {
+        "id": "civic",
+        "title": "Civic / studio",
+        "troupes": [
+          {
+            "name": "Eastern Ways Martial Arts",
+            "instagram": "https://www.instagram.com/eastern_ways/",
+            "handle": "@eastern_ways",
+            "website": "https://www.easternways.com",
+            "avatar": "/assets/lion-dance/eastern_ways.jpg"
+          },
+          {
+            "name": "Jade Rabbit Dragon and Lion Dance",
+            "instagram": "https://www.instagram.com/jaderabbitld/",
+            "handle": "@jaderabbitld",
+            "website": "https://www.jaderabbitliondance.com",
+            "avatar": "/assets/lion-dance/jaderabbitld.jpg"
+          },
+          {
+            "name": "Teng Fei Lion Dance",
+            "instagram": "https://www.instagram.com/tengfeisacramento/",
+            "handle": "@tengfeisacramento",
+            "website": "https://sacliondance.com",
+            "avatar": "/assets/lion-dance/tengfeisacramento.jpg"
+          }
+        ]
+      },
+      {
+        "id": "temple",
+        "title": "Temple",
+        "troupes": [
+          {
+            "name": "Dieu Quang Temple Lion Dance",
+            "instagram": "https://www.instagram.com/dqliondance/",
+            "handle": "@dqliondance",
+            "avatar": "/assets/lion-dance/dqliondance.jpg"
+          },
+          {
+            "name": "Kim Quang Temple Lion Dance",
+            "instagram": "https://www.instagram.com/gdptkqliondance/",
+            "handle": "@gdptkqliondance",
+            "avatar": "/assets/lion-dance/gdptkqliondance.jpg"
+          }
+        ]
+      },
+      {
+        "id": "college",
+        "title": "College",
+        "troupes": [
+          {
+            "name": "Blooming Lotus",
+            "aka": "UC Davis",
+            "instagram": "https://www.instagram.com/bloominglotusatucd/",
+            "handle": "@bloominglotusatucd",
+            "avatar": "/assets/lion-dance/bloominglotusatucd.jpg"
+          },
+          {
+            "name": "Red Lotus",
+            "aka": "Sacramento State VSA",
+            "instagram": "https://www.instagram.com/redlotus.official/",
+            "handle": "@redlotus.official",
+            "avatar": "/assets/lion-dance/redlotus-official.jpg"
+          }
+        ]
+      },
+      {
+        "id": "high-school",
+        "title": "High school",
+        "troupes": [
+          {
+            "name": "Cosumnes Oaks Lion Dance",
+            "instagram": "https://www.instagram.com/cohsliondance/",
+            "handle": "@cohsliondance",
+            "avatar": "/assets/lion-dance/cohsliondance.jpg"
+          },
+          {
+            "name": "Florin High Asian Club",
+            "aka": "ONE GENERATION",
+            "instagram": "https://www.instagram.com/florinhighac/",
+            "handle": "@florinhighac",
+            "avatar": "/assets/lion-dance/florinhighac.jpg"
+          },
+          {
+            "name": "Franklin Lion Dance Club",
+            "instagram": "https://www.instagram.com/frhsliondance/",
+            "handle": "@frhsliondance",
+            "avatar": "/assets/lion-dance/frhsliondance.jpg"
+          },
+          {
+            "name": "Monterey Trail Lion Dance Club",
+            "instagram": "https://www.instagram.com/mths_liondance/",
+            "handle": "@mths_liondance",
+            "avatar": "/assets/lion-dance/mths_liondance.jpg"
+          },
+          {
+            "name": "Pleasant Grove Lion Dance Club",
+            "instagram": "https://www.instagram.com/pgliondance/",
+            "handle": "@pgliondance",
+            "avatar": "/assets/lion-dance/pgliondance.jpg"
+          },
+          {
+            "name": "Sheldon Lion Dance Club",
+            "instagram": "https://www.instagram.com/shsliondance/",
+            "handle": "@shsliondance",
+            "website": "https://linktr.ee/shsliondance",
+            "avatar": "/assets/lion-dance/shsliondance.jpg"
+          }
+        ]
       }
     ]
   },

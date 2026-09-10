@@ -176,6 +176,7 @@
         href: "/resources/",
         children: [
           { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
+          { id: "lion-dance-groups", label: "Lion dance groups", navLabel: "Lion dance groups", href: "/resources/lion-dance-groups/" },
           { id: "archive2026", label: "2026 archive", navLabel: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
         ],
       },
@@ -1001,6 +1002,83 @@
         ${season?.lead ? `<p class="hero-lead">${escapeHtml(season.lead)}</p>` : ""}
       </section>
       ${wrapDocLayout(renderDocToc(toc), seasonSection)}`;
+  }
+
+  function instagramHandleFromUrl(url) {
+    try {
+      const path = new URL(url).pathname.replace(/\/+$/, "");
+      const handle = path.split("/").filter(Boolean)[0];
+      return handle ? `@${handle.replace(/^@/, "")}` : "Instagram";
+    } catch {
+      return "Instagram";
+    }
+  }
+
+  function websiteLabelFromUrl(url) {
+    try {
+      const parsed = new URL(url);
+      const host = parsed.hostname.replace(/^www\./i, "");
+      const path = parsed.pathname.replace(/\/+$/, "");
+      if (path && path !== "/") return `${host}${path}`;
+      return host || "Website";
+    } catch {
+      return "Website";
+    }
+  }
+
+  function renderLionDanceGroupItem(troupe) {
+    const aka = troupe.aka ? ` <span class="lion-group-aka">${escapeHtml(troupe.aka)}</span>` : "";
+    const handle = troupe.handle ?? (troupe.instagram ? instagramHandleFromUrl(troupe.instagram) : "");
+    const ig = troupe.instagram
+      ? `<a href="${escapeHtml(troupe.instagram)}" target="_blank" rel="noopener">${escapeHtml(handle || "Instagram")}</a>`
+      : `<span class="muted">No Instagram on file</span>`;
+    const web = troupe.website
+      ? `<a href="${escapeHtml(troupe.website)}" target="_blank" rel="noopener">${escapeHtml(websiteLabelFromUrl(troupe.website))}</a>`
+      : "";
+    const avatar = troupe.avatar
+      ? troupe.instagram
+        ? `<a class="lion-group-avatar-link" href="${escapeHtml(troupe.instagram)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="lion-group-avatar" src="${escapeHtml(troupe.avatar)}" alt="" width="44" height="44" loading="lazy" /></a>`
+        : `<img class="lion-group-avatar" src="${escapeHtml(troupe.avatar)}" alt="" width="44" height="44" loading="lazy" />`
+      : "";
+    return `<li class="lion-group-item">
+      ${avatar}
+      <span class="lion-group-text">
+        <span class="lion-group-name">${escapeHtml(troupe.name)}${aka}</span>
+        <span class="lion-group-links">
+          <span class="lion-group-ig">${ig}</span>
+          ${web ? `<span class="lion-group-web">${web}</span>` : ""}
+        </span>
+      </span>
+    </li>`;
+  }
+
+  function renderLionDanceGroupsPage(data) {
+    const lanes = data?.lanes ?? [];
+    const toc = lanes.map((lane) => ({ id: lane.id, label: lane.title }));
+    const sections = lanes
+      .map((lane) => {
+        const items = (lane.troupes ?? []).map(renderLionDanceGroupItem).join("");
+        return `
+      <section class="about-section resources-lion-groups site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
+        <h2>${escapeHtml(lane.title)}</h2>
+        <ul class="lion-group-list">${items}</ul>
+      </section>`;
+      })
+      .join("");
+    const contactNote = data?.contactNote
+      ? `<p class="muted lion-groups-note">${escapeHtml(data.contactNote)}</p>`
+      : "";
+    const main = `
+      ${data?.intro ? `<p>${escapeHtml(data.intro)}</p>` : ""}
+      ${sections}
+      ${contactNote}`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(data?.headline ?? "Lion dance groups")}</h1>
+        ${data?.lead ? `<p class="hero-lead">${escapeHtml(data.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(toc), main)}`;
   }
 
   function renderResourcesPage(resources) {
@@ -2966,6 +3044,7 @@
     initHistoryLightbox,
     initHistoryCarousels,
     renderResourcesPage,
+    renderLionDanceGroupsPage,
     renderProductionPage,
     renderAttendeesPage,
     renderSponsorshipPage,

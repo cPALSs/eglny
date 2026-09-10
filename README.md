@@ -6,7 +6,7 @@
 
 **Style:** [STYLE.md](STYLE.md) — brands (Fund The Festival, Custom Zones), capitalization, buttons vs links, CTA hierarchy.
 
-Unified LNY hub — logotype home, **About** (story + media + blog), **Production** (team + partners), **Visit** (guest guides), **Resources** (season + archive).
+Unified LNY hub — logotype home, **About** (story + media + blog), **Production** (team + partners), **Visit** (guest guides), **Resources** (season + lion dance groups + archive).
 
 ## Pages
 
@@ -29,6 +29,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
+| `/resources/lion-dance-groups/` | **Lion dance groups** — Greater Sacramento roster — under **Resources** |
 | `/sponsors/` | Redirect → `/sponsorship/#thank-you-2026` |
 | `/resources/media/` | Press and festival YouTube embeds — under **About** |
 | `/resources/blog/` | **Blog** — SEO-safe planning notes (generated from shared markdown) — under **About** |
@@ -83,6 +84,7 @@ python3 -m http.server 8765
 - http://localhost:8765/food-menu/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/
+- http://localhost:8765/resources/lion-dance-groups/
 - http://localhost:8765/resources/media/
 - http://localhost:8765/resources/blog/
 
