@@ -2,7 +2,7 @@
 
 ## Lion dance group avatars (`lion-dance/`)
 
-Cached Instagram profile pictures for `/resources/lion-dance-groups/`. Named after the handle (`eastern_ways.jpg`, `redlotus-official.jpg`). Do not hotlink Instagram CDN URLs — they expire. Re-download from the live profile if an avatar goes stale.
+Cached Instagram profile pictures for `/resources/lion-dance/`. Named after the handle (`eastern_ways.jpg`, `redlotus-official.jpg`). Do not hotlink Instagram CDN URLs — they expire. Re-download from the live profile if an avatar goes stale.
 
 ## Social share image
 

@@ -29,14 +29,14 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
-| `/resources/lion-dance-groups/` | **Lion dance groups** — Greater Sacramento roster — under **Resources** |
+| `/resources/lion-dance/` | **Lion dance groups** — Greater Sacramento roster — under **Resources** |
 | `/sponsors/` | Redirect → `/sponsorship/#thank-you-2026` |
 | `/resources/media/` | Press and festival YouTube embeds — under **About** |
 | `/resources/blog/` | **Blog** — SEO-safe planning notes (generated from shared markdown) — under **About** |
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 
-Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/roles/`. `/team/join/` redirects to `/team/roles/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`.
+Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/roles/`. `/team/join/` redirects to `/team/roles/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`. `/resources/lion-dance-groups/` redirects to `/resources/lion-dance/`.
 
 ## Content
 
@@ -84,7 +84,7 @@ python3 -m http.server 8765
 - http://localhost:8765/food-menu/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/
-- http://localhost:8765/resources/lion-dance-groups/
+- http://localhost:8765/resources/lion-dance/
 - http://localhost:8765/resources/media/
 - http://localhost:8765/resources/blog/
 

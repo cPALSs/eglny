@@ -26,6 +26,11 @@
     return;
   }
 
+  if (pathname === "/resources/lion-dance-groups" || pathname === "/resources/lion-dance-groups/") {
+    location.replace("/resources/lion-dance/" + search + hash);
+    return;
+  }
+
   if (pathname === "/ig" || pathname === "/ig/") {
     location.replace("https://links.cpalss.com/lunarnewyeartet/" + search + hash);
   }
