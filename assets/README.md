@@ -6,7 +6,11 @@ Cached Instagram profile pictures for `/resources/lion-dance/`. Named after the 
 
 ## Social share image
 
-Add `og-default.jpg` here (1200×630 recommended). The SEO build script will automatically emit `og:image` and `twitter:image` tags when this file exists.
+## Social share image
+
+## Social share image
+
+`og-default.jpg` (1200×630) is the Open Graph / Twitter card for eglny.com. Current art is the 2027 Crane Child graphic. After replacing this file, run the festival SEO build so `?v=` cache-busts Facebook/Slack scrapers.
 
 ## Menu viewer (`menu-viewer/`)
 
