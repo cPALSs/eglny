@@ -488,26 +488,40 @@
   `;
   }
 
+  function isSkillsProjectFilled(project) {
+    return project.status === "filled" || Boolean(project.filledBy);
+  }
+
+  function renderSkillsProjectCard(project, { ctaClass }) {
+    const filled = isSkillsProjectFilled(project);
+    const filledClass = filled ? " role-card--filled" : "";
+    const filledLine = filled
+      ? `<p class="role-director">${
+          project.filledBy ? `Filled — ${escapeHtml(project.filledBy)}` : "Filled"
+        }</p>`
+      : "";
+    const cta =
+      !filled && project.idealistUrl
+        ? `<p class="cta-row"><a class="${ctaClass}" href="${escapeHtml(project.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(project.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
+        : "";
+    return `
+            <article class="role-card skills-project-card${filledClass}" id="${escapeHtml(project.id)}">
+              <h3>${escapeHtml(project.title)}</h3>
+              ${filledLine}
+              ${project.blurb ? `<p>${escapeHtml(project.blurb)}</p>` : ""}
+              ${project.commitment ? `<p class="muted"><strong>Commitment:</strong> ${escapeHtml(project.commitment)}</p>` : ""}
+              ${cta}
+              ${project.idealistNote ? `<p class="muted">${escapeHtml(project.idealistNote)}</p>` : ""}
+            </article>`;
+  }
+
   function renderSkillsProjectsSection(site, { showHeading = true } = {}) {
     const block = site.teamPage?.skillsProjects;
     const projects = block?.projects ?? [];
     if (!projects.length) return "";
-    const ctaClass = projects.length === 1 ? "btn btn-primary" : "btn btn-secondary";
-    const cards = projects
-      .map((p) => {
-        const cta = p.idealistUrl
-          ? `<p class="cta-row"><a class="${ctaClass}" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
-          : "";
-        return `
-            <article class="role-card skills-project-card" id="${escapeHtml(p.id)}">
-              <h3>${escapeHtml(p.title)}</h3>
-              ${p.blurb ? `<p>${escapeHtml(p.blurb)}</p>` : ""}
-              ${p.commitment ? `<p class="muted"><strong>Commitment:</strong> ${escapeHtml(p.commitment)}</p>` : ""}
-              ${cta}
-              ${p.idealistNote ? `<p class="muted">${escapeHtml(p.idealistNote)}</p>` : ""}
-            </article>`;
-      })
-      .join("");
+    const openCount = projects.filter((p) => !isSkillsProjectFilled(p)).length;
+    const ctaClass = openCount === 1 ? "btn btn-primary" : "btn btn-secondary";
+    const cards = projects.map((p) => renderSkillsProjectCard(p, { ctaClass })).join("");
     const heading = showHeading
       ? `<h2>${escapeHtml(block.sectionTitle ?? "Skills projects")}</h2>
             ${block.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}`
@@ -526,24 +540,13 @@
     const skillsTitle = block?.sectionTitle ?? "Skills projects";
     const dayOf = block?.dayOfHelp;
     const projects = block?.projects ?? [];
-    const ctaClass = projects.length === 1 ? "btn btn-primary" : "btn btn-secondary";
+    const openCount = projects.filter((p) => !isSkillsProjectFilled(p)).length;
+    const ctaClass = openCount === 1 ? "btn btn-primary" : "btn btn-secondary";
     const skillsHtml = `
           <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
             <h2>${escapeHtml(skillsTitle)}</h2>
             <div class="skills-projects-grid">${projects
-              .map((p) => {
-                const cta = p.idealistUrl
-                  ? `<p class="cta-row"><a class="${ctaClass}" href="${escapeHtml(p.idealistUrl)}" target="_blank" rel="noopener">${escapeHtml(p.idealistCtaLabel ?? "Apply on Idealist")}</a></p>`
-                  : "";
-                return `
-            <article class="role-card skills-project-card" id="${escapeHtml(p.id)}">
-              <h3>${escapeHtml(p.title)}</h3>
-              ${p.blurb ? `<p>${escapeHtml(p.blurb)}</p>` : ""}
-              ${p.commitment ? `<p class="muted"><strong>Commitment:</strong> ${escapeHtml(p.commitment)}</p>` : ""}
-              ${cta}
-              ${p.idealistNote ? `<p class="muted">${escapeHtml(p.idealistNote)}</p>` : ""}
-            </article>`;
-              })
+              .map((p) => renderSkillsProjectCard(p, { ctaClass }))
               .join("")}</div>
           </section>`;
     const dayOfHtml = dayOf
