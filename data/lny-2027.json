@@ -1190,7 +1190,7 @@
       "emoji": "\ud83c\udfc8",
       "amount": 5000,
       "category": "registry",
-      "priority": true,
+      "priority": false,
       "cohorts": [
         "C3",
         "C4"
