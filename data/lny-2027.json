@@ -1063,7 +1063,7 @@
       "emoji": "\ud83c\udfa8",
       "amount": 5000,
       "category": "registry",
-      "priority": true,
+      "priority": false,
       "cohorts": [
         "C1",
         "C2",
