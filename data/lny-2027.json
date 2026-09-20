@@ -44,11 +44,11 @@
     {
       "id": "festival_foundation",
       "name": "Festival Foundation",
-      "amount": 14587,
+      "amount": 16837,
       "category": "core",
       "sortOrder": 0,
-      "tagline": "Insurance, permits, lions, and infrastructure every festival needs.",
-      "description": "Opens a safe, insured public festival: liability insurance, park permit and on-site coordination, lion dances both days, transport and traffic support, ops tents, organic digital promotion, volunteer meals, and festival coordination. CGL is estimated at the Cosumnes CSD floor ($2 million each occurrence / $4 million aggregate). City Extra Duty certificates need $5 million each occurrence; that increase plus waiver of subrogation and primary/non-contributory is a quoted add-on as of September 2026 and is not bound. A separate Weather / Cancel Fund holds a cash buffer if rain washes the weekend.",
+      "tagline": "Insurance, permits, lions, waste carts, and infrastructure every festival needs.",
+      "description": "Opens a safe, insured public festival: liability insurance, park permit and on-site coordination, lion dances both days, transport and traffic support, ops tents, Republic waste carts, organic digital promotion, volunteer meals, and festival coordination. CGL is estimated at the Cosumnes CSD floor ($2 million each occurrence / $4 million aggregate). City Extra Duty certificates need $5 million each occurrence; that increase plus waiver of subrogation and primary/non-contributory is a quoted add-on as of September 2026 and is not bound. Republic trash/recycle/organics carts are booked at the 2026 City in-kind cap. A separate Weather / Cancel Fund holds a cash buffer if rain washes the weekend.",
       "benefits": [
         "Foundation sponsor recognition on website + email"
       ],
@@ -92,6 +92,10 @@
         {
           "label": "Lion dances (Sat + Sun)",
           "amount": 700
+        },
+        {
+          "label": "Republic trash / recycling (2026 City in-kind estimate)",
+          "amount": 2250
         }
       ]
     },
@@ -174,11 +178,11 @@
     {
       "id": "safe_festival",
       "name": "Safe Festival",
-      "amount": 4800,
+      "amount": 18000,
       "category": "core",
       "sortOrder": 3,
-      "tagline": "Private security \u2014 peak grounds, traffic/parking direction, and overnight site/stage cover.",
-      "description": "One private-security contractor, three posts: (1) peak festival-grounds crowd safety, (2) traffic and parking direction at entries and crossings, and (3) overnight Sat\u2192Sun to cover main stage and site assets \u2014 required whether or not Tailgate camps stake overnight. Daytime coverage hours adjust with Saturday dusk and Sunday Tailgate.",
+      "tagline": "Private security plus City Extra Duty police and Public Works.",
+      "description": "Private security plus City Extra Duty police and Public Works. Private contractor, three posts: (1) peak festival-grounds crowd safety, (2) traffic and parking direction at entries and crossings, and (3) overnight Sat\u2192Sun to cover main stage and site assets \u2014 required whether or not Tailgate camps stake overnight. Daytime coverage hours adjust with Saturday dusk and Sunday Tailgate. Police and Public Works are booked at the 2026 City in-kind cap ($13,200 combined; EGPD sets officer count). Police is a public-safety supplement, not parking, crowd, or access control.",
       "benefits": [
         "Safety sponsor recognition on website + email"
       ],
@@ -194,6 +198,10 @@
         {
           "label": "Private security \u2014 overnight (Sat\u2192Sun site / stage)",
           "amount": 1000
+        },
+        {
+          "label": "Police + Public Works (2026 City in-kind estimate)",
+          "amount": 13200
         }
       ]
     },
