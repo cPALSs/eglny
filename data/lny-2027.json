@@ -44,7 +44,7 @@
     {
       "id": "festival_foundation",
       "name": "Festival Foundation",
-      "amount": 16837,
+      "amount": 17000,
       "category": "core",
       "sortOrder": 0,
       "tagline": "Insurance, permits, lions, waste carts, and infrastructure every festival needs.",
@@ -96,6 +96,10 @@
         {
           "label": "Republic trash / recycling (2026 City in-kind estimate)",
           "amount": 2250
+        },
+        {
+          "label": "Rounding to gift total",
+          "amount": 163
         }
       ]
     },
