@@ -500,20 +500,30 @@ function choicesLockedForEstimate() {
 
 /**
  * Estimated sponsor pool: High Priority registry first (impact order within
- * that lane), then electives, then secondary, then core. Earned cash covers
- * most core; renewals unlock vision chapters. Last funded lane is least likely.
+ * that lane), then Partnership Operations + Festival Amenities (core gap
+ * closers), then electives, then secondary, then remaining core. Earned cash
+ * covers most core; renewal leftover should finish those two ops gifts so
+ * Core ops is nearly fully funded before elective stories.
  */
+const ESTIMATE_CORE_OVERFLOW_IDS = ["partnership_operations", "festival_amenities"];
+
 function compareGiftsForEstimate(a, b) {
+  const overflowRank = (g) => {
+    const i = ESTIMATE_CORE_OVERFLOW_IDS.indexOf(g.id);
+    return i === -1 ? null : i;
+  };
   const lane = (g) => {
     if (g.category === "registry" && g.priority) return 0;
-    if (g.category === "registry") return 1;
-    if (g.category === "secondary") return 2;
-    if (g.category === "core") return 3;
-    return 4;
+    if (overflowRank(g) != null) return 1;
+    if (g.category === "registry") return 2;
+    if (g.category === "secondary") return 3;
+    if (g.category === "core") return 4;
+    return 5;
   };
   const la = lane(a);
   const lb = lane(b);
   if (la !== lb) return la - lb;
+  if (la === 1) return overflowRank(a) - overflowRank(b);
   const category = a.category === "registry" ? "registry" : a.category;
   return compareGifts(a, b, category);
 }
@@ -595,7 +605,7 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload) {
     }
   }
 
-  // Phase 2 — pool balances; High Priority first, then electives, then core
+  // Phase 2 — pool balances; High Priority first, then Partnership Ops + Amenities, then electives
   const openGifts = gifts
     .filter((g) => isAllocatableEstimateGift(g) && !funded.has(g.id))
     .sort(compareGiftsForEstimate);
