@@ -1,9 +1,11 @@
 {
   "meta": {
     "festival": "Elk Grove Lunar New Year 2027",
-    "version": "2026-08-14",
+    "version": "2026-09-20",
     "sourceOfTruth": "Inventory master for vendor Eventeny sync and food-curation engine booth_fee defaults",
-    "pricingConvention": "Weekend total — show ~$/day × 2 days on line items (Sat + Sun). No early-bird tier — exclusivity lanes and $150 goods are list price only. Cooking (FT/OC) cleanup/damage deposit $500; flat trash deposit $100 for all other paid booth SKUs."
+    "pricingConvention": "Weekend total — show ~$/day × 2 days on line items (Sat + Sun). No early-bird tier — exclusivity lanes and $150 goods are list price only. Cooking (FT/OC) cleanup/damage deposit $500; flat trash deposit $100 for all other paid booth SKUs.",
+    "combinedOpenPrepCap": 7,
+    "combinedOpenPrepNote": "LNY-VENDOR-FT and LNY-VENDOR-OC share one food-flow pool of 7 seats at 6,000 planning attendance. Per-SKU slotCap is an upper bound so neither SKU can list 10. Ops lock: combined FT+OC ≤ 7 — do not sell 7+7."
   },
   "foodArchetypes": [
     {
@@ -88,7 +90,7 @@
       "name": "Food truck / trailer",
       "vendorClass": "open_prep",
       "footprint": "10×20 truck / trailer pad",
-      "slotCap": 10,
+      "slotCap": 7,
       "publicDescription": "Licensed mobile food unit — hot meals (plates, handhelds, BBQ). MFF on vehicle.",
       "requirements": [
         "MFF on vehicle",
@@ -119,7 +121,7 @@
       "name": "Open cooking",
       "vendorClass": "open_prep",
       "footprint": "10×20 canopy + equipment",
-      "slotCap": 10,
+      "slotCap": 7,
       "publicDescription": "Live prep under canopy — plates, handhelds, BBQ. TFF PREP / MEV.",
       "requirements": [
         "TFF PREP or MEV",

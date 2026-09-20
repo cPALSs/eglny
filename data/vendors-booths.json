@@ -21,14 +21,14 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "intro": "**Tentative** planning caps for ~9,000 weekend attendance. Seat counts and **booth fees are not final** — both wait on park capacity confirmation with Cosumnes CSD and may change before applications open.",
+    "intro": "**Tentative** planning caps for ~6,000 weekend attendance. Seat counts and **booth fees are not final** — both wait on park capacity confirmation with Cosumnes CSD and may change before applications open.",
     "table": {
       "headers": ["Booth type", "Tentative seats", "Weekend fee (not final)"],
       "rows": [
-        ["Open food / truck (10×20)", "11", "$750"],
+        ["Open food / truck (10×20)", "7", "$750"],
         ["Field drinks (2 boba/matcha · 1 sugarcane · 1 aguas · 1 coffee)", "5", "$500"],
         ["Shared pad pool — corporate / marketing · merchant, craft, and snack / treat · nonprofit / mission and kids-owned", "60", "$75–$500 by type"],
-        ["**Paid field total**", "**~76**", ""]
+        ["**Paid field total**", "**~72**", ""]
       ]
     },
     "notes": [

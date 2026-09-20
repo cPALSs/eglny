@@ -4,38 +4,38 @@
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
     "mvpCap": 50617,
-    "vendorRev100": 20375,
-    "registryFull": 165517,
-    "vendorSlots": 76,
-    "attendance": 9000
+    "vendorRev100": 17375,
+    "registryFull": 170517,
+    "vendorSlots": 72,
+    "attendance": 6000
   },
   "scenario": {
     "id": "planning",
     "label": "Planning baseline",
     "fillRate": 1.0,
-    "attendance": 9000,
+    "attendance": 6000,
     "mvpCap": 50617,
-    "vendorRevenue": 45775,
-    "headroomOrGap": 0,
-    "vendorSlots": 76,
+    "vendorRevenue": 38596,
+    "headroomOrGap": 4021,
+    "vendorSlots": 72,
     "estimatedRevenue": {
-      "total": 45775,
-      "summary": "76 paid booths \u00b7 9,000 attendance \u00b7 100% fill",
+      "total": 38596,
+      "summary": "72 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
       "lines": [
         {
           "label": "Vendor booth fees",
-          "amount": 20375,
-          "note": "76 paid \u00b7 Market Modeling card (OC $750\u00d711 \u00b7 DR $500\u00d75 [2+1+1+1 coffee] \u00b7 goods $150\u00d740 \u00b7 GEN $500\u00d75 \u00b7 NP $75\u00d715; no early bird)"
+          "amount": 17375,
+          "note": "72 paid \u00b7 Market Modeling card (OC $750\u00d77 \u00b7 DR $500\u00d75 [2+1+1+1 coffee] \u00b7 goods $150\u00d740 \u00b7 GEN $500\u00d75 \u00b7 NP $75\u00d715; no early bird)"
         },
         {
           "label": "Parking",
-          "amount": 17568,
-          "note": "1098 paid stalls (N=bazaar) \u00b7 100% util \u00b7 $10/car \u00b7 2d \u00b7 net after 20% ops \u00b7 3/car \u00b7 9,000 weekend uniques"
+          "amount": 16000,
+          "note": "1098 paid stalls (N=bazaar) \u00b7 100% util \u00b7 $10/car \u00b7 2d \u00b7 net after 20% ops \u00b7 3/car \u00b7 6,000 weekend uniques"
         },
         {
           "label": "Carnival share",
-          "amount": 7832,
-          "note": "cPALSs 20% \u00b7 2026 Sat-only $3,071 \u00d7 1.7 Tailgate weekend \u00d7 9,000/6,000 guests"
+          "amount": 5221,
+          "note": "cPALSs 20% \u00b7 2026 Sat-only $3,071 \u00d7 1.7 Tailgate weekend \u00d7 6,000/6,000 guests"
         }
       ]
     }
@@ -44,18 +44,26 @@
     {
       "id": "festival_foundation",
       "name": "Festival Foundation",
-      "amount": 14000,
+      "amount": 14587,
       "category": "core",
       "sortOrder": 0,
       "tagline": "Insurance, permits, lions, and infrastructure every festival needs.",
-      "description": "Opens a safe, insured public festival: liability insurance, park permit and on-site coordination, lion dances both days, transport and traffic support, ops tents, organic digital promotion, volunteer meals, and festival coordination. A separate Weather / Cancel Fund holds a cash buffer if rain washes the weekend.",
+      "description": "Opens a safe, insured public festival: liability insurance, park permit and on-site coordination, lion dances both days, transport and traffic support, ops tents, organic digital promotion, volunteer meals, and festival coordination. CGL is estimated at the Cosumnes CSD floor ($2 million each occurrence / $4 million aggregate). City Extra Duty certificates need $5 million each occurrence; that increase plus waiver of subrogation and primary/non-contributory is a quoted add-on as of September 2026 and is not bound. A separate Weather / Cancel Fund holds a cash buffer if rain washes the weekend.",
       "benefits": [
         "Foundation sponsor recognition on website + email"
       ],
       "lineItems": [
         {
-          "label": "CGL insurance",
+          "label": "CGL insurance (CCSD $2M / $4M floor, estimated)",
           "amount": 3100
+        },
+        {
+          "label": "Extra Duty CGL to $5M each occurrence (quoted add-on, not bound)",
+          "amount": 387
+        },
+        {
+          "label": "Waiver of subrogation + primary/non-contributory (quoted add-on, not bound)",
+          "amount": 200
         },
         {
           "label": "CSD permit + service + TFF coordinator",
@@ -438,7 +446,8 @@
           "amount": 2000
         }
       ],
-      "priority": true,
+      "priority": false,
+      "electiveGroup": "stage",
       "chapterDays": "saturday"
     },
     {
@@ -473,15 +482,15 @@
       "id": "lucky_wav",
       "name": "Lucky Wav Edition",
       "emoji": "\ud83c\udfa7",
-      "amount": 2500,
+      "amount": 7500,
       "category": "registry",
       "cohorts": [
         "C4"
       ],
       "sortOrder": 53,
       "impactOrder": 3,
-      "tagline": "Younger-skewed stage block \u2014 DJ Uni anchors the set.",
-      "description": "Named Lucky Wav stage segment \u2014 DJ Uni (Trang Tran) as the booked talent for 2027 (other 2026 Lucky Wav performers cut from the budget). One selectable programming block among PBN revue, Soul Torrent / Spirit Break, and other talent sponsors.",
+      "tagline": "Saturday dusk music block \u2014 performers and social media. Not T\u1ee5 V\u00eda.",
+      "description": "Named Lucky Wav Saturday dusk set on the main stage. Funds performers and social media production for the block. Lineup and fees are booked privately with the festival \u2014 this gift does not list performers. Not the afternoon T\u1ee5 V\u00eda walking procession.",
       "benefits": [
         "Lucky Wav presented by [Sponsor]",
         "Facebook/Instagram Reel + collab post",
@@ -489,16 +498,17 @@
       ],
       "lineItems": [
         {
-          "label": "DJ Uni (Trang Tran)",
-          "amount": 1000
+          "label": "Performers",
+          "amount": 6500
         },
         {
-          "label": "Production + social clips",
-          "amount": 1500
+          "label": "Social media production",
+          "amount": 1000
         }
       ],
-      "priority": false,
-      "electiveGroup": "stage"
+      "priority": true,
+      "electiveGroup": "stage",
+      "chapterDays": "saturday"
     },
     {
       "id": "asian_cajun_show",
