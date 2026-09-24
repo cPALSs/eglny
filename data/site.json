@@ -60,7 +60,7 @@
     "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.",
     "rosterPage": {
       "headline": "Team",
-      "lead": "Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027."
+      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027. These are working homes, not director appointments."
     },
     "join": {
       "title": "Get involved",
@@ -117,14 +117,13 @@
           ]
         },
         {
-          "title": "Visionaries",
+          "title": "Program & experience",
           "members": [
             {
               "name": "Lily Tran",
-              "title": "Lucky Wav",
+              "title": "Stage entertainment · Lucky Wav",
               "photo": "/assets/roster/lily-tran.jpg",
               "instagram": "letmamiicook",
-              "instagramUrl": "https://www.instagram.com/p/DUJYnVQlO4y/",
               "vision": "If you grew up celebrating Lunar New Year, you know what it means to keep culture and tradition alive — and that each generation has its own way of expressing that. When I was asked to lead music for Elk Grove LNY, I got space to create something different. That’s how Lucky Wav was born: Lucky for blessings ahead, Wav for music, movement, and a new wave of culture. This segment is about honoring where we come from and celebrating where we’re headed — for our community in Sacramento and Elk Grove."
             },
             {
@@ -168,6 +167,77 @@
                   ]
                 }
               ]
+            },
+            {
+              "name": "Ngãi Võ",
+              "title": "Show and concept design"
+            },
+            {
+              "name": "Robert Do",
+              "title": "Sunday tailgate"
+            },
+            {
+              "name": "Nick Huynh",
+              "title": "Children's activities"
+            },
+            {
+              "name": "Tuyet-Nhung Bui-Kelly",
+              "title": "Children's activities"
+            }
+          ]
+        },
+        {
+          "title": "Outreach & partners",
+          "members": [
+            {
+              "name": "Tido Hoang",
+              "title": "Partnerships"
+            },
+            {
+              "name": "Kevin P. Nguyen",
+              "title": "Partnerships"
+            },
+            {
+              "name": "Dai Nguyen",
+              "title": "Community events"
+            },
+            {
+              "name": "Nikki Nguyen",
+              "title": "Advisor"
+            },
+            {
+              "name": "Ryu Do",
+              "title": "Graphic design"
+            },
+            {
+              "name": "Amber Lua",
+              "title": "Sponsorship packet design"
+            },
+            {
+              "name": "Phi Lu",
+              "title": "Food vendors"
+            }
+          ]
+        },
+        {
+          "title": "Site & ops",
+          "members": [
+            {
+              "name": "Thuy Pham",
+              "title": "Site and operations",
+              "photo": "/assets/roster/thuy-pham.jpg"
+            },
+            {
+              "name": "Raul Armenta",
+              "title": "Decorations"
+            },
+            {
+              "name": "David Tran",
+              "title": "Volunteers"
+            },
+            {
+              "name": "Kenrick Young",
+              "title": "Legal advisor"
             }
           ]
         }
@@ -433,7 +503,7 @@
     "links": [
       {
         "title": "Team",
-        "body": "Steering Committee and visionaries shaping Elk Grove Lunar New Year Tết 2027.",
+        "body": "Who is working Steering, Program & experience, Outreach & partners, and Site & ops.",
         "href": "/team/"
       },
       {
