@@ -2,10 +2,10 @@
   "event": {
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
-    "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137:30 PM",
+    "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137 PM",
     "mvpCap": 50617,
     "vendorRev100": 17375,
-    "registryFull": 170517,
+    "registryFull": 163017,
     "vendorSlots": 72,
     "attendance": 6000
   },
@@ -430,7 +430,7 @@
         "C4"
       ],
       "tagline": "Dusk Spirit Break show \u2014 e-pop, glow, VJ, lions vs malignant spirits. Not the afternoon T\u1ee5 V\u00eda walk.",
-      "description": "Soul Torrent Spirit Break Show \u2014 the Saturday dusk finale on the Main Stage (~6\u20137 PM): protectors, lions, and the crowd defeat the malignant spirits with electronic-pop, glow sticks, and VJ LED cues (ball fight \u00b7 drop \u00b7 win beats). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, audience glow sticks, and a VJ who builds and cues Soul Torrent LED animations. LED hardware is already in festival Main Stage core. Content is human-directed \u2014 not generative-AI filler. Does not fund the afternoon T\u1ee5 V\u00eda Walking Procession \u2014 that is a separate High Priority gift. This gift is the Spirit Break stage show only, inside the 11 AM\u20137:30 PM public day \u2014 not a 5\u20138 PM concert stack. Listed $9,500 pending quotes.",
+      "description": "Soul Torrent Spirit Break Show \u2014 the Saturday dusk finale on the Main Stage (~6\u20137 PM): protectors, lions, and the crowd defeat the malignant spirits with electronic-pop, glow sticks, and VJ LED cues (ball fight \u00b7 drop \u00b7 win beats). Remapped from the old Saturday Night Headliner. Funds hunt-timed music/AV, dusk program crew, MC, audience glow sticks, and a VJ who builds and cues Soul Torrent LED animations. LED hardware is already in festival Main Stage core. Content is human-directed \u2014 not generative-AI filler. Does not fund the afternoon T\u1ee5 V\u00eda Walking Procession \u2014 that is a separate High Priority gift. This gift is the Spirit Break stage show only, inside the 11 AM\u20137 PM public day \u2014 not a 5\u20138 PM concert stack. Listed $9,500 pending quotes.",
       "benefits": [
         "Soul Torrent Spirit Break Show presented by [Sponsor]",
         "Sponsor credit on Spirit Break / dusk show posts + program cue",
@@ -1056,80 +1056,6 @@
         }
       ],
       "chapterDays": "both"
-    },
-    {
-      "id": "spirit_character_design",
-      "name": "Spirit Design \u2014 First Set",
-      "emoji": "\ud83c\udfa8",
-      "amount": 5000,
-      "category": "registry",
-      "priority": false,
-      "cohorts": [
-        "C1",
-        "C2",
-        "C3"
-      ],
-      "sortOrder": 15.85,
-      "impactOrder": 14,
-      "tagline": "Hire human artists for the first festival-owned spirit cast \u2014 silhouettes, color keys, and shareable key art. No AI-generated art.",
-      "description": "Commissions the first festival-owned spirit set from hired human artists for Linhhonology soft myth \u2014 the lookbook kids \u201ccollect\u201d and marketing shows before anyone meets a body on the grass. Pays art direction plus character commissions for about 4\u20136 spirits (epithets, silhouettes / color keys, key art) and crop packs for host cards, web, social, Children\u2019s Village crafts, and Soul Torrent promotion. Artistic integrity lock: deliverables must be human-made (drawn / painted / designed by people under contract). No generative-AI image tools for final spirit art, key art, or published crops \u2014 audience trust and brand integrity depend on it. Festival retains assignment / work-for-hire rights for Elk Grove T\u1ebft and stewarded peer-festival reuse. Not day-of costume performers \u2014 that is Spirit Actors & Forms. Working dollars pending real quotes; later seasons can open community contribution under the same style keys and the same no-AI rule.",
-      "benefits": [
-        "Spirit Design \u2014 First Set presented by [Sponsor]",
-        "Sponsor credit on spirit reveal cards + web feature",
-        "Named on first-release spirit art posts"
-      ],
-      "lineItems": [
-        {
-          "label": "Human art direction / style keys for first set",
-          "amount": 1200
-        },
-        {
-          "label": "Human artist commissions \u2014 4\u20136 spirits (sheets + key poses)",
-          "amount": 3000
-        },
-        {
-          "label": "Marketing crops \u2014 host cards, web, social packs",
-          "amount": 800
-        }
-      ],
-      "chapterDays": "both"
-    },
-    {
-      "id": "costumed_characters",
-      "name": "Spirit Actors & Forms",
-      "emoji": "\u2728",
-      "amount": 2500,
-      "category": "registry",
-      "priority": false,
-      "cohorts": [
-        "C0",
-        "C1",
-        "C2"
-      ],
-      "sortOrder": 15.9,
-      "impactOrder": 15,
-      "tagline": "Live spirit meet-and-greets \u2014 festival forms kids can pose with after the art set exists.",
-      "description": "Day-of Spirit Actors & Forms: 2\u20134 hired performers (or costumed hosts) for scheduled meet-and-greet and photo windows in festival-owned spirit looks. Recognition is the product \u2014 kids arrive wanting a form they already saw on cards and feeds. Pulls costume / silhouette direction from Spirit Design \u2014 First Set when that gift is funded; without design art, stay silhouette-simple and festival-original (no trademarked characters, no studio names). Different from Fashion Garden (real guests and \u00e1o d\u00e0i ambassadors). Dedicated photo-line role so performers stay presentable and the line keeps moving.",
-      "benefits": [
-        "Spirit Actors & Forms presented by [Sponsor]",
-        "Sponsor credit on spirit meet schedule + photo-line signage",
-        "website + Facebook/Instagram family feature"
-      ],
-      "lineItems": [
-        {
-          "label": "Spirit performers \u2014 2\u20134 rotating meet windows (pending quotes)",
-          "amount": 1500
-        },
-        {
-          "label": "Costume / form finish aligned to design set (or silhouette MVP)",
-          "amount": 500
-        },
-        {
-          "label": "Photo-line host + queue management",
-          "amount": 500
-        }
-      ],
-      "chapterDays": "saturday"
     },
     {
       "id": "big_game_core",

@@ -8,7 +8,7 @@
   },
   "event": {
     "name": "Elk Grove Lunar New Year Tết",
-    "dates": "Feb 13–14, 2027 · 11 AM–7:30 PM",
+    "dates": "Feb 13–14, 2027 · 11 AM–7 PM",
     "startDate": "2027-02-13",
     "endDate": "2027-02-14",
     "weekdayHint": "SAT & SUN",
@@ -346,11 +346,6 @@
           "own": "Gift budget · photo vendor or volunteer crew contract · backdrop/ops handoff"
         },
         {
-          "title": "Spirit Design",
-          "emoji": "✨",
-          "own": "Gift budget · hire/license human artists · style keys · marketing crops · rights (no generative-AI deliverables)"
-        },
-        {
           "title": "Tween / Teen Maker Spot",
           "emoji": "🛠️",
           "own": "Gift budget · preferred vendor / RFP · map placement · day-of staffing contract"
@@ -528,7 +523,7 @@
       },
       {
         "title": "Vendor booths",
-        "body": "Booth waitlist, selection rounds, and how food and craft vendors join the festival map.",
+        "body": "Booth applications on Eventeny, selection rounds, and how food and craft vendors join the festival map.",
         "href": "/vendors/"
       },
       {
@@ -1026,7 +1021,7 @@
       "emailSubject": "LNY 2027 — custom zone inquiry",
       "intro": "Tell us about your organization — Partnerships will follow up within a few business days with a recommended setup. They may ask about shade, lighting, and artwork; you don't need answers on day one.",
       "detailNote": "Looking for Children’s Village, Children’s Theater, or Maker Spot? Those are scoped RFPs — not this page.",
-      "vendorNote": "Standard food, craft, and nonprofit booths: join the waitlist on Vendor booths."
+      "vendorNote": "Standard food, craft, and nonprofit booths: apply on Eventeny through Vendor booths."
     },
     "faq": [
       {
