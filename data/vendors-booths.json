@@ -21,9 +21,9 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "intro": "**Tentative** planning caps for ~6,000 weekend attendance. Seat counts and **booth fees are not final** — both wait on park capacity confirmation with Cosumnes CSD and may change before applications open.",
+    "intro": "**Tentative** planning caps for ~6,000 weekend attendance. Seat counts are set at Round 1 decisions (Nov 10), after park capacity confirmation with Cosumnes CSD. Booth fees are the weekend rates listed on Eventeny.",
     "table": {
-      "headers": ["Booth type", "Tentative seats", "Weekend fee (not final)"],
+      "headers": ["Booth type", "Tentative seats", "Weekend fee"],
       "rows": [
         ["Open food / truck (10×20)", "7", "$750"],
         ["Field drinks (2 boba/matcha · 1 sugarcane · 1 aguas · 1 coffee)", "5", "$500"],
@@ -33,7 +33,7 @@
     },
     "notes": [
       "Open food and drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), and nonprofit/kids ($75) compete for the same seats (not separate caps).",
-      "Fees shown as weekend totals (**$/day × 2 days**) and are **not final**. No early-bird discount — early apply buys **certainty** in Round 1.",
+      "Fees shown as weekend totals (**$/day × 2 days**). No early-bird discount — early apply buys **certainty** in Round 1.",
       "**$25 application deposit** for every booth type, paid when you apply. If you are accepted, the $25 is credited toward your booth fee. If you are not selected, we refund the $25. If you are selected but don’t pay the booth fee by the pay-by date, the $25 is forfeited and the booth goes to the next waitlisted vendor. In Round 1, you stay on the Round 2 waitlist without a new deposit.",
       "**Venue:** Elk Grove Park is our planned venue, and permits are in progress. If the festival can’t proceed at the venue, we refund your deposits and booth fees in full.",
       "Booth fees are **non-refundable** once you are accepted and paid. **Weather exception:** if weather cancels a festival day, accepted and paid vendors receive a **credit toward Elk Grove Lunar New Year 2028** — half the booth fee for each canceled day — instead of a cash refund. Weather earns a credit; only a venue cancellation is refunded in cash.",
@@ -42,7 +42,7 @@
       "**Cleanup and trash deposits:** every food booth pays a refundable **$100 trash deposit** at approval, refunded when you bag out your trash and leave your space clean. Booths that cook on site (food trucks and trailers, open flame, grills, fryers) also pay a refundable **$500 cooking cleanup deposit**, refunded if your space has no grease, oil, or burn marks. Pre-packaged and no-cook booths pay only the $100. Merchant and corporate booths pay a refundable trash deposit charged automatically with the booth fee.",
       "**Hours, load-in, tear-down:** vendor hours are **11 AM–7 PM Saturday and Sunday**, Feb 13–14, 2027. Load-in is **Friday, Feb 12, 2027**; tear-down starts after 7 PM Sunday. Exact load-in and tear-down times come with your acceptance email."
     ],
-    "footnote": "Seat counts and booth fees wait on park capacity confirmation. Insurance requirements, including any additional-insured wording, are finalized in your acceptance email."
+    "footnote": "Seat counts are set at Round 1 decisions (Nov 10), after park capacity confirmation. Insurance requirements, including any additional-insured wording, are finalized in your acceptance email."
   },
   "timeline": {
     "id": "timeline",
@@ -113,7 +113,7 @@
     "title": "Selection criteria",
     "intro": "We pick from each round’s full pool — not first paid. Food applicants are ranked inside their lane; craft, merchant, and info booths use staff fit review.",
     "factorsTitle": "Food ranking factors",
-    "factorsIntro": "Working weights for open-cook and drink applicants. **Not final** — we may tune these before applications open.",
+    "factorsIntro": "Working weights for open-cook and drink applicants — we may fine-tune them before Round 1 decisions (Nov 10).",
     "factors": {
       "headers": ["Factor", "Working weight"],
       "rows": [
