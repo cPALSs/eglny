@@ -21,7 +21,7 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "intro": "**Tentative** planning caps for ~6,000 weekend attendance. Seat counts are set at Round 1 decisions (Nov 10), after park capacity confirmation with Cosumnes CSD. Booth fees are the weekend rates listed on Eventeny.",
+    "intro": "Booth fees are set — the same weekend rates listed on Eventeny. Seat counts are **tentative** planning caps for ~6,000 weekend attendance; they are set at Round 1 decisions (Nov 10), after park capacity confirmation with Cosumnes CSD.",
     "table": {
       "headers": ["Booth type", "Tentative seats", "Weekend fee"],
       "rows": [
@@ -105,7 +105,7 @@
         "body": "Selection holds only through the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s pay-by** and you forfeit the $25 deposit and are placed (no new deposit needed) on the **Round 2 selection waitlist** — you wait for the Round 2 decision batch; that seat goes back into Round 2 inventory."
       }
     ],
-    "footnote": "Dates are planning targets published for vendors. Exact seat counts by booth type post after park capacity is confirmed."
+    "footnote": "Dates are planning targets published for vendors. Seat counts by booth type are set at Round 1 decisions (Nov 10)."
   },
   "criteria": {
     "id": "criteria",
