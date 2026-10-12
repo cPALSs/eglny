@@ -10,11 +10,11 @@
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply on Eventeny",
-    "body": "Booth applications are open on Eventeny. There are three applications: **Food booths & trucks**, **Merchants & corporate exhibitors**, and **Nonprofit & community info tables** — pick the one that fits your booth. **Round 1 closes Nov 5.**",
+    "body": "Booth applications are open on Eventeny. There are three applications: **Food booths & trucks**, **Merchants & corporate exhibitors**, and **Nonprofit, community info, kids activities** — pick the one that fits your booth. **Round 1 closes Nov 5.**",
     "cta": {
       "label": "Apply on Eventeny",
       "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
-      "note": "You’ll sign in or create a free Eventeny account, then pay the $25 application deposit when you apply. Nonprofit and community info tables pay no deposit."
+      "note": "You’ll sign in or create a free Eventeny account, then pay the $25 application deposit when you apply. Nonprofit, community info, and kids activity tables pay no deposit."
     }
   },
   "inventory": {
@@ -36,7 +36,7 @@
       "Drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), and nonprofit/kids ($75) compete for the same seats (not separate caps).",
       "Fees shown as weekend totals (**$/day × 2 days**). No early-bird discount — early apply buys **certainty** in Round 1.",
       "**$25 application deposit** for food, merchant, craft, and corporate booths, paid when you apply. If you are accepted, the $25 is credited toward your booth fee. If you are not selected, we refund the $25. If you are selected but don’t pay the booth fee by the pay-by date, the $25 is forfeited and the booth goes to the next waitlisted vendor. In Round 1, you stay on the Round 2 waitlist without a new deposit.",
-      "**Nonprofit and community info tables pay no application deposit.** The $75 table fee is charged only if you are approved, and it is waived if your organization staffs a kids activity.",
+      "**Nonprofit, community info, and kids activity tables pay no application deposit.** The $75 table fee is charged only if you are approved. The fee is waived only for **registered nonprofits** (501(c) or fiscally sponsored) that staff a kids activity; community groups that aren’t registered nonprofits pay $75. Charging guests for an activity (for example, paid face painting or balloon art)? Apply as **Merchant / craft** ($150).",
       "**Venue:** Elk Grove Park is our planned venue, and permits are in progress. If the festival can’t proceed at the venue, we refund your deposits and booth fees in full.",
       "Booth fees are **non-refundable** once you are accepted and paid. **Weather exception:** if weather cancels a festival day, accepted and paid vendors receive a **credit toward Elk Grove Lunar New Year 2028** — half the booth fee for each canceled day — instead of a cash refund. Weather earns a credit; only a venue cancellation is refunded in cash.",
       "**Insurance — food and power:** food vendors and any booth using electrical power or a generator must carry general liability insurance and upload a certificate of insurance (COI) with the application. We check it before your booth is confirmed.",
@@ -69,7 +69,7 @@
       {
         "id": "apply",
         "title": "Apply",
-        "body": "Submit through Eventeny with the $25 application deposit (required to be considered; nonprofit and community info tables pay no deposit). Food and power booths upload a certificate of insurance with the application."
+        "body": "Submit through Eventeny with the $25 application deposit (required to be considered; nonprofit, community info, and kids activity tables pay no deposit). Food and power booths upload a certificate of insurance with the application."
       },
       {
         "id": "wait",
