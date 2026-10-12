@@ -1,9 +1,18 @@
 {
-  "generatedAt": "2026-08-27T00:43:12.666Z",
+  "generatedAt": "2026-10-12T17:40:00.690Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
   "events": [
+    {
+      "eventId": "ari-lny",
+      "dates": "Fri, Jan 29, 2027 5:30 PM–7:30 PM",
+      "name": "ARI Lunar New Year Global Village Celebration",
+      "host": "Asian Resources, Inc. (ARI)",
+      "location": "Sacramento",
+      "href": "https://asianresources.org",
+      "certainty": "confirmed"
+    },
     {
       "eventId": "ca-is-my-home-lny",
       "dates": "Sat, Jan 30, 2027 (intended; not confirmed)",
@@ -24,17 +33,8 @@
       "capstone": true
     },
     {
-      "eventId": "ari-lny",
-      "dates": "–Sun, Jan 28–31, 2027 (estimated Fri before LNY; low confidence)",
-      "name": "ARI Lunar New Year Celebration",
-      "host": "Asian Resources, Inc. (ARI)",
-      "location": "ARI Headquarters, Sacramento",
-      "href": "https://www.arisacramento.org/",
-      "certainty": "estimated"
-    },
-    {
       "eventId": "scncca-lny",
-      "dates": "–Wed, Feb 6–17, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "Sat–Wed, Feb 6–17, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Chinese New Year Gala & Carnival",
       "host": "Chinese New Year Culture Association (CNYCA)",
       "location": "Luther Burbank High School, Sacramento",
@@ -43,7 +43,7 @@
     },
     {
       "eventId": "creative-space-lny",
-      "dates": "–Sat, Jan 28–30, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "Thu–Sat, Jan 28–30, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Lunar New Year Celebration",
       "host": "The Creative Space",
       "location": "Old Town Plaza, Elk Grove",
@@ -52,7 +52,7 @@
     },
     {
       "eventId": "arden-fair-lny",
-      "dates": "–Thu, Feb 3–11, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "Wed–Thu, Feb 3–11, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Lunar New Year Celebration",
       "host": "Arden Fair + Sacramento Asian Pacific Chamber of Commerce",
       "location": "Arden Fair (mall), Sacramento",
@@ -61,7 +61,7 @@
     },
     {
       "eventId": "cache-creek-tet-concert",
-      "dates": "–Thu, Feb 24–25, 2027 (estimated Sat after LNY; low confidence)",
+      "dates": "Wed–Thu, Feb 24–25, 2027 (estimated Sat after LNY; low confidence)",
       "name": "Mừng Xuân Concert",
       "host": "Cache Creek Casino Resort / promoter",
       "location": "Cache Creek Casino Resort, Brooks",
@@ -88,7 +88,7 @@
     },
     {
       "eventId": "vietnamese-martyrs-tet",
-      "dates": "–Thu, Feb 3–4, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "Wed–Thu, Feb 3–4, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Hội Chợ Tết Mừng Xuân",
       "host": "Vietnamese Martyrs Church",
       "location": "Vietnamese Martyrs Church, Sacramento",
@@ -97,7 +97,7 @@
     },
     {
       "eventId": "honor-kung-fu-lny",
-      "dates": "–Fri, Feb 18–19, 2027 (estimated Sun after LNY; low confidence)",
+      "dates": "Thu–Fri, Feb 18–19, 2027 (estimated Sun after LNY; low confidence)",
       "name": "Lunar New Year Celebration",
       "host": "Honor Kung Fu",
       "location": "Honor Kung Fu Academy, Sacramento",
@@ -106,7 +106,7 @@
     },
     {
       "eventId": "fairytale-town-lny",
-      "dates": "–Thu, Feb 7–11, 2027 (estimated Sun before LNY; low confidence)",
+      "dates": "Sun–Thu, Feb 7–11, 2027 (estimated Sun before LNY; low confidence)",
       "name": "Lunar New Year Celebration (Fairytale Town)",
       "host": "Fairytale Town",
       "location": "Fairytale Town - William Land Park, Sacramento",
@@ -115,7 +115,7 @@
     },
     {
       "eventId": "iu-mien-sacramento",
-      "dates": "–Thu, Jan 13–14, 2027 (estimated Sat before LNY; low confidence)",
+      "dates": "Wed–Thu, Jan 13–14, 2027 (estimated Sat before LNY; low confidence)",
       "name": "Sacramento Iu Mien New Year",
       "host": "Iu Mien community (Sacramento)",
       "location": "Rice Bowl Restaurant, Sacramento",
@@ -124,7 +124,7 @@
     },
     {
       "eventId": "rice-bowl-tet-dance",
-      "dates": "–Wed, Feb 9–10, 2027 (estimated Fri after LNY; low confidence)",
+      "dates": "Tue–Wed, Feb 9–10, 2027 (estimated Fri after LNY; low confidence)",
       "name": "Tết Dinner Dance (Rice Bowl)",
       "host": "Community organizers (Rice Bowl Restaurant host)",
       "location": "Rice Bowl Restaurant, Sacramento",
