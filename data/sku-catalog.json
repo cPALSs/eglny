@@ -3,7 +3,7 @@
     "festival": "Elk Grove Lunar New Year 2027",
     "version": "2026-09-20",
     "sourceOfTruth": "Inventory master for vendor Eventeny sync and food-curation engine booth_fee defaults",
-    "pricingConvention": "Weekend total — show ~$/day × 2 days on line items (Sat + Sun). No early-bird tier — exclusivity lanes and $150 goods are list price only. Flat $25 application deposit on every booth SKU: credited toward the booth fee if accepted, forfeited if selected but unpaid by the pay-by, refunded only if declined; Round 1 no-pay stays on the Round 2 waitlist without a new deposit; venue failure = full cash refund of deposits and fees (Decided 2026-10-11 by Bao; replaces the $100 apply-time trash deposit). Food security deposits kept, refundable, charged on approval: $100 trash for every food booth (refunded when trash is bagged out and the space is left clean) plus $500 cooking cleanup (grease, oil, burn marks) for on-site cooking only (trucks/trailers, open flame, grills, fryers; not pre-packaged or no-cook). depositApproval = $600 for FT/OC ($500 + $100) and $100 for DR/SN/MF; a DR booth that cooks on site also adds the $500. 54806 merchant/corporate trash deposit kept, charged automatically at payment. Booth fees non-refundable once accepted and paid; each weather-canceled day = half the booth fee as a 2028 credit. COI required for food and power/generator booths; basic tablers self-attest in the vendor agreement.",
+    "pricingConvention": "Weekend total — show ~$/day × 2 days on line items (Sat + Sun). No early-bird tier — exclusivity lanes and $150 goods are list price only. Flat $25 application deposit on every booth SKU except LNY-VENDOR-NP (nonprofit tables pay no application deposit; the $75 fee is charged at approval — Decided 2026-10-12 by Bao): credited toward the booth fee if accepted, forfeited if selected but unpaid by the pay-by, refunded only if declined; Round 1 no-pay stays on the Round 2 waitlist without a new deposit; venue failure = full cash refund of deposits and fees (Decided 2026-10-11 by Bao; replaces the $100 apply-time trash deposit). Food security deposits kept, refundable, charged on approval: $100 trash for every food booth (refunded when trash is bagged out and the space is left clean) plus $500 cooking cleanup (grease, oil, burn marks) for on-site cooking only (trucks/trailers, open flame, grills, fryers; not pre-packaged or no-cook). depositApproval = $600 for FT/OC ($500 + $100) and $100 for DR/SN/MF; a DR booth that cooks on site also adds the $500. 54806 merchant/corporate trash deposit kept, charged automatically at payment. Booth fees non-refundable once accepted and paid; each weather-canceled day = half the booth fee as a 2028 credit. COI required for food and power/generator booths; basic tablers self-attest in the vendor agreement.",
     "combinedOpenPrepCap": 7,
     "combinedOpenPrepNote": "LNY-VENDOR-FT and LNY-VENDOR-OC share one food-flow pool of 7 seats at 6,000 planning attendance. Per-SKU slotCap is an upper bound so neither SKU can list 10. Ops lock: combined FT+OC ≤ 7 — do not sell 7+7."
   },
@@ -355,7 +355,7 @@
             "amount": 75
           }
         ],
-        "depositApply": 25,
+        "depositApply": 0,
         "depositApproval": 0,
         "tffSku": null
       }
