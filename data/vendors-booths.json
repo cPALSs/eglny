@@ -25,14 +25,15 @@
     "table": {
       "headers": ["Booth type", "Tentative seats", "Weekend fee"],
       "rows": [
-        ["Open food / truck (10×20)", "7", "$750"],
+        ["Open food / truck (10×20)", "12", "$750"],
         ["Field drinks (2 boba/matcha · 1 sugarcane · 1 aguas · 1 coffee)", "5", "$500"],
         ["Shared pad pool — corporate / marketing · merchant, craft, and snack / treat · nonprofit / mission and kids-owned", "60", "$75–$500 by type"],
-        ["**Paid field total**", "**~72**", ""]
+        ["**Paid field total**", "**~77**", ""]
       ]
     },
     "notes": [
-      "Open food and drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), and nonprofit/kids ($75) compete for the same seats (not separate caps).",
+      "**Open food seats are split by menu style** so no one style floods the field: about **3** fast handheld (bánh mì, tacos, skewers), **4** rice plates and bowls, **3** noodle, wok, or soup, and **2** BBQ or smoked. We sized this so lines stay short at the mid-afternoon rush while every booth still has enough customers — down from about 20 hot-food vendors in 2026.",
+      "Drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), and nonprofit/kids ($75) compete for the same seats (not separate caps).",
       "Fees shown as weekend totals (**$/day × 2 days**). No early-bird discount — early apply buys **certainty** in Round 1.",
       "**$25 application deposit** for every booth type, paid when you apply. If you are accepted, the $25 is credited toward your booth fee. If you are not selected, we refund the $25. If you are selected but don’t pay the booth fee by the pay-by date, the $25 is forfeited and the booth goes to the next waitlisted vendor. In Round 1, you stay on the Round 2 waitlist without a new deposit.",
       "**Venue:** Elk Grove Park is our planned venue, and permits are in progress. If the festival can’t proceed at the venue, we refund your deposits and booth fees in full.",

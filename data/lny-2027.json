@@ -4,9 +4,9 @@
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137 PM",
     "mvpCap": 50617,
-    "vendorRev100": 17375,
+    "vendorRev100": 21125,
     "registryFull": 163017,
-    "vendorSlots": 72,
+    "vendorSlots": 77,
     "attendance": 6000
   },
   "scenario": {
@@ -15,27 +15,27 @@
     "fillRate": 1.0,
     "attendance": 6000,
     "mvpCap": 50617,
-    "vendorRevenue": 38596,
-    "headroomOrGap": 4021,
-    "vendorSlots": 72,
+    "vendorRevenue": 42346,
+    "headroomOrGap": 271,
+    "vendorSlots": 77,
     "estimatedRevenue": {
-      "total": 38596,
-      "summary": "72 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
+      "total": 42346,
+      "summary": "77 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
       "lines": [
         {
           "label": "Vendor booth fees",
-          "amount": 17375,
-          "note": "72 paid \u00b7 Market Modeling card (OC $750\u00d77 \u00b7 DR $500\u00d75 [2+1+1+1 coffee] \u00b7 goods $150\u00d740 \u00b7 GEN $500\u00d75 \u00b7 NP $75\u00d715; no early bird)"
+          "amount": 21125,
+          "note": "77 paid booths \u00b7 12 food truck / open cooking \u00d7 $750 \u00b7 5 drinks \u00d7 $500 \u00b7 40 merchant, craft, and snack \u00d7 $150 \u00b7 5 corporate \u00d7 $500 \u00b7 15 nonprofit \u00d7 $75"
         },
         {
           "label": "Parking",
           "amount": 16000,
-          "note": "1098 paid stalls (N=bazaar) \u00b7 100% util \u00b7 $10/car \u00b7 2d \u00b7 net after 20% ops \u00b7 3/car \u00b7 6,000 weekend uniques"
+          "note": "About 1,000 cars a day (6,000 guests, about 3 per car, over 2 days) \u00d7 $10 a day, minus about 20% for parking staff \u00b7 1,098 paid spaces"
         },
         {
           "label": "Carnival share",
           "amount": 5221,
-          "note": "cPALSs 20% \u00b7 2026 Sat-only $3,071 \u00d7 1.7 Tailgate weekend \u00d7 6,000/6,000 guests"
+          "note": "Our 20% share of carnival ride sales \u00b7 2026 earned $3,071 on Saturday alone (Sunday rides closed for wind) \u00b7 2027 counts about 1.7 days\u2019 worth, since Super Bowl Sunday runs shorter"
         }
       ]
     }
