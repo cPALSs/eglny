@@ -5,7 +5,7 @@
     "pageTitle": "RFP — Tween / Teen Maker Spot",
     "description": "Request for proposals: tween/teen Maker Spot vendor for Elk Grove Lunar New Year 2027. Photo-worthy DIY and challenges for ages 11–17. Proposals due Nov 21, 2026."
   },
-  "statusLine": "Open for proposals · Due Fri Nov 21, 2026 · First event EGLNY Feb 2027",
+  "statusLine": "Open for proposals · Due Sat Nov 21, 2026 · First event EGLNY Feb 2027",
   "related": {
     "label": "Related lots",
     "text": "Children’s Theater and Children’s Village are separate RFPs for younger cohorts. You may bid more than one lot; awards may split.",
@@ -109,9 +109,9 @@
         "headers": ["Step", "Target"],
         "rows": [
           ["RFP issued", "Aug 2026"],
-          ["Questions due", "Fri Oct 31, 2026"],
-          ["Proposals due", "Fri Nov 21, 2026"],
-          ["Award", "By Fri Dec 12, 2026"],
+          ["Questions due", "Sat Oct 31, 2026"],
+          ["Proposals due", "Sat Nov 21, 2026"],
+          ["Award", "By Sat Dec 12, 2026"],
           ["First event", "EGLNY · Feb 2027"]
         ]
       }

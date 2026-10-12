@@ -5,7 +5,7 @@
     "pageTitle": "RFP — Children’s Village",
     "description": "Request for proposals: Children’s Village vendor for Elk Grove Toy Drive 2026 and Elk Grove Lunar New Year 2027. Activity menu + staffing. Proposals due Oct 17, 2026."
   },
-  "statusLine": "Open for proposals · Due Fri Oct 17, 2026 · First event Toy Drive Dec 6, 2026",
+  "statusLine": "Open for proposals · Due Sat Oct 17, 2026 · First event Toy Drive Dec 6, 2026",
   "related": {
     "label": "Related lot",
     "text": "Children’s Theater (kids stage show) is a separate RFP. You may bid one or both; awards may split.",
@@ -107,9 +107,9 @@
         "headers": ["Step", "Target"],
         "rows": [
           ["RFP issued", "Aug 2026"],
-          ["Questions due", "Fri Sep 26, 2026"],
-          ["Proposals due", "Fri Oct 17, 2026"],
-          ["Award", "By Fri Oct 31, 2026"],
+          ["Questions due", "Sat Sep 26, 2026"],
+          ["Proposals due", "Sat Oct 17, 2026"],
+          ["Award", "By Sat Oct 31, 2026"],
           ["First event", "Toy Drive · Sun Dec 6, 2026"],
           ["Second event", "EGLNY · Feb 2027"]
         ]
