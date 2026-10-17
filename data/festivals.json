@@ -8,7 +8,7 @@
       "estimatedSponsorsFile": "../data/lny-2026-sponsors.json",
       "cashOffsetLabel": "Vendors, parking & carnival",
       "sections": {
-        "core": "Earned cash (vendors, parking, carnival) covers most of core (~$42K of ~$51K). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
+        "core": "Earned cash (vendors, parking, carnival) covers most of core ({preSponsor} of {coreTarget}). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
         "registry": "Sponsor unlocks beyond core ops. High Priority covers Saturday’s theatrical day, Sunday’s Tết Tailgate (Super Bowl), and the family moments that run both chapters. Electives are optional stories we may not lead with in asks.",
         "registryPriority": "Family linger, Saturday stage stories, and Sunday Tết Tailgate screens — still sponsor-funded, with no funding guarantee.",
         "registryElective": "Optional stories — stage performances, creator meet & greets, Relay Cup, beer garden, elders, décor accents, and more. Funded items run; unfunded ones wait.",

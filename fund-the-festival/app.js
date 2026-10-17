@@ -208,8 +208,8 @@ function giftCohortCount(gift) {
 }
 
 function compareGifts(a, b, category) {
-  // Registry: highly versatile (more age cohorts) first within each lane.
-  if (category === "registry") {
+  // Electives: more age cohorts first. High Priority skips that so impactOrder wins.
+  if (category === "registry" && !(a.priority && b.priority)) {
     const ca = giftCohortCount(a);
     const cb = giftCohortCount(b);
     if (ca !== cb) return cb - ca;
@@ -332,6 +332,8 @@ const state = {
   cartTab: "selection",
   estimatedSponsors: null,
   estimatedSponsorMap: {},
+  /** Sponsor dollars actually drawn per gift (may be below face amount when earned cash already covers part of a core card). */
+  estimatedSponsorDollars: {},
   showEstimatedSponsors: false,
   cohortFilters: new Set(),
 };
@@ -351,12 +353,18 @@ function sumEnabled(categories) {
     .reduce((s, g) => s + g.amount, 0);
 }
 
-/** Gift amounts covered by estimated 2026 sponsors (estimated-sponsors view only). */
+/**
+ * Sponsor dollars drawn onto these gifts (estimated-sponsors view only).
+ * Uses the amount actually taken from the pool. When earned cash already
+ * covers part of a core card, only the remainder is counted, so
+ * vendorRevenue on the progress bar is not counted again.
+ */
 function sumEstimatedAssigned(categories) {
   if (!state.showEstimatedSponsors || !state.data) return null;
+  const dollars = state.estimatedSponsorDollars ?? {};
   return state.data.gifts
     .filter((g) => categories.includes(g.category) && estimatedSponsorNames(g.id).length)
-    .reduce((s, g) => s + g.amount, 0);
+    .reduce((s, g) => s + (dollars[g.id] ?? g.amount ?? 0), 0);
 }
 
 function registryFundedAmount() {
@@ -499,33 +507,96 @@ function choicesLockedForEstimate() {
 }
 
 /**
- * Estimated sponsor pool: High Priority registry first (impact order within
- * that lane), then Partnership Operations + Festival Amenities (core gap
- * closers), then electives, then secondary, then remaining core. Earned cash
- * covers most core; renewal leftover should finish those two ops gifts so
- * Core ops is nearly fully funded before elective stories.
+ * Core cards estimated sponsors fund before any other core remainder.
+ * Earned cash skips these first so Festival Foundation, Sanitation / Amenities,
+ * and Main Stage are sponsor-funded ahead of Weather / Cancel Fund and
+ * Partnership Operations.
  */
-const ESTIMATE_CORE_OVERFLOW_IDS = ["partnership_operations", "festival_amenities"];
+const ESTIMATE_SPONSOR_FIRST_CORE = [
+  "festival_foundation",
+  "festival_amenities",
+  "outdoor_stage",
+];
 
+/**
+ * Estimated sponsor pool, after pins and bundles:
+ * 1. Close the core ops gap before any High Priority gift.
+ *    Within core, sponsor dollars hit Festival Foundation, then
+ *    Sanitation / Amenities, then Main Stage, then any still-uncovered core
+ *    in sortOrder (Security, Logistics, Weather, Partnership).
+ *    Earned cash covers the other core cards in that sortOrder first.
+ *    Leftover cash sits on a sponsor-first card only when the pool cannot
+ *    pay that card in full — otherwise those cards stay for sponsors.
+ * 2. High Priority registry (impact order, most impactful first).
+ * 3. Electives, then secondary. A core card the pool cannot fully close stays
+ *    open; sponsors are not asked to cover it again after High Priority.
+ */
 function compareGiftsForEstimate(a, b) {
-  const overflowRank = (g) => {
-    const i = ESTIMATE_CORE_OVERFLOW_IDS.indexOf(g.id);
-    return i === -1 ? null : i;
-  };
   const lane = (g) => {
-    if (g.category === "registry" && g.priority) return 0;
-    if (overflowRank(g) != null) return 1;
-    if (g.category === "registry") return 2;
-    if (g.category === "secondary") return 3;
-    if (g.category === "core") return 4;
+    if (g.category === "core" && ESTIMATE_SPONSOR_FIRST_CORE.includes(g.id)) return 0;
+    if (g.category === "core") return 1;
+    if (g.category === "registry" && g.priority) return 2;
+    if (g.category === "registry") return 3;
+    if (g.category === "secondary") return 4;
     return 5;
   };
   const la = lane(a);
   const lb = lane(b);
   if (la !== lb) return la - lb;
-  if (la === 1) return overflowRank(a) - overflowRank(b);
+  if (la === 0) {
+    return ESTIMATE_SPONSOR_FIRST_CORE.indexOf(a.id) - ESTIMATE_SPONSOR_FIRST_CORE.indexOf(b.id);
+  }
   const category = a.category === "registry" ? "registry" : a.category;
   return compareGifts(a, b, category);
+}
+
+/**
+ * Earned cash (scenario.vendorRevenue) fills core cards before sponsors do.
+ * First pass skips Festival Foundation, Sanitation / Amenities, and Main Stage
+ * and follows sortOrder: Security, Logistics, Weather, Partnership.
+ * Leftover cash may sit on a sponsor-first card only when `balances` cannot
+ * pay that card in full (sponsor-first order). Cards the pool can close are
+ * left for sponsors so cash does not take them. Returns dollars of cash
+ * sitting on each not-yet-funded core gift. Fully covered cards are omitted
+ * from the sponsor pool by the caller. Cash on the progress bar is still the
+ * full vendorRevenue, not this map.
+ */
+function earnedCashOnCoreGifts(gifts, rawCash, funded, balances = []) {
+  const core = gifts
+    .filter(
+      (g) =>
+        g.category === "core" &&
+        isAllocatableEstimateGift(g) &&
+        !funded.has(g.id) &&
+        !ESTIMATE_SPONSOR_FIRST_CORE.includes(g.id),
+    )
+    .sort((a, b) => compareGifts(a, b, "core"));
+  let rem = Math.max(0, rawCash || 0);
+  const covered = {};
+  for (const gift of core) {
+    if (rem <= 0) break;
+    const take = Math.min(gift.amount, rem);
+    covered[gift.id] = take;
+    rem -= take;
+  }
+  if (rem <= 0) return covered;
+
+  const sponsorFirst = ESTIMATE_SPONSOR_FIRST_CORE.map((id) => gifts.find((g) => g.id === id)).filter(
+    (g) => g && isAllocatableEstimateGift(g) && !funded.has(g.id),
+  );
+  const clone = balances.map((s) => ({ ...s }));
+  const cashTargets = [];
+  for (const gift of sponsorFirst) {
+    if (!tryFundGift(gift, clone, {}, {}, gift.amount)) cashTargets.push(gift);
+  }
+  for (const gift of cashTargets) {
+    if (rem <= 0) break;
+    const take = Math.min(gift.amount, rem);
+    if (take <= 0) continue;
+    covered[gift.id] = take;
+    rem -= take;
+  }
+  return covered;
 }
 
 /** Explicit giftIds first; then pool remaining balances (multi-sponsor per gift). */
@@ -545,30 +616,39 @@ function addGiftContributor(map, giftId, sponsorName) {
   if (!map[giftId].includes(sponsorName)) map[giftId].push(sponsorName);
 }
 
-/** Draw from sponsor balances (largest first) until gift is fully funded. */
-function tryFundGift(gift, balances, map) {
-  let need = gift.amount;
+/**
+ * Draw from sponsor balances (largest first) until `need` is fully met.
+ * Pins and ordinary gifts pass the face amount — a pin completes only when
+ * that sponsor can pay the whole gift. The core-gap pass may pass a smaller
+ * need when earned cash already covers part of the card; the draw is still
+ * all-or-nothing for that need (no partial sponsor coverage).
+ */
+function tryFundGift(gift, balances, map, dollars, need = gift.amount) {
+  let remaining = need;
   const pool = balances
     .filter((s) => s.balance > 0)
     .sort((a, b) => b.balance - a.balance);
   const ledger = [];
   for (const sponsor of pool) {
-    if (need <= 0) break;
-    const take = Math.min(sponsor.balance, need);
+    if (remaining <= 0) break;
+    const take = Math.min(sponsor.balance, remaining);
     if (take <= 0) continue;
     ledger.push({ sponsor, take });
-    need -= take;
+    remaining -= take;
   }
-  if (need > 0) return false;
+  if (remaining > 0) return false;
+  let taken = 0;
   for (const { sponsor, take } of ledger) {
     sponsor.balance -= take;
+    taken += take;
     addGiftContributor(map, gift.id, sponsor.name);
   }
+  dollars[gift.id] = (dollars[gift.id] || 0) + taken;
   return true;
 }
 
-function computeEstimatedSponsorMap(gifts, sponsorPayload) {
-  if (!sponsorPayload?.sponsors?.length) return {};
+function computeEstimatedSponsorMap(gifts, sponsorPayload, rawCash = 0) {
+  if (!sponsorPayload?.sponsors?.length) return { names: {}, dollars: {} };
 
   const balances = sponsorPayload.sponsors.map((s) => ({
     name: s.name,
@@ -578,6 +658,7 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload) {
   }));
 
   const map = {};
+  const dollars = {};
   const funded = new Set();
 
   const giftById = (id) => gifts.find((g) => g.id === id);
@@ -586,12 +667,13 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload) {
     if (gift) funded.add(gift.id);
   };
 
-  // Phase 1a — single pin (e.g. AFG → outdoor stage)
+  // Phase 1a — single pin (e.g. AFG → outdoor stage). Whole gift only;
+  // $15,000 does not pin Main Stage at $15,600, so that sponsor stays in the pool.
   for (const sponsor of balances) {
     if (!sponsor.pinGiftId || sponsor.bundleGiftIds) continue;
     const gift = giftById(sponsor.pinGiftId);
     if (!gift?.amount || funded.has(gift.id) || !isAllocatableEstimateGift(gift)) continue;
-    if (tryFundGift(gift, [sponsor], map)) markFunded(gift);
+    if (tryFundGift(gift, [sponsor], map, dollars, gift.amount)) markFunded(gift);
   }
 
   // Phase 1b — sponsor-exclusive bundles (giftIds array, no pinGiftId)
@@ -601,20 +683,27 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload) {
       if (sponsor.balance <= 0) break;
       const gift = giftById(gid);
       if (!gift?.amount || funded.has(gift.id) || !isAllocatableEstimateGift(gift)) continue;
-      if (tryFundGift(gift, [sponsor], map)) markFunded(gift);
+      if (tryFundGift(gift, [sponsor], map, dollars, gift.amount)) markFunded(gift);
     }
   }
 
-  // Phase 2 — pool balances; High Priority first, then Partnership Ops + Amenities, then electives
+  // Earned cash covers Security, Logistics, Weather, and Partnership first.
+  // Sponsors close Foundation, Sanitation, and Main Stage, then any core remainder.
+  const cashOnCore = earnedCashOnCoreGifts(gifts, rawCash, funded, balances);
+
+  // Phase 2 — pool: sponsor-first core, other uncovered core, High Priority, electives
   const openGifts = gifts
     .filter((g) => isAllocatableEstimateGift(g) && !funded.has(g.id))
     .sort(compareGiftsForEstimate);
 
   for (const gift of openGifts) {
-    if (tryFundGift(gift, balances, map)) markFunded(gift);
+    const cashOn = gift.category === "core" ? cashOnCore[gift.id] || 0 : 0;
+    const need = gift.amount - cashOn;
+    if (need <= 0) continue;
+    if (tryFundGift(gift, balances, map, dollars, need)) markFunded(gift);
   }
 
-  return map;
+  return { names: map, dollars };
 }
 
 function estimatedSponsorNames(giftId) {
@@ -1003,7 +1092,9 @@ function renderSectionHints() {
   const replaceTokens = (text) =>
     (text ?? "")
       .replace(/\{boothTierLabel\}/g, boothTierLabel)
-      .replace(/\{boothThreshold\}/g, fmt(boothUnlockThreshold));
+      .replace(/\{boothThreshold\}/g, fmt(boothUnlockThreshold))
+      .replace(/\{preSponsor\}/g, fmt(state.data?.scenario?.vendorRevenue ?? 0))
+      .replace(/\{coreTarget\}/g, fmt(coreCardTarget()));
 
   const coreEl = document.getElementById("core-desc");
   const registryEl = document.getElementById("registry-desc");
@@ -1165,9 +1256,17 @@ function cashOffsetLabel() {
   return currentFestivalEntry()?.cashOffsetLabel ?? "Cash ops";
 }
 
+/** Core ops target = sum of core cards on the grid. Overrides legacy scenario.mvpCap. */
+function coreCardTarget() {
+  if (!state.data?.gifts) return 0;
+  return giftsInCategory(state.data.gifts, "core")
+    .filter((g) => (g.amount || 0) > 0)
+    .reduce((s, g) => s + g.amount, 0);
+}
+
 function coreFundingState() {
   if (!state.data?.scenario) return null;
-  const mvpCap = state.data.scenario.mvpCap;
+  const mvpCap = coreCardTarget();
   if (!mvpCap) return null;
 
   const rawCash = state.data.scenario.vendorRevenue ?? 0;
@@ -1447,19 +1546,8 @@ function bindGiftGrid(containerId, category) {
   });
 }
 
-/** High Priority: both-days → Saturday → Sunday, then versatility / impact within band. */
-const CHAPTER_DAY_RANK = { both: 0, saturday: 1, sunday: 2 };
-
-function chapterDayRank(gift) {
-  const raw = (gift?.chapterDays || "").toLowerCase();
-  if (raw in CHAPTER_DAY_RANK) return CHAPTER_DAY_RANK[raw];
-  return 99;
-}
-
+/** High Priority grid: impact order (higher impactOrder = more flagship). */
 function comparePriorityGifts(a, b) {
-  const da = chapterDayRank(a);
-  const db = chapterDayRank(b);
-  if (da !== db) return da - db;
   return compareGifts(a, b, "registry");
 }
 
@@ -1687,19 +1775,24 @@ function syncFestivalSelect() {
 async function loadEstimatedSponsorsData(entry) {
   state.estimatedSponsors = null;
   state.estimatedSponsorMap = {};
+  state.estimatedSponsorDollars = {};
   if (!entry?.estimatedSponsorsFile) return;
 
   try {
     const res = await fetch(entry.estimatedSponsorsFile, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.estimatedSponsors = await res.json();
-    state.estimatedSponsorMap = computeEstimatedSponsorMap(
+    const allocated = computeEstimatedSponsorMap(
       state.data.gifts,
       state.estimatedSponsors,
+      state.data?.scenario?.vendorRevenue ?? 0,
     );
+    state.estimatedSponsorMap = allocated.names;
+    state.estimatedSponsorDollars = allocated.dollars;
   } catch {
     state.estimatedSponsors = null;
     state.estimatedSponsorMap = {};
+    state.estimatedSponsorDollars = {};
   }
 }
 
