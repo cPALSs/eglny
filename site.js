@@ -976,32 +976,66 @@
     </ul>`;
   }
 
+  function seasonBlocksFromData(season, seasonData) {
+    if (Array.isArray(seasonData?.seasons) && seasonData.seasons.length) {
+      return seasonData.seasons.map((block, index) => {
+        const year = String(block.seasonYear || "");
+        const fallbackTitle =
+          index === 0
+            ? season?.upcomingTitle || season?.title
+            : season?.previousTitle || (year ? `${year} season` : "Previous season");
+        return {
+          id: index === 0 ? "season" : `season-${year || index}`,
+          title: block.title || fallbackTitle || "Season",
+          intro: index === 0 ? season?.intro : season?.previousIntro,
+          events: block.events ?? [],
+        };
+      });
+    }
+    return [
+      {
+        id: "season",
+        title: season?.title ?? "Lunar New Year Season",
+        intro: season?.intro,
+        events: seasonData?.events ?? [],
+      },
+    ];
+  }
+
   function renderSeasonPage(season, seasonData) {
-    const events = seasonData?.events ?? [];
-    const seasonTitle = season?.title ?? "Lunar New Year Season";
-    const listItems = events.map(renderSeasonEventItem).join("");
+    const blocks = seasonBlocksFromData(season, seasonData);
     const listNote = season?.listNote
       ? `<p class="muted season-list-note">${escapeHtml(season.listNote)}</p>`
       : "";
     const contactNote = season?.contactNote
       ? `<p class="muted season-contact-note">${escapeHtml(season.contactNote)}</p>`
       : "";
-    const toc = [{ id: "season", label: seasonTitle }];
-    const seasonSection = `
-      <section class="about-section resources-season site-doc-section" id="season" data-doc-section>
-        <h2>${escapeHtml(seasonTitle)}</h2>
-        ${season?.intro ? `<p>${escapeHtml(season.intro)}</p>` : ""}
-        ${events.length ? `${renderSeasonDateLegend()}<ul class="season-event-list">${listItems}</ul>` : `<p class="muted">Season events coming soon.</p>`}
-        ${listNote}
-        ${contactNote}
+    const toc = blocks.map((block) => ({ id: block.id, label: block.title }));
+    const seasonSections = blocks
+      .map((block, index) => {
+        const listItems = (block.events ?? []).map(renderSeasonEventItem).join("");
+        const footer =
+          index === blocks.length - 1 ? `${listNote}${contactNote}` : "";
+        return `
+      <section class="about-section resources-season site-doc-section" id="${escapeHtml(block.id)}" data-doc-section>
+        <h2>${escapeHtml(block.title)}</h2>
+        ${block.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}
+        ${
+          block.events?.length
+            ? `${index === 0 ? renderSeasonDateLegend() : ""}<ul class="season-event-list">${listItems}</ul>`
+            : `<p class="muted">Season events coming soon.</p>`
+        }
+        ${footer}
       </section>`;
+      })
+      .join("");
 
     return `
       <section class="hero">
         <h1>${escapeHtml(season?.headline ?? "Lunar New Year Season")}</h1>
         ${season?.lead ? `<p class="hero-lead">${escapeHtml(season.lead)}</p>` : ""}
       </section>
-      ${wrapDocLayout(renderDocToc(toc), seasonSection)}`;
+      ${wrapDocLayout(renderDocToc(toc), seasonSections)}`;
   }
 
   function instagramHandleFromUrl(url) {

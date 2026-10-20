@@ -705,8 +705,11 @@
   "season": {
     "headline": "Lunar New Year Season",
     "title": "2027 season",
+    "upcomingTitle": "2027 season",
+    "previousTitle": "2026 season",
     "lead": "Celebrate Lunar New Year Season in Greater Sacramento from late January through early March!",
     "intro": "Greater Sacramento’s Lunar New Year, Tết, and Spring Festival calendar — free fairs, community celebrations, and our Elk Grove capstone weekend.",
+    "previousIntro": "What Greater Sacramento hosted for Lunar New Year Season 2026.",
     "listNote": "Check organizer pages before you go.",
     "contactNote": "Know a Lunar New Year event we missed? Email contact@eglny.com."
   },
