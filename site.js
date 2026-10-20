@@ -133,7 +133,7 @@
 
   /** Public Drive PDF — keep in sync with Business Dev export. */
   const SPONSORSHIP_PACKET_PDF_URL =
-    "https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view";
+    "https://drive.google.com/file/d/1lcY0v0KhtJf_gxRvhqQPTJRiHPVRB4IO/view";
 
   function getNavPages() {
     return [
