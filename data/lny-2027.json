@@ -3,9 +3,10 @@
     "name": "Elk Grove Lunar New Year T\u1ebft",
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137 PM",
-    "mvpCap": 50617,
+    "mvpCap": 62450,
+    "coreSponsorGap": 20104,
     "vendorRev100": 21125,
-    "registryFull": 157617,
+    "registryFull": 173950,
     "vendorSlots": 77,
     "attendance": 6000
   },
@@ -14,9 +15,9 @@
     "label": "Planning baseline",
     "fillRate": 1.0,
     "attendance": 6000,
-    "mvpCap": 50617,
+    "mvpCap": 62450,
     "vendorRevenue": 42346,
-    "headroomOrGap": 271,
+    "headroomOrGap": 20104,
     "vendorSlots": 77,
     "estimatedRevenue": {
       "total": 42346,
@@ -48,7 +49,7 @@
       "category": "core",
       "sortOrder": 0,
       "tagline": "Insurance, permits, and festival coordination.",
-      "description": "Opens an insured public festival: event insurance, park permit and on-site coordination, organic digital promotion, and festival coordination. Carts, haul, the ops tent, signage, and volunteer meals are Logistics Core. Tables, chairs, cleaning, and waste are Sanitation / Amenities. Lion dances are on Main Stage. A separate Weather / Cancel Fund holds a cash buffer if rain washes the weekend.",
+      "description": "Opens an insured public festival: event insurance, park permit and on-site coordination, organic digital promotion, and festival coordination. Carts, haul, the ops tent, signage, and volunteer meals are Logistics Core. Tables, chairs, cleaning, and waste are Sanitation / Amenities. Lion dances are on Main Stage. A Weather / Cancel Fund gift (High Priority registry) holds a cash buffer if rain washes the weekend.",
       "benefits": [
         "Foundation sponsor recognition on website + email"
       ],
@@ -249,10 +250,10 @@
       "id": "weather_cancel_fund",
       "name": "Weather / Cancel Fund",
       "amount": 8000,
-      "category": "core",
-      "sortOrder": 5,
-      "tagline": "Cash buffer so a washed weekend does not wipe next year\u2019s program.",
-      "description": "A rainy February weekend can cancel the park day \u2014 as it did in 2025, when turnout dropped sharply and cover tents did not save the day. This fund is a first cash reserve so the festival can absorb costs that are already paid (insurance, permits, deposits, early installs) without draining next year\u2019s program. If weather cancels a day, paid vendors get a credit toward Elk Grove Lunar New Year 2028 \u2014 half the booth fee per canceled day, the full fee if both days cancel \u2014 not a cash refund; only a venue cancellation is refunded in cash. Dry-year surplus and future season surplus help grow the reserve toward a fuller buffer. This money is for weather resilience \u2014 not for upgrading guest experiences.",
+      "category": "registry",
+      "sortOrder": 99,
+      "tagline": "High Priority cash buffer so a washed weekend does not wipe next year\u2019s program.",
+      "description": "A rainy February weekend can cancel the park day \u2014 as it did in 2025, when turnout dropped sharply and cover tents did not save the day. This fund is a first cash reserve so the festival can absorb costs that are already paid (insurance, permits, deposits, early installs) without draining next year\u2019s program. If weather cancels a day, paid vendors get a credit toward Elk Grove Lunar New Year 2028 \u2014 half the booth fee per canceled day, the full fee if both days cancel \u2014 not a cash refund; only a venue cancellation is refunded in cash. Dry-year surplus and future season surplus help grow the reserve toward a fuller buffer. Steering (2026-10-20): Weather / Cancel Fund sits in the gift registry as High Priority (not inside MVP core ops), after guest-experience High Priority gifts in the ask order. This money is for weather resilience \u2014 not for upgrading guest experiences.",
       "benefits": [
         "Weather resilience sponsor recognition on website + email"
       ],
@@ -261,7 +262,10 @@
           "label": "Weather / cancel reserve (first tranche toward ~$20\u201326K sunk-core target)",
           "amount": 8000
         }
-      ]
+      ],
+      "priority": true,
+      "impactOrder": 0,
+      "cohorts": []
     },
     {
       "id": "parade_plus",
@@ -269,7 +273,7 @@
       "emoji": "\ud83e\udd41",
       "amount": 3700,
       "category": "registry",
-      "priority": true,
+      "priority": false,
       "cohorts": [
         "C0",
         "C1",
@@ -321,7 +325,7 @@
         "C4"
       ],
       "sortOrder": 2,
-      "impactOrder": 8,
+      "impactOrder": 7,
       "tagline": "Lanterns, stage flowers, and site accents \u2014 visual T\u1ebft atmosphere across the park.",
       "description": "Lanterns, pole and entrance accents, stage flowers, and install labor \u2014 the visual T\u1ebft atmosphere families photograph on the grounds. Parade route production lives under Parade Performers.",
       "benefits": [
@@ -466,7 +470,7 @@
         "C4"
       ],
       "sortOrder": 53,
-      "impactOrder": 6,
+      "impactOrder": 5,
       "tagline": "Saturday dusk music block \u2014 performers and social media. Not T\u1ee5 V\u00eda.",
       "description": "Named Lucky Wav Saturday dusk set on the main stage. Funds performers and social media production for the block. Lineup and fees are booked privately with the festival \u2014 this gift does not list performers. Not the afternoon T\u1ee5 V\u00eda walking procession.",
       "benefits": [
@@ -529,9 +533,9 @@
         "C2"
       ],
       "sortOrder": 11,
-      "impactOrder": 13,
+      "impactOrder": 10,
       "tagline": "Kids stage \u2014 short sets parents can actually sit through.",
-      "description": "Sac County Fair Kids Zone model \u2014 30\u201345 min blocks, 2\u20133 sets per day on the family stage (local magic, storytelling, puppetry, character participation). Participation beats spectacle; not a headliner stack. Assumes baseline stage, PA, and sound engineers in core ops. Pair with Children's Village (in-ground activities + anchor hosts), Moditional Dance Battle (HS fusion crew battle \u2014 see `moditional_dance_battle`), and T\u1ebft Relay Cup (open-age relay bracket \u2014 see `tet_relay_cup`).",
+      "description": "Sac County Fair Kids Zone model \u2014 30\u201345 min blocks, 2\u20133 sets per day on the family stage (local magic, storytelling, puppetry, character participation). Participation beats spectacle; not a headliner stack. Assumes baseline stage, PA, and sound engineers in core ops. Pair with Children's Village (in-ground activities + anchor hosts), Lion Dance Competition, and T\u1ebft Relay Cup (open-age relay bracket).",
       "benefits": [
         "Children's Show presented by [Sponsor]",
         "MC scripts + Facebook/Instagram feature",
@@ -625,7 +629,7 @@
       "sortOrder": 52,
       "impactOrder": 18,
       "tagline": "Draft placeholder \u2014 kids speech / singing / cultural contests with L\u1ea1c H\u1ed3ng; format TBD.",
-      "description": "Draft gift \u2014 not yet open for sponsors. Working capture of Ch\u1ecb Nhung / L\u1ea1c H\u1ed3ng Vietnamese School interest in children's speech, singing, and cultural contests at EGLNY. Still to define with the partner: which contests run, how heats are run, age bands, open vs member eligibility, judging criteria, stage time, and real prize/ops dollars. Steering eligibility gate (when published): festival grounds require a real open/public tier alongside any L\u1ea1c H\u1ed3ng member tier; members-only stays at school. Amount (~$3,000) is a placeholder until that conversation. Separate from Meme Dance Contest and Moditional Dance Battle.",
+      "description": "Draft gift \u2014 not yet open for sponsors. Working capture of Ch\u1ecb Nhung / L\u1ea1c H\u1ed3ng Vietnamese School interest in children's speech, singing, and cultural contests at EGLNY. Still to define with the partner: which contests run, how heats are run, age bands, open vs member eligibility, judging criteria, stage time, and real prize/ops dollars. Steering eligibility gate (when published): festival grounds require a real open/public tier alongside any L\u1ea1c H\u1ed3ng member tier; members-only stays at school. Amount (~$3,000) is a placeholder until that conversation. Separate from Meme Dance Contest and Lion Dance Competition.",
       "benefits": [
         "TBD once contest product is locked with L\u1ea1c H\u1ed3ng"
       ],
@@ -651,24 +655,27 @@
       "chapterDays": "saturday"
     },
     {
-      "id": "moditional_dance_battle",
-      "name": "Moditional Dance Battle",
-      "emoji": "\ud83e\udead",
-      "amount": 3500,
+      "id": "lion_dance_competition",
+      "name": "Lion Dance Competition",
+      "emoji": "\ud83e\udd81",
+      "amount": 2500,
       "category": "registry",
       "priority": true,
       "cohorts": [
+        "C0",
+        "C1",
+        "C2",
         "C3",
         "C4"
       ],
       "sortOrder": 12,
-      "impactOrder": 7,
-      "tagline": "Modern-meets-traditional crew battle \u2014 schools remix \u00e1o d\u00e0i, lion, and fan with hip-hop and K-pop.",
-      "description": "Moditional Dance Battle \u2014 a judged, cross-school modern + traditional fusion crew competition. EGUSD high school crews and cultural clubs compete head-to-head, but every routine must fuse modern + traditional (\u00e1o d\u00e0i, lion, fan, or heritage movement remixed with hip-hop / K-pop / cover). Scoring blends a light panel with a crowd-hype meter, so the audience has a job. Participation guardrail: between rounds, a near-peer leader runs an open-floor learn-along (shared with the Meme Dance Contest mechanic) so little kids and families jump in \u2014 not a watch-only stage. Medals + traveling title to crews, no individual crowning \u2014 celebrates craft, not a pageant pedestal. Pan-APIDA / multicultural \u2014 open to all school clubs, not VN-only. Battle crews also supply the near-peer leaders for the Meme Dance Contest. Separate from T\u1ebft Relay Cup (grass athletics) and the Meme Dance Contest (under-12 follow-along). EGUSD HS anchors the bill; college / Sac State crews welcome as guests (same fusion rule \u2014 do not crowd out HS slots). Gen Z *audience* lane still assumed at Sac State when they launch. *(Successor to the 2026 Youth Culture Day stage showcase.)*",
+      "impactOrder": 6,
+      "tagline": "Judged lion dance crew competition on the main stage \u2014 schools and community troupes.",
+      "description": "Lion Dance Competition \u2014 a judged crew competition on the main stage. School and community lion troupes compete head-to-head for medals and a traveling title. Scoring blends a light panel with crowd energy so the audience has a job. Separate from the Main Stage lion-dance performance fee (core hospitality for invited troupes). Replaces the prior Moditional Dance Battle slot in the High Priority funded plan. Music-license and bracket-signage cash lines are cut for 2027 \u2014 crews bring cleared tracks; program/bracket runs lean.",
       "benefits": [
-        "Moditional Dance Battle presented by [Sponsor]",
-        "Facebook/Instagram feature + school tags on the bracket grid",
-        "MC thank-you for participating schools + crew photo-op",
+        "Lion Dance Competition presented by [Sponsor]",
+        "Facebook/Instagram feature + troupe tags",
+        "MC thank-you for participating troupes + crew photo-op",
         "Listed on website weekend schedule"
       ],
       "lineItems": [
@@ -677,20 +684,12 @@
           "amount": 1200
         },
         {
-          "label": "DJ + hype MC/host (battle energy + open-floor learn-along calls)",
+          "label": "DJ + hype MC/host (battle energy + crowd calls)",
           "amount": 900
         },
         {
           "label": "Judging / scoring admin + panel materials",
           "amount": 400
-        },
-        {
-          "label": "Public-performance music licensing allowance (confirm vs final tracks)",
-          "amount": 500
-        },
-        {
-          "label": "Open participation floor, crew staging, bracket signage + program",
-          "amount": 500
         }
       ],
       "chapterDays": "saturday"
@@ -709,7 +708,7 @@
       "sortOrder": 13,
       "impactOrder": 11,
       "tagline": "Open-age relay bracket \u2014 clubs, leagues, and community teams on the grass.",
-      "description": "T\u1ebft Relay Cup \u2014 festival-run relay tournament on the grass corral beside Children's Village. Not a youth-only product \u2014 open age brackets (adult rec, parish teams, school clubs, service orgs). 2027: Not offered this year \u2014 Sunday Feb 14 is Super Bowl LXI, so the park runs T\u1ebft Tailgate (camps + screen + light games), not a relay bracket. Unlocks a non\u2013Super Bowl year. Moditional Dance Battle (stage) is a separate gift. College org performance routes to Sac State APIDA LNY.",
+      "description": "T\u1ebft Relay Cup \u2014 festival-run relay tournament on the grass corral beside Children's Village. Not a youth-only product \u2014 open age brackets (adult rec, parish teams, school clubs, service orgs). 2027: Not offered this year \u2014 Sunday Feb 14 is Super Bowl LXI, so the park runs T\u1ebft Tailgate (camps + screen + light games), not a relay bracket. Unlocks a non\u2013Super Bowl year. Lion Dance Competition (stage) is a separate gift. College org performance routes to Sac State APIDA LNY.",
       "benefits": [
         "T\u1ebft Relay Cup presented by [Sponsor]",
         "Facebook/Instagram feature + public bracket on website program",
@@ -748,7 +747,7 @@
         "C2"
       ],
       "sortOrder": 13,
-      "impactOrder": 12,
+      "impactOrder": 9,
       "tagline": "Shade, activities, anchor hosts \u2014 families regroup and kids do T\u1ebft.",
       "description": "Family home base \u2014 compact zone with shade, stroller corral, benches, and cultural do stations (lantern craft, red-envelope play, scavenger). Anchor hosts run repeat parent\u2013toddler sessions (bilingual sing-along, story circle \u2014 a person families already know, not an empty org tent). Turnkey activations for gyms/PTAs: partner forwards one email; festival runs the slot. Family meetup corral with labeled stations on the map. Adjacent to T\u1ebft Relay Cup corral. Owned inflatable carnival games (deploy labor) are a separate gift \u2014 same Children's Village director when funded. Carnival bounce / jumpers sit with the carnival rides package, not this Village gift. Not in the core festival ops.",
       "benefits": [
@@ -796,9 +795,9 @@
         "C4"
       ],
       "sortOrder": 13.5,
-      "impactOrder": 2,
+      "impactOrder": 1,
       "tagline": "Maker / challenge / hang zone for ages ~11\u201317 \u2014 not little-kid craft land.",
-      "description": "Tween / teen activity spot \u2014 table and booth stations with status (photo-worthy DIY, scored or crew challenges, peer hang) so roughly ages 11\u201317 have something to *do* that isn\u2019t Children\u2019s Village and isn\u2019t only watching Moditional. Festival keeps map placement and non-Village brand rules; a preferred spot vendor runs the activity menu + day-of staffing. Freemium preferred (free core to start). Separate lot from Children\u2019s Village and Children\u2019s Theater \u2014 see the open Maker Spot RFP at [eglny.com/rfp/maker-spot/](https://eglny.com/rfp/maker-spot/). Primary for EGLNY weekend; Toy Drive / GLF slim add-ons are quote options, not this gift\u2019s core envelope.",
+      "description": "Tween / teen activity spot \u2014 table and booth stations with status (photo-worthy DIY, scored or crew challenges, peer hang) so roughly ages 11\u201317 have something to *do* that isn\u2019t Children\u2019s Village and isn\u2019t only watching the Lion Dance Competition. Festival keeps map placement and non-Village brand rules; a preferred spot vendor runs the activity menu + day-of staffing. Freemium preferred (free core to start). Separate lot from Children\u2019s Village and Children\u2019s Theater \u2014 see the open Maker Spot RFP at [eglny.com/rfp/maker-spot/](https://eglny.com/rfp/maker-spot/). Primary for EGLNY weekend; Toy Drive / GLF slim add-ons are quote options, not this gift\u2019s core envelope.",
       "benefits": [
         "Tween / Teen Maker Spot presented by [Sponsor]",
         "website + Facebook/Instagram feature",
@@ -872,7 +871,7 @@
         "C3"
       ],
       "sortOrder": 15,
-      "impactOrder": 3,
+      "impactOrder": 2,
       "tagline": "Our 8-station carnival games \u2014 deploy + wind weights (2026 lesson).",
       "description": "cPALSs + VACOS already own the Magic Jump\u2013class 8-station inflatable games bundle ([product reference](https://www.magicjump.com/blog/inflatable-carnival-games/)). This block pays deploy cost only \u2014 U-Haul trailer, setup/teardown crew, cleaning, weighted ballast (blocks/barrels) to secure against wind \u2014 2026 gap: games were not weighted enough \u2014 plus 6K portable generator + weekend fuel, and storage amortization. Not carnival bounce / jumpers (those come with the carnival rides package). Children's Village director runs the zone; do not open stations without ballast per manufacturer / park wind rules.",
       "benefits": [
@@ -923,7 +922,7 @@
         "C4"
       ],
       "sortOrder": 15.25,
-      "impactOrder": 9,
+      "impactOrder": 8,
       "tagline": "An all-weekend heritage-fashion garden \u2014 dress up, promenade, and take the family photo.",
       "description": "Replaces the competitive pageant with an open, family-facing fashion experience in the Pavilion: styled garden photo sets, \u00e1o d\u00e0i ambassadors, public dress-up participation, rotating lighthearted contests, and a walking parade corps. Composed with Viet Cafe so parents can linger while families rotate through the sets. No crowning, interviews, dedicated stage, or booked show stack.",
       "benefits": [
@@ -955,33 +954,25 @@
       "id": "viet_cafe",
       "name": "Viet Cafe",
       "emoji": "\u2615",
-      "amount": 2500,
+      "amount": 0,
       "category": "registry",
       "sortOrder": 15.5,
       "impactOrder": 10,
-      "tagline": "Pavilion cafe \u2014 tables, charging, warm lighting. Exclusive beverage vendor pays their own setup.",
-      "description": "An all-day parent-respite cafe composed with Fashion Garden in the Pavilion. An exclusive beverage vendor sells Vietnamese coffee, boba, and family drinks \u2014 exclusivity is their benefit; this gift does not subsidize vendor setup. Gift funds the shared environment: comfortable seating (prefer CCSD Pavilion tables/chairs in-kind where possible), charging, warm lighting, and decor. The cafe is the function; Fashion Garden is the photo-rich setting.",
+      "tagline": "Vendor fee-waiver incentive \u2014 not a cash gift. Pavilion cafe seating via booth credit.",
+      "description": "Not a cash sponsorship line. For EGLNY 2027, Viet Cafe is a vendor incentive: waive a portion (or all) of a qualifying booth fee if the vendor sets up a proper Viet Cafe area in the Pavilion (seating guests can use to sit and recharge). Festival staff can facilitate introductions to restaurant businesses that already have Vietnamese furniture (small stools and low tables). Beverage exclusivity, if used, is the vendor\u2019s commercial benefit \u2014 we do not subsidize vendor setup with sponsor cash. Fashion Garden remains the photo-rich setting composed with this area.",
       "benefits": [
-        "Viet Cafe presented by [Sponsor]",
-        "Naming credit on cafe and charging-area signage",
-        "website + Facebook/Instagram feature"
+        "Booth fee waiver (portion or full) in exchange for a guest-ready Viet Cafe setup",
+        "Staff can connect vendors to furniture sources (Vietnamese stools / low tables)"
       ],
       "lineItems": [
         {
-          "label": "Cafe tables + seating + family regroup area",
-          "amount": 1400
-        },
-        {
-          "label": "Safe guest charging stations + power distribution",
-          "amount": 600
-        },
-        {
-          "label": "Warm lighting, menu boards + cafe decor",
-          "amount": 500
+          "label": "Booth fee waiver (ops credit \u2014 not a sponsor cash ask)",
+          "amount": 0
         }
       ],
-      "priority": true,
-      "chapterDays": "both"
+      "priority": false,
+      "chapterDays": "both",
+      "draft": true
     },
     {
       "id": "community_yearbook_photo",
@@ -989,7 +980,7 @@
       "emoji": "\ud83d\udcf8",
       "amount": 2500,
       "category": "registry",
-      "priority": true,
+      "priority": false,
       "cohorts": [
         "C0",
         "C4"
@@ -1036,7 +1027,7 @@
         "C4"
       ],
       "sortOrder": 15.95,
-      "impactOrder": 5,
+      "impactOrder": 4,
       "tagline": "Commercial / public-exhibition rights + legal feed \u2014 fund before any Tailgate watch gift.",
       "description": "Broadcast / exhibition rights first. Pays the commercial or public-exhibition streaming/cable license and legal feed so the festival may show Super Bowl Sunday on-site. This gift only works if broadcast rights can be secured. The LED wall and kickoff security are Main-Stage Watch, not this gift and not Main Stage. Fund this before Main-Stage Watch or the optional Kloss camp screen \u2014 those gifts assume rights are clear.",
       "benefits": [
@@ -1061,7 +1052,7 @@
         "C4"
       ],
       "sortOrder": 16,
-      "impactOrder": 4,
+      "impactOrder": 3,
       "tagline": "Sunday LED wall plus kickoff security. The screen lives with the watch party.",
       "description": "Sunday Tailgate watch. This gift pays the LED wall, its rigging and power, and a kickoff security add when the crowd gathers at the stage. Requires Big Game \u2014 Core (Licensing). The wall uses the small stage tent as a hood so afternoon sun does not wash it out. Guests sit on the ground or bring what they bring. This gift does not include seating, heaters, wayfinding, or hospitality. No indoor Pavilion screen. The optional Kloss camp screen is a separate gift and also needs Core licensing.",
       "benefits": [
@@ -1263,7 +1254,7 @@
       "sortOrder": 50,
       "impactOrder": 19.5,
       "tagline": "Community traditions take the stage \u2014 hula, folkl\u00f3rico, folk dance, taiko, and more.",
-      "description": "A curated, noncompetitive community heritage showcase featuring short performance sets from traditions represented across the region \u2014 for example, h\u0101lau hula, Mexican folkl\u00f3rico, Filipino folk dance, taiko, and other community ensembles. This is a welcome-and-share stage block: no judges, rankings, brackets, prizes, or winner language. Modest group honoraria recognize preparation and travel; a producer curates a balanced run-of-show and clean stage handoffs. Assumes the baseline stage, PA, and sound engineer are already funded through core ops. Unlike the Moditional Dance Battle, this gift does not turn heritage performance into a contest; unlike the Vietnamese Heritage Fund, it supports broad community representation within the family fair.",
+      "description": "A curated, noncompetitive community heritage showcase featuring short performance sets from traditions represented across the region \u2014 for example, h\u0101lau hula, Mexican folkl\u00f3rico, Filipino folk dance, taiko, and other community ensembles. This is a welcome-and-share stage block: no judges, rankings, brackets, prizes, or winner language. Modest group honoraria recognize preparation and travel; a producer curates a balanced run-of-show and clean stage handoffs. Assumes the baseline stage, PA, and sound engineer are already funded through core ops. Unlike the Lion Dance Competition, this gift does not turn heritage performance into a contest; unlike the Vietnamese Heritage Fund, it supports broad community representation within the family fair.",
       "benefits": [
         "Community Heritage Performance Showcase presented by [Sponsor]",
         "Sponsor credit on the showcase schedule and stage signage",

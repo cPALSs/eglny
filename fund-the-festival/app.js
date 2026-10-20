@@ -367,10 +367,22 @@ function sumEstimatedAssigned(categories) {
     .reduce((s, g) => s + (dollars[g.id] ?? g.amount ?? 0), 0);
 }
 
-function registryFundedAmount() {
-  const estimated = sumEstimatedAssigned(["registry", "secondary"]);
-  if (estimated !== null) return estimated;
-  return sumEnabled(["registry"]);
+function registryFundedAmount({ priorityOnly = null } = {}) {
+  if (!state.data) return 0;
+  const gifts = state.data.gifts.filter((g) => {
+    if (g.category !== "registry" && g.category !== "secondary") return false;
+    if (g.draft || isVariableAmountGift(g)) return false;
+    if (priorityOnly == null) return true;
+    if (g.category !== "registry") return !priorityOnly; // secondary counts as non-HP
+    return priorityOnly ? !!g.priority : !g.priority;
+  });
+  if (state.showEstimatedSponsors) {
+    const dollars = state.estimatedSponsorDollars ?? {};
+    return gifts
+      .filter((g) => estimatedSponsorNames(g.id).length)
+      .reduce((s, g) => s + (dollars[g.id] ?? g.amount ?? 0), 0);
+  }
+  return gifts.filter((g) => state.enabled[g.id]).reduce((s, g) => s + (g.amount || 0), 0);
 }
 
 /** Catalog $ for registry gifts (skips variable/extra-cash gift). */
@@ -389,41 +401,48 @@ function coreContribAmount() {
   return sumEnabled(["core"]) + (state.extraCash || 0);
 }
 
+/** Pinned planning core sponsor gap (after earned cash) — not full core face. */
+function coreSponsorGapAmount(core) {
+  const pinned =
+    state.data?.event?.coreSponsorGap ?? state.data?.scenario?.headroomOrGap ?? null;
+  if (pinned != null && Number.isFinite(Number(pinned))) return Number(pinned);
+  return core?.sponsorGap ?? 0;
+}
+
 /**
- * Festival vision caps + waterfall funding.
- * Target = core + High Priority · Stretch = core + all registry gifts.
+ * Festival vision caps + waterfall funding (sponsor lead ask).
+ * Target = coreSponsorGap + High Priority · Stretch = that + electives.
+ * Earned cash is already netted into the gap (see Core ops panel); this bar
+ * tracks sponsor dollars toward the lead ask Bao approved (~$63.4K).
  */
 function festivalVisionState() {
   const core = coreFundingState();
   if (!core) return null;
 
+  const coreGap = coreSponsorGapAmount(core);
   const hpCatalog = registryCatalogAmount({ priorityOnly: true });
   const electiveCatalog = registryCatalogAmount({ priorityOnly: false });
-  const stretch = core.mvpCap + hpCatalog + electiveCatalog;
-  const target = core.mvpCap + hpCatalog;
+  const target = coreGap + hpCatalog;
+  const stretch = target + electiveCatalog;
 
-  const totalMoney = core.rawCash + coreContribAmount() + registryFundedAmount();
-  let rem = totalMoney;
-  const intoCore = Math.min(core.mvpCap, rem);
-  rem -= intoCore;
-  const intoHp = Math.min(hpCatalog, rem);
-  rem -= intoHp;
-  const intoElective = Math.min(electiveCatalog, rem);
-  rem -= intoElective;
-  const financed = intoCore + intoHp + intoElective;
+  const intoCoreGap = Math.min(coreGap, core.sponsorFill);
+  const intoHp = Math.min(hpCatalog, registryFundedAmount({ priorityOnly: true }));
+  const intoElective = Math.min(electiveCatalog, registryFundedAmount({ priorityOnly: false }));
+  const financed = intoCoreGap + intoHp + intoElective;
 
-  const toGo = Math.max(0, target - (intoCore + intoHp));
+  const toGo = Math.max(0, target - (intoCoreGap + intoHp));
   const toStretch = Math.max(0, stretch - financed);
 
   return {
     core,
     mvpCap: core.mvpCap,
+    coreGap,
     target,
     stretch,
     financed,
     toGo,
     toStretch,
-    intoCore,
+    intoCore: intoCoreGap,
     intoHp,
     intoElective,
   };
@@ -508,28 +527,33 @@ function choicesLockedForEstimate() {
 
 /**
  * Core cards estimated sponsors fund before any other core remainder.
- * Earned cash skips these first so Festival Foundation, Sanitation / Amenities,
- * and Main Stage are sponsor-funded ahead of Weather / Cancel Fund and
- * Partnership Operations.
+ * Earned cash skips these first so Festival Foundation and Main Stage are
+ * sponsor-funded ahead of Security, Sanitation / Amenities, Logistics, and
+ * Partnership Operations. Bao 2026-10-20: drop Sanitation from the core
+ * sponsorship estimate — only Foundation + Main Stage close the ~$20,104 gap.
+ * Weather / Cancel Fund is High Priority on the gift registry (not core).
  */
 const ESTIMATE_SPONSOR_FIRST_CORE = [
   "festival_foundation",
-  "festival_amenities",
   "outdoor_stage",
 ];
 
 /**
  * Estimated sponsor pool, after pins and bundles:
- * 1. Close the core ops gap before any High Priority gift.
- *    Within core, sponsor dollars hit Festival Foundation, then
- *    Sanitation / Amenities, then Main Stage, then any still-uncovered core
- *    in sortOrder (Security, Logistics, Weather, Partnership).
- *    Earned cash covers the other core cards in that sortOrder first.
- *    Leftover cash sits on a sponsor-first card only when the pool cannot
- *    pay that card in full — otherwise those cards stay for sponsors.
- * 2. High Priority registry (impact order, most impactful first).
- * 3. Electives, then secondary. A core card the pool cannot fully close stays
- *    open; sponsors are not asked to cover it again after High Priority.
+ * 1. Close the core ops *gap* before any High Priority gift — not the full
+ *    core face total. Planning gap is pinned at $20,104 (Bao 2026-10-20):
+ *    earned cash covers the rest of ~$62,450 core (Security, Sanitation,
+ *    Logistics, Partnership first). Within the remaining gap, sponsor dollars
+ *    hit Festival Foundation, then Main Stage only — not Sanitation. Leftover
+ *    cash sits on a sponsor-first card only when the pool cannot pay that card
+ *    in full — otherwise those cards stay for sponsors. Face values of the two
+ *    cards ($8,300 + $15,600) exceed the gap; cash partials + sponsor draws
+ *    together close ~$20,104 without stacking a third core card.
+ * 2. High Priority registry (impact order, most impactful first — Weather is
+ *    HP but last in that order).
+ * 3. Electives (Yearbook · etc.), then secondary. A core card the pool cannot
+ *    fully close stays open; sponsors are not asked to cover it again after
+ *    High Priority.
  */
 function compareGiftsForEstimate(a, b) {
   const lane = (g) => {
@@ -552,8 +576,8 @@ function compareGiftsForEstimate(a, b) {
 
 /**
  * Earned cash (scenario.vendorRevenue) fills core cards before sponsors do.
- * First pass skips Festival Foundation, Sanitation / Amenities, and Main Stage
- * and follows sortOrder: Security, Logistics, Weather, Partnership.
+ * First pass skips Festival Foundation and Main Stage and follows sortOrder:
+ * Security, Sanitation / Amenities, Logistics, Partnership.
  * Leftover cash may sit on a sponsor-first card only when `balances` cannot
  * pay that card in full (sponsor-first order). Cards the pool can close are
  * left for sponsors so cash does not take them. Returns dollars of cash
@@ -687,8 +711,8 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload, rawCash = 0) {
     }
   }
 
-  // Earned cash covers Security, Logistics, Weather, and Partnership first.
-  // Sponsors close Foundation, Sanitation, and Main Stage, then any core remainder.
+  // Earned cash covers Security, Sanitation, Logistics, and Partnership first.
+  // Sponsors close Foundation + Main Stage (gap stack), then any core remainder.
   const cashOnCore = earnedCashOnCoreGifts(gifts, rawCash, funded, balances);
 
   // Phase 2 — pool: sponsor-first core, other uncovered core, High Priority, electives
@@ -1402,8 +1426,8 @@ function renderProgress() {
   const stretchGapPct = stretch > 0 ? Math.max(0, 100 - fundedPct - toGoPct) : 0;
 
   document.getElementById("progress-bar").innerHTML = `
-    <div class="progress-seg funded" style="width:${fundedPct}%" title="Funded"></div>
-    <div class="progress-seg core-unfunded" style="width:${toGoPct}%" title="To Target (core + High Priority)"></div>
+    <div class="progress-seg funded" style="width:${fundedPct}%" title="Funded toward lead ask"></div>
+    <div class="progress-seg core-unfunded" style="width:${toGoPct}%" title="To Target (core gap + High Priority)"></div>
     <div class="progress-seg vision-unfunded" style="width:${stretchGapPct}%" title="To Stretch (electives)"></div>
   `;
 
