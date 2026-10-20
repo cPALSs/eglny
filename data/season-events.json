@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T18:54:31.051Z",
+  "generatedAt": "2026-10-20T18:55:18.548Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -12,6 +12,15 @@
       "location": "Sacramento",
       "href": "https://asianresources.org",
       "certainty": "confirmed"
+    },
+    {
+      "eventId": "creative-space-lny",
+      "dates": "Sat, Jan 30, 2027 (tentative)",
+      "name": "Lunar New Year Celebration",
+      "host": "The Creative Space",
+      "location": "Old Town Plaza, Elk Grove",
+      "href": "https://www.thecreativespacesac.com/events",
+      "certainty": "tentative"
     },
     {
       "eventId": "ca-is-my-home-lny",
@@ -47,6 +56,15 @@
           "location": "Sacramento",
           "href": "https://asianresources.org",
           "certainty": "confirmed"
+        },
+        {
+          "eventId": "creative-space-lny",
+          "dates": "Sat, Jan 30, 2027 (tentative)",
+          "name": "Lunar New Year Celebration",
+          "host": "The Creative Space",
+          "location": "Old Town Plaza, Elk Grove",
+          "href": "https://www.thecreativespacesac.com/events",
+          "certainty": "tentative"
         },
         {
           "eventId": "ca-is-my-home-lny",
