@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T18:49:38.952Z",
+  "generatedAt": "2026-10-20T18:54:31.051Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -24,7 +24,7 @@
     },
     {
       "eventId": "cpalss-lny-capstone",
-      "dates": "Sat–Sun Feb 13–14, 2027 · 11 AM–7 PM (tentative)",
+      "dates": "Sat, Feb 13, 2027 – Sun, Feb 14, 2027 · 11 AM–7 PM (tentative)",
       "name": "Elk Grove Lunar New Year Tết",
       "host": "cPALSs / VACOS / NVCC",
       "location": "Elk Grove Park, Elk Grove",
@@ -59,7 +59,7 @@
         },
         {
           "eventId": "cpalss-lny-capstone",
-          "dates": "Sat–Sun Feb 13–14, 2027 · 11 AM–7 PM (tentative)",
+          "dates": "Sat, Feb 13, 2027 – Sun, Feb 14, 2027 · 11 AM–7 PM (tentative)",
           "name": "Elk Grove Lunar New Year Tết",
           "host": "cPALSs / VACOS / NVCC",
           "location": "Elk Grove Park, Elk Grove",
@@ -99,6 +99,15 @@
           "host": "Chinese New Year Culture Association (CNYCA)",
           "location": "Luther Burbank High School, Sacramento",
           "href": "http://www.cnyca.net/php/",
+          "certainty": "confirmed"
+        },
+        {
+          "eventId": "creative-space-lny",
+          "dates": "Sat, Feb 7, 2026",
+          "name": "Lunar New Year Celebration",
+          "host": "The Creative Space",
+          "location": "Old Town Plaza, Elk Grove",
+          "href": "https://www.thecreativespacesac.com/events",
           "certainty": "confirmed"
         },
         {
@@ -190,15 +199,6 @@
           "host": "Chason's Crab Stadium",
           "location": "Chason's Crab Stadium - 8839 Sheldon Rd, Elk Grove",
           "href": "https://www.instagram.com/p/DUZsrvviYU_/",
-          "certainty": "confirmed"
-        },
-        {
-          "eventId": "creative-space-lny",
-          "dates": "Feb 7, 2026",
-          "name": "Lunar New Year Celebration",
-          "host": "The Creative Space",
-          "location": "Old Town Plaza, Elk Grove",
-          "href": "https://www.thecreativespacesac.com/events",
           "certainty": "confirmed"
         },
         {
