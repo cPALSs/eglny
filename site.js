@@ -914,10 +914,10 @@
 
   function seasonEventCertainty(event) {
     const explicit = String(event.certainty || "").toLowerCase().trim();
+    // intended ≡ tentative (Bao 10/20) — one yellow UI status
+    if (explicit === "intended" || explicit === "tentative") return "tentative";
     if (
       explicit === "estimated" ||
-      explicit === "intended" ||
-      explicit === "tentative" ||
       explicit === "cancelled" ||
       explicit === "canceled" ||
       explicit === "confirmed"
@@ -926,9 +926,9 @@
     }
     const dates = String(event.dates || "").toLowerCase();
     if (/not hosting|cancelled|canceled/.test(dates)) return "cancelled";
-    if (/\bintended\b/.test(dates)) return "intended";
     if (/\(estimated\)/.test(dates) || /\bestimated\b/.test(dates)) return "estimated";
     if (
+      /\bintended\b/.test(dates) ||
       /\(tentative\)/.test(dates) ||
       /\btentative\b/.test(dates) ||
       /to be finalized|\btbd\b/.test(dates)
@@ -942,7 +942,6 @@
     const certainty = seasonEventCertainty(event);
     const soft =
       certainty === "estimated" ||
-      certainty === "intended" ||
       certainty === "tentative" ||
       certainty === "cancelled";
     const softClass = soft ? " season-event-item--soft" : "";
@@ -962,12 +961,8 @@
   function renderSeasonDateLegend() {
     return `<ul class="season-date-legend" aria-label="Date key">
       <li class="season-date-legend-item">
-        <span class="season-date-legend-swatch season-date-legend-swatch--estimated" aria-hidden="true"></span>
-        Estimated
-      </li>
-      <li class="season-date-legend-item">
-        <span class="season-date-legend-swatch season-date-legend-swatch--intended" aria-hidden="true"></span>
-        Intended, not confirmed
+        <span class="season-date-legend-swatch season-date-legend-swatch--tentative" aria-hidden="true"></span>
+        Tentative
       </li>
       <li class="season-date-legend-item">
         <span class="season-date-legend-swatch season-date-legend-swatch--confirmed" aria-hidden="true"></span>
