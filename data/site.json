@@ -662,16 +662,6 @@
         ]
       },
       {
-        "id": "middle-school",
-        "title": "Middle school",
-        "troupes": [
-          {
-            "name": "Katherine L. Albiani Middle School Chinese Lion Dancers",
-            "website": "https://kams.egusd.net/"
-          }
-        ]
-      },
-      {
         "id": "high-school",
         "title": "High school",
         "troupes": [
@@ -726,6 +716,16 @@
             "handle": "@shsliondance",
             "website": "https://linktr.ee/shsliondance",
             "avatar": "/assets/lion-dance/shsliondance.jpg"
+          }
+        ]
+      },
+      {
+        "id": "middle-school",
+        "title": "Middle school",
+        "troupes": [
+          {
+            "name": "Katherine L. Albiani Middle School Chinese Lion Dancers",
+            "website": "https://kams.egusd.net/"
           }
         ]
       }
