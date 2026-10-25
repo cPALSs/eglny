@@ -560,7 +560,7 @@
       },
       {
         "title": "Lion dance groups",
-        "body": "Greater Sacramento civic, temple, college, and high school lion dance troupes — Instagram links for families and bookers.",
+        "body": "Greater Sacramento and Stockton civic, temple, college, high school, and middle school lion dance troupes — Instagram links for families and bookers.",
         "href": "/resources/lion-dance/"
       },
       {
@@ -573,8 +573,8 @@
   },
   "lionDanceGroups": {
     "headline": "Lion dance groups",
-    "lead": "Greater Sacramento lion dance groups — civic studios, temple teams, college troupes, and high school clubs.",
-    "intro": "Families and bookers can reach these local troupes on Instagram. This is a public roster, not a booking desk — contact each group directly.",
+    "lead": "Greater Sacramento and Stockton lion dance groups — civic studios, temple teams, college troupes, high school clubs, and one middle school feeder.",
+    "intro": "Families and bookers can reach most of these local troupes on Instagram. This is a public roster, not a booking desk — contact each group directly.",
     "contactNote": "Know a local lion dance group we missed? Email contact@eglny.com.",
     "lanes": [
       {
@@ -608,6 +608,13 @@
             "handle": "@tengfeisacramento",
             "website": "https://sacliondance.com",
             "avatar": "/assets/lion-dance/tengfeisacramento.jpg"
+          },
+          {
+            "name": "Thien Quang Lion Dance",
+            "aka": "Stockton",
+            "instagram": "https://www.instagram.com/thienquang_liondance/",
+            "handle": "@thienquang_liondance",
+            "avatar": "/assets/lion-dance/thienquang_liondance.jpg"
           }
         ]
       },
@@ -626,6 +633,11 @@
             "instagram": "https://www.instagram.com/gdptkqliondance/",
             "handle": "@gdptkqliondance",
             "avatar": "/assets/lion-dance/gdptkqliondance.jpg"
+          },
+          {
+            "name": "Stockton Chinese Benevolent Association",
+            "aka": "lion dance classes · dragon team",
+            "website": "https://stocktoncba.org/chinese-lion-dance-classes/"
           }
         ]
       },
@@ -646,6 +658,16 @@
             "instagram": "https://www.instagram.com/redlotus.official/",
             "handle": "@redlotus.official",
             "avatar": "/assets/lion-dance/redlotus-official.jpg"
+          }
+        ]
+      },
+      {
+        "id": "middle-school",
+        "title": "Middle school",
+        "troupes": [
+          {
+            "name": "Katherine L. Albiani Middle School Chinese Lion Dancers",
+            "website": "https://kams.egusd.net/"
           }
         ]
       },
@@ -678,6 +700,13 @@
             "instagram": "https://www.instagram.com/lchsccc/",
             "handle": "@lchsccc",
             "avatar": "/assets/lion-dance/lchsccc.jpg"
+          },
+          {
+            "name": "Mira Loma Chinese Performing Arts Team",
+            "aka": "Dragon & Lion Dance · San Juan Unified",
+            "instagram": "https://www.instagram.com/mlhs_chinese_club/",
+            "handle": "@mlhs_chinese_club",
+            "avatar": "/assets/lion-dance/mlhs_chinese_club.jpg"
           },
           {
             "name": "Monterey Trail Lion Dance Club",
