@@ -10,7 +10,7 @@
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply on Eventeny",
-    "body": "Booth applications are open on Eventeny. There are four applications: **Food booths & trucks**, **Merchants & corporate exhibitors**, **Nonprofit, community info**, and **Free kids activity tables (nonprofits)** — pick the one that fits your booth. **Round 1 closes Nov 5.**",
+    "body": "Booth applications are open on Eventeny. There are four applications: **Food booths & trucks**, **Merchants & corporate exhibitors**, **Nonprofit, community info**, and **Free kids activity tables** — pick the one that fits your booth. **Round 1 closes Nov 5.**",
     "cta": {
       "label": "Apply on Eventeny",
       "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
@@ -33,15 +33,15 @@
     },
     "notes": [
       "**Open food seats are split by menu style** so no one style floods the field: about **3** fast handheld (bánh mì, tacos, skewers), **4** rice plates and bowls, **3** noodle, wok, or soup, and **2** BBQ or smoked. We sized this so lines stay short at the mid-afternoon rush while every booth still has enough customers — down from about 20 hot-food vendors in 2026.",
-      "Drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), and nonprofit/kids ($75) compete for the same seats (not separate caps).",
+      "Drinks are **exclusivity-capped** by category. The **60**-pad shared pool is one inventory — corporate ($500), goods/snack ($150), nonprofit info ($75), and free kids activity tables compete for the same seats (not separate caps).",
       "Fees shown as weekend totals (**$/day × 2 days**). No early-bird discount — early apply buys **certainty** in Round 1.",
       "**$25 application deposit** for food, merchant, craft, and corporate booths, paid when you apply. If you are accepted, the $25 is credited toward your booth fee. If you are not selected, we refund the $25. If you are selected but don’t pay the booth fee by the pay-by date, the $25 is forfeited and the booth goes to the next waitlisted vendor. In Round 1, you stay on the Round 2 waitlist without a new deposit.",
-      "**Nonprofit, community info, and kids activity tables pay no application deposit.** The $75 table fee is charged only if you are approved. **Registered nonprofits** (501(c) or fiscally sponsored) that staff a kids activity that is free for guests apply through the separate **Free kids activity tables (nonprofits)** application instead — no fee, and no card or bank account needed; we confirm your nonprofit status (EIN) before approving. Community groups that aren’t registered nonprofits pay $75, with or without a kids activity. Charging guests for an activity (for example, paid face painting or balloon art)? Apply as **Merchant / craft** ($150).",
+      "**Nonprofit and community info tables pay no application deposit.** The $75 table fee is charged only if you are approved. Staffing a **kids activity that is free for guests**? Apply through the separate **Free kids activity tables** application instead — no fee, and no card or bank account needed. Open to **nonprofits, community groups, and small businesses** when guests are not charged for the activity. Charging guests for an activity (for example, paid face painting or balloon art)? Apply as **Merchant / craft** ($150).",
       "**Venue:** Elk Grove Park is our planned venue, and permits are in progress. If the festival can’t proceed at the venue, we refund your deposits and booth fees in full.",
       "Booth fees are **non-refundable** once you are accepted and paid. **Weather exception:** if weather cancels a festival day, accepted and paid vendors receive a **credit toward Elk Grove Lunar New Year 2028** — half the booth fee for each canceled day — instead of a cash refund. Weather earns a credit; only a venue cancellation is refunded in cash.",
       "**Insurance — food and power:** food vendors and any booth using electrical power or a generator must carry general liability insurance and upload a certificate of insurance (COI) with the application. We check it before your booth is confirmed.",
       "**Insurance — basic tables:** non-food booths with no power sign the vendor agreement confirming they carry their own liability insurance.",
-      "**Cleanup and trash deposits:** every food, merchant, and corporate booth pays a refundable **$100 trash deposit**, refunded when you bag out your trash and leave your space clean. Booths that cook on site (food trucks and trailers, open flame, grills, fryers) also pay a refundable **$500 cooking cleanup deposit**, refunded if your space has no grease, oil, or burn marks. Pre-packaged and no-cook booths pay only the $100. Deposits are **not** charged with your booth fee: we charge them on **Fri, Jan 29, 2027** (or at approval if you’re approved after that date). Your booth isn’t confirmed until your deposits are paid.",
+      "**Cleanup and trash deposits:** every food, merchant, and corporate booth pays a refundable **$100 trash deposit**, refunded when you bag out your trash and leave your space clean. Booths that cook on site (food trucks and trailers, open flame, grills, fryers) also pay a refundable **$500 cooking cleanup deposit**, refunded if your space has no grease, oil, or burn marks. Pre-packaged and no-cook booths pay only the $100. **Trash** is charged on **Fri, Jan 29, 2027** (or at approval if you’re approved after that date). **Round 1 cooking food booths** (on-site cook): the **$500 cooking cleanup deposit by Fri, Nov 20, 2026** locks your booth; the remaining booth fee and $100 trash are due **Fri, Jan 29, 2027**, or you yield the booth. Other cooks: cooking cleanup is charged with trash on Jan 29 (or at approval if later). Your booth isn’t fully confirmed until the amounts due for your lane are paid.",
       "**Hours, load-in, tear-down:** vendor hours are **11 AM–7 PM Saturday and Sunday**, Feb 13–14, 2027. Load-in is **Friday, Feb 12, 2027**; tear-down starts after 7 PM Sunday. Exact load-in and tear-down times come with your acceptance email."
     ],
     "footnote": "Seat counts are set at Round 1 decisions (Nov 10), after park capacity confirmation. Insurance requirements, including any additional-insured wording, are finalized in your acceptance email."
@@ -55,7 +55,7 @@
       {
         "label": "Round 1 — Priority",
         "window": "Oct 11 → Nov 5, 2026",
-        "note": "Most seats (~70–80%). Decisions around Nov 10. Selected vendors pay by Nov 20 to lock the booth. Miss that pay-by and you forfeit the $25 deposit and move to the Round 2 selection waitlist — no new deposit needed."
+        "note": "Most seats (~70–80%). Decisions around Nov 10. Selected vendors pay by Nov 20 to lock the booth. **Cooking food booths (on-site cook):** the $500 cooking cleanup deposit by Nov 20 locks the booth; remaining booth fee and $100 trash are due Jan 29, or you yield the booth. Miss the Nov 20 lock payment and you forfeit the $25 deposit and move to the Round 2 selection waitlist — no new deposit needed."
       },
       {
         "label": "Round 2 — Open",
@@ -84,13 +84,13 @@
           {
             "id": "offer",
             "title": "Offer sent",
-            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay the booth fee by the pay-by date**.",
-            "next": "Once paid, you’re officially part of the festival — seat locked."
+            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay by the pay-by date** (Round 1 cooking food: $500 cooking cleanup by Nov 20 locks the booth; remaining booth fee + trash due Jan 29).",
+            "next": "Once the lock payment for your lane clears, you’re on the map — seat locked (cooking Round 1 still owes remainder + trash by Jan 29)."
           },
           {
             "id": "waitlist",
             "title": "Selection waitlist",
-            "body": "You’re a ranked runner-up for that lane — **or** you were selected in Round 1 but didn’t pay by Nov 20. Unpaid Round 1 selectees are moved here automatically and **must wait for Round 2 decisions** (around Jan 22).",
+            "body": "You’re a ranked runner-up for that lane — **or** you were selected in Round 1 but didn’t make the Nov 20 lock payment. Unpaid Round 1 selectees are moved here automatically and **must wait for Round 2 decisions** (around Jan 22).",
             "next": "A waitlist spot is not a reserved booth until you receive an offer and pay."
           },
           {
@@ -104,7 +104,7 @@
       {
         "id": "paid",
         "title": "Pay → official vendor",
-        "body": "Selection holds only through the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s pay-by** and you forfeit the $25 deposit and are placed (no new deposit needed) on the **Round 2 selection waitlist** — you wait for the Round 2 decision batch; that seat goes back into Round 2 inventory."
+        "body": "Selection holds only through the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 lock payment** and you forfeit the $25 deposit and are placed (no new deposit needed) on the **Round 2 selection waitlist** — you wait for the Round 2 decision batch; that seat goes back into Round 2 inventory. **Round 1 cooking food** that locked with the $500 cooking deposit but misses the **Jan 29** remainder + trash **yields the booth**."
       }
     ],
     "footnote": "Dates are planning targets published for vendors. Seat counts by booth type are set at Round 1 decisions (Nov 10)."
