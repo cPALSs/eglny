@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T14:46:09.198Z",
+  "generatedAt": "2026-10-27T18:04:05.687Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -144,6 +144,24 @@
           "host": "California Is My Home",
           "location": "District56 - 8230 Civic Center Dr, Elk Grove",
           "href": "https://www.caismyhome.com/",
+          "certainty": "confirmed"
+        },
+        {
+          "eventId": "klccsac-seollal",
+          "dates": "Sat, Feb 14, 2026",
+          "name": "Our Korean School Seollal Event",
+          "host": "Korean Language and Cultural Center of Sacramento (Our Korean School)",
+          "location": "UMOJA International Academy — 5301 N St, Sacramento",
+          "href": "https://klccsac.com/our-korean-school/",
+          "certainty": "confirmed"
+        },
+        {
+          "eventId": "korean-school-sacramento-seollal",
+          "dates": "Sat, Feb 14, 2026",
+          "name": "설날 Lunar New Year Festival",
+          "host": "Korean School of Sacramento",
+          "location": "Korean School of Sacramento — 3641 South Port Dr",
+          "href": "https://koreanschoolsc.com/",
           "certainty": "confirmed"
         },
         {
