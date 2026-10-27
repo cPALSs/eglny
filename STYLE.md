@@ -12,7 +12,7 @@ Use this when writing nav labels, page titles, section headings, buttons, and bo
 |------|------|-----------------|-------|
 | **Fund The Festival** | Branded **tool** (interactive sponsor registry) | `Fund The Festival` | fund the festival, Fund the Festival, FTF in public UI* |
 | **Custom Zones** | Branded **product** (named festival map corners) | `Custom Zones` | custom zones, Custom zones, Custom Zone (unless singular on purpose) |
-| **Soul Torrent** | Branded Saturday theatrical product | `Soul Torrent` | soul torrent |
+| **Lucky Wav** | Branded main-stage entertainment | `Lucky Wav` | lucky wav, Lucky wav |
 | **Elk Grove Lunar New Year Tết** | Festival / site name | Keep **Tết** with diacritic | Tet / TET in visitor-facing copy |
 
 \* `FTF` is fine in internal notes and code comments, not in public nav or H1s.

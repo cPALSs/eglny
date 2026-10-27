@@ -1,4 +1,4 @@
-/* Spirit Torrent — DiffUI festival board (piecemeal: type + palette) */
+/* EGLNY — DiffUI festival board (piecemeal: type + palette) */
 /* Fonts load via <link> in HTML (not @import) so site.css can paint without waiting on Google Fonts. */
 
 :root {
@@ -1274,6 +1274,12 @@ body.nav-open {
   margin: 0;
   padding: 0;
   border-top: none;
+}
+
+.home-vendor-note {
+  margin: 0.35rem 0 0.85rem;
+  font-size: 0.95rem;
+  color: var(--lead);
 }
 
 .home-cta-columns > .content-section + .content-section {
@@ -2819,6 +2825,17 @@ body.nav-open {
   align-items: center;
 }
 
+@media (max-width: 899px) {
+  .festival-hero-main {
+    justify-self: center;
+    width: 100%;
+  }
+
+  .festival-hero-copy {
+    text-align: center;
+  }
+}
+
 @media (min-width: 900px) {
   .festival-hero {
     padding: 3.25rem 0 3.5rem;
@@ -2876,83 +2893,20 @@ body.nav-open {
 .festival-hero-art {
   justify-self: center;
   align-self: center;
-  width: min(100%, 34rem);
+  width: min(100%, 22rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
 }
 
-.festival-hero-orb {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  background: transparent;
-}
-
-/* Placeholder only until WebGL is ready (or for reduced-motion). */
-.festival-hero-orb:not(.is-live),
-.festival-hero-orb--static {
-  background:
-    radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--lead) 55%, #fff), transparent 42%),
-    radial-gradient(circle at 70% 65%, color-mix(in srgb, var(--accent) 45%, transparent), transparent 45%),
-    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--teal) 35%, var(--surface-raised)), var(--surface));
-}
-
-.festival-hero-orb.is-live {
-  background: transparent;
-}
-
-.festival-hero-orb canvas {
+.festival-hero-flier {
   display: block;
-  width: 100% !important;
-  height: 100% !important;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-
-.festival-hero-orb.is-live canvas {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .festival-hero-orb canvas {
-    transition: none;
-  }
-}
-
-.festival-malevolence {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: calc(0.72rem * var(--font-display-scale));
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--muted);
-}
-
-.festival-malevolence span {
-  color: var(--lead);
-}
-
-.festival-malevolence[data-malevolence="dangerous"] span {
-  color: var(--accent);
-}
-
-.festival-malevolence[data-malevolence="stormy"] span,
-.festival-malevolence[data-malevolence="gathering"] span {
-  color: var(--gold);
-}
-
-.festival-malevolence[data-malevolence="building"] span {
-  color: var(--teal);
-}
-
-.festival-malevolence[data-malevolence="clear"] span,
-.festival-malevolence[data-malevolence="fair"] span {
-  color: var(--muted);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1275 / 1650;
+  object-fit: contain;
+  border-radius: 0.35rem;
+  box-shadow: 0 0.6rem 1.8rem color-mix(in srgb, #000 28%, transparent);
 }
 
 .festival-hero-meta {

@@ -623,48 +623,7 @@
     return icons[kind] ?? "";
   }
 
-  /** Local calendar day from YYYY-MM-DD (avoids UTC shift). */
-  function parseEventDay(iso) {
-    const m = String(iso || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
-    if (!m) return null;
-    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-  }
-
-  /**
-   * Soul Torrent “sky” malevolence — cloud language by days until the festival.
-   * After the prior year → clear; mid-cycle → building; month of → dangerous.
-   * Orb intensity scales 1 (clear) → 10 (dangerous).
-   */
-  const MALEVOLENCE_INTENSITY = {
-    clear: 1,
-    fair: 3,
-    building: 5,
-    gathering: 7,
-    stormy: 8,
-    dangerous: 10,
-  };
-
-  function malevolenceStatus(event, now = new Date()) {
-    const start = parseEventDay(event?.startDate) || parseEventDay("2027-02-13");
-    const end = parseEventDay(event?.endDate) || parseEventDay("2027-02-14") || start;
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    let status = "dangerous";
-    if (today > end) status = "clear";
-    else if (today >= start) status = "dangerous";
-    else {
-      const days = Math.round((start - today) / 86400000);
-      if (days > 300) status = "clear";
-      else if (days > 240) status = "fair";
-      else if (days > 150) status = "building";
-      else if (days > 90) status = "gathering";
-      else if (days > 45) status = "stormy";
-      else status = "dangerous";
-    }
-    return {
-      status,
-      intensity: MALEVOLENCE_INTENSITY[status] ?? 5,
-    };
-  }
+  const HERO_SAVE_THE_DATE_SRC = "/assets/hero/save-the-date-2027.jpg";
 
   function renderFestivalHero(site) {
     const event = site.event ?? {};
@@ -678,8 +637,10 @@
       hero.festivalLead ||
       "A joyful celebration of heritage, community, and new beginnings. Enjoy traditional performances, delicious food, music, and activities for the whole family.";
     const keepElkGrove = (s) => String(s).replace(/Elk Grove/g, "Elk\u00A0Grove");
-    const { status: malevolence, intensity } = malevolenceStatus(event);
-    const malevolenceDisplay = malevolence.charAt(0).toUpperCase() + malevolence.slice(1);
+    const leadHtml = escapeHtml(lead).replace(
+      /Lucky Wav/g,
+      '<a href="/about/#lucky-wav">Lucky Wav</a>',
+    );
 
     return `
       <section class="festival-hero" aria-label="Festival highlight">
@@ -687,10 +648,7 @@
           <div class="festival-hero-main">
             <div class="festival-hero-copy">
               <h1>${escapeHtml(keepElkGrove(headline))}</h1>
-              <p class="festival-hero-lead">${escapeHtml(lead).replace(
-                /Soul Torrent/g,
-                '<a href="/about/#soul-torrent">Soul Torrent</a>',
-              )}</p>
+              <p class="festival-hero-lead">${leadHtml}</p>
             </div>
             <div class="festival-hero-meta" role="group" aria-label="Event details">
               <div class="festival-meta-item">
@@ -722,16 +680,14 @@
             </div>
           </div>
           <div class="festival-hero-art">
-            <div
-              id="festival-hero-orb"
-              class="festival-hero-orb"
-              data-intensity="${intensity}"
-              role="img"
-              aria-label="Abstract colorful twisted sphere animation"
-            ></div>
-            <p class="festival-malevolence" data-malevolence="${escapeHtml(malevolence)}">
-              Malevolence:\u00A0<span>${escapeHtml(malevolenceDisplay)}</span>
-            </p>
+            <img
+              class="festival-hero-flier"
+              src="${HERO_SAVE_THE_DATE_SRC}"
+              alt="Save the date — Elk Grove Lunar New Year Tết 2027, February 13–14 at Elk Grove Regional Park"
+              width="1275"
+              height="1650"
+              decoding="async"
+            />
           </div>
         </div>
       </section>

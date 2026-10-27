@@ -16,7 +16,7 @@
     "venueShort": "Elk Grove Park",
     "address": "9950 Elk Grove Florin Rd, Elk Grove, CA",
     "city": "Elk Grove, CA",
-    "tagline": "free admission · family fair · parade",
+    "tagline": "free admission · family fair · live music",
     "admissionLabel": "Free community celebration",
     "zodiacYear": "Year of the Goat",
     "hosts": "cPALSs + VACOS + NVCC",
@@ -24,10 +24,10 @@
   },
   "hero": {
     "festivalHeadline": "Celebrate Lunar New Year Tết in Elk Grove",
-    "festivalLead": "A free family weekend of heritage, food, and community — and the debut of Soul Torrent, a new full-day theatrical festival experience.",
+    "festivalLead": "A free family weekend of heritage, food, and community — with Lucky Wav on the main stage, honoring where we come from and celebrating where we’re headed.",
     "headline": "Help build the 2027 festival",
-    "homeLead": "Join the team shaping this year’s celebration.",
-    "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and local live music. Vendor fees fund the essentials. Sponsors unlock the magic.",
+    "homeLead": "Join the team shaping this year’s celebration. Round 1 vendor applications close November 5.",
+    "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and live music on the main stage. Vendor fees fund the essentials. Sponsors unlock the magic.",
     "subhead": "Join weekly production calls, Discord, own a Program or Outreach lane, or step into the Site & Ops Supercommittee — we organize as a network of owners, not a stiff org chart.",
     "body": "Start by showing up to production meetings. Prefer a gift DRI or outreach Director seat? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS).",
     "fundHeadline": "Fund the experience",
@@ -128,19 +128,11 @@
             },
             {
               "name": "Ellie King",
-              "title": "Tụ Vía Procession",
+              "title": "Resource Hub",
               "photo": "/assets/roster/ellie-king.jpg",
               "instagram": "iamthenonprofitgirl",
-              "vision": "Saturday afternoon, we walk the Pavilion circle together. Tụ Vía — gathering vía as a community before Soul Torrent’s dusk. Lions, dance crews, banners, families in the ring. This year the procession is on foot: no cars, no floats. A walking circle we can staff well and enjoy. Street parades can wait until they’re properly funded.",
+              "vision": "My hope is to bring a Resource Hub to LNY Tết — where culture, community, and resources come together so families can discover opportunities, support, and pathways to thrive. I want churches, organizations, agencies, and service providers side by side with the celebration.",
               "visionFull": [
-                {
-                  "heading": "Tụ Vía — walking circle, not a motor parade",
-                  "paragraphs": [
-                    "I’m taking Soul Torrent’s afternoon chapter: Tụ Vía, the walking Obon-style circle at the Pavilion roundabout.",
-                    "Guests gather vía together — lions, clubs, banners, families in the ring — then dusk is Spirit Break on the main stage. One Saturday product; two chapters.",
-                    "Cars and floats in a parade are logistically heavy. For 2027 we scale that back. The park product is a walking procession we can actually run. A funded street parade is a later year, when we can staff and pay for it properly."
-                  ]
-                },
                 {
                   "heading": "Honoring the History and Future of Chicano & Vietnamese Car Culture",
                   "paragraphs": [
@@ -248,8 +240,8 @@
     "title": "What is a director?",
     "paragraphs": [
       "A director (or DRI) is the accountable owner of one festival lane or Fund The Festival gift. You recommend and decide budget for your lane, including whether to contract out work. You recruit help, hire or place pros (paid or pro bono), and report status to the Steering Committee. You are not assumed to build sets, hang decor, or personally perform the craft.",
-      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority. Tụ Vía Procession — Ellie King (walking circle; not a motor parade).",
-      "Open seats: 15 Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are sponsor unlocks. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
+      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority. Resource Hub — Ellie King. Stage entertainment / Lucky Wav — Lily Tran.",
+      "Open seats: Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are sponsor unlocks. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
     ],
     "notes": [
       "Prefer one accountable DRI per Program gift. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
@@ -356,12 +348,6 @@
           "own": "Gift budget · talent booking / theater producer contract · MC coordination"
         },
         {
-          "title": "Tụ Vía Procession",
-          "emoji": "🏮",
-          "director": "Ellie King",
-          "own": "Gift budget · walking-circle route/units · production contracts · day-of staging (not a motor parade)"
-        },
-        {
           "title": "Moditional Dance Battle",
           "emoji": "🪭",
           "own": "Gift budget · hire culture-show producer · school outreach · judges/DJ · A1 handoff"
@@ -372,19 +358,9 @@
           "own": "Gift budget · materials + crew contract · install calendar"
         },
         {
-          "title": "Soul Torrent / Spirit Break",
-          "emoji": "⛈️",
-          "own": "Gift budget · producer/music direction contracts · dusk run-of-show · VJ/glow package"
-        },
-        {
           "title": "Fashion Garden",
           "emoji": "👗",
           "own": "Gift budget · styled-set contracts · ambassador corps · Pavilion handoff with Cafe"
-        },
-        {
-          "title": "Spirit Actors",
-          "emoji": "👻",
-          "own": "Gift budget · performer/costume contracts · cue with Soul Torrent / procession"
         },
         {
           "title": "Tết Tailgate",
@@ -483,11 +459,11 @@
         ]
       },
       {
-        "title": "Soul Torrent",
+        "title": "Lucky Wav",
         "paragraphs": [
-          "For 2027 we’re introducing Soul Torrent — a new theatrical festival concept for Saturday at Elk Grove Park. Too many festivals feel fragmented: random stage acts, random booths, random programming that never quite add up to a day you can tell someone about. Soul Torrent is our answer — one story guests can feel from daylight to dusk: dark spirits gather at the gates, protectors and families push back, and by dusk the crowd helps finish the fight.",
-          "Soul Torrent has two chapters under one name. In the afternoon, Tụ Vía invites guests into a walking circle — gathering vía (vital spirit) the way a community gathers strength together. At dusk, Spirit Break is the monsoon release: lions, heroes, music, and glow on the main stage as the malaise breaks and the park exhales before hard close.",
-          "Think of it as interactive theater woven through a free family fair — kids theater and village in daylight, teens and jackets for the dusk climax — not a nightclub and not a lecture on myth. Human-made spirit art, live performers, and cue-driven moments make the fight visible all day. Soul Torrent is the Saturday product we’re building toward; Sunday stays Tailgate and Big Game watch energy. Want to help unlock it? See Fund The Festival."
+          "For 2027, Lucky Wav is the main-stage music journey at Elk Grove Park — Lucky for blessings ahead, Wav for music, movement, and a new wave of culture. It honors where we come from and celebrates where we’re headed, for Sacramento and Elk Grove families together.",
+          "Lucky Wav can fill the main stage across the festival day, not only a single evening slot: Vietnamese-rooted song, live performers, and the energy that keeps the park feeling like one celebration instead of a stack of unrelated acts.",
+          "Sunday stays Tailgate and Big Game watch energy alongside the fair. Want to help unlock the block? See Fund The Festival."
         ]
       }
     ]
