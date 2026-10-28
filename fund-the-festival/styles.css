@@ -1,66 +1,66 @@
 :root {
-  --btf-accent: #4a9eff;
-  --btf-accent-hover: #5cabff;
-  --btf-accent-dim: #2a5a8a;
+  --btf-accent: #e4180c;
+  --btf-accent-hover: #f24b20;
+  --btf-accent-dim: #5b1a14;
   --accent: var(--btf-accent);
   --accent-hover: var(--btf-accent-hover);
   --accent-dim: var(--btf-accent-dim);
   --progress-funded: var(--btf-accent);
-  --progress-core-unfunded: rgba(74, 158, 255, 0.22);
+  --progress-core-unfunded: rgba(228, 24, 12, 0.22);
   --progress-unfunded: var(--bg);
   --danger: #f87171;
-  --card-active-bg: #152030;
-  --notice-bg: rgba(154, 168, 188, 0.12);
+  --card-active-bg: #3a1610;
+  --notice-bg: rgba(201, 169, 154, 0.12);
   --sponsor-covered-bg: rgba(61, 214, 140, 0.12);
   --sponsor-covered-border: rgba(61, 214, 140, 0.5);
-  --sponsor-open-bg: rgba(154, 168, 188, 0.08);
-  --sponsor-open-border: rgba(154, 168, 188, 0.45);
-  --fab-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(74, 158, 255, 0.25);
-  --fab-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.4), 0 3px 8px rgba(74, 158, 255, 0.35);
+  --sponsor-open-bg: rgba(201, 169, 154, 0.08);
+  --sponsor-open-border: rgba(201, 169, 154, 0.45);
+  --fab-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(228, 24, 12, 0.25);
+  --fab-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.4), 0 3px 8px rgba(242, 75, 32, 0.35);
   --focus-ring: #fff;
 }
 
 :root[data-theme="light"] {
-  --btf-accent: #2563eb;
-  --btf-accent-hover: #1d4ed8;
-  --btf-accent-dim: #93c5fd;
+  --btf-accent: #e4180c;
+  --btf-accent-hover: #b8140a;
+  --btf-accent-dim: #f5d0d0;
   --accent: var(--btf-accent);
   --accent-hover: var(--btf-accent-hover);
   --accent-dim: var(--btf-accent-dim);
   --progress-funded: var(--btf-accent);
-  --progress-core-unfunded: rgba(37, 99, 235, 0.14);
+  --progress-core-unfunded: rgba(228, 24, 12, 0.14);
   --progress-unfunded: var(--bg);
-  --card-active-bg: #eef4ff;
-  --notice-bg: rgba(92, 107, 128, 0.1);
+  --card-active-bg: #fdf2f0;
+  --notice-bg: rgba(107, 92, 85, 0.1);
   --sponsor-covered-bg: rgba(34, 160, 99, 0.12);
   --sponsor-covered-border: rgba(34, 160, 99, 0.45);
-  --sponsor-open-bg: rgba(92, 107, 128, 0.08);
-  --sponsor-open-border: rgba(92, 107, 128, 0.35);
-  --fab-shadow: 0 4px 16px rgba(15, 20, 25, 0.15), 0 2px 6px rgba(37, 99, 235, 0.2);
-  --fab-shadow-hover: 0 6px 20px rgba(15, 20, 25, 0.2), 0 3px 8px rgba(37, 99, 235, 0.28);
-  --focus-ring: #2563eb;
+  --sponsor-open-bg: rgba(107, 92, 85, 0.08);
+  --sponsor-open-border: rgba(107, 92, 85, 0.35);
+  --fab-shadow: 0 4px 16px rgba(58, 42, 38, 0.15), 0 2px 6px rgba(228, 24, 12, 0.2);
+  --fab-shadow-hover: 0 6px 20px rgba(58, 42, 38, 0.2), 0 3px 8px rgba(184, 20, 10, 0.28);
+  --focus-ring: #e4180c;
 }
 
 @media (prefers-color-scheme: light) {
   :root[data-theme="auto"] {
-    --btf-accent: #2563eb;
-    --btf-accent-hover: #1d4ed8;
-    --btf-accent-dim: #93c5fd;
+    --btf-accent: #e4180c;
+    --btf-accent-hover: #b8140a;
+    --btf-accent-dim: #f5d0d0;
     --accent: var(--btf-accent);
     --accent-hover: var(--btf-accent-hover);
     --accent-dim: var(--btf-accent-dim);
     --progress-funded: var(--btf-accent);
-    --progress-core-unfunded: rgba(37, 99, 235, 0.14);
+    --progress-core-unfunded: rgba(228, 24, 12, 0.14);
     --progress-unfunded: var(--bg);
-    --card-active-bg: #eef4ff;
-    --notice-bg: rgba(92, 107, 128, 0.1);
+    --card-active-bg: #fdf2f0;
+    --notice-bg: rgba(107, 92, 85, 0.1);
     --sponsor-covered-bg: rgba(34, 160, 99, 0.12);
     --sponsor-covered-border: rgba(34, 160, 99, 0.45);
-    --sponsor-open-bg: rgba(92, 107, 128, 0.08);
-    --sponsor-open-border: rgba(92, 107, 128, 0.35);
-    --fab-shadow: 0 4px 16px rgba(15, 20, 25, 0.15), 0 2px 6px rgba(37, 99, 235, 0.2);
-    --fab-shadow-hover: 0 6px 20px rgba(15, 20, 25, 0.2), 0 3px 8px rgba(37, 99, 235, 0.28);
-    --focus-ring: #2563eb;
+    --sponsor-open-bg: rgba(107, 92, 85, 0.08);
+    --sponsor-open-border: rgba(107, 92, 85, 0.35);
+    --fab-shadow: 0 4px 16px rgba(58, 42, 38, 0.15), 0 2px 6px rgba(228, 24, 12, 0.2);
+    --fab-shadow-hover: 0 6px 20px rgba(58, 42, 38, 0.2), 0 3px 8px rgba(184, 20, 10, 0.28);
+    --focus-ring: #e4180c;
   }
 }
 

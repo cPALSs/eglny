@@ -24,7 +24,7 @@
   },
   "hero": {
     "festivalHeadline": "Celebrate Lunar New Year Tết in Elk Grove",
-    "festivalLead": "A free family weekend of heritage, food, and community — with Lucky Wav on the main stage, honoring where we come from and celebrating where we’re headed.",
+    "festivalLead": "A free family weekend of heritage, food, and community — with Lucky\u00A0Wav on the main stage, honoring where we come from and celebrating where we’re headed.",
     "headline": "Help build the 2027 festival",
     "homeLead": "Join the team shaping this year’s celebration. Round 1 vendor applications close November 5.",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and live music on the main stage. Vendor fees fund the essentials. Sponsors unlock the magic.",
@@ -34,10 +34,10 @@
     "fundLead": "Sponsors unlock the blocks families remember."
   },
   "cta": {
-    "primaryLabel": "Join the team",
-    "primaryHref": "/team/roles/",
-    "vendorLabel": "Register as vendor",
-    "vendorHref": "/vendors/",
+    "primaryLabel": "Register as vendor",
+    "primaryHref": "/vendors/",
+    "teamLabel": "Join the team",
+    "teamHref": "/team/roles/",
     "buildLabel": "Fund The Festival",
     "buildHref": "/fund-the-festival/",
     "sponsorsLabel": "2026 sponsors",

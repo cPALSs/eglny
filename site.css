@@ -1,52 +1,99 @@
-/* EGLNY — DiffUI festival board (piecemeal: type + palette) */
-/* Fonts load via <link> in HTML (not @import) so site.css can paint without waiting on Google Fonts. */
+/* EGLNY — 2027 brand (Metropolis + Background red/warm palette) */
+/* Colo Pro / Hemgjord live only inside logo PNGs — not as webfonts. */
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/assets/fonts/Metropolis-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/assets/fonts/Metropolis-RegularItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/assets/fonts/Metropolis-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/assets/fonts/Metropolis-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/assets/fonts/Metropolis-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("/assets/fonts/Metropolis-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   color-scheme: dark;
-  /* DiffUI dark — navy / cream / lacquer red / gold */
-  --bg: #030d29;
-  --surface: #0a1638;
-  --surface-raised: #132243;
-  --border: #2a3a6a;
+  /* Brand dark — deep red-black / cream / brand red / warm gold */
+  --bg: #1a0806;
+  --surface: #2a0e0a;
+  --surface-raised: #3a1610;
+  --border: #6b2a22;
   --text: #f3e0cf;
-  --muted: #c5b8a8;
-  /* DiffUI soft purple for hero / intro lead copy */
-  --lead: #c4b5e0;
-  --teal: color-mix(in srgb, #1bb3a6 58%, #ffffff);
+  --muted: #c9a99a;
+  /* Warm rose/cream for hero / intro lead copy */
+  --lead: #f5c4b8;
+  --teal: color-mix(in srgb, #a3bb92 70%, #ffffff);
   --heading: var(--text);
-  --accent: #cc302b;
-  --accent-hover: #e03a34;
-  --accent-dim: #5b1a1c;
-  --gold: #efa52b;
-  --on-gold: #030d29;
+  --accent: #e4180c;
+  --accent-hover: #f24b20;
+  --accent-dim: #5b1a14;
+  --gold: #e8b84a;
+  --on-gold: #1a0806;
   --season-tentative-bg: color-mix(in srgb, var(--gold) 22%, var(--surface));
   --success: #3dd68c;
   --on-accent: #fff;
   --overlay: rgba(0, 0, 0, 0.55);
   --radius: 10px;
-  --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  /* Cormorant’s small x-height — bump optical size for display headings */
-  --font-display-scale: 1.5;
+  --font: "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display-scale: 1.1;
   /* Body is 1.55; wrapping display h2s need tight leading (matches .hero h1) */
   --heading-line-height: 1.15;
   --max-width: 960px;
-  --nav-height: 3.25rem;
+  --nav-height: 3.5rem;
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
   --bg: #ffffff;
   --surface: #ffffff;
-  --surface-raised: #f6f6f6;
-  --border: #e5e5e5;
-  --text: #444444;
-  --muted: #5c6b80;
-  --lead: #514989;
-  --teal: #1bb3a6;
-  --accent: #cc302b;
-  --accent-hover: #a82024;
-  --accent-dim: #f5d0d6;
+  --surface-raised: #f7f3f0;
+  --border: #e8ddd6;
+  --text: #3a2a26;
+  --muted: #6b5c55;
+  --lead: #8b1a12;
+  --teal: #6a8a68;
+  --accent: #e4180c;
+  --accent-hover: #b8140a;
+  --accent-dim: #f5d0d0;
   --gold: #c4891a;
   --on-gold: #ffffff;
   --heading: var(--lead);
@@ -58,15 +105,15 @@
     color-scheme: light;
     --bg: #ffffff;
     --surface: #ffffff;
-    --surface-raised: #f6f6f6;
-    --border: #e5e5e5;
-    --text: #444444;
-    --muted: #5c6b80;
-    --lead: #514989;
-    --teal: #1bb3a6;
-    --accent: #cc302b;
-    --accent-hover: #a82024;
-    --accent-dim: #f5d0d6;
+    --surface-raised: #f7f3f0;
+    --border: #e8ddd6;
+    --text: #3a2a26;
+    --muted: #6b5c55;
+    --lead: #8b1a12;
+    --teal: #6a8a68;
+    --accent: #e4180c;
+    --accent-hover: #b8140a;
+    --accent-dim: #f5d0d0;
     --gold: #c4891a;
     --on-gold: #ffffff;
     --heading: var(--lead);
@@ -173,19 +220,71 @@ img {
 }
 
 .site-nav-brand {
-  font-weight: 700;
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--text);
   text-decoration: none;
   min-width: 0;
+  flex-shrink: 1;
 }
 
-.site-nav-brand span {
-  color: var(--gold);
+.site-nav-symbol {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  max-width: none;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  /* High Contrast master is portrait; keep the lion head in the circle. */
+  object-position: center 28%;
 }
 
-.site-nav-brand-short {
-  display: none;
+.site-nav-logotype {
+  display: block;
+  height: 1.65rem;
+  aspect-ratio: 2265.8 / 519.1;
+  flex-shrink: 1;
+  min-width: 0;
+  background-color: #fcf6de;
+  -webkit-mask-image: url("/assets/brand/eglny-logotype.svg");
+  mask-image: url("/assets/brand/eglny-logotype.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* Light: letters knock out to the hero banner’s upper-left (red/orange field). */
+:root[data-theme="light"] .site-nav-logotype,
+:root[data-theme="auto"] .site-nav-logotype {
+  background-color: transparent;
+  background-image: url("/assets/hero/crane-child-02.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+  background-position: 0 0;
+  background-attachment: fixed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .site-nav-logotype {
+    background-color: #fcf6de;
+    background-image: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-nav-symbol {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .site-nav-logotype {
+    height: 1.35rem;
+  }
 }
 
 .site-nav-end {
@@ -410,14 +509,6 @@ body.nav-open {
 
   .site-nav.is-open {
     border-bottom-color: var(--border);
-  }
-
-  .site-nav-brand-full {
-    display: none;
-  }
-
-  .site-nav-brand-short {
-    display: inline;
   }
 
   .site-nav-toggle {
@@ -1962,6 +2053,10 @@ body.nav-open {
   gap: 0.35rem;
 }
 
+.site-footer-nav-col > a:first-child {
+  font-weight: 700;
+}
+
 .site-footer-social {
   display: flex;
   justify-content: center;
@@ -2774,7 +2869,7 @@ body.nav-open {
   font-style: normal;
 }
 
-/* —— Festival home hero (DiffUI layout; art placeholder for now) —— */
+/* —— Festival home hero (Crane Child banner) —— */
 
 .page-wrap--festival-home {
   max-width: none;
@@ -2787,126 +2882,40 @@ body.nav-open {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: min(72vh, 38rem);
-  padding: 2.5rem 0 2.75rem;
-  background:
-    radial-gradient(ellipse 70% 55% at 78% 42%, rgba(81, 73, 137, 0.22), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(34, 83, 96, 0.16), transparent 65%),
-    var(--bg);
+  padding: 0 0 2.5rem;
+  background: var(--bg);
   color: var(--text);
 }
 
-:root[data-theme="light"] .festival-hero,
-:root[data-theme="auto"] .festival-hero {
-  background:
-    radial-gradient(ellipse 70% 55% at 78% 42%, rgba(81, 73, 137, 0.08), transparent 70%),
-    var(--bg);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root[data-theme="auto"] .festival-hero {
-    background:
-      radial-gradient(ellipse 70% 55% at 78% 42%, rgba(81, 73, 137, 0.22), transparent 70%),
-      radial-gradient(ellipse 50% 40% at 20% 70%, rgba(34, 83, 96, 0.16), transparent 65%),
-      var(--bg);
-  }
+.festival-hero-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 670;
+  object-fit: cover;
+  object-position: center;
 }
 
 .festival-hero-inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  gap: 2rem;
-  flex: 1 1 auto;
-  width: 100%;
-  max-width: min(1180px, var(--max-width-wide, 1180px));
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  align-items: center;
-}
-
-@media (max-width: 899px) {
-  .festival-hero-main {
-    justify-self: center;
-    width: 100%;
-  }
-
-  .festival-hero-copy {
-    text-align: center;
-  }
-}
-
-@media (min-width: 900px) {
-  .festival-hero {
-    padding: 3.25rem 0 3.5rem;
-  }
-
-  .festival-hero-inner {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 1.5rem 2rem;
-    align-items: stretch;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .festival-hero-main {
-    justify-content: space-between;
-    align-self: stretch;
-    gap: 1.5rem;
-  }
-}
-
-.festival-hero-main {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-  max-width: 34rem;
-  min-width: 0;
-}
-
-.festival-hero-copy {
-  max-width: none;
-}
-
-.festival-hero-copy h1 {
-  margin: 0 0 1.1rem;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(
-    calc(1.85rem * var(--font-display-scale)),
-    calc(4.5vw * var(--font-display-scale)),
-    calc(2.75rem * var(--font-display-scale))
-  );
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  color: var(--heading);
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: min(960px, 100%);
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 0;
+  text-align: center;
 }
 
 .festival-hero-lead {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.6;
   color: var(--lead);
-  max-width: none;
-}
-
-.festival-hero-art {
-  justify-self: center;
-  align-self: center;
-  width: min(100%, 22rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.festival-hero-flier {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1275 / 1650;
-  object-fit: contain;
-  border-radius: 0.35rem;
-  box-shadow: 0 0.6rem 1.8rem color-mix(in srgb, #000 28%, transparent);
+  max-width: 40rem;
 }
 
 .festival-hero-meta {
@@ -2916,9 +2925,9 @@ body.nav-open {
   transform: none;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
-  padding: 0.85rem 0.15rem;
+  padding: 0.85rem;
   border: 1px solid color-mix(in srgb, var(--lead) 55%, var(--border));
   border-radius: 0.35rem;
   background: color-mix(in srgb, var(--bg) 72%, transparent);
@@ -2932,21 +2941,27 @@ body.nav-open {
   align-items: center;
   text-align: center;
   gap: 0.45rem;
-  padding: 0 0.45rem;
+  padding: 0.65rem 0.45rem;
   min-width: 0;
 }
 
 .festival-meta-item + .festival-meta-item {
-  border-left: 1px solid var(--teal);
+  border-top: 1px solid var(--teal);
 }
 
 @media (min-width: 720px) {
   .festival-hero-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     padding: 1rem 0.2rem;
   }
 
   .festival-meta-item {
     padding: 0 0.85rem;
+  }
+
+  .festival-meta-item + .festival-meta-item {
+    border-top: none;
+    border-left: 1px solid var(--teal);
   }
 }
 

@@ -213,8 +213,16 @@
     <nav class="site-nav" aria-label="Main">
       <div class="site-nav-bar">
         <a class="site-nav-brand" href="/">
-          <span class="site-nav-brand-full">Elk Grove Lunar New Year <span>Tết</span></span>
-          <span class="site-nav-brand-short">EGLNY <span>Tết</span></span>
+          <img
+            class="site-nav-symbol"
+            src="/assets/brand/eglny-symbol.png"
+            alt=""
+            width="320"
+            height="320"
+            decoding="async"
+          />
+          <span class="site-nav-logotype" aria-hidden="true"></span>
+          <span class="sr-only">Elk Grove Lunar New Year Tết</span>
         </a>
         <div class="site-nav-end">
           ${renderThemeControl()}
@@ -623,7 +631,7 @@
     return icons[kind] ?? "";
   }
 
-  const HERO_SAVE_THE_DATE_SRC = "/assets/hero/save-the-date-2027.jpg";
+  const HERO_CRANE_CHILD_SRC = "/assets/hero/crane-child-02.jpg";
 
   function renderFestivalHero(site) {
     const event = site.event ?? {};
@@ -638,56 +646,50 @@
       "A joyful celebration of heritage, community, and new beginnings. Enjoy traditional performances, delicious food, music, and activities for the whole family.";
     const keepElkGrove = (s) => String(s).replace(/Elk Grove/g, "Elk\u00A0Grove");
     const leadHtml = escapeHtml(lead).replace(
-      /Lucky Wav/g,
-      '<a href="/about/#lucky-wav">Lucky Wav</a>',
+      /Lucky[\u00A0 ]Wav/g,
+      '<a href="/about/#lucky-wav">Lucky\u00A0Wav</a>',
     );
 
     return `
       <section class="festival-hero" aria-label="Festival highlight">
+        <h1 class="sr-only">${escapeHtml(keepElkGrove(headline))}</h1>
+        <img
+          class="festival-hero-banner"
+          src="${HERO_CRANE_CHILD_SRC}"
+          alt="EGLNY Tết — February 13–14 at Elk Grove Park. Crane, lion dance, and a child in festival dress."
+          width="1280"
+          height="670"
+          decoding="async"
+        />
         <div class="festival-hero-inner">
-          <div class="festival-hero-main">
-            <div class="festival-hero-copy">
-              <h1>${escapeHtml(keepElkGrove(headline))}</h1>
-              <p class="festival-hero-lead">${leadHtml}</p>
-            </div>
-            <div class="festival-hero-meta" role="group" aria-label="Event details">
-              <div class="festival-meta-item">
-                ${festivalMetaIcon("calendar")}
-                <div>
-                  <p class="festival-meta-label festival-meta-label--tabular">${escapeHtml(dates.datePrimary)}</p>
-                  <p class="festival-meta-detail">${escapeHtml(
-                    [dates.weekdayHint, dates.timePrimary].filter(Boolean).join(" · "),
-                  )}</p>
-                </div>
-              </div>
-              <div class="festival-meta-item">
-                ${festivalMetaIcon("pin")}
-                <div>
-                  <p class="festival-meta-label">${escapeHtml(keepElkGrove(String(venue)).toUpperCase())}</p>
-                  ${address ? `<p class="festival-meta-detail">${escapeHtml(keepElkGrove(address))}</p>` : ""}
-                </div>
-              </div>
-              <div class="festival-meta-item">
-                ${festivalMetaIcon("people")}
-                <div>
-                  <p class="festival-meta-label">Free Admission</p>
-                  <p class="festival-meta-detail">${escapeHtml(
-                    String(freeLine).replace(/^free(\s+admission)?\s+/i, "").toUpperCase() ||
-                      "COMMUNITY CELEBRATION",
-                  )}</p>
-                </div>
+          <p class="festival-hero-lead">${leadHtml}</p>
+          <div class="festival-hero-meta" role="group" aria-label="Event details">
+            <div class="festival-meta-item">
+              ${festivalMetaIcon("calendar")}
+              <div>
+                <p class="festival-meta-label festival-meta-label--tabular">${escapeHtml(dates.datePrimary)}</p>
+                <p class="festival-meta-detail">${escapeHtml(
+                  [dates.weekdayHint, dates.timePrimary].filter(Boolean).join(" · "),
+                )}</p>
               </div>
             </div>
-          </div>
-          <div class="festival-hero-art">
-            <img
-              class="festival-hero-flier"
-              src="${HERO_SAVE_THE_DATE_SRC}"
-              alt="Save the date — Elk Grove Lunar New Year Tết 2027, February 13–14 at Elk Grove Regional Park"
-              width="1275"
-              height="1650"
-              decoding="async"
-            />
+            <div class="festival-meta-item">
+              ${festivalMetaIcon("pin")}
+              <div>
+                <p class="festival-meta-label">${escapeHtml(keepElkGrove(String(venue)).toUpperCase())}</p>
+                ${address ? `<p class="festival-meta-detail">${escapeHtml(keepElkGrove(address))}</p>` : ""}
+              </div>
+            </div>
+            <div class="festival-meta-item">
+              ${festivalMetaIcon("people")}
+              <div>
+                <p class="festival-meta-label">Free Admission</p>
+                <p class="festival-meta-detail">${escapeHtml(
+                  String(freeLine).replace(/^free(\s+admission)?\s+/i, "").toUpperCase() ||
+                    "COMMUNITY CELEBRATION",
+                )}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

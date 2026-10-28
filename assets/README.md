@@ -1,12 +1,28 @@
 # Site assets
 
+## Brand (`brand/`)
+
+2027 EGLNY mark and washes for the public site:
+
+| File | Use |
+|------|-----|
+| `eglny-symbol.png` | Nav mark, circle-cropped (from High Contrast master — reads at small size) |
+| `eglny-logotype.svg` | Nav wordmark (tight viewBox). Dark fill `#fcf6de`; light theme masks the hero’s upper left through the letters |
+| `eglny-logo-square.png` | Earlier square lockup |
+| `eglny-logo.png` | Full lockup (optional) |
+| `background-wash.jpg` | Unused page wash (hero is Crane Child) |
+
+Logotype art uses **Colo Pro** + **Hemgjord Lettering** baked into the PNG. Do **not** ship those as webfonts. Live UI copy uses Metropolis only.
+
+Source masters: `Programs/Lunar New Year/2027/Marketing Assets/` (`EGLNY 2027 Symbol - High Contrast.png` for nav, `EGLNY 2027 Symbol - Square.png`, `EGLNY 2027 Logotype.svg`, `EGLNY 2027 Logo*.png`, `Background.png`, `Crane Child 02.png`).
+
+## Fonts (`fonts/`)
+
+Self-hosted **Metropolis** (Chris Simpson; OFL) as woff2 — Regular, RegularItalic, Medium, SemiBold, Bold, BoldItalic. Declared via `@font-face` in `../site.css`.
+
 ## Lion dance group avatars (`lion-dance/`)
 
 Cached Instagram profile pictures for `/resources/lion-dance/`. Named after the handle (`eastern_ways.jpg`, `redlotus-official.jpg`). Do not hotlink Instagram CDN URLs — they expire. Re-download from the live profile if an avatar goes stale.
-
-## Social share image
-
-## Social share image
 
 ## Social share image
 
