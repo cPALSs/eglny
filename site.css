@@ -2892,6 +2892,10 @@ body.nav-open {
   width: 100%;
   height: auto;
   aspect-ratio: 1280 / 670;
+  /* Wide viewports: cap so AR height never exceeds the screen below the sticky nav */
+  max-height: calc(100vh - var(--nav-height));
+  max-height: calc(100dvh - var(--nav-height));
+  min-height: clamp(12.5rem, 36vw, 22rem);
   object-fit: cover;
   object-position: center;
 }

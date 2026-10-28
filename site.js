@@ -632,6 +632,9 @@
   }
 
   const HERO_CRANE_CHILD_SRC = "/assets/hero/crane-child-02.jpg";
+  const HERO_CRANE_CHILD_SRCSET =
+    "/assets/hero/crane-child-02.jpg 1280w, /assets/hero/crane-child-02-2x.jpg 1920w";
+  const HERO_CRANE_CHILD_SIZES = "100vw";
 
   function renderFestivalHero(site) {
     const event = site.event ?? {};
@@ -656,6 +659,8 @@
         <img
           class="festival-hero-banner"
           src="${HERO_CRANE_CHILD_SRC}"
+          srcset="${HERO_CRANE_CHILD_SRCSET}"
+          sizes="${HERO_CRANE_CHILD_SIZES}"
           alt="EGLNY Tết — February 13–14 at Elk Grove Park. Crane, lion dance, and a child in festival dress."
           width="1280"
           height="670"
