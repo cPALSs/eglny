@@ -49,6 +49,7 @@
       <section class="hero">
         <h1>Team</h1>
         <p>Who is working each part of Elk Grove Lunar New Year Tết 2027.</p>
+        <p>Team meetings on Zoom are Mondays at 6:30 PM. Contact <a href="mailto:contact@eglny.com">contact@eglny.com</a> to be invited.</p>
       </section>
       <section><h2>Steering Committee</h2><p>Bao Thien Ngo, Thuy Pham</p></section>
     </div>
@@ -75,6 +76,13 @@
         setPageTitle(site, "Team");
         const rosterPage = site.teamPage?.rosterPage ?? {};
         const roster = site.teamPage?.roster ?? {};
+        const contactEmail = site.apply?.email ?? "contact@eglny.com";
+        const meetingNote = rosterPage.meetingNote
+          ? `<p class="hero-lead">${escapeHtml(rosterPage.meetingNote).replace(
+              /\{email\}/g,
+              `<a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>`,
+            )}</p>`
+          : "";
         document.getElementById("main").innerHTML = `
           <section class="hero">
             <h1>${escapeHtml(rosterPage.headline ?? roster.title ?? "Team")}</h1>
@@ -83,6 +91,7 @@
                 ? `<p class="hero-lead">${escapeHtml(rosterPage.lead ?? roster.intro)}</p>`
                 : ""
             }
+            ${meetingNote}
           </section>
           ${renderRosterPage(site)}
         `;
