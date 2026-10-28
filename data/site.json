@@ -60,7 +60,7 @@
     "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.",
     "rosterPage": {
       "headline": "Team",
-      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027. These are working homes, not director appointments."
+      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027."
     },
     "join": {
       "title": "Get involved",
@@ -121,7 +121,7 @@
           "members": [
             {
               "name": "Lily Tran",
-              "title": "Stage entertainment · Lucky Wav",
+              "title": "Director of Stage Entertainment / Lucky Wav",
               "photo": "/assets/roster/lily-tran.jpg",
               "instagram": "letmamiicook",
               "vision": "If you grew up celebrating Lunar New Year, you know what it means to keep culture and tradition alive — and that each generation has its own way of expressing that. When I was asked to lead music for Elk Grove LNY, I got space to create something different. That’s how Lucky Wav was born: Lucky for blessings ahead, Wav for music, movement, and a new wave of culture. This segment is about honoring where we come from and celebrating where we’re headed — for our community in Sacramento and Elk Grove."
@@ -159,55 +159,29 @@
                   ]
                 }
               ]
+            }
+          ],
+          "credits": [
+            {
+              "area": "Sunday tailgate",
+              "names": ["Robert Do"]
             },
             {
-              "name": "Ngãi Võ",
-              "title": "Show and concept design"
-            },
-            {
-              "name": "Robert Do",
-              "title": "Sunday tailgate"
-            },
-            {
-              "name": "Nick Huynh",
-              "title": "Children's activities"
-            },
-            {
-              "name": "Tuyet-Nhung Bui-Kelly",
-              "title": "Children's activities"
+              "area": "Children's activities",
+              "names": ["Nick Huynh"]
             }
           ]
         },
         {
           "title": "Outreach & partners",
-          "members": [
+          "credits": [
             {
-              "name": "Tido Hoang",
-              "title": "Partnerships"
+              "area": "Partnerships",
+              "names": ["Tido Hoang", "Kevin P. Nguyen", "Dai Nguyen"]
             },
             {
-              "name": "Kevin P. Nguyen",
-              "title": "Partnerships"
-            },
-            {
-              "name": "Dai Nguyen",
-              "title": "Community events"
-            },
-            {
-              "name": "Nikki Nguyen",
-              "title": "Advisor"
-            },
-            {
-              "name": "Ryu Do",
-              "title": "Graphic design"
-            },
-            {
-              "name": "Amber Lua",
-              "title": "Sponsorship packet design"
-            },
-            {
-              "name": "Phi Lu",
-              "title": "Food vendors"
+              "area": "Graphic design",
+              "names": ["Ryu Do", "Amber Lua"]
             }
           ]
         },
@@ -218,18 +192,20 @@
               "name": "Thuy Pham",
               "title": "Site and operations",
               "photo": "/assets/roster/thuy-pham.jpg"
+            }
+          ],
+          "credits": [
+            {
+              "area": "Decorations",
+              "names": ["Raul Armenta", "Vivien Do"]
             },
             {
-              "name": "Raul Armenta",
-              "title": "Decorations"
+              "area": "Volunteers",
+              "names": ["David Tran"]
             },
             {
-              "name": "David Tran",
-              "title": "Volunteers"
-            },
-            {
-              "name": "Kenrick Young",
-              "title": "Legal advisor"
+              "area": "Legal",
+              "names": ["Kenrick Young"]
             }
           ]
         }

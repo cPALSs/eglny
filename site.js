@@ -757,7 +757,12 @@
   function buildRosterToc(site) {
     const groups = site.teamPage?.roster?.groups ?? [];
     return groups
-      .filter((group) => group.title)
+      .filter((group) => {
+        if (!group.title) return false;
+        const hasMembers = (group.members?.length ?? 0) > 0;
+        const hasCredits = (group.credits ?? []).some((c) => c?.area && (c.names?.length ?? 0) > 0);
+        return hasMembers || hasCredits;
+      })
       .map((group) => ({
         id: slugifyHeading(group.title),
         label: group.title,
@@ -1642,6 +1647,26 @@
     });
   }
 
+  function renderRosterCredits(credits) {
+    const blocks = (credits ?? []).filter((c) => c?.area && (c.names?.length ?? 0) > 0);
+    if (!blocks.length) return "";
+    return `
+      <div class="roster-credits">
+        ${blocks
+          .map((block) => {
+            const names = block.names
+              .map((name) => `<li>${escapeHtml(name)}</li>`)
+              .join("");
+            return `
+              <div class="roster-credit-block">
+                <h3 class="roster-credit-area">${escapeHtml(block.area)}</h3>
+                <ul class="roster-credit-names">${names}</ul>
+              </div>`;
+          })
+          .join("")}
+      </div>`;
+  }
+
   function renderRosterSection(site) {
     const roster = site.teamPage?.roster;
     if (!roster) return "";
@@ -1655,17 +1680,25 @@
 
     return groups
       .map((group) => {
+        const members = group.members ?? [];
+        const creditsHtml = renderRosterCredits(group.credits);
+        if (!members.length && !creditsHtml) return "";
         const id = group.title ? slugifyHeading(group.title) : "roster";
         const heading = group.title
           ? `<h2>${escapeHtml(group.title)}</h2>`
           : `<h2>${escapeHtml(roster.title ?? "Team")}</h2>`;
-        const cards = (group.members ?? []).map(renderRosterMemberCard).join("");
+        const cards = members.map(renderRosterMemberCard).join("");
+        const grid = cards
+          ? `<div class="co-chairs roster-grid">${cards}</div>`
+          : "";
         return `
           <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
             ${heading}
-            <div class="co-chairs roster-grid">${cards}</div>
+            ${grid}
+            ${creditsHtml}
           </section>`;
       })
+      .filter(Boolean)
       .join("");
   }
 
