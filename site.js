@@ -2387,9 +2387,11 @@
   function renderVendorsBoothsPage(page) {
     const waitlist = page?.waitlist ?? {};
     const inventory = page?.inventory ?? {};
+    const fees = page?.fees ?? {};
     const criteria = page?.criteria ?? {};
     const timeline = page?.timeline ?? {};
     const hasInventory = Boolean(inventory.title || inventory.table?.rows?.length);
+    const hasFees = Boolean(fees.title || fees.notes?.length || fees.sections?.length);
     const hasCriteria = Boolean(
       criteria.title || criteria.deny?.length || criteria.factors?.rows?.length,
     );
@@ -2397,6 +2399,9 @@
       { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Waitlist" },
       ...(hasInventory
         ? [{ id: inventory.id ?? "inventory", label: inventory.tocLabel ?? inventory.title ?? "Inventory" }]
+        : []),
+      ...(hasFees
+        ? [{ id: fees.id ?? "fees", label: fees.tocLabel ?? fees.title ?? "Fees & terms" }]
         : []),
       { id: timeline.id ?? "timeline", label: timeline.tocLabel ?? timeline.title ?? "Timeline" },
       ...(hasCriteria
@@ -2410,7 +2415,7 @@
       <article class="booth-round-card">
         <h3>${escapeHtml(round.label)}</h3>
         ${round.window ? `<p class="booth-round-window">${escapeHtml(round.window)}</p>` : ""}
-        ${round.note ? `<p>${escapeHtml(round.note)}</p>` : ""}
+        ${round.note ? `<p>${formatBriefProse(round.note)}</p>` : ""}
       </article>`,
       )
       .join("");
@@ -2460,7 +2465,36 @@
         ${inventory.intro ? `<p>${formatBriefProse(inventory.intro)}</p>` : ""}
         ${renderBriefTable(inventory.table)}
         ${renderBriefBullets(inventory.notes)}
-        ${inventory.footnote ? `<p class="muted">${escapeHtml(inventory.footnote)}</p>` : ""}
+        ${inventory.footnote ? `<p class="muted">${formatBriefProse(inventory.footnote)}</p>` : ""}
+      </section>`
+      : "";
+
+    const feesSectionsHtml = (fees.sections ?? [])
+      .map((section) => {
+        const bodies = []
+          .concat(section.body ?? [])
+          .filter(Boolean)
+          .map((p) => `<p>${formatBriefProse(p)}</p>`)
+          .join("");
+        const after = []
+          .concat(section.after ?? [])
+          .filter(Boolean)
+          .map((p) => `<p>${formatBriefProse(p)}</p>`)
+          .join("");
+        return `
+        <h3 class="booth-path-heading">${escapeHtml(section.title)}</h3>
+        ${bodies}
+        ${section.bullets?.length ? renderBriefBullets(section.bullets) : ""}
+        ${after}`;
+      })
+      .join("");
+
+    const feesHtml = hasFees
+      ? `<section class="content-section site-doc-section" id="${escapeHtml(fees.id ?? "fees")}" data-doc-section>
+        <h2>${escapeHtml(fees.title ?? "Fees and terms")}</h2>
+        ${fees.intro ? `<p>${formatBriefProse(fees.intro)}</p>` : ""}
+        ${feesSectionsHtml || renderBriefBullets(fees.notes)}
+        ${fees.footnote ? `<p class="muted">${formatBriefProse(fees.footnote)}</p>` : ""}
       </section>`
       : "";
 
@@ -2501,6 +2535,7 @@
         ${waitlistCta}
       </section>
       ${inventoryHtml}
+      ${feesHtml}
       <section class="content-section site-doc-section" id="${escapeHtml(timeline.id ?? "timeline")}" data-doc-section>
         <h2>${escapeHtml(timeline.title ?? "How selection works")}</h2>
         ${timeline.intro ? `<p>${formatBriefProse(timeline.intro)}</p>` : ""}
