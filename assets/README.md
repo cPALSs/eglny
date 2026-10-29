@@ -22,7 +22,7 @@ Self-hosted **Metropolis** (Chris Simpson; OFL) as woff2 — Regular, RegularIta
 
 ## Lion dance group avatars (`lion-dance/`)
 
-Cached Instagram profile pictures for `/resources/lion-dance/`. Named after the handle (`eastern_ways.jpg`, `redlotus-official.jpg`). Do not hotlink Instagram CDN URLs — they expire. Re-download from the live profile if an avatar goes stale.
+Cached Instagram profile pictures (legacy EGLNY copies). Canonical roster + avatars now live on Little Saigon Sactown at `littlesaigonsac.town/lists/lion-dance/` (`Operations/Sites/littlesaigonsac/src/img/lists/lion-dance/`). Named after the handle (`eastern_ways.jpg`, `redlotus-official.jpg`). Do not hotlink Instagram CDN URLs — they expire.
 
 ## Social share image
 

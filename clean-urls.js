@@ -26,8 +26,13 @@
     return;
   }
 
-  if (pathname === "/resources/lion-dance-groups" || pathname === "/resources/lion-dance-groups/") {
-    location.replace("/resources/lion-dance/" + search + hash);
+  if (
+    pathname === "/resources/lion-dance" ||
+    pathname === "/resources/lion-dance/" ||
+    pathname === "/resources/lion-dance-groups" ||
+    pathname === "/resources/lion-dance-groups/"
+  ) {
+    location.replace("https://littlesaigonsac.town/lists/lion-dance/" + search + hash);
     return;
   }
 

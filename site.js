@@ -176,7 +176,7 @@
         href: "/resources/",
         children: [
           { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
-          { id: "lion-dance", label: "Lion dance groups", navLabel: "Lion dance groups", href: "/resources/lion-dance/" },
+          { id: "lion-dance", label: "Lion dance groups", navLabel: "Lion dance groups", href: "https://littlesaigonsac.town/lists/lion-dance/", external: true },
           { id: "archive2026", label: "2026 archive", navLabel: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
         ],
       },
