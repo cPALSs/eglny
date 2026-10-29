@@ -131,7 +131,7 @@
     return item.navLabel ?? toTitleCase(item.label);
   }
 
-  /** Public Drive PDF — keep in sync with Business Dev export. */
+  /** Public Drive PDF — web/attach-optimized leave-behind (keep in sync with Business Dev). */
   const SPONSORSHIP_PACKET_PDF_URL =
     "https://drive.google.com/file/d/1lcY0v0KhtJf_gxRvhqQPTJRiHPVRB4IO/view";
 
