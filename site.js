@@ -631,10 +631,10 @@
     return icons[kind] ?? "";
   }
 
-  const HERO_CRANE_CHILD_SRC = "/assets/hero/crane-child-02.jpg";
-  const HERO_CRANE_CHILD_SRCSET =
-    "/assets/hero/crane-child-02.jpg 1280w, /assets/hero/crane-child-02-2x.jpg 1920w";
-  const HERO_CRANE_CHILD_SIZES = "100vw";
+  const HERO_GOLDEN_GOAT_SRC = "/assets/hero/golden-goat-01.jpg";
+  const HERO_GOLDEN_GOAT_SRCSET =
+    "/assets/hero/golden-goat-01.jpg 1280w, /assets/hero/golden-goat-01-2x.jpg 1920w";
+  const HERO_GOLDEN_GOAT_SIZES = "100vw";
 
   function renderFestivalHero(site) {
     const event = site.event ?? {};
@@ -658,10 +658,10 @@
         <h1 class="sr-only">${escapeHtml(keepElkGrove(headline))}</h1>
         <img
           class="festival-hero-banner"
-          src="${HERO_CRANE_CHILD_SRC}"
-          srcset="${HERO_CRANE_CHILD_SRCSET}"
-          sizes="${HERO_CRANE_CHILD_SIZES}"
-          alt="EGLNY Tết — February 13–14 at Elk Grove Park. Crane, lion dance, and a child in festival dress."
+          src="${HERO_GOLDEN_GOAT_SRC}"
+          srcset="${HERO_GOLDEN_GOAT_SRCSET}"
+          sizes="${HERO_GOLDEN_GOAT_SIZES}"
+          alt="EGLNY Tết — February 13–14 at Elk Grove Park. Golden goat with lion dancers."
           width="1280"
           height="670"
           decoding="async"

@@ -175,15 +175,16 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  min-height: var(--nav-height);
 }
 
 .site-nav {
   position: relative;
   z-index: 100;
+  min-height: var(--nav-height);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(10px);
+  box-sizing: border-box;
 }
 
 .site-nav-bar {
@@ -262,7 +263,7 @@ img {
 :root[data-theme="light"] .site-nav-logotype,
 :root[data-theme="auto"] .site-nav-logotype {
   background-color: transparent;
-  background-image: url("/assets/hero/crane-child-02.jpg");
+  background-image: url("/assets/hero/golden-goat-01.jpg");
   background-repeat: no-repeat;
   background-size: 100vw auto;
   background-position: 0 0;
@@ -2909,7 +2910,7 @@ body.nav-open {
   font-style: normal;
 }
 
-/* —— Festival home hero (Crane Child banner) —— */
+/* —— Festival home hero (Golden Goat banner) —— */
 
 .page-wrap--festival-home {
   max-width: none;

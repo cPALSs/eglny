@@ -10,11 +10,11 @@
 | `eglny-logotype.svg` | Nav wordmark (tight viewBox). Dark fill `#fcf6de`; light theme masks the hero’s upper left through the letters |
 | `eglny-logo-square.png` | Earlier square lockup |
 | `eglny-logo.png` | Full lockup (optional) |
-| `background-wash.jpg` | Unused page wash (hero is Crane Child) |
+| `background-wash.jpg` | Unused page wash (hero is Golden Goat) |
 
 Logotype art uses **Colo Pro** + **Hemgjord Lettering** baked into the PNG. Do **not** ship those as webfonts. Live UI copy uses Metropolis only.
 
-Source masters: `Programs/Lunar New Year/2027/Marketing Assets/` (`EGLNY 2027 Symbol - High Contrast.png` for nav, `EGLNY 2027 Symbol - Square.png`, `EGLNY 2027 Logotype.svg`, `EGLNY 2027 Logo*.png`, `Background.png`, `Crane Child 02.png`).
+Source masters: `Programs/Lunar New Year/2027/Marketing Assets/` (`EGLNY 2027 Symbol - High Contrast.png` for nav, `EGLNY 2027 Symbol - Square.png`, `EGLNY 2027 Logotype.svg`, `EGLNY 2027 Logo*.png`, `Background.png`, `Golden Goat 01.png`).
 
 ## Fonts (`fonts/`)
 
@@ -26,7 +26,17 @@ Cached Instagram profile pictures (legacy EGLNY copies). Canonical roster + avat
 
 ## Social share image
 
-`og-default.jpg` (1200×630) is the Open Graph / Twitter card for eglny.com. Current art is the 2027 Crane Child graphic. After replacing this file, run the festival SEO build so `?v=` cache-busts Facebook/Slack scrapers.
+`og-default.jpg` (1200×630) is the Open Graph / Twitter card for eglny.com. Current art is the 2027 Golden Goat graphic. After replacing this file, run the festival SEO build so `?v=` cache-busts Facebook/Slack scrapers.
+
+## Hero (`hero/`)
+
+| File | Use |
+|------|-----|
+| `golden-goat-01.jpg` | Home hero banner (1280×670) |
+| `golden-goat-01-2x.jpg` | Home hero srcset 2× (1920×1005) |
+| `save-the-date-2027.jpg` | Legacy save-the-date flier (kept) |
+
+Crane Child site exports retired — masters in Marketing Assets `Deprecated/`.
 
 ## Menu viewer (`menu-viewer/`)
 
