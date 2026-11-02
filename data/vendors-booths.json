@@ -121,13 +121,19 @@
         ]
       },
       {
-        "title": "Insurance",
+        "title": "Insurance (COI)",
+        "body": [
+          "A certificate of insurance is **not** required when you apply. Food booths and any booth using electrical power or a generator must upload a current general liability COI by **Fri, Jan 29, 2027** (same day as full booth payment and cleanup deposits), or at approval if you are approved after that date. Your booth is not fully confirmed until we review an acceptable COI."
+        ],
         "bullets": [
-          "**Food or power/generator:** upload a general liability COI with the application — we check it before confirmation",
-          "**Basic non-food, no power:** sign the vendor agreement confirming you carry your own liability insurance"
+          "**Who needs a COI:** every food booth on the Food app — including drinks, snacks, and sealed / prepackaged take-home food — plus any merchant, nonprofit, or kids booth that uses electrical power or a generator",
+          "**Who does not:** basic non-food, no-power booths self-attest in the vendor agreement (no COI upload)",
+          "**Coverage:** commercial general liability, occurrence form · **$1,000,000** each occurrence · **$2,000,000** general aggregate · must cover **Sat–Sun, Feb 13–14, 2027**",
+          "**Additional insured (name all three):** Cosumnes Community Services District, its officials, employees, agents, and authorized volunteers · Vietnamese American Community of Sacramento (VACOS) · Community Partners Advocate of Little Saigon Sacramento (cPALSs), as co-host",
+          "**Certificate holder:** Elk Grove Lunar New Year Tết 2027 / VACOS · 9950 Elk Grove-Florin Road, Elk Grove, CA 95624"
         ],
         "after": [
-          "Additional-insured wording is finalized in your acceptance email."
+          "You may upload a COI with your application if you already have one; otherwise wait until closer to Jan 29. We will email accepted food and power vendors with these guidelines again before the due date."
         ]
       },
       {
@@ -166,7 +172,7 @@
       {
         "id": "apply",
         "title": "Apply",
-        "body": "Submit through Eventeny with the $25 application deposit (required to be considered; nonprofit, community info, and kids activity tables pay no deposit). Food and power booths upload a certificate of insurance with the application."
+        "body": "Submit through Eventeny with the $25 application deposit (required to be considered; nonprofit, community info, and kids activity tables pay no deposit). A COI is not required at apply — food and power/generator booths upload it by Fri, Jan 29, 2027 with full payment and deposits."
       },
       {
         "id": "wait",
