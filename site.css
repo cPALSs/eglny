@@ -259,21 +259,16 @@ img {
   mask-size: contain;
 }
 
-/* Light: letters knock out to the hero banner’s upper-left (red/orange field). */
+/* Light: solid brand red (hero crop showed flyer text through the letters on mobile). */
 :root[data-theme="light"] .site-nav-logotype,
 :root[data-theme="auto"] .site-nav-logotype {
-  background-color: transparent;
-  background-image: url("/assets/hero/golden-goat-01.jpg");
-  background-repeat: no-repeat;
-  background-size: 100vw auto;
-  background-position: 0 0;
-  background-attachment: fixed;
+  background-color: var(--accent);
+  background-image: none;
 }
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] .site-nav-logotype {
     background-color: #fcf6de;
-    background-image: none;
   }
 }
 
@@ -2964,6 +2959,9 @@ body.nav-open {
 }
 
 .festival-hero-meta {
+  --festival-meta-ink: #fcf6de;
+  --festival-meta-ink-soft: color-mix(in srgb, #fcf6de 82%, #ffffff);
+  --festival-meta-rule: color-mix(in srgb, #fcf6de 42%, transparent);
   position: static;
   left: auto;
   bottom: auto;
@@ -2973,11 +2971,16 @@ body.nav-open {
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
   padding: 0.85rem;
-  border: 1px solid color-mix(in srgb, var(--lead) 55%, var(--border));
+  border: 1px solid color-mix(in srgb, #fcf6de 28%, transparent);
   border-radius: 0.35rem;
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+  color: var(--festival-meta-ink);
+  background-color: #c4120a;
+  background-image: url("/assets/brand/amber-lua-wash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* Bias toward the saturated red field (avoid pale pink/mint strip on the right). */
+  background-position: 32% 42%;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
 }
 
 .festival-meta-item {
@@ -2991,7 +2994,7 @@ body.nav-open {
 }
 
 .festival-meta-item + .festival-meta-item {
-  border-top: 1px solid var(--teal);
+  border-top: 1px solid var(--festival-meta-rule);
 }
 
 @media (min-width: 720px) {
@@ -3006,23 +3009,17 @@ body.nav-open {
 
   .festival-meta-item + .festival-meta-item {
     border-top: none;
-    border-left: 1px solid var(--teal);
+    border-left: 1px solid var(--festival-meta-rule);
   }
 }
 
-.festival-meta-icon {
+.festival-meta-icon,
+.festival-meta-icon--pin,
+.festival-meta-icon--people {
   width: 1.65rem;
   height: 1.65rem;
   margin-top: 0;
-  color: var(--accent);
-}
-
-.festival-meta-icon--pin {
-  color: var(--teal);
-}
-
-.festival-meta-icon--people {
-  color: var(--gold);
+  color: var(--festival-meta-ink);
 }
 
 .festival-meta-label {
@@ -3032,8 +3029,9 @@ body.nav-open {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text);
+  color: var(--festival-meta-ink);
   line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(26, 8, 6, 0.35);
 }
 
 .festival-meta-label--tabular {
@@ -3047,7 +3045,8 @@ body.nav-open {
   line-height: 1.4;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--festival-meta-ink-soft);
+  text-shadow: 0 1px 2px rgba(26, 8, 6, 0.3);
 }
 
 .home-below {

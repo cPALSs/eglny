@@ -7,14 +7,14 @@
 | File | Use |
 |------|-----|
 | `eglny-symbol.png` | Nav mark, circle-cropped (from High Contrast master — reads at small size) |
-| `eglny-logotype.svg` | Nav wordmark (tight viewBox). Dark fill `#fcf6de`; light theme masks the hero’s upper left through the letters |
+| `eglny-logotype.svg` | Nav wordmark (tight viewBox). Dark fill `#fcf6de`; light theme solid brand red (`--accent`) through the letters |
 | `eglny-logo-square.png` | Earlier square lockup |
 | `eglny-logo.png` | Full lockup (optional) |
-| `background-wash.jpg` | Unused page wash (hero is Golden Goat) |
+| `amber-lua-wash.jpg` | Home festival meta info box wash (Amber Lua; ~927×1200 JPEG ≈62 KB) |
 
 Logotype art uses **Colo Pro** + **Hemgjord Lettering** baked into the PNG. Do **not** ship those as webfonts. Live UI copy uses Metropolis only.
 
-Source masters: `Programs/Lunar New Year/2027/Marketing Assets/` (`EGLNY 2027 Symbol - High Contrast.png` for nav, `EGLNY 2027 Symbol - Square.png`, `EGLNY 2027 Logotype.svg`, `EGLNY 2027 Logo*.png`, `Background.png`, `Golden Goat 01.png`).
+Source masters: `Programs/Lunar New Year/2027/Marketing Assets/` (`EGLNY 2027 Symbol - High Contrast.png` for nav, `EGLNY 2027 Symbol - Square.png`, `EGLNY 2027 Logotype.svg`, `EGLNY 2027 Logo*.png`, `Background by Amber Lua.png`, `Golden Goat 01.png`).
 
 ## Fonts (`fonts/`)
 
