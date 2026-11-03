@@ -2971,7 +2971,7 @@ body.nav-open {
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
   padding: 0.85rem;
-  border: 1px solid color-mix(in srgb, #fcf6de 28%, transparent);
+  border: none;
   border-radius: 0.35rem;
   color: var(--festival-meta-ink);
   background-color: #c4120a;
