@@ -1,6 +1,6 @@
 /** Festival cuisine lanes for public menu “By cuisine” browse. */
 
-/** Meal cuisine lanes, then Snacks, then Drinks (format buckets). */
+/** Meal cuisine lanes, then savory snacks / sweets / drinks (format buckets). */
 export const CUISINE_ORDER = [
   "vietnamese",
   "chinese",
@@ -30,7 +30,7 @@ export const CUISINE_LABELS = {
   american: "American / fair classics",
   fusion: "Fusion",
   other: "Other",
-  snacks: "Snacks",
+  snacks: "Savory snacks",
   sweets: "Sweets",
   drinks: "Drinks",
 };
@@ -72,7 +72,7 @@ const ITEM_RULES = [
   ],
   [
     "filipino",
-    /\b(sisig|lumpia|tocino|lechon|adobo|longanisa|longganisa|pancit|halo[\s-]?halo|calamansi|ube\b|buko|pandan|sago|puto|balut|gang\s*wangs?)\b/i,
+    /\b(sisig|lumpia|tapa|tocino|lechon|adobo|longanisa|longganisa|pancit|halo[\s-]?halo|calamansi|ube\b|buko|pandan|sago|puto|balut|gang\s*wangs?)\b/i,
   ],
   [
     "chinese",

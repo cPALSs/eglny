@@ -1,0 +1,339 @@
+{
+  "festival": "LNY 2027 — Round 1 locked vendors",
+  "published_at": "2026-11-06",
+  "year": 2027,
+  "disclaimer": "Menu subject to change as more vendors lock seats. Filters reflect vendor self-report — not medical advice.",
+  "vendors": [
+    {
+      "id": "bobette-tea",
+      "name": "Bobette Tea",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Fruit green tea",
+          "note": null,
+          "options": "strawberry, mango, peach, passion fruit, lychee",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Milk tea",
+          "note": null,
+          "options": "Thai, taro, coconut, brown sugar, honeydew, classic, jasmine",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Vietnamese coffee",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Hazelnut coffee",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Ube coffee",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "tri-foods",
+      "name": "TRI-FOODS",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Chè",
+          "note": "Vietnamese sweet dessert",
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Vietnamese coffee",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "fairy-bites-delicacies",
+      "name": "Fairy Bites & Delicacies",
+      "booth_label": null,
+      "booth_kind": "open_cooking",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Beef tapa rice plate",
+          "note": "Filipino cured beef",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Sisig rice plate",
+          "note": "Filipino sizzling pork",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Lumpia",
+          "note": "Filipino spring rolls",
+          "options": "chicken, pork, shrimp, or veggie · optional rice plate",
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Banana cream-cheese turon",
+          "note": "fried spring roll",
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Mango cream-cheese turon",
+          "note": "fried spring roll",
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Churros",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "maiz-mexican-catering",
+      "name": "Maíz Mexican Catering",
+      "booth_label": null,
+      "booth_kind": "food_truck",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Crispy pork-belly tacos",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Grilled shrimp tacos",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "pop-berry",
+      "name": "Pop Berry",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Strawberry tanghulu",
+          "note": "sugar-coated fruit skewer",
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Rainbow fruit tanghulu",
+          "note": "sugar-coated",
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "purrfect-popcorn",
+      "name": "Purrfect Popcorn",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Popcorn",
+          "note": "prepackaged",
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "hey-mango",
+      "name": "Hey Mango",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Mango sticky rice",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": [
+            "dairy_free",
+            "gluten_free",
+            "nut_free"
+          ]
+        },
+        {
+          "name": "Mango sticky rice with ube mochi",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": [
+            "dairy_free",
+            "gluten_free"
+          ]
+        },
+        {
+          "name": "Mango drinks",
+          "note": null,
+          "options": "assorted",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "chez-chibi-bakery",
+      "name": "Chez Chibi Bakery",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Macarons",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Lunar New Year cookies and pastries",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "yayas-classic-soft-serve",
+      "name": "YaYa's Classic Soft Serve",
+      "booth_label": null,
+      "booth_kind": "food_truck",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Soft-serve cone/cup",
+          "note": null,
+          "options": "vanilla, chocolate, swirl",
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Milkshakes",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Root beer floats",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    }
+  ],
+  "filter_facets": [
+    "nut_free",
+    "gluten_free",
+    "dairy_free",
+    "vegan",
+    "vegetarian",
+    "halal",
+    "pork_free"
+  ]
+}

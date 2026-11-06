@@ -391,6 +391,42 @@
   padding-bottom: 0;
 }
 
+.menu-layout .menu-year-pill {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0.4rem auto;
+  flex: 0 0 auto;
+}
+
+.menu-layout .menu-year-select {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0.28rem 1.7rem 0.28rem 0.75rem;
+  border: 1px solid var(--border, #e7e5e4);
+  border-radius: 999px;
+  background-color: var(--surface, #ffffff);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2378716c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  background-size: 0.7rem auto;
+  color: var(--text, #1c1917);
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.menu-layout .menu-year-select:hover {
+  border-color: var(--accent, #b91c1c);
+}
+
+.menu-layout .menu-year-select:focus-visible {
+  outline: 2px solid var(--accent, #b91c1c);
+  outline-offset: 2px;
+}
+
 .menu-layout .menu-section-chips {
   display: flex;
   flex-wrap: nowrap;
@@ -650,6 +686,28 @@
   min-width: 0;
 }
 
+.menu-layout .item-name {
+  line-height: 1.35;
+}
+
+.menu-layout .item-clarify {
+  font-weight: 400;
+  color: var(--muted, #78716c);
+}
+
+.menu-layout .item-vendor {
+  font-size: 0.85em;
+  font-weight: 700;
+  color: var(--muted, #78716c);
+}
+
+.menu-layout .item-options {
+  display: block;
+  font-size: 0.85em;
+  line-height: 1.35;
+  color: var(--muted, #78716c);
+}
+
 .menu-layout .item-note {
   display: block;
   font-size: 0.85em;
@@ -734,9 +792,18 @@
 }
 
 .menu-layout .category-block h3 {
+  margin: 1rem 0 0;
   color: var(--accent, #b91c1c);
   border-bottom: 1px solid var(--border, #e7e5e4);
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.35rem;
+}
+
+.menu-layout .category-block:first-child h3 {
+  margin-top: 0;
+}
+
+.menu-layout .category-block .items {
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 1100px) {

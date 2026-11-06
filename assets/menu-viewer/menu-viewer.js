@@ -78,7 +78,16 @@ function itemMatchesFilters(item, vendor, activeFilters) {
 function itemMatchesQuery(item, vendor, query) {
   if (!query) return true;
   const q = query.toLowerCase();
-  return item.name.toLowerCase().includes(q) || vendor.name.toLowerCase().includes(q);
+  const hay = [
+    item.name,
+    item.note,
+    item.options,
+    vendor.name,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return hay.includes(q);
 }
 
 function filteredVendors(menu, activeFilters, query) {
@@ -112,20 +121,26 @@ function sortVendorsByLocation(vendors) {
   return [...vendors].sort(compareVendorsByLocation);
 }
 
-function itemNoteText(item) {
-  const note = String(item?.note || "").trim();
-  if (!note) return "";
-  return note.length > ITEM_NOTE_MAX_LEN ? `${note.slice(0, ITEM_NOTE_MAX_LEN - 1)}…` : note;
+function truncateField(value) {
+  const text = String(value || "").trim();
+  if (!text) return "";
+  return text.length > ITEM_NOTE_MAX_LEN ? `${text.slice(0, ITEM_NOTE_MAX_LEN - 1)}…` : text;
 }
 
 function renderItemPrimary(item, { showVendor = false } = {}) {
-  const note = itemNoteText(item);
+  const note = truncateField(item?.note);
+  const options = truncateField(item?.options);
+  const clarifyBit = note
+    ? ` <span class="item-clarify">(${escapeHtml(note)})</span>`
+    : "";
   const vendorBit =
     showVendor && item.vendorName
-      ? ` <em>— ${escapeHtml(item.vendorName)}</em>`
+      ? `\u2003<span class="item-vendor">${escapeHtml(item.vendorName)}</span>`
       : "";
-  const noteBit = note ? `<span class="item-note muted">${escapeHtml(note)}</span>` : "";
-  return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${renderDietaryBadges(item)}${vendorBit}</span>${noteBit}</span>`;
+  const optionsBit = options
+    ? `<span class="item-options">${escapeHtml(options)}</span>`
+    : "";
+  return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${clarifyBit}${renderDietaryBadges(item)}${vendorBit}</span>${optionsBit}</span>`;
 }
 
 function renderVendorView(vendors) {
