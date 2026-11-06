@@ -5,12 +5,12 @@
     "pageTitle": "Vendor booths",
     "description": "Apply for a vendor booth on Eventeny and learn the two-round application process for Elk Grove Lunar New Year Tết 2027 — apply, selection, offer, pay, or waitlist / decline."
   },
-  "statusLine": "Applications open Oct 11",
+  "statusLine": "Round 2 open through Jan 15, 2027",
   "waitlist": {
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply on Eventeny",
-    "body": "Booth applications are open on Eventeny. There are four applications: **Food booths & trucks**, **Merchants & corporate exhibitors**, **Nonprofit, community info**, and **Free kids activity tables** — pick the one that fits your booth. **Round 1 closes Nov 5.**",
+    "body": "Booth applications are open on Eventeny. There are four applications: **Food booths & trucks**, **Merchants & corporate exhibitors**, **Nonprofit, community info**, and **Free kids activity tables** — pick the one that fits your booth. **Round 1 closed Nov 5.** Round 1 decisions around Nov 10. **Round 2 is open through Jan 15, 2027.**",
     "cta": {
       "label": "Apply on Eventeny",
       "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
@@ -98,8 +98,9 @@
           "A selection holds only through the pay-by. **Booth fee locks the seat** — not cleanup deposits."
         ],
         "bullets": [
-          "**Round 1 — on-site cooking (food truck / open cook):** pay **$500 of the $750** booth fee by **Fri, Nov 20, 2026** to lock. Remaining booth fee (**$225** after your $25 application credit) plus cleanup deposits due **Fri, Jan 29, 2027**, or you yield the booth",
-          "**Round 1 — everyone else:** pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits due **Fri, Jan 29, 2027**",
+          "**Round 1 — on-site cooking (food truck / open cook):** pay **$375 of the $750** booth fee by **Fri, Nov 20, 2026** to lock. Remaining booth fee (**$350** after your $25 application credit) plus cleanup deposits due **Fri, Jan 29, 2027**, or you yield the booth",
+          "**Round 1 — drinks:** pay **$250 of the $500** booth fee by **Fri, Nov 20, 2026** to lock. Remaining booth fee (**$225** after your $25 application credit) plus cleanup deposits due **Fri, Jan 29, 2027**, or you yield the booth",
+          "**Round 1 — everyone else** (snack, merchant, corporate, nonprofit): pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits due **Fri, Jan 29, 2027**",
           "**Round 2:** pay booth fee (and any deposits due) by **Fri, Jan 29, 2027** (or at approval if later)"
         ]
       },
@@ -172,12 +173,12 @@
     "intro": "We run a **two-round** process so early applicants can lock a seat with certainty, while we still hold room for strong late applications. The path is the same in both rounds.",
     "rounds": [
       {
-        "label": "Round 1 — Priority",
+        "label": "Round 1 — Closed",
         "window": "Oct 11 → Nov 5, 2026",
-        "note": "Most seats (~70–80%). Decisions around Nov 10. **Booth fee locks the seat** by Nov 20: on-site cooks pay **$500 of $750**; everyone else pays the full booth fee. Miss Nov 20 → forfeit the $25 deposit and move to the Round 2 selection waitlist (no new deposit). Cooks’ remaining booth fee + cleanup deposits due Jan 29, or yield."
+        "note": "Most seats (~70–80%). Decisions around Nov 10. **Booth fee locks the seat** by Nov 20: on-site cooks pay **$375 of $750**; drinks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → forfeit the $25 deposit and move to the Round 2 selection waitlist (no new deposit). Cooks’ and drinks’ remaining booth fee + cleanup deposits due Jan 29, or yield."
       },
       {
-        "label": "Round 2 — Open",
+        "label": "Round 2 — Open now",
         "window": "Through Jan 15, 2027",
         "note": "Remaining seats (~20–30%) plus any Round 1 seats that don’t pay on time. Decisions around Jan 22 — including waitlisted Round 1 selectees. Pay by Jan 29. **Food and snack applicants:** wait until we publish the Round 1 food vendors and their menus before you apply — that list shows what’s already taken, so you can tell whether your type would land on a waitlist or whether you should apply to sell something different."
       }
@@ -203,8 +204,8 @@
           {
             "id": "offer",
             "title": "Offer sent",
-            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay the booth-fee lock by the pay-by date** (Round 1 cooks: $500 of $750 by Nov 20; everyone else: full booth fee by Nov 20).",
-            "next": "Once the lock payment clears, you’re on the map. Round 1 cooks still owe remaining booth fee + cleanup deposits by Jan 29."
+            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay the booth-fee lock by the pay-by date** (Round 1 cooks: $375 of $750 by Nov 20; drinks: $250 of $500 by Nov 20; everyone else: full booth fee by Nov 20).",
+            "next": "Once the lock payment clears, you’re on the map. Round 1 cooks and drinks still owe remaining booth fee + cleanup deposits by Jan 29."
           },
           {
             "id": "waitlist",
@@ -223,7 +224,7 @@
       {
         "id": "paid",
         "title": "Pay → official vendor",
-        "body": "Selection holds only through the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 booth-fee lock** and you forfeit the $25 deposit and are placed (no new deposit needed) on the **Round 2 selection waitlist**. **Round 1 cooks** who locked with $500 but miss the **Jan 29** remainder + deposits **yield the booth**. Cancel by Jan 29 for a booth-fee refund minus the cancel fee; after that, no booth-fee refund."
+        "body": "Selection holds only through the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 booth-fee lock** and you forfeit the $25 deposit and are placed (no new deposit needed) on the **Round 2 selection waitlist**. **Round 1 cooks and drinks** who locked with the 50% seat-lock but miss the **Jan 29** remainder + deposits **yield the booth**. Cancel by Jan 29 for a booth-fee refund minus the cancel fee; after that, no booth-fee refund."
       }
     ],
     "footnote": "Dates are planning targets published for vendors. Seat counts by booth type are set at Round 1 decisions (Nov 10)."

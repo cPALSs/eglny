@@ -5,7 +5,17 @@
     "sourceOfTruth": "Inventory master for vendor Eventeny sync and food-curation engine booth_fee defaults",
     "pricingConvention": "Weekend total — show ~$/day × 2 days on line items (Sat + Sun). No early-bird tier — exclusivity lanes and $150 goods are list price only. Flat $25 application deposit on every booth SKU except LNY-VENDOR-NP (nonprofit tables pay no application deposit; the $75 fee is charged at approval — Decided 2026-10-12 by Bao): credited toward the booth fee if accepted, forfeited if selected but unpaid by the pay-by, refunded only if declined; Round 1 no-pay stays on the Round 2 waitlist without a new deposit; venue failure = full cash refund of deposits and fees (Decided 2026-10-11 by Bao; replaces the $100 apply-time trash deposit). Food security deposits kept, refundable (Decided 2026-10-11 by Bao): $100 trash for every food booth (refunded when trash is bagged out and the space is left clean) plus $500 cooking cleanup (grease, oil, burn marks) for on-site cooking only (trucks/trailers, open flame, grills, fryers; not pre-packaged or no-cook). Trash charged manually on Fri Jan 29, 2027 (Round 2 pay-by; at approval for later approvals — Decided 2026-10-13 by Bao). Round 1 cooking food (FT/OC): $500 cooking cleanup by Fri Nov 20, 2026 locks the booth; remaining booth fee + $100 trash due Fri Jan 29, 2027 or yield (Decided 2026-10-25 by Bao). Other cooks: cooking cleanup with Jan 29 (or at approval if later). depositApproval = $600 for FT/OC ($500 + $100) and $100 for DR/SN/MF; a DR booth that cooks on site also adds the $500. 54806 merchant/corporate $100 trash deposit kept, same Jan 29, 2027 charge date. Eventeny fees absorbed on booth fees and deposits; passed to vendors on the $25 application deposit for 2027 only (absorb in 2028). Booth fees non-refundable once accepted and paid; each weather-canceled day = half the booth fee as a 2028 credit. COI required for food and power/generator booths; basic tablers self-attest in the vendor agreement.",
     "combinedOpenPrepCap": 7,
-    "combinedOpenPrepNote": "LNY-VENDOR-FT and LNY-VENDOR-OC share one food-flow pool of 7 seats at 6,000 planning attendance. Per-SKU slotCap is an upper bound so neither SKU can list 10. Ops lock: combined FT+OC ≤ 7 — do not sell 7+7."
+    "combinedOpenPrepNote": "LNY-VENDOR-FT and LNY-VENDOR-OC share one food-flow pool of 7 seats at 6,000 planning attendance. Per-SKU slotCap is an upper bound so neither SKU can list 10. Ops lock: combined FT+OC ≤ 7 — do not sell 7+7.",
+    "nestedFeeClassRule": "Classify by guest job + meal components (not hot / EMD risk alone). Tie → Full meal (OC/FT). Rewarming does not lower tier. Nested ladder: SN → DR (incl. snacks) → Full meal (incl. drinks & snacks).",
+    "nestedFeeClassExamples": {
+      "fullMeal": ["phở", "wonton noodle soup", "rice plates", "burgers", "tacos", "dumpling/bao meals"],
+      "drinksInclSnacks": ["boba", "sugarcane", "juice + chips/fruit cup as side", "small clear-broth cup as side (not noodle soup)"],
+      "snackOnly": ["tanghulu", "jerky", "popcorn", "candy", "shaved ice", "prepacked chips"],
+      "gray": [
+        "side broth cup → DR/SN; noodle or signature soup entrée → Full meal",
+        "one steamed bao treat → SN; bao/dumpling meal platter → Full meal"
+      ]
+    }
   },
   "foodArchetypes": [
     {
@@ -91,10 +101,12 @@
       "vendorClass": "open_prep",
       "footprint": "10×20 truck / trailer pad",
       "slotCap": 7,
-      "publicDescription": "Licensed mobile food unit — hot meals (plates, handhelds, BBQ). MFF on vehicle.",
+      "publicDescription": "Highest booth-fee tier — licensed mobile food unit; full meals (phở, noodle soups, rice plates, burgers, tacos, dumpling meals). Drinks and snacks are included in this fee — do not also buy DR or SN. MFF on vehicle.",
       "requirements": [
         "MFF on vehicle",
-        "Vehicle length on apply"
+        "Vehicle length on apply",
+        "Pick FT only for full-meal truck/trailer — nested fees; do not stack DR/SN",
+        "Meal vs snack: guest job + meal build (not hot alone); tie → Full meal"
       ],
       "eventeny": {
         "applyQuestionValue": "food_truck",
@@ -122,10 +134,12 @@
       "vendorClass": "open_prep",
       "footprint": "10×20 canopy + equipment",
       "slotCap": 7,
-      "publicDescription": "Live prep under canopy — plates, handhelds, BBQ. TFF PREP / MEV.",
+      "publicDescription": "Highest booth-fee tier — live prep under canopy; full meals (phở, noodle soups, rice plates, burgers, tacos, dumpling meals). Drinks and snacks are included in this fee — do not also buy DR or SN. TFF PREP / MEV.",
       "requirements": [
         "TFF PREP or MEV",
-        "Generator setback if applicable"
+        "Generator setback if applicable",
+        "Pick OC only for full-meal canopy — nested fees; do not stack DR/SN",
+        "Meal vs snack: guest job + meal build (not hot alone); tie → Full meal"
       ],
       "eventeny": {
         "applyQuestionValue": "open_cooking",
@@ -149,14 +163,16 @@
     {
       "id": "LNY-VENDOR-DR",
       "skuType": "catalog-vendor",
-      "name": "Beverage anchor",
+      "name": "Drinks (includes snacks)",
       "vendorClass": "drinks",
       "footprint": "10×10 or truck/trailer (setup follow-up)",
       "slotCap": 5,
-      "publicDescription": "Live-prep drink anchor — pick one primary: boba/matcha, sugarcane, aguas, or coffee. Caps: 2 boba/matcha, 1 sugarcane, 1 aguas, 1 coffee (Pavilion preferred). Not snacks or sealed retail.",
+      "publicDescription": "Middle booth-fee tier — live-prep drinks (boba/matcha, sugarcane, aguas, coffee); snacks included (chips/fruit cup as side; small clear-broth cup as side — not noodle soup). If you sell drinks and snacks, choose DR only — do not also buy SN. Caps: 2 boba/matcha, 1 sugarcane, 1 aguas, 1 coffee (Pavilion preferred). Not sealed retail.",
       "requirements": [
         "Pick footprint on follow-up: canopy, truck, trailer, or prepack booth",
-        "Primary subcategory required — caps 2 boba/matcha · 1 sugarcane · 1 aguas"
+        "Primary subcategory required — caps 2 boba/matcha · 1 sugarcane · 1 aguas",
+        "Nested fees: drinks + snacks → DR only; do not stack SN",
+        "Noodle / signature soup entrée is Full meal (OC/FT), not DR"
       ],
       "eventeny": {
         "applyQuestionValue": "beverage_anchor",
@@ -201,14 +217,16 @@
     {
       "id": "LNY-VENDOR-SN",
       "skuType": "catalog-vendor",
-      "name": "Snack / treat booth",
+      "name": "Snack / treat only",
       "vendorClass": "snack",
-      "footprint": "10×10 prepack booth",
+      "footprint": "10×10 snack / treat booth",
       "slotCap": 4,
-      "publicDescription": "Optional walk-around treats — jerky, candy, popcorn, shaved ice. No meal service or drink anchor.",
+      "publicDescription": "Lowest booth-fee tier — walk-around treats only; prepacked or prepared on site (tanghulu, jerky, popcorn, candy, shaved ice, prepacked chips). One steamed bao as a treat stays SN; a bao/dumpling meal platter is Full meal. If you also sell drinks, choose DR instead — do not buy SN+DR. If you serve full meals, choose OC/FT instead — do not buy SN+meal.",
       "requirements": [
-        "Prepack booth setup",
-        "Treat archetype diversity caps apply"
+        "10×10 snack / treat setup — with or without warming equipment (prepacked or on-site snack prep)",
+        "Treat archetype diversity caps apply",
+        "Nested fees: snacks only → SN; drinks+snacks → DR only",
+        "Rewarming / on-site snack prep does not upgrade to Full meal by itself"
       ],
       "eventeny": {
         "applyQuestionValue": "snack_treat",
@@ -217,7 +235,17 @@
           "lny-vendor-sn"
         ],
         "setupQuestion": {
-          "fixed_setup_type": "prepack_booth"
+          "prompt": "Booth setup type",
+          "options": [
+            {
+              "label": "Snack with warming equipment",
+              "setup_type": "snack_with_warming"
+            },
+            {
+              "label": "Snack without warming equipment",
+              "setup_type": "snack_without_warming"
+            }
+          ]
         },
         "lineItems": [
           {
