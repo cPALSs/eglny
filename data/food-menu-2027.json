@@ -9,6 +9,8 @@
       "name": "Bobette Tea",
       "booth_label": null,
       "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/bobette-tea/logo.jpg",
+      "instagram": "bobettetea",
       "dietary": [],
       "items": [
         {
@@ -18,7 +20,9 @@
           "price": null,
           "category": "drinks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "image": "assets/food-menu/2027/bobette-tea/fruit-green-tea.jpg",
+          "image_alt": "Fruit green tea from Bobette Tea"
         },
         {
           "name": "Milk tea",
@@ -27,7 +31,12 @@
           "price": null,
           "category": "drinks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ],
+          "image": "assets/food-menu/2027/bobette-tea/milk-tea.jpg",
+          "image_alt": "Milk tea from Bobette Tea"
         },
         {
           "name": "Vietnamese coffee",
@@ -63,6 +72,8 @@
       "name": "TRI-FOODS",
       "booth_label": null,
       "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/tri-foods/logo.jpg",
+      "instagram": "trifoodsdistributor",
       "dietary": [],
       "items": [
         {
@@ -90,6 +101,8 @@
       "name": "Fairy Bites & Delicacies",
       "booth_label": null,
       "booth_kind": "open_cooking",
+      "logo": "assets/food-menu/2027/fairy-bites-delicacies/logo.jpg",
+      "instagram": "fairybitesdelicacies",
       "dietary": [],
       "items": [
         {
@@ -99,7 +112,10 @@
           "price": null,
           "category": "meals",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
         },
         {
           "name": "Sisig rice plate",
@@ -108,7 +124,11 @@
           "price": null,
           "category": "meals",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ]
         },
         {
           "name": "Lumpia",
@@ -117,7 +137,12 @@
           "price": null,
           "category": "snacks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat",
+            "contains_gluten"
+          ]
         },
         {
           "name": "Banana cream-cheese turon",
@@ -126,7 +151,11 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy",
+            "contains_gluten"
+          ]
         },
         {
           "name": "Mango cream-cheese turon",
@@ -135,7 +164,11 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy",
+            "contains_gluten"
+          ]
         },
         {
           "name": "Churros",
@@ -144,7 +177,10 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_gluten"
+          ]
         }
       ]
     },
@@ -153,6 +189,8 @@
       "name": "Maíz Mexican Catering",
       "booth_label": null,
       "booth_kind": "food_truck",
+      "logo": "assets/food-menu/2027/maiz-mexican-catering/logo.jpg",
+      "instagram": "maiz_mexican_catering",
       "dietary": [],
       "items": [
         {
@@ -162,7 +200,13 @@
           "price": null,
           "category": "meals",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ],
+          "image": "assets/food-menu/2027/maiz-mexican-catering/crispy-pork-belly-tacos.jpg",
+          "image_alt": "Crispy pork-belly tacos from Maíz Mexican Catering"
         },
         {
           "name": "Grilled shrimp tacos",
@@ -171,7 +215,12 @@
           "price": null,
           "category": "meals",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ],
+          "image": "assets/food-menu/2027/maiz-mexican-catering/grilled-shrimp-tacos.jpg",
+          "image_alt": "Grilled shrimp tacos from Maíz Mexican Catering"
         }
       ]
     },
@@ -180,6 +229,8 @@
       "name": "Pop Berry",
       "booth_label": null,
       "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/pop-berry/logo.jpg",
+      "instagram": "popberry",
       "dietary": [],
       "items": [
         {
@@ -189,7 +240,14 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [
+            "vegan",
+            "vegetarian",
+            "dairy_free",
+            "nut_free"
+          ],
+          "image": "assets/food-menu/2027/pop-berry/tanghulu.jpg",
+          "image_alt": "Strawberry tanghulu from Pop Berry"
         },
         {
           "name": "Rainbow fruit tanghulu",
@@ -198,7 +256,14 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [
+            "vegan",
+            "vegetarian",
+            "dairy_free",
+            "nut_free"
+          ],
+          "image": "assets/food-menu/2027/pop-berry/tanghulu.jpg",
+          "image_alt": "Rainbow fruit tanghulu from Pop Berry"
         }
       ]
     },
@@ -207,6 +272,8 @@
       "name": "Purrfect Popcorn",
       "booth_label": null,
       "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/purrfect-popcorn/logo.jpg",
+      "instagram": null,
       "dietary": [],
       "items": [
         {
@@ -216,7 +283,9 @@
           "price": null,
           "category": "snacks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "image": "assets/food-menu/2027/purrfect-popcorn/popcorn.jpg",
+          "image_alt": "Popcorn bags from Purrfect Popcorn"
         }
       ]
     },
@@ -225,6 +294,8 @@
       "name": "Hey Mango",
       "booth_label": null,
       "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/hey-mango/logo.jpg",
+      "instagram": "heymango916",
       "dietary": [],
       "items": [
         {
@@ -238,7 +309,9 @@
             "dairy_free",
             "gluten_free",
             "nut_free"
-          ]
+          ],
+          "image": "assets/food-menu/2027/hey-mango/mango-sticky-rice.jpg",
+          "image_alt": "Mango sticky rice from Hey Mango"
         },
         {
           "name": "Mango sticky rice with ube mochi",
@@ -250,7 +323,9 @@
           "dietary_tags": [
             "dairy_free",
             "gluten_free"
-          ]
+          ],
+          "image": "assets/food-menu/2027/hey-mango/mango-sticky-rice-ube-mochi.jpg",
+          "image_alt": "Mango sticky rice with ube mochi from Hey Mango"
         },
         {
           "name": "Mango drinks",
@@ -268,6 +343,8 @@
       "name": "Chez Chibi Bakery",
       "booth_label": null,
       "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/chez-chibi-bakery/logo.jpg",
+      "instagram": null,
       "dietary": [],
       "items": [
         {
@@ -295,6 +372,8 @@
       "name": "YaYa's Classic Soft Serve",
       "booth_label": null,
       "booth_kind": "food_truck",
+      "logo": "assets/food-menu/2027/yayas-classic-soft-serve/logo.jpg",
+      "instagram": "YayasClassicSoftServe",
       "dietary": [],
       "items": [
         {
@@ -304,7 +383,10 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ]
         },
         {
           "name": "Milkshakes",
@@ -313,7 +395,10 @@
           "price": null,
           "category": "drinks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ]
         },
         {
           "name": "Root beer floats",
@@ -322,7 +407,10 @@
           "price": null,
           "category": "drinks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ]
         }
       ]
     }

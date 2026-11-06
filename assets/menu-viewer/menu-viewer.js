@@ -127,6 +127,58 @@ function truncateField(value) {
   return text.length > ITEM_NOTE_MAX_LEN ? `${text.slice(0, ITEM_NOTE_MAX_LEN - 1)}…` : text;
 }
 
+const PLACEHOLDER_VARIANT_COUNT = 6;
+
+function hashString(value) {
+  let h = 2166136261;
+  const s = String(value || "");
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/** Stable key for placeholder rings: one variant per vendor booth, not per dish. */
+function placeholderVariantKey(item, vendor) {
+  const vid = vendor?.id ?? item?.vendorId ?? item?.vendor_id;
+  if (vid != null && String(vid).trim() !== "") return String(vid).trim();
+  const vname = String(item?.vendorName ?? vendor?.name ?? "").trim();
+  return vname;
+}
+
+function placeholderVariant(item, vendor = null) {
+  return hashString(placeholderVariantKey(item, vendor)) % PLACEHOLDER_VARIANT_COUNT;
+}
+
+/** Site-root-relative paths in JSON → absolute from site root. */
+function resolveImageSrc(src) {
+  const raw = String(src || "").trim();
+  if (!raw) return "";
+  if (/^(https?:|data:|\/)/i.test(raw)) return raw;
+  return `/${raw.replace(/^\.\//, "")}`;
+}
+
+function renderItemThumb(item, vendorContext = null) {
+  const src = resolveImageSrc(item?.image);
+  const title = String(item?.name || "Dish");
+  const vendor = String(item?.vendorName || vendorContext?.name || "");
+  const credit = String(item?.image_credit || "");
+  const alt = String(item?.image_alt || title);
+  const variant = placeholderVariant(item, vendorContext);
+  const label = src ? `View photo of ${title}` : `View ${title}`;
+
+  if (src) {
+    return `<button type="button" class="item-thumb has-photo" data-dish-src="${escapeHtml(src)}" data-dish-alt="${escapeHtml(alt)}" data-dish-title="${escapeHtml(title)}" data-dish-vendor="${escapeHtml(vendor)}" data-dish-credit="${escapeHtml(credit)}" aria-label="${escapeHtml(label)}">
+      <span class="item-thumb-frame" aria-hidden="true"><img class="item-thumb-img" src="${escapeHtml(src)}" alt="" loading="lazy" decoding="async" /></span>
+    </button>`;
+  }
+
+  return `<button type="button" class="item-thumb is-placeholder item-thumb--v${variant}" data-dish-title="${escapeHtml(title)}" data-dish-vendor="${escapeHtml(vendor)}" data-dish-variant="${variant}" aria-label="${escapeHtml(label)}">
+    <span class="item-thumb-frame item-thumb-placeholder" aria-hidden="true"></span>
+  </button>`;
+}
+
 function renderItemPrimary(item, { showVendor = false } = {}) {
   const note = truncateField(item?.note);
   const options = truncateField(item?.options);
@@ -143,25 +195,61 @@ function renderItemPrimary(item, { showVendor = false } = {}) {
   return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${clarifyBit}${renderDietaryBadges(item)}${vendorBit}</span>${optionsBit}</span>`;
 }
 
+function renderItemRow(item, { showVendor = false, vendor = null } = {}) {
+  const price = item.price ? `<span class="item-price">$${item.price}</span>` : "";
+  return `<div class="item-row">${renderItemThumb(item, vendor)}${renderItemPrimary(item, { showVendor })}${price}</div>`;
+}
+
+const IG_ICON_SVG = `<svg class="vendor-ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`;
+
+function normalizeInstagramUrl(handleOrUrl) {
+  const raw = String(handleOrUrl || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+  const handle = raw.replace(/^@/, "").replace(/^instagram\.com\//i, "").replace(/\/+$/, "");
+  if (!handle) return "";
+  return `https://www.instagram.com/${encodeURIComponent(handle)}/`;
+}
+
+function renderVendorIgLink(vendor) {
+  const href = normalizeInstagramUrl(vendor?.instagram);
+  if (!href) return "";
+  const label = `Instagram · ${vendor.name || "vendor"}`;
+  return `<a class="vendor-ig" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}">${IG_ICON_SVG}</a>`;
+}
+
+function renderVendorLogo(vendor) {
+  const src = resolveImageSrc(vendor?.logo);
+  if (!src) return "";
+  const alt = `${vendor.name || "Vendor"} logo`;
+  return `<img class="vendor-logo" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />`;
+}
+
 function renderVendorView(vendors) {
   return sortVendorsByLocation(vendors)
-    .map(
-      (v) => `
+    .map((v) => {
+      const logo = renderVendorLogo(v);
+      const ig = renderVendorIgLink(v);
+      return `
     <article class="vendor-card">
       <div class="vendor-card-head">
-        <h2>${escapeHtml(v.name)}</h2>
-        ${v.booth_label ? `<p class="booth">${escapeHtml(v.booth_label)}</p>` : ""}
+        <div class="vendor-card-title">
+          <h2>${escapeHtml(v.name)}</h2>${ig}
+        </div>
+        <div class="vendor-card-meta">
+          ${v.booth_label ? `<p class="booth">${escapeHtml(v.booth_label)}</p>` : ""}
+          ${logo}
+        </div>
       </div>
       <ul class="items">${v.items
         .map(
           (i) => `
-        <li>${renderItemPrimary(i)}
-        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
+        <li>${renderItemRow(i, { vendor: v })}</li>`,
         )
         .join("")}
       </ul>
-    </article>`,
-    )
+    </article>`;
+    })
     .join("");
 }
 
@@ -169,7 +257,7 @@ function renderCuisineView(vendors) {
   const bySection = Object.fromEntries(CUISINE_ORDER.map((id) => [id, []]));
   vendors.forEach((v) => {
     v.items.forEach((i) => {
-      const row = { ...i, vendorName: v.name };
+      const row = { ...i, vendorName: v.name, vendorId: v.id };
       for (const section of cuisineSectionsForItem(i, v)) {
         (bySection[section] = bySection[section] || []).push(row);
       }
@@ -186,8 +274,7 @@ function renderCuisineView(vendors) {
       <ul class="items">${items
         .map(
           (i) => `
-        <li>${renderItemPrimary(i, { showVendor: true })}
-        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
+        <li>${renderItemRow(i, { showVendor: true })}</li>`,
         )
         .join("")}
       </ul>
@@ -212,7 +299,7 @@ function renderDietView(vendors, facets) {
       vendors.forEach((v) => {
         v.items.forEach((i) => {
           if (itemMatchesFilter(i, v, facet)) {
-            items.push({ ...i, vendorName: v.name });
+            items.push({ ...i, vendorName: v.name, vendorId: v.id });
           }
         });
       });
@@ -226,8 +313,7 @@ function renderDietView(vendors, facets) {
       <ul class="items">${items
         .map(
           (i) => `
-        <li>${renderItemPrimary(i, { showVendor: true })}
-        ${i.price ? `<span>$${i.price}</span>` : ""}</li>`,
+        <li>${renderItemRow(i, { showVendor: true })}</li>`,
         )
         .join("")}
       </ul>
@@ -599,6 +685,7 @@ export function mountMenuViewer(container, menu) {
 
   setupDietBadgeHandlers(container);
   setupIconLegendToggle(container);
+  setupDishLightbox(container);
 
   placeFiltersForViewport();
   render();
@@ -609,4 +696,90 @@ export function mountMenuViewer(container, menu) {
       render();
     },
   };
+}
+
+function ensureDishLightbox() {
+  let dialog = document.getElementById("menu-dish-lightbox");
+  if (dialog) return dialog;
+
+  dialog = document.createElement("dialog");
+  dialog.id = "menu-dish-lightbox";
+  dialog.className = "menu-dish-lightbox";
+  dialog.setAttribute("aria-label", "Dish photo");
+  dialog.innerHTML = `
+    <button type="button" class="menu-dish-lightbox-close" aria-label="Close">&times;</button>
+    <div class="menu-dish-lightbox-body">
+      <img class="menu-dish-lightbox-image" alt="" hidden />
+      <div class="menu-dish-lightbox-placeholder" hidden></div>
+      <div class="menu-dish-lightbox-caption">
+        <p class="menu-dish-lightbox-title"></p>
+        <p class="menu-dish-lightbox-vendor muted"></p>
+        <p class="menu-dish-lightbox-credit muted"></p>
+      </div>
+    </div>`;
+  document.body.appendChild(dialog);
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.querySelector(".menu-dish-lightbox-close")?.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => {
+    const img = dialog.querySelector(".menu-dish-lightbox-image");
+    const ph = dialog.querySelector(".menu-dish-lightbox-placeholder");
+    if (img) {
+      img.hidden = true;
+      img.removeAttribute("src");
+      img.alt = "";
+    }
+    if (ph) {
+      ph.hidden = true;
+      ph.className = "menu-dish-lightbox-placeholder";
+    }
+  });
+  return dialog;
+}
+
+function setupDishLightbox(root) {
+  const dialog = ensureDishLightbox();
+  const img = dialog.querySelector(".menu-dish-lightbox-image");
+  const ph = dialog.querySelector(".menu-dish-lightbox-placeholder");
+  const titleEl = dialog.querySelector(".menu-dish-lightbox-title");
+  const vendorEl = dialog.querySelector(".menu-dish-lightbox-vendor");
+  const creditEl = dialog.querySelector(".menu-dish-lightbox-credit");
+
+  root.addEventListener("click", (event) => {
+    const btn = event.target.closest(".item-thumb");
+    if (!btn || !root.contains(btn)) return;
+    event.preventDefault();
+
+    const title = btn.getAttribute("data-dish-title") || "Dish";
+    const vendor = btn.getAttribute("data-dish-vendor") || "";
+    const credit = btn.getAttribute("data-dish-credit") || "";
+    const src = btn.getAttribute("data-dish-src") || "";
+    const alt = btn.getAttribute("data-dish-alt") || title;
+    const variant = btn.getAttribute("data-dish-variant") || "0";
+
+    if (titleEl) titleEl.textContent = title;
+    if (vendorEl) {
+      vendorEl.textContent = vendor;
+      vendorEl.hidden = !vendor;
+    }
+    if (creditEl) {
+      creditEl.textContent = credit;
+      creditEl.hidden = !credit;
+    }
+
+    if (src && img) {
+      img.hidden = false;
+      img.src = src;
+      img.alt = alt;
+      if (ph) ph.hidden = true;
+    } else if (ph) {
+      if (img) img.hidden = true;
+      ph.hidden = false;
+      ph.className = `menu-dish-lightbox-placeholder item-thumb--v${variant}`;
+    }
+
+    dialog.showModal();
+  });
 }
