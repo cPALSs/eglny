@@ -92,7 +92,7 @@ const ITEM_RULES = [
   ],
   [
     "american",
-    /\b(funnel\s*cakes?|potato\s*swirls?|turkey\s*legs?|loaded\s*fries|garlic\s*fries|french\s*fries|corn\s*dogs?|hot\s*dogs?|tri[\s-]?tip|brisket|pulled\s*pork|spareribs|spare\s*ribs|(?:bbq\s+)?(?:beef\s+or\s+pork\s+)?ribs\b|hot\s*links?|hotlinks?|jambalaya|dirty\s*rice|mac\s*&\s*cheese|mac\s*and\s*cheese|collard\s*greens|gumbo|southern\s+fried|fried\s+or\s+baked\s+chicken|baked\s*potato|wings?\b|drumstick|chicken\s*legs?|polish|cajun|cotton\s*candy|cheeseburgers?|pizza)\b/i,
+    /\b(funnel\s*cakes?|potato\s*swirls?|turkey\s*legs?|loaded\s*fries|garlic\s*fries|french\s*fries|corn\s*dogs?|hot\s*dogs?|tri[\s-]?tip|brisket|pulled\s*pork|spareribs|spare\s*ribs|(?:bbq\s+)?(?:beef\s+or\s+pork\s+)?ribs\b|hot\s*links?|hotlinks?|jambalaya|dirty\s*rice|mac\s*&\s*cheese|mac\s*and\s*cheese|collard\s*greens|gumbo|southern\s+fried|fried\s+or\s+baked\s+chicken|baked\s*potato|wings?\b|drumstick|chicken\s*legs?|polish|cajun|cotton\s*candy|smash\s*burgers?|cheeseburgers?|burgers?|pizza)\b/i,
   ],
   ["fusion", /\bfusion\b/i],
 ];
