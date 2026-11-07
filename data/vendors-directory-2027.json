@@ -1,0 +1,93 @@
+{
+  "festival": "Elk Grove Lunar New Year Tết 2027",
+  "season": 2027,
+  "updated": "2026-11-06",
+  "source": "Round 1 Eventeny approvals (merchants app 54806; nonprofit info app 57657). Kids activity tables (57739) excluded.",
+  "foodMenuHref": "/food-menu/",
+  "headline": "Vendors directory",
+  "lead": "Craft merchants and nonprofit community tables at the festival. Meals, drinks, and snacks are listed separately.",
+  "sections": [
+    {
+      "id": "merchants",
+      "title": "Merchants",
+      "vendors": [
+        {
+          "id": "em-be-books",
+          "name": "em bé books",
+          "description": "Children's books and gifts — Vietnamese and bilingual titles.",
+          "logo": null,
+          "instagram": "embebooks"
+        },
+        {
+          "id": "erulite",
+          "name": "Erulite",
+          "description": "Math tutoring with a festival red-envelope challenge and session vouchers.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "fidgetme",
+          "name": "FidgetMe",
+          "description": "Handmade wearable 3D-printed fidget crafts.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "jcmstore",
+          "name": "Jcmstore",
+          "description": "Lanterns, red envelopes, toys, balloons, and 3D-printed dragons.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "kc-trendy",
+          "name": "KC TRENDY LLC",
+          "description": "Sensory blankets, plush, and toys — try before you buy.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "luxury-boutique-0724",
+          "name": "Luxury boutique 0724",
+          "description": "Jewelry and press-on nails.",
+          "logo": null,
+          "instagram": "luxury_boutique_0724"
+        },
+        {
+          "id": "mas-trading",
+          "name": "Ma's trading company",
+          "description": "Sunglasses, Lunar New Year gifts, and toys.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "mai-sisters-corner",
+          "name": "Mai Sister's Corner",
+          "description": "Toys and gifts.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "pop-berry-mer",
+          "name": "Pop Berry",
+          "description": "Handmade crochet flowers and keychains.",
+          "logo": null,
+          "instagram": null
+        },
+        {
+          "id": "xuan-lee",
+          "name": "Xuan Lee",
+          "description": "Chinese traditional handicrafts and cultural items.",
+          "logo": null,
+          "instagram": null
+        }
+      ]
+    },
+    {
+      "id": "nonprofits",
+      "title": "Nonprofits & community tables",
+      "emptyMessage": "No nonprofit info tables confirmed yet.",
+      "vendors": []
+    }
+  ]
+}

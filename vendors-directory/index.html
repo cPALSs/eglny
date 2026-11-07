@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    html { background: #1a0806; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Craft merchants and nonprofit community tables at Elk Grove Lunar New Year Tết 2027. Food vendors are on the food menu." />
+  <link rel="canonical" href="https://eglny.com/vendors-directory/" />
+  <title>Vendors directory — Elk Grove Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc page-wrap--vendors-directory" id="main">
+    <p class="muted">Loading…</p>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../site.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

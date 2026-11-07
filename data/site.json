@@ -499,6 +499,11 @@
         "title": "Food menu",
         "body": "Browse locked-in 2027 meals, drinks, and snacks — or switch to the 2026 menu. Search and filter by dietary needs.",
         "href": "/food-menu/"
+      },
+      {
+        "title": "Vendors directory",
+        "body": "Round 1 craft merchants and nonprofit community tables. Food vendors are on the food menu.",
+        "href": "/vendors-directory/"
       }
     ]
   },

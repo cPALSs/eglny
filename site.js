@@ -168,6 +168,12 @@
         href: "/attendees/",
         children: [
           { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
+          {
+            id: "vendors-directory",
+            label: "Vendors directory",
+            navLabel: "Vendors directory",
+            href: "/vendors-directory/",
+          },
         ],
       },
       {
@@ -1073,6 +1079,90 @@
     return `
       <section class="hero">
         <h1>${escapeHtml(data?.headline ?? "Lion dance groups")}</h1>
+        ${data?.lead ? `<p class="hero-lead">${escapeHtml(data.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(toc), main)}`;
+  }
+
+  function normalizeInstagramUrl(instagram) {
+    if (!instagram) return null;
+    const s = String(instagram).trim();
+    if (!s) return null;
+    if (/^https?:\/\//i.test(s)) return s;
+    const handle = s.replace(/^@/, "").replace(/^instagram\.com\//i, "").split("/")[0];
+    return handle ? `https://www.instagram.com/${encodeURIComponent(handle)}/` : null;
+  }
+
+  function vendorLogoSrc(logo) {
+    if (!logo) return null;
+    if (/^https?:\/\//i.test(logo)) return logo;
+    const prefix = navPrefix();
+    return `${prefix}${logo.replace(/^\//, "")}`;
+  }
+
+  function renderVendorsDirectoryItem(vendor) {
+    const logoSrc = vendorLogoSrc(vendor.logo);
+    const logo = logoSrc
+      ? `<img class="vendor-directory-logo" src="${escapeHtml(logoSrc)}" alt="" width="56" height="56" loading="lazy" />`
+      : "";
+    const igUrl = normalizeInstagramUrl(vendor.instagram);
+    const igHandle = igUrl ? instagramHandleFromUrl(igUrl) : "";
+    const igLink = igUrl
+      ? `<a
+            class="vendor-directory-ig"
+            href="${escapeHtml(igUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="${escapeHtml(`Instagram: ${igHandle}`)}"
+          >${renderSocialIcon("Instagram")}</a>`
+      : "";
+    return `<li class="vendor-directory-item">
+      ${logo}
+      <div class="vendor-directory-body">
+        <div class="vendor-directory-name-row">
+          <h3 class="vendor-directory-name">${escapeHtml(vendor.name)}</h3>
+          ${igLink}
+        </div>
+        ${vendor.description ? `<p class="vendor-directory-desc">${escapeHtml(vendor.description)}</p>` : ""}
+      </div>
+    </li>`;
+  }
+
+  function renderVendorsDirectoryPage(data) {
+    const foodHref = data?.foodMenuHref ?? "/food-menu/";
+    const sections = data?.sections ?? [];
+    const toc = sections.map((section) => ({
+      id: section.id,
+      label: section.title,
+    }));
+
+    const sectionHtml = sections
+      .map((section) => {
+        const vendors = section.vendors ?? [];
+        const list =
+          vendors.length > 0
+            ? `<ul class="vendor-directory-list">${vendors.map(renderVendorsDirectoryItem).join("")}</ul>`
+            : section.emptyMessage
+              ? `<p class="muted vendor-directory-empty">${escapeHtml(section.emptyMessage)}</p>`
+              : `<p class="muted vendor-directory-empty">No vendors listed yet.</p>`;
+        return `
+      <section class="about-section vendor-directory-section site-doc-section" id="${escapeHtml(section.id)}" data-doc-section>
+        <h2>${escapeHtml(section.title)}</h2>
+        ${section.intro ? `<p>${escapeHtml(section.intro)}</p>` : ""}
+        ${list}
+      </section>`;
+      })
+      .join("");
+
+    const main = `
+      <div class="vendor-directory-food-callout">
+        <p>Meals, drinks, snacks, and treats are on the <a href="${escapeHtml(foodHref)}">Food menu</a>.</p>
+      </div>
+      ${sectionHtml}`;
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(data?.headline ?? "Vendors directory")}</h1>
         ${data?.lead ? `<p class="hero-lead">${escapeHtml(data.lead)}</p>` : ""}
       </section>
       ${wrapDocLayout(renderDocToc(toc), main)}`;
@@ -3138,6 +3228,7 @@
     initHistoryCarousels,
     renderResourcesPage,
     renderLionDanceGroupsPage,
+    renderVendorsDirectoryPage,
     renderProductionPage,
     renderAttendeesPage,
     renderSponsorshipPage,

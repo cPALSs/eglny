@@ -26,6 +26,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/rfp/` | **RFPs** — open lots (Children’s Theater, Village, Maker Spot) |
 | `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual RFP detail pages |
 | `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Visit**) |
+| `/vendors-directory/` | **Vendors directory** — Round 1 craft merchants and nonprofit tables (under **Visit**) |
 | `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |

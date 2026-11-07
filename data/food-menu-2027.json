@@ -337,7 +337,7 @@
       "booth_label": null,
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/pop-berry/logo.jpg",
-      "instagram": "popberry",
+      "instagram": null,
       "dietary": [],
       "items": [
         {
@@ -402,7 +402,7 @@
       "booth_label": null,
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/mr-pops/logo.jpg",
-      "instagram": null,
+      "instagram": "mrpopspopcorn",
       "dietary": [],
       "items": [
         {
@@ -488,7 +488,7 @@
       "booth_label": null,
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/chez-chibi-bakery/logo.jpg",
-      "instagram": null,
+      "instagram": "ccbakerysac",
       "dietary": [],
       "items": [
         {
