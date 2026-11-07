@@ -290,6 +290,35 @@
       ]
     },
     {
+      "id": "mr-pops",
+      "name": "Mr Pops",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": null,
+      "instagram": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Popcorn",
+          "note": null,
+          "options": "caramel, kettle, cheddar, caramel apple, lightly salted",
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Cotton candy",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
       "id": "hey-mango",
       "name": "Hey Mango",
       "booth_label": null,
