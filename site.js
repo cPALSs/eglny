@@ -231,7 +231,6 @@
           <span class="sr-only">Elk Grove Lunar New Year Tết</span>
         </a>
         <div class="site-nav-end">
-          ${renderThemeControl()}
           <button type="button" class="icon-btn site-nav-toggle" aria-expanded="false" aria-controls="site-nav-drawer">
             <span class="site-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
             <span class="sr-only">Open menu</span>
@@ -240,6 +239,10 @@
       </div>
       <div class="site-nav-backdrop" hidden aria-hidden="true"></div>
       <div id="site-nav-drawer" class="site-nav-drawer" aria-hidden="true">
+        <div class="site-nav-drawer-tools">
+          <div class="site-nav-social-slot"></div>
+          ${renderThemeControl()}
+        </div>
         <div class="site-nav-links">${links}</div>
       </div>
     </nav>
@@ -363,13 +366,12 @@
   }
 
   function injectNavSocial(links) {
-    const end = document.querySelector(".site-nav-end");
-    const theme = end?.querySelector("#theme-toggle");
-    if (!end || !theme) return;
-    end.querySelector(".site-nav-social")?.remove();
+    const slot = document.querySelector(".site-nav-social-slot");
+    if (!slot) return;
+    slot.querySelector(".site-nav-social")?.remove();
     const html = renderNavSocialLinks(links);
     if (!html) return;
-    theme.insertAdjacentHTML("beforebegin", html);
+    slot.innerHTML = html;
   }
 
   function renderFooterSocialLinks(links) {
