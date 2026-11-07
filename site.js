@@ -1859,6 +1859,35 @@
     return `<div class="site-doc-table-wrap"><table class="site-doc-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
   }
 
+  /** True when inventory JSON encodes no seats left (numeric 0 or string "0" after trim). */
+  function isZeroRemainingInventoryValue(raw) {
+    if (raw === null || raw === undefined) return false;
+    if (typeof raw === "number") return Number.isFinite(raw) && raw === 0;
+    return String(raw).trim() === "0";
+  }
+
+  /** Booth inventory table: append (waitlist open) on Remaining column when value is 0. */
+  function renderInventoryTable(table) {
+    if (!table?.headers?.length) return "";
+    const headers = table.headers;
+    const remainingCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase() === "remaining");
+    const head = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
+    const body = (table.rows ?? [])
+      .map((row) => {
+        const cells = (row ?? []).map((cell, i) => {
+          const base = formatBriefProse(cell);
+          const suffix =
+            remainingCol >= 0 && i === remainingCol && isZeroRemainingInventoryValue(cell)
+              ? ` ${escapeHtml("(waitlist open)")}`
+              : "";
+          return `<td>${base}${suffix}</td>`;
+        });
+        return `<tr>${cells.join("")}</tr>`;
+      })
+      .join("");
+    return `<div class="site-doc-table-wrap"><table class="site-doc-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+
   function renderBriefOrderedItems(items) {
     if (!items?.length) return "";
     return `<ol class="brief-ordered">${items
@@ -2496,7 +2525,7 @@
       ? `<section class="content-section site-doc-section" id="${escapeHtml(inventory.id ?? "inventory")}" data-doc-section>
         <h2>${escapeHtml(inventory.title ?? "Booth inventory")}</h2>
         ${inventory.intro ? `<p>${formatBriefProse(inventory.intro)}</p>` : ""}
-        ${renderBriefTable(inventory.table)}
+        ${renderInventoryTable(inventory.table)}
         ${renderBriefBullets(inventory.notes)}
         ${inventory.footnote ? `<p class="muted">${formatBriefProse(inventory.footnote)}</p>` : ""}
       </section>`
