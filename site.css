@@ -3242,10 +3242,11 @@ body.nav-open {
 }
 
 .food-menu-viewer > header {
-  padding: 0 0 1rem;
+  padding: 0;
   text-align: left;
   border-bottom: none;
-  margin-bottom: 1.25rem;
+  /* ≥ sticky .menu-main-sticky margin-top:-1.5rem so its bg can’t clip the disclaimer */
+  margin-bottom: 1.5rem;
 }
 
 .food-menu-viewer .menu-title {
@@ -3266,8 +3267,12 @@ body.nav-open {
   margin: 0;
 }
 
-/* Below wide TOC: sticky search + Filters/Legend buttons; sheets are modals */
+/* Below wide TOC: sticky search + filter icon; sheets are modals */
 @media (max-width: 1099px) {
+  .page-wrap--food-menu {
+    --food-menu-page-pad-x: clamp(1.25rem, 4vw, 3rem);
+  }
+
   .food-menu-viewer .menu-layout {
     display: flex;
     flex-direction: column;
@@ -3278,7 +3283,8 @@ body.nav-open {
 
   .food-menu-viewer .menu-layout .menu-sidebar {
     position: sticky;
-    top: calc(var(--nav-height) + 0.5rem);
+    /* Flush under nav so scrolled content can’t peek through the gap */
+    top: var(--nav-height);
     z-index: 6;
     flex: none;
     width: 100%;
@@ -3289,7 +3295,7 @@ body.nav-open {
     background: var(--bg);
     box-sizing: border-box;
     box-shadow: 0 0.55rem 0.55rem -0.3rem var(--bg);
-    padding: 0.5rem 0 0.35rem;
+    padding: 0.85rem 0 0.35rem;
     border: none;
     border-radius: 0;
   }
@@ -3301,7 +3307,7 @@ body.nav-open {
 
   .food-menu-viewer .menu-layout .menu-main-sticky {
     position: sticky;
-    top: calc(var(--nav-height) + 0.5rem + var(--menu-mobile-toolbar-height, 3.85rem));
+    top: calc(var(--nav-height) + var(--menu-mobile-toolbar-height, 3.85rem));
     z-index: 5;
     background: var(--bg);
     padding-top: 0.4rem;
@@ -3309,18 +3315,27 @@ body.nav-open {
     box-shadow: 0 0.55rem 0.55rem -0.3rem var(--bg);
   }
 
-  .food-menu-viewer .menu-filters-sheet.is-open,
-  .food-menu-viewer .menu-legend-sheet.is-open {
+  /* Tab underline + cuisine chips: full window width past page padding */
+  .food-menu-viewer .menu-layout .menu-tabs-row,
+  .food-menu-viewer .menu-layout .menu-section-chips {
+    margin-left: calc(-1 * var(--food-menu-page-pad-x));
+    margin-right: calc(-1 * var(--food-menu-page-pad-x));
+    padding-left: var(--food-menu-page-pad-x);
+    padding-right: var(--food-menu-page-pad-x);
+    width: auto;
+    max-width: none;
+    box-sizing: content-box;
+  }
+
+  .food-menu-viewer .menu-filters-sheet.is-open {
     background: rgba(0, 0, 0, 0.45);
   }
 
-  .food-menu-viewer .menu-filters-sheet-panel,
-  .food-menu-viewer .menu-legend-sheet-panel {
+  .food-menu-viewer .menu-filters-sheet-panel {
     background: var(--bg);
   }
 
-  .food-menu-viewer .menu-filters-sheet-bar,
-  .food-menu-viewer .menu-legend-sheet-bar {
+  .food-menu-viewer .menu-filters-sheet-bar {
     background: var(--bg);
     box-shadow: 0 0.5rem 0.5rem -0.35rem var(--bg);
   }

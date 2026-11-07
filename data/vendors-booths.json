@@ -21,7 +21,8 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "intro": "Seat counts are planning caps for ~6,000 weekend attendance. **Remaining** reflects Round 1 selections still open for Round 2 (through Jan 15, 2027), after park capacity confirmation with Cosumnes CSD. Weekend fees match Eventeny.",
+    "editorNote": "Staff/agent only — not rendered on eglny.com. **Tentative seats** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas.",
+    "intro": "Seat counts are planning caps for ~6,000 weekend attendance. **Tentative seats** and **Remaining** are exactly as shown in the table (Round 2 through Jan 15, 2027). Weekend fees match Eventeny.",
     "table": {
       "headers": [
         "Booth type",
@@ -31,9 +32,9 @@
       ],
       "rows": [
         [
-          "Open food / cooking (canopy, truck, or trailer)",
+          "Open food / on-site cooking (15 seats — canopy, truck, or trailer)",
           "15",
-          "2",
+          "4",
           "$750"
         ],
         [
@@ -51,12 +52,12 @@
       ]
     },
     "notes": [
-      "**Capped lanes:** **15** open cooking and **6** field drinks in the table above. Canopy vs food truck vs trailer is a setup choice inside those open-cooking seats — not separate published caps. Menu-style mix (handheld / rice / noodle / BBQ) is an internal planning target only — **not** advertised as public subcategory caps (Decided 2026-11-06 by Bao); Round 2 fill can rebalance once applicants are in.",
+      "**Capped lanes:** **15** on-site cooking seats and **6** field drinks in the table above. **On-site cooking** = heat / fry / grill / live prep (one pool of 15). Canopy, food truck, and trailer are **setup form factors** inside that pool — not three separate published caps. Food trucks and trailers count as on-site cooking (e.g. full-meal trailer or truck). Menu-style mix (handheld / rice / noodle / BBQ) is an internal planning target only — **not** advertised as public subcategory caps (Decided 2026-11-06 by Bao); Round 2 fill can rebalance once applicants are in.",
       "Drinks are **exclusivity-capped** by category. Round 1 drink seats are fully offered (including coffee).",
       "**Limited spots per food type.** Beyond drink exclusivity caps, we will likely limit how many booths sell the same food or snack type so guests get variety and every vendor has a fair shot. We can’t publish which cook types will be capped yet — those limits firm up as applications come in. When more than one vendor applies for a limited type, we rank applications and offer the booth in that order; if the first pick doesn’t pay, the next ranked vendor gets the offer.",
-      "The **100**-pad shared pool is one inventory — corporate, goods/snack, nonprofit info, and free kids activity tables compete for the same seats (not separate caps). Remaining is a conservative estimate after Round 1 dual-pad approvals."
+      "The **100**-pad shared pool is one inventory — corporate, goods/snack, nonprofit info, and free kids activity tables compete for the same seats (not separate caps). The **Remaining** figure for that row is set in the table when we publish an update — not auto-calculated from approvals."
     ],
-    "footnote": "Remaining seats update as Round 1 pay-by and Round 2 selections settle."
+    "footnote": "Table numbers change only when we publish an inventory update — not automatically from applications or pay-by."
   },
   "fees": {
     "id": "fees",
@@ -101,7 +102,7 @@
           "A selection holds only through the pay-by. **Booth fee locks the seat** — not cleanup deposits."
         ],
         "bullets": [
-          "**Round 1 — on-site cooking (food truck / open cook):** pay **$375 of the $750** booth fee by **Fri, Nov 20, 2026** to lock. Remaining booth fee (**$350** after your $25 application credit) plus cleanup deposits due **Fri, Jan 29, 2027**, or you yield the booth",
+          "**Round 1 — on-site cooking** (canopy, food truck, or trailer): pay **$375 of the $750** booth fee by **Fri, Nov 20, 2026** to lock. Remaining booth fee (**$350** after your $25 application credit) plus cleanup deposits due **Fri, Jan 29, 2027**, or you yield the booth",
           "**Round 1 — drinks:** pay **$250 of the $500** booth fee by **Fri, Nov 20, 2026** to lock. Remaining booth fee (**$225** after your $25 application credit) plus cleanup deposits due **Fri, Jan 29, 2027**, or you yield the booth",
           "**Round 1 — everyone else** (snack, merchant, corporate, nonprofit): pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits due **Fri, Jan 29, 2027**",
           "**Round 2:** pay booth fee (and any deposits due) by **Fri, Jan 29, 2027** (or at approval if later)"

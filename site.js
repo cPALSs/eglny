@@ -1866,7 +1866,11 @@
     return String(raw).trim() === "0";
   }
 
-  /** Booth inventory table: append (waitlist open) on Remaining column when value is 0. */
+  /**
+   * Booth inventory table — display only. Tentative / Remaining come from vendors-booths.json
+   * table cells as author-set literals; never compute them here from caps or fill counts.
+   * Appends “(waitlist open)” when the Remaining cell is literally 0.
+   */
   function renderInventoryTable(table) {
     if (!table?.headers?.length) return "";
     const headers = table.headers;

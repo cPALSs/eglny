@@ -2,7 +2,8 @@
   "festival": "LNY 2027 — Round 1 locked vendors",
   "published_at": "2026-11-06",
   "year": 2027,
-  "disclaimer": "Menu subject to change as more vendors lock seats. Filters reflect vendor self-report — not medical advice.",
+  "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
+  "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
   "vendors": [
     {
       "id": "bobette-tea",
@@ -22,7 +23,8 @@
           "allergens": [],
           "dietary_tags": [],
           "image": "assets/food-menu/2027/bobette-tea/fruit-green-tea.jpg",
-          "image_alt": "Fruit green tea from Bobette Tea"
+          "image_alt": "Fruit tea from Bobette Tea",
+          "image_credit": "Bobette Tea"
         },
         {
           "name": "Milk tea",
@@ -36,7 +38,8 @@
             "contains_dairy"
           ],
           "image": "assets/food-menu/2027/bobette-tea/milk-tea.jpg",
-          "image_alt": "Milk tea from Bobette Tea"
+          "image_alt": "Milk tea from Bobette Tea",
+          "image_credit": "Bobette Tea"
         },
         {
           "name": "Vietnamese coffee",
@@ -142,7 +145,10 @@
             "contains_pork",
             "contains_meat",
             "contains_gluten"
-          ]
+          ],
+          "image": "assets/food-menu/2027/fairy-bites-delicacies/lumpia.jpg",
+          "image_alt": "Lumpia rice plate from Fairy Bites & Delicacies",
+          "image_credit": "Fairy Bites & Delicacies"
         },
         {
           "name": "Banana cream-cheese turon",
@@ -168,7 +174,10 @@
           "dietary_warnings": [
             "contains_dairy",
             "contains_gluten"
-          ]
+          ],
+          "image": "assets/food-menu/2027/fairy-bites-delicacies/mango-cream-cheese-turon.jpg",
+          "image_alt": "Mango cream-cheese turon from Fairy Bites & Delicacies",
+          "image_credit": "Fairy Bites & Delicacies"
         },
         {
           "name": "Churros",
@@ -221,6 +230,104 @@
           ],
           "image": "assets/food-menu/2027/maiz-mexican-catering/grilled-shrimp-tacos.jpg",
           "image_alt": "Grilled shrimp tacos from Maíz Mexican Catering"
+        }
+      ]
+    },
+    {
+      "id": "rays-kitchen",
+      "name": "Ray's Kitchen",
+      "booth_label": null,
+      "booth_kind": "food_truck",
+      "logo": "assets/food-menu/2027/rays-kitchen/logo.jpg",
+      "instagram": "rayskitchen645",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Chicken rice plate",
+          "note": "mild spice",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Lamb rice plate",
+          "note": "mild spice",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Falafel rice plate",
+          "note": "mild spice",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": []
+        },
+        {
+          "name": "Gyro",
+          "note": "mild spice",
+          "options": "chicken, lamb, or falafel",
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Loaded fries",
+          "note": "mild spice",
+          "options": "chicken, lamb, or falafel",
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_dairy",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Smash burger",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_dairy",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Chicken wings",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
         }
       ]
     },
@@ -294,7 +401,7 @@
       "name": "Mr Pops",
       "booth_label": null,
       "booth_kind": "prepack",
-      "logo": null,
+      "logo": "assets/food-menu/2027/mr-pops/logo.jpg",
       "instagram": null,
       "dietary": [],
       "items": [
@@ -305,7 +412,10 @@
           "price": null,
           "category": "snacks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "image": "assets/food-menu/2027/mr-pops/popcorn.jpg",
+          "image_alt": "Bagged kettle corn from Mr Pops",
+          "image_credit": "Mr Pops"
         },
         {
           "name": "Cotton candy",
@@ -340,7 +450,8 @@
             "nut_free"
           ],
           "image": "assets/food-menu/2027/hey-mango/mango-sticky-rice.jpg",
-          "image_alt": "Mango sticky rice from Hey Mango"
+          "image_alt": "Mango sticky rice from Hey Mango",
+          "image_credit": "Hey Mango"
         },
         {
           "name": "Mango sticky rice with ube mochi",
@@ -354,7 +465,8 @@
             "gluten_free"
           ],
           "image": "assets/food-menu/2027/hey-mango/mango-sticky-rice-ube-mochi.jpg",
-          "image_alt": "Mango sticky rice with ube mochi from Hey Mango"
+          "image_alt": "Mango sticky rice with ube from Hey Mango",
+          "image_credit": "Hey Mango"
         },
         {
           "name": "Mango drinks",
@@ -363,7 +475,10 @@
           "price": null,
           "category": "drinks",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "image": "assets/food-menu/2027/hey-mango/mango-drinks.jpg",
+          "image_alt": "Mango drink from Hey Mango",
+          "image_credit": "Hey Mango"
         }
       ]
     },
@@ -383,7 +498,10 @@
           "price": null,
           "category": "sweets",
           "allergens": [],
-          "dietary_tags": []
+          "dietary_tags": [],
+          "image": "assets/food-menu/2027/chez-chibi-bakery/macarons.jpg",
+          "image_alt": "Mandarin orange Lunar New Year macarons from Chez Chibi Bakery",
+          "image_credit": "Chez Chibi Bakery"
         },
         {
           "name": "Lunar New Year cookies and pastries",
@@ -415,7 +533,10 @@
           "dietary_tags": [],
           "dietary_warnings": [
             "contains_dairy"
-          ]
+          ],
+          "image": "assets/food-menu/2027/yayas-classic-soft-serve/soft-serve.jpg",
+          "image_alt": "Soft-serve cone from YaYa's Classic Soft Serve",
+          "image_credit": "YaYa's Classic Soft Serve"
         },
         {
           "name": "Milkshakes",
@@ -439,7 +560,10 @@
           "dietary_tags": [],
           "dietary_warnings": [
             "contains_dairy"
-          ]
+          ],
+          "image": "assets/food-menu/2027/yayas-classic-soft-serve/root-beer-float.jpg",
+          "image_alt": "Root beer float from YaYa's Classic Soft Serve",
+          "image_credit": "YaYa's Classic Soft Serve"
         }
       ]
     }

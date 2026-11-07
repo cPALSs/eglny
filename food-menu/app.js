@@ -38,38 +38,57 @@ function setYearInUrl(year) {
 async function loadMenu(year) {
   const url = MENU_FILES[year];
   if (!url) throw new Error(`No food menu for ${year}`);
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`Could not load ${year} food menu (${res.status})`);
   return res.json();
 }
 
-function heroCopy(year, menu) {
-  const vendorCount = menu.vendors?.length ?? 0;
-  const itemCount = (menu.vendors ?? []).reduce((n, v) => n + (v.items?.length ?? 0), 0);
-  if (year === 2027) {
-    return `Meals, drinks, and snacks from Elk Grove Lunar New Year Tết 2027 — ${vendorCount} locked-in food vendors so far, ${itemCount} items. Search and filter by dietary needs. More vendors appear here as Round 1 seats lock.`;
-  }
-  return `Meals, drinks, and snacks from Elk Grove Lunar New Year Tết 2026 — ${vendorCount} food vendors, ${itemCount} items. Search and filter by dietary needs.`;
+function heroCopy() {
+  return "Meals, drinks, and snacks from Elk Grove Lunar New Year Tết";
 }
 
-function ensureYearPill(tabsRow, year, onChange) {
-  let wrap = tabsRow.querySelector(".menu-year-pill");
-  if (!wrap) {
-    wrap = document.createElement("label");
-    wrap.className = "menu-year-pill";
-    wrap.innerHTML = `
-      <span class="sr-only">Festival year</span>
-      <select class="menu-year-select" aria-label="Festival year"></select>
-    `;
-    tabsRow.appendChild(wrap);
+function ensureYearControls(main, year, onChange) {
+  const tabsRow = main.querySelector(".menu-tabs-row");
+  if (tabsRow) {
+    let wrap = tabsRow.querySelector(".menu-year-pill");
+    if (!wrap) {
+      wrap = document.createElement("label");
+      wrap.className = "menu-year-pill";
+      wrap.innerHTML = `
+        <span class="sr-only">Festival year</span>
+        <select class="menu-year-select" aria-label="Festival year"></select>
+      `;
+      tabsRow.appendChild(wrap);
+    }
+    const select = wrap.querySelector(".menu-year-select");
+    select.innerHTML = YEARS.map(
+      (y) => `<option value="${y}"${y === year ? " selected" : ""}>${y}</option>`,
+    ).join("");
+    select.value = String(year);
+    select.onchange = () => onChange(Number(select.value));
   }
-  const select = wrap.querySelector(".menu-year-select");
-  select.innerHTML = YEARS.map(
-    (y) => `<option value="${y}"${y === year ? " selected" : ""}>${y}</option>`,
-  ).join("");
-  select.value = String(year);
-  select.onchange = () => onChange(Number(select.value));
-  return select;
+
+  const radiosHost = main.querySelector(".menu-year-radios");
+  if (radiosHost) {
+    radiosHost.hidden = false;
+    radiosHost.innerHTML = `
+      <p class="menu-year-radios-label">Year</p>
+      <div class="menu-year-radio-pills" role="radiogroup" aria-label="Festival year">
+        ${YEARS.map(
+          (y) => `
+          <label class="menu-year-radio-pill">
+            <input type="radio" name="menu-year" value="${y}"${y === year ? " checked" : ""} />
+            <span>${y}</span>
+          </label>`,
+        ).join("")}
+      </div>
+    `;
+    radiosHost.querySelectorAll('input[name="menu-year"]').forEach((input) => {
+      input.onchange = () => {
+        if (input.checked) onChange(Number(input.value));
+      };
+    });
+  }
 }
 
 async function init() {
@@ -94,17 +113,15 @@ async function init() {
     if (pushUrl) setYearInUrl(year);
 
     const menu = await loadMenu(year);
-    const vendorCount = menu.vendors?.length ?? 0;
-    const itemCount = (menu.vendors ?? []).reduce((n, v) => n + (v.items?.length ?? 0), 0);
 
     const heroLead = main.querySelector(".hero-lead");
-    if (heroLead) heroLead.textContent = heroCopy(year, menu);
+    if (heroLead) heroLead.textContent = heroCopy();
 
     if (!viewer) {
       main.innerHTML = `
         <section class="hero">
           <h1>Food menu</h1>
-          <p class="hero-lead">${esc(heroCopy(year, menu))}</p>
+          <p class="hero-lead">${esc(heroCopy())}</p>
         </section>
         <div id="menu-root" class="food-menu-viewer" aria-live="polite"></div>
       `;
@@ -113,16 +130,11 @@ async function init() {
       viewer.setMenu(menu);
     }
 
-    const tabsRow = main.querySelector(".menu-tabs-row");
-    if (tabsRow) {
-      ensureYearPill(tabsRow, year, (y) => {
-        showYear(y).catch((err) => {
-          main.innerHTML = `<p class="error-panel">${esc(err.message)}</p>`;
-        });
+    ensureYearControls(main, year, (y) => {
+      showYear(y).catch((err) => {
+        main.innerHTML = `<p class="error-panel">${esc(err.message)}</p>`;
       });
-    }
-
-    return { vendorCount, itemCount };
+    });
   }
 
   try {

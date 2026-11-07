@@ -49,17 +49,21 @@ export function buildIconLegendHtml() {
 }
 
 export function setupIconLegendToggle(root) {
-  const toggle = root.querySelector(".icon-legend-link");
-  const panel = root.querySelector(".icon-legend");
-  if (!toggle || !panel) return;
+  root.querySelectorAll(".icon-legend-link").forEach((toggle) => {
+    const panelId = toggle.getAttribute("aria-controls");
+    const panel = panelId
+      ? root.querySelector(`#${CSS.escape(panelId)}`)
+      : toggle.parentElement?.querySelector(".icon-legend");
+    if (!panel) return;
 
-  if (!panel.innerHTML.trim()) {
-    panel.innerHTML = buildIconLegendHtml();
-  }
+    if (!panel.innerHTML.trim()) {
+      panel.innerHTML = buildIconLegendHtml();
+    }
 
-  toggle.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", open ? "false" : "true");
-    panel.hidden = open;
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      panel.hidden = open;
+    });
   });
 }

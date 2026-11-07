@@ -166,17 +166,17 @@ function renderItemThumb(item, vendorContext = null) {
   const credit = String(item?.image_credit || "");
   const alt = String(item?.image_alt || title);
   const variant = placeholderVariant(item, vendorContext);
-  const label = src ? `View photo of ${title}` : `View ${title}`;
 
   if (src) {
-    return `<button type="button" class="item-thumb has-photo" data-dish-src="${escapeHtml(src)}" data-dish-alt="${escapeHtml(alt)}" data-dish-title="${escapeHtml(title)}" data-dish-vendor="${escapeHtml(vendor)}" data-dish-credit="${escapeHtml(credit)}" aria-label="${escapeHtml(label)}">
+    return `<button type="button" class="item-thumb has-photo" data-dish-src="${escapeHtml(src)}" data-dish-alt="${escapeHtml(alt)}" data-dish-title="${escapeHtml(title)}" data-dish-vendor="${escapeHtml(vendor)}" data-dish-credit="${escapeHtml(credit)}" aria-label="${escapeHtml(`View photo of ${title}`)}">
       <span class="item-thumb-frame" aria-hidden="true"><img class="item-thumb-img" src="${escapeHtml(src)}" alt="" loading="lazy" decoding="async" /></span>
     </button>`;
   }
 
-  return `<button type="button" class="item-thumb is-placeholder item-thumb--v${variant}" data-dish-title="${escapeHtml(title)}" data-dish-vendor="${escapeHtml(vendor)}" data-dish-variant="${variant}" aria-label="${escapeHtml(label)}">
-    <span class="item-thumb-frame item-thumb-placeholder" aria-hidden="true"></span>
-  </button>`;
+  // Decorative only — no lightbox (placeholder zoom isn't useful).
+  return `<span class="item-thumb is-placeholder item-thumb--v${variant}" aria-hidden="true">
+    <span class="item-thumb-frame item-thumb-placeholder"></span>
+  </span>`;
 }
 
 function renderItemPrimary(item, { showVendor = false } = {}) {
@@ -347,11 +347,9 @@ export function mountMenuViewer(container, menu) {
       <aside class="menu-sidebar">
         <div class="menu-sidebar-toolbar">
           <input type="search" id="menu-search-input" class="menu-search" placeholder="Search items or vendors..." aria-label="Search items or vendors" />
-          <button type="button" class="menu-filters-open" aria-haspopup="dialog" aria-controls="menu-filters-sheet" aria-expanded="false">
-            Filters<span class="menu-filters-count" hidden></span>
-          </button>
-          <button type="button" class="menu-legend-open" aria-haspopup="dialog" aria-controls="menu-legend-sheet" aria-expanded="false">
-            Legend
+          <button type="button" class="menu-filters-open" aria-label="Filters" aria-haspopup="dialog" aria-controls="menu-filters-sheet" aria-expanded="false" title="Filters">
+            <svg class="menu-filters-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6.5 7.5V19l-3 1.5v-8L4 5z"/></svg>
+            <span class="menu-filters-count" hidden></span>
           </button>
         </div>
         <div class="menu-sidebar-filters">
@@ -363,9 +361,14 @@ export function mountMenuViewer(container, menu) {
             <div class="menu-filter-chips">
               <div class="menu-filters filters"></div>
             </div>
+            <div class="menu-year-radios" hidden></div>
+            <div class="menu-filters-legend-block menu-icon-legend-block menu-icon-legend-block--static">
+              <p class="menu-filters-legend-label">Icon legend</p>
+              <div id="menu-icon-legend-filters" class="icon-legend"></div>
+            </div>
           </div>
         </div>
-        <div class="menu-icon-legend-block">
+        <div class="menu-icon-legend-block menu-icon-legend-block--sidebar">
           <button type="button" class="icon-legend-link" aria-expanded="false" aria-controls="menu-icon-legend">
             Icon legend<span class="icon-legend-caret" aria-hidden="true"></span>
           </button>
@@ -395,15 +398,6 @@ export function mountMenuViewer(container, menu) {
         <div class="menu-filters-sheet-body"></div>
       </div>
     </div>
-    <div id="menu-legend-sheet" class="menu-legend-sheet" role="dialog" aria-modal="true" aria-label="Icon legend" hidden>
-      <div class="menu-legend-sheet-panel">
-        <div class="menu-legend-sheet-bar">
-          <p class="menu-legend-sheet-title">Icon legend</p>
-          <button type="button" class="menu-legend-close" aria-label="Close legend">Close</button>
-        </div>
-        <div class="menu-legend-sheet-body"></div>
-      </div>
-    </div>
   `;
 
   const titleEl = container.querySelector(".menu-title");
@@ -422,15 +416,7 @@ export function mountMenuViewer(container, menu) {
   const sidebarFiltersEl = container.querySelector(".menu-sidebar-filters");
   const filtersSheetBodyEl = container.querySelector(".menu-filters-sheet-body");
   const menuSidebarEl = container.querySelector(".menu-sidebar");
-  const legendSheetEl = container.querySelector(".menu-legend-sheet");
-  const legendOpenBtn = container.querySelector(".menu-legend-open");
-  const legendCloseBtn = container.querySelector(".menu-legend-close");
-  const legendSheetBodyEl = container.querySelector(".menu-legend-sheet-body");
   let sectionSpyCleanup = null;
-
-  if (legendSheetBodyEl && !legendSheetBodyEl.innerHTML.trim()) {
-    legendSheetBodyEl.innerHTML = buildIconLegendHtml();
-  }
 
   function isMobileFiltersSheet() {
     return window.matchMedia("(max-width: 1099px)").matches;
@@ -456,30 +442,12 @@ export function mountMenuViewer(container, menu) {
       document.body.classList.remove("menu-filters-sheet-open");
       return;
     }
-    if (open) setLegendSheetOpen(false);
     placeFiltersForViewport();
     filtersSheetEl.hidden = !open;
     filtersSheetEl.classList.toggle("is-open", open);
     filtersOpenBtn.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("menu-filters-sheet-open", open);
     if (open) filtersCloseBtn?.focus();
-  }
-
-  function setLegendSheetOpen(open) {
-    if (!legendSheetEl || !legendOpenBtn) return;
-    if (!isMobileFiltersSheet()) {
-      legendSheetEl.hidden = true;
-      legendSheetEl.classList.remove("is-open");
-      legendOpenBtn.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("menu-legend-sheet-open");
-      return;
-    }
-    if (open) setFiltersSheetOpen(false);
-    legendSheetEl.hidden = !open;
-    legendSheetEl.classList.toggle("is-open", open);
-    legendOpenBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    document.body.classList.toggle("menu-legend-sheet-open", open);
-    if (open) legendCloseBtn?.focus();
   }
 
   function updateFiltersOpenLabel() {
@@ -616,11 +584,9 @@ export function mountMenuViewer(container, menu) {
 
   function render() {
     titleEl.textContent = currentMenu.festival || "Festival Food";
-    const disclaimer = currentMenu.disclaimer || "";
-    disclaimerEl.textContent = disclaimer;
-    updatedEl.textContent = currentMenu.published_at
-      ? `${disclaimer ? " · " : ""}Menu updated ${currentMenu.published_at}`
-      : "";
+    disclaimerEl.textContent =
+      "Menu subject to change. Filters reflect vendor self-report — not medical advice.";
+    if (updatedEl) updatedEl.textContent = "";
     renderFilters();
 
     const vendors = filteredVendors(currentMenu, activeFilters, query);
@@ -651,22 +617,14 @@ export function mountMenuViewer(container, menu) {
   filtersSheetEl?.addEventListener("click", (e) => {
     if (e.target === filtersSheetEl) setFiltersSheetOpen(false);
   });
-  legendOpenBtn?.addEventListener("click", () => setLegendSheetOpen(true));
-  legendCloseBtn?.addEventListener("click", () => setLegendSheetOpen(false));
-  legendSheetEl?.addEventListener("click", (e) => {
-    if (e.target === legendSheetEl) setLegendSheetOpen(false);
-  });
   window.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    if (legendSheetEl?.classList.contains("is-open")) setLegendSheetOpen(false);
-    else if (filtersSheetEl?.classList.contains("is-open")) setFiltersSheetOpen(false);
+    if (e.key === "Escape" && filtersSheetEl?.classList.contains("is-open")) {
+      setFiltersSheetOpen(false);
+    }
   });
   window.addEventListener("resize", () => {
     placeFiltersForViewport();
-    if (!isMobileFiltersSheet()) {
-      setFiltersSheetOpen(false);
-      setLegendSheetOpen(false);
-    }
+    if (!isMobileFiltersSheet()) setFiltersSheetOpen(false);
     syncStickyMetrics();
   });
 
@@ -685,6 +643,10 @@ export function mountMenuViewer(container, menu) {
 
   setupDietBadgeHandlers(container);
   setupIconLegendToggle(container);
+  const filtersLegendEl = container.querySelector("#menu-icon-legend-filters");
+  if (filtersLegendEl && !filtersLegendEl.innerHTML.trim()) {
+    filtersLegendEl.innerHTML = buildIconLegendHtml();
+  }
   setupDishLightbox(container);
 
   placeFiltersForViewport();
@@ -748,7 +710,7 @@ function setupDishLightbox(root) {
   const creditEl = dialog.querySelector(".menu-dish-lightbox-credit");
 
   root.addEventListener("click", (event) => {
-    const btn = event.target.closest(".item-thumb");
+    const btn = event.target.closest(".item-thumb.has-photo");
     if (!btn || !root.contains(btn)) return;
     event.preventDefault();
 
@@ -757,7 +719,7 @@ function setupDishLightbox(root) {
     const credit = btn.getAttribute("data-dish-credit") || "";
     const src = btn.getAttribute("data-dish-src") || "";
     const alt = btn.getAttribute("data-dish-alt") || title;
-    const variant = btn.getAttribute("data-dish-variant") || "0";
+    if (!src || !img) return;
 
     if (titleEl) titleEl.textContent = title;
     if (vendorEl) {
@@ -765,19 +727,21 @@ function setupDishLightbox(root) {
       vendorEl.hidden = !vendor;
     }
     if (creditEl) {
-      creditEl.textContent = credit;
-      creditEl.hidden = !credit;
+      // Skip credit when it duplicates the vendor line (common when image_credit = vendor name).
+      const creditIsDuplicate =
+        !!credit &&
+        !!vendor &&
+        credit.trim().toLowerCase() === vendor.trim().toLowerCase();
+      creditEl.textContent = creditIsDuplicate ? "" : credit;
+      creditEl.hidden = !credit || creditIsDuplicate;
     }
 
-    if (src && img) {
-      img.hidden = false;
-      img.src = src;
-      img.alt = alt;
-      if (ph) ph.hidden = true;
-    } else if (ph) {
-      if (img) img.hidden = true;
-      ph.hidden = false;
-      ph.className = `menu-dish-lightbox-placeholder item-thumb--v${variant}`;
+    img.hidden = false;
+    img.src = src;
+    img.alt = alt;
+    if (ph) {
+      ph.hidden = true;
+      ph.className = "menu-dish-lightbox-placeholder";
     }
 
     dialog.showModal();
