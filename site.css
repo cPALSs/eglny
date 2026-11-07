@@ -1247,6 +1247,76 @@ body.nav-open {
   font-weight: 600;
 }
 
+.inventory-cards {
+  display: none;
+}
+
+.inventory-card {
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0.7rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+.inventory-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Beat .content-section h3 (1.25rem top / 0.35rem bottom). */
+.content-section .inventory-card-title {
+  margin: 0 0 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.inventory-card-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem 0.65rem;
+  align-items: start;
+}
+
+.inventory-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.inventory-metric-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+.inventory-metric-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 719px) {
+  .inventory-display .inventory-table {
+    display: none;
+  }
+
+  .inventory-cards {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 1.25rem;
+  }
+}
+
 .brief-ordered {
   margin: 0.75rem 0 1rem;
   padding-left: 1.25rem;
@@ -1254,6 +1324,20 @@ body.nav-open {
 
 .brief-ordered li {
   margin: 0.4rem 0;
+}
+
+.brief-bullets {
+  margin: 0.75rem 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.brief-bullets li {
+  margin: 0.15rem 0;
+}
+
+/* Longer lists: more air between items so dense fee/criteria bullets stay readable. */
+.brief-bullets--spaced li + li {
+  margin-top: 0.65rem;
 }
 
 .hero-body {
@@ -1369,7 +1453,7 @@ body.nav-open {
 
 .panel h3,
 .content-section h3 {
-  margin: 1.25rem 0 0.35rem;
+  margin: 1.85rem 0 0.35rem;
   font-size: 1.05rem;
 }
 
@@ -2355,14 +2439,20 @@ body.nav-open {
   grid-template-columns: 1fr;
 }
 
-.vendors-waitlist-cta {
-  margin: 1.25rem 0 1.25rem;
+.vendors-round-open {
+  margin: 0.35rem 0 1rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .vendors-waitlist-note {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.85rem;
   font-size: 0.95rem;
   line-height: 1.45;
+}
+
+.vendors-waitlist-cta {
+  margin: 0 0 1.25rem;
 }
 
 .media-page-body {
@@ -3269,8 +3359,8 @@ body.nav-open {
   font-size: 0.95rem;
 }
 
-.booth-path-heading {
-  margin: 1.75rem 0 0.5rem;
+.content-section h3.booth-path-heading {
+  margin: 2.35rem 0 0.55rem;
   font-size: 1.15rem;
 }
 

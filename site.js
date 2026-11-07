@@ -1959,29 +1959,48 @@
   }
 
   /**
-   * Booth inventory table — display only. Tentative / Remaining come from vendors-booths.json
+   * Booth inventory table — display only. # of spots / Remaining come from vendors-booths.json
    * table cells as author-set literals; never compute them here from caps or fill counts.
    * Appends “(waitlist open)” when the Remaining cell is literally 0.
+   * Desktop: table. Mobile: cards with booth type title + 3-metric grid.
    */
   function renderInventoryTable(table) {
     if (!table?.headers?.length) return "";
     const headers = table.headers;
     const remainingCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase() === "remaining");
+    const formatCell = (cell, i) => {
+      const base = formatBriefProse(cell);
+      const suffix =
+        remainingCol >= 0 && i === remainingCol && isZeroRemainingInventoryValue(cell)
+          ? ` ${escapeHtml("(waitlist open)")}`
+          : "";
+      return `${base}${suffix}`;
+    };
     const head = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
     const body = (table.rows ?? [])
       .map((row) => {
-        const cells = (row ?? []).map((cell, i) => {
-          const base = formatBriefProse(cell);
-          const suffix =
-            remainingCol >= 0 && i === remainingCol && isZeroRemainingInventoryValue(cell)
-              ? ` ${escapeHtml("(waitlist open)")}`
-              : "";
-          return `<td>${base}${suffix}</td>`;
-        });
+        const cells = (row ?? []).map((cell, i) => `<td>${formatCell(cell, i)}</td>`);
         return `<tr>${cells.join("")}</tr>`;
       })
       .join("");
-    return `<div class="site-doc-table-wrap"><table class="site-doc-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+    const cards = (table.rows ?? [])
+      .map((row) => {
+        const cells = row ?? [];
+        const title = formatCell(cells[0] ?? "", 0);
+        const metrics = headers
+          .slice(1)
+          .map((label, offset) => {
+            const i = offset + 1;
+            return `<div class="inventory-metric"><span class="inventory-metric-label">${escapeHtml(label)}</span><span class="inventory-metric-value">${formatCell(cells[i] ?? "", i)}</span></div>`;
+          })
+          .join("");
+        return `<article class="inventory-card"><h3 class="inventory-card-title">${title}</h3><div class="inventory-card-metrics">${metrics}</div></article>`;
+      })
+      .join("");
+    return `<div class="inventory-display">
+      <div class="site-doc-table-wrap inventory-table"><table class="site-doc-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
+      <div class="inventory-cards" aria-label="Booth inventory">${cards}</div>
+    </div>`;
   }
 
   function renderBriefOrderedItems(items) {
@@ -1997,7 +2016,10 @@
 
   function renderBriefBullets(bullets) {
     if (!bullets?.length) return "";
-    return `<ul>${bullets.map((b) => `<li>${formatBriefProse(typeof b === "string" ? b : b.text ?? "")}</li>`).join("")}</ul>`;
+    const spaced = bullets.length > 3 ? " brief-bullets--spaced" : "";
+    return `<ul class="brief-bullets${spaced}">${bullets
+      .map((b) => `<li>${formatBriefProse(typeof b === "string" ? b : b.text ?? "")}</li>`)
+      .join("")}</ul>`;
   }
 
   function renderVendorRfpSection(section) {
@@ -2610,11 +2632,11 @@
 
     const waitlistCta =
       waitlist.cta?.href
-        ? `<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(waitlist.cta.href)}" target="_blank" rel="noopener">${escapeHtml(waitlist.cta.label ?? "Join the vendor waitlist")}</a></p>${
+        ? `${
             waitlist.cta.note
-              ? `<p class="muted vendors-waitlist-note">${escapeHtml(waitlist.cta.note)}</p>`
+              ? `<p class="muted vendors-waitlist-note">${formatBriefProse(waitlist.cta.note)}</p>`
               : ""
-          }`
+          }<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(waitlist.cta.href)}" target="_blank" rel="noopener">${escapeHtml(waitlist.cta.label ?? "Join the vendor waitlist")}</a></p>`
         : "";
 
     const inventoryHtml = hasInventory
@@ -2682,7 +2704,7 @@
         ${renderBriefBullets(criteria.sales)}`
             : ""
         }
-        ${criteria.footnote ? `<p class="muted">${escapeHtml(criteria.footnote)}</p>` : ""}
+        ${criteria.footnote ? `<p class="muted">${formatBriefProse(criteria.footnote)}</p>` : ""}
       </section>`
         : "";
 
@@ -2690,6 +2712,7 @@
       <section class="content-section site-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
         <h2>${escapeHtml(waitlist.title ?? "Join the waitlist")}</h2>
         ${waitlist.body ? `<p>${formatBriefProse(waitlist.body)}</p>` : ""}
+        ${waitlist.bodyAccent ? `<p class="vendors-round-open">${formatBriefProse(waitlist.bodyAccent)}</p>` : ""}
         ${waitlistCta}
       </section>
       ${inventoryHtml}
@@ -2701,7 +2724,7 @@
         <h3 class="booth-path-heading">${escapeHtml(timeline.pathTitle ?? "Your path after you apply")}</h3>
         ${timeline.pathIntro ? `<p>${formatBriefProse(timeline.pathIntro)}</p>` : ""}
         <ul class="booth-flow-list">${flowHtml}</ul>
-        ${timeline.footnote ? `<p class="muted">${escapeHtml(timeline.footnote)}</p>` : ""}
+        ${timeline.footnote ? `<p class="muted">${formatBriefProse(timeline.footnote)}</p>` : ""}
       </section>
       ${criteriaHtml}`;
 
