@@ -598,6 +598,13 @@
             "avatar": "/assets/lion-dance/tengfeisacramento.jpg"
           },
           {
+            "name": "Chung Mei Lion Dance Troupe",
+            "note": "Sacramento · VFW Post 67 · 中美醒獅團",
+            "instagram": "https://www.instagram.com/chungmei.liondance/",
+            "handle": "@chungmei.liondance",
+            "avatar": "/assets/lion-dance/chungmei.liondance.jpg"
+          },
+          {
             "name": "Thien Quang Lion Dance",
             "aka": "Stockton",
             "instagram": "https://www.instagram.com/thienquang_liondance/",
@@ -681,7 +688,7 @@
           },
           {
             "name": "Mira Loma Chinese Performing Arts Team",
-            "aka": "Dragon & Lion Dance · San Juan Unified",
+            "aka": "Dragon & Lion Dance",
             "instagram": "https://www.instagram.com/mlhs_chinese_club/",
             "handle": "@mlhs_chinese_club",
             "avatar": "/assets/lion-dance/mlhs_chinese_club.jpg"
