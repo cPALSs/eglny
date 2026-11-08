@@ -2878,13 +2878,15 @@
     const waitlist = page?.waitlist ?? {};
     const inventory = page?.inventory ?? {};
     const fees = page?.fees ?? {};
+    const restrictions = page?.restrictions ?? {};
     const criteria = page?.criteria ?? {};
     const timeline = page?.timeline ?? {};
     const hasInventory = Boolean(inventory.title || inventory.table?.rows?.length);
     const hasFees = Boolean(fees.title || fees.notes?.length || fees.sections?.length);
-    const hasCriteria = Boolean(
-      criteria.title || criteria.deny?.length || criteria.factors?.rows?.length,
+    const hasRestrictions = Boolean(
+      restrictions.title || restrictions.deny?.length || restrictions.sales?.length,
     );
+    const hasCriteria = Boolean(criteria.title || criteria.factors?.rows?.length);
     const applyPaths = waitlist.paths ?? [];
     const tocItems = [
       { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Apply" },
@@ -2893,6 +2895,14 @@
         : []),
       ...(hasFees
         ? [{ id: fees.id ?? "fees", label: fees.tocLabel ?? fees.title ?? "Fees & terms" }]
+        : []),
+      ...(hasRestrictions
+        ? [
+            {
+              id: restrictions.id ?? "restrictions",
+              label: restrictions.tocLabel ?? restrictions.title ?? "Restrictions",
+            },
+          ]
         : []),
       { id: timeline.id ?? "timeline", label: timeline.tocLabel ?? timeline.title ?? "Timeline" },
       ...(hasCriteria
@@ -3010,6 +3020,27 @@
       </section>`
       : "";
 
+    const restrictionsHtml = hasRestrictions
+      ? `<section class="content-section site-doc-section" id="${escapeHtml(restrictions.id ?? "restrictions")}" data-doc-section>
+        <h2>${escapeHtml(restrictions.title ?? "Restrictions")}</h2>
+        ${
+          restrictions.deny?.length
+            ? `<h3 class="booth-path-heading">${escapeHtml(restrictions.denyTitle ?? "We do not accept")}</h3>
+        ${restrictions.denyIntro ? `<p>${formatBriefProse(restrictions.denyIntro)}</p>` : ""}
+        ${renderBriefBullets(restrictions.deny)}`
+            : ""
+        }
+        ${
+          restrictions.sales?.length
+            ? `<h3 class="booth-path-heading">${escapeHtml(restrictions.salesTitle ?? "Prohibited sales items")}</h3>
+        ${restrictions.salesIntro ? `<p>${formatBriefProse(restrictions.salesIntro)}</p>` : ""}
+        ${renderBriefBullets(restrictions.sales)}`
+            : ""
+        }
+        ${restrictions.footnote ? `<p class="muted">${formatBriefProse(restrictions.footnote)}</p>` : ""}
+      </section>`
+      : "";
+
     const criteriaHtml = hasCriteria
         ? `<section class="content-section site-doc-section" id="${escapeHtml(criteria.id ?? "criteria")}" data-doc-section>
         <h2>${escapeHtml(criteria.title ?? "Selection criteria")}</h2>
@@ -3022,21 +3053,6 @@
         ${criteria.factorsNote ? `<p class="muted">${formatBriefProse(criteria.factorsNote)}</p>` : ""}`
             : ""
         }
-        ${
-          criteria.deny?.length
-            ? `<h3 class="booth-path-heading">${escapeHtml(criteria.denyTitle ?? "We do not accept")}</h3>
-        ${criteria.denyIntro ? `<p>${formatBriefProse(criteria.denyIntro)}</p>` : ""}
-        ${renderBriefBullets(criteria.deny)}`
-            : ""
-        }
-        ${
-          criteria.sales?.length
-            ? `<h3 class="booth-path-heading">${escapeHtml(criteria.salesTitle ?? "Prohibited sales items")}</h3>
-        ${criteria.salesIntro ? `<p>${formatBriefProse(criteria.salesIntro)}</p>` : ""}
-        ${renderBriefBullets(criteria.sales)}`
-            : ""
-        }
-        ${criteria.footnote ? `<p class="muted">${formatBriefProse(criteria.footnote)}</p>` : ""}
       </section>`
         : "";
 
@@ -3060,6 +3076,7 @@
       </section>
       ${inventoryHtml}
       ${feesHtml}
+      ${restrictionsHtml}
       <section class="content-section site-doc-section" id="${escapeHtml(timeline.id ?? "timeline")}" data-doc-section>
         <h2>${escapeHtml(timeline.title ?? "How selection works")}</h2>
         ${timeline.intro ? `<p>${formatBriefProse(timeline.intro)}</p>` : ""}

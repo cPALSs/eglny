@@ -290,7 +290,12 @@
         ]
       ]
     },
-    "factorsNote": "If two applications score about the same, who paid the deposit earlier can break the tie. Local Elk Grove ties and cultural anchors can also matter a little.",
+    "factorsNote": "If two applications score about the same, who paid the deposit earlier can break the tie. Local Elk Grove ties and cultural anchors can also matter a little."
+  },
+  "restrictions": {
+    "id": "restrictions",
+    "tocLabel": "Restrictions",
+    "title": "Restrictions",
     "denyTitle": "We do not accept",
     "denyIntro": "We decline these applications:",
     "deny": [
