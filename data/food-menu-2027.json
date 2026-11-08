@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-06",
+  "published_at": "2026-11-07",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -100,6 +100,47 @@
       ]
     },
     {
+      "id": "mr-cane",
+      "name": "Mr. Cane",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": null,
+      "instagram": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Sugarcane juice, fresh-pressed fruit infusions",
+          "note": null,
+          "options": "watermelon, kumquat, lemon and ginger, matcha, and more",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Herbal tea",
+          "note": null,
+          "options": "natural herbs, served cool",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Vietnamese coffee latte",
+          "note": null,
+          "options": "ube, pandan",
+          "price": null,
+          "category": "drinks",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ]
+        }
+      ]
+    },
+    {
       "id": "fairy-bites-delicacies",
       "name": "Fairy Bites & Delicacies",
       "booth_label": null,
@@ -189,6 +230,84 @@
           "dietary_tags": [],
           "dietary_warnings": [
             "contains_gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gim-belly",
+      "name": "GIM Belly",
+      "booth_label": null,
+      "booth_kind": "open_cooking",
+      "logo": "assets/food-menu/2027/gim-belly/logo.jpg",
+      "instagram": "gim.belly",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Pork chops plate, deep-fried",
+          "note": null,
+          "options": "rice or garlic noodles · Asian slaw",
+          "price": null,
+          "category": "meals",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "BBQ chicken plate, glazed",
+          "note": null,
+          "options": "rice or garlic noodles · Asian slaw",
+          "price": null,
+          "category": "meals",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Pork belly plate, grilled",
+          "note": null,
+          "options": "rice or garlic noodles · Asian slaw",
+          "price": null,
+          "category": "meals",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Garlic shrimp plate, Hawaiian",
+          "note": null,
+          "options": "rice or garlic noodles · Asian slaw",
+          "price": null,
+          "category": "meals",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Kalbi short ribs plate",
+          "note": "Korean grilled short ribs",
+          "options": "rice or garlic noodles · Asian slaw",
+          "price": null,
+          "category": "meals",
+          "cuisine": "japanese_korean",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
           ]
         }
       ]
@@ -358,7 +477,7 @@
         },
         {
           "name": "Rainbow fruit tanghulu",
-          "note": "sugar-coated",
+          "note": "sugar-coated fruit skewer",
           "options": null,
           "price": null,
           "category": "sweets",
@@ -384,8 +503,8 @@
       "dietary": [],
       "items": [
         {
-          "name": "Popcorn",
-          "note": "prepackaged",
+          "name": "Popcorn, prepackaged",
+          "note": null,
           "options": null,
           "price": null,
           "category": "snacks",
@@ -406,7 +525,7 @@
       "dietary": [],
       "items": [
         {
-          "name": "Popcorn",
+          "name": "Popcorn, prepackaged",
           "note": null,
           "options": "caramel, kettle, cheddar, caramel apple, lightly salted",
           "price": null,
@@ -418,7 +537,7 @@
           "image_credit": "Mr Pops"
         },
         {
-          "name": "Cotton candy",
+          "name": "Cotton candy, prepackaged",
           "note": null,
           "options": null,
           "price": null,
@@ -469,9 +588,9 @@
           "image_credit": "Hey Mango"
         },
         {
-          "name": "Mango drinks",
+          "name": "Mango drink",
           "note": null,
-          "options": "assorted",
+          "options": null,
           "price": null,
           "category": "drinks",
           "allergens": [],
@@ -504,7 +623,7 @@
           "image_credit": "Chez Chibi Bakery"
         },
         {
-          "name": "Lunar New Year cookies and pastries",
+          "name": "Cookies and pastries, Lunar New Year",
           "note": null,
           "options": null,
           "price": null,
@@ -524,9 +643,9 @@
       "dietary": [],
       "items": [
         {
-          "name": "Soft-serve cone/cup",
+          "name": "Soft serve",
           "note": null,
-          "options": "vanilla, chocolate, swirl",
+          "options": "cone or cup · vanilla, chocolate, swirl",
           "price": null,
           "category": "sweets",
           "allergens": [],
@@ -539,7 +658,7 @@
           "image_credit": "YaYa's Classic Soft Serve"
         },
         {
-          "name": "Milkshakes",
+          "name": "Milkshake",
           "note": null,
           "options": null,
           "price": null,
@@ -551,7 +670,7 @@
           ]
         },
         {
-          "name": "Root beer floats",
+          "name": "Root beer float",
           "note": null,
           "options": null,
           "price": null,

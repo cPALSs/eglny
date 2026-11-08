@@ -1,8 +1,8 @@
 {
   "festival": "Elk Grove Lunar New Year Tết 2027",
   "season": 2027,
-  "updated": "2026-11-06",
-  "source": "Round 1 Eventeny approvals (merchants app 54806; nonprofit info app 57657). Kids activity tables (57739) excluded.",
+  "updated": "2026-11-07",
+  "source": "Round 1 Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657). Kids activity tables (57739) excluded.",
   "foodMenuHref": "/food-menu/",
   "headline": "Vendors directory",
   "lead": "Craft merchants and nonprofit community tables at the festival. Meals, drinks, and snacks are listed separately.",
@@ -73,6 +73,13 @@
           "description": "Handmade crochet flowers and keychains.",
           "logo": null,
           "instagram": null
+        },
+        {
+          "id": "the-creative-space",
+          "name": "The Creative Space",
+          "description": "Accessories retail — Midtown Sacramento maker space and fair producer.",
+          "logo": null,
+          "instagram": "thecreativespacesac"
         },
         {
           "id": "xuan-lee",
