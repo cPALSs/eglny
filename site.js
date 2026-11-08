@@ -804,19 +804,22 @@
     const sections = about.sections ?? [];
     if (sections.length) {
       return sections
-        .map(
-          (section) => {
-            const id = sectionId(section);
-            return `
+        .map((section) => {
+          const id = sectionId(section);
+          const paragraphs = (section.paragraphs ?? [])
+            .map((p) => `<p>${linkFirstFundTheFestival(formatBriefProse(p))}</p>`)
+            .join("");
+          return `
       <section class="about-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
-        ${section.paragraphs.map((p) => `<p>${linkFirstFundTheFestival(escapeHtml(p))}</p>`).join("")}
+        ${paragraphs}
+        ${renderBriefTable(section.table)}
+        ${renderBriefBullets(section.bullets)}
       </section>`;
-          },
-        )
+        })
         .join("");
     }
-    return (about.paragraphs ?? []).map((p) => `<p>${escapeHtml(p)}</p>`).join("");
+    return (about.paragraphs ?? []).map((p) => `<p>${formatBriefProse(p)}</p>`).join("");
   }
 
   function renderPosterWall(posterWall) {
