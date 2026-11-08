@@ -43,6 +43,7 @@ Use **Title Case** for top-level and submenu destinations that are proper names 
 **Exceptions (sentence case in nav)** — descriptive phrases, not product names:
 
 - Vendor booths
+- Programming sign-ups
 - Food menu
 - 2026 archive (year + common noun)
 - Lion dance groups

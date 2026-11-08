@@ -467,7 +467,7 @@
   },
   "production": {
     "headline": "Production",
-    "lead": "Team, volunteering, sponsorship, vendor booths, and the tools that build the festival weekend.",
+    "lead": "Team, volunteering, programming sign-ups, sponsorship, vendor booths, and the tools that build the festival weekend.",
     "links": [
       {
         "title": "Team",
@@ -480,6 +480,11 @@
         "href": "/production/volunteer/"
       },
       {
+        "title": "Programming sign-ups",
+        "body": "Open participant registrations for festival-weekend programs — start with Star of Spring Mini-Pageant.",
+        "href": "/production/programming-signups/"
+      },
+      {
         "title": "Sponsorship",
         "body": "Partner pathways — Fund The Festival, sponsorship packet, and thank you to our 2026 sponsors.",
         "href": "/sponsorship/"
@@ -488,6 +493,30 @@
         "title": "Vendor booths",
         "body": "Single booths on Eventeny, Custom Zones for a named corner, selection rounds, and fees.",
         "href": "/vendors/"
+      }
+    ]
+  },
+  "programmingSignups": {
+    "headline": "Programming sign-ups",
+    "lead": "Register for festival-weekend programs hosted at Elk Grove Lunar New Year Tết.",
+    "programs": [
+      {
+        "id": "stage-entertainment",
+        "title": "Stage entertainment",
+        "body": "Interested in performing on stage? Email luckywavfest@gmail.com.",
+        "contactEmail": "luckywavfest@gmail.com",
+        "emailSubject": "EGLNY 2027 — stage entertainment"
+      },
+      {
+        "id": "star-of-spring",
+        "title": "Star of Spring Mini-Pageant",
+        "body": "Princess (ages 6–9) and Junior Princess (ages 10–13). Tentative Saturday or Sunday, February 13 or 14, 2027 · Elk Grove Regional Park. $20 · all backgrounds welcome · no pageant experience needed. Hosted by Miss & Miss Teen Vietnam Northern California.",
+        "ctaLabel": "Register on Tally",
+        "ctaHref": "https://tally.so/r/dbb7po",
+        "flier": {
+          "src": "/assets/programming/star-of-spring-mini-pageant-2027.jpg",
+          "alt": "Star of Spring 2027 Mini Pageant flyer — Miss & Miss Teen Vietnam Northern California"
+        }
       }
     ]
   },

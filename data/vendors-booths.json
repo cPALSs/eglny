@@ -87,8 +87,8 @@
         "bullets": [
           "If we accept you → the $25 counts toward your booth fee",
           "If we don’t select you → we refund the $25",
-          "If we select you but you don’t pay by the deadline → you lose the $25, and the booth goes to the next person on the waitlist",
-          "If you miss Round 1 payment → you can stay on the Round 2 waitlist without paying another deposit"
+          "If we select you but you don’t pay by the deadline → you lose the $25, and we offer that booth **right away** to the next person on the selection waitlist for that booth type — not to Round 2 new applicants",
+          "If that happens in Round 1 → you move to the Round 2 waitlist without paying another deposit"
         ]
       },
       {
@@ -193,12 +193,12 @@
       {
         "label": "Round 1 — Closed",
         "window": "Oct 11 → Nov 5, 2026",
-        "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** cooking booths pay **$375 of $750**; drinks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and drink vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
+        "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** cooking booths pay **$375 of $750**; drinks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → that seat goes **right away** to the next Round 1 waitlisted vendor for that booth type; you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and drink vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
       },
       {
         "label": "Round 2 — Open now",
         "window": "Through Jan 15, 2027",
-        "note": "The remaining spots (~20–30%), plus any Round 1 seats that weren’t paid on time. Decisions around Jan 22 — including people who were waitlisted or didn’t lock in Round 1. Pay by Jan 29. **Food and snack applicants:** wait until we publish the Round 1 food vendors and their menus before you apply. That list shows what’s already taken, so you can see if your type might waitlist — or whether you should apply with something different."
+        "note": "The seats we held back (~20–30%). Unpaid Round 1 seats are **not** thrown into this open pool — they go first to the Round 1 selection waitlist. Decisions around Jan 22 cover held-back seats and people still waiting (including unpaid Round 1 selectees). Pay by Jan 29. **Food and snack applicants:** wait until we publish the Round 1 food vendors and their menus before you apply. That list shows what’s already taken, so you can see if your type might waitlist — or whether you should apply with something different."
       }
     ],
     "pathTitle": "Your path after you apply",
@@ -228,7 +228,7 @@
           {
             "id": "waitlist",
             "title": "Selection waitlist",
-            "body": "You’re next in line for that booth type — **or** you were selected in Round 1 but didn’t pay by Nov 20. Unpaid Round 1 selectees move here automatically and **wait for Round 2 decisions** (around Jan 22). **If you weren’t first pick for a limited food type,** you can stay on this waitlist (in case the first vendor doesn’t pay or drops out), **or** submit a new Round 2 application for a different food type that isn’t already taken.",
+            "body": "You’re next in line for that booth type. If a selected vendor misses the pay-by, we offer **that same seat to you right away** — we don’t hold it for Round 2 new applicants. **If you weren’t first pick for a limited food type,** you can stay on this waitlist for a possible promotion, **or** submit a new Round 2 application for a different food type that isn’t already taken. Separately: if **you** were selected in Round 1 and didn’t pay by Nov 20, you move to the Round 2 waitlist (no new deposit) and wait for Round 2 decisions around Jan 22.",
             "next": "A waitlist spot is not a reserved booth until you get an offer and pay."
           },
           {
@@ -242,7 +242,7 @@
       {
         "id": "paid",
         "title": "Pay → official vendor",
-        "body": "Your offer only lasts until the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 booth-fee lock** and you lose the $25 deposit and join the **Round 2 waitlist** (no new deposit). **Round 1 cooking and drink vendors** who locked with the half booth fee but miss the **Jan 29** remainder + deposits **give up the booth**. Cancel by Jan 29 for a booth-fee refund minus the cancel fee; after that, no booth-fee refund."
+        "body": "Your offer only lasts until the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 booth-fee lock** and that seat goes to the next Round 1 waitlisted vendor right away; you lose the $25 deposit and join the **Round 2 waitlist** (no new deposit). **Round 1 cooking and drink vendors** who locked with the half booth fee but miss the **Jan 29** remainder + deposits **give up the booth** (same: next on the selection waitlist). Cancel by Jan 29 for a booth-fee refund minus the cancel fee; after that, no booth-fee refund."
       }
     ],
     "footnote": "Dates can shift a little if we need to. Spot counts by booth type were set with Round 1 decisions (around Nov 10)."

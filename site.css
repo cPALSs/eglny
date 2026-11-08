@@ -5337,3 +5337,33 @@ a.co-chair-name {
 .history-page.is-hiding-maf [data-maf] {
   display: none;
 }
+
+.programming-signup-cta {
+  margin: 1rem 0 1.25rem;
+}
+
+.programming-flier {
+  margin: 0.5rem 0 0;
+  max-width: 28rem;
+}
+
+.programming-flier-open {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--surface);
+  color: inherit;
+}
+
+.programming-flier-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.programming-flier-open:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+

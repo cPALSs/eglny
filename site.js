@@ -179,6 +179,12 @@
             navLabel: "Volunteering",
             href: "/production/volunteer/",
           },
+          {
+            id: "programming-signups",
+            label: "Programming sign-ups",
+            navLabel: "Programming sign-ups",
+            href: "/production/programming-signups/",
+          },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
         ],
@@ -1248,6 +1254,151 @@
       headline: production?.headline ?? "Production",
       lead: production?.lead,
       links: production?.links,
+    });
+  }
+
+  function renderProgrammingSignupsPage(page) {
+    const programs = page?.programs ?? [];
+    const toc = programs.map((p) => ({
+      id: p.id || slugifyHeading(p.title || "program"),
+      label: p.title || "Program",
+    }));
+    const programsHtml = programs
+      .map((p) => {
+        const id = p.id || slugifyHeading(p.title || "program");
+        const flier = p.flier;
+        const shareTitle = p.title || "Program flier";
+        const shareLabel = `Share ${shareTitle} flier`;
+        const shareButtonHtml = flier?.src
+          ? `<button
+              type="button"
+              class="btn btn-tertiary programming-flier-share"
+              data-share-src="${escapeHtml(flier.src)}"
+              data-share-title="${escapeHtml(shareTitle)}"
+              aria-label="${escapeHtml(shareLabel)}"
+              hidden
+            >Share flier</button>`
+          : "";
+        const registerHtml =
+          p.ctaHref && p.ctaLabel
+            ? `<a class="btn btn-primary" href="${escapeHtml(p.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(p.ctaLabel)}</a>`
+            : "";
+        const ctaHtml =
+          registerHtml || shareButtonHtml
+            ? `<p class="cta-row programming-signup-cta">${registerHtml}${shareButtonHtml}</p>`
+            : "";
+        const flierHtml = flier?.src
+          ? `
+        <figure class="programming-flier">
+          <a class="programming-flier-open" href="${escapeHtml(flier.src)}" target="_blank" rel="noopener">
+            <img class="programming-flier-image" src="${escapeHtml(flier.src)}" alt="${escapeHtml(flier.alt || p.title || "Program flier")}" loading="lazy" width="1080" height="1334" />
+          </a>
+        </figure>`
+          : "";
+        const contactEmail = p.contactEmail;
+        let bodyHtml = p.body ? `<p>${escapeHtml(p.body)}</p>` : "";
+        if (contactEmail) {
+          const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(
+            p.emailSubject ?? "EGLNY 2027 programming",
+          )}`;
+          const emailLink = `<a href="${escapeHtml(mailto)}">${escapeHtml(contactEmail)}</a>`;
+          if (p.body && p.body.includes(contactEmail)) {
+            bodyHtml = `<p>${escapeHtml(p.body).replace(escapeHtml(contactEmail), emailLink)}</p>`;
+          } else {
+            bodyHtml = `${bodyHtml}<p>${emailLink}</p>`;
+          }
+        }
+        return `
+      <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+        <h2>${escapeHtml(p.title || "Program")}</h2>
+        ${bodyHtml}
+        ${ctaHtml}
+        ${flierHtml}
+      </section>`;
+      })
+      .join("");
+
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(page?.headline ?? "Programming sign-ups")}</h1>
+        ${page?.lead ? `<p class="hero-lead">${escapeHtml(page.lead)}</p>` : ""}
+      </section>
+      ${wrapDocLayout(renderDocToc(toc), programsHtml)}`;
+  }
+
+  function flierShareFileName(src) {
+    try {
+      const path = new URL(src, window.location.href).pathname;
+      const base = path.split("/").pop();
+      return base && /\.[a-z0-9]+$/i.test(base) ? base : "flier.jpg";
+    } catch (_) {
+      return "flier.jpg";
+    }
+  }
+
+  async function shareProgrammingFlier(button) {
+    if (typeof navigator === "undefined" || typeof navigator.share !== "function") {
+      return;
+    }
+    const src = button.getAttribute("data-share-src");
+    const title = button.getAttribute("data-share-title") || "Programming flier";
+    const pageUrl = window.location.href;
+    const text = `${title} — Elk Grove Lunar New Year Tết`;
+
+    if (src && typeof navigator.canShare === "function") {
+      try {
+        const response = await fetch(src);
+        if (!response.ok) throw new Error(`Flier fetch failed (${response.status})`);
+        const blob = await response.blob();
+        const type = blob.type || "image/jpeg";
+        const file = new File([blob], flierShareFileName(src), { type });
+        const fileShare = { files: [file], title, text };
+        if (navigator.canShare(fileShare)) {
+          await navigator.share(fileShare);
+          return { mode: "file" };
+        }
+      } catch (_) {
+        /* fall through to URL share */
+      }
+    }
+
+    await navigator.share({ title, text, url: pageUrl });
+    return { mode: "url" };
+  }
+
+  function initProgrammingFlierShare(root = document) {
+    const buttons = root.querySelectorAll(".programming-flier-share");
+    if (!buttons.length) return;
+
+    const shareAvailable =
+      typeof navigator !== "undefined" && typeof navigator.share === "function";
+
+    buttons.forEach((button) => {
+      if (!shareAvailable) {
+        button.hidden = true;
+        button.setAttribute("aria-hidden", "true");
+        button.disabled = true;
+        return;
+      }
+
+      button.hidden = false;
+      button.removeAttribute("aria-hidden");
+      button.disabled = false;
+      if (button.dataset.shareBound === "1") return;
+      button.dataset.shareBound = "1";
+
+      button.addEventListener("click", async () => {
+        if (button.dataset.sharing === "1") return;
+        button.dataset.sharing = "1";
+        try {
+          await shareProgrammingFlier(button);
+        } catch (err) {
+          if (err && err.name === "AbortError") return;
+          console.warn("Programming flier share failed", err);
+        } finally {
+          delete button.dataset.sharing;
+        }
+      });
     });
   }
 
@@ -3460,6 +3611,8 @@
     renderLionDanceGroupsPage,
     renderVendorsDirectoryPage,
     renderProductionPage,
+    renderProgrammingSignupsPage,
+    initProgrammingFlierShare,
     renderAttendeesPage,
     renderSponsorshipPage,
     loadSkuCatalog,
