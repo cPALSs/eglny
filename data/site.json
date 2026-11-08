@@ -24,9 +24,9 @@
   },
   "hero": {
     "festivalHeadline": "Celebrate Lunar New Year Tết in Elk Grove",
-    "festivalLead": "A free family weekend of heritage, food, and community — with Lucky\u00A0Wav on the main stage, honoring where we come from and celebrating where we’re headed.",
+    "festivalLead": "A free family weekend of heritage, food, and community — with Lucky Wav on the main stage, honoring where we come from and celebrating where we’re headed.",
     "headline": "Help build the 2027 festival",
-    "homeLead": "Join the team shaping this year’s celebration. Round\u00A02 vendor applications are open through January 15.",
+    "homeLead": "Join the team shaping this year’s celebration. Round 2 vendor applications are open through January 15.",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and live music on the main stage. Vendor fees fund the essentials. Sponsors unlock the magic.",
     "subhead": "Join weekly production calls, Discord, own a Program or Outreach lane, or step into the Site & Ops Supercommittee — we organize as a network of owners, not a stiff org chart.",
     "body": "Start by showing up to production meetings. Prefer a gift DRI, outreach Director seat, or committee Coordinator role? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs), Thuy Pham (VACOS), and Kevin P. Nguyen (NVCC)."
@@ -186,11 +186,15 @@
           "credits": [
             {
               "area": "Sunday tailgate",
-              "names": ["Robert Do"]
+              "names": [
+                "Robert Do"
+              ]
             },
             {
               "area": "Children's activities",
-              "names": ["Nick Huynh"]
+              "names": [
+                "Nick Huynh"
+              ]
             }
           ]
         },
@@ -200,11 +204,18 @@
           "credits": [
             {
               "area": "Partnerships",
-              "names": ["Tido Hoang", "Kevin P. Nguyen", "Dai Nguyen"]
+              "names": [
+                "Tido Hoang",
+                "Kevin P. Nguyen",
+                "Dai Nguyen"
+              ]
             },
             {
               "area": "Graphic design",
-              "names": ["Ryu Do", "Amber Lua"]
+              "names": [
+                "Ryu Do",
+                "Amber Lua"
+              ]
             }
           ]
         },
@@ -221,15 +232,22 @@
           "credits": [
             {
               "area": "Decorations",
-              "names": ["Raul Armenta", "Vivien Do"]
+              "names": [
+                "Raul Armenta",
+                "Vivien Do"
+              ]
             },
             {
               "area": "Volunteers",
-              "names": ["David Tran"]
+              "names": [
+                "David Tran"
+              ]
             },
             {
               "area": "Legal",
-              "names": ["Kenrick Young"]
+              "names": [
+                "Kenrick Young"
+              ]
             }
           ]
         }
@@ -570,6 +588,13 @@
         "title": "Civic / studio",
         "troupes": [
           {
+            "name": "Chung Mei Lion Dance Troupe",
+            "note": "Sacramento · VFW Post 67 · 中美醒獅團",
+            "instagram": "https://www.instagram.com/chungmei.liondance/",
+            "handle": "@chungmei.liondance",
+            "avatar": "/assets/lion-dance/chungmei.liondance.jpg"
+          },
+          {
             "name": "Eastern Ways Martial Arts",
             "instagram": "https://www.instagram.com/eastern_ways/",
             "handle": "@eastern_ways",
@@ -596,13 +621,6 @@
             "handle": "@tengfeisacramento",
             "website": "https://sacliondance.com",
             "avatar": "/assets/lion-dance/tengfeisacramento.jpg"
-          },
-          {
-            "name": "Chung Mei Lion Dance Troupe",
-            "note": "Sacramento · VFW Post 67 · 中美醒獅團",
-            "instagram": "https://www.instagram.com/chungmei.liondance/",
-            "handle": "@chungmei.liondance",
-            "avatar": "/assets/lion-dance/chungmei.liondance.jpg"
           },
           {
             "name": "Thien Quang Lion Dance",

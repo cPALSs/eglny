@@ -1120,7 +1120,10 @@
     const toc = lanes.map((lane) => ({ id: lane.id, label: lane.title }));
     const sections = lanes
       .map((lane) => {
-        const items = (lane.troupes ?? []).map(renderLionDanceGroupItem).join("");
+        const items = [...(lane.troupes ?? [])]
+          .sort((a, b) => (a.name || "").localeCompare(b.name || "", "en", { sensitivity: "base" }))
+          .map(renderLionDanceGroupItem)
+          .join("");
         return `
       <section class="about-section resources-lion-groups site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
         <h2>${escapeHtml(lane.title)}</h2>
