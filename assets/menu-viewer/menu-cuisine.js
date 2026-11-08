@@ -80,7 +80,7 @@ const ITEM_RULES = [
   ],
   [
     "japanese_korean",
-    /\b(teriyaki|musubi|katsu|bulgogi|korean\s+corn\s*dogs?|korean\s+cheesedogs?|cheese\s*dogs?|ramen|sushi|gyoza|bibimbap|tonkatsu|japchae|korean\s+bbq)\b/i,
+    /\b(teriyaki|katsu|bulgogi|korean\s+corn\s*dogs?|korean\s+cheesedogs?|cheese\s*dogs?|ramen|sushi|gyoza|bibimbap|tonkatsu|japchae|korean\s+bbq)\b/i,
   ],
   [
     "mexican_latin",
@@ -102,7 +102,7 @@ const ITEM_RULES = [
  * Prefer a specific Asian vendor lane when the name is also ambiguous.
  */
 const ASIAN_GENERIC_RE =
-  /\b(fried\s*rice|noodle\s*soup|sticky\s*rice|garlic\s*noodles?|asian\s+sausages?|curry\s+noodles?(?:\s+soup)?|fried\s+egg\s*(?:&|and)\s*steamed\s*rice|dragon\s*roll|kabobs?\s*sticks?|kebabs?\s*sticks?|pork\s+kabobs?(?:\s*sticks?)?|steamed\s*rice|rice\s*plates?)\b|^pork\s+belly(?:\s+over\s+rice)?$/i;
+  /\b(fried\s*rice|noodle\s*soup|sticky\s*rice|garlic\s*noodles?|asian\s+sausages?|curry\s+noodles?(?:\s+soup)?|fried\s+egg\s*(?:&|and)\s*steamed\s*rice|dragon\s*roll|kabobs?\s*sticks?|kebabs?\s*sticks?|pork\s+kabobs?(?:\s*sticks?)?|steamed\s*rice|rice\s*plates?|(?:spam\s+)?musubi)\b|^pork\s+belly(?:\s+over\s+rice)?$/i;
 
 /** Commodity sides — never inherit vendor cuisine. */
 const COMMODITY_SIDE_RE =
@@ -128,7 +128,7 @@ const VENDOR_RULES = [
   ["lao_thai", /papaya\s*salad|thai\b|lao\b|stockton'?s\s*best|tiger\s*bite/i],
   ["mexican_latin", /pitayas?\s*locas|elote|taco|mexican|latin|\bmaiz\b/i],
   ["mediterranean", /ray'?s\s*kitchen|gyro|shawarma|halal\s*kitchen/i],
-  ["japanese_korean", /\bkorean\b|teriyaki|musubi|ramen|bowli/i],
+  ["japanese_korean", /\bkorean\b|teriyaki|ramen|bowli/i],
   ["vietnamese", /viet|saigon|\bpho\b|b[aá]nh|zummi/i],
   ["fusion", /\bfusion\b/i],
   [

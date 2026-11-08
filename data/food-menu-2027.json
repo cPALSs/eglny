@@ -235,6 +235,60 @@
       ]
     },
     {
+      "id": "happy-foods",
+      "name": "Happy foods",
+      "booth_label": null,
+      "booth_kind": "open_cooking",
+      "logo": "assets/food-menu/2027/happy-foods/logo.jpg",
+      "instagram": "happyfoods_bros",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Garlic noodles with shrimp",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Hawaiian garlic butter shrimp over rice",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_dairy"
+          ]
+        },
+        {
+          "name": "Spam musubi",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "cuisine": "asian",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat",
+            "contains_gluten"
+          ]
+        }
+      ]
+    },
+    {
       "id": "gim-belly",
       "name": "GIM Belly",
       "booth_label": null,
@@ -683,6 +737,41 @@
           "image": "assets/food-menu/2027/yayas-classic-soft-serve/root-beer-float.jpg",
           "image_alt": "Root beer float from YaYa's Classic Soft Serve",
           "image_credit": "YaYa's Classic Soft Serve"
+        }
+      ]
+    },
+    {
+      "id": "veneto-authentic-italian-gelato",
+      "name": "Veneto Authentic Italian Gelato",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/veneto-authentic-italian-gelato/logo.jpg",
+      "instagram": "Veneto.Italian.Gelato",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Italian gelato",
+          "note": null,
+          "options": "small, medium, large",
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ]
+        },
+        {
+          "name": "Italian sorbet",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": [
+            "dairy_free"
+          ],
+          "dietary_warnings": []
         }
       ]
     }
