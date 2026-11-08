@@ -139,18 +139,16 @@
         </div>
       </section>
       <div class="home-below">
-        <div class="home-cta-columns">
-          <section class="content-section">
-            <h2>Help build the 2027 festival</h2>
-            <p>Join the team shaping this year’s celebration. Round 2 vendor applications are open through January 15.</p>
-            <p><a class="btn btn-primary" href="/vendors/">Register as vendor</a> <a class="btn btn-secondary" href="/vendors/">Register as vendor</a></p>
-          </section>
-          <section class="content-section">
-            <h2>Fund the experience</h2>
-            <p>Sponsors unlock the blocks families remember.</p>
-            <p><a class="btn btn-secondary" href="/fund-the-festival/">Fund The Festival</a> <a class="btn btn-tertiary" href="https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view" target="_blank" rel="noopener">Sponsorship packet</a></p>
-          </section>
-        </div>
+        <section class="content-section home-build-cta">
+          <h2>Help build the 2027 festival</h2>
+          <p>Join the team shaping this year’s celebration. Round&nbsp;2 vendor applications are open through January 15.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/vendors/">Register as vendor</a>
+            <a class="btn btn-secondary" href="/team/">Join the team</a>
+            <a class="btn btn-secondary" href="/sponsorship/">Sponsor the festival</a>
+            <a class="btn btn-secondary" href="/production/programming-signups/">Sign up for programs</a>
+          </div>
+        </section>
       </div>
     </div>
   </main>
@@ -158,7 +156,7 @@
   <script src="doc-scroll.js"></script>
   <script src="site.js"></script>
   <script type="module">
-    const { initPageShell, loadSiteData, mountFooter, renderFestivalHero, setPageTitle, escapeHtml, SPONSORSHIP_PACKET_PDF_URL, revealPage } =
+    const { initPageShell, loadSiteData, mountFooter, renderFestivalHero, setPageTitle, escapeHtml, revealPage } =
       window.EglnySite;
     initPageShell("home");
     try {
@@ -169,24 +167,16 @@
       document.getElementById("main").innerHTML = `
         ${renderFestivalHero(site)}
         <div class="home-below">
-          <div class="home-cta-columns">
-            <section class="content-section">
-              <h2>${escapeHtml(h.headline)}</h2>
-              <p>${escapeHtml(h.homeLead ?? "Join the team shaping this year’s celebration.")}</p>
-              <div class="cta-row">
-                <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
-                <a class="btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
-              </div>
-            </section>
-            <section class="content-section">
-              <h2>${escapeHtml(h.fundHeadline ?? "Fund the experience")}</h2>
-              <p>${escapeHtml(h.fundLead ?? "Sponsors unlock the blocks families remember.")}</p>
-              <div class="cta-row">
-                <a class="btn btn-secondary" href="${escapeHtml(c.buildHref)}">${escapeHtml(c.buildLabel)}</a>
-                <a class="btn btn-tertiary" href="${escapeHtml(SPONSORSHIP_PACKET_PDF_URL)}" target="_blank" rel="noopener">Sponsorship packet</a>
-              </div>
-            </section>
-          </div>
+          <section class="content-section home-build-cta">
+            <h2>${escapeHtml(h.headline)}</h2>
+            <p>${escapeHtml(h.homeLead ?? "Join the team shaping this year’s celebration.")}</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the festival")}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.programsHref ?? "/production/programming-signups/")}">${escapeHtml(c.programsLabel ?? "Sign up for programs")}</a>
+            </div>
+          </section>
         </div>
       `;
       mountFooter(site);

@@ -9,13 +9,13 @@
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply for single booth or an entire zone",
-    "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10.",
+    "bodyAfter": "Round\u00A01 closed Nov 5. Round\u00A01 decisions were around Nov 10.",
     "partnerIntro": "Two ways to join the map: apply for a standard booth on Eventeny, or inquire about a named Custom Zones corner.",
     "paths": [
       {
         "title": "Single booth on Eventeny",
         "body": "Food, drinks, snacks, crafts, merchant, activity, and nonprofit info booths — apply through Eventeny.",
-        "accent": "Round 2 is open through Jan 15, 2027.",
+        "accent": "Round\u00A02 is open through Jan 15, 2027.",
         "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
         "external": true
       },
@@ -191,12 +191,12 @@
     "intro": "We review applications in **two rounds**. Early applicants can lock a booth sooner. We also save some spots for strong later applications. The steps are the same in both rounds.",
     "rounds": [
       {
-        "label": "Round 1 — Closed",
+        "label": "Round\u00A01 — Closed",
         "window": "Oct 11 → Nov 5, 2026",
         "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** cooking booths pay **$375 of $750**; drinks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → that seat goes **right away** to the next Round 1 waitlisted vendor for that booth type; you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and drink vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
       },
       {
-        "label": "Round 2 — Open now",
+        "label": "Round\u00A02 — Open now",
         "window": "Through Jan 15, 2027",
         "note": "The seats we held back (~20–30%). Unpaid Round 1 seats are **not** thrown into this open pool — they go first to the Round 1 selection waitlist. Decisions around Jan 22 cover held-back seats and people still waiting (including unpaid Round 1 selectees). Pay by Jan 29. **Food and snack applicants:** wait until we publish the Round 1 food vendors and their menus before you apply. That list shows what’s already taken, so you can see if your type might waitlist — or whether you should apply with something different."
       }
