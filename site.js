@@ -814,6 +814,7 @@
         <h2>${escapeHtml(section.title)}</h2>
         ${paragraphs}
         ${renderBriefTable(section.table)}
+        ${renderBriefOrderedItems(section.orderedItems)}
         ${renderBriefBullets(section.bullets)}
       </section>`;
         })

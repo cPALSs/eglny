@@ -436,141 +436,36 @@
         ]
       },
       {
-        "id": "purpose",
-        "title": "Our purpose",
+        "id": "strategic-objectives",
+        "title": "Strategic objectives",
         "paragraphs": [
-          "Elk Grove Lunar New Year Tết is more than an annual cultural celebration. It is a community-building institution dedicated to celebrating Vietnamese heritage, strengthening multi-generational family bonds, empowering local Vietnamese American businesses, and welcoming the greater Sacramento region into that experience.",
-          "Organized by VACOS, cPALSs, and NVCC with the City of Elk Grove and Cosumnes Community Services District, the festival seeks lasting value beyond a single weekend — without replacing the year-round work each host organization already does.",
-          "Our success is measured not only by attendance and revenue, but by the positive impact we create. **Free admission** is non-negotiable — the festival stays accessible regardless of socioeconomic status."
-        ]
-      },
-      {
-        "id": "co-hosts",
-        "title": "Our co-hosts",
-        "paragraphs": [
-          "Three Vietnamese American organizations share stewardship of the weekend, each bringing a distinct strength:"
+          "Our success is measured not only by attendance and revenue, but by the positive impact we create. Free admission stays non-negotiable. These six objectives guide how we plan the weekend and work with partners:"
         ],
-        "table": {
-          "headers": ["Organization", "What they bring"],
-          "rows": [
-            [
-              "VACOS",
-              "Cultivate a vibrant Vietnamese community through cultural, civic, social, and political development — with particular care for refugee-era families, elders, and a collective civic voice."
-            ],
-            [
-              "cPALSs",
-              "Community development and enrichment by connecting partners with residences, resources, recreations, and referrals — especially for underserved communities."
-            ],
-            [
-              "NVCC",
-              "Empower local communities while honoring Little Saigon Sacramento roots by fostering connections and creating business pathways."
-            ]
-          ]
-        }
-      },
-      {
-        "id": "youth",
-        "title": "Youth engagement & leadership",
-        "paragraphs": [
-          "Create meaningful opportunities for young people to connect with their heritage, contribute to their community, and develop leadership skills — especially high school anchors in a family weekend, with college students and Vietnamese Student Associations (VSAs) welcome as guests and partners."
-        ],
-        "bullets": [
-          "Engage high school and college students as volunteers and performers.",
-          "Provide opportunities for youth to take on leadership responsibilities.",
-          "Encourage student organizations, including VSAs, to participate.",
-          "Develop the next generation of Vietnamese American community leaders."
-        ]
-      },
-      {
-        "id": "families",
-        "title": "Multi-generational families & seniors",
-        "paragraphs": [
-          "Center the weekend on families — parents, children, teens, and elders celebrating together — while recognizing older generations and making the festival welcoming and accessible to seniors."
-        ],
-        "bullets": [
-          "Design a daylight family fair that multi-generational households can share.",
-          "Encourage senior participation in festival activities and performances.",
-          "Showcase traditional Vietnamese arts, music, and cultural practices elders carry.",
-          "Create opportunities for elders to share knowledge across generations."
-        ]
-      },
-      {
-        "id": "business",
-        "title": "Vietnamese American business empowerment",
-        "paragraphs": [
-          "Provide a platform for Vietnamese American entrepreneurs, small businesses, and professionals to gain visibility and economic opportunities."
-        ],
-        "bullets": [
-          "Encourage participation from Vietnamese-owned businesses.",
-          "Provide opportunities for emerging entrepreneurs and small businesses.",
-          "Connect businesses with potential customers and partners.",
-          "Strengthen the Vietnamese American business community."
-        ]
-      },
-      {
-        "id": "culture",
-        "title": "Vietnamese cultural preservation & visibility",
-        "paragraphs": [
-          "Celebrate Vietnamese heritage while advancing Vietnamese American culture as a visible, living part of the broader American cultural landscape — with Vietnamese culture as the host of the weekend, not a generic pan-Asian fair with Vietnamese flavor."
-        ],
-        "bullets": [
-          "Showcase Vietnamese music, performing arts, crafts, foodways, and traditions as the destination guests walk into.",
-          "Provide platforms for emerging Vietnamese American artists.",
-          "Encourage innovative cultural expression that still serves a Vietnamese-hosted journey.",
-          "Educate audiences about Vietnamese history, heritage, and contemporary contributions."
-        ]
-      },
-      {
-        "id": "welcome",
-        "title": "Cross-cultural welcome & inclusion",
-        "paragraphs": [
-          "Make the festival a welcoming gathering place where people from many backgrounds can experience Vietnamese culture and build meaningful connections — as guests of a Vietnamese-hosted civic Tết."
-        ],
-        "bullets": [
-          "Welcome attendees from across the Sacramento region.",
-          "Invite respectful participation from diverse cultural organizations as guest collaborators.",
-          "Facilitate cross-cultural artistic and community collaborations that honor the Vietnamese core.",
-          "Create opportunities for visitors to learn about and experience Vietnamese culture.",
-          "Serve as a bridge for community members who face language, economic, or access barriers."
-        ]
-      },
-      {
-        "id": "year-round",
-        "title": "Year-round partnership",
-        "paragraphs": [
-          "Extend the festival’s reach by seeding and supporting lasting relationships with schools, universities, nonprofits, businesses, and community organizations — so partners can run their own cultural activities after the weekend ends."
-        ],
-        "bullets": [
-          "Develop partnerships with high schools and universities.",
-          "Support campus-based and peer Lunar New Year celebrations.",
-          "Share promotional materials and cultural programming resources with community partners.",
-          "Encourage organizations to develop their own cultural activities throughout the year.",
-          "Point people toward host-organization year-round work rather than treating the festival as the only institution."
-        ]
-      },
-      {
-        "id": "success",
-        "title": "How we define success",
-        "paragraphs": [
-          "Meaningful community impact cannot always be measured through numbers alone. We still evaluate progress and improve each season. Examples of meaningful outcomes include:"
-        ],
-        "bullets": [
-          "More young people involved in community leadership and on-stage or volunteer roles.",
-          "More multi-generational families treating the weekend as their civic Tết.",
-          "More Vietnamese American artists receiving opportunities to showcase their talents.",
-          "More local Vietnamese businesses gaining customers and visibility.",
-          "More seniors participating in cultural activities.",
-          "More people from outside the Vietnamese community developing an appreciation for Vietnamese culture — through a clearly Vietnamese-hosted experience.",
-          "More schools and community organizations independently organizing Lunar New Year celebrations."
-        ]
-      },
-      {
-        "id": "shared-responsibility",
-        "title": "A shared responsibility",
-        "paragraphs": [
-          "These objectives are not the job of any single department or organization. Every festival director, volunteer, sponsor, performer, vendor, and community partner has a chance to contribute.",
-          "We ask everyone involved to consider how their activities, decisions, and contributions advance this shared mission.",
-          "We are not simply organizing an annual festival. We are building a stronger, more connected, and more culturally vibrant community — with Vietnamese Tết at the center of this weekend, free and open to all."
+        "orderedItems": [
+          {
+            "label": "Youth engagement & leadership",
+            "text": "Create meaningful opportunities for young people — especially high school students, with college and VSAs welcome — to connect with their heritage, contribute as volunteers and performers, and grow as community leaders."
+          },
+          {
+            "label": "Multi-generational families & seniors",
+            "text": "Center the weekend on families celebrating together, encourage senior participation, and make space for elders to share traditional arts and knowledge across generations."
+          },
+          {
+            "label": "Vietnamese American business empowerment",
+            "text": "Give Vietnamese American entrepreneurs, small businesses, and professionals a platform for visibility, customers, and economic opportunity."
+          },
+          {
+            "label": "Vietnamese cultural preservation & visibility",
+            "text": "Celebrate Vietnamese heritage as the host of the weekend — music, arts, crafts, foodways, and contemporary contributions — not a generic pan-Asian fair with Vietnamese flavor."
+          },
+          {
+            "label": "Cross-cultural welcome & inclusion",
+            "text": "Welcome the greater Sacramento region as guests of a Vietnamese-hosted civic Tết, including diverse vendors and collaborators, and remain accessible to people facing language, economic, or access barriers."
+          },
+          {
+            "label": "Year-round partnership",
+            "text": "Seed lasting relationships with schools, campuses, nonprofits, and community organizations so partners can run their own cultural activities after the weekend — without treating the festival as the only institution."
+          }
         ]
       },
       {
