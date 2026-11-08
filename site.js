@@ -656,10 +656,7 @@
       hero.festivalLead ||
       "A joyful celebration of heritage, community, and new beginnings. Enjoy traditional performances, delicious food, music, and activities for the whole family.";
     const keepElkGrove = (s) => String(s).replace(/Elk Grove/g, "Elk\u00A0Grove");
-    const leadHtml = escapeHtml(lead).replace(
-      /Lucky[\u00A0 ]Wav/g,
-      '<a href="/about/#lucky-wav">Lucky\u00A0Wav</a>',
-    );
+    const leadHtml = escapeHtml(lead);
 
     return `
       <section class="festival-hero" aria-label="Festival highlight">
