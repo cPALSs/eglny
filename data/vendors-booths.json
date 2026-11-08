@@ -253,44 +253,57 @@
     "title": "Selection criteria",
     "intro": "We look at the whole round of applications together — not whoever paid first. Food applicants are ranked within their type. Craft, merchant, and info booths are reviewed for overall festival fit.",
     "factorsTitle": "Food ranking factors",
-    "factorsIntro": "For cooking and drink applicants, here’s roughly how much each factor counts:",
+    "factorsIntro": "For cooking and drink applicants, here’s roughly how much each factor counted in Round 1 and how much it counts in Round 2:",
     "factors": {
       "headers": [
         "Factor",
-        "About how much"
+        "Round 1",
+        "Round 2"
       ],
       "rows": [
         [
           "Strong menu / festival fit — see [Food menu](/food-menu/) for examples",
+          "~30%",
           "~30%"
         ],
         [
+          "Previous festival relationship",
+          "~5%",
+          "—"
+        ],
+        [
           "Worked with our festivals before (Elk Grove LNY / Great Lantern)",
+          "—",
           "~15%"
         ],
         [
+          "Other festival experience",
+          "—",
+          "~5%"
+        ],
+        [
           "Can this booth succeed with our expected crowd size?",
+          "~15%",
           "~10%"
         ],
         [
           "Clear specialty (focused menu, not everything under the sun)",
+          "~10%",
           "~10%"
         ],
         [
           "Dietary and guest needs — see [Food menu](/food-menu/) for examples",
+          "~10%",
           "~10%"
         ],
         [
-          "Other festival experience",
-          "~5%"
-        ],
-        [
           "Active food social media (real posts — not just a handle or follower count)",
+          "~5%",
           "~5%"
         ]
       ]
     },
-    "factorsNote": "If two applications score about the same, who paid the deposit earlier can break the tie. Local Elk Grove ties and cultural anchors can also matter a little."
+    "factorsNote": "Round 1 used one blended “previous festival relationship” line. Round 2 splits that into prior work with our festivals and other festival experience. If two applications score about the same, who paid the deposit earlier can break the tie. Local Elk Grove ties and cultural anchors can also matter a little."
   },
   "restrictions": {
     "id": "restrictions",
