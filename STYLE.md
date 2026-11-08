@@ -38,19 +38,25 @@ Use **Title Case** for top-level and submenu destinations that are proper names 
 
 - About, Production, Visit, Resources
 - Team, Sponsorship, Volunteering, Blog, Media, Lunar New Year Season
-- Brands as locked: Fund The Festival, Custom Zones, RFPs
+- Brands as locked: Fund The Festival, Custom Zones
 
 **Exceptions (sentence case in nav)** — descriptive phrases, not product names:
 
 - Vendor booths
 - Food menu
-- Open roles
 - 2026 archive (year + common noun)
 - Lion dance groups
 - Menu view tabs: **By cuisine**, **By vendor**, **By diet** (sentence-case “By …”)
 - Optional item **note** — muted second line (translation / flavors); not Title Case
 
 Acronyms stay as acronyms: **RFPs**, **LNY**, **FAQ**, **EGLNY**.
+
+**Delisted from nav** (still public URLs; reach from related pages):
+
+- Open roles — folded into **Team** (blurb + interest modal under each supercommittee); `/team/roles/` redirects to `/team/`
+- Fund The Festival — from Sponsorship → Partner with us
+- Custom Zones — from Vendor booths → Apply cards
+- `/rfp/` index — redirects to **Team**; individual Theater detail may stay deep-linked from Team open seats
 
 ### Section headings + TOC — sentence case
 
@@ -59,7 +65,6 @@ In-page `h2` / `h3` and “On this page” labels use **sentence case**:
 - Partner with us
 - Open lots
 - Join the waitlist
-- What is a director?
 - Day-of help
 - Apply & get involved
 
@@ -95,7 +100,7 @@ Path-finder controls that only scroll the page (e.g. Custom Zones DIY / Help) ar
 ## Back links
 
 - Top-level Production / Visit destinations — **no** “← Production” / “← Visit” back link; the main nav is enough.
-- Nested detail pages (individual RFPs) — **yes** back to the parent index (`← RFPs`).
+- Nested detail pages (individual RFP detail URLs) — **yes** back to Team (`← Team`) when linked from an open seat.
 
 ---
 

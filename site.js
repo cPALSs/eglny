@@ -22,9 +22,14 @@
     );
   }
 
-  /** First “Open roles” in already-escaped HTML → link to the roles page. */
+  /** First “Open roles” in already-escaped HTML → Team (roles live there now). */
   function linkFirstOpenRoles(html) {
-    return String(html).replace(/Open roles/, '<a href="/team/roles/">Open roles</a>');
+    return String(html).replace(/Open roles/, '<a href="/team/">Open roles</a>');
+  }
+
+  /** First “Team” word in already-escaped HTML → team page link. */
+  function linkFirstTeam(html) {
+    return String(html).replace(/\bTeam\b/, '<a href="/team/">Team</a>');
   }
 
   function loadThemeFromStorage() {
@@ -135,6 +140,21 @@
   const SPONSORSHIP_PACKET_PDF_URL =
     "https://drive.google.com/file/d/1lcY0v0KhtJf_gxRvhqQPTJRiHPVRB4IO/view";
 
+  /**
+   * Delisted destinations still call initPageShell with their own id.
+   * Map those to the nav leaf that should stay highlighted.
+   */
+  const NAV_ACTIVE_ALIASES = {
+    roles: "team",
+    build: "sponsorship",
+    host: "booths",
+    rfp: "team",
+  };
+
+  function resolveNavActivePage(activePage) {
+    return NAV_ACTIVE_ALIASES[activePage] ?? activePage;
+  }
+
   function getNavPages() {
     return [
       {
@@ -153,13 +173,14 @@
         href: "/production/",
         children: [
           { id: "team", label: "Team", href: "/team/" },
-          { id: "roles", label: "Open roles", navLabel: "Open roles", href: "/team/roles/" },
-          { id: "volunteer", label: "Volunteering", navLabel: "Volunteering", href: "/production/volunteer/" },
+          {
+            id: "volunteer",
+            label: "Volunteering",
+            navLabel: "Volunteering",
+            href: "/production/volunteer/",
+          },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
-          { id: "build", label: "Fund The Festival", navLabel: "Fund The Festival", href: "/fund-the-festival/" },
           { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
-          { id: "host", label: "Custom Zones", navLabel: "Custom Zones", href: "/custom-zones/" },
-          { id: "rfp", label: "RFPs", navLabel: "RFPs", href: "/rfp/" },
         ],
       },
       {
@@ -190,21 +211,22 @@
   }
 
   function renderNavLinks(pages, activePage) {
+    const resolvedActive = resolveNavActivePage(activePage);
     return pages
       .map((page) => {
         if (page.children?.length) {
-          const parentCurrent = page.id === activePage ? ' aria-current="page"' : "";
-          const childActive = page.children.some((child) => child.id === activePage);
+          const parentCurrent = page.id === resolvedActive ? ' aria-current="page"' : "";
+          const childActive = page.children.some((child) => child.id === resolvedActive);
           const sublinks = page.children
             .map((child) => {
-              const childCurrent = child.id === activePage ? ' aria-current="page"' : "";
+              const childCurrent = child.id === resolvedActive ? ' aria-current="page"' : "";
               const external = child.external ? ' target="_blank" rel="noopener"' : "";
               return `<div class="site-nav-sublink-wrap"><a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
             })
             .join("");
           return `<div class="site-nav-group${childActive ? " is-active" : ""}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
         }
-        const current = page.id === activePage ? ' aria-current="page"' : "";
+        const current = page.id === resolvedActive ? ' aria-current="page"' : "";
         return `<a href="${page.href}"${current}>${escapeHtml(navLinkLabel(page))}</a>`;
       })
       .join("");
@@ -552,13 +574,31 @@
           </section>`;
   }
 
+  function renderVolunteerPlanningSection(block) {
+    const planning = block?.planning;
+    if (!planning) return "";
+    const title = planning.title ?? "Planning & directing";
+    const body = planning.body ?? "See Team page for open roles.";
+    const linkedBody = escapeHtml(body).replace(
+      /\bTeam\b/,
+      '<a href="/team/">Team</a>',
+    );
+    return `
+          <section class="content-section site-doc-section" id="planning-directing" data-doc-section>
+            <h2>${escapeHtml(title)}</h2>
+            <p>${linkedBody}</p>
+          </section>`;
+  }
+
   function renderVolunteerPage(site) {
     const block = site.teamPage?.skillsProjects;
     const skillsTitle = block?.sectionTitle ?? "Skills projects";
     const dayOf = block?.dayOfHelp;
+    const planning = block?.planning;
     const projects = block?.projects ?? [];
     const openCount = projects.filter((p) => !isSkillsProjectFilled(p)).length;
     const ctaClass = openCount === 1 ? "btn btn-primary" : "btn btn-secondary";
+    const planningHtml = renderVolunteerPlanningSection(block);
     const skillsHtml = `
           <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
             <h2>${escapeHtml(skillsTitle)}</h2>
@@ -574,10 +614,13 @@
           </section>`
       : "";
     const toc = [
+      ...(planningHtml
+        ? [{ id: "planning-directing", label: planning?.title ?? "Planning & directing" }]
+        : []),
       { id: "skills-projects", label: skillsTitle },
       ...(dayOf ? [{ id: "day-of-help", label: dayOf.title ?? "Day-of help" }] : []),
     ];
-    return wrapDocLayout(renderDocToc(toc), `${skillsHtml}${dayOfHtml}`);
+    return wrapDocLayout(renderDocToc(toc), `${planningHtml}${skillsHtml}${dayOfHtml}`);
   }
 
   /** @deprecated Prefer renderVolunteerPage */
@@ -759,19 +802,30 @@
     ];
   }
 
+  function findLaneById(site, laneId) {
+    if (!laneId) return null;
+    return (site.lanes ?? []).find((lane) => lane.id === laneId) ?? null;
+  }
+
   function buildRosterToc(site) {
     const groups = site.teamPage?.roster?.groups ?? [];
-    return groups
+    const groupItems = groups
       .filter((group) => {
         if (!group.title) return false;
         const hasMembers = (group.members?.length ?? 0) > 0;
         const hasCredits = (group.credits ?? []).some((c) => c?.area && (c.names?.length ?? 0) > 0);
-        return hasMembers || hasCredits;
+        const hasLane = Boolean(findLaneById(site, group.laneId));
+        return hasMembers || hasCredits || hasLane;
       })
       .map((group) => ({
         id: slugifyHeading(group.title),
         label: group.title,
       }));
+    return [
+      ...groupItems,
+      { id: "apply", label: "Apply & get involved" },
+      { id: "faq", label: "FAQ" },
+    ];
   }
 
   function buildTeamToc(site) {
@@ -779,13 +833,10 @@
   }
 
   function buildOpenRolesToc(site) {
-    const unlock = site.phase2;
     return [
-      { id: "what-is-a-director", label: site.directorIntro?.title ?? "What is a director?" },
       { id: "apply", label: "Apply & get involved" },
       { id: "faq", label: "FAQ" },
       ...(site.lanes ?? []).map((lane) => ({ id: lane.id, label: lane.title })),
-      ...(unlock ? [{ id: "sponsor-unlocks", label: unlock.title ?? "Sponsor unlocks" }] : []),
     ];
   }
 
@@ -1587,10 +1638,13 @@
   }
 
   function renderRosterMemberCard(m) {
+    const roleOpen = Boolean(m.roleOpen || m.open);
     const photo = m.photo;
     const img = photo
       ? `<img class="roster-photo" src="${escapeHtml(photo)}" alt="" width="88" height="88" loading="lazy" />`
-      : `<span class="roster-photo roster-photo--placeholder" aria-hidden="true">${escapeHtml(rosterInitials(m.name))}</span>`;
+      : `<span class="roster-photo roster-photo--placeholder${
+          roleOpen ? " roster-photo--open" : ""
+        }" aria-hidden="true">${escapeHtml(rosterInitials(m.name))}</span>`;
     const embedSrc = m.instagramUrl ? instagramEmbedSrc(m.instagramUrl) : null;
     const avatar =
       embedSrc && photo
@@ -1629,15 +1683,27 @@
             aria-label="${escapeHtml(m.name)} on Instagram (@${escapeHtml(handle)})"
           >${renderSocialIcon("Instagram")}</a>`
         : "";
+    // Open seats: name stays plain text; "Role open" (status line) is the link.
+    const nameHtml =
+      m.href && !roleOpen
+        ? `<a class="co-chair-name" href="${escapeHtml(m.href)}">${escapeHtml(m.name)}</a>`
+        : `<p class="co-chair-name">${escapeHtml(m.name)}</p>`;
+    const titleText = m.roleOpenLabel ?? m.title ?? (roleOpen ? "Role open" : "");
+    const roleOpenHref = roleOpen ? m.roleOpenHref ?? m.href : null;
+    const titleHtml = titleText
+      ? roleOpen && roleOpenHref
+        ? `<p class="co-chair-title roster-role-open"><a href="${escapeHtml(roleOpenHref)}">${escapeHtml(titleText)}</a></p>`
+        : `<p class="co-chair-title${roleOpen ? " roster-role-open" : ""}">${escapeHtml(titleText)}</p>`
+      : "";
     return `
-    <div class="roster-card">
+    <div class="roster-card${roleOpen ? " roster-card--open" : ""}">
       ${avatar}
       <div class="roster-card-text">
         <div class="roster-name-row">
-          <p class="co-chair-name">${escapeHtml(m.name)}</p>
+          ${nameHtml}
           ${ig}
         </div>
-        <p class="co-chair-title">${escapeHtml(m.title)}</p>
+        ${titleHtml}
         ${vision}
         ${fullPayload}
       </div>
@@ -1699,6 +1765,30 @@
     return dialog;
   }
 
+  function ensureRosterLaneModal() {
+    let dialog = document.getElementById("roster-lane-modal");
+    if (dialog) return dialog;
+
+    dialog = document.createElement("dialog");
+    dialog.id = "roster-lane-modal";
+    dialog.className = "roster-lane-modal";
+    dialog.innerHTML = `
+      <div class="roster-lane-modal-inner">
+        <form method="dialog" class="roster-lane-modal-toolbar">
+          <h2 class="roster-lane-modal-title"></h2>
+          <button type="submit" class="roster-lane-modal-close" aria-label="Close">&times;</button>
+        </form>
+        <div class="roster-lane-modal-body"></div>
+      </div>`;
+    document.body.appendChild(dialog);
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    return dialog;
+  }
+
   function initRosterMedia(root = document) {
     const dialog = ensureRosterReelModal();
     const iframe = dialog.querySelector("iframe");
@@ -1738,6 +1828,25 @@
         visionDialog.showModal();
       });
     });
+
+    const laneDialog = ensureRosterLaneModal();
+    const laneTitle = laneDialog.querySelector(".roster-lane-modal-title");
+    const laneBody = laneDialog.querySelector(".roster-lane-modal-body");
+
+    root.querySelectorAll(".roster-lane-interest[data-roster-lane]").forEach((button) => {
+      if (button.dataset.rosterLaneBound === "1") return;
+      button.dataset.rosterLaneBound = "1";
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-roster-lane");
+        const template = Array.from(root.querySelectorAll("template.roster-lane-full")).find(
+          (el) => el.getAttribute("data-roster-lane") === key,
+        );
+        if (!template || !laneBody || !laneTitle) return;
+        laneTitle.textContent = button.textContent.replace(/^Interested in joining the\s+/i, "").replace(/\?$/, "").trim() || key;
+        laneBody.innerHTML = template.innerHTML;
+        laneDialog.showModal();
+      });
+    });
   }
 
   function renderRosterCredits(credits) {
@@ -1760,6 +1869,44 @@
       </div>`;
   }
 
+  function renderLaneBody(lane) {
+    if (!lane) return "";
+    return lane.layout === "responsibility-list"
+      ? renderResponsibilityList(lane.roles)
+      : (lane.roles ?? []).map(renderRoleCard).join("");
+  }
+
+  function renderLaneInterestCta(lane) {
+    if (!lane) return "";
+    const teamName = lane.joinTeamName ?? lane.title;
+    const label = `Interested in joining the ${teamName} Team?`;
+    return `<p class="roster-lane-interest-wrap"><button type="button" class="roster-lane-interest" data-roster-lane="${escapeHtml(lane.id)}" aria-haspopup="dialog">${escapeHtml(label)}</button></p>`;
+  }
+
+  function renderLaneModalTemplate(site, lane) {
+    if (!lane) return "";
+    const layoutClass = lane.layout === "responsibility-list" ? " lane-section--list" : "";
+    return `
+      <template class="roster-lane-full" data-roster-lane="${escapeHtml(lane.id)}">
+        <div class="lane-section${layoutClass} roster-lane-modal-lane">
+          <div class="lane-header">
+            <p><strong>${escapeHtml(lane.subtitle)}</strong>${
+              lane.intro ? ` — ${escapeHtml(lane.intro)}` : ""
+            }</p>
+          </div>
+          ${renderLaneBody(lane)}
+        </div>
+        <div class="roster-lane-modal-apply">
+          <h3>Apply &amp; get involved</h3>
+          <p>${escapeHtml(
+            site.teamPage?.join?.applyNote ??
+              "Name the role or vision you’re interested in, then apply on Idealist.",
+          )}</p>
+          ${renderApplyBlock(site)}
+        </div>
+      </template>`;
+  }
+
   function renderRosterSection(site) {
     const roster = site.teamPage?.roster;
     if (!roster) return "";
@@ -1771,15 +1918,19 @@
         : [];
     if (!groups.length) return "";
 
-    return groups
+    const sections = groups
       .map((group) => {
         const members = group.members ?? [];
         const creditsHtml = renderRosterCredits(group.credits);
-        if (!members.length && !creditsHtml) return "";
+        const lane = findLaneById(site, group.laneId);
+        if (!members.length && !creditsHtml && !lane) return "";
         const id = group.title ? slugifyHeading(group.title) : "roster";
         const heading = group.title
           ? `<h2>${escapeHtml(group.title)}</h2>`
           : `<h2>${escapeHtml(roster.title ?? "Team")}</h2>`;
+        const blurb = lane?.teamBlurb
+          ? `<p class="roster-lane-blurb">${escapeHtml(lane.teamBlurb)}</p>`
+          : "";
         const cards = members.map(renderRosterMemberCard).join("");
         const grid = cards
           ? `<div class="co-chairs roster-grid">${cards}</div>`
@@ -1787,17 +1938,27 @@
         return `
           <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
             ${heading}
+            ${blurb}
             ${grid}
             ${creditsHtml}
+            ${renderLaneInterestCta(lane)}
           </section>`;
       })
       .filter(Boolean)
       .join("");
+
+    const templates = (site.lanes ?? []).map((lane) => renderLaneModalTemplate(site, lane)).join("");
+    return `${sections}${templates}`;
   }
 
   function renderRosterPage(site) {
+    const faqHtml = `
+          <section class="content-section site-doc-section" id="faq" data-doc-section>
+            <h2>FAQ</h2>
+            ${renderFaqBlock(site)}
+          </section>`;
+    const mainHtml = `${renderRosterSection(site)}${renderApplySection(site)}${faqHtml}`;
     const toc = buildRosterToc(site);
-    const mainHtml = renderRosterSection(site);
     if (!toc.length) return mainHtml;
     return wrapDocLayout(renderDocToc(toc), mainHtml);
   }
@@ -1872,12 +2033,18 @@
             <h3>Apply to an open role</h3>
             <p>${escapeHtml(join.applyNote ?? "Apply on Idealist — name the role or vision you’re interested in.")}</p>
             ${renderApplyBlock(site)}
-            <h3>Attend Zoom calls</h3>
-            <p>${escapeHtml(join.zoom ?? "Weekly Zoom production calls are Mondays at 6:30 PM.")}</p>
-            <p class="cta-row"><a class="btn btn-tertiary" href="${mailtoGuest}">Email ${escapeHtml(contactEmail)}</a></p>
-            <h3>Join Discord</h3>
-            ${join.discordNote ? `<p>${escapeHtml(join.discordNote)}</p>` : ""}
-            ${discordBtn}
+            <div class="apply-side-paths">
+              <div class="apply-side-path">
+                <h3>Attend Zoom calls</h3>
+                <p>${escapeHtml(join.zoom ?? "Weekly Zoom production calls are Mondays at 6:30 PM.")}</p>
+                <p class="cta-row"><a class="btn btn-tertiary" href="${mailtoGuest}">Email ${escapeHtml(contactEmail)}</a></p>
+              </div>
+              <div class="apply-side-path">
+                <h3>Join Discord</h3>
+                ${join.discordNote ? `<p>${escapeHtml(join.discordNote)}</p>` : ""}
+                ${discordBtn}
+              </div>
+            </div>
           </section>`;
   }
 
@@ -1898,36 +2065,15 @@
   }
 
   function renderOpenRolesPage(site) {
-    const intro = site.directorIntro;
-
     const lanesHtml = (site.lanes ?? []).map(renderLaneSection).join("");
 
-    const unlock = site.phase2;
-    const unlockHtml = unlock
-      ? `
-          <section class="content-section site-doc-section" id="sponsor-unlocks" data-doc-section>
-            <h2>${escapeHtml(unlock.title ?? "Sponsor unlocks")}</h2>
-            <p>${escapeHtml(unlock.intro)}</p>
-            <ul>${unlock.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
-            <p class="cta-row"><a class="btn btn-tertiary" href="${escapeHtml(unlock.registryHref)}">See the registry</a></p>
-          </section>`
-      : "";
-
     const mainHtml = `
-          <section class="content-section site-doc-section" id="what-is-a-director" data-doc-section>
-            <h2>${escapeHtml(intro.title)}</h2>
-            ${linkFirstFundTheFestival(
-              intro.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join(""),
-            )}
-            <ul>${intro.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join("")}</ul>
-          </section>
           ${renderApplySection(site)}
           <section class="content-section site-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${renderFaqBlock(site)}
           </section>
-          ${lanesHtml}
-          ${unlockHtml}`;
+          ${lanesHtml}`;
 
     return wrapDocLayout(renderDocToc(buildOpenRolesToc(site)), mainHtml);
   }
@@ -1969,13 +2115,20 @@
     if (!table?.headers?.length) return "";
     const headers = table.headers;
     const remainingCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase() === "remaining");
+    /** String, or string[] for multi-line cells (first line primary; rest muted notes). */
     const formatCell = (cell, i) => {
-      const base = formatBriefProse(cell);
+      const lines = Array.isArray(cell) ? cell : [cell];
+      const primary = formatBriefProse(lines[0] ?? "");
+      const notes = lines
+        .slice(1)
+        .map((line) => `<span class="inventory-cell-note">${formatBriefProse(line)}</span>`)
+        .join("");
+      const remainingRaw = Array.isArray(cell) ? cell[0] : cell;
       const suffix =
-        remainingCol >= 0 && i === remainingCol && isZeroRemainingInventoryValue(cell)
+        remainingCol >= 0 && i === remainingCol && isZeroRemainingInventoryValue(remainingRaw)
           ? ` ${escapeHtml("(waitlist open)")}`
           : "";
-      return `${base}${suffix}`;
+      return `${primary}${suffix}${notes}`;
     };
     const head = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
     const body = (table.rows ?? [])
@@ -2376,8 +2529,8 @@
       </div>
       ${hostApply.detailNote
         ? `<p class="muted">${escapeHtml(hostApply.detailNote).replace(
-            /scoped RFPs/,
-            '<a href="/rfp/">scoped RFPs</a>',
+            /\bTeam\b/,
+            '<a href="/team/">Team</a>',
           )}</p>`
         : ""}
       ${hostApply.vendorNote
@@ -2549,18 +2702,23 @@
         }</p>`
       : "";
     const status = rfp?.statusLine ? `<p class="hero-kicker">${escapeHtml(rfp.statusLine)}</p>` : "";
+    const backHref = rfp?.backHref ?? "/team/";
+    const backLabel = rfp?.backLabel ?? "← Team";
     const main =
       sections.map(renderVendorRfpSection).join("") + renderVendorRfpContact(contact);
     return `
       <section class="hero">
-        <p class="hero-back"><a href="/rfp/">← RFPs</a></p>
+        <p class="hero-back"><a href="${escapeHtml(backHref)}">${escapeHtml(backLabel)}</a></p>
         <h1>${escapeHtml(rfp?.headline ?? "Vendor RFP")}</h1>
         ${status}
         ${rfp?.lead ? `<p class="hero-lead">${escapeHtml(rfp.lead)}</p>` : ""}
         ${related}
       </section>
       ${wrapDocLayout(
-        renderDocToc(toc, { backHref: "/rfp/", backLabel: "← RFPs" }),
+        renderDocToc(toc, {
+          backHref,
+          backLabel,
+        }),
         main,
       )}`;
   }
@@ -2576,8 +2734,9 @@
     const hasCriteria = Boolean(
       criteria.title || criteria.deny?.length || criteria.factors?.rows?.length,
     );
+    const applyPaths = waitlist.paths ?? [];
     const tocItems = [
-      { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Waitlist" },
+      { id: waitlist.id ?? "waitlist", label: waitlist.tocLabel ?? waitlist.title ?? "Apply" },
       ...(hasInventory
         ? [{ id: inventory.id ?? "inventory", label: inventory.tocLabel ?? inventory.title ?? "Inventory" }]
         : []),
@@ -2631,14 +2790,35 @@
       })
       .join("");
 
+    const applyPathCards = applyPaths
+      .map((link) => {
+        const isEventeny = Boolean(link.external);
+        const href = isEventeny && waitlist.cta?.href ? waitlist.cta.href : link.href;
+        const label = isEventeny
+          ? (waitlist.cta?.label ?? "Apply on Eventeny")
+          : (link.ctaLabel ?? "Learn more");
+        const btnClass = isEventeny ? "btn btn-primary" : "btn btn-secondary";
+        const external = isEventeny ? ' target="_blank" rel="noopener"' : "";
+        return `
+      <article class="resource-card">
+        <h3>${escapeHtml(link.title)}</h3>
+        ${link.body ? `<p>${escapeHtml(link.body)}</p>` : ""}
+        ${link.accent ? `<p class="vendors-round-open">${escapeHtml(link.accent)}</p>` : ""}
+        <p class="resource-card-cta"><a class="${btnClass}" href="${escapeHtml(href)}"${external}>${escapeHtml(label)}</a></p>
+      </article>`;
+      })
+      .join("");
+
     const waitlistCta =
-      waitlist.cta?.href
+      !applyPaths.length && waitlist.cta?.href
         ? `${
             waitlist.cta.note
               ? `<p class="muted vendors-waitlist-note">${formatBriefProse(waitlist.cta.note)}</p>`
               : ""
           }<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(waitlist.cta.href)}" target="_blank" rel="noopener">${escapeHtml(waitlist.cta.label ?? "Join the vendor waitlist")}</a></p>`
-        : "";
+        : waitlist.cta?.note && applyPaths.length
+          ? `<p class="muted vendors-waitlist-note">${formatBriefProse(waitlist.cta.note)}</p>`
+          : "";
 
     const inventoryHtml = hasInventory
       ? `<section class="content-section site-doc-section" id="${escapeHtml(inventory.id ?? "inventory")}" data-doc-section>
@@ -2711,9 +2891,20 @@
 
     const mainHtml = `
       <section class="content-section site-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
-        <h2>${escapeHtml(waitlist.title ?? "Join the waitlist")}</h2>
-        ${waitlist.body ? `<p>${formatBriefProse(waitlist.body)}</p>` : ""}
-        ${waitlist.bodyAccent ? `<p class="vendors-round-open">${formatBriefProse(waitlist.bodyAccent)}</p>` : ""}
+        <h2>${escapeHtml(waitlist.title ?? "Apply for single booth or an entire zone")}</h2>
+        ${waitlist.partnerIntro ? `<p>${formatBriefProse(waitlist.partnerIntro)}</p>` : ""}
+        ${
+          applyPathCards
+            ? `<div class="resource-card-grid vendors-apply-paths">${applyPathCards}</div>`
+            : ""
+        }
+        ${
+          waitlist.bodyAfter
+            ? `<p class="vendors-apply-after">${formatBriefProse(waitlist.bodyAfter)}</p>`
+            : waitlist.body
+              ? `<p class="vendors-apply-after">${formatBriefProse(waitlist.body)}</p>`
+              : ""
+        }
         ${waitlistCta}
       </section>
       ${inventoryHtml}
@@ -2739,6 +2930,15 @@
   }
 
   function renderRfpIndexPage(index) {
+    const redirect = index?.redirect;
+    if (redirect) {
+      return `
+      <section class="hero">
+        <h1>${escapeHtml(index?.headline ?? "RFPs")}</h1>
+        ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
+        <p><a class="btn btn-primary" href="${escapeHtml(redirect)}">Go to Team</a></p>
+      </section>`;
+    }
     const lots = (index?.lots ?? [])
       .map(
         (lot) => `
@@ -2748,19 +2948,23 @@
       </a>`,
       )
       .join("");
-    const tocItems = [{ id: "lots", label: "Open lots" }];
-    const mainHtml = `
+    const tocItems = lots ? [{ id: "lots", label: "Open lots" }] : [];
+    const mainHtml = lots
+      ? `
       <section class="content-section site-doc-section" id="lots" data-doc-section aria-labelledby="lots-heading">
         <h2 id="lots-heading">Open lots</h2>
         <div class="resource-card-grid">${lots}</div>
         ${index?.note ? `<p class="muted">${escapeHtml(index.note)}</p>` : ""}
-      </section>`;
+      </section>`
+      : index?.note
+        ? `<section class="content-section"><p class="muted">${escapeHtml(index.note)}</p></section>`
+        : "";
     return `
       <section class="hero">
         <h1>${escapeHtml(index?.headline ?? "RFPs")}</h1>
         ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
       </section>
-      ${wrapDocLayout(renderDocToc(tocItems), mainHtml)}`;
+      ${mainHtml ? wrapDocLayout(renderDocToc(tocItems), mainHtml) : ""}`;
   }
 
   /** @deprecated Prefer renderRfpIndexPage */
@@ -3283,6 +3487,7 @@
     escapeHtml,
     linkFirstFundTheFestival,
     linkFirstOpenRoles,
+    linkFirstTeam,
     navPrefix,
   };
 })();

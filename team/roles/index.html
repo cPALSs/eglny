@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <style>
-    html { background: #1a0806; color-scheme: dark; }
+    html { background: #030d29; color-scheme: dark; }
     html[data-theme="light"] { background: #ffffff; color-scheme: light; }
     @media (prefers-color-scheme: light) {
       html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
@@ -14,19 +14,11 @@
     document.documentElement.classList.add("js");
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta http-equiv="refresh" content="0; url=https://eglny.com/team/" />
   <title>Open roles — Elk Grove Lunar New Year Tết</title>
   <script src="../../clean-urls.js"></script>
-  <script>
-    (function () {
-      try {
-        var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-<link rel="stylesheet" href="../../site.css" />
-  <meta name="description" content="Join the team — open roles for Elk Grove Lunar New Year Tết 2027 at Elk Grove Park." />
+    <meta name="description" content="Join the team — open roles for Elk Grove Lunar New Year Tết 2027 at Elk Grove Park." />
   <link rel="canonical" href="https://eglny.com/team/roles/" />
   <meta property="og:title" content="Open roles — Elk Grove Lunar New Year Tết" />
   <meta property="og:description" content="Join the team — open roles for Elk Grove Lunar New Year Tết 2027 at Elk Grove Park." />
@@ -42,14 +34,6 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What's the difference between a director and a visionary?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A director / DRI is the accountable owner of a lane or Program gift — including budget and contracting decisions. A visionary owns a celebration vision and builds a crew around it — often along the journey to the weekend, not only day-of. Multiple visionaries can share a lane as co-equals until a director coordinates them."
-      }
-    },
     {
       "@type": "Question",
       "name": "Do directors have to do the physical work?",
@@ -85,70 +69,9 @@
   ]
 }
   </script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="../../analytics.js"></script>
 </head>
 <body>
-  <div id="site-nav"></div>
-  <main class="page-wrap page-wrap--doc" id="main">
-    <div id="seo-prerender" class="seo-prerender">
-      <section class="hero">
-        <h1>Open roles</h1>
-        <p>Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site &amp; Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.</p>
-      </section>
-      <section>
-        <h2>What is a director?</h2>
-        <p>A director (or DRI) is the accountable owner of one festival lane or <a href="/fund-the-festival/">Fund The Festival</a> gift. You recommend and decide budget for your lane, including whether to contract out work. You recruit help, hire or place pros (paid or pro bono), and report status to the Steering Committee. You are not assumed to build sets, hang decor, or personally perform the craft.</p>
-      </section>
-      <section>
-        <h2>Apply &amp; get involved</h2>
-        <h3>Apply to an open role</h3>
-        <p>Name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.</p>
-        <h3>Attend Zoom calls</h3>
-        <p>Weekly Zoom production calls are Mondays at 6:30 PM. Email us if you’d like to join as a guest.</p>
-        <h3>Join Discord</h3>
-        <p>Day-to-day asks, intros, and grapevine recruiting.</p>
-      </section>
-      <section><h2>Site &amp; ops</h2><p>Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline. One supercommittee with an optional Chair — members claim workstreams when tasks demand. Claiming a workstream includes budget and contract scope for that task.</p></section>
-    </div>
-  </main>
-  <div id="site-footer"></div>
-  <script src="../../doc-scroll.js"></script>
-  <script src="../../site.js"></script>
-  <script>
-    (async function () {
-      const {
-        initPageShell,
-        loadSiteData,
-        mountFooter,
-        renderOpenRolesPage,
-        initDocToc,
-        setPageTitle,
-        escapeHtml,
-        revealPage,
-      } = window.EglnySite;
-      initPageShell("roles");
-      try {
-        const site = await loadSiteData();
-        setPageTitle(site, "Open roles");
-        const team = site.teamPage ?? {};
-        document.getElementById("main").innerHTML = `
-          <section class="hero">
-            <h1>${escapeHtml(team.headline ?? "Open roles")}</h1>
-            ${team.lead ? `<p class="hero-lead">${escapeHtml(team.lead)}</p>` : ""}
-          </section>
-          ${renderOpenRolesPage(site)}
-        `;
-        initDocToc();
-        mountFooter(site);
-        if (typeof revealPage === "function") revealPage();
-      } catch (err) {
-        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
-        if (typeof revealPage === "function") revealPage();
-      }
-    })();
-  </script>
+  <p>Open roles now live on the <a href="/team/">Team</a> page…</p>
+  <script>location.replace("/team/");</script>
 </body>
 </html>

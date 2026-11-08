@@ -13,7 +13,7 @@
     "/about.html": "/about/",
     "/team.html": "/team/",
     "/sponsors.html": "/sponsorship/",
-    "/get-involved.html": "/team/roles/",
+    "/get-involved.html": "/team/",
   };
 
   if (legacy[pathname]) {
@@ -23,6 +23,11 @@
 
   if (pathname === "/build" || pathname === "/build/") {
     location.replace("/fund-the-festival/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/rfp" || pathname === "/rfp/") {
+    location.replace("/team/" + search + hash);
     return;
   }
 

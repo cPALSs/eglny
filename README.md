@@ -14,17 +14,17 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 |------|------|
 | `/` | `index.html` — home via logotype (no Home nav item) |
 | `/about/` | Tết + coalition story (About umbrella) |
-| `/team/` | **Team** — Steering Committee and visionaries (under **Production**) |
-| `/team/roles/` | **Open roles** — join path (calls, Discord) + open seats + apply + FAQ (under **Production**) |
-| `/production/volunteer/` | **Volunteering** — skills projects + day-of help (under **Production**) |
-| `/production/` | Production hub — team, open roles, volunteering, Fund The Festival, sponsorship, custom zones, vendor booths, RFPs |
+| `/team/` | **Team** — roster by supercommittee, open-seat blurbs, interest modals with role copy, apply + FAQ (under **Production**) |
+| `/team/roles/` | Redirect → `/team/` (open roles folded into Team) |
+| `/production/volunteer/` | **Volunteering** — skills projects, day-of help, and pointer to Team for planning seats (under **Production**) |
+| `/production/` | Production hub — Team, Volunteering, Sponsorship, Vendor booths |
 | `/attendees/` | **Visit** hub — guest guides for the festival weekend |
-| `/fund-the-festival/` | Interactive sponsor registry (LNY only) — under **Production** |
+| `/fund-the-festival/` | Interactive sponsor registry (LNY only) — delisted from nav; linked from Sponsorship |
 | `/sponsorship/` | Sponsorship — partner pathways (FTF + packet) + 2026 sponsor recognition |
-| `/custom-zones/` | Custom Zones — named corners (GLF-style); diagrams, DIY / help paths |
-| `/vendors/` | **Vendor booths** — waitlist + two-round selection process |
-| `/rfp/` | **RFPs** — open lots (Children’s Theater, Village, Maker Spot) |
-| `/rfp/childrens-theater/` · `/rfp/childrens-village/` · `/rfp/maker-spot/` | Individual RFP detail pages |
+| `/custom-zones/` | Custom Zones — named corners (GLF-style); delisted from nav; linked from Vendor booths |
+| `/vendors/` | **Vendor booths** — apply cards (Eventeny booth or Custom Zones) + inventory + two-round selection |
+| `/rfp/` | Redirect → `/team/` (RFP index retired from public hub) |
+| `/rfp/childrens-theater/` | Children’s Theater detail — deep-linked from Team open seat (Village / Maker Spot pages unlisted) |
 | `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Visit**) |
 | `/vendors-directory/` | **Vendors directory** — Round 1 craft merchants and nonprofit tables (under **Visit**) |
 | `/attractions/food/` | Redirect → `/food-menu/` |
@@ -37,7 +37,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 
-Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/roles/`. `/team/join/` redirects to `/team/roles/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`. `/resources/lion-dance/` and `/resources/lion-dance-groups/` redirect to `https://littlesaigonsac.town/lists/lion-dance/`.
+Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/`. `/team/join/` and `/team/roles/` redirect to `/team/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`. `/rfp/` redirects to `/team/`. `/resources/lion-dance/` and `/resources/lion-dance-groups/` redirect to `https://littlesaigonsac.town/lists/lion-dance/`.
 
 ## Content
 
@@ -73,7 +73,7 @@ python3 -m http.server 8765
 ```
 
 - http://localhost:8765/team/
-- http://localhost:8765/team/roles/
+- http://localhost:8765/team/
 - http://localhost:8765/production/volunteer/
 - http://localhost:8765/production/
 - http://localhost:8765/attendees/

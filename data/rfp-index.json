@@ -1,26 +1,12 @@
 {
   "headline": "RFPs",
-  "lead": "Scoped solicitations for preferred producers who run festival-owned kids and tween programming under product and placement rules. Bid one or more lots; awards may split.",
+  "sectionTitle": "RFPs",
+  "lead": "Preferred-provider lots are no longer listed here. Open seats — including Children’s Theater Producer — live on Team.",
   "meta": {
     "pageTitle": "RFPs",
-    "description": "Open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết 2027."
+    "description": "Preferred-provider RFPs for Elk Grove Lunar New Year Tết have moved. See Team for open roles, including Children’s Theater Producer."
   },
-  "lots": [
-    {
-      "title": "Children’s Theater Producer",
-      "href": "/rfp/childrens-theater/",
-      "summary": "Own a repeatable ~90–120 minute Fairytale Town–style kids stage block (short sets + roam). Ages ~2–8."
-    },
-    {
-      "title": "Children’s Village Vendor",
-      "href": "/rfp/childrens-village/",
-      "summary": "Organize kids activity / craft zones with an adaptable activity menu. Ages ~2–10."
-    },
-    {
-      "title": "Tween / Teen Maker Spot",
-      "href": "/rfp/maker-spot/",
-      "summary": "Maker / challenge / hang activities for ages ~11–17 — not Children’s Village branding."
-    }
-  ],
-  "note": "Questions and proposals go to the contact listed on each RFP."
+  "lots": [],
+  "note": "Looking for Children’s Theater? See Team → Program & experience (Role open), or the detail page at /rfp/childrens-theater/.",
+  "redirect": "/team/"
 }

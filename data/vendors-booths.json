@@ -8,13 +8,27 @@
   "waitlist": {
     "id": "waitlist",
     "tocLabel": "Apply",
-    "title": "Apply on Eventeny",
-    "body": "Applications are open on Eventeny. Round 1 closed Nov 5. Round 1 decisions were around Nov 10.",
-    "bodyAccent": "Round 2 is open through Jan 15, 2027.",
+    "title": "Apply for single booth or an entire zone",
+    "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10.",
+    "partnerIntro": "Two ways to join the map: apply for a standard booth on Eventeny, or inquire about a named Custom Zones corner.",
+    "paths": [
+      {
+        "title": "Single booth on Eventeny",
+        "body": "Food, drinks, snacks, crafts, merchant, activity, and nonprofit info booths — apply through Eventeny.",
+        "accent": "Round 2 is open through Jan 15, 2027.",
+        "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
+        "external": true
+      },
+      {
+        "title": "Custom Zones",
+        "body": "A named corner on the festival map — decorate it yourself or ask us to help bring your block to life.",
+        "href": "/custom-zones/"
+      }
+    ],
     "cta": {
       "label": "Apply on Eventeny",
       "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
-      "note": "Sign in or create a free Eventeny account. Most applicants pay a **$25** application deposit when they apply. Nonprofit, community info, and free kids activity tables pay no deposit — and the free kids activity form does not ask for a card."
+      "note": "Sign in or create a free Eventeny account. Most applicants pay a **$25** application deposit when they apply for a single booth. Nonprofit, community info, and free kids activity tables pay no deposit — and the free kids activity form does not ask for a credit card."
     }
   },
   "inventory": {
@@ -47,7 +61,10 @@
           "All other booths",
           "100",
           "~74",
-          "$75–$500 by type"
+          [
+            "$75–$500 by type",
+            "No fee for free children activity booths"
+          ]
         ]
       ]
     },

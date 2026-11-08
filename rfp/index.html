@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <style>
-    html { background: #1a0806; color-scheme: dark; }
+    html { background: #030d29; color-scheme: dark; }
     html[data-theme="light"] { background: #ffffff; color-scheme: light; }
     @media (prefers-color-scheme: light) {
       html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
@@ -14,79 +14,24 @@
     document.documentElement.classList.add("js");
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RFPs — Elk Grove Lunar New Year Tết</title>
+
+  <meta http-equiv="refresh" content="0; url=https://eglny.com/team/" />
+  <title>Team — Elk Grove Lunar New Year Tết</title>
   <script src="../clean-urls.js"></script>
-  <script>
-    (function () {
-      try {
-        var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (_) {}
-    })();
-  </script>
-<link rel="stylesheet" href="../site.css" />
-  <meta name="description" content="Open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết 2027." />
-  <link rel="canonical" href="https://eglny.com/rfp/" />
-  <meta property="og:title" content="RFPs — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết 2027." />
+    <meta name="description" content="Redirecting to https://eglny.com/team/" />
+  <link rel="canonical" href="https://eglny.com/team/" />
+  <meta property="og:title" content="Team — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Redirecting to https://eglny.com/team/" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eglny.com/rfp/" />
+  <meta property="og:url" content="https://eglny.com/team/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="RFPs — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Open RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot at Elk Grove Lunar New Year Tết 2027." />
+  <meta name="twitter:title" content="Team — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Redirecting to https://eglny.com/team/" />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1793670221" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1793670221" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
-  <script src="../analytics.js"></script>
 </head>
 <body>
-  <div id="site-nav"></div>
-  <main class="page-wrap page-wrap--doc" id="main">
-    <div id="seo-prerender" class="seo-prerender">
-      <section class="hero">
-        <h1>RFPs</h1>
-        <p>Scoped solicitations for preferred producers who run festival-owned kids and tween programming under product and placement rules. Bid one or more lots; awards may split.</p>
-      </section>
-      <section>
-        <h2>Open lots</h2>
-        <div class="resource-card-grid"><a class="resource-card" href="/rfp/childrens-theater/"><h3>Children’s Theater Producer</h3><p>Own a repeatable ~90–120 minute Fairytale Town–style kids stage block (short sets + roam). Ages ~2–8.</p></a><a class="resource-card" href="/rfp/childrens-village/"><h3>Children’s Village Vendor</h3><p>Organize kids activity / craft zones with an adaptable activity menu. Ages ~2–10.</p></a><a class="resource-card" href="/rfp/maker-spot/"><h3>Tween / Teen Maker Spot</h3><p>Maker / challenge / hang activities for ages ~11–17 — not Children’s Village branding.</p></a></div>
-      </section>
-    </div>
-  </main>
-  <div id="site-footer"></div>
-  <script src="../doc-scroll.js"></script>
-  <script src="../site.js"></script>
-  <script>
-    (async function () {
-      const {
-        initPageShell,
-        loadSiteData,
-        loadJsonData,
-        mountFooter,
-        renderRfpIndexPage,
-        initDocToc,
-        setPageTitle,
-        escapeHtml,
-        revealPage,
-      } = window.EglnySite;
-      initPageShell("rfp");
-      try {
-        const [site, index] = await Promise.all([loadSiteData(), loadJsonData("data/rfp-index.json")]);
-        setPageTitle(site, index?.meta?.pageTitle ?? "RFPs");
-        if (index?.meta?.description) {
-          document.querySelector('meta[name="description"]').setAttribute("content", index.meta.description);
-        }
-        document.getElementById("main").innerHTML = renderRfpIndexPage(index);
-        initDocToc();
-        mountFooter(site);
-        if (typeof revealPage === "function") revealPage();
-      } catch (err) {
-        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
-        if (typeof revealPage === "function") revealPage();
-      }
-    })();
-  </script>
+  <p>Moved to <a href="/team/">Team</a>…</p>
+  <script>location.replace("/team/");</script>
 </body>
 </html>

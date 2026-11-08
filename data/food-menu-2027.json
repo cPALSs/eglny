@@ -752,7 +752,7 @@
         {
           "name": "Italian gelato",
           "note": null,
-          "options": "small, medium, large",
+          "options": null,
           "price": null,
           "category": "sweets",
           "allergens": [],

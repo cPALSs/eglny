@@ -789,7 +789,7 @@
       "emoji": "\ud83d\udee0\ufe0f",
       "amount": 4000,
       "category": "registry",
-      "priority": true,
+      "priority": false,
       "cohorts": [
         "C3",
         "C4"

@@ -3,8 +3,8 @@
     "siteName": "Elk Grove Lunar New Year Tết",
     "titleSuffix": "Elk Grove Lunar New Year Tết",
     "idealistUrl": "https://ideali.st/5fecvF",
-    "idealistNote": "LNY 2027 Directors — published 2026-08-11 · volop c958abf16a9e4d24b0d79684e33a129f",
-    "idealistCtaLabel": "Apply as Director on Idealist"
+    "idealistNote": "LNY 2027 Coordinators — published 2026-08-11 · volop c958abf16a9e4d24b0d79684e33a129f (title/body reframed Coordinator 2026-11-08)",
+    "idealistCtaLabel": "Apply as Coordinator on Idealist"
   },
   "event": {
     "name": "Elk Grove Lunar New Year Tết",
@@ -29,7 +29,7 @@
     "homeLead": "Join the team shaping this year’s celebration. Round 2 vendor applications are open through January 15.",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and live music on the main stage. Vendor fees fund the essentials. Sponsors unlock the magic.",
     "subhead": "Join weekly production calls, Discord, own a Program or Outreach lane, or step into the Site & Ops Supercommittee — we organize as a network of owners, not a stiff org chart.",
-    "body": "Start by showing up to production meetings. Prefer a gift DRI or outreach Director seat? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS).",
+    "body": "Start by showing up to production meetings. Prefer a gift DRI, outreach Director seat, or committee Coordinator role? Browse open roles. Bringing a celebration vision? We’ll help you find a crew and a path to ship it. Steering Committee: Bao Thien Ngo (cPALSs), Thuy Pham (VACOS), and Kevin P. Nguyen (NVCC).",
     "fundHeadline": "Fund the experience",
     "fundLead": "Sponsors unlock the blocks families remember."
   },
@@ -37,7 +37,7 @@
     "primaryLabel": "Register as vendor",
     "primaryHref": "/vendors/",
     "teamLabel": "Join the team",
-    "teamHref": "/team/roles/",
+    "teamHref": "/team/",
     "buildLabel": "Fund The Festival",
     "buildHref": "/fund-the-festival/",
     "sponsorsLabel": "2026 sponsors",
@@ -50,7 +50,7 @@
     "emailSubject": "LNY 2027 team interest",
     "steps": [
       "Browse open seats on Team — Program gift DRIs, Outreach Directors, optional Site & Ops Chair, or Site & Ops Supercommittee + preferred workstream.",
-      "Apply on Idealist — name your seat, preferred contact method (email, text, or phone), and any events you’re already committed to this season.",
+      "Apply as Coordinator on Idealist — name whether you want a Director seat (decision authority) or a committee Coordinator role (help execute), plus preferred contact method and any events you’re already committed to this season.",
       "We’ll follow up within a few business days — add you to the staff directory or introduce you to a visionary crew, and set a first check-in."
     ],
     "idealistFallback": "Can't use Idealist? Email contact@eglny.com with the seat or vision and one sentence on why you're interested."
@@ -60,27 +60,28 @@
     "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.",
     "rosterPage": {
       "headline": "Team",
-      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027.",
-      "meetingNote": "Team meetings on Zoom are Mondays at 6:30 PM. Contact {email} to be invited."
+      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027. Open seats live under each supercommittee — tap Interested in joining to see roles and apply."
     },
     "join": {
       "title": "Get involved",
-      "intro": "Join the conversation, browse open seats, then apply on Idealist — we’ll place you on a Director / DRI seat, the Site & Ops Supercommittee, or a visionary crew.",
+      "intro": "Join the conversation, then apply as Coordinator on Idealist — Directors hold decision-making authority for a lane; Coordinators help execute those decisions. We’ll place you on a Director / DRI seat, the Site & Ops Supercommittee, or a visionary crew.",
       "zoom": "Weekly Zoom production calls are Mondays at 6:30 PM. Email us if you’d like to join as a guest.",
       "discordLabel": "Join the Discord",
       "discordHref": "https://discord.gg/h4hXXvWS",
       "discordNote": "Day-to-day asks, intros, and grapevine recruiting.",
-      "applyNote": "Name the role or vision you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.",
-      "rolesCtaLabel": "Browse open seats",
-      "rolesHref": "/team/roles/",
+      "applyNote": "Apply as Coordinator — name the Director seat or committee role (or vision) you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.",
       "skillsCtaLabel": "Browse volunteer openings",
       "skillsHref": "/production/volunteer/"
     },
     "skillsProjects": {
       "title": "Volunteering",
       "headline": "Volunteering",
-      "lead": "Thank you for wanting to help make Tết happen. Skills projects and day-of shifts live here — for planning seats and Director / DRI work, go to Open roles.",
+      "lead": "Thank you for wanting to help make Tết happen.",
       "sectionTitle": "Skills projects",
+      "planning": {
+        "title": "Planning Coordinators",
+        "body": "See Team for open Coordinator roles — Directors (decision authority) and committee members who help execute."
+      },
       "dayOfHelp": {
         "title": "Day-of help",
         "body": "We’d love your energy on festival weekend — greeters, load-in hands, zone helpers, and the little jobs that keep families smiling. Shift registration isn’t open yet; come back here when it is."
@@ -104,21 +105,26 @@
           "members": [
             {
               "name": "Bao Thien Ngo",
-              "title": "cPALSs",
+              "title": "Community Partners Advocate of Little Saigon Sacramento",
               "photo": "/assets/roster/bao-thien-ngo.jpg",
               "instagram": "baothienngo",
               "vision": "I want LNY to stay a place people show up as themselves — with creativity and passion, not more corporate hierarchy in nonprofit clothing. I gather visionaries who practice innovation. We merge calendars and introduce automation to give time back and create force multipliers across multiple visions. And I value honesty — even sharing our vulnerabilities — so peers get a real chance to step in and help."
             },
             {
               "name": "Thuy Pham",
-              "title": "VACOS",
+              "title": "Vietnamese American Community of Sacramento",
               "photo": "/assets/roster/thuy-pham.jpg",
               "vision": "What I love most is when a whole family shows up and everyone actually has something to do. Dad’s into tech, mom loves working with kids, their son is into animation — and each of them finds a place at the festival. A festival where there is something for everyone to do and enjoy. That’s the Tết I want us to put on."
+            },
+            {
+              "name": "Kevin P. Nguyen",
+              "title": "NorCal Vietnamese Chamber of Commerce"
             }
           ]
         },
         {
           "title": "Program & experience",
+          "laneId": "program",
           "members": [
             {
               "name": "Lily Tran",
@@ -126,6 +132,15 @@
               "photo": "/assets/roster/lily-tran.jpg",
               "instagram": "letmamiicook",
               "vision": "If you grew up celebrating Lunar New Year, you know what it means to keep culture and tradition alive — and that each generation has its own way of expressing that. When I was asked to lead music for Elk Grove LNY, I got space to create something different. That’s how Lucky Wav was born: Lucky for blessings ahead, Wav for music, movement, and a new wave of culture. This segment is about honoring where we come from and celebrating where we’re headed — for our community in Sacramento and Elk Grove."
+            },
+            {
+              "name": "BoiAn Nguyen-Sanh",
+              "title": "Director of Children's Programming",
+              "vision": "As a volunteer youth leader at Kim Quang Buddhist Youth Association since 2021, I've planned weekly activities for girls, taught classes, and helped put on Lunar New Year and other large community celebrations. Through that work I help mentor Vietnamese-American youth, preserve our culture, and promote mindfulness and compassion — and I'm excited to bring that same care to Children’s Programming at Elk Grove LNY."
+            },
+            {
+              "name": "Mai Mai",
+              "title": "Director of Star of Spring Mini-Pageant"
             },
             {
               "name": "Ellie King",
@@ -160,6 +175,12 @@
                   ]
                 }
               ]
+            },
+            {
+              "name": "Children’s Theater Producer",
+              "roleOpen": true,
+              "roleOpenLabel": "Role open",
+              "roleOpenHref": "/rfp/childrens-theater/"
             }
           ],
           "credits": [
@@ -175,6 +196,7 @@
         },
         {
           "title": "Outreach & partners",
+          "laneId": "outreach",
           "credits": [
             {
               "area": "Partnerships",
@@ -188,6 +210,7 @@
         },
         {
           "title": "Site & ops",
+          "laneId": "site-ops",
           "members": [
             {
               "name": "Thuy Pham",
@@ -213,35 +236,26 @@
       ]
     }
   },
-  "directorIntro": {
-    "title": "What is a director?",
-    "paragraphs": [
-      "A director (or DRI) is the accountable owner of one festival lane or Fund The Festival gift. You recommend and decide budget for your lane, including whether to contract out work. You recruit help, hire or place pros (paid or pro bono), and report status to the Steering Committee. You are not assumed to build sets, hang decor, or personally perform the craft.",
-      "Already covered: Steering Committee — Bao Thien Ngo (cPALSs) and Thuy Pham (VACOS). They hold coalition partnership-level decision authority. Resource Hub — Ellie King. Stage entertainment / Lucky Wav — Lily Tran.",
-      "Open seats: Program DRIs (Program gifts + Program & Entertainment umbrella), 6 Outreach Directors, an optional Site & Ops Chair, and Site & Ops Supercommittee members who claim workstreams as tasks demand. Soft gifts are sponsor unlocks. Returning 2026 volunteers are welcome — nothing is assumed until confirmed on the staff directory."
-    ],
-    "notes": [
-      "Prefer one accountable DRI per Program gift. Multiple visionaries may share a lane as co-equals until a director coordinates them — see FAQ on Team.",
-      "Site & Ops is a supercommittee (optional Chair + Members), not separate Director titles per workstream.",
-      "Directors own budget and contracting decisions — craft labor is often hired.",
-      "Soft gifts (Relay Cup, Elders, Spread the Word, Cây Nêu) are sponsor unlocks — sponsor-gated or elective.",
-      "If a critical lane stays unfilled past the steering trigger date, a contractor fallback may be approved."
-    ]
-  },
   "coChairs": [
     {
       "name": "Bao Thien Ngo",
-      "title": "Steering Committee (cPALSs)"
+      "title": "Steering Committee (Community Partners Advocate of Little Saigon Sacramento)"
     },
     {
       "name": "Thuy Pham",
-      "title": "Steering Committee (VACOS)"
+      "title": "Steering Committee (Vietnamese American Community of Sacramento)"
+    },
+    {
+      "name": "Kevin P. Nguyen",
+      "title": "Steering Committee (NorCal Vietnamese Chamber of Commerce)"
     }
   ],
   "lanes": [
     {
       "id": "site-ops",
       "title": "Site & ops",
+      "joinTeamName": "Site & Ops",
+      "teamBlurb": "Keeps the festival running — Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline.",
       "subtitle": "Supercommittee — keep the festival running",
       "intro": "Physical infrastructure, finance, and day-of execution. Vendor revenue funds this baseline. One supercommittee with an optional Chair — members claim workstreams when tasks demand. Claiming a workstream includes budget and contract scope for that task.",
       "layout": "responsibility-list",
@@ -287,8 +301,10 @@
     {
       "id": "program",
       "title": "Program & experience",
-      "subtitle": "Gift DRIs",
-      "intro": "One DRI per Program Fund The Festival gift. Directors shape the plan, own the gift budget (including contracting producers, vendors, and artists), and run the feature when funded. You are not assumed to do the craft labor yourself.",
+      "joinTeamName": "Program & Experience",
+      "teamBlurb": "Shapes the weekend’s family and stage experiences — Procures producers, vendors, and artists for funded program modules, and helps design how those modules are promoted.",
+      "subtitle": "Family and stage experiences",
+      "intro": "Shapes the weekend’s family and stage experiences. Directors procure producers, vendors, and artists for funded program modules and help design how those modules are promoted. One DRI per Program Fund The Festival gift when funded — you are not assumed to do the craft labor yourself.",
       "roles": [
         {
           "title": "Program & Entertainment",
@@ -305,29 +321,9 @@
           "own": "Gift budget · deploy contract/crew · wind-weight rules · zone handoff with Village"
         },
         {
-          "title": "Viet Cafe",
-          "emoji": "☕",
-          "own": "Gift budget · seating/decor contracting · linger experience (not food-truck ops)"
-        },
-        {
-          "title": "Community Yearbook Photo",
-          "emoji": "📸",
-          "own": "Gift budget · photo vendor or volunteer crew contract · backdrop/ops handoff"
-        },
-        {
-          "title": "Tween / Teen Maker Spot",
-          "emoji": "🛠️",
-          "own": "Gift budget · preferred vendor / RFP · map placement · day-of staffing contract"
-        },
-        {
           "title": "Children's Show / Theater",
           "emoji": "🎭",
           "own": "Gift budget · talent booking / theater producer contract · MC coordination"
-        },
-        {
-          "title": "Moditional Dance Battle",
-          "emoji": "🪭",
-          "own": "Gift budget · hire culture-show producer · school outreach · judges/DJ · A1 handoff"
         },
         {
           "title": "Decor",
@@ -354,6 +350,8 @@
     {
       "id": "outreach",
       "title": "Outreach & partners",
+      "joinTeamName": "Outreach & Partners",
+      "teamBlurb": "Get people there and build allies — Named Directors with the same budget and contracting ownership as Program DRIs.",
       "subtitle": "Get people there and build allies",
       "intro": "Named Directors — same budget and contracting ownership as Program DRIs.",
       "roles": [
@@ -391,15 +389,12 @@
       "Tết Relay Cup Director — Open-age relay bracket on grass",
       "Honor our Elders Director — Shade, seating, tea hospitality",
       "Spread the Word Director — Paid Meta / Instagram reach",
+      "Tween / Teen Maker Spot Director — Maker / challenge / hang (~11–17; elective)",
       "Cây Nêu — Community pool pole (often pairs with Decor when funded)"
     ],
     "registryHref": "/fund-the-festival/"
   },
   "faq": [
-    {
-      "q": "What's the difference between a director and a visionary?",
-      "a": "A director / DRI is the accountable owner of a lane or Program gift — including budget and contracting decisions. A visionary owns a celebration vision and builds a crew around it — often along the journey to the weekend, not only day-of. Multiple visionaries can share a lane as co-equals until a director coordinates them."
-    },
     {
       "q": "Do directors have to do the physical work?",
       "a": "No. Directors decide budget and whether to hire contractors. Building sets, hang crew, stage production, and similar craft are often contracted. You own the outcome, not every task."
@@ -472,21 +467,16 @@
   },
   "production": {
     "headline": "Production",
-    "lead": "Team, open roles, volunteering, sponsorship, vendor booths, custom zones, RFPs, and the tools that build the festival weekend.",
+    "lead": "Team, volunteering, sponsorship, vendor booths, and the tools that build the festival weekend.",
     "links": [
       {
         "title": "Team",
-        "body": "Who is working Steering, Program & experience, Outreach & partners, and Site & ops.",
+        "body": "Who is working Steering, Program & experience, Outreach & partners, and Site & ops — plus open seats under each supercommittee.",
         "href": "/team/"
       },
       {
-        "title": "Open roles",
-        "body": "Director / DRI seats, Site & Ops Supercommittee, and visionary crews — join weekly calls and apply.",
-        "href": "/team/roles/"
-      },
-      {
         "title": "Volunteering",
-        "body": "Skills projects, day-of help, and a path to Open roles for planning work.",
+        "body": "Skills projects, day-of help, and a path to Team for planning seats and open roles.",
         "href": "/production/volunteer/"
       },
       {
@@ -495,24 +485,9 @@
         "href": "/sponsorship/"
       },
       {
-        "title": "Fund The Festival",
-        "body": "Interactive gift registry — sponsors unlock named program blocks families experience on the ground.",
-        "href": "/fund-the-festival/"
-      },
-      {
         "title": "Vendor booths",
-        "body": "Booth applications on Eventeny, selection rounds, and how food and craft vendors join the festival map.",
+        "body": "Single booths on Eventeny, Custom Zones for a named corner, selection rounds, and fees.",
         "href": "/vendors/"
-      },
-      {
-        "title": "Custom Zones",
-        "body": "Named corners on the festival map — decorate yourself or ask us to help bring your block to life.",
-        "href": "/custom-zones/"
-      },
-      {
-        "title": "RFPs",
-        "body": "Open preferred-provider RFPs for Children’s Village, Children’s Theater, and Tween/Teen Maker Spot.",
-        "href": "/rfp/"
       }
     ]
   },
@@ -1036,7 +1011,7 @@
       "email": "contact@eglny.com",
       "emailSubject": "LNY 2027 — custom zone inquiry",
       "intro": "Tell us about your organization — Partnerships will follow up within a few business days with a recommended setup. They may ask about shade, lighting, and artwork; you don't need answers on day one.",
-      "detailNote": "Looking for Children’s Village, Children’s Theater, or Maker Spot? Those are scoped RFPs — not this page.",
+      "detailNote": "Looking for Children’s Village, Children’s Theater, or Maker Spot? Those are festival-owned program features — not Custom Zones. Open seats (including Children’s Theater Producer) live on Team.",
       "vendorNote": "Standard food, craft, and nonprofit booths: apply on Eventeny through Vendor booths."
     },
     "faq": [
@@ -1054,7 +1029,7 @@
       },
       {
         "q": "Is this the same as Children’s Village or Maker Spot?",
-        "a": "No. Those are **preferred-provider RFPs** for kids / tween programming the festival product owns. Custom zones are **named corners** for community tribes and organizers who want identity on the map. Open RFPs live on the RFPs page."
+        "a": "No. Those are festival-owned kids / tween programming products. Custom zones are **named corners** for community tribes and organizers who want identity on the map. See Team for open seats."
       },
       {
         "q": "Are Tailgate camps the same as custom zones?",

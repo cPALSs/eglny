@@ -26,15 +26,15 @@
     })();
   </script>
 <link rel="stylesheet" href="../../site.css" />
-  <meta name="description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <meta name="description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects, day-of help, and a path to Team for open roles." />
   <link rel="canonical" href="https://eglny.com/production/volunteer/" />
   <meta property="og:title" content="Volunteering — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <meta property="og:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects, day-of help, and a path to Team for open roles." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eglny.com/production/volunteer/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Volunteering — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects and day-of festival help." />
+  <meta name="twitter:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects, day-of help, and a path to Team for open roles." />
   <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1793670221" />
   <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1793670221" />
 
@@ -48,7 +48,11 @@
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
         <h1>Volunteering</h1>
-        <p>Thank you for wanting to help make Tết happen. Skills projects and day-of shifts live here — for planning seats and Director / DRI work, go to <a href="/team/roles/">Open roles</a>.</p>
+        <p>Thank you for wanting to help make Tết happen.</p>
+      </section>
+      <section>
+        <h2>Planning &amp; directing</h2>
+        <p>See <a href="/team/">Team</a> page for open roles.</p>
       </section>
       <section>
         <h2>Skills projects</h2>
@@ -72,7 +76,7 @@
         initDocToc,
         setPageTitle,
         escapeHtml,
-        linkFirstOpenRoles,
+        linkFirstTeam,
         revealPage,
       } = window.EglnySite;
       initPageShell("volunteer");
@@ -83,7 +87,7 @@
         document.getElementById("main").innerHTML = `
           <section class="hero">
             <h1>${escapeHtml(block?.headline ?? block?.title ?? "Volunteering")}</h1>
-            ${block?.lead ? `<p class="hero-lead">${linkFirstOpenRoles(escapeHtml(block.lead))}</p>` : ""}
+            ${block?.lead ? `<p class="hero-lead">${linkFirstTeam(escapeHtml(block.lead))}</p>` : ""}
           </section>
           ${renderVolunteerPage(site)}
         `;
