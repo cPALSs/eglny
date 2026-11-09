@@ -2269,7 +2269,7 @@
     if (!table?.headers?.length) return "";
     const headers = table.headers;
     const remainingCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase() === "remaining");
-    /** String, or string[] for multi-line cells (first line primary; rest muted notes). */
+    /** String, or string[] for multi-line cells (stacked lines, same size). */
     const formatCell = (cell, i) => {
       const lines = Array.isArray(cell) ? cell : [cell];
       const primary = formatBriefProse(lines[0] ?? "");

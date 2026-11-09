@@ -1309,10 +1309,10 @@ body.nav-open {
 .inventory-cell-note {
   display: block;
   margin-top: 0.2rem;
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--muted);
-  line-height: 1.35;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
 }
 
 @media (max-width: 719px) {
