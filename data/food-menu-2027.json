@@ -3,7 +3,7 @@
   "published_at": "2026-11-08",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
-  "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
+  "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 20 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
   "vendors": [
     {
       "id": "bobette-tea",

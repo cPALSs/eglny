@@ -36,7 +36,7 @@
     "tocLabel": "Inventory",
     "title": "Booth inventory",
     "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas.",
-    "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is.",
+    "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is. Ops / host / district pads are reserved separately and are not in these counts.",
     "table": {
       "headers": [
         "Booth type",
@@ -47,8 +47,8 @@
       "rows": [
         [
           "Open food / on-site cooking (canopy, truck, or trailer)",
-          "15",
-          "3",
+          "20",
+          "~12",
           "$750"
         ],
         [
@@ -58,19 +58,44 @@
           "$500"
         ],
         [
-          "All other booths",
-          "100",
-          "~74",
+          "Snacks / sealed treats",
+          "17",
+          "~8",
+          "$150"
+        ],
+        [
+          "Corporate, merchants, craft, and paid activities",
+          "30",
+          "~19",
           [
-            "$75–$500 by type",
-            "No fee for free children activity booths"
+            "$150 merchants / craft / paid activities",
+            "$500 corporate / marketing"
           ]
+        ],
+        [
+          "Nonprofit / community info",
+          "15",
+          "15",
+          "$75"
+        ],
+        [
+          "Sponsors",
+          "10",
+          "~10",
+          "Package activation"
+        ],
+        [
+          "Free children’s activity tables",
+          "20",
+          "~14",
+          "No fee"
         ]
       ]
     },
     "notes": [
       "**Same food type:** We may limit how many booths sell the same food or snack so the festival has variety. We can’t list every limit yet — that gets clearer as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer.",
-      "**All other booths:** Merchants, craft, snacks, corporate / marketing, nonprofit info, and free kids activity tables share the same pool of about **100** spots — not separate waitlists for each."
+      "**Free kids tables:** Absolute max is **20**. We plan to fill about **15–20**. Any kids pads that don’t fill return to the general merchant / craft / paid-activity pool.",
+      "**Total map:** About **118** guest-facing pads (asphalt booth rows plus Pavilion walkway and indoor pads). Ops / host pads sit outside that count."
     ]
   },
   "fees": {
