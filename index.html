@@ -146,7 +146,15 @@
             <a class="btn btn-primary" href="/vendors/">Register as vendor</a>
             <a class="btn btn-secondary" href="/team/">Join the team</a>
             <a class="btn btn-secondary" href="/sponsorship/">Sponsor the festival</a>
-            <a class="btn btn-secondary" href="/production/programming-signups/">Sign up for programs</a>
+            <a class="btn btn-secondary" href="/production/activity-signups/">Sign up for activities</a>
+          </div>
+        </section>
+        <section class="content-section home-build-cta home-sneak-preview">
+          <h2>Sneak preview</h2>
+          <p>See what’s in store for the Year of the Goat!</p>
+          <div class="cta-row">
+            <a class="btn btn-tertiary" href="/food-menu/">Food menu</a>
+            <a class="btn btn-tertiary" href="/vendors-directory/">Vendors directory</a>
           </div>
         </section>
       </div>
@@ -164,6 +172,7 @@
       setPageTitle(site);
       const h = site.hero;
       const c = site.cta;
+      const sneak = site.sneakPreview ?? {};
       document.getElementById("main").innerHTML = `
         ${renderFestivalHero(site)}
         <div class="home-below">
@@ -174,7 +183,15 @@
               <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
               <a class="btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
               <a class="btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the festival")}</a>
-              <a class="btn btn-secondary" href="${escapeHtml(c.programsHref ?? "/production/programming-signups/")}">${escapeHtml(c.programsLabel ?? "Sign up for programs")}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.programsHref ?? "/production/activity-signups/")}">${escapeHtml(c.programsLabel ?? "Sign up for activities")}</a>
+            </div>
+          </section>
+          <section class="content-section home-build-cta home-sneak-preview">
+            <h2>${escapeHtml(sneak.headline ?? "Sneak preview")}</h2>
+            <p>${escapeHtml(sneak.lead ?? "See what’s in store for the Year of the Goat!")}</p>
+            <div class="cta-row">
+              <a class="btn btn-tertiary" href="${escapeHtml(sneak.foodHref ?? "/food-menu/")}">${escapeHtml(sneak.foodLabel ?? "Food menu")}</a>
+              <a class="btn btn-tertiary" href="${escapeHtml(sneak.vendorsHref ?? "/vendors-directory/")}">${escapeHtml(sneak.vendorsLabel ?? "Vendors directory")}</a>
             </div>
           </section>
         </div>

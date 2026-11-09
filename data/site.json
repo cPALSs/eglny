@@ -38,12 +38,20 @@
     "teamHref": "/team/",
     "sponsorLabel": "Sponsor the festival",
     "sponsorHref": "/sponsorship/",
-    "programsLabel": "Sign up for programs",
-    "programsHref": "/production/programming-signups/",
+    "programsLabel": "Sign up for activities",
+    "programsHref": "/production/activity-signups/",
     "sponsorsLabel": "2026 sponsors",
     "sponsorsHref": "/sponsorship/#thank-you-2026",
     "archiveLabel": "2026 archive",
     "archiveHref": "https://www.elkgrovelunarnewyear.com/"
+  },
+  "sneakPreview": {
+    "headline": "Sneak preview",
+    "lead": "See what's in store for the Year of the Goat!",
+    "foodLabel": "Food menu",
+    "foodHref": "/food-menu/",
+    "vendorsLabel": "Vendors directory",
+    "vendorsHref": "/vendors-directory/"
   },
   "apply": {
     "email": "contact@eglny.com",
@@ -485,7 +493,7 @@
   },
   "production": {
     "headline": "Production",
-    "lead": "Team, volunteering, programming sign-ups, sponsorship, vendor booths, and the tools that build the festival weekend.",
+    "lead": "Team, volunteering, activity sign-ups, sponsorship, vendor booths, and the tools that build the festival weekend.",
     "links": [
       {
         "title": "Team",
@@ -498,9 +506,9 @@
         "href": "/production/volunteer/"
       },
       {
-        "title": "Programming sign-ups",
-        "body": "Open participant registrations for festival-weekend programs — start with Star of Spring Mini-Pageant.",
-        "href": "/production/programming-signups/"
+        "title": "Activity sign-ups",
+        "body": "Open participant registrations for festival-weekend activities — start with Star of Spring Mini-Pageant.",
+        "href": "/production/activity-signups/"
       },
       {
         "title": "Sponsorship",
@@ -514,9 +522,9 @@
       }
     ]
   },
-  "programmingSignups": {
-    "headline": "Programming sign-ups",
-    "lead": "Register for festival-weekend programs hosted at Elk Grove Lunar New Year Tết.",
+  "activitySignups": {
+    "headline": "Activity sign-ups",
+    "lead": "Register for festival-weekend activities hosted at Elk Grove Lunar New Year Tết.",
     "programs": [
       {
         "id": "stage-entertainment",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T18:04:05.687Z",
+  "generatedAt": "2026-11-09T02:32:45.640Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -33,12 +33,12 @@
     },
     {
       "eventId": "cpalss-lny-capstone",
-      "dates": "Sat, Feb 13, 2027 – Sun, Feb 14, 2027 · 11 AM–7 PM (tentative)",
+      "dates": "Sat, Feb 13, 2027 – Sun, Feb 14, 2027 · 11 AM–7 PM",
       "name": "Elk Grove Lunar New Year Tết",
       "host": "cPALSs / VACOS / NVCC",
       "location": "Elk Grove Park, Elk Grove",
       "href": "/",
-      "certainty": "tentative",
+      "certainty": "confirmed",
       "capstone": true
     }
   ],
@@ -77,12 +77,12 @@
         },
         {
           "eventId": "cpalss-lny-capstone",
-          "dates": "Sat, Feb 13, 2027 – Sun, Feb 14, 2027 · 11 AM–7 PM (tentative)",
+          "dates": "Sat, Feb 13, 2027 – Sun, Feb 14, 2027 · 11 AM–7 PM",
           "name": "Elk Grove Lunar New Year Tết",
           "host": "cPALSs / VACOS / NVCC",
           "location": "Elk Grove Park, Elk Grove",
           "href": "/",
-          "certainty": "tentative",
+          "certainty": "confirmed",
           "capstone": true
         }
       ]

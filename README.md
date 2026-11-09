@@ -17,8 +17,8 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/team/` | **Team** — roster by supercommittee, open-seat blurbs, interest modals with role copy, apply + FAQ (under **Production**) |
 | `/team/roles/` | Redirect → `/team/` (open roles folded into Team) |
 | `/production/volunteer/` | **Volunteering** — skills projects, day-of help, and pointer to Team for planning seats (under **Production**) |
-| `/production/programming-signups/` | **Programming sign-ups** — participant registrations (Star of Spring Mini-Pageant + flier; Stage entertainment contact) (under **Production**) |
-| `/production/` | Production hub — Team, Volunteering, Programming sign-ups, Sponsorship, Vendor booths |
+| `/production/activity-signups/` | **Activity sign-ups** — participant registrations (Star of Spring Mini-Pageant + flier; Stage entertainment contact) (under **Production**) |
+| `/production/` | Production hub — Team, Volunteering, Activity sign-ups, Sponsorship, Vendor booths |
 | `/attendees/` | **Visit** hub — guest guides for the festival weekend |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — delisted from nav; linked from Sponsorship |
 | `/sponsorship/` | Sponsorship — partner pathways (FTF + packet) + 2026 sponsor recognition |
@@ -76,7 +76,7 @@ python3 -m http.server 8765
 - http://localhost:8765/team/
 - http://localhost:8765/team/
 - http://localhost:8765/production/volunteer/
-- http://localhost:8765/production/programming-signups/
+- http://localhost:8765/production/activity-signups/
 - http://localhost:8765/production/
 - http://localhost:8765/attendees/
 - http://localhost:8765/fund-the-festival/

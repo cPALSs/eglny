@@ -1490,6 +1490,10 @@ body.nav-open {
   text-align: center;
 }
 
+.home-sneak-preview {
+  padding-top: 1.75rem;
+}
+
 .home-build-cta > p:first-of-type {
   text-wrap: balance;
 }

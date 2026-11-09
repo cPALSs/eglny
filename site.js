@@ -180,10 +180,10 @@
             href: "/production/volunteer/",
           },
           {
-            id: "programming-signups",
-            label: "Programming sign-ups",
-            navLabel: "Programming sign-ups",
-            href: "/production/programming-signups/",
+            id: "activity-signups",
+            label: "Activity sign-ups",
+            navLabel: "Activity sign-ups",
+            href: "/production/activity-signups/",
           },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
@@ -1226,7 +1226,7 @@
     return `
       <section class="hero">
         <h1>${escapeHtml(data?.headline ?? "Vendors directory")}</h1>
-        ${data?.lead ? `<p class="hero-lead">${escapeHtml(data.lead)}</p>` : ""}
+        ${data?.lead ? `<p class="hero-lead">${formatBriefProse(data.lead)}</p>` : ""}
       </section>
       ${wrapDocLayout(renderDocToc(toc), main)}`;
   }
@@ -1260,7 +1260,7 @@
     });
   }
 
-  function renderProgrammingSignupsPage(page) {
+  function renderActivitySignupsPage(page) {
     const programs = page?.programs ?? [];
     const toc = programs.map((p) => ({
       id: p.id || slugifyHeading(p.title || "program"),
@@ -1323,7 +1323,7 @@
 
     return `
       <section class="hero">
-        <h1>${escapeHtml(page?.headline ?? "Programming sign-ups")}</h1>
+        <h1>${escapeHtml(page?.headline ?? "Activity sign-ups")}</h1>
         ${page?.lead ? `<p class="hero-lead">${escapeHtml(page.lead)}</p>` : ""}
       </section>
       ${wrapDocLayout(renderDocToc(toc), programsHtml)}`;
@@ -3631,7 +3631,7 @@
     renderLionDanceGroupsPage,
     renderVendorsDirectoryPage,
     renderProductionPage,
-    renderProgrammingSignupsPage,
+    renderActivitySignupsPage,
     initProgrammingFlierShare,
     renderAttendeesPage,
     renderSponsorshipPage,

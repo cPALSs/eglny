@@ -15,7 +15,7 @@
     setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Programming sign-ups — Elk Grove Lunar New Year Tết</title>
+  <title>Activity sign-ups — Elk Grove Lunar New Year Tết</title>
   <script src="../../clean-urls.js"></script>
   <script>
     (function () {
@@ -26,15 +26,15 @@
     })();
   </script>
 <link rel="stylesheet" href="../../site.css" />
-  <meta name="description" content="Programming sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend programs." />
-  <link rel="canonical" href="https://eglny.com/production/programming-signups/" />
-  <meta property="og:title" content="Programming sign-ups — Elk Grove Lunar New Year Tết" />
-  <meta property="og:description" content="Programming sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend programs." />
+  <meta name="description" content="Activity sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend activities." />
+  <link rel="canonical" href="https://eglny.com/production/activity-signups/" />
+  <meta property="og:title" content="Activity sign-ups — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Activity sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend activities." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eglny.com/production/programming-signups/" />
+  <meta property="og:url" content="https://eglny.com/production/activity-signups/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Programming sign-ups — Elk Grove Lunar New Year Tết" />
-  <meta name="twitter:description" content="Programming sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend programs." />
+  <meta name="twitter:title" content="Activity sign-ups — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Activity sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend activities." />
   <meta property="og:image" content="https://eglny.com/assets/programming/star-of-spring-mini-pageant-2027.jpg" />
   <meta name="twitter:image" content="https://eglny.com/assets/programming/star-of-spring-mini-pageant-2027.jpg" />
 
@@ -46,8 +46,8 @@
   <main class="page-wrap page-wrap--doc" id="main">
     <div id="seo-prerender" class="seo-prerender">
       <section class="hero">
-        <h1>Programming sign-ups</h1>
-        <p>Register for festival-weekend programs hosted at Elk Grove Lunar New Year Tết.</p>
+        <h1>Activity sign-ups</h1>
+        <p>Register for festival-weekend activities hosted at Elk Grove Lunar New Year Tết.</p>
       </section>
       <section>
         <h2>Stage entertainment</h2>
@@ -69,23 +69,23 @@
         initPageShell,
         loadSiteData,
         mountFooter,
-        renderProgrammingSignupsPage,
+        renderActivitySignupsPage,
         initProgrammingFlierShare,
         initDocToc,
         setPageTitle,
         escapeHtml,
         revealPage,
       } = window.EglnySite;
-      initPageShell("programming-signups");
+      initPageShell("activity-signups");
       try {
         const site = await loadSiteData();
-        const page = site.programmingSignups;
-        setPageTitle(site, page?.headline ?? "Programming sign-ups");
+        const page = site.activitySignups;
+        setPageTitle(site, page?.headline ?? "Activity sign-ups");
         document.querySelector('meta[name="description"]').setAttribute(
           "content",
-          "Programming sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend programs.",
+          "Activity sign-ups for Elk Grove Lunar New Year Tết 2027 — Star of Spring Mini-Pageant and other festival-weekend activities.",
         );
-        document.getElementById("main").innerHTML = renderProgrammingSignupsPage(page);
+        document.getElementById("main").innerHTML = renderActivitySignupsPage(page);
         initDocToc();
         if (typeof initProgrammingFlierShare === "function") initProgrammingFlierShare();
         mountFooter(site);
