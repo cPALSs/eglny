@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-08",
+  "published_at": "2026-11-09",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -772,6 +772,50 @@
             "dairy_free"
           ],
           "dietary_warnings": []
+        }
+      ]
+    },
+    {
+      "id": "jerky-jerky",
+      "name": "Jerky Jerky",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/jerky-jerky/logo.jpg",
+      "instagram": "jerkyjerkyfresno",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Beef jerky, prepackaged",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Wild game jerky, prepackaged",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Freeze-dried candy, prepackaged",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "allergens": [],
+          "dietary_tags": []
         }
       ]
     }
