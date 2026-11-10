@@ -1197,7 +1197,6 @@ function renderTierModalContent(tierMin) {
 
   document.getElementById("modal-guest").innerHTML = `
     ${tier.tagline ? `<p class="modal-tagline">${formatMarkdown(tier.tagline)}</p>` : ""}
-    ${tier.description ? `<p class="modal-description">${formatMarkdown(tier.description)}</p>` : ""}
     ${
       benefits.length
         ? `<p class="modal-benefits-label">Benefits</p><ul class="modal-benefits">${benefits
@@ -1674,7 +1673,6 @@ function renderModalContent(giftId) {
     ${giftCohortsHtml(gift)}
     ${estimatedSponsorTagsHtml(gift.id)}
     ${notice ? `<p class="modal-unlock-notice">${notice}</p>` : ""}
-    <p class="modal-description">${formatMarkdown(gift.description)}</p>
     ${
       benefits.length
         ? `<p class="modal-benefits-label">Benefits</p><ul class="modal-benefits">${benefits.map((b) => `<li>${formatMarkdown(b)}</li>`).join("")}</ul>`
