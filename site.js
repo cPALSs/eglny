@@ -2190,7 +2190,7 @@
             <div class="apply-side-paths">
               <div class="apply-side-path">
                 <h3>Attend Zoom calls</h3>
-                <p>${escapeHtml(join.zoom ?? "Weekly Zoom production calls are Mondays at 6:30 PM.")}</p>
+                <p>${escapeHtml(join.zoom ?? "Weekly Zoom production calls are Tuesdays at 6:30 PM.")}</p>
                 <p class="cta-row"><a class="btn btn-tertiary" href="${mailtoGuest}">Email ${escapeHtml(contactEmail)}</a></p>
               </div>
               <div class="apply-side-path">
