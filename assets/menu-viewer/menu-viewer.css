@@ -1232,6 +1232,27 @@
   margin-top: 0.5rem;
 }
 
+.menu-layout .category-subgroup {
+  margin-top: 0.85rem;
+}
+
+.menu-layout .category-subgroup:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.menu-layout .category-subgroup h4 {
+  margin: 0 0 0.15rem;
+  color: var(--text, #1c1917);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.menu-layout .category-subgroup .items {
+  margin-top: 0.25rem;
+}
+
 @media (min-width: 1100px) {
   .menu-layout {
     flex-direction: row;

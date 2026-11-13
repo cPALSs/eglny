@@ -50,6 +50,24 @@ export const MEAL_CUISINE_IDS = [
   "other",
 ];
 
+/** Drink subgroups under the Drinks format section (By cuisine view). */
+export const DRINK_SUBCATEGORY_ORDER = ["coffee", "tea", "others"];
+
+export const DRINK_SUBCATEGORY_LABELS = {
+  coffee: "Coffee",
+  tea: "Tea",
+  others: "Others",
+};
+
+const DRINK_SUBCATEGORY_IDS = new Set(DRINK_SUBCATEGORY_ORDER);
+
+const DRINK_COFFEE_RE =
+  /\b(coffee|c[aà]\s*ph[eê]|espresso|cappuccino|macchiato|cold\s*brew|americano)\b/i;
+/** Bare latte (no tea) → coffee; “milk tea latte” stays tea via tea rule first. */
+const DRINK_LATTE_RE = /\blatte\b/i;
+const DRINK_TEA_RE =
+  /\b(tea|boba|bubble\s*tea|matcha|chai|milk\s*tea)\b/i;
+
 /** Specific Asian lanes — preferred over pan-Asian when vendor disambiguates. */
 const SPECIFIC_ASIAN_IDS = new Set([
   "vietnamese",
@@ -204,10 +222,30 @@ export function classifyCuisine(item, vendor = {}) {
 }
 
 /**
+ * Coffee / Tea / Others under the Drinks section.
+ * Prefer explicit item.subcategory; else infer from name (legacy years without the field).
+ * @param {{ name?: string, subcategory?: string, category?: string }} item
+ * @returns {"coffee"|"tea"|"others"}
+ */
+export function classifyDrinkSubcategory(item) {
+  const raw = String(item?.subcategory || "")
+    .trim()
+    .toLowerCase();
+  if (DRINK_SUBCATEGORY_IDS.has(raw)) return raw;
+
+  const name = String(item?.name || "").trim();
+  if (DRINK_TEA_RE.test(name) && !DRINK_COFFEE_RE.test(name)) return "tea";
+  if (DRINK_COFFEE_RE.test(name)) return "coffee";
+  if (DRINK_LATTE_RE.test(name) && !DRINK_TEA_RE.test(name)) return "coffee";
+  if (DRINK_TEA_RE.test(name)) return "tea";
+  return "others";
+}
+
+/**
  * Sections an item belongs to in By cuisine view.
  * Snacks / sweets appear in their cuisine lane **and** format section when cuisine is known.
  * Unclassified snacks/sweets stay under Snacks / Sweets only — not Other / Fusion.
- * Drinks appear only under Drinks (last).
+ * Drinks appear only under Drinks (last), then Coffee / Tea / Others subgroups in the viewer.
  * @returns {string[]}
  */
 export function cuisineSectionsForItem(item, vendor = {}) {

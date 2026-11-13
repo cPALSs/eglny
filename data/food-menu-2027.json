@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-09",
+  "published_at": "2026-11-13",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -20,6 +20,7 @@
           "options": "strawberry, mango, peach, passion fruit, lychee",
           "price": null,
           "category": "drinks",
+          "subcategory": "tea",
           "allergens": [],
           "dietary_tags": [],
           "image": "assets/food-menu/2027/bobette-tea/fruit-green-tea.jpg",
@@ -32,6 +33,7 @@
           "options": "Thai, taro, coconut, brown sugar, honeydew, classic, jasmine",
           "price": null,
           "category": "drinks",
+          "subcategory": "tea",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -47,6 +49,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "coffee",
           "allergens": [],
           "dietary_tags": []
         },
@@ -56,6 +59,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "coffee",
           "allergens": [],
           "dietary_tags": []
         },
@@ -65,6 +69,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "coffee",
           "allergens": [],
           "dietary_tags": []
         }
@@ -94,6 +99,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "coffee",
           "allergens": [],
           "dietary_tags": []
         }
@@ -114,6 +120,7 @@
           "options": "watermelon, kumquat, lemon and ginger, matcha, and more",
           "price": null,
           "category": "drinks",
+          "subcategory": "others",
           "allergens": [],
           "dietary_tags": []
         },
@@ -123,6 +130,7 @@
           "options": "natural herbs, served cool",
           "price": null,
           "category": "drinks",
+          "subcategory": "tea",
           "allergens": [],
           "dietary_tags": []
         },
@@ -132,11 +140,77 @@
           "options": "ube, pandan",
           "price": null,
           "category": "drinks",
+          "subcategory": "coffee",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
             "contains_dairy"
           ]
+        }
+      ]
+    },
+    {
+      "id": "next-gen-lemonade",
+      "name": "Next Gen Lemonade",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/next-gen-lemonade/logo.jpg",
+      "instagram": "nextgenlemonade",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Lemonade, fruit-infused",
+          "note": null,
+          "options": "lychee pineapple, mandarin blossom, dragon fruit, aloha",
+          "price": null,
+          "category": "drinks",
+          "subcategory": "others",
+          "allergens": [],
+          "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "boba-meet-up",
+      "name": "Boba Meet Up",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/boba-meet-up/logo.jpg",
+      "instagram": "bobameetup",
+      "dietary": [],
+      "items": [
+        {
+          "name": "Boba tea, strawberry delight",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "subcategory": "tea",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Mango milk tea",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "subcategory": "tea",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy"
+          ]
+        },
+        {
+          "name": "Vietnamese coffee",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "subcategory": "coffee",
+          "allergens": [],
+          "dietary_tags": []
         }
       ]
     },
@@ -647,6 +721,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "others",
           "allergens": [],
           "dietary_tags": [],
           "image": "assets/food-menu/2027/hey-mango/mango-drinks.jpg",
@@ -717,6 +792,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "others",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -729,6 +805,7 @@
           "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "others",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [

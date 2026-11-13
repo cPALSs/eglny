@@ -9,7 +9,10 @@ import {
 import {
   CUISINE_ORDER,
   CUISINE_LABELS,
+  DRINK_SUBCATEGORY_ORDER,
+  DRINK_SUBCATEGORY_LABELS,
   cuisineSectionsForItem,
+  classifyDrinkSubcategory,
   ITEM_NOTE_MAX_LEN,
 } from "./menu-cuisine.js";
 
@@ -253,6 +256,35 @@ function renderVendorView(vendors) {
     .join("");
 }
 
+function renderItemList(items, { showVendor = false } = {}) {
+  return `<ul class="items">${items
+    .map(
+      (i) => `
+        <li>${renderItemRow(i, { showVendor })}</li>`,
+    )
+    .join("")}
+      </ul>`;
+}
+
+/** Coffee / Tea / Others under the Drinks format section. */
+function renderDrinkSubgroups(items) {
+  const bySub = Object.fromEntries(DRINK_SUBCATEGORY_ORDER.map((id) => [id, []]));
+  for (const item of items) {
+    bySub[classifyDrinkSubcategory(item)].push(item);
+  }
+  return DRINK_SUBCATEGORY_ORDER.filter((id) => bySub[id].length)
+    .map((sub) => {
+      const rows = bySub[sub];
+      rows.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+      return `
+      <div class="category-subgroup" id="menu-cuisine-drinks-${sub}">
+        <h4>${escapeHtml(DRINK_SUBCATEGORY_LABELS[sub] || sub)}</h4>
+        ${renderItemList(rows, { showVendor: true })}
+      </div>`;
+    })
+    .join("");
+}
+
 function renderCuisineView(vendors) {
   const bySection = Object.fromEntries(CUISINE_ORDER.map((id) => [id, []]));
   vendors.forEach((v) => {
@@ -268,16 +300,14 @@ function renderCuisineView(vendors) {
       const items = bySection[section];
       items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
       const id = `menu-cuisine-${section}`;
+      const body =
+        section === "drinks"
+          ? renderDrinkSubgroups(items)
+          : renderItemList(items, { showVendor: true });
       return `
     <section class="category-block" id="${id}">
       <h3>${escapeHtml(CUISINE_LABELS[section] || section)}</h3>
-      <ul class="items">${items
-        .map(
-          (i) => `
-        <li>${renderItemRow(i, { showVendor: true })}</li>`,
-        )
-        .join("")}
-      </ul>
+      ${body}
     </section>`;
     })
     .join("");
