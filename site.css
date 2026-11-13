@@ -3673,11 +3673,12 @@ a.co-chair-name {
 
 .page-wrap--food-menu > .hero {
   margin-bottom: 0;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .page-wrap--food-menu > .hero .hero-lead {
   margin-bottom: 0;
+  line-height: 1.35;
 }
 
 .food-menu-viewer {
@@ -3700,6 +3701,7 @@ a.co-chair-name {
 .food-menu-viewer .menu-meta {
   margin: 0;
   font-size: 0.95rem;
+  line-height: 1.35;
   color: var(--muted);
 }
 
@@ -3758,7 +3760,7 @@ a.co-chair-name {
     box-shadow: 0 0.55rem 0.55rem -0.3rem var(--bg);
   }
 
-  /* Tab underline + cuisine chips: full window width past page padding */
+  /* Tab underline + type section chips: full window width past page padding */
   .food-menu-viewer .menu-layout .menu-tabs-row,
   .food-menu-viewer .menu-layout .menu-section-chips {
     margin-left: calc(-1 * var(--food-menu-page-pad-x));

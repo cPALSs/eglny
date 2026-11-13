@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-13",
+  "published_at": "2026-11-13T22:15:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -90,6 +90,7 @@
           "options": null,
           "price": null,
           "category": "sweets",
+          "cuisine": "vietnamese",
           "allergens": [],
           "dietary_tags": []
         },
@@ -271,6 +272,7 @@
           "options": null,
           "price": null,
           "category": "sweets",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -284,6 +286,7 @@
           "options": null,
           "price": null,
           "category": "sweets",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -363,6 +366,59 @@
       ]
     },
     {
+      "id": "myzz-piggyz-tiger-bite",
+      "name": "Myzz Piggy'z Tiger Bite",
+      "booth_label": null,
+      "booth_kind": "open_cooking",
+      "logo": "assets/food-menu/2027/myzz-piggyz-tiger-bite/logo.jpg",
+      "instagram": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Purple sticky rice plate, Hmong sausage",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "hmong",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Purple sticky rice plate, meat skewers",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "hmong",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Pork eggrolls, housemade",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "cuisine": "hmong",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat",
+            "contains_gluten"
+          ]
+        }
+      ]
+    },
+    {
       "id": "gim-belly",
       "name": "GIM Belly",
       "booth_label": null,
@@ -377,7 +433,7 @@
           "options": "rice or garlic noodles · Asian slaw",
           "price": null,
           "category": "meals",
-          "cuisine": "asian",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -391,7 +447,7 @@
           "options": "rice or garlic noodles · Asian slaw",
           "price": null,
           "category": "meals",
-          "cuisine": "asian",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -404,7 +460,7 @@
           "options": "rice or garlic noodles · Asian slaw",
           "price": null,
           "category": "meals",
-          "cuisine": "asian",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -418,7 +474,7 @@
           "options": "rice or garlic noodles · Asian slaw",
           "price": null,
           "category": "meals",
-          "cuisine": "asian",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [

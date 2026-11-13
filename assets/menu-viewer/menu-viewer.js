@@ -9,9 +9,14 @@ import {
 import {
   CUISINE_ORDER,
   CUISINE_LABELS,
+  MEAL_CUISINE_IDS,
+  DISH_TYPE_ORDER,
+  DISH_TYPE_LABELS,
   DRINK_SUBCATEGORY_ORDER,
   DRINK_SUBCATEGORY_LABELS,
   cuisineSectionsForItem,
+  classifyCuisine,
+  dishTypeSectionsForItem,
   classifyDrinkSubcategory,
   ITEM_NOTE_MAX_LEN,
 } from "./menu-cuisine.js";
@@ -182,7 +187,19 @@ function renderItemThumb(item, vendorContext = null) {
   </span>`;
 }
 
-function renderItemPrimary(item, { showVendor = false } = {}) {
+/** Culture chip on the dish line (not a filter). Skip drinks + unclassified Other. */
+function renderCuisineChip(item, vendor = null) {
+  const category = String(item?.category || "meals").trim().toLowerCase();
+  if (category === "drinks") return "";
+  const vendorCtx = vendor || { name: item?.vendorName, id: item?.vendorId };
+  const cuisine = classifyCuisine(item, vendorCtx);
+  if (!cuisine || cuisine === "other" || !MEAL_CUISINE_IDS.includes(cuisine)) return "";
+  const label = CUISINE_LABELS[cuisine];
+  if (!label) return "";
+  return `<span class="item-cuisine">${escapeHtml(label)}</span>`;
+}
+
+function renderItemPrimary(item, { showVendor = false, vendor = null, showCuisine = true } = {}) {
   const note = truncateField(item?.note);
   const options = truncateField(item?.options);
   const clarifyBit = note
@@ -192,15 +209,18 @@ function renderItemPrimary(item, { showVendor = false } = {}) {
     showVendor && item.vendorName
       ? `\u2003<span class="item-vendor">${escapeHtml(item.vendorName)}</span>`
       : "";
-  const optionsBit = options
-    ? `<span class="item-options">${escapeHtml(options)}</span>`
-    : "";
-  return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${clarifyBit}${renderDietaryBadges(item)}${vendorBit}</span>${optionsBit}</span>`;
+  const cuisineBit = showCuisine ? renderCuisineChip(item, vendor) : "";
+  // Second line: cuisine chip, then options (e.g. Filipino · rice or garlic noodles…).
+  const metaBits = [cuisineBit, options ? `<span class="item-options-text">${escapeHtml(options)}</span>` : ""]
+    .filter(Boolean)
+    .join("");
+  const metaBit = metaBits ? `<span class="item-meta">${metaBits}</span>` : "";
+  return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${clarifyBit}${renderDietaryBadges(item)}${vendorBit}</span>${metaBit}</span>`;
 }
 
-function renderItemRow(item, { showVendor = false, vendor = null } = {}) {
+function renderItemRow(item, { showVendor = false, vendor = null, showCuisine = true } = {}) {
   // Public festival menu never lists prices (vendors set day-of).
-  return `<div class="item-row">${renderItemThumb(item, vendor)}${renderItemPrimary(item, { showVendor })}</div>`;
+  return `<div class="item-row">${renderItemThumb(item, vendor)}${renderItemPrimary(item, { showVendor, vendor, showCuisine })}</div>`;
 }
 
 const IG_ICON_SVG = `<svg class="vendor-ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`;
@@ -256,18 +276,18 @@ function renderVendorView(vendors) {
     .join("");
 }
 
-function renderItemList(items, { showVendor = false } = {}) {
+function renderItemList(items, { showVendor = false, showCuisine = true } = {}) {
   return `<ul class="items">${items
     .map(
       (i) => `
-        <li>${renderItemRow(i, { showVendor })}</li>`,
+        <li>${renderItemRow(i, { showVendor, showCuisine })}</li>`,
     )
     .join("")}
       </ul>`;
 }
 
 /** Coffee / Tea / Others under the Drinks format section. */
-function renderDrinkSubgroups(items) {
+function renderDrinkSubgroups(items, { idPrefix = "menu-type-drinks", showCuisine = true } = {}) {
   const bySub = Object.fromEntries(DRINK_SUBCATEGORY_ORDER.map((id) => [id, []]));
   for (const item of items) {
     bySub[classifyDrinkSubcategory(item)].push(item);
@@ -277,14 +297,48 @@ function renderDrinkSubgroups(items) {
       const rows = bySub[sub];
       rows.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
       return `
-      <div class="category-subgroup" id="menu-cuisine-drinks-${sub}">
+      <div class="category-subgroup" id="${idPrefix}-${sub}">
         <h4>${escapeHtml(DRINK_SUBCATEGORY_LABELS[sub] || sub)}</h4>
-        ${renderItemList(rows, { showVendor: true })}
+        ${renderItemList(rows, { showVendor: true, showCuisine })}
       </div>`;
     })
     .join("");
 }
 
+/** Default browse: dish-type sections. */
+function renderTypeView(vendors) {
+  const bySection = Object.fromEntries(DISH_TYPE_ORDER.map((id) => [id, []]));
+  vendors.forEach((v) => {
+    v.items.forEach((i) => {
+      const row = { ...i, vendorName: v.name, vendorId: v.id };
+      for (const section of dishTypeSectionsForItem(i)) {
+        (bySection[section] = bySection[section] || []).push(row);
+      }
+    });
+  });
+  const sections = DISH_TYPE_ORDER.filter((id) => (bySection[id] || []).length);
+  if (!sections.length) {
+    return "<p class='muted'>No menu items for the current filters.</p>";
+  }
+  return sections
+    .map((section) => {
+      const items = bySection[section];
+      items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+      const id = `menu-type-${section}`;
+      const body =
+        section === "drinks"
+          ? renderDrinkSubgroups(items, { idPrefix: "menu-type-drinks" })
+          : renderItemList(items, { showVendor: true });
+      return `
+    <section class="category-block" id="${id}">
+      <h3>${escapeHtml(DISH_TYPE_LABELS[section] || section)}</h3>
+      ${body}
+    </section>`;
+    })
+    .join("");
+}
+
+/** Culture-primary grouping for the By cuisine tab. */
 function renderCuisineView(vendors) {
   const bySection = Object.fromEntries(CUISINE_ORDER.map((id) => [id, []]));
   vendors.forEach((v) => {
@@ -300,14 +354,11 @@ function renderCuisineView(vendors) {
       const items = bySection[section];
       items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
       const id = `menu-cuisine-${section}`;
-      const body =
-        section === "drinks"
-          ? renderDrinkSubgroups(items)
-          : renderItemList(items, { showVendor: true });
+      // Section heading is the cuisine — skip redundant per-dish chips.
       return `
     <section class="category-block" id="${id}">
       <h3>${escapeHtml(CUISINE_LABELS[section] || section)}</h3>
-      ${body}
+      ${renderItemList(items, { showVendor: true, showCuisine: false })}
     </section>`;
     })
     .join("");
@@ -358,13 +409,45 @@ function renderDietView(vendors, facets) {
   );
 }
 
+const MENU_VIEWS = ["type", "cuisine", "vendor", "diet"];
+const DEFAULT_VIEW = "type";
+
+function viewFromUrl() {
+  try {
+    const raw = new URLSearchParams(window.location.search).get("view");
+    return MENU_VIEWS.includes(raw) ? raw : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function setViewInUrl(nextView) {
+  try {
+    const url = new URL(window.location.href);
+    if (nextView === DEFAULT_VIEW) url.searchParams.delete("view");
+    else url.searchParams.set("view", nextView);
+    window.history.replaceState({}, "", url);
+  } catch (_) {
+    /* ignore */
+  }
+}
+
+function syncViewTabs(container, nextView) {
+  container.querySelectorAll(".view-btn").forEach((btn) => {
+    const on = btn.dataset.view === nextView;
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  });
+}
+
 /**
  * Mount interactive public menu UI into container.
  * Returns { setMenu(menu) } to refresh when roster changes.
+ * Deep link: `?view=type|cuisine|vendor|diet` (default type omits the param).
  */
 export function mountMenuViewer(container, menu) {
   let activeFilters = new Set();
-  let view = "cuisine";
+  let view = viewFromUrl() ?? DEFAULT_VIEW;
   let query = "";
   let currentMenu = menu;
 
@@ -409,7 +492,8 @@ export function mountMenuViewer(container, menu) {
         <div class="menu-main-sticky">
           <div class="menu-tabs-row">
             <nav class="menu-view-tabs" role="tablist" aria-label="Menu view">
-              <button type="button" class="view-btn active" data-view="cuisine" role="tab" aria-selected="true">By cuisine</button>
+              <button type="button" class="view-btn active" data-view="type" role="tab" aria-selected="true">By type</button>
+              <button type="button" class="view-btn" data-view="cuisine" role="tab" aria-selected="false">By cuisine</button>
               <button type="button" class="view-btn" data-view="vendor" role="tab" aria-selected="false">By vendor</button>
               <button type="button" class="view-btn" data-view="diet" role="tab" aria-selected="false">By diet</button>
             </nav>
@@ -626,6 +710,7 @@ export function mountMenuViewer(container, menu) {
       return;
     }
     if (view === "vendor") contentEl.innerHTML = renderVendorView(vendors);
+    else if (view === "type") contentEl.innerHTML = renderTypeView(vendors);
     else if (view === "cuisine") contentEl.innerHTML = renderCuisineView(vendors);
     else contentEl.innerHTML = renderDietView(vendors, currentMenu.filter_facets);
     setupSectionNav();
@@ -658,15 +743,15 @@ export function mountMenuViewer(container, menu) {
     syncStickyMetrics();
   });
 
+  syncViewTabs(container, view);
+
   container.querySelectorAll(".view-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      container.querySelectorAll(".view-btn").forEach((b) => {
-        b.classList.remove("active");
-        b.setAttribute("aria-selected", "false");
-      });
-      btn.classList.add("active");
-      btn.setAttribute("aria-selected", "true");
-      view = btn.dataset.view;
+      const next = MENU_VIEWS.includes(btn.dataset.view) ? btn.dataset.view : DEFAULT_VIEW;
+      if (next === view) return;
+      view = next;
+      syncViewTabs(container, view);
+      setViewInUrl(view);
       render();
     });
   });
@@ -680,6 +765,8 @@ export function mountMenuViewer(container, menu) {
   setupDishLightbox(container);
 
   placeFiltersForViewport();
+  // Reflect non-default view in the URL when opened via deep link (or after tab pick).
+  if (view !== DEFAULT_VIEW) setViewInUrl(view);
   render();
 
   return {
