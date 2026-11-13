@@ -12,6 +12,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/bobette-tea/logo.jpg",
       "instagram": "bobettetea",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -81,7 +82,8 @@
       "booth_label": null,
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/tri-foods/logo.jpg",
-      "instagram": "trifoodsdistributor",
+      "instagram": "trifooddistribution",
+      "facebook": "yangsingfoods",
       "dietary": [],
       "items": [
         {
@@ -113,6 +115,7 @@
       "booth_kind": "prepack",
       "logo": null,
       "instagram": null,
+      "facebook": "mrcane.elk.grove",
       "dietary": [],
       "items": [
         {
@@ -157,6 +160,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/next-gen-lemonade/logo.jpg",
       "instagram": "nextgenlemonade",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -177,7 +181,8 @@
       "booth_label": null,
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/boba-meet-up/logo.jpg",
-      "instagram": "bobameetup",
+      "instagram": "boba_meetup",
+      "facebook": "profile.php?id=100080580639522",
       "dietary": [],
       "items": [
         {
@@ -222,6 +227,7 @@
       "booth_kind": "open_cooking",
       "logo": "assets/food-menu/2027/fairy-bites-delicacies/logo.jpg",
       "instagram": "fairybitesdelicacies",
+      "facebook": "fairybitesdelicacies",
       "dietary": [],
       "items": [
         {
@@ -318,6 +324,7 @@
       "booth_kind": "open_cooking",
       "logo": "assets/food-menu/2027/happy-foods/logo.jpg",
       "instagram": "happyfoods_bros",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -372,6 +379,7 @@
       "booth_kind": "open_cooking",
       "logo": "assets/food-menu/2027/myzz-piggyz-tiger-bite/logo.jpg",
       "instagram": null,
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -425,6 +433,7 @@
       "booth_kind": "open_cooking",
       "logo": "assets/food-menu/2027/gim-belly/logo.jpg",
       "instagram": "gim.belly",
+      "facebook": "profile.php?id=100063490211311",
       "dietary": [],
       "items": [
         {
@@ -503,6 +512,7 @@
       "booth_kind": "food_truck",
       "logo": "assets/food-menu/2027/maiz-mexican-catering/logo.jpg",
       "instagram": "maiz_mexican_catering",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -543,6 +553,7 @@
       "booth_kind": "food_truck",
       "logo": "assets/food-menu/2027/rays-kitchen/logo.jpg",
       "instagram": "rayskitchen645",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -641,6 +652,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/pop-berry/logo.jpg",
       "instagram": null,
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -684,6 +696,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/purrfect-popcorn/logo.jpg",
       "instagram": null,
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -706,6 +719,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/mr-pops/logo.jpg",
       "instagram": "mrpopspopcorn",
+      "facebook": "MrPopspopcorn",
       "dietary": [],
       "items": [
         {
@@ -738,6 +752,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/hey-mango/logo.jpg",
       "instagram": "heymango916",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -793,6 +808,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/chez-chibi-bakery/logo.jpg",
       "instagram": "ccbakerysac",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -825,6 +841,7 @@
       "booth_kind": "food_truck",
       "logo": "assets/food-menu/2027/yayas-classic-soft-serve/logo.jpg",
       "instagram": "YayasClassicSoftServe",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -880,6 +897,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/veneto-authentic-italian-gelato/logo.jpg",
       "instagram": "Veneto.Italian.Gelato",
+      "facebook": null,
       "dietary": [],
       "items": [
         {
@@ -915,6 +933,7 @@
       "booth_kind": "prepack",
       "logo": "assets/food-menu/2027/jerky-jerky/logo.jpg",
       "instagram": "jerkyjerkyfresno",
+      "facebook": "jerkyjerkyfresno",
       "dietary": [],
       "items": [
         {

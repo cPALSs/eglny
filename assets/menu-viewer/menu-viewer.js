@@ -223,7 +223,8 @@ function renderItemRow(item, { showVendor = false, vendor = null, showCuisine = 
   return `<div class="item-row">${renderItemThumb(item, vendor)}${renderItemPrimary(item, { showVendor, vendor, showCuisine })}</div>`;
 }
 
-const IG_ICON_SVG = `<svg class="vendor-ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`;
+const IG_ICON_SVG = `<svg class="vendor-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`;
+const FB_ICON_SVG = `<svg class="vendor-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M13.5 20v-7.5h2.5l.4-3H13.5V8.2c0-.8.2-1.2 1.3-1.2H16.5V4.5h-2.1C11.9 4.5 10.5 5.9 10.5 8.1V9.5H8.5v3h2V20h3z" fill="currentColor" stroke="none"/></svg>`;
 
 function normalizeInstagramUrl(handleOrUrl) {
   const raw = String(handleOrUrl || "").trim();
@@ -234,34 +235,71 @@ function normalizeInstagramUrl(handleOrUrl) {
   return `https://www.instagram.com/${encodeURIComponent(handle)}/`;
 }
 
-function renderVendorIgLink(vendor) {
-  const href = normalizeInstagramUrl(vendor?.instagram);
-  if (!href) return "";
-  const label = `Instagram · ${vendor.name || "vendor"}`;
-  return `<a class="vendor-ig" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}">${IG_ICON_SVG}</a>`;
+function normalizeFacebookUrl(handleOrUrl) {
+  const raw = String(handleOrUrl || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+  let path = raw.replace(/^@/, "").replace(/^(www\.)?facebook\.com\//i, "").replace(/^fb\.com\//i, "");
+  path = path.replace(/^\/+/, "").replace(/\/+$/, "");
+  if (!path) return "";
+  if (/^profile\.php\?/i.test(path)) return `https://www.facebook.com/${path}`;
+  const [slug, query] = path.split("?");
+  const base = `https://www.facebook.com/${encodeURIComponent(slug)}`;
+  return query ? `${base}?${query}` : `${base}/`;
+}
+
+function renderVendorSocialLinks(vendor) {
+  const parts = [];
+  const igHref = normalizeInstagramUrl(vendor?.instagram);
+  if (igHref) {
+    parts.push(
+      `<a class="vendor-social vendor-ig" href="${escapeHtml(igHref)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(`Instagram · ${vendor.name || "vendor"}`)}">${IG_ICON_SVG}</a>`,
+    );
+  }
+  const fbHref = normalizeFacebookUrl(vendor?.facebook);
+  if (fbHref) {
+    parts.push(
+      `<a class="vendor-social vendor-fb" href="${escapeHtml(fbHref)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(`Facebook · ${vendor.name || "vendor"}`)}">${FB_ICON_SVG}</a>`,
+    );
+  }
+  if (!parts.length) return "";
+  return `<span class="vendor-socials">${parts.join("")}</span>`;
+}
+
+function vendorInitials(name) {
+  const skip = new Set(["and", "the", "of", "a", "an", "&"]);
+  const words = String(name || "")
+    .replace(/['’]s\b/gi, "")
+    .split(/[\s./_-]+/)
+    .map((w) => w.replace(/[^A-Za-z0-9\u00C0-\u024F]/g, ""))
+    .filter((w) => w && !skip.has(w.toLowerCase()));
+  if (!words.length) return "?";
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (words[0][0] + words[1][0]).toUpperCase();
 }
 
 function renderVendorLogo(vendor) {
   const src = resolveImageSrc(vendor?.logo);
-  if (!src) return "";
-  const alt = `${vendor.name || "Vendor"} logo`;
-  return `<img class="vendor-logo" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />`;
+  if (src) {
+    const alt = `${vendor.name || "Vendor"} logo`;
+    return `<img class="vendor-logo" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />`;
+  }
+  const initials = vendorInitials(vendor?.name);
+  return `<span class="vendor-logo vendor-logo--initials" aria-hidden="true">${escapeHtml(initials)}</span>`;
 }
 
 function renderVendorView(vendors) {
   return sortVendorsByLocation(vendors)
     .map((v) => {
       const logo = renderVendorLogo(v);
-      const ig = renderVendorIgLink(v);
+      const socials = renderVendorSocialLinks(v);
       return `
     <article class="vendor-card">
       <div class="vendor-card-head">
+        ${logo}
         <div class="vendor-card-title">
-          <h2>${escapeHtml(v.name)}</h2>${ig}
-        </div>
-        <div class="vendor-card-meta">
+          <h2>${escapeHtml(v.name)}</h2>${socials}
           ${v.booth_label ? `<p class="booth">${escapeHtml(v.booth_label)}</p>` : ""}
-          ${logo}
         </div>
       </div>
       <ul class="items">${v.items

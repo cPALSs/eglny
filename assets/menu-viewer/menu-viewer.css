@@ -731,7 +731,6 @@
 .menu-layout .vendor-card-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 0.75rem;
 }
 
@@ -750,7 +749,14 @@
   font-size: 1.15rem;
 }
 
-.menu-layout .vendor-ig {
+.menu-layout .vendor-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  vertical-align: middle;
+}
+
+.menu-layout .vendor-social {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -762,34 +768,26 @@
   vertical-align: middle;
 }
 
-.menu-layout .vendor-ig:hover,
-.menu-layout .vendor-ig:focus-visible {
+.menu-layout .vendor-social:hover,
+.menu-layout .vendor-social:focus-visible {
   color: var(--accent, #b91c1c);
 }
 
-.menu-layout .vendor-ig:focus-visible {
+.menu-layout .vendor-social:focus-visible {
   outline: 2px solid var(--accent, #b91c1c);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-.menu-layout .vendor-ig-icon {
+.menu-layout .vendor-social-icon {
   width: 1.1rem;
   height: 1.1rem;
   display: block;
 }
 
-.menu-layout .vendor-card-meta {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.65rem;
-  flex: 0 0 auto;
-}
-
 .menu-layout .booth {
   margin: 0;
-  flex-shrink: 0;
+  flex: 1 0 100%;
   font-family: system-ui, sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
@@ -800,12 +798,27 @@
 
 .menu-layout .vendor-logo {
   display: block;
+  flex: 0 0 auto;
   width: 3rem;
   height: 3rem;
   object-fit: contain;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--border, #e7e5e4) 35%, var(--surface, #ffffff));
+  background: #fff;
   border: 1px solid var(--border, #e7e5e4);
+}
+
+.menu-layout .vendor-logo--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: unset;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--muted, #78716c);
+  line-height: 1;
+  user-select: none;
 }
 
 .menu-layout .items {
