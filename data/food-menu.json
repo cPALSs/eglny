@@ -1,47 +1,23 @@
 {
-  "festival": "LNY 2026 — engine curated (demo)",
-  "published_at": "2026-07-05",
+  "festival": "LNY 2026",
+  "published_at": "2026-11-14T01:26:00Z",
+  "year": 2026,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "vendors": [
     {
       "id": "my-lumpia-lady",
-      "name": "MY LUMPIA LADY",
+      "name": "My Lumpia Lady",
       "booth_label": "F07",
       "booth_kind": "open_cooking",
       "dietary": [],
       "items": [
         {
-          "name": "veggie lumpia",
+          "name": "Lumpia",
+          "note": "Filipino spring rolls",
+          "options": "veggie, beef queso birria, jalapeño crawfish",
           "price": null,
           "category": "snacks",
-          "allergens": [],
-          "dietary_tags": []
-        },
-        {
-          "name": "veggie lumpia",
-          "price": null,
-          "category": "snacks",
-          "allergens": [],
-          "dietary_tags": []
-        },
-        {
-          "name": "all veggie lumpia",
-          "price": null,
-          "category": "snacks",
-          "allergens": [],
-          "dietary_tags": []
-        },
-        {
-          "name": "beef Queso Birria Lumpia w",
-          "price": null,
-          "category": "snacks",
-          "allergens": [],
-          "dietary_tags": []
-        },
-        {
-          "name": "jalepeno Crawfish lumpia",
-          "price": null,
-          "category": "snacks",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         }
@@ -49,36 +25,48 @@
     },
     {
       "id": "xd-jerky-kingz",
-      "name": "XD JERKY KINGZ",
+      "name": "XD Jerky Kingz",
       "booth_label": "F13",
       "booth_kind": "open_cooking",
       "dietary": [],
       "items": [
         {
           "name": "Spam musubi",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "asian",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "laos sausage musubi",
+          "name": "Lao sausage musubi",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "lemongrass steak sandwich",
+          "name": "Lemongrass steak sandwich",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "vietnamese",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "bomb azz tacos",
+          "name": "Bomb azz tacos",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "mexican_latin",
           "allergens": [],
           "dietary_tags": []
         }
@@ -86,43 +74,59 @@
     },
     {
       "id": "potato-swirl-world",
-      "name": "POTATO SWIRL WORLD",
+      "name": "Potato Swirl World",
       "booth_label": "F02",
       "booth_kind": "open_cooking",
       "dietary": [],
       "items": [
         {
-          "name": "boba drinks",
+          "name": "Boba tea",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "tea",
+          "cuisine": "asian",
           "allergens": [],
           "dietary_tags": []
         },
         {
           "name": "Potato swirls",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "snacks",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "funnel cakes",
+          "name": "Funnel cakes",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "sweets",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "pad Thai",
+          "name": "Pad Thai",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "orange chicken bowls",
+          "name": "Orange chicken bowl",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "chinese",
           "allergens": [],
           "dietary_tags": []
         }
@@ -130,15 +134,19 @@
     },
     {
       "id": "sugarcane-hut",
-      "name": "SUGARCANE HUT",
+      "name": "Sugarcane Hut",
       "booth_label": "F03",
       "booth_kind": "open_cooking",
       "dietary": [],
       "items": [
         {
-          "name": "sugarcane juice",
+          "name": "Sugarcane juice",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "drinks",
+          "subcategory": "others",
+          "cuisine": "asian",
           "allergens": [],
           "dietary_tags": []
         }
@@ -146,36 +154,48 @@
     },
     {
       "id": "baboy-boys",
-      "name": "BABOY BOYS",
+      "name": "Baboy Boys",
       "booth_label": "FOOD TRUCK 05",
       "booth_kind": "food_truck",
       "dietary": [],
       "items": [
         {
           "name": "Lechon",
+          "note": "Filipino roast pork",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "oxtail adobo",
+          "name": "Oxtail adobo",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "grilled balut",
+          "name": "Grilled balut",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "snacks",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "sisig",
+          "name": "Sisig rice plate",
+          "note": "Filipino sizzling pork",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         }
@@ -190,36 +210,51 @@
       "items": [
         {
           "name": "Smoked turkey legs",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Tri Tip sandwich",
+          "name": "Tri-tip sandwich",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "garlic fries",
+          "name": "Garlic fries",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "sausages (polish",
+          "name": "Polish sausage",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "cajun",
+          "name": "Cajun sausage",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         }
@@ -227,43 +262,58 @@
     },
     {
       "id": "d-t-kitchen",
-      "name": "D&T KITCHEN",
+      "name": "D&T Kitchen",
       "booth_label": "F16",
       "booth_kind": "open_cooking",
       "dietary": [],
       "items": [
         {
-          "name": "Noodle Soup",
+          "name": "Noodle soup",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "asian",
           "allergens": [],
           "dietary_tags": []
         },
         {
           "name": "Pad Thai",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Chowmein",
+          "name": "Chow mein",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "chinese",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Korean Corn Dogs",
+          "name": "Korean corn dogs",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "japanese_korean",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "BBQ Short Ribs",
+          "name": "BBQ short ribs",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         }
@@ -271,43 +321,58 @@
     },
     {
       "id": "stockton-s-best-papaya-salad",
-      "name": "STOCKTON'S BEST PAPAYA SALAD",
+      "name": "Stockton's Best Papaya Salad",
       "booth_label": "F14",
       "booth_kind": "open_cooking",
       "dietary": [],
       "items": [
         {
-          "name": "Khao Poon",
+          "name": "Khao poon",
+          "note": "Lao noodle soup",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
           "name": "Pad Thai",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Fried Banana",
+          "name": "Fried banana",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "sweets",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Egg Rolls",
+          "name": "Egg rolls",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Papaya Salad",
+          "name": "Papaya salad",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "snacks",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         }
@@ -321,37 +386,53 @@
       "dietary": [],
       "items": [
         {
-          "name": "Curry Noodle Soup",
+          "name": "Curry noodle soup",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "hmong",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Some Tom Papaya",
+          "name": "Som tum papaya salad",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "snacks",
+          "cuisine": "lao_thai",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Rainbow Tapioca Dessert Drink",
+          "name": "Rainbow tapioca dessert drink",
+          "note": null,
+          "options": null,
           "price": null,
-          "category": "meals",
+          "category": "drinks",
+          "subcategory": "others",
+          "cuisine": "asian",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Asian Sausage",
+          "name": "Hmong sausage",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "hmong",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Pork Kabob Sticks",
+          "name": "Pork kabob sticks",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "hmong",
           "allergens": [],
           "dietary_tags": []
         }
@@ -359,45 +440,70 @@
     },
     {
       "id": "ray-s-kitchen",
-      "name": "RAY's Kitchen",
+      "name": "Ray's Kitchen",
       "booth_label": "FOOD TRUCK 03",
-      "booth_kind": "open_cooking",
+      "booth_kind": "food_truck",
       "dietary": [
         "halal_certified"
       ],
       "items": [
         {
-          "name": "including chicken over rice",
+          "name": "Chicken rice plate",
+          "note": "mild spice",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "mediterranean",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "lamb over rice",
+          "name": "Lamb rice plate",
+          "note": "mild spice",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "mediterranean",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "Mediterranean dishes",
+          "name": "Falafel rice plate",
+          "note": "mild spice",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "mediterranean",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "gyros",
+          "name": "Gyro",
+          "note": "mild spice",
+          "options": "chicken, lamb, or falafel",
           "price": null,
           "category": "meals",
+          "cuisine": "mediterranean",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "cheeseburgers and loaded fries.",
+          "name": "Loaded fries",
+          "note": "mild spice",
+          "options": "chicken, lamb, or falafel",
           "price": null,
           "category": "snacks",
+          "cuisine": "american",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Cheeseburger",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         }
@@ -405,43 +511,58 @@
     },
     {
       "id": "pinorrito-food-truck",
-      "name": "PINORRITO FOOD TRUCK",
+      "name": "Pinorrito Food Truck",
       "booth_label": "FOOD TRUCK 02",
       "booth_kind": "food_truck",
       "dietary": [],
       "items": [
         {
           "name": "Pork tocino rice plate",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "sisig rice plate",
+          "name": "Sisig rice plate",
+          "note": "Filipino sizzling pork",
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "tacos",
+          "name": "Tacos",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "meals",
+          "cuisine": "mexican_latin",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "loaded fries",
+          "name": "Loaded fries",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "lumpia",
+          "name": "Lumpia",
+          "note": "Filipino spring rolls",
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "filipino",
           "allergens": [],
           "dietary_tags": []
         }
@@ -449,22 +570,38 @@
     },
     {
       "id": "jerky-jerky",
-      "name": "JERKY JERKY",
+      "name": "Jerky Jerky",
       "booth_label": "V03",
       "booth_kind": "prepack",
       "dietary": [],
       "items": [
         {
-          "name": "Pre packaged beef & wild game jerky",
+          "name": "Beef jerky, prepackaged",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         },
         {
-          "name": "pre packaged freeze dried candies and snacks",
+          "name": "Wild game jerky, prepackaged",
+          "note": null,
+          "options": null,
           "price": null,
           "category": "snacks",
+          "cuisine": "american",
+          "allergens": [],
+          "dietary_tags": []
+        },
+        {
+          "name": "Freeze-dried candy, prepackaged",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "cuisine": "american",
           "allergens": [],
           "dietary_tags": []
         }

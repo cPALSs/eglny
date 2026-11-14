@@ -216,11 +216,11 @@ function isCommoditySide(name) {
 const DISH_TYPE_ITEM_RULES = [
   [
     "bbq_smoke_carved",
-    /\b(kalbi|short\s*ribs?|spareribs|spare\s*ribs|(?:beef\s+or\s+pork\s+)?ribs\b|lechon|brisket|tri[\s-]?tip|turkey\s*legs?|hot\s*links?|hotlinks?|smoke(?:d|house)?|carved)\b/i,
+    /\b(kalbi|short\s*ribs?|spareribs|spare\s*ribs|(?:beef\s+or\s+pork\s+)?ribs\b|lechon|sisig|brisket|tri[\s-]?tip|turkey\s*legs?|hot\s*links?|hotlinks?|smoke(?:d|house)?|carved)\b/i,
   ],
   [
     "noodle_wok_soup",
-    /\b(garlic\s+noodles?|noodles?|noodle\s*soup|ramen|pho\b|ph[oở]|b[uú]n\b|h[uủ]\s*ti[eế]u|chow\s*mein|lo\s*mein|pad\s*thai|japchae|wonton\s*soup|tom\s*yum|curry\s+noodles?(?:\s+soup)?)\b/i,
+    /\b(garlic\s+noodles?|noodles?|noodle\s*soup|ramen|pho\b|ph[oở]|b[uú]n\b|h[uủ]\s*ti[eế]u|chow\s*mein|lo\s*mein|pad\s*thai|japchae|wonton\s*soup|tom\s*yum|curry\s+noodles?(?:\s+soup)?|khao\s*poon)\b/i,
   ],
   [
     "rice_plates_bowls",
@@ -229,7 +229,7 @@ const DISH_TYPE_ITEM_RULES = [
   ],
   [
     "fast_handheld",
-    /\b(tacos?|burgers?|cheeseburgers?|smash\s*burgers?|gyros?|shawarma|b[aá]nh\s*m[iì]|(?:spam\s+)?musubi|sandwiches?|pizza|skewers?|kabobs?\s*sticks?|kebabs?\s*sticks?|corn\s*dogs?|hot\s*dogs?|cheese\s*dogs?)\b/i,
+    /\b(tacos?|burgers?|cheeseburgers?|smash\s*burgers?|gyros?|shawarma|b[aá]nh\s*m[iì]|(?:spam\s+)?musubi|sandwich(?:es)?|pizza|skewers?|kabobs?\s*sticks?|kebabs?\s*sticks?|corn\s*dogs?|hot\s*dogs?|cheese\s*dogs?|(?:polish|cajun|hmong|lao|asian)\s+sausages?)\b/i,
   ],
 ];
 
@@ -276,11 +276,20 @@ export function dishTypeSectionsForItem(item) {
   }
 
   const name = String(item?.name || "");
-  if (DISH_TYPE_PLATE_RE.test(name) && DISH_TYPE_SKEWER_RE.test(name)) {
+  // Plated skewers / sisig: show under rice plates and BBQ & carved meats.
+  if (
+    DISH_TYPE_PLATE_RE.test(name) &&
+    (DISH_TYPE_SKEWER_RE.test(name) || /\bsisig\b/i.test(name))
+  ) {
     const sections = ["rice_plates_bowls", "bbq_smoke_carved"];
     // Keep primary first if it was something else (e.g. explicit dish_type).
     if (!sections.includes(primary)) sections.unshift(primary);
     return sections;
+  }
+
+  // BBQ sandwiches (tri-tip, etc.): also list under Fast handhelds.
+  if (primary === "bbq_smoke_carved" && /\bsandwich(?:es)?\b/i.test(name)) {
+    return ["bbq_smoke_carved", "fast_handheld"];
   }
 
   return [primary];
