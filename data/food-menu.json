@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2026",
-  "published_at": "2026-11-14T01:26:00Z",
+  "published_at": "2026-11-14T16:05:00Z",
   "year": 2026,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "vendors": [
@@ -448,29 +448,9 @@
       ],
       "items": [
         {
-          "name": "Chicken rice plate",
+          "name": "Rice plate",
           "note": "mild spice",
-          "options": null,
-          "price": null,
-          "category": "meals",
-          "cuisine": "mediterranean",
-          "allergens": [],
-          "dietary_tags": []
-        },
-        {
-          "name": "Lamb rice plate",
-          "note": "mild spice",
-          "options": null,
-          "price": null,
-          "category": "meals",
-          "cuisine": "mediterranean",
-          "allergens": [],
-          "dietary_tags": []
-        },
-        {
-          "name": "Falafel rice plate",
-          "note": "mild spice",
-          "options": null,
+          "options": "chicken, lamb, or falafel",
           "price": null,
           "category": "meals",
           "cuisine": "mediterranean",
