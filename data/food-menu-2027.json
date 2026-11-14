@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-13T22:15:00Z",
+  "published_at": "2026-11-14T16:00:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -557,9 +557,9 @@
       "dietary": [],
       "items": [
         {
-          "name": "Chicken rice plate",
+          "name": "Rice plate",
           "note": "mild spice",
-          "options": null,
+          "options": "chicken, lamb, or falafel",
           "price": null,
           "category": "meals",
           "allergens": [],
@@ -567,28 +567,6 @@
           "dietary_warnings": [
             "contains_meat"
           ]
-        },
-        {
-          "name": "Lamb rice plate",
-          "note": "mild spice",
-          "options": null,
-          "price": null,
-          "category": "meals",
-          "allergens": [],
-          "dietary_tags": [],
-          "dietary_warnings": [
-            "contains_meat"
-          ]
-        },
-        {
-          "name": "Falafel rice plate",
-          "note": "mild spice",
-          "options": null,
-          "price": null,
-          "category": "meals",
-          "allergens": [],
-          "dietary_tags": [],
-          "dietary_warnings": []
         },
         {
           "name": "Gyro",
