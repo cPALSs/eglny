@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-14T16:00:00Z",
+  "published_at": "2026-11-16T05:06:12Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -284,7 +284,9 @@
           "dietary_warnings": [
             "contains_dairy",
             "contains_gluten"
-          ]
+          ],
+          "image": "assets/food-menu/2027/fairy-bites-delicacies/banana-cream-cheese-turon.jpg",
+          "image_alt": "Banana cream-cheese turon from Fairy Bites & Delicacies"
         },
         {
           "name": "Mango cream-cheese turon",
@@ -319,7 +321,7 @@
     },
     {
       "id": "happy-foods",
-      "name": "Happy foods",
+      "name": "Happy Foods",
       "booth_label": null,
       "booth_kind": "open_cooking",
       "logo": "assets/food-menu/2027/happy-foods/logo.jpg",
@@ -353,7 +355,9 @@
           "dietary_warnings": [
             "contains_meat",
             "contains_dairy"
-          ]
+          ],
+          "image": "assets/food-menu/2027/happy-foods/garlic-butter-shrimp-plate-hawaiian-style.jpg",
+          "image_alt": "Hawaiian-style garlic butter shrimp plate from Happy Foods"
         },
         {
           "name": "Spam musubi",
@@ -368,7 +372,9 @@
             "contains_pork",
             "contains_meat",
             "contains_gluten"
-          ]
+          ],
+          "image": "assets/food-menu/2027/happy-foods/spam-musubi.jpg",
+          "image_alt": "Spam musubi from Happy Foods"
         }
       ]
     },
@@ -624,6 +630,70 @@
       ]
     },
     {
+      "id": "the-fry-boys",
+      "name": "The Fry Boys",
+      "booth_label": null,
+      "booth_kind": "food_truck",
+      "logo": "assets/food-menu/2027/the-fry-boys/logo.jpg",
+      "instagram": "TheFryBoysNorCal",
+      "facebook": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Loaded fries, bulgogi beef",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "japanese_korean",
+          "dish_type": "fast_handheld",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_dairy",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Burgers",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "american",
+          "dish_type": "fast_handheld",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_dairy",
+            "contains_gluten"
+          ],
+          "image": "assets/food-menu/2027/the-fry-boys/burgers.jpg",
+          "image_alt": "Cheeseburger from The Fry Boys"
+        },
+        {
+          "name": "Loaded nachos, cowboy-style",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "american",
+          "dish_type": "fast_handheld",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
+            "contains_dairy",
+            "contains_gluten"
+          ],
+          "image": "assets/food-menu/2027/the-fry-boys/loaded-nachos-cowboy-style.jpg",
+          "image_alt": "Loaded chili-cheese nachos from The Fry Boys"
+        }
+      ]
+    },
+    {
       "id": "pop-berry",
       "name": "Pop Berry",
       "booth_label": null,
@@ -809,6 +879,35 @@
           "category": "sweets",
           "allergens": [],
           "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "divine-bake-house",
+      "name": "Divine Bake House",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/divine-bake-house/logo.jpg",
+      "instagram": "divinebakehouse_",
+      "facebook": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Cookies, gourmet stuffed",
+          "note": null,
+          "options": "S'mores, Browned Butter Babe, PMS, Dad Bod, Chubby Hubby",
+          "price": null,
+          "category": "sweets",
+          "cuisine": "american",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_gluten",
+            "contains_eggs",
+            "contains_dairy"
+          ],
+          "image": "assets/food-menu/2027/divine-bake-house/cookies-gourmet-stuffed.jpg",
+          "image_alt": "Gourmet stuffed S'mores cookies from Divine Bake House"
         }
       ]
     },
