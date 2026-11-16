@@ -158,11 +158,23 @@
   <script src="doc-scroll.js"></script>
   <script src="site.js"></script>
   <script type="module">
-    const { initPageShell, loadSiteData, mountFooter, renderFestivalHero, setPageTitle, escapeHtml, revealPage } =
-      window.EglnySite;
+    const {
+      initPageShell,
+      loadSiteData,
+      loadJsonData,
+      mountFooter,
+      renderFestivalHero,
+      renderHomeSponsors2027,
+      setPageTitle,
+      escapeHtml,
+      revealPage,
+    } = window.EglnySite;
     initPageShell("home");
     try {
-      const site = await loadSiteData();
+      const [site, sponsors2027Data] = await Promise.all([
+        loadSiteData(),
+        loadJsonData("data/lny-2027-sponsors-display.json"),
+      ]);
       setPageTitle(site);
       const h = site.hero;
       const c = site.cta;
@@ -188,6 +200,7 @@
               <a class="btn btn-tertiary" href="${escapeHtml(sneak.vendorsHref ?? "/vendors-directory/")}">${escapeHtml(sneak.vendorsLabel ?? "Vendors directory")}</a>
             </div>
           </section>
+          ${renderHomeSponsors2027(site.sponsorship, sponsors2027Data)}
         </div>
       `;
       mountFooter(site);

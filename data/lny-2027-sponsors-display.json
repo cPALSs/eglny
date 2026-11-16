@@ -1,0 +1,27 @@
+{
+  "eventYear": 2027,
+  "tierOrder": [
+    "Partners",
+    "Silver Sponsors"
+  ],
+  "sponsors": [
+    {
+      "name": "Cosumnes Community Services District",
+      "tier": "Partners",
+      "url": "https://www.cosumnescsd.gov/",
+      "logo": "2026/cosumnes-csd.png"
+    },
+    {
+      "name": "City of Elk Grove",
+      "tier": "Partners",
+      "url": "https://elkgrove.gov/",
+      "logo": "2026/city-of-elk-grove.png"
+    },
+    {
+      "name": "SMUD",
+      "tier": "Silver Sponsors",
+      "url": "https://www.smud.org/",
+      "logo": "2026/smud.png"
+    }
+  ]
+}

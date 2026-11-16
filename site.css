@@ -1494,6 +1494,19 @@ body.nav-open {
   padding-top: 1.75rem;
 }
 
+/* Homepage 2027 sponsors — same logos/tiers as /sponsorship/, home section chrome */
+.home-sponsors-2027 .sponsor-tier {
+  margin: 1.5rem 0 0;
+}
+
+.home-sponsors-2027 .sponsor-tier + .sponsor-tier {
+  margin-top: 1.25rem;
+}
+
+.home-sponsors-2027 .sponsor-tier h2 {
+  margin-bottom: 0.75rem;
+}
+
 .home-build-cta > p:first-of-type {
   text-wrap: balance;
 }
@@ -2455,6 +2468,30 @@ a.co-chair-name {
 
 .page-wrap--doc .sponsor-tier.site-doc-section {
   margin: 0;
+  /* Doc sections default to 2.5rem vertical padding for hairline breaks;
+     tiers drop the hairline, so keep that air from stacking above each h2. */
+  padding-bottom: 0.75rem;
+}
+
+/* Compact lead → first tier (thank-you still keeps full top padding / border). */
+.site-doc-main > .sponsorship-thank-you.site-doc-section:has(+ .sponsor-tier) {
+  padding-bottom: 0.35rem;
+}
+
+.site-doc-main > .sponsorship-thank-you.site-doc-section:has(+ .sponsor-tier) > p {
+  margin-bottom: 0;
+}
+
+/* Tier headings stay; no hairline above Partners or between Community / Bronze / etc. */
+.site-doc-main > .sponsorship-thank-you.site-doc-section + .sponsor-tier.site-doc-section,
+.site-doc-main > .sponsor-tier.site-doc-section + .sponsor-tier.site-doc-section {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+/* Year break (last 2027 tier → 2026 thank-you): match default section air above the hairline. */
+.site-doc-main > .sponsor-tier.site-doc-section:has(+ .sponsorship-thank-you) {
+  padding-bottom: 2.5rem;
 }
 
 .sponsor-tier h2 {
@@ -2471,10 +2508,31 @@ a.co-chair-name {
   gap: 0.75rem;
 }
 
+/* Homepage incomplete 2027 rows only: flex centers few logos.
+   /sponsorship/ stays left-aligned grid (no --center). */
+.sponsor-grid--center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.sponsor-grid--center .sponsor-card {
+  box-sizing: border-box;
+  flex: 0 1 130px;
+  width: 130px;
+  max-width: 100%;
+}
+
 @media (min-width: 640px) {
   .sponsor-grid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 1rem;
+  }
+
+  .sponsor-grid--center .sponsor-card {
+    flex: 0 1 180px;
+    width: 180px;
   }
 }
 
@@ -3517,8 +3575,10 @@ a.co-chair-name {
 
 .sponsorship-thank-you {
   margin: 2.5rem 0 1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--border);
+}
+
+.page-wrap--doc .sponsorship-thank-you.site-doc-section {
+  margin: 0;
 }
 
 .sponsorship-thank-you-title {

@@ -1427,9 +1427,16 @@
       ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
     ];
     const logoPrefix = options.logoPrefix ?? "/sponsors/";
+    const idPrefix = options.idPrefix ?? "";
+    const docSections = options.docSections !== false;
+    const sectionClass = docSections ? "sponsor-tier site-doc-section" : "sponsor-tier";
+    const dataAttr = docSections ? " data-doc-section" : "";
+    const gridClass = options.centerGrid
+      ? "sponsor-grid sponsor-grid--center"
+      : "sponsor-grid";
     return sortedTiers
       .map((tier) => {
-        const tierId = slugifyHeading(tier);
+        const tierId = `${idPrefix}${slugifyHeading(tier)}`;
         const cards = byTier
           .get(tier)
           .map((s) => {
@@ -1442,12 +1449,32 @@
             return `<div class="sponsor-card">${inner}</div>`;
           })
           .join("");
-        return `<section class="sponsor-tier site-doc-section" id="${escapeHtml(tierId)}" data-doc-section><h2>${escapeHtml(tier)}</h2><div class="sponsor-grid">${cards}</div></section>`;
+        return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2>${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
       })
       .join("");
   }
 
-  function renderSponsorshipPage(sponsorship, sponsorsData) {
+  /** Homepage thank-you block — same 2027 copy + tiers as /sponsorship/. */
+  function renderHomeSponsors2027(sponsorship, sponsors2027Data) {
+    const tiersHtml = renderSponsorTierHtml(sponsors2027Data, {
+      idPrefix: "home-2027-",
+      docSections: false,
+      centerGrid: true,
+    });
+    if (!tiersHtml) return "";
+    const title = sponsorship?.thankYou2027Title ?? "2027 Festival Sponsors";
+    const lead =
+      sponsorship?.thankYou2027Lead ??
+      "Thank you to these partners and sponsors for standing with the 2027 festival.";
+    return `
+          <section class="content-section home-build-cta home-sponsors-2027">
+            <h2>${escapeHtml(title)}</h2>
+            <p>${escapeHtml(lead)}</p>
+            ${tiersHtml}
+          </section>`;
+  }
+
+  function renderSponsorshipPage(sponsorship, sponsors2026Data, sponsors2027Data) {
     const links = sponsorship?.links ?? [];
     const partnerCards = links
       .map((link) => {
@@ -1460,33 +1487,36 @@
       })
       .join("");
 
-    const year = sponsorsData?.eventYear ?? 2026;
+    const year = sponsors2026Data?.eventYear ?? 2026;
     const thankYouTitle = sponsorship?.thankYouTitle ?? `Thank You, ${year} Festival Sponsors`;
     const thankYouLead =
       sponsorship?.thankYouLead ??
       `Our ${year} festival was made possible by these partners and sponsors.`;
+    const thankYou2027Title =
+      sponsorship?.thankYou2027Title ?? "2027 Festival Sponsors";
+    const thankYou2027Lead =
+      sponsorship?.thankYou2027Lead ??
+      "Thank you to these partners and sponsors for standing with the 2027 festival.";
 
-    const sponsors = sponsorsData?.sponsors ?? [];
-    const tierOrder = sponsorsData?.tierOrder ?? [];
-    const byTier = new Map();
-    for (const s of sponsors) {
-      const tier = s.tier ?? "Partner";
-      if (!byTier.has(tier)) byTier.set(tier, []);
-      byTier.get(tier).push(s);
-    }
-    const sortedTiers = [
-      ...tierOrder.filter((t) => byTier.has(t)),
-      ...[...byTier.keys()].filter((t) => !tierOrder.includes(t)),
-    ];
-    const tiersHtml = renderSponsorTierHtml(sponsorsData);
+    // Left-aligned grid — do not pass centerGrid (homepage-only).
+    const tiers2027Html = renderSponsorTierHtml(sponsors2027Data, {
+      idPrefix: "2027-",
+      centerGrid: false,
+    });
+    const tiers2026Html = renderSponsorTierHtml(sponsors2026Data, {
+      centerGrid: false,
+    });
 
     const tocItems = [
       { id: "partner", label: sponsorship?.partnerTitle ?? "Partner with us" },
       {
-        type: "divider",
-        label: sponsorship?.sponsorsTocLabel ?? `${year} Sponsors`,
+        id: "thank-you-2027",
+        label: sponsorship?.sponsors2027TocLabel ?? "2027 sponsors",
       },
-      ...sortedTiers.map((tier) => ({ id: slugifyHeading(tier), label: tier })),
+      {
+        id: "thank-you-2026",
+        label: sponsorship?.sponsors2026TocLabel ?? `${year} sponsors`,
+      },
     ];
 
     const partnerEmail = sponsorship?.partnerContactEmail ?? "sponsorship@eglny.com";
@@ -1504,11 +1534,16 @@
         <div class="resource-card-grid">${partnerCards}</div>
         ${partnerContactNote}
       </section>
-      <div class="sponsorship-thank-you" id="thank-you-2026">
+      <section class="sponsorship-thank-you site-doc-section" id="thank-you-2027" data-doc-section>
+        <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYou2027Title)}</h2>
+        <p>${escapeHtml(thankYou2027Lead)}</p>
+      </section>
+      ${tiers2027Html}
+      <section class="sponsorship-thank-you site-doc-section" id="thank-you-2026" data-doc-section>
         <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYouTitle)}</h2>
         <p>${escapeHtml(thankYouLead)}</p>
-      </div>
-      ${tiersHtml || "<p>No sponsors to display.</p>"}`;
+      </section>
+      ${tiers2026Html || "<p>No sponsors to display.</p>"}`;
 
     return `
       <section class="hero">
@@ -3635,6 +3670,8 @@
     initProgrammingFlierShare,
     renderAttendeesPage,
     renderSponsorshipPage,
+    renderSponsorTierHtml,
+    renderHomeSponsors2027,
     loadSkuCatalog,
     renderHostActivations,
     initHostPageToc,
