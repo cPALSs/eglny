@@ -52,13 +52,13 @@
           "$750"
         ],
         [
-          "Drinks",
+          "Drinks & snacks",
           "6",
           "0",
           "$500"
         ],
         [
-          "Snacks / sealed treats",
+          "Snacks-only / sealed treats",
           "23",
           "~14",
           "$150"
@@ -93,7 +93,8 @@
       ]
     },
     "notes": [
-      "**Same food type:** We limit how many booths sell the same kind of food so the festival has variety. **Cooking and drinks:** strong limit — we avoid duplicate hot-food categories and drink types. **Snacks / treats:** softer limit — we still avoid too many of the same snack, but the exact cap (1, 2, or sometimes 3) is at our discretion as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer.",
+      "**Drinks & snacks vs Snacks-only:** Fees are nested. If you sell **any drinks** (coffee, hot chocolate, boba, juice, etc.) — even alongside snacks — you are a **Drinks & snacks** booth (**$500**), not Snacks-only. **Snacks-only** (**$150**) means snacks / treats with **no** drinks. Sealed take-home food retail is also **$150** on the Food app.",
+      "**Same food type:** We limit how many booths sell the same kind of food so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. **Snacks-only:** softer limit — we still avoid too many of the same snack, but the exact cap (1, 2, or sometimes 3) is at our discretion as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer.",
       "**Total map:** About **143** guest-facing pads (Zones A/B, roundabouts, Pavilion walkway, Rotary Grove; includes cooking + truck pads). Ops / host pads sit outside that count. Snack booths count toward general-pad capacity."
     ]
   },
@@ -141,8 +142,8 @@
         ],
         "bullets": [
           "**Round 1 — cooking** (canopy, food truck, or trailer): pay **$375 of the $750** booth fee by **Fri, Nov 20, 2026** to lock. The rest of the booth fee (**$350** after your $25 deposit credit) plus cleanup deposits are due **Fri, Jan 29, 2027**, or you give up the booth.",
-          "**Round 1 — drinks:** pay **$250 of the $500** booth fee by **Fri, Nov 20, 2026** to lock. The rest of the booth fee (**$225** after your $25 deposit credit) plus cleanup deposits are due **Fri, Jan 29, 2027**, or you give up the booth.",
-          "**Round 1 — everyone else** (snack, merchant, corporate, nonprofit): pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits are due **Fri, Jan 29, 2027**.",
+          "**Round 1 — Drinks & snacks:** pay **$250 of the $500** booth fee by **Fri, Nov 20, 2026** to lock. The rest of the booth fee (**$225** after your $25 deposit credit) plus cleanup deposits are due **Fri, Jan 29, 2027**, or you give up the booth.",
+          "**Round 1 — everyone else** (Snacks-only, merchant, corporate, nonprofit): pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits are due **Fri, Jan 29, 2027**.",
           "**Round 2:** pay the booth fee (and any deposits due) by **Fri, Jan 29, 2027** — or when you’re approved, if that’s later."
         ]
       },
@@ -217,7 +218,7 @@
       {
         "label": "Round\u00A01 — Closed",
         "window": "Oct 11 → Nov 5, 2026",
-        "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** cooking booths pay **$375 of $750**; drinks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → that seat goes **right away** to the next Round 1 waitlisted vendor for that booth type; you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and drink vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
+        "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** cooking booths pay **$375 of $750**; Drinks & snacks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → that seat goes **right away** to the next Round 1 waitlisted vendor for that booth type; you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and Drinks & snacks vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
       },
       {
         "label": "Round\u00A02 — Open now",
@@ -246,7 +247,7 @@
           {
             "id": "offer",
             "title": "Offer sent",
-            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay by the deadline to lock your booth** (Round 1 cooking: $375 of $750 by Nov 20; drinks: $250 of $500 by Nov 20; everyone else: full booth fee by Nov 20).",
+            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay by the deadline to lock your booth** (Round 1 cooking: $375 of $750 by Nov 20; Drinks & snacks: $250 of $500 by Nov 20; everyone else: full booth fee by Nov 20).",
             "next": "Once that payment clears, you’re on the map. Round 1 cooking and drink vendors still owe the rest of the booth fee plus cleanup deposits by Jan 29."
           },
           {
