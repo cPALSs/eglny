@@ -1,7 +1,8 @@
 const DRAG_SLOP = 8;
 const MOUTH_Y = 0.55;
 const IDLE_FEED_MS = 15000;
-const CHOMP_MIN_MS = 420;
+/** Shared Yum + SFX + chomp-anim beat — shorter than the ~627ms clip so repeats feel snappy. */
+const FEEDBACK_MIN_MS = 360;
 const YUM_MS = 750; // keep in sync with .kv-pop.is-pop animation duration
 const MAX_FLYERS = 14;
 /** Position can ease normally; scale stays large early, then shrinks late (comic suck-in). */
@@ -40,8 +41,7 @@ let trackPos = 1; // visual slot: [cloneLast]=0, reals=1..n, [cloneFirst]=n+1
 let carouselBusy = false;
 let activeDrag = null; // one drag gesture at a time; taps spawn parallel flyers
 let liveFlyers = 0;
-let lastChompAt = 0;
-let yumPlaying = false;
+let lastFeedbackAt = 0;
 let yumTimer = null;
 let idleTimer = null;
 let swipe = { active: false, startX: 0, deltaX: 0, baseTx: 0 };
@@ -238,9 +238,6 @@ function goTo(index) {
 }
 
 function playChomp({ sound = true } = {}) {
-  const now = performance.now();
-  if (now - lastChompAt < CHOMP_MIN_MS) return;
-  lastChompAt = now;
   if (sound) playMunch();
   const lion = currentLion();
   if (!lion) return;
@@ -254,9 +251,7 @@ function playChomp({ sound = true } = {}) {
 }
 
 function playYum() {
-  // Never restart mid-cycle — overlapping remove/add + stale timeouts caused flicker.
-  if (yumPlaying) return;
-  yumPlaying = true;
+  // Safe to restart: clear stale hide timer, reflow, then re-add is-pop.
   const m = mouthPoint();
   const pop = els.pop;
   pop.hidden = false;
@@ -272,15 +267,18 @@ function playYum() {
   yumTimer = setTimeout(() => {
     pop.classList.remove("is-pop");
     pop.hidden = true;
-    yumPlaying = false;
     yumTimer = null;
   }, YUM_MS);
 }
 
 function onTreatArrive({ sound = true } = {}) {
+  bumpIdle();
+  // One feedback beat: Yum + chomp anim + SFX share the same gate (not full audio length).
+  const now = performance.now();
+  if (now - lastFeedbackAt < FEEDBACK_MIN_MS) return;
+  lastFeedbackAt = now;
   playChomp({ sound });
   playYum();
-  bumpIdle();
 }
 
 /** Spawn a treat flying into the mouth — can overlap with other flyers. */
