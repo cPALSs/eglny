@@ -71,6 +71,7 @@ body.kv-scroll-lock {
 }
 
 .kv-feed *,
+.kv-fly-layer,
 .kv-flyer,
 .kv-pop {
   -webkit-user-select: none !important;
@@ -91,10 +92,49 @@ html[data-theme="auto"] .kv-feed {
   flex: 1 1 auto;
   min-height: 240px;
   display: flex;
+  flex-direction: column;
+  padding: 0.35rem 0;
+  min-width: 0;
+}
+
+.kv-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 260px;
+  /* Needed for the carousel; vertical room for hungry scale lives on .kv-slide. */
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.kv-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.kv-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kv-track.is-instant {
+  transition: none;
+}
+
+.kv-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  /* Room for hungry scale (origin near the paws) + idle bob. */
-  padding: 1.25rem 0.5rem 0.35rem;
+  /* Top/bottom padding keeps hungry scale + bob inside overflow:hidden. */
+  padding: 2rem 2.4rem 1.15rem;
+  box-sizing: border-box;
 }
 
 .kv-lion-wrap {
@@ -102,6 +142,58 @@ html[data-theme="auto"] .kv-feed {
   width: min(100%, 340px);
   aspect-ratio: 1;
   overflow: visible;
+}
+
+.kv-chevron {
+  position: absolute;
+  top: calc(50% - 0.4rem);
+  z-index: 2;
+  transform: translateY(-50%);
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--kv-ink);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.kv-prev {
+  left: 0.15rem;
+}
+
+.kv-next {
+  right: 0.15rem;
+}
+
+.kv-chevron:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.kv-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0 0.1rem;
+}
+
+.kv-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 248, 240, 0.28);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.kv-dot.is-active {
+  background: var(--kv-gold);
+  transform: scale(1.25);
 }
 
 .kv-lion-wrap::before {
@@ -251,14 +343,22 @@ html[data-theme="auto"] .kv-feed {
   }
 }
 
+.kv-fly-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  overflow: visible;
+}
+
 .kv-flyer {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 40;
   width: min(28vw, 124px);
   height: min(28vw, 124px);
   pointer-events: none;
+  will-change: translate, scale, opacity;
 }
 
 .kv-flyer img {
@@ -272,29 +372,48 @@ html[data-theme="auto"] .kv-feed {
   position: fixed;
   z-index: 41;
   font-family: var(--font-display);
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: var(--kv-gold);
-  text-shadow: 0 2px 0 var(--kv-red-deep), 0 6px 16px rgba(0, 0, 0, 0.45);
+  font-size: clamp(2.25rem, 10vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffd100;
+  -webkit-text-fill-color: #ffd100;
+  /* Comic Bam!/Zap! outline: opaque ink ring under the gold fill. */
+  -webkit-text-stroke: 6px #140308;
+  paint-order: stroke fill;
+  text-shadow:
+    4px 0 0 #140308,
+    -4px 0 0 #140308,
+    0 4px 0 #140308,
+    0 -4px 0 #140308,
+    3px 3px 0 #140308,
+    -3px 3px 0 #140308,
+    3px -3px 0 #140308,
+    -3px -3px 0 #140308,
+    0 6px 0 #8b0a1e;
   pointer-events: none;
   opacity: 0;
 }
 
 .kv-pop.is-pop {
-  animation: kv-score-fly 0.7s ease forwards;
+  animation: kv-score-fly 0.75s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
 }
 
 @keyframes kv-score-fly {
   0% {
     opacity: 0;
-    transform: translate(-50%, 0) scale(0.6);
+    transform: translate(-50%, 0) rotate(-12deg) scale(0.4);
   }
-  20% {
+  22% {
     opacity: 1;
-    transform: translate(-50%, -12px) scale(1.15);
+    transform: translate(-50%, -18px) rotate(-8deg) scale(1.28);
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -36px) rotate(-4deg) scale(1.05);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -56px) scale(1);
+    transform: translate(-50%, -64px) rotate(2deg) scale(0.95);
   }
 }

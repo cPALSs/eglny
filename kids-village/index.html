@@ -49,10 +49,13 @@
 
     <section class="kv-feed" aria-label="Feed the lion">
       <div class="kv-stage">
-        <div class="kv-lion-wrap is-idle" id="kvLion">
-          <img src="../assets/kids-village/lion.webp" alt="Lion dance costume" draggable="false" decoding="async" width="768" height="768" />
+        <button type="button" class="kv-chevron kv-prev" id="kvPrev" aria-label="Previous lion">‹</button>
+        <div class="kv-viewport" id="kvViewport">
+          <div class="kv-track" id="kvTrack"></div>
         </div>
+        <button type="button" class="kv-chevron kv-next" id="kvNext" aria-label="Next lion">›</button>
       </div>
+      <div class="kv-dots" id="kvDots" role="tablist" aria-label="Lions"></div>
       <div class="kv-treats" id="kvTreats">
         <div class="kv-treats-row">
           <button type="button" class="kv-treat" data-treat="envelope" aria-label="Red envelope. Drag to the lion or tap to feed.">
@@ -68,7 +71,7 @@
       </div>
     </section>
 
-    <div class="kv-flyer" id="kvFlyer" hidden aria-hidden="true"></div>
+    <div class="kv-fly-layer" id="kvFlyLayer" aria-hidden="true"></div>
     <div class="kv-pop" id="kvPop" hidden aria-hidden="true">Yum!</div>
   </main>
   <div id="site-footer"></div>
