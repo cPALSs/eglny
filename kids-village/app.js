@@ -45,8 +45,45 @@ let yumPlaying = false;
 let yumTimer = null;
 let idleTimer = null;
 let swipe = { active: false, startX: 0, deltaX: 0, baseTx: 0 };
+/** Pixabay Content License — carrotnom (freesound_community / j1987 CC0). */
+const CHOMP_SRC = "../assets/kids-village/chomp.mp3";
+let chompReady = null;
+let audioUnlocked = false;
 
 const { initPageShell, loadSiteData, setPageTitle, revealPage, escapeHtml } = window.EglnySite;
+
+function chompTemplate() {
+  if (!chompReady) {
+    chompReady = new Audio(CHOMP_SRC);
+    chompReady.preload = "auto";
+  }
+  return chompReady;
+}
+
+/** Unlock HTMLAudio on a user gesture (required by mobile browsers). */
+function ensureAudio() {
+  const tpl = chompTemplate();
+  if (audioUnlocked) return;
+  const unlock = tpl.cloneNode(true);
+  unlock.muted = true;
+  unlock
+    .play()
+    .then(() => {
+      unlock.pause();
+      audioUnlocked = true;
+    })
+    .catch(() => {});
+}
+
+/** Pixabay carrotnom chomp — clone so rapid feeds can overlap cleanly. */
+function playMunch() {
+  ensureAudio();
+  const a = chompTemplate().cloneNode(true);
+  a.muted = false;
+  a.volume = 0.9;
+  a.currentTime = 0;
+  a.play().catch(() => {});
+}
 
 function currentLion() {
   return els.track.querySelector(`.kv-lion-wrap[data-real][data-index="${lionIndex}"]`);
@@ -116,7 +153,7 @@ function bumpIdle() {
       return;
     }
     const treat = TREAT_KEYS[Math.floor(Math.random() * TREAT_KEYS.length)];
-    feedByKey(treat);
+    feedByKey(treat, { sound: false });
   }, IDLE_FEED_MS);
 }
 
@@ -200,10 +237,11 @@ function goTo(index) {
   bumpIdle();
 }
 
-function playChomp() {
+function playChomp({ sound = true } = {}) {
   const now = performance.now();
   if (now - lastChompAt < CHOMP_MIN_MS) return;
   lastChompAt = now;
+  if (sound) playMunch();
   const lion = currentLion();
   if (!lion) return;
   lion.classList.remove("is-hungry", "is-idle", "is-chomp");
@@ -239,14 +277,14 @@ function playYum() {
   }, YUM_MS);
 }
 
-function onTreatArrive() {
-  playChomp();
+function onTreatArrive({ sound = true } = {}) {
+  playChomp({ sound });
   playYum();
   bumpIdle();
 }
 
 /** Spawn a treat flying into the mouth — can overlap with other flyers. */
-async function launchFeed(treat, fromX, fromY, { duration = 420, endScale = 0.35 } = {}) {
+async function launchFeed(treat, fromX, fromY, { duration = 420, endScale = 0.35, sound = true } = {}) {
   if (liveFlyers >= MAX_FLYERS) return;
   const el = createFlyer(treat);
   el.style.transition = "none";
@@ -256,7 +294,7 @@ async function launchFeed(treat, fromX, fromY, { duration = 420, endScale = 0.35
   const m = mouthPoint();
   await flyFlyerTo(el, m.x, m.y, endScale, duration);
   destroyFlyer(el);
-  onTreatArrive();
+  onTreatArrive({ sound });
 }
 
 function detachTreatPointerWatch() {
@@ -281,6 +319,7 @@ function onTreatDown(e) {
   if (activeDrag) return;
   if (e.button !== undefined && e.button !== 0) return;
   e.preventDefault();
+  ensureAudio();
   bumpIdle();
   const rect = btn.querySelector(".kv-treat-art").getBoundingClientRect();
   activeDrag = {
@@ -497,14 +536,15 @@ function bindEvents() {
   bindToddlerGuards();
 }
 
-function feedByKey(treat) {
+function feedByKey(treat, { sound = true } = {}) {
   if (liveFlyers >= MAX_FLYERS) return;
   const btn = els.treats.querySelector(`[data-treat="${treat}"]`);
   if (!btn) return;
+  if (sound) ensureAudio();
   clearTimeout(idleTimer);
   idleTimer = null;
   const rect = btn.querySelector(".kv-treat-art").getBoundingClientRect();
-  launchFeed(treat, rect.left + rect.width / 2, rect.top + rect.height / 2, { duration: 400 });
+  launchFeed(treat, rect.left + rect.width / 2, rect.top + rect.height / 2, { duration: 400, sound });
 }
 
 async function init() {
