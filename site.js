@@ -345,30 +345,31 @@
   }
 
   function renderFooterNavLinks(pages) {
-    const leafItems = [];
     const columns = [];
 
     for (const page of pages) {
-      if (page.children?.length) {
-        const items = [];
-        // Top nav uses the logotype for home; footer keeps an explicit Home link above About.
-        if (page.id === "about") {
-          items.push(`<a href="/">Home</a>`);
-        }
-        items.push(`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`);
-        for (const child of page.children) {
-          const external = child.external ? ' target="_blank" rel="noopener"' : "";
-          items.push(`<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`);
-        }
-        columns.push(`<div class="site-footer-nav-col">${items.join("")}</div>`);
-      } else {
-        leafItems.push(`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`);
+      // Top nav uses the logotype for home; footer keeps Home above About in that column.
+      const isAbout = page.id === "about";
+      const parentHref = isAbout ? "/" : page.href;
+      const parentLabel = isAbout ? "Home" : navLinkLabel(page);
+      const parent = `<a class="site-footer-nav-parent" href="${parentHref}">${escapeHtml(parentLabel)}</a>`;
+
+      const cloudItems = [];
+      if (isAbout) {
+        cloudItems.push(`<a href="${page.href}">${escapeHtml(navLinkLabel(page))}</a>`);
       }
+      for (const child of page.children ?? []) {
+        const external = child.external ? ' target="_blank" rel="noopener"' : "";
+        cloudItems.push(
+          `<a href="${child.href}"${external}>${escapeHtml(navLinkLabel(child))}</a>`
+        );
+      }
+      const cloud = cloudItems.length
+        ? `<div class="site-footer-nav-cloud">${cloudItems.join("")}</div>`
+        : "";
+      columns.push(`<div class="site-footer-nav-col">${parent}${cloud}</div>`);
     }
 
-    if (leafItems.length) {
-      columns.unshift(`<div class="site-footer-nav-col">${leafItems.join("")}</div>`);
-    }
     return columns.join("");
   }
 
