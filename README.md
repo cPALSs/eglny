@@ -28,6 +28,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/rfp/childrens-theater/` | Children’s Theater detail — deep-linked from Team open seat (Village / Maker Spot pages unlisted) |
 | `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Visit**) |
 | `/vendors-directory/` | **Vendors directory** — Round 1 craft merchants and nonprofit tables (under **Visit**) |
+| `/kids-village/` | **Kids Village** — coming-soon placeholder + feed-the-lion play (under **Visit**) |
 | `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
@@ -85,6 +86,7 @@ python3 -m http.server 8765
 - http://localhost:8765/vendors/
 - http://localhost:8765/rfp/
 - http://localhost:8765/food-menu/
+- http://localhost:8765/kids-village/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/
 - http://localhost:8765/resources/lion-dance/ (redirects to LSS)

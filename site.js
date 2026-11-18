@@ -201,6 +201,7 @@
             navLabel: "Vendors directory",
             href: "/vendors-directory/",
           },
+          { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
         ],
       },
       {

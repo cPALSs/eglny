@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    html { background: #1a0806; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Kids Village at Elk Grove Lunar New Year Tết — details coming soon." />
+  <link rel="canonical" href="https://eglny.com/kids-village/" />
+  <title>Kids Village — Elk Grove Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../site.css" />
+  <link rel="stylesheet" href="./feed.css" />
+  <meta property="og:title" content="Kids Village — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Kids Village details coming soon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eglny.com/kids-village/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kids Village — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Kids Village details coming soon." />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--kids-village" id="main">
+    <section class="hero">
+      <h1>Kids Village</h1>
+      <p class="kv-soon">Kids Village details coming soon!</p>
+    </section>
+
+    <section class="kv-feed" aria-label="Feed the lion">
+      <div class="kv-stage">
+        <div class="kv-lion-wrap is-idle" id="kvLion">
+          <img src="../assets/kids-village/lion.webp" alt="Lion dance costume" draggable="false" decoding="async" width="768" height="768" />
+        </div>
+      </div>
+      <div class="kv-treats" id="kvTreats">
+        <div class="kv-treats-row">
+          <button type="button" class="kv-treat" data-treat="envelope" aria-label="Red envelope. Drag to the lion or tap to feed.">
+            <span class="kv-treat-art" data-art="envelope"></span>
+            <span class="kv-treat-label">Red envelope</span>
+          </button>
+          <button type="button" class="kv-treat" data-treat="cabbage" aria-label="Cabbage. Drag to the lion or tap to feed.">
+            <span class="kv-treat-art" data-art="cabbage"></span>
+            <span class="kv-treat-label">Cabbage</span>
+          </button>
+        </div>
+        <p class="kv-hint" id="kvHint">Drag a treat into the lion’s mouth</p>
+      </div>
+    </section>
+
+    <div class="kv-flyer" id="kvFlyer" hidden aria-hidden="true"></div>
+    <div class="kv-pop" id="kvPop" hidden aria-hidden="true">Yum!</div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../site.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -37,7 +37,7 @@ URL paths stay kebab-case (`/fund-the-festival/`, `/custom-zones/`) — paths ar
 Use **Title Case** for top-level and submenu destinations that are proper names or short page names:
 
 - About, Production, Visit, Resources
-- Team, Sponsorship, Volunteering, Blog, Media, Lunar New Year Season
+- Team, Sponsorship, Volunteering, Blog, Media, Lunar New Year Season, Kids Village
 - Brands as locked: Fund The Festival, Custom Zones
 
 **Exceptions (sentence case in nav)** — descriptive phrases, not product names:
