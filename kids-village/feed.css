@@ -148,15 +148,22 @@ html[data-theme="auto"] .kv-feed {
   position: absolute;
   top: calc(50% - 0.4rem);
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transform: translateY(-50%);
   width: 2.4rem;
   height: 2.4rem;
+  padding: 0;
   border: none;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.4);
   color: var(--kv-ink);
-  font-size: 1.6rem;
+  font-size: 1.75rem;
+  font-weight: 600;
   line-height: 1;
+  /* Glyph baseline sits low in the em box — lift for optical center. */
+  padding-bottom: 0.18em;
   cursor: pointer;
   backdrop-filter: blur(6px);
 }
