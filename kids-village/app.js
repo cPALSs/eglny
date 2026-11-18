@@ -188,6 +188,7 @@ async function onTreatUp(e) {
   } finally {
     resetTreatVisuals(f.btn);
     feeding = null;
+    document.body.classList.remove("kv-scroll-lock");
     bumpIdle();
   }
 }
@@ -224,6 +225,41 @@ function buildTreats() {
   });
 }
 
+function bindToddlerGuards() {
+  const feed = document.querySelector(".kv-feed");
+  if (!feed) return;
+
+  const inFeed = (target) => feed.contains(target) || target === els.flyer || target === els.pop;
+
+  // Stop page scroll / rubber-banding while a finger is on the play card (or mid-feed).
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (e.touches.length > 1 || feeding || inFeed(e.target)) e.preventDefault();
+    },
+    { passive: false }
+  );
+
+  // Older iOS Safari pinch gesture.
+  document.addEventListener("gesturestart", (e) => e.preventDefault());
+  document.addEventListener("gesturechange", (e) => e.preventDefault());
+
+  feed.addEventListener("contextmenu", (e) => e.preventDefault());
+  feed.addEventListener(
+    "pointerdown",
+    () => {
+      document.body.classList.add("kv-scroll-lock");
+      bumpIdle();
+    },
+    { capture: true }
+  );
+  const unlockScroll = () => {
+    if (!feeding) document.body.classList.remove("kv-scroll-lock");
+  };
+  document.addEventListener("pointerup", unlockScroll);
+  document.addEventListener("pointercancel", unlockScroll);
+}
+
 function bindEvents() {
   els.treats.querySelectorAll(".kv-treat").forEach((btn) => {
     btn.addEventListener("pointerdown", onTreatDown);
@@ -242,6 +278,7 @@ function bindEvents() {
     if (document.hidden) clearTimeout(idleTimer);
     else bumpIdle();
   });
+  bindToddlerGuards();
 }
 
 function feedByKey(treat) {
@@ -263,6 +300,7 @@ function feedByKey(treat) {
     } finally {
       resetTreatVisuals(btn);
       feeding = null;
+      document.body.classList.remove("kv-scroll-lock");
       bumpIdle();
     }
   })();

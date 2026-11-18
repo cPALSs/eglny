@@ -1,10 +1,32 @@
 /* Kids Village — feed-the-lion play area (no voting). */
 
+/* Soften iOS Safari / mobile browser chrome fighting a toddler on this page. */
+html {
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overscroll-behavior: none;
+  /* Kills double-tap zoom; pinch still blocked in the play card via touch-action + JS. */
+  touch-action: manipulation;
+}
+
+body.kv-scroll-lock {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 .page-wrap--kids-village {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding-bottom: calc(0.35rem + env(safe-area-inset-bottom, 0px));
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .page-wrap--kids-village > .hero {
@@ -41,8 +63,21 @@
   color: var(--kv-ink);
   /* Visible so the hungry/chomp scale isn’t clipped; radius still rounds the fill. */
   overflow: visible;
+  touch-action: none;
+  -webkit-user-select: none;
   user-select: none;
+  -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.kv-feed *,
+.kv-flyer,
+.kv-pop {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  touch-action: none;
 }
 
 html[data-theme="light"] .kv-feed,
