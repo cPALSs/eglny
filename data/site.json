@@ -242,13 +242,14 @@
         {
           "title": "Site & ops",
           "laneId": "site-ops",
-          "credits": [
+          "members": [
             {
-              "area": "Site & Ops",
-              "names": [
-                "Thuy Pham"
-              ]
-            },
+              "name": "Thuy Pham",
+              "title": "Site & Ops coordinator",
+              "photo": "/assets/roster/thuy-pham.jpg"
+            }
+          ],
+          "credits": [
             {
               "area": "Finance",
               "names": [
