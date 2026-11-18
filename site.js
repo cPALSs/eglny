@@ -1881,10 +1881,18 @@
         : `<p class="co-chair-name">${escapeHtml(m.name)}</p>`;
     const titleText = m.roleOpenLabel ?? m.title ?? (roleOpen ? "Role open" : "");
     const roleOpenHref = roleOpen ? m.roleOpenHref ?? m.href : null;
-    const titleHtml = titleText
-      ? roleOpen && roleOpenHref
-        ? `<p class="co-chair-title roster-role-open"><a href="${escapeHtml(roleOpenHref)}">${escapeHtml(titleText)}</a></p>`
-        : `<p class="co-chair-title${roleOpen ? " roster-role-open" : ""}">${escapeHtml(titleText)}</p>`
+    const titleLines = String(titleText)
+      .split(/\n+/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+    const titleHtml = titleLines.length
+      ? titleLines
+          .map((line) =>
+            roleOpen && roleOpenHref
+              ? `<p class="co-chair-title roster-role-open"><a href="${escapeHtml(roleOpenHref)}">${escapeHtml(line)}</a></p>`
+              : `<p class="co-chair-title${roleOpen ? " roster-role-open" : ""}">${escapeHtml(line)}</p>`
+          )
+          .join("")
       : "";
     return `
     <div class="roster-card${roleOpen ? " roster-card--open" : ""}">
