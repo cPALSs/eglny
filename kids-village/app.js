@@ -47,42 +47,92 @@ let idleTimer = null;
 let swipe = { active: false, startX: 0, deltaX: 0, baseTx: 0 };
 /** Pixabay Content License — carrotnom (freesound_community / j1987 CC0). */
 const CHOMP_SRC = "../assets/kids-village/chomp.mp3";
-let chompReady = null;
-let audioUnlocked = false;
+/** Web Audio — one decode, sync starts. HTMLAudio clones queue on mobile and burst later. */
+let audioCtx = null;
+let chompBuffer = null;
+let chompBytes = null;
+let chompBytesReady = null;
+let audioReady = null;
+/** At most one deferred chomp if feed arrives before decode finishes. */
+let pendingMunch = false;
 
 const { initPageShell, loadSiteData, setPageTitle, revealPage, escapeHtml } = window.EglnySite;
 
-function chompTemplate() {
-  if (!chompReady) {
-    chompReady = new Audio(CHOMP_SRC);
-    chompReady.preload = "auto";
+function prefetchChomp() {
+  if (!chompBytesReady) {
+    chompBytesReady = fetch(CHOMP_SRC)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => {
+        chompBytes = buf;
+        return buf;
+      })
+      .catch(() => {
+        chompBytesReady = null;
+        return null;
+      });
   }
-  return chompReady;
+  return chompBytesReady;
 }
 
-/** Unlock HTMLAudio on a user gesture (required by mobile browsers). */
+function getAudioCtx() {
+  if (!audioCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    audioCtx = new AC();
+  }
+  return audioCtx;
+}
+
+/** Resume + decode on gesture. Shared promise so throttled taps don't spawn parallel unlocks. */
 function ensureAudio() {
-  const tpl = chompTemplate();
-  if (audioUnlocked) return;
-  const unlock = tpl.cloneNode(true);
-  unlock.muted = true;
-  unlock
-    .play()
-    .then(() => {
-      unlock.pause();
-      audioUnlocked = true;
-    })
-    .catch(() => {});
+  const ctx = getAudioCtx();
+  if (!ctx) return Promise.resolve(false);
+  if (!audioReady) {
+    audioReady = (async () => {
+      if (ctx.state === "suspended") await ctx.resume();
+      if (!chompBuffer) {
+        const bytes = chompBytes || (await prefetchChomp());
+        if (!bytes) throw new Error("chomp fetch failed");
+        // decodeAudioData may detach the buffer — keep a copy for rare re-decode.
+        chompBuffer = await ctx.decodeAudioData(bytes.slice(0));
+      }
+      if (ctx.state === "suspended") await ctx.resume();
+      return true;
+    })().catch(() => {
+      audioReady = null;
+      return false;
+    });
+  } else if (ctx.state === "suspended") {
+    ctx.resume().catch(() => {});
+  }
+  return audioReady;
 }
 
-/** Pixabay carrotnom chomp — clone so rapid feeds can overlap cleanly. */
+function startMunch() {
+  const ctx = audioCtx;
+  if (!ctx || ctx.state !== "running" || !chompBuffer) return false;
+  const src = ctx.createBufferSource();
+  src.buffer = chompBuffer;
+  const gain = ctx.createGain();
+  gain.gain.value = 0.9;
+  src.connect(gain);
+  gain.connect(ctx.destination);
+  src.start(0);
+  return true;
+}
+
+/** Pixabay carrotnom chomp — BufferSource per hit; coalesce while still decoding. */
 function playMunch() {
-  ensureAudio();
-  const a = chompTemplate().cloneNode(true);
-  a.muted = false;
-  a.volume = 0.9;
-  a.currentTime = 0;
-  a.play().catch(() => {});
+  if (startMunch()) {
+    pendingMunch = false;
+    return;
+  }
+  pendingMunch = true;
+  ensureAudio().then((ok) => {
+    if (!ok || !pendingMunch) return;
+    pendingMunch = false;
+    startMunch();
+  });
 }
 
 function currentLion() {
@@ -547,6 +597,7 @@ function feedByKey(treat, { sound = true } = {}) {
 
 async function init() {
   initPageShell("kids-village");
+  prefetchChomp();
   buildStage();
   buildTreats();
   bindEvents();
