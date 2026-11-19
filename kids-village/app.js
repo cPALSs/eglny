@@ -44,38 +44,61 @@ let liveFlyers = 0;
 let lastFeedbackAt = 0;
 let yumTimer = null;
 let idleTimer = null;
-let swipe = { active: false, startX: 0, deltaX: 0, baseTx: 0 };
-/** Pixabay Content License — carrotnom (freesound_community / j1987 CC0). */
-const CHOMP_SRC = "../assets/kids-village/chomp.mp3";
-/** Prefer Web Audio; keep a tiny HTMLAudio pool for iOS when context is still suspended after the fly-in. */
-const CHOMP_POOL = 2;
+let swipe = { active: false, pointerId: null, startX: 0, deltaX: 0, baseTx: 0 };
+/** Viewport pointers — toddlers pinch/spread; >1 finger must not flip lions. */
+const viewportPointers = new Set();
+/**
+ * Feed SFX — Pixabay Content License.
+ * chomp: carrotnom (freesound_community / j1987 CC0)
+ * kaching: Cash Register Kaching (DRAGON-STUDIO) — https://pixabay.com/sound-effects/film-special-effects-cash-register-kaching-376867/
+ */
+const SFX = {
+  chomp: { src: "../assets/kids-village/chomp.mp3", volume: 0.9 },
+  kaching: { src: "../assets/kids-village/kaching.mp3", volume: 0.85 },
+};
+const TREAT_SFX = { envelope: "kaching", cabbage: "chomp" };
+/** Prefer Web Audio; tiny HTMLAudio pool per clip for iOS when context is still suspended after the fly-in. */
+const SFX_POOL = 2;
 let audioCtx = null;
-let chompBuffer = null;
-let chompBytes = null;
-let chompBytesReady = null;
-let decodeReady = null;
-let htmlPool = null;
 let htmlUnlocked = false;
 let htmlUnlockPromise = null;
-/** At most one deferred chomp if feed arrives before decode finishes. */
-let pendingMunch = false;
+/** At most one deferred play per sfx key if feed arrives before decode finishes. */
+const pendingSfx = Object.create(null);
 
 const { initPageShell, loadSiteData, setPageTitle, revealPage, escapeHtml } = window.EglnySite;
 
-function prefetchChomp() {
-  if (!chompBytesReady) {
-    chompBytesReady = fetch(CHOMP_SRC)
+function sfxState(key) {
+  const def = SFX[key];
+  if (!def) return null;
+  if (!def._state) {
+    def._state = {
+      bytes: null,
+      bytesReady: null,
+      buffer: null,
+      decodeReady: null,
+      htmlPool: null,
+    };
+  }
+  return def._state;
+}
+
+function prefetchSfx(key) {
+  const def = SFX[key];
+  const st = sfxState(key);
+  if (!def || !st) return Promise.resolve(null);
+  if (!st.bytesReady) {
+    st.bytesReady = fetch(def.src)
       .then((res) => res.arrayBuffer())
       .then((buf) => {
-        chompBytes = buf;
+        st.bytes = buf;
         return buf;
       })
       .catch(() => {
-        chompBytesReady = null;
+        st.bytesReady = null;
         return null;
       });
   }
-  return chompBytesReady;
+  return st.bytesReady;
 }
 
 function getAudioCtx() {
@@ -87,33 +110,38 @@ function getAudioCtx() {
   return audioCtx;
 }
 
-function getHtmlPool() {
-  if (!htmlPool) {
-    htmlPool = Array.from({ length: CHOMP_POOL }, () => {
-      const a = new Audio(CHOMP_SRC);
+function getHtmlPool(key) {
+  const def = SFX[key];
+  const st = sfxState(key);
+  if (!def || !st) return [];
+  if (!st.htmlPool) {
+    st.htmlPool = Array.from({ length: SFX_POOL }, () => {
+      const a = new Audio(def.src);
       a.preload = "auto";
       a.setAttribute("playsinline", "");
       return a;
     });
   }
-  return htmlPool;
+  return st.htmlPool;
 }
 
-function warmDecode() {
+function warmDecode(key) {
+  const def = SFX[key];
+  const st = sfxState(key);
   const ctx = getAudioCtx();
-  if (!ctx) return Promise.resolve(false);
-  if (chompBuffer) return Promise.resolve(true);
-  if (decodeReady) return decodeReady;
-  decodeReady = (async () => {
-    const bytes = chompBytes || (await prefetchChomp());
-    if (!bytes) throw new Error("chomp fetch failed");
-    chompBuffer = await ctx.decodeAudioData(bytes.slice(0));
+  if (!def || !st || !ctx) return Promise.resolve(false);
+  if (st.buffer) return Promise.resolve(true);
+  if (st.decodeReady) return st.decodeReady;
+  st.decodeReady = (async () => {
+    const bytes = st.bytes || (await prefetchSfx(key));
+    if (!bytes) throw new Error(`${key} fetch failed`);
+    st.buffer = await ctx.decodeAudioData(bytes.slice(0));
     return true;
   })().catch(() => {
-    decodeReady = null;
+    st.decodeReady = null;
     return false;
   });
-  return decodeReady;
+  return st.decodeReady;
 }
 
 /** Must run inside the user-gesture stack — no await before resume / silent kick / muted HTML play. */
@@ -132,10 +160,10 @@ function unlockAudioSync() {
     }
   }
 
-  const pool = getHtmlPool();
+  const pools = Object.keys(SFX).flatMap((key) => getHtmlPool(key));
   if (!htmlUnlockPromise) {
     htmlUnlockPromise = Promise.all(
-      pool.map((a) => {
+      pools.map((a) => {
         a.muted = true;
         return a
           .play()
@@ -154,27 +182,29 @@ function unlockAudioSync() {
     });
   }
 
-  warmDecode();
+  Object.keys(SFX).forEach((key) => warmDecode(key));
   return htmlUnlockPromise;
 }
 
 /** Gesture entry — sync unlock, then finish decode / HTML unlock in the background. */
 function ensureAudio() {
   const unlock = unlockAudioSync();
-  return Promise.all([warmDecode(), unlock || Promise.resolve(htmlUnlocked)]).then(
-    ([decoded, html]) => !!(decoded || html || chompBuffer || htmlUnlocked)
-  );
+  return Promise.all([
+    ...Object.keys(SFX).map((key) => warmDecode(key)),
+    unlock || Promise.resolve(htmlUnlocked),
+  ]).then((results) => results.some(Boolean) || htmlUnlocked);
 }
 
-function startMunchWeb() {
+function startSfxWeb(key) {
+  const def = SFX[key];
+  const st = sfxState(key);
   const ctx = audioCtx;
-  if (!ctx || !chompBuffer) return false;
-  if (ctx.state !== "running") return false;
+  if (!def || !st?.buffer || !ctx || ctx.state !== "running") return false;
   try {
     const src = ctx.createBufferSource();
-    src.buffer = chompBuffer;
+    src.buffer = st.buffer;
     const gain = ctx.createGain();
-    gain.gain.value = 0.9;
+    gain.gain.value = def.volume;
     src.connect(gain);
     gain.connect(ctx.destination);
     src.start(0);
@@ -184,13 +214,15 @@ function startMunchWeb() {
   }
 }
 
-function startMunchHtml() {
+function startSfxHtml(key) {
   if (!htmlUnlocked) return false;
-  const pool = getHtmlPool();
+  const def = SFX[key];
+  const pool = getHtmlPool(key);
+  if (!def || !pool.length) return false;
   const a = pool.find((el) => el.paused || el.ended) || pool[0];
   try {
     a.muted = false;
-    a.volume = 0.9;
+    a.volume = def.volume;
     a.currentTime = 0;
     const p = a.play();
     if (p && typeof p.catch === "function") p.catch(() => {});
@@ -200,26 +232,35 @@ function startMunchHtml() {
   }
 }
 
-function tryMunch() {
-  return startMunchWeb() || startMunchHtml();
+function trySfx(key) {
+  return startSfxWeb(key) || startSfxHtml(key);
 }
 
-/** Pixabay carrotnom chomp — Web Audio when running; else unlocked HTML pool (no late clones). */
-function playMunch() {
-  if (tryMunch()) {
-    pendingMunch = false;
+function sfxForTreat(treat) {
+  return TREAT_SFX[treat] || "chomp";
+}
+
+/** Play treat SFX — Web Audio when running; else unlocked HTML pool (no late clones). */
+function playTreatSfx(treat) {
+  const key = sfxForTreat(treat);
+  if (trySfx(key)) {
+    pendingSfx[key] = false;
     return;
   }
-  pendingMunch = true;
+  pendingSfx[key] = true;
   const ctx = getAudioCtx();
   const resumeP =
     ctx && ctx.state === "suspended" ? ctx.resume().catch(() => {}) : Promise.resolve();
   Promise.all([ensureAudio(), resumeP])
     .then(() => {
-      if (!pendingMunch) return;
-      if (tryMunch()) pendingMunch = false;
+      if (!pendingSfx[key]) return;
+      if (trySfx(key)) pendingSfx[key] = false;
     })
     .catch(() => {});
+}
+
+function prefetchChomp() {
+  Object.keys(SFX).forEach((key) => prefetchSfx(key));
 }
 
 function currentLion() {
@@ -374,8 +415,8 @@ function goTo(index) {
   bumpIdle();
 }
 
-function playChomp({ sound = true } = {}) {
-  if (sound) playMunch();
+function playChomp({ sound = true, treat = "cabbage" } = {}) {
+  if (sound) playTreatSfx(treat);
   const lion = currentLion();
   if (!lion) return;
   lion.classList.remove("is-hungry", "is-idle", "is-chomp");
@@ -408,13 +449,13 @@ function playYum() {
   }, YUM_MS);
 }
 
-function onTreatArrive({ sound = true } = {}) {
+function onTreatArrive({ sound = true, treat = "cabbage" } = {}) {
   bumpIdle();
   // One feedback beat: Yum + chomp anim + SFX share the same gate (not full audio length).
   const now = performance.now();
   if (now - lastFeedbackAt < FEEDBACK_MIN_MS) return;
   lastFeedbackAt = now;
-  playChomp({ sound });
+  playChomp({ sound, treat });
   playYum();
 }
 
@@ -429,7 +470,7 @@ async function launchFeed(treat, fromX, fromY, { duration = 420, endScale = 0.35
   const m = mouthPoint();
   await flyFlyerTo(el, m.x, m.y, endScale, duration);
   destroyFlyer(el);
-  onTreatArrive({ sound });
+  onTreatArrive({ sound, treat });
 }
 
 function detachTreatPointerWatch() {
@@ -541,7 +582,7 @@ async function onTreatUp(e) {
       await flyFlyerTo(f.flyerEl, m.x, m.y, 0.35, 220);
       destroyFlyer(f.flyerEl);
       f.flyerEl = null;
-      onTreatArrive();
+      onTreatArrive({ treat: f.treat });
     } else if (f.flyerEl) {
       setHungry(false);
       await flyFlyerTo(f.flyerEl, f.homeX, f.homeY, 1, 260);
@@ -613,31 +654,69 @@ function bindCarousel() {
   });
 
   const vp = els.viewport;
+
+  function abortCarouselSwipe() {
+    if (!swipe.active && !vp.classList.contains("is-dragging")) {
+      swipe.pointerId = null;
+      return;
+    }
+    swipe.active = false;
+    swipe.pointerId = null;
+    swipe.deltaX = 0;
+    vp.classList.remove("is-dragging");
+    setTrack(trackPos, { animate: true });
+    carouselBusy = false;
+  }
+
   vp.addEventListener("pointerdown", (e) => {
     if (activeDrag || carouselBusy || (e.button !== undefined && e.button !== 0)) return;
     if (e.target.closest(".kv-chevron")) return;
+    viewportPointers.add(e.pointerId);
+    // Second finger (pinch / spread) — cancel any swipe; do not steal the carousel.
+    if (viewportPointers.size > 1 || (swipe.active && e.pointerId !== swipe.pointerId)) {
+      abortCarouselSwipe();
+      return;
+    }
     swipe = {
       active: true,
+      pointerId: e.pointerId,
       startX: e.clientX,
       deltaX: 0,
       baseTx: -trackPos * vp.clientWidth,
     };
     els.track.classList.add("is-instant");
     vp.classList.add("is-dragging");
-    vp.setPointerCapture(e.pointerId);
+    try {
+      vp.setPointerCapture(e.pointerId);
+    } catch {
+      /* document listeners still end the swipe */
+    }
   });
   vp.addEventListener("pointermove", (e) => {
-    if (!swipe.active) return;
+    if (!swipe.active || e.pointerId !== swipe.pointerId) return;
+    if (viewportPointers.size > 1) {
+      abortCarouselSwipe();
+      return;
+    }
     swipe.deltaX = e.clientX - swipe.startX;
     els.track.style.transform = `translateX(${swipe.baseTx + swipe.deltaX}px)`;
   });
-  const endSwipe = () => {
+  const endSwipe = (e) => {
+    if (e?.pointerId != null) viewportPointers.delete(e.pointerId);
     if (!swipe.active) return;
+    if (e?.pointerId != null && e.pointerId !== swipe.pointerId) return;
+    // Multi-touch ended messily — snap back, never page.
+    if (viewportPointers.size > 0) {
+      abortCarouselSwipe();
+      return;
+    }
+    const deltaX = swipe.deltaX;
     swipe.active = false;
+    swipe.pointerId = null;
     vp.classList.remove("is-dragging");
     const threshold = Math.min(80, vp.clientWidth * 0.22);
-    if (swipe.deltaX <= -threshold) goNext();
-    else if (swipe.deltaX >= threshold) goPrev();
+    if (deltaX <= -threshold) goNext();
+    else if (deltaX >= threshold) goPrev();
     else {
       setTrack(trackPos, { animate: true });
       carouselBusy = false;
@@ -645,6 +724,15 @@ function bindCarousel() {
   };
   vp.addEventListener("pointerup", endSwipe);
   vp.addEventListener("pointercancel", endSwipe);
+  vp.addEventListener("lostpointercapture", endSwipe);
+  // Belt-and-suspenders for iOS touch lists (spread before pointerdown count updates).
+  vp.addEventListener(
+    "touchstart",
+    (e) => {
+      if (e.touches.length > 1) abortCarouselSwipe();
+    },
+    { passive: true }
+  );
 }
 
 function bindEvents() {

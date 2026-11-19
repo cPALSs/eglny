@@ -114,7 +114,8 @@ html[data-theme="auto"] .kv-feed {
   /* Needed for the carousel; vertical room for hungry scale lives on .kv-slide. */
   overflow: hidden;
   cursor: grab;
-  touch-action: pan-y;
+  /* JS owns swipe; pan-y let pinch/spread fight the track and flicker lions. */
+  touch-action: none;
 }
 
 .kv-viewport.is-dragging {
