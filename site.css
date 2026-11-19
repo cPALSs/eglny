@@ -3297,12 +3297,13 @@ a.co-chair-name {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  object-fit: contain;
-  border-radius: var(--radius-sm, 0.35rem);
-  background: var(--surface-raised, rgba(255, 255, 255, 0.06));
+  margin-left: auto;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .vendor-directory-body {
+  flex: 1 1 auto;
   min-width: 0;
 }
 
@@ -3328,7 +3329,15 @@ a.co-chair-name {
   color: var(--text-secondary, var(--muted));
 }
 
-.vendor-directory-ig {
+.vendor-directory-icons {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.vendor-directory-ig,
+.vendor-directory-link {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -3343,12 +3352,15 @@ a.co-chair-name {
 }
 
 .vendor-directory-ig:hover,
-.vendor-directory-ig:focus-visible {
+.vendor-directory-ig:focus-visible,
+.vendor-directory-link:hover,
+.vendor-directory-link:focus-visible {
   color: var(--gold);
   border-color: var(--gold);
 }
 
-.vendor-directory-ig .social-icon {
+.vendor-directory-ig .social-icon,
+.vendor-directory-link .social-icon {
   width: 0.85rem;
   height: 0.85rem;
 }

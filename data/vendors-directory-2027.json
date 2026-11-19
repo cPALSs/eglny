@@ -9,13 +9,14 @@
   "sections": [
     {
       "id": "merchants",
-      "title": "Merchants",
+      "title": "Merchants & activities",
       "vendors": [
         {
           "id": "100-seconds-tower",
           "name": "100 Seconds Tower",
           "description": "Staffed hang-challenge endurance activity — guests pay to hang from a bar.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/100-seconds-tower.jpg",
+          "website": "https://www.tiktok.com/@100.seconds.tower",
           "instagram": null
         },
         {
@@ -23,34 +24,39 @@
           "name": "em bé books",
           "description": "Children's books and gifts — Vietnamese and bilingual titles.",
           "logo": null,
+          "website": "https://embebooks.com/",
           "instagram": "embebooks"
         },
         {
           "id": "erulite",
           "name": "Erulite",
           "description": "Math tutoring with a festival red-envelope challenge and session vouchers.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/erulite.jpg",
+          "website": "https://erulite.com/",
           "instagram": null
         },
         {
           "id": "fidgetme",
           "name": "FidgetMe",
           "description": "Handmade wearable 3D-printed fidget crafts.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/fidgetme.jpg",
+          "website": "https://fidgetme.co/",
           "instagram": null
         },
         {
           "id": "jcmstore",
           "name": "Jcmstore",
           "description": "Lanterns, red envelopes, toys, balloons, and 3D-printed dragons.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/jcmstore.jpg",
+          "website": null,
           "instagram": null
         },
         {
           "id": "kc-trendy",
           "name": "KC TRENDY LLC",
           "description": "Sensory blankets, plush, and toys — try before you buy.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/kc-trendy.jpg",
+          "website": null,
           "instagram": null
         },
         {
@@ -58,13 +64,15 @@
           "name": "Luxury boutique 0724",
           "description": "Jewelry and press-on nails.",
           "logo": null,
+          "website": null,
           "instagram": "luxury_boutique_0724"
         },
         {
           "id": "mas-trading",
           "name": "Ma's trading company",
           "description": "Sunglasses, Lunar New Year gifts, and toys.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/mas-trading.jpg",
+          "website": null,
           "instagram": null
         },
         {
@@ -72,13 +80,15 @@
           "name": "Mai Sister's Corner",
           "description": "Toys and gifts.",
           "logo": null,
+          "website": null,
           "instagram": null
         },
         {
           "id": "pop-berry-mer",
           "name": "Pop Berry",
           "description": "Handmade crochet flowers and keychains.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/pop-berry.jpg",
+          "website": "https://tinycutestudio.etsy.com/",
           "instagram": null
         },
         {
@@ -86,6 +96,7 @@
           "name": "The Creative Space",
           "description": "Accessories retail — Midtown Sacramento maker space and fair producer.",
           "logo": null,
+          "website": "https://www.thecreativespacesac.com/",
           "instagram": "thecreativespacesac"
         },
         {
@@ -93,6 +104,7 @@
           "name": "Xuan Lee",
           "description": "Chinese traditional handicrafts and cultural items.",
           "logo": null,
+          "website": null,
           "instagram": null
         }
       ]

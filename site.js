@@ -1182,10 +1182,58 @@
     return `${prefix}${logo.replace(/^\//, "")}`;
   }
 
+  function vendorHasAvatar(vendor) {
+    return Boolean(vendorLogoSrc(vendor?.logo ?? vendor?.avatar ?? vendor?.image));
+  }
+
+  function normalizeVendorWebsiteUrl(website) {
+    if (!website) return null;
+    let s = String(website).trim();
+    if (!s || /^n\/?a$/i.test(s) || /^none$/i.test(s) || /\s/.test(s)) return null;
+    if (/^http:\/\//i.test(s)) s = `https://${s.slice(7)}`;
+    if (/^https:\/\//i.test(s)) {
+      try {
+        const u = new URL(s);
+        if (u.protocol !== "https:") return null;
+        return u.toString();
+      } catch {
+        return null;
+      }
+    }
+    if (/^www\./i.test(s)) return `https://${s}`;
+    if (/^[a-z0-9.-]+\.[a-z]{2,}([/:?]|$)/i.test(s)) return `https://${s}`;
+    return null;
+  }
+
+  function renderVendorDirectoryLinkIcon() {
+    return `<svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+  }
+
+  function sortVendorsDirectory(vendors) {
+    return [...(vendors ?? [])].sort((a, b) => {
+      const aHas = vendorHasAvatar(a) ? 0 : 1;
+      const bHas = vendorHasAvatar(b) ? 0 : 1;
+      if (aHas !== bHas) return aHas - bHas;
+      return String(a?.name ?? "").localeCompare(String(b?.name ?? ""), undefined, {
+        sensitivity: "base",
+      });
+    });
+  }
+
   function renderVendorsDirectoryItem(vendor) {
-    const logoSrc = vendorLogoSrc(vendor.logo);
+    const logoSrc = vendorLogoSrc(vendor.logo ?? vendor.avatar ?? vendor.image);
     const logo = logoSrc
       ? `<img class="vendor-directory-logo" src="${escapeHtml(logoSrc)}" alt="" width="56" height="56" loading="lazy" />`
+      : "";
+    const websiteUrl = normalizeVendorWebsiteUrl(vendor.website ?? vendor.url);
+    const websiteLink = websiteUrl
+      ? `<a
+            class="vendor-directory-link"
+            href="${escapeHtml(websiteUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="${escapeHtml(`Website: ${websiteLabelFromUrl(websiteUrl)}`)}"
+          >${renderVendorDirectoryLinkIcon()}</a>`
       : "";
     const igUrl = normalizeInstagramUrl(vendor.instagram);
     const igHandle = igUrl ? instagramHandleFromUrl(igUrl) : "";
@@ -1198,15 +1246,19 @@
             aria-label="${escapeHtml(`Instagram: ${igHandle}`)}"
           >${renderSocialIcon("Instagram")}</a>`
       : "";
-    return `<li class="vendor-directory-item">
-      ${logo}
+    const iconRow =
+      websiteLink || igLink
+        ? `<div class="vendor-directory-icons">${websiteLink}${igLink}</div>`
+        : "";
+    return `<li class="vendor-directory-item${logo ? " vendor-directory-item--has-avatar" : ""}">
       <div class="vendor-directory-body">
         <div class="vendor-directory-name-row">
           <h3 class="vendor-directory-name">${escapeHtml(vendor.name)}</h3>
-          ${igLink}
+          ${iconRow}
         </div>
         ${vendor.description ? `<p class="vendor-directory-desc">${escapeHtml(vendor.description)}</p>` : ""}
       </div>
+      ${logo}
     </li>`;
   }
 
@@ -1220,7 +1272,7 @@
 
     const sectionHtml = sections
       .map((section) => {
-        const vendors = section.vendors ?? [];
+        const vendors = sortVendorsDirectory(section.vendors ?? []);
         const list =
           vendors.length > 0
             ? `<ul class="vendor-directory-list">${vendors.map(renderVendorsDirectoryItem).join("")}</ul>`
