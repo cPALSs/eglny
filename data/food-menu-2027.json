@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-16T18:10:00Z",
+  "published_at": "2026-11-19T02:35:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -1066,6 +1066,7 @@
           "category": "meals",
           "cuisine": "japanese_korean",
           "dish_type": "fast_handheld",
+          "image": "assets/food-menu/2027/kingsley-eats/corn-dogs-korean.jpg",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -1080,6 +1081,7 @@
           "price": null,
           "category": "snacks",
           "cuisine": "japanese_korean",
+          "image": "assets/food-menu/2027/kingsley-eats/buldak-balls-spicy.jpg",
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
@@ -1105,8 +1107,50 @@
           "category": "drinks",
           "subcategory": "others",
           "cuisine": "american",
+          "image": "assets/food-menu/2027/kingsley-eats/lemonade-flavored.jpg",
           "allergens": [],
           "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "my-lumpia-lady",
+      "name": "My Lumpia Lady",
+      "booth_label": null,
+      "booth_kind": "open_cooking",
+      "logo": null,
+      "instagram": "mylumpialady916",
+      "facebook": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Lumpia",
+          "note": "Filipino spring rolls",
+          "options": "beef with veggie, chicken with veggie, all veggie, beef queso birria, or bacon jalapeño",
+          "price": null,
+          "category": "snacks",
+          "cuisine": "filipino",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat",
+            "contains_dairy",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Turon, banana",
+          "note": "fried banana spring roll",
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "cuisine": "filipino",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_gluten"
+          ]
         }
       ]
     }
