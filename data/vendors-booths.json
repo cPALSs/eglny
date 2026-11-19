@@ -59,14 +59,14 @@
         ],
         [
           "Snacks-only / sealed treats",
-          "23",
-          "~14",
+          "21",
+          "~12",
           "$150"
         ],
         [
           "Corporate, merchants, craft, and paid activities",
-          "35",
-          "~24",
+          "33",
+          "~22",
           [
             "$150 merchants / craft / paid activities",
             "$500 corporate / marketing"
@@ -74,8 +74,8 @@
         ],
         [
           "Nonprofit / community info",
-          "21",
-          "21",
+          "15",
+          "15",
           "$75"
         ],
         [
@@ -95,7 +95,7 @@
     "notes": [
       "**Drinks & snacks vs Snacks-only:** Fees are nested. If you sell **any drinks** (coffee, hot chocolate, boba, juice, etc.) — even alongside snacks — you are a **Drinks & snacks** booth (**$500**), not Snacks-only. **Snacks-only** (**$150**) means snacks / treats with **no** drinks. Sealed take-home food retail is also **$150** on the Food app.",
       "**Same food type:** We limit how many booths sell the same kind of food so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. **Snacks-only:** softer limit — we still avoid too many of the same snack, but the exact cap (1, 2, or sometimes 3) is at our discretion as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer.",
-      "**Total map:** About **143** guest-facing pads (Zones A/B, roundabouts, Pavilion walkway, Rotary Grove; includes cooking + truck pads). Ops / host pads sit outside that count. Snack booths count toward general-pad capacity."
+      "**Total map:** About **133** guest-facing pads (Zones A/B, roundabouts, Pavilion walkway, Rotary Grove; includes cooking + truck pads). Ops / host pads sit outside that count. Snack booths count toward general-pad capacity."
     ]
   },
   "fees": {
