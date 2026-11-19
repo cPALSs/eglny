@@ -916,6 +916,12 @@ select {
   gap: 8px;
 }
 
+.footer-estimated-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .footer-toggle {
   display: flex;
   align-items: center;
@@ -952,10 +958,60 @@ select {
   border-width: 1.5px;
 }
 
+.page.estimated-sponsors-on .gift-card--sponsor-partial {
+  background: var(--sponsor-covered-bg);
+  border-color: var(--sponsor-covered-border);
+  border-width: 1.5px;
+}
+
 .page.estimated-sponsors-on .gift-card--sponsor-open {
   background: var(--sponsor-open-bg);
   border-color: var(--sponsor-open-border);
   border-style: dashed;
+}
+
+.gift-estimate-progress {
+  margin-top: 0.65rem;
+}
+
+.gift-estimate-progress__track {
+  height: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  overflow: hidden;
+}
+
+.gift-estimate-progress__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress-funded);
+}
+
+.gift-estimate-progress__label {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+}
+
+.estimated-sponsors-tier {
+  margin: 0 0 1rem;
+}
+
+.estimated-sponsors-tier:last-child {
+  margin-bottom: 0;
+}
+
+.estimated-sponsors-tier__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.estimated-sponsors-tier__names {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
 }
 
 .toggle-wrap {

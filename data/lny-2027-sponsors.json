@@ -1,0 +1,24 @@
+{
+  "source": "2027 LNY estimated-sponsor projection — starts from 2026 deposit baselines (lny-2026-sponsors.json), not a rewrite of that history. Deltas vs 2026: drop Thien Ho / Sac DA office (unavailable Feb 13–14, 2027 — skip this cycle); add City of Elk Grove $3,000 estimated (direct cash ask path — not the closed 2026 ESG). AFG pinned to outdoor stage; remaining pool closes the core ops gap first (Festival Foundation and Main Stage only for the ~$20,104 gap — Sanitation is earned-cash covered), then High Priority registry (impact order), then electives.",
+  "baseline": "lny-2026-sponsors.json",
+  "sponsors": [
+    { "name": "American Furniture Galleries", "amount": 15000, "giftId": "outdoor_stage" },
+    { "name": "Duc Huong", "amount": 15000 },
+    { "name": "Fire Wings", "amount": 3000 },
+    { "name": "Metro by T-Mobile", "amount": 3000 },
+    { "name": "Verizon", "amount": 3000 },
+    { "name": "Xfinity", "amount": 3000 },
+    { "name": "City of Elk Grove", "amount": 3000 },
+    { "name": "AABC / Chason / Hook & Reel", "amount": 2000 },
+    { "name": "Hydro City", "amount": 2000 },
+    { "name": "Parkwest Casino Lotus", "amount": 2000 },
+    { "name": "SF Supermarket", "amount": 2000 },
+    { "name": "SMUD", "amount": 2000 },
+    { "name": "VABA + California Waste Solutions", "amount": 2000 },
+    { "name": "Anthem", "amount": 1500 },
+    { "name": "Rod Brewer", "amount": 1500 },
+    { "name": "Journey to the Dumpling", "amount": 1500 },
+    { "name": "Pat Hume", "amount": 1500 },
+    { "name": "Darren Suen", "amount": 1500 }
+  ]
+}

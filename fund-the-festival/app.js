@@ -355,16 +355,14 @@ function sumEnabled(categories) {
 
 /**
  * Sponsor dollars drawn onto these gifts (estimated-sponsors view only).
- * Uses the amount actually taken from the pool. When earned cash already
- * covers part of a core card, only the remainder is counted, so
- * vendorRevenue on the progress bar is not counted again.
+ * Liquid pool — no per-sponsor attribution.
  */
 function sumEstimatedAssigned(categories) {
   if (!state.showEstimatedSponsors || !state.data) return null;
   const dollars = state.estimatedSponsorDollars ?? {};
   return state.data.gifts
-    .filter((g) => categories.includes(g.category) && estimatedSponsorNames(g.id).length)
-    .reduce((s, g) => s + (dollars[g.id] ?? g.amount ?? 0), 0);
+    .filter((g) => categories.includes(g.category) && (dollars[g.id] || 0) > 0)
+    .reduce((s, g) => s + (dollars[g.id] ?? 0), 0);
 }
 
 function registryFundedAmount({ priorityOnly = null } = {}) {
@@ -379,8 +377,8 @@ function registryFundedAmount({ priorityOnly = null } = {}) {
   if (state.showEstimatedSponsors) {
     const dollars = state.estimatedSponsorDollars ?? {};
     return gifts
-      .filter((g) => estimatedSponsorNames(g.id).length)
-      .reduce((s, g) => s + (dollars[g.id] ?? g.amount ?? 0), 0);
+      .filter((g) => (dollars[g.id] || 0) > 0)
+      .reduce((s, g) => s + (dollars[g.id] ?? 0), 0);
   }
   return gifts.filter((g) => state.enabled[g.id]).reduce((s, g) => s + (g.amount || 0), 0);
 }
@@ -526,104 +524,16 @@ function choicesLockedForEstimate() {
 }
 
 /**
- * Core cards estimated sponsors fund before any other core remainder.
- * Earned cash skips these first so Festival Foundation and Main Stage are
- * sponsor-funded ahead of Security, Sanitation / Amenities, Logistics, and
- * Partnership Operations. Bao 2026-10-20: drop Sanitation from the core
- * sponsorship estimate — only Foundation + Main Stage close the ~$20,104 gap.
- * Weather / Cancel Fund is High Priority on the gift registry (not core).
+ * Core earmark cards that close the planning core sponsor gap (~$20,104).
+ * Bao 2026-10-20: Festival Foundation + Main Stage only (not Sanitation).
  */
 const ESTIMATE_SPONSOR_FIRST_CORE = [
   "festival_foundation",
   "outdoor_stage",
 ];
 
-/**
- * Estimated sponsor pool, after pins and bundles:
- * 1. Close the core ops *gap* before any High Priority gift — not the full
- *    core face total. Planning gap is pinned at $20,104 (Bao 2026-10-20):
- *    earned cash covers the rest of ~$62,450 core (Security, Sanitation,
- *    Logistics, Partnership first). Within the remaining gap, sponsor dollars
- *    hit Festival Foundation, then Main Stage only — not Sanitation. Leftover
- *    cash sits on a sponsor-first card only when the pool cannot pay that card
- *    in full — otherwise those cards stay for sponsors. Face values of the two
- *    cards ($8,300 + $15,600) exceed the gap; cash partials + sponsor draws
- *    together close ~$20,104 without stacking a third core card.
- * 2. High Priority registry (impact order, most impactful first — Weather is
- *    HP but last in that order).
- * 3. Electives (Yearbook · etc.), then secondary. A core card the pool cannot
- *    fully close stays open; sponsors are not asked to cover it again after
- *    High Priority.
- */
-function compareGiftsForEstimate(a, b) {
-  const lane = (g) => {
-    if (g.category === "core" && ESTIMATE_SPONSOR_FIRST_CORE.includes(g.id)) return 0;
-    if (g.category === "core") return 1;
-    if (g.category === "registry" && g.priority) return 2;
-    if (g.category === "registry") return 3;
-    if (g.category === "secondary") return 4;
-    return 5;
-  };
-  const la = lane(a);
-  const lb = lane(b);
-  if (la !== lb) return la - lb;
-  if (la === 0) {
-    return ESTIMATE_SPONSOR_FIRST_CORE.indexOf(a.id) - ESTIMATE_SPONSOR_FIRST_CORE.indexOf(b.id);
-  }
-  const category = a.category === "registry" ? "registry" : a.category;
-  return compareGifts(a, b, category);
-}
+const WEATHER_CANCEL_FUND_ID = "weather_cancel_fund";
 
-/**
- * Earned cash (scenario.vendorRevenue) fills core cards before sponsors do.
- * First pass skips Festival Foundation and Main Stage and follows sortOrder:
- * Security, Sanitation / Amenities, Logistics, Partnership.
- * Leftover cash may sit on a sponsor-first card only when `balances` cannot
- * pay that card in full (sponsor-first order). Cards the pool can close are
- * left for sponsors so cash does not take them. Returns dollars of cash
- * sitting on each not-yet-funded core gift. Fully covered cards are omitted
- * from the sponsor pool by the caller. Cash on the progress bar is still the
- * full vendorRevenue, not this map.
- */
-function earnedCashOnCoreGifts(gifts, rawCash, funded, balances = []) {
-  const core = gifts
-    .filter(
-      (g) =>
-        g.category === "core" &&
-        isAllocatableEstimateGift(g) &&
-        !funded.has(g.id) &&
-        !ESTIMATE_SPONSOR_FIRST_CORE.includes(g.id),
-    )
-    .sort((a, b) => compareGifts(a, b, "core"));
-  let rem = Math.max(0, rawCash || 0);
-  const covered = {};
-  for (const gift of core) {
-    if (rem <= 0) break;
-    const take = Math.min(gift.amount, rem);
-    covered[gift.id] = take;
-    rem -= take;
-  }
-  if (rem <= 0) return covered;
-
-  const sponsorFirst = ESTIMATE_SPONSOR_FIRST_CORE.map((id) => gifts.find((g) => g.id === id)).filter(
-    (g) => g && isAllocatableEstimateGift(g) && !funded.has(g.id),
-  );
-  const clone = balances.map((s) => ({ ...s }));
-  const cashTargets = [];
-  for (const gift of sponsorFirst) {
-    if (!tryFundGift(gift, clone, {}, {}, gift.amount)) cashTargets.push(gift);
-  }
-  for (const gift of cashTargets) {
-    if (rem <= 0) break;
-    const take = Math.min(gift.amount, rem);
-    if (take <= 0) continue;
-    covered[gift.id] = take;
-    rem -= take;
-  }
-  return covered;
-}
-
-/** Explicit giftIds first; then pool remaining balances (multi-sponsor per gift). */
 function isAllocatableEstimateGift(g) {
   return (
     g.amount > 0 &&
@@ -635,120 +545,116 @@ function isAllocatableEstimateGift(g) {
   );
 }
 
-function addGiftContributor(map, giftId, sponsorName) {
-  if (!map[giftId]) map[giftId] = [];
-  if (!map[giftId].includes(sponsorName)) map[giftId].push(sponsorName);
-}
-
 /**
- * Draw from sponsor balances (largest first) until `need` is fully met.
- * Pins and ordinary gifts pass the face amount — a pin completes only when
- * that sponsor can pay the whole gift. The core-gap pass may pass a smaller
- * need when earned cash already covers part of the card; the draw is still
- * all-or-nothing for that need (no partial sponsor coverage).
+ * Liquid estimated-sponsor pool (Bao 2026-11-13):
+ * 1. Sum all estimated dollars into one pool (no per-sponsor tags / pins).
+ * 2. Close the core ops gap (~$20,104) on Foundation → Main Stage.
+ * 3. Fund remaining gifts all-or-nothing in display order (HP impact, then electives).
+ * 4. Put any leftover on Weather / Cancel Fund as a partial (progress bar).
  */
-function tryFundGift(gift, balances, map, dollars, need = gift.amount) {
-  let remaining = need;
-  const pool = balances
-    .filter((s) => s.balance > 0)
-    .sort((a, b) => b.balance - a.balance);
-  const ledger = [];
-  for (const sponsor of pool) {
-    if (remaining <= 0) break;
-    const take = Math.min(sponsor.balance, remaining);
-    if (take <= 0) continue;
-    ledger.push({ sponsor, take });
-    remaining -= take;
-  }
-  if (remaining > 0) return false;
-  let taken = 0;
-  for (const { sponsor, take } of ledger) {
-    sponsor.balance -= take;
-    taken += take;
-    addGiftContributor(map, gift.id, sponsor.name);
-  }
-  dollars[gift.id] = (dollars[gift.id] || 0) + taken;
-  return true;
-}
-
-function computeEstimatedSponsorMap(gifts, sponsorPayload, rawCash = 0) {
+function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
   if (!sponsorPayload?.sponsors?.length) return { names: {}, dollars: {} };
 
-  const balances = sponsorPayload.sponsors.map((s) => ({
-    name: s.name,
-    balance: s.amount,
-    pinGiftId: s.giftId ?? null,
-    bundleGiftIds: Array.isArray(s.giftIds) && s.giftIds.length ? [...s.giftIds] : null,
-  }));
-
-  const map = {};
   const dollars = {};
-  const funded = new Set();
-
   const giftById = (id) => gifts.find((g) => g.id === id);
+  let pool = sponsorPayload.sponsors.reduce((s, sp) => s + (Number(sp.amount) || 0), 0);
 
-  const markFunded = (gift) => {
-    if (gift) funded.add(gift.id);
-  };
+  const coreGap =
+    state.data?.event?.coreSponsorGap ??
+    state.data?.scenario?.headroomOrGap ??
+    20104;
+  let gapLeft = Math.max(0, Number(coreGap) || 0);
 
-  // Phase 1a — single pin (e.g. AFG → outdoor stage). Whole gift only;
-  // $15,000 does not pin Main Stage at $15,600, so that sponsor stays in the pool.
-  for (const sponsor of balances) {
-    if (!sponsor.pinGiftId || sponsor.bundleGiftIds) continue;
-    const gift = giftById(sponsor.pinGiftId);
-    if (!gift?.amount || funded.has(gift.id) || !isAllocatableEstimateGift(gift)) continue;
-    if (tryFundGift(gift, [sponsor], map, dollars, gift.amount)) markFunded(gift);
+  for (const id of ESTIMATE_SPONSOR_FIRST_CORE) {
+    if (pool <= 0 || gapLeft <= 0) break;
+    const gift = giftById(id);
+    if (!gift || !isAllocatableEstimateGift(gift)) continue;
+    const take = Math.min(pool, gapLeft, gift.amount);
+    if (take <= 0) continue;
+    dollars[id] = (dollars[id] || 0) + take;
+    pool -= take;
+    gapLeft -= take;
   }
 
-  // Phase 1b — sponsor-exclusive bundles (giftIds array, no pinGiftId)
-  for (const sponsor of balances) {
-    if (!sponsor.bundleGiftIds) continue;
-    for (const gid of sponsor.bundleGiftIds) {
-      if (sponsor.balance <= 0) break;
-      const gift = giftById(gid);
-      if (!gift?.amount || funded.has(gift.id) || !isAllocatableEstimateGift(gift)) continue;
-      if (tryFundGift(gift, [sponsor], map, dollars, gift.amount)) markFunded(gift);
+  const priority = gifts
+    .filter((g) => g.category === "registry" && g.priority && isAllocatableEstimateGift(g))
+    .sort(comparePriorityGifts);
+  const elective = gifts
+    .filter((g) => g.category === "registry" && !g.priority && isAllocatableEstimateGift(g))
+    .sort(compareElectiveGifts);
+  const displayOrder = [...priority, ...elective].filter((g) => g.id !== WEATHER_CANCEL_FUND_ID);
+
+  for (const gift of displayOrder) {
+    if (pool < gift.amount) continue;
+    dollars[gift.id] = gift.amount;
+    pool -= gift.amount;
+  }
+
+  const weather = giftById(WEATHER_CANCEL_FUND_ID);
+  if (weather && isAllocatableEstimateGift(weather) && pool > 0) {
+    const take = Math.min(pool, weather.amount);
+    if (take > 0) {
+      dollars[weather.id] = take;
+      pool -= take;
     }
   }
 
-  // Earned cash covers Security, Sanitation, Logistics, and Partnership first.
-  // Sponsors close Foundation + Main Stage (gap stack), then any core remainder.
-  const cashOnCore = earnedCashOnCoreGifts(gifts, rawCash, funded, balances);
+  return { names: {}, dollars };
+}
 
-  // Phase 2 — pool: sponsor-first core, other uncovered core, High Priority, electives
-  const openGifts = gifts
-    .filter((g) => isAllocatableEstimateGift(g) && !funded.has(g.id))
-    .sort(compareGiftsForEstimate);
+function estimatedSponsorDollars(giftId) {
+  return state.estimatedSponsorDollars?.[giftId] || 0;
+}
 
-  for (const gift of openGifts) {
-    const cashOn = gift.category === "core" ? cashOnCore[gift.id] || 0 : 0;
-    const need = gift.amount - cashOn;
-    if (need <= 0) continue;
-    if (tryFundGift(gift, balances, map, dollars, need)) markFunded(gift);
+function estimatedSponsorFullyCovered(giftId) {
+  const gift = state.data?.gifts.find((g) => g.id === giftId);
+  if (!gift) return false;
+  const d = estimatedSponsorDollars(giftId);
+  if (d <= 0) return false;
+  if (d >= gift.amount) return true;
+  // Core gap earmarks: green once the planning gap is closed on that stack.
+  if (ESTIMATE_SPONSOR_FIRST_CORE.includes(giftId)) {
+    const gap =
+      state.data?.event?.coreSponsorGap ??
+      state.data?.scenario?.headroomOrGap ??
+      20104;
+    const drawn = ESTIMATE_SPONSOR_FIRST_CORE.reduce(
+      (s, id) => s + estimatedSponsorDollars(id),
+      0,
+    );
+    return drawn >= Number(gap);
   }
-
-  return { names: map, dollars };
+  return false;
 }
 
-function estimatedSponsorNames(giftId) {
-  const entry = state.estimatedSponsorMap[giftId];
-  if (!entry) return [];
-  return Array.isArray(entry) ? entry : [entry];
+function estimatedSponsorPartial(giftId) {
+  const gift = state.data?.gifts.find((g) => g.id === giftId);
+  if (!gift) return false;
+  const d = estimatedSponsorDollars(giftId);
+  return d > 0 && d < gift.amount;
 }
 
+/** No per-sponsor name tags — liquid pool only. */
 function estimatedSponsorTagsHtml(giftId) {
   if (!state.showEstimatedSponsors) return "";
-  const names = estimatedSponsorNames(giftId);
-  if (!names.length) return "";
-  const tags = names.map((name) => `<span class="gift-sponsor-tag">${name}</span>`).join("");
-  return `<div class="gift-sponsor-tags">${tags}</div>`;
+  if (giftId !== WEATHER_CANCEL_FUND_ID || !estimatedSponsorPartial(giftId)) return "";
+  const gift = state.data?.gifts.find((g) => g.id === giftId);
+  if (!gift) return "";
+  const d = estimatedSponsorDollars(giftId);
+  const pct = Math.max(0, Math.min(100, (d / gift.amount) * 100));
+  return `<div class="gift-estimate-progress" role="progressbar" aria-valuemin="0" aria-valuemax="${gift.amount}" aria-valuenow="${d}" aria-label="Estimated funding toward Weather / Cancel Fund">
+    <div class="gift-estimate-progress__track">
+      <div class="gift-estimate-progress__bar" style="width:${pct.toFixed(1)}%"></div>
+    </div>
+    <div class="gift-estimate-progress__label">${fmt(d)} of ${fmt(gift.amount)}</div>
+  </div>`;
 }
 
 function estimatedSponsorCardClass(giftId) {
   if (!state.showEstimatedSponsors) return "";
-  return estimatedSponsorNames(giftId).length
-    ? " gift-card--sponsor-covered"
-    : " gift-card--sponsor-open";
+  if (estimatedSponsorFullyCovered(giftId)) return " gift-card--sponsor-covered";
+  if (estimatedSponsorPartial(giftId)) return " gift-card--sponsor-partial";
+  return " gift-card--sponsor-open";
 }
 
 function loadEstimatedSponsorsToggle(festivalId) {
@@ -775,7 +681,6 @@ function syncEstimatedSponsorsFooter() {
   const entry = currentFestivalEntry();
   const footer = document.getElementById("page-footer");
   const toggle = document.getElementById("estimated-sponsors-toggle");
-  const hint = document.getElementById("estimated-sponsors-hint");
   const page = document.querySelector(".page");
   const available = !!entry?.estimatedSponsorsFile && !!state.estimatedSponsors;
 
@@ -784,7 +689,6 @@ function syncEstimatedSponsorsFooter() {
     toggle.checked = !!state.showEstimatedSponsors;
     toggle.disabled = !available;
   }
-  if (hint) hint.hidden = !state.showEstimatedSponsors;
   if (page) {
     page.classList.toggle("estimated-sponsors-on", !!state.showEstimatedSponsors);
   }
@@ -1377,6 +1281,56 @@ function openRevenueModal() {
   document.getElementById("revenue-modal")?.showModal();
 }
 
+function renderEstimatedSponsorsModal() {
+  const body = document.getElementById("estimated-sponsors-modal-body");
+  if (!body) return;
+  const sponsors = state.estimatedSponsors?.sponsors ?? [];
+  if (!sponsors.length) {
+    body.innerHTML = `<p class="hint">No estimated sponsors loaded.</p>`;
+    return;
+  }
+
+  const tiers = [...getSponsorTiers()].sort((a, b) => (b.min || 0) - (a.min || 0));
+  const byTier = new Map(tiers.map((t) => [t.label, []]));
+  const below = [];
+
+  for (const sp of sponsors) {
+    const name = sp?.name;
+    if (!name) continue;
+    const amount = Number(sp.amount) || 0;
+    if (amount < (tiers[tiers.length - 1]?.min || 0)) {
+      below.push(name);
+      continue;
+    }
+    const tier = sponsorTierForTotal(amount);
+    byTier.get(tier.label)?.push(name);
+  }
+
+  const sections = [];
+  for (const tier of tiers) {
+    const names = [...new Set(byTier.get(tier.label) || [])].sort((a, b) => a.localeCompare(b));
+    if (!names.length) continue;
+    sections.push(`<section class="estimated-sponsors-tier">
+      <h4 class="estimated-sponsors-tier__label">${escapeHtml(tier.label)}</h4>
+      <p class="estimated-sponsors-tier__names">${names.map((n) => escapeHtml(n)).join(" • ")}</p>
+    </section>`);
+  }
+  if (below.length) {
+    const names = [...new Set(below)].sort((a, b) => a.localeCompare(b));
+    sections.push(`<section class="estimated-sponsors-tier">
+      <h4 class="estimated-sponsors-tier__label">Other</h4>
+      <p class="estimated-sponsors-tier__names">${names.map((n) => escapeHtml(n)).join(" • ")}</p>
+    </section>`);
+  }
+
+  body.innerHTML = sections.join("") || `<p class="hint">No estimated sponsors loaded.</p>`;
+}
+
+function openEstimatedSponsorsModal() {
+  renderEstimatedSponsorsModal();
+  document.getElementById("estimated-sponsors-modal")?.showModal();
+}
+
 function renderCoreProgress() {
   const core = coreFundingState();
   const labelEl = document.getElementById("core-label");
@@ -1869,6 +1823,10 @@ async function init() {
   const estimatedToggle = document.getElementById("estimated-sponsors-toggle");
   if (estimatedToggle) {
     estimatedToggle.onchange = () => setShowEstimatedSponsors(estimatedToggle.checked);
+  }
+  const estimatedInfoBtn = document.getElementById("estimated-sponsors-info-btn");
+  if (estimatedInfoBtn) {
+    estimatedInfoBtn.onclick = openEstimatedSponsorsModal;
   }
 
   try {

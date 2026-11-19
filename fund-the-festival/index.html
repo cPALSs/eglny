@@ -177,13 +177,19 @@
     </details>
 
     <footer class="page-footer" id="page-footer" hidden>
-      <label class="footer-toggle">
-        <input type="checkbox" id="estimated-sponsors-toggle" />
-        <span>Estimated sponsors</span>
-      </label>
-      <p class="footer-hint" id="estimated-sponsors-hint" hidden>
-        2026 renewal baselines — view only. Estimated sponsors close the <strong>core ops gap</strong> first (planning <strong>$20,104</strong> after earned cash — not the full ~$62K core face), hitting <strong>Festival Foundation</strong> and <strong>Main Stage</strong> only (Sanitation / Amenities is earned-cash covered, not in the core sponsorship estimate); then <strong>High Priority</strong> (most impactful first); then electives — pooling allowed; pins/bundles still apply. <strong>Green</strong> = covered · <strong>Dashed</strong> = still open.
-      </p>
+      <div class="footer-estimated-row">
+        <label class="footer-toggle">
+          <input type="checkbox" id="estimated-sponsors-toggle" />
+          <span>Estimated sponsors</span>
+        </label>
+        <button type="button" class="progress-info-btn" id="estimated-sponsors-info-btn" aria-label="List estimated sponsors" title="List estimated sponsors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 10v6"/>
+            <path d="M12 7h.01"/>
+          </svg>
+        </button>
+      </div>
     </footer>
   </div>
 
@@ -253,6 +259,18 @@
         <h3>Estimated revenue (pre-sponsorship)</h3>
       </header>
       <div class="modal-body" id="revenue-modal-body"></div>
+      <footer class="modal-footer">
+        <button type="submit" class="btn">Close</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog id="estimated-sponsors-modal">
+    <form method="dialog" class="modal-inner">
+      <header class="modal-header">
+        <h3>Estimated sponsors</h3>
+      </header>
+      <div class="modal-body" id="estimated-sponsors-modal-body"></div>
       <footer class="modal-footer">
         <button type="submit" class="btn">Close</button>
       </footer>

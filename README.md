@@ -45,6 +45,8 @@ Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html`
 
 - **`data/site.json`** — recruitment + about copy (see season Marketing [`Open Leadership Roles`](../../../Programs/Lunar%20New%20Year/2027/Marketing/Open%20Leadership%20Roles%20-%20Recruitment%20Copy.md))
 - **`data/lny-2027.json`** — Fund The Festival data (from `build_lny_budget.py`)
+- **`data/lny-2026-sponsors.json`** — historical 2026 cash-deposit baselines (do not rewrite for planning)
+- **`data/lny-2027-sponsors.json`** — FTF “Estimated sponsors” projection (2026 baseline + 2027 deltas); wired from `festivals.json`
 - **`data/season-events.json`** — LNY Season list (from LNY market landscape Sheet)
 - **`data/lny-2026-sponsors-display.json`** — public sponsor logos/tiers *(reconcile tiers before launch)*
 - **`resources/blog/`** — static blog pages (generated; do not edit HTML by hand)

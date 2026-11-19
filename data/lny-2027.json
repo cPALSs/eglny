@@ -6,7 +6,7 @@
     "mvpCap": 62450,
     "coreSponsorGap": 20104,
     "vendorRev100": 21125,
-    "registryFull": 177450,
+    "registryFull": 184050,
     "vendorSlots": 77,
     "attendance": 6000
   },
@@ -1066,14 +1066,11 @@
       "emoji": "\ud83d\udccb",
       "amount": 3000,
       "category": "registry",
-      "priority": false,
+      "priority": true,
       "chapterDays": "sunday",
-      "cohorts": [
-        "C3",
-        "C4"
-      ],
+      "cohorts": [],
       "sortOrder": 15.95,
-      "impactOrder": 4,
+      "impactOrder": 3,
       "tagline": "Commercial / public-exhibition rights and legal feed so the festival can show the Big Game on-site.",
       "description": "Commercial / public-exhibition rights and legal feed so the festival can show the Big Game on-site.",
       "benefits": [
@@ -1093,12 +1090,9 @@
       "amount": 5600,
       "category": "registry",
       "priority": false,
-      "cohorts": [
-        "C3",
-        "C4"
-      ],
+      "cohorts": [],
       "sortOrder": 16,
-      "impactOrder": 3,
+      "impactOrder": 14,
       "tagline": "Sunday LED wall and kickoff security for a main-stage Big Game watch.",
       "description": "Sunday LED wall and kickoff security for a main-stage Big Game watch.",
       "benefits": [
@@ -1122,16 +1116,85 @@
       "chapterDays": "sunday"
     },
     {
+      "id": "big_game_beer_garden_watch",
+      "name": "Big Game \u2014 Beer Garden Watch",
+      "emoji": "\ud83c\udfdf\ufe0f",
+      "amount": 3300,
+      "category": "registry",
+      "priority": true,
+      "cohorts": [],
+      "sortOrder": 16.5,
+      "impactOrder": 3.5,
+      "tagline": "TVs, generator power, cable covers, and shade so guests can watch the Big Game from the beer garden hang.",
+      "description": "TVs, generator power, cable covers, and shade so guests can watch the Big Game from the beer garden hang.",
+      "benefits": [
+        "Big Game \u2014 Beer Garden Watch presented by [Sponsor]",
+        "Named on beer garden watch / screen recognition when production allows"
+      ],
+      "lineItems": [
+        {
+          "label": "Two 75\u2033 TVs (buy) + stands / carts",
+          "amount": 1500
+        },
+        {
+          "label": "Light tower / generator (egress + TV power)",
+          "amount": 400
+        },
+        {
+          "label": "Cable cover rental",
+          "amount": 400
+        },
+        {
+          "label": "Shade canopy rental (screens / pour hang)",
+          "amount": 1000
+        }
+      ],
+      "chapterDays": "sunday"
+    },
+    {
+      "id": "big_game_pavilion_tv_watch",
+      "name": "Big Game \u2014 Pavilion Watch",
+      "emoji": "\ud83d\udcfa",
+      "amount": 3300,
+      "category": "registry",
+      "priority": false,
+      "cohorts": [],
+      "sortOrder": 16.75,
+      "impactOrder": 15,
+      "tagline": "TVs, generator power, cable covers, and shade for a dry Pavilion Big Game hang \u2014 no alcohol fence.",
+      "description": "TVs, generator power, cable covers, and shade for a dry Pavilion Big Game hang \u2014 no alcohol fence.",
+      "benefits": [
+        "Big Game \u2014 Pavilion Watch presented by [Sponsor]",
+        "Named on Pavilion watch / screen recognition when production allows"
+      ],
+      "lineItems": [
+        {
+          "label": "Two 75\u2033 TVs (buy) + stands / carts",
+          "amount": 1500
+        },
+        {
+          "label": "Light tower / generator (egress + TV power)",
+          "amount": 400
+        },
+        {
+          "label": "Cable cover rental",
+          "amount": 400
+        },
+        {
+          "label": "Shade canopy rental (screens / dining hang)",
+          "amount": 1000
+        }
+      ],
+      "chapterDays": "sunday"
+    },
+    {
       "id": "big_game_outdoor_evening",
       "name": "Big Game \u2014 Kloss Camp Screen",
       "emoji": "\ud83c\udfc8",
       "amount": 5000,
       "category": "registry",
       "priority": false,
-      "cohorts": [
-        "C3",
-        "C4"
-      ],
+      "cohorts": [],
       "sortOrder": 17,
       "impactOrder": 16,
       "tagline": "Optional Kloss camp screen and camp-watch security for Tailgate camps.",
@@ -1159,10 +1222,13 @@
       "emoji": "\ud83c\udf7a",
       "amount": 5500,
       "category": "registry",
+      "priority": true,
+      "chapterDays": "both",
+      "cohorts": [],
       "sortOrder": 18,
-      "impactOrder": 18,
-      "tagline": "Licensed festival pour \u2014 21+ wristbands, ABC coordination, and extra security.",
-      "description": "Licensed festival pour \u2014 21+ wristbands, ABC coordination, and extra security.",
+      "impactOrder": 4,
+      "tagline": "One licensed 40\u2032 \u00d7 40\u2032 pour \u2014 fence, alcohol security, wristbands, liquor liability, and ABC / City fees.",
+      "description": "One licensed 40\u2032 \u00d7 40\u2032 pour \u2014 fence, alcohol security, wristbands, liquor liability, and ABC / City fees.",
       "benefits": [
         "Beer Garden presented by [Sponsor]",
         "website / Facebook / Instagram feature",
@@ -1170,27 +1236,26 @@
       ],
       "lineItems": [
         {
-          "label": "Extra security for alcohol service (festival hours)",
+          "label": "Temp fence \u2014 ~160 lf (6\u2032 enclosure)",
           "amount": 2000
         },
         {
-          "label": "ID / wristband stations + supplies",
+          "label": "Extra private security (alcohol hours / ID gate)",
+          "amount": 1800
+        },
+        {
+          "label": "ID / wristband station + supplies",
           "amount": 500
         },
         {
-          "label": "ABC coordination + EGPD packet support",
-          "amount": 800
+          "label": "Host / Legal Liquor Liability rider",
+          "amount": 1100
         },
         {
-          "label": "Liquor liability insurance rider / increment",
-          "amount": 1200
-        },
-        {
-          "label": "Licensed partner ops stipend / fencing",
-          "amount": 1000
+          "label": "ABC daily license + City processing",
+          "amount": 100
         }
-      ],
-      "priority": false
+      ]
     },
     {
       "id": "additional_amount",

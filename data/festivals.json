@@ -5,7 +5,7 @@
       "label": "Elk Grove Lunar New Year Tết 2027",
       "file": "../data/lny-2027.json",
       "registryImpactSort": "desc",
-      "estimatedSponsorsFile": "../data/lny-2026-sponsors.json",
+      "estimatedSponsorsFile": "../data/lny-2027-sponsors.json",
       "cashOffsetLabel": "Vendors, parking & carnival",
       "sections": {
         "core": "Earned cash (vendors, parking, carnival) covers most of core ({preSponsor} of {coreTarget}). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
