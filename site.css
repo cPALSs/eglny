@@ -1494,7 +1494,9 @@ body.nav-open {
   padding-top: 1.75rem;
 }
 
-/* Homepage 2027 sponsors — same logos/tiers as /sponsorship/, home section chrome */
+/* Homepage 2027 sponsors — same logos/tiers as /sponsorship/, home section chrome.
+   Cards + logos are 2× the shared .sponsor-card / .sponsor-grid--center sizes
+   (sponsorship page keeps the smaller defaults). */
 .home-sponsors-2027 .sponsor-tier {
   margin: 1.5rem 0 0;
 }
@@ -1505,6 +1507,24 @@ body.nav-open {
 
 .home-sponsors-2027 .sponsor-tier h2 {
   margin-bottom: 0.75rem;
+}
+
+.home-sponsors-2027 .sponsor-grid--center .sponsor-card {
+  flex: 0 1 260px;
+  width: 260px;
+  min-height: 176px;
+  padding: 2rem;
+}
+
+.home-sponsors-2027 .sponsor-card img {
+  max-height: 144px;
+}
+
+@media (min-width: 640px) {
+  .home-sponsors-2027 .sponsor-grid--center .sponsor-card {
+    flex: 0 1 360px;
+    width: 360px;
+  }
 }
 
 .home-build-cta > p:first-of-type {
