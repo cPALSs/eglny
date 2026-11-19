@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    html { background: #1a0806; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activities — Elk Grove Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (_) {}
+    })();
+  </script>
+<link rel="stylesheet" href="../site.css" />
+  <meta name="description" content="Activities at Elk Grove Lunar New Year Tết 2027 — programming and things to do at the festival." />
+  <link rel="canonical" href="https://eglny.com/activities/" />
+  <meta property="og:title" content="Activities — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Activities at Elk Grove Lunar New Year Tết 2027 — programming and things to do at the festival." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eglny.com/activities/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Activities — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Activities at Elk Grove Lunar New Year Tết 2027 — programming and things to do at the festival." />
+  <meta property="og:image" content="https://eglny.com/assets/programming/star-of-spring-mini-pageant-2027.jpg" />
+  <meta name="twitter:image" content="https://eglny.com/assets/programming/star-of-spring-mini-pageant-2027.jpg" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>Activities</h1>
+        <p>Programming and things to do at the festival.</p>
+      </section>
+      <section>
+        <h2>Star of Spring Mini-Pageant</h2>
+        <p>Princess (ages 6–9) and Junior Princess (ages 10–13). Tentative Saturday or Sunday, February 13 or 14, 2027 · Elk Grove Regional Park. Hosted by Miss &amp; Miss Teen Vietnam Northern California.</p>
+        <p><a href="https://tally.so/r/dbb7po">Register on Tally</a></p>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../doc-scroll.js"></script>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const {
+        initPageShell,
+        loadSiteData,
+        mountFooter,
+        renderActivitySignupsPage,
+        initProgrammingFlierShare,
+        initDocToc,
+        setPageTitle,
+        escapeHtml,
+        revealPage,
+      } = window.EglnySite;
+      initPageShell("activities");
+      try {
+        const site = await loadSiteData();
+        const page = site.activities;
+        setPageTitle(site, page?.headline ?? "Activities");
+        document.querySelector('meta[name="description"]').setAttribute(
+          "content",
+          page?.metaDescription ??
+            "Activities at Elk Grove Lunar New Year Tết 2027 — programming and things to do at the festival.",
+        );
+        document.getElementById("main").innerHTML = renderActivitySignupsPage(page);
+        initDocToc();
+        if (typeof initProgrammingFlierShare === "function") initProgrammingFlierShare();
+        mountFooter(site);
+        if (typeof revealPage === "function") revealPage();
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+        if (typeof revealPage === "function") revealPage();
+      }
+    })();
+  </script>
+</body>
+</html>

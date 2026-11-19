@@ -48,10 +48,12 @@
   "sneakPreview": {
     "headline": "Sneak preview",
     "lead": "See what's in store for the Year of the Goat!",
+    "activitiesLabel": "Activities",
+    "activitiesHref": "/activities/",
     "foodLabel": "Food menu",
     "foodHref": "/food-menu/",
-    "vendorsLabel": "Vendors directory",
-    "vendorsHref": "/vendors-directory/"
+    "vendorsLabel": "Vendors",
+    "vendorsHref": "/vendors-list/"
   },
   "apply": {
     "email": "contact@eglny.com",
@@ -552,19 +554,47 @@
       }
     ]
   },
+  "activities": {
+    "headline": "Activities",
+    "lead": "Programming and things to do at the festival.",
+    "metaDescription": "Activities at Elk Grove Lunar New Year Tết 2027 — programming and things to do at the festival.",
+    "programs": [
+      {
+        "id": "star-of-spring",
+        "title": "Star of Spring Mini-Pageant",
+        "body": "Princess (ages 6–9) and Junior Princess (ages 10–13). Tentative Saturday or Sunday, February 13 or 14, 2027 · Elk Grove Regional Park. $20 · all backgrounds welcome · no pageant experience needed. Hosted by Miss & Miss Teen Vietnam Northern California.",
+        "ctaLabel": "Register on Tally",
+        "ctaHref": "https://tally.so/r/dbb7po",
+        "flier": {
+          "src": "/assets/programming/star-of-spring-mini-pageant-2027.jpg",
+          "alt": "Star of Spring 2027 Mini Pageant flyer — Miss & Miss Teen Vietnam Northern California"
+        }
+      }
+    ]
+  },
   "attendees": {
     "headline": "Visit",
-    "lead": "Guest guides for the festival weekend — food, maps, and what to expect on site.",
+    "lead": "Guest guides for the festival weekend — activities, food, maps, and what to expect on site.",
     "links": [
+      {
+        "title": "Activities",
+        "body": "Programming and things to do at the festival.",
+        "href": "/activities/"
+      },
       {
         "title": "Food menu",
         "body": "Browse locked-in 2027 meals, drinks, and snacks — or switch to the 2026 menu. Search and filter by dietary needs.",
         "href": "/food-menu/"
       },
       {
-        "title": "Vendors directory",
+        "title": "Vendors",
         "body": "Round 1 craft merchants and nonprofit community tables. Food vendors are on the food menu.",
-        "href": "/vendors-directory/"
+        "href": "/vendors-list/"
+      },
+      {
+        "title": "Kids Village",
+        "body": "Family play area — details and a feed-the-lion demo while the full program lands.",
+        "href": "/kids-village/"
       }
     ]
   },

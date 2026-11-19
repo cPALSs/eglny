@@ -196,8 +196,9 @@
             <h2>${escapeHtml(sneak.headline ?? "Sneak preview")}</h2>
             <p>${escapeHtml(sneak.lead ?? "See what’s in store for the Year of the Goat!")}</p>
             <div class="cta-row">
+              <a class="btn btn-tertiary" href="${escapeHtml(sneak.activitiesHref ?? "/activities/")}">${escapeHtml(sneak.activitiesLabel ?? "Activities")}</a>
               <a class="btn btn-tertiary" href="${escapeHtml(sneak.foodHref ?? "/food-menu/")}">${escapeHtml(sneak.foodLabel ?? "Food menu")}</a>
-              <a class="btn btn-tertiary" href="${escapeHtml(sneak.vendorsHref ?? "/vendors-directory/")}">${escapeHtml(sneak.vendorsLabel ?? "Vendors directory")}</a>
+              <a class="btn btn-tertiary" href="${escapeHtml(sneak.vendorsHref ?? "/vendors-list/")}">${escapeHtml(sneak.vendorsLabel ?? "Vendors")}</a>
             </div>
           </section>
           ${renderHomeSponsors2027(site.sponsorship, sponsors2027Data)}

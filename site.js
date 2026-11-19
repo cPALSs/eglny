@@ -194,12 +194,13 @@
         label: "Visit",
         href: "/attendees/",
         children: [
+          { id: "activities", label: "Activities", navLabel: "Activities", href: "/activities/" },
           { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
           {
-            id: "vendors-directory",
-            label: "Vendors directory",
-            navLabel: "Vendors directory",
-            href: "/vendors-directory/",
+            id: "vendors-list",
+            label: "Vendors",
+            navLabel: "Vendors",
+            href: "/vendors-list/",
           },
           { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
         ],
@@ -1243,7 +1244,7 @@
 
     return `
       <section class="hero">
-        <h1>${escapeHtml(data?.headline ?? "Vendors directory")}</h1>
+        <h1>${escapeHtml(data?.headline ?? "Vendors")}</h1>
         ${data?.lead ? `<p class="hero-lead">${formatBriefProse(data.lead)}</p>` : ""}
       </section>
       ${wrapDocLayout(renderDocToc(toc), main)}`;

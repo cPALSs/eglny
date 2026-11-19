@@ -20,6 +20,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/production/activity-signups/` | **Activity sign-ups** — participant registrations (Star of Spring Mini-Pageant + flier; Stage entertainment contact) (under **Production**) |
 | `/production/` | Production hub — Team, Volunteering, Activity sign-ups, Sponsorship, Vendor booths |
 | `/attendees/` | **Visit** hub — guest guides for the festival weekend |
+| `/activities/` | **Activities** — programming and things to do (Star of Spring Mini-Pageant + flier) (under **Visit**) |
 | `/fund-the-festival/` | Interactive sponsor registry (LNY only) — delisted from nav; linked from Sponsorship |
 | `/sponsorship/` | Sponsorship — partner pathways (FTF + packet) + 2026 sponsor recognition |
 | `/custom-zones/` | Custom Zones — named corners (GLF-style); delisted from nav; linked from Vendor booths |
@@ -27,7 +28,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/rfp/` | Redirect → `/team/` (RFP index retired from public hub) |
 | `/rfp/childrens-theater/` | Children’s Theater detail — deep-linked from Team open seat (Village / Maker Spot pages unlisted) |
 | `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Visit**) |
-| `/vendors-directory/` | **Vendors directory** — Round 1 craft merchants and nonprofit tables (under **Visit**) |
+| `/vendors-list/` | **Vendors** — Round 1 craft merchants and nonprofit tables (under **Visit**); `/vendors-directory/` redirects here |
 | `/kids-village/` | **Kids Village** — coming-soon placeholder + feed-the-lion play (under **Visit**) |
 | `/attractions/food/` | Redirect → `/food-menu/` |
 | `/resources/` | Resources hub |
@@ -39,7 +40,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/build/` | Redirect → `/fund-the-festival/` |
 | `/2026/sponsors.html` | Legacy 2026 sponsors page |
 
-Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/`. `/team/join/` and `/team/roles/` redirect to `/team/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`. `/rfp/` redirects to `/team/`. `/resources/lion-dance/` and `/resources/lion-dance-groups/` redirect to `https://littlesaigonsac.town/lists/lion-dance/`.
+Legacy redirects (via `clean-urls.js`): `/team.html` → `/team/`, `/about.html` → `/about/`, `/sponsors.html` → `/sponsorship/`, `/get-involved.html` → `/team/`. `/team/join/` and `/team/roles/` redirect to `/team/`. `/team/skills/` and `/production/small-projects/` redirect to `/production/volunteer/`. `/rfp/` redirects to `/team/`. `/vendors-directory/` → `/vendors-list/`. `/resources/lion-dance/` and `/resources/lion-dance-groups/` redirect to `https://littlesaigonsac.town/lists/lion-dance/`.
 
 ## Content
 
@@ -82,12 +83,14 @@ python3 -m http.server 8765
 - http://localhost:8765/production/activity-signups/
 - http://localhost:8765/production/
 - http://localhost:8765/attendees/
+- http://localhost:8765/activities/
 - http://localhost:8765/fund-the-festival/
 - http://localhost:8765/sponsorship/
 - http://localhost:8765/custom-zones/
 - http://localhost:8765/vendors/
 - http://localhost:8765/rfp/
 - http://localhost:8765/food-menu/
+- http://localhost:8765/vendors-list/
 - http://localhost:8765/kids-village/
 - http://localhost:8765/resources/
 - http://localhost:8765/resources/season/

@@ -43,5 +43,10 @@
 
   if (pathname === "/ig" || pathname === "/ig/") {
     location.replace("https://links.cpalss.com/lunarnewyeartet/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/vendors-directory" || pathname === "/vendors-directory/") {
+    location.replace("/vendors-list/" + search + hash);
   }
 })();

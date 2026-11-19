@@ -11,7 +11,7 @@ async function init() {
     revealPage,
   } = window.EglnySite;
 
-  initPageShell("vendors-directory");
+  initPageShell("vendors-list");
 
   const main = document.getElementById("main");
 
@@ -20,7 +20,7 @@ async function init() {
       loadSiteData(),
       loadJsonData("data/vendors-directory-2027.json"),
     ]);
-    setPageTitle(site, data?.headline ?? "Vendors directory");
+    setPageTitle(site, data?.headline ?? "Vendors");
     main.innerHTML = renderVendorsDirectoryPage(data);
     if (typeof revealPage === "function") revealPage();
   } catch (err) {
