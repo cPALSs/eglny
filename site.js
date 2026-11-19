@@ -168,6 +168,21 @@
         ],
       },
       {
+        id: "visit",
+        label: "Visit",
+        href: "/attendees/",
+        children: [
+          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
+          {
+            id: "vendors-directory",
+            label: "Vendors directory",
+            navLabel: "Vendors directory",
+            href: "/vendors-directory/",
+          },
+          { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
+        ],
+      },
+      {
         id: "production",
         label: "Production",
         href: "/production/",
@@ -187,21 +202,6 @@
           },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
-        ],
-      },
-      {
-        id: "visit",
-        label: "Visit",
-        href: "/attendees/",
-        children: [
-          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
-          {
-            id: "vendors-directory",
-            label: "Vendors directory",
-            navLabel: "Vendors directory",
-            href: "/vendors-directory/",
-          },
-          { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
         ],
       },
       {
@@ -273,9 +273,24 @@
           ${renderThemeControl()}
         </div>
         <div class="site-nav-links">${links}</div>
+        <div class="site-nav-drawer-footer">
+          <a class="site-nav-drawer-footer-email" href="mailto:contact@eglny.com">contact@eglny.com</a>
+        </div>
       </div>
     </nav>
   `;
+  }
+
+  function siteContactEmail(site) {
+    return site?.footer?.contactEmail ?? site?.apply?.email ?? "contact@eglny.com";
+  }
+
+  function injectNavContact(site) {
+    const el = document.querySelector(".site-nav-drawer-footer-email");
+    if (!el) return;
+    const email = siteContactEmail(site);
+    el.href = `mailto:${email}`;
+    el.textContent = email;
   }
 
   function initNavMenu() {
@@ -320,7 +335,7 @@
       backdrop.addEventListener("click", () => setOpen(false));
     }
 
-    nav.querySelectorAll(".site-nav-links a").forEach((link) => {
+    nav.querySelectorAll(".site-nav-links a, .site-nav-drawer-footer a").forEach((link) => {
       link.addEventListener("click", () => setOpen(false));
     });
 
@@ -413,7 +428,7 @@
     const navLinks = renderFooterNavLinks(getNavPages());
     const footer = site?.footer ?? {};
     const social = renderFooterSocialLinks(footer.socialLinks);
-    const contactEmail = footer.contactEmail ?? site.apply?.email ?? "contact@eglny.com";
+    const contactEmail = siteContactEmail(site);
     const coalition = (footer.coalitionLinks ?? [])
       .filter((link) => link.href !== "https://www.elkgrovelunarnewyear.com/")
       .map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>`)
@@ -926,6 +941,7 @@
     const ready = loadSiteData()
       .then((site) => {
         injectNavSocial(site?.footer?.socialLinks);
+        injectNavContact(site);
         mountFooter(site);
         return site;
       })

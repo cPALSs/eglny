@@ -431,6 +431,10 @@ body.nav-open {
   padding: 0.25rem 1rem 1rem;
 }
 
+.site-nav-drawer-footer {
+  display: none;
+}
+
 .site-nav-links a {
   color: var(--text);
   text-decoration: none;
@@ -529,35 +533,72 @@ body.nav-open {
     display: inline-flex;
   }
 
-  .site-nav-submenu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: 0.75rem;
-    padding-left: 0.85rem;
-    column-gap: 0.5rem;
+  /* Two columns of sections; each section keeps a single link stack. */
+  .site-nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1rem;
+    align-items: start;
+    padding: 0.15rem 0.85rem 1rem;
   }
 
-  /* Two columns without label wrap; items wider than half take the full row. */
+  .site-nav-group {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    min-width: 0;
+  }
+
+  .site-nav-submenu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-left: 0;
+    padding-left: 0.1rem;
+    column-gap: 0;
+  }
+
   .site-nav-links .site-nav-sublink-wrap {
-    flex: 1 0 calc(50% - 0.25rem);
-    max-width: 100%;
+    flex: none;
+    width: 100%;
+    max-width: none;
     box-sizing: border-box;
     padding: 0;
   }
 
   .site-nav-links .site-nav-sublink {
     display: block;
-    padding: 0.65rem 0.25rem 0.65rem 0.35rem;
-    font-size: 0.9rem;
+    padding: 0.4rem 0.15rem;
+    font-size: 0.85rem;
+    line-height: 1.25;
     color: var(--muted);
     border-bottom: none;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .site-nav-links .site-nav-parent {
-    padding: 0.75rem 0.25rem;
+    padding: 0.45rem 0.15rem 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     border-bottom: 1px solid var(--border);
+  }
+
+  .site-nav-drawer-footer {
+    display: block;
+    margin: 0.25rem 0.85rem 0;
+    padding: 0.75rem 0.15rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .site-nav-drawer-footer-email {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .site-nav-drawer-footer-email:hover {
+    color: var(--accent);
   }
 }
 
@@ -1495,8 +1536,8 @@ body.nav-open {
 }
 
 /* Homepage 2027 sponsors — same logos/tiers as /sponsorship/, home section chrome.
-   Cards + logos are 2× the shared .sponsor-card / .sponsor-grid--center sizes
-   (sponsorship page keeps the smaller defaults). */
+   Mobile: two columns, sized to the row (~200px on a 440px phone — bigger than /sponsorship/).
+   ≥640px: larger cards (desktop home hero treatment). */
 .home-sponsors-2027 .sponsor-tier {
   margin: 1.5rem 0 0;
 }
@@ -1509,21 +1550,33 @@ body.nav-open {
   margin-bottom: 0.75rem;
 }
 
+.home-sponsors-2027 .sponsor-grid--center {
+  gap: 0.75rem;
+}
+
 .home-sponsors-2027 .sponsor-grid--center .sponsor-card {
-  flex: 0 1 260px;
-  width: 260px;
-  min-height: 176px;
-  padding: 2rem;
+  flex: 0 1 calc((100% - 0.75rem) / 2);
+  width: calc((100% - 0.75rem) / 2);
+  max-width: 200px;
+  min-height: 120px;
+  padding: 1.15rem;
 }
 
 .home-sponsors-2027 .sponsor-card img {
-  max-height: 144px;
+  max-height: 100px;
 }
 
 @media (min-width: 640px) {
   .home-sponsors-2027 .sponsor-grid--center .sponsor-card {
     flex: 0 1 360px;
     width: 360px;
+    max-width: none;
+    min-height: 176px;
+    padding: 2rem;
+  }
+
+  .home-sponsors-2027 .sponsor-card img {
+    max-height: 144px;
   }
 }
 
