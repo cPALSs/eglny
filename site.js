@@ -1186,6 +1186,29 @@
     return Boolean(vendorLogoSrc(vendor?.logo ?? vendor?.avatar ?? vendor?.image));
   }
 
+  /** Initials for logo placeholders — real logos still win sort via vendorHasAvatar. */
+  function vendorDirectoryInitials(name) {
+    const skip = new Set(["and", "the", "of", "a", "an", "&"]);
+    const trailSkip = new Set(["company", "co", "corp", "corporation", "llc", "inc", "ltd", "limited"]);
+    const words = String(name || "")
+      .replace(/['’]s\b/gi, "")
+      .split(/[\s./_-]+/)
+      .map((w) => w.replace(/[^A-Za-z0-9\u00C0-\u024F]/g, ""))
+      .filter((w) => w && !skip.has(w.toLowerCase()));
+    while (words.length > 1 && trailSkip.has(words[words.length - 1].toLowerCase())) {
+      words.pop();
+    }
+    const alphaWords = words.filter((w) => /[A-Za-z\u00C0-\u024F]/.test(w));
+    const use = alphaWords.length ? alphaWords : words;
+    if (!use.length) return "?";
+    if (use.length === 1) return use[0].slice(0, 2).toUpperCase();
+    return use
+      .slice(0, 3)
+      .map((w) => w[0])
+      .join("")
+      .toUpperCase();
+  }
+
   function normalizeVendorWebsiteUrl(website) {
     if (!website) return null;
     let s = String(website).trim();
@@ -1214,7 +1237,7 @@
       const aHas = vendorHasAvatar(a) ? 0 : 1;
       const bHas = vendorHasAvatar(b) ? 0 : 1;
       if (aHas !== bHas) return aHas - bHas;
-      return String(a?.name ?? "").localeCompare(String(b?.name ?? ""), undefined, {
+      return String(a?.name ?? "").localeCompare(String(b?.name ?? ""), "en", {
         sensitivity: "base",
       });
     });
@@ -1222,9 +1245,12 @@
 
   function renderVendorsDirectoryItem(vendor) {
     const logoSrc = vendorLogoSrc(vendor.logo ?? vendor.avatar ?? vendor.image);
-    const logo = logoSrc
+    const hasRealLogo = Boolean(logoSrc);
+    const logo = hasRealLogo
       ? `<img class="vendor-directory-logo" src="${escapeHtml(logoSrc)}" alt="" width="56" height="56" loading="lazy" />`
-      : "";
+      : `<span class="vendor-directory-logo vendor-directory-logo--placeholder" aria-hidden="true">${escapeHtml(
+          vendorDirectoryInitials(vendor.name)
+        )}</span>`;
     const websiteUrl = normalizeVendorWebsiteUrl(vendor.website ?? vendor.url);
     const websiteLink = websiteUrl
       ? `<a
@@ -1250,7 +1276,8 @@
       websiteLink || igLink
         ? `<div class="vendor-directory-icons">${websiteLink}${igLink}</div>`
         : "";
-    return `<li class="vendor-directory-item${logo ? " vendor-directory-item--has-avatar" : ""}">
+    return `<li class="vendor-directory-item${hasRealLogo ? " vendor-directory-item--has-avatar" : ""}">
+      ${logo}
       <div class="vendor-directory-body">
         <div class="vendor-directory-name-row">
           <h3 class="vendor-directory-name">${escapeHtml(vendor.name)}</h3>
@@ -1258,7 +1285,6 @@
         </div>
         ${vendor.description ? `<p class="vendor-directory-desc">${escapeHtml(vendor.description)}</p>` : ""}
       </div>
-      ${logo}
     </li>`;
   }
 

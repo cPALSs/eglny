@@ -23,7 +23,7 @@
           "id": "em-be-books",
           "name": "em bé books",
           "description": "Children's books and gifts — Vietnamese and bilingual titles.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/em-be-books.jpg",
           "website": "https://embebooks.com/",
           "instagram": "embebooks"
         },
@@ -47,29 +47,29 @@
           "id": "jcmstore",
           "name": "Jcmstore",
           "description": "Lanterns, red envelopes, toys, balloons, and 3D-printed dragons.",
-          "logo": "/assets/vendors-directory/2027/jcmstore.jpg",
+          "logo": null,
           "website": null,
           "instagram": null
         },
         {
           "id": "kc-trendy",
-          "name": "KC TRENDY LLC",
+          "name": "KC Trendy",
           "description": "Sensory blankets, plush, and toys — try before you buy.",
           "logo": "/assets/vendors-directory/2027/kc-trendy.jpg",
           "website": null,
-          "instagram": null
+          "instagram": "kandc.trendy"
         },
         {
           "id": "luxury-boutique-0724",
-          "name": "Luxury boutique 0724",
+          "name": "Luxury Boutique 0724",
           "description": "Jewelry and press-on nails.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/luxury-boutique-0724.jpg",
           "website": null,
           "instagram": "luxury_boutique_0724"
         },
         {
           "id": "mas-trading",
-          "name": "Ma's trading company",
+          "name": "Ma's Trading Company",
           "description": "Sunglasses, Lunar New Year gifts, and toys.",
           "logo": "/assets/vendors-directory/2027/mas-trading.jpg",
           "website": null,
@@ -85,9 +85,9 @@
         },
         {
           "id": "pop-berry-mer",
-          "name": "Pop Berry",
+          "name": "Tiny Cute Studio",
           "description": "Handmade crochet flowers and keychains.",
-          "logo": "/assets/vendors-directory/2027/pop-berry.jpg",
+          "logo": "/assets/vendors-directory/2027/tiny-cute-studio.jpg",
           "website": "https://tinycutestudio.etsy.com/",
           "instagram": null
         },
@@ -95,7 +95,7 @@
           "id": "the-creative-space",
           "name": "The Creative Space",
           "description": "Accessories retail — Midtown Sacramento maker space and fair producer.",
-          "logo": null,
+          "logo": "/assets/vendors-directory/2027/the-creative-space.jpg",
           "website": "https://www.thecreativespacesac.com/",
           "instagram": "thecreativespacesac"
         },

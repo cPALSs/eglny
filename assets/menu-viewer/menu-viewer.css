@@ -801,10 +801,11 @@
   flex: 0 0 auto;
   width: 3rem;
   height: 3rem;
-  object-fit: contain;
-  border-radius: 8px;
+  object-fit: cover;
+  border-radius: 50%;
   background: #fff;
   border: 1px solid var(--border, #e7e5e4);
+  box-sizing: border-box;
 }
 
 .menu-layout .vendor-logo--initials {

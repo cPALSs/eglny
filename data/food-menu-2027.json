@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-19T15:27:00Z",
+  "published_at": "2026-11-19T21:16:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -113,7 +113,7 @@
       "name": "Mr. Cane",
       "booth_label": null,
       "booth_kind": "prepack",
-      "logo": null,
+      "logo": "assets/food-menu/2027/mr-cane/logo.jpg",
       "instagram": null,
       "facebook": "mrcane.elk.grove",
       "dietary": [],
@@ -347,9 +347,9 @@
           "image_credit": "Fairy Bites & Delicacies"
         },
         {
-          "name": "Turon, banana cream-cheese",
+          "name": "Turon",
           "note": "fried spring roll",
-          "options": null,
+          "options": "banana cream-cheese, mango cream-cheese",
           "price": null,
           "category": "sweets",
           "cuisine": "filipino",
@@ -360,23 +360,7 @@
             "contains_gluten"
           ],
           "image": "assets/food-menu/2027/fairy-bites-delicacies/banana-cream-cheese-turon.jpg",
-          "image_alt": "Turon, banana cream-cheese from Fairy Bites & Delicacies"
-        },
-        {
-          "name": "Turon, mango cream-cheese",
-          "note": "fried spring roll",
-          "options": null,
-          "price": null,
-          "category": "sweets",
-          "cuisine": "filipino",
-          "allergens": [],
-          "dietary_tags": [],
-          "dietary_warnings": [
-            "contains_dairy",
-            "contains_gluten"
-          ],
-          "image": "assets/food-menu/2027/fairy-bites-delicacies/mango-cream-cheese-turon.jpg",
-          "image_alt": "Turon, mango cream-cheese from Fairy Bites & Delicacies",
+          "image_alt": "Turon from Fairy Bites & Delicacies",
           "image_credit": "Fairy Bites & Delicacies"
         },
         {
@@ -1177,7 +1161,7 @@
       "name": "My Lumpia Lady",
       "booth_label": null,
       "booth_kind": "open_cooking",
-      "logo": null,
+      "logo": "assets/food-menu/2027/my-lumpia-lady/logo.jpg",
       "instagram": "mylumpialady916",
       "facebook": null,
       "dietary": [],

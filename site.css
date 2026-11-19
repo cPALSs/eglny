@@ -3297,9 +3297,25 @@ a.co-chair-name {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  margin-left: auto;
   object-fit: cover;
   border-radius: 50%;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.vendor-directory-logo--placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: unset;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary, var(--muted));
+  background: var(--surface-raised, rgba(255, 255, 255, 0.04));
+  line-height: 1;
+  user-select: none;
 }
 
 .vendor-directory-body {
