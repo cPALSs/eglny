@@ -47,12 +47,16 @@ let idleTimer = null;
 let swipe = { active: false, startX: 0, deltaX: 0, baseTx: 0 };
 /** Pixabay Content License — carrotnom (freesound_community / j1987 CC0). */
 const CHOMP_SRC = "../assets/kids-village/chomp.mp3";
-/** Web Audio — one decode, sync starts. HTMLAudio clones queue on mobile and burst later. */
+/** Prefer Web Audio; keep a tiny HTMLAudio pool for iOS when context is still suspended after the fly-in. */
+const CHOMP_POOL = 2;
 let audioCtx = null;
 let chompBuffer = null;
 let chompBytes = null;
 let chompBytesReady = null;
-let audioReady = null;
+let decodeReady = null;
+let htmlPool = null;
+let htmlUnlocked = false;
+let htmlUnlockPromise = null;
 /** At most one deferred chomp if feed arrives before decode finishes. */
 let pendingMunch = false;
 
@@ -83,56 +87,139 @@ function getAudioCtx() {
   return audioCtx;
 }
 
-/** Resume + decode on gesture. Shared promise so throttled taps don't spawn parallel unlocks. */
-function ensureAudio() {
+function getHtmlPool() {
+  if (!htmlPool) {
+    htmlPool = Array.from({ length: CHOMP_POOL }, () => {
+      const a = new Audio(CHOMP_SRC);
+      a.preload = "auto";
+      a.setAttribute("playsinline", "");
+      return a;
+    });
+  }
+  return htmlPool;
+}
+
+function warmDecode() {
   const ctx = getAudioCtx();
   if (!ctx) return Promise.resolve(false);
-  if (!audioReady) {
-    audioReady = (async () => {
-      if (ctx.state === "suspended") await ctx.resume();
-      if (!chompBuffer) {
-        const bytes = chompBytes || (await prefetchChomp());
-        if (!bytes) throw new Error("chomp fetch failed");
-        // decodeAudioData may detach the buffer — keep a copy for rare re-decode.
-        chompBuffer = await ctx.decodeAudioData(bytes.slice(0));
-      }
-      if (ctx.state === "suspended") await ctx.resume();
-      return true;
-    })().catch(() => {
-      audioReady = null;
-      return false;
-    });
-  } else if (ctx.state === "suspended") {
-    ctx.resume().catch(() => {});
+  if (chompBuffer) return Promise.resolve(true);
+  if (decodeReady) return decodeReady;
+  decodeReady = (async () => {
+    const bytes = chompBytes || (await prefetchChomp());
+    if (!bytes) throw new Error("chomp fetch failed");
+    chompBuffer = await ctx.decodeAudioData(bytes.slice(0));
+    return true;
+  })().catch(() => {
+    decodeReady = null;
+    return false;
+  });
+  return decodeReady;
+}
+
+/** Must run inside the user-gesture stack — no await before resume / silent kick / muted HTML play. */
+function unlockAudioSync() {
+  const ctx = getAudioCtx();
+  if (ctx) {
+    if (ctx.state === "suspended") void ctx.resume();
+    try {
+      const kick = ctx.createBuffer(1, 1, ctx.sampleRate || 22050);
+      const src = ctx.createBufferSource();
+      src.buffer = kick;
+      src.connect(ctx.destination);
+      src.start(0);
+    } catch {
+      /* ignore */
+    }
   }
-  return audioReady;
+
+  const pool = getHtmlPool();
+  if (!htmlUnlockPromise) {
+    htmlUnlockPromise = Promise.all(
+      pool.map((a) => {
+        a.muted = true;
+        return a
+          .play()
+          .then(() => {
+            a.pause();
+            a.currentTime = 0;
+            a.muted = false;
+            return true;
+          })
+          .catch(() => false);
+      })
+    ).then((ok) => {
+      htmlUnlocked = ok.some(Boolean);
+      if (!htmlUnlocked) htmlUnlockPromise = null;
+      return htmlUnlocked;
+    });
+  }
+
+  warmDecode();
+  return htmlUnlockPromise;
 }
 
-function startMunch() {
+/** Gesture entry — sync unlock, then finish decode / HTML unlock in the background. */
+function ensureAudio() {
+  const unlock = unlockAudioSync();
+  return Promise.all([warmDecode(), unlock || Promise.resolve(htmlUnlocked)]).then(
+    ([decoded, html]) => !!(decoded || html || chompBuffer || htmlUnlocked)
+  );
+}
+
+function startMunchWeb() {
   const ctx = audioCtx;
-  if (!ctx || ctx.state !== "running" || !chompBuffer) return false;
-  const src = ctx.createBufferSource();
-  src.buffer = chompBuffer;
-  const gain = ctx.createGain();
-  gain.gain.value = 0.9;
-  src.connect(gain);
-  gain.connect(ctx.destination);
-  src.start(0);
-  return true;
+  if (!ctx || !chompBuffer) return false;
+  if (ctx.state !== "running") return false;
+  try {
+    const src = ctx.createBufferSource();
+    src.buffer = chompBuffer;
+    const gain = ctx.createGain();
+    gain.gain.value = 0.9;
+    src.connect(gain);
+    gain.connect(ctx.destination);
+    src.start(0);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
-/** Pixabay carrotnom chomp — BufferSource per hit; coalesce while still decoding. */
+function startMunchHtml() {
+  if (!htmlUnlocked) return false;
+  const pool = getHtmlPool();
+  const a = pool.find((el) => el.paused || el.ended) || pool[0];
+  try {
+    a.muted = false;
+    a.volume = 0.9;
+    a.currentTime = 0;
+    const p = a.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function tryMunch() {
+  return startMunchWeb() || startMunchHtml();
+}
+
+/** Pixabay carrotnom chomp — Web Audio when running; else unlocked HTML pool (no late clones). */
 function playMunch() {
-  if (startMunch()) {
+  if (tryMunch()) {
     pendingMunch = false;
     return;
   }
   pendingMunch = true;
-  ensureAudio().then((ok) => {
-    if (!ok || !pendingMunch) return;
-    pendingMunch = false;
-    startMunch();
-  });
+  const ctx = getAudioCtx();
+  const resumeP =
+    ctx && ctx.state === "suspended" ? ctx.resume().catch(() => {}) : Promise.resolve();
+  Promise.all([ensureAudio(), resumeP])
+    .then(() => {
+      if (!pendingMunch) return;
+      if (tryMunch()) pendingMunch = false;
+    })
+    .catch(() => {});
 }
 
 function currentLion() {
