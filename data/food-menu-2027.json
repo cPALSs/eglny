@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-19T02:35:00Z",
+  "published_at": "2026-11-19T06:42:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -273,7 +273,7 @@
           "image_credit": "Fairy Bites & Delicacies"
         },
         {
-          "name": "Banana cream-cheese turon",
+          "name": "Turon, banana cream-cheese",
           "note": "fried spring roll",
           "options": null,
           "price": null,
@@ -286,10 +286,10 @@
             "contains_gluten"
           ],
           "image": "assets/food-menu/2027/fairy-bites-delicacies/banana-cream-cheese-turon.jpg",
-          "image_alt": "Banana cream-cheese turon from Fairy Bites & Delicacies"
+          "image_alt": "Turon, banana cream-cheese from Fairy Bites & Delicacies"
         },
         {
-          "name": "Mango cream-cheese turon",
+          "name": "Turon, mango cream-cheese",
           "note": "fried spring roll",
           "options": null,
           "price": null,
@@ -302,7 +302,7 @@
             "contains_gluten"
           ],
           "image": "assets/food-menu/2027/fairy-bites-delicacies/mango-cream-cheese-turon.jpg",
-          "image_alt": "Mango cream-cheese turon from Fairy Bites & Delicacies",
+          "image_alt": "Turon, mango cream-cheese from Fairy Bites & Delicacies",
           "image_credit": "Fairy Bites & Delicacies"
         },
         {
@@ -1149,6 +1149,76 @@
           "allergens": [],
           "dietary_tags": [],
           "dietary_warnings": [
+            "contains_gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baboy-boys",
+      "name": "Baboy Boys",
+      "booth_label": null,
+      "booth_kind": "food_truck",
+      "logo": "assets/food-menu/2027/baboy-boys/logo.jpg",
+      "instagram": "baboyboys",
+      "facebook": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Lechon rice plate",
+          "note": "roasted pork belly",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "filipino",
+          "dish_type": "rice_plates_bowls",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Sisig rice plate",
+          "note": "Filipino sizzling pork",
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "filipino",
+          "dish_type": "rice_plates_bowls",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_pork",
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Chicken skewers",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "meals",
+          "cuisine": "filipino",
+          "dish_type": "bbq_grill",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat"
+          ]
+        },
+        {
+          "name": "Lumpia",
+          "note": "Filipino spring rolls",
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "cuisine": "filipino",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_meat",
             "contains_gluten"
           ]
         }
