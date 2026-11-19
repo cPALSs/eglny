@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-19T06:42:00Z",
+  "published_at": "2026-11-19T15:27:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -172,6 +172,80 @@
           "subcategory": "others",
           "allergens": [],
           "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "pitayas-locas",
+      "name": "Pitayas Locas",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/pitayas-locas/logo.jpg",
+      "instagram": "pitayaslocas",
+      "facebook": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Aguas frescas",
+          "note": "Mexican fruit drinks",
+          "options": null,
+          "price": null,
+          "category": "drinks",
+          "subcategory": "others",
+          "cuisine": "mexican_latin",
+          "allergens": [],
+          "dietary_tags": [
+            "vegan",
+            "vegetarian",
+            "dairy_free",
+            "nut_free"
+          ],
+          "image": "assets/food-menu/2027/pitayas-locas/aguas-frescas.jpg",
+          "image_alt": "Aguas frescas from Pitayas Locas",
+          "image_credit": "Pitayas Locas"
+        },
+        {
+          "name": "Fruit cups",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "cuisine": "mexican_latin",
+          "allergens": [],
+          "dietary_tags": [
+            "vegan",
+            "vegetarian",
+            "dairy_free",
+            "nut_free"
+          ],
+          "image": "assets/food-menu/2027/pitayas-locas/fruit-cups.jpg",
+          "image_alt": "Fruit cups from Pitayas Locas",
+          "image_credit": "Pitayas Locas"
+        },
+        {
+          "name": "Hot corn",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "snacks",
+          "cuisine": "mexican_latin",
+          "allergens": [],
+          "dietary_tags": [
+            "vegetarian"
+          ]
+        },
+        {
+          "name": "Churros",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "cuisine": "mexican_latin",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_gluten"
+          ]
         }
       ]
     },
@@ -704,11 +778,12 @@
       "dietary": [],
       "items": [
         {
-          "name": "Strawberry tanghulu",
+          "name": "Tanghulu",
           "note": "sugar-coated fruit skewer",
-          "options": null,
+          "options": "strawberry, rainbow fruit",
           "price": null,
           "category": "sweets",
+          "cuisine": "chinese",
           "allergens": [],
           "dietary_tags": [
             "vegan",
@@ -717,23 +792,7 @@
             "nut_free"
           ],
           "image": "assets/food-menu/2027/pop-berry/tanghulu.jpg",
-          "image_alt": "Strawberry tanghulu from Pop Berry"
-        },
-        {
-          "name": "Rainbow fruit tanghulu",
-          "note": "sugar-coated fruit skewer",
-          "options": null,
-          "price": null,
-          "category": "sweets",
-          "allergens": [],
-          "dietary_tags": [
-            "vegan",
-            "vegetarian",
-            "dairy_free",
-            "nut_free"
-          ],
-          "image": "assets/food-menu/2027/pop-berry/tanghulu.jpg",
-          "image_alt": "Rainbow fruit tanghulu from Pop Berry"
+          "image_alt": "Tanghulu from Pop Berry"
         }
       ]
     },
