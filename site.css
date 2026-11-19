@@ -533,7 +533,9 @@ body.nav-open {
     display: inline-flex;
   }
 
-  /* Two columns of sections; each section keeps a single link stack. */
+  /* Two columns of sections; each section keeps a single link stack.
+     DOM order stays About → Production → Visit → Resources (desktop).
+     Mobile visual: About | Visit / Production | Resources. */
   .site-nav-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -547,6 +549,22 @@ body.nav-open {
     margin-bottom: 0;
     padding-bottom: 0;
     min-width: 0;
+  }
+
+  .site-nav-group[data-nav-section="about"] {
+    order: 1;
+  }
+
+  .site-nav-group[data-nav-section="visit"] {
+    order: 2;
+  }
+
+  .site-nav-group[data-nav-section="production"] {
+    order: 3;
+  }
+
+  .site-nav-group[data-nav-section="resources"] {
+    order: 4;
   }
 
   .site-nav-submenu {

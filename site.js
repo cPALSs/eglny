@@ -168,21 +168,6 @@
         ],
       },
       {
-        id: "visit",
-        label: "Visit",
-        href: "/attendees/",
-        children: [
-          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
-          {
-            id: "vendors-directory",
-            label: "Vendors directory",
-            navLabel: "Vendors directory",
-            href: "/vendors-directory/",
-          },
-          { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
-        ],
-      },
-      {
         id: "production",
         label: "Production",
         href: "/production/",
@@ -202,6 +187,21 @@
           },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
           { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
+        ],
+      },
+      {
+        id: "visit",
+        label: "Visit",
+        href: "/attendees/",
+        children: [
+          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
+          {
+            id: "vendors-directory",
+            label: "Vendors directory",
+            navLabel: "Vendors directory",
+            href: "/vendors-directory/",
+          },
+          { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
         ],
       },
       {
@@ -231,7 +231,7 @@
               return `<div class="site-nav-sublink-wrap"><a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
             })
             .join("");
-          return `<div class="site-nav-group${childActive ? " is-active" : ""}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
+          return `<div class="site-nav-group${childActive ? " is-active" : ""}" data-nav-section="${escapeHtml(page.id)}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
         }
         const current = page.id === resolvedActive ? ' aria-current="page"' : "";
         return `<a href="${page.href}"${current}>${escapeHtml(navLinkLabel(page))}</a>`;
