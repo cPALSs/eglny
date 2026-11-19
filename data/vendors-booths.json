@@ -153,12 +153,27 @@
           "Food, merchant, and corporate booths also pay refundable cleanup deposits. They’re charged on **Fri, Jan 29, 2027** (or when you’re approved, if later). These deposits do **not** lock your booth."
         ],
         "bullets": [
-          "**$100 trash** — every food, merchant, and corporate booth",
-          "**$500 cooking cleanup** — only if you cook on site (trucks/trailers, open flame, grills, fryers)",
+          "**$100 trash** — every food, merchant, and corporate booth. You get it back when the pad is left clean — no trash, packaging, or abandoned goods.",
+          "**$500 cooking cleanup** — only if you cook on site (trucks/trailers, open flame, grills, fryers — including enclosed trailers with electric equipment). You get it back when there’s no pad damage from cooking.",
           "Pre-packaged / no-cook food → trash deposit only"
         ],
         "after": [
-          "You get the trash deposit back when you bag out and leave the space clean. You get the cooking cleanup deposit back if there’s no grease, oil, or burn marks."
+          "**Trash deposit examples that can hold or reduce a refund:** leftover boxes of merch or product, bags of trash, cardboard, packaging, a vinyl ground tarp left behind, or other items left on or beside your pad.",
+          "**Cooking cleanup examples that can hold or reduce a refund:** grease or oil stains, spilled fryer oil, burn marks, scorched pavement, or similar pad damage from cooking equipment."
+        ]
+      },
+      {
+        "title": "Deposit refunds",
+        "body": [
+          "Cleanup deposits are refunded after the festival when your assigned pad(s) pass inspection. We aim to finish clean refunds **within about 30 days** after the event. If the park is still assessing a hold, it can take longer — we’ll email you."
+        ],
+        "bullets": [
+          "**Morning of the festival:** as staff walk the vendor pads, each vendor reviews, signs, and returns a **booth-pad condition sign-off** and notes any concerns about their pad(s).",
+          "**After the event:** we do a **joint walkthrough with Cosumnes CSD / park staff**. We photograph issues, mark pad locations, and match them to the morning sign-offs.",
+          "**If there’s an incident on your pad:** we email you that the related deposit is **on hold** while we coordinate repair or cleanup cost with the park. Only the affected deposit is held; clean unrelated deposits still follow the normal refund path.",
+          "**Damage liability cap:** you are **not** billed for full park repair costs beyond the deposit. The related deposit is the **maximum** we withhold for that incident.",
+          "**First-time incidents:** you get a **warning**, and we document the incident in your vendor record. We track compliance over time; **repeat incidents** can affect future applications.",
+          "**Before you leave:** we recommend a short phone **video of your empty pad** that states your **business name, date, and time**. Keep it in case of a dispute (for example, if another vendor dumps trash on your pad after you leave)."
         ]
       },
       {
