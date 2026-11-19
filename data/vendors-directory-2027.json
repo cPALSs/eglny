@@ -1,7 +1,7 @@
 {
   "festival": "Elk Grove Lunar New Year Tết 2027",
   "season": 2027,
-  "updated": "2026-11-07",
+  "updated": "2026-11-19",
   "source": "Round 1 Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657). Kids activity tables (57739) excluded.",
   "foodMenuHref": "/food-menu/",
   "headline": "Vendors",
@@ -11,6 +11,13 @@
       "id": "merchants",
       "title": "Merchants",
       "vendors": [
+        {
+          "id": "100-seconds-tower",
+          "name": "100 Seconds Tower",
+          "description": "Staffed hang-challenge endurance activity — guests pay to hang from a bar.",
+          "logo": null,
+          "instagram": null
+        },
         {
           "id": "em-be-books",
           "name": "em bé books",
