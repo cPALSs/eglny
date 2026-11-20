@@ -1,6 +1,6 @@
 {
   "festival": "LNY 2026",
-  "published_at": "2026-11-14T16:05:00Z",
+  "published_at": "2026-11-20T03:50:00Z",
   "year": 2026,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "vendors": [
@@ -303,7 +303,7 @@
           "options": null,
           "price": null,
           "category": "snacks",
-          "cuisine": "japanese_korean",
+          "cuisine": "korean",
           "allergens": [],
           "dietary_tags": []
         },

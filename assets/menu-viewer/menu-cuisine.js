@@ -36,7 +36,8 @@ export const CUISINE_ORDER = [
   "filipino",
   "lao_thai",
   "hmong",
-  "japanese_korean",
+  "japanese",
+  "korean",
   "asian",
   "mexican_latin",
   "mediterranean",
@@ -47,13 +48,15 @@ export const CUISINE_ORDER = [
   "other",
 ];
 
+/** By cuisine section titles (can be longer / explanatory). */
 export const CUISINE_LABELS = {
   vietnamese: "Vietnamese",
   chinese: "Chinese",
   filipino: "Filipino",
   lao_thai: "Lao / Thai",
   hmong: "Hmong",
-  japanese_korean: "Japanese / Korean",
+  japanese: "Japanese",
+  korean: "Korean",
   asian: "Asian",
   mexican_latin: "Mexican / Latin",
   mediterranean: "Mediterranean",
@@ -64,6 +67,15 @@ export const CUISINE_LABELS = {
   other: "Other",
 };
 
+/** Dish-line chip labels — short; fall back to CUISINE_LABELS. */
+export const CUISINE_CHIP_LABELS = {
+  american: "American",
+};
+
+export function cuisineChipLabel(id) {
+  return CUISINE_CHIP_LABELS[id] || CUISINE_LABELS[id] || id;
+}
+
 /** Meal-only cuisine ids (snacks/sweets/drinks are format sections). */
 export const MEAL_CUISINE_IDS = [
   "vietnamese",
@@ -71,7 +83,8 @@ export const MEAL_CUISINE_IDS = [
   "filipino",
   "lao_thai",
   "hmong",
-  "japanese_korean",
+  "japanese",
+  "korean",
   "asian",
   "mexican_latin",
   "mediterranean",
@@ -107,7 +120,8 @@ const SPECIFIC_ASIAN_IDS = new Set([
   "filipino",
   "lao_thai",
   "hmong",
-  "japanese_korean",
+  "japanese",
+  "korean",
 ]);
 
 /** Item-name rules — most specific first. */
@@ -116,7 +130,8 @@ const ITEM_RULES = [
     "vietnamese",
     // Avoid trailing \b — breaks on Vietnamese diacritics (bánh mì, chè, etc.).
     // No trailing \b on diacritic tokens (chè, phở) — JS word boundaries break on them.
-    /(?:^|[^A-Za-z])(ph[oở]|b[aá]nh\s*m[iì]|b[aá]nh\s*tr[aá]ng|b[aá]nh\s*x[eẻ]o|c[oơ]m\b|b[uú]n\b|h[uủ]\s*ti[eế]u|ch[aả]\s*gi[oò]|g[oỏ]i\s*cu[oố]n|ch[eè]|viet(?:namese)?(?:\s+coffee|\s+iced)?|c[aà]\s*ph[eê]|bo\s*luc\s*lac|b[oò]\s*l[uú]c\s*l[aá]c|lemongrass\s+(steak|chicken|pork)|bun\s*bo)/i,
+    // ch[eè] must not prefix English words (cheese); diacritic chè still matches via [eè].
+    /(?:^|[^A-Za-z])(ph[oở]|b[aá]nh\s*m[iì]|b[aá]nh\s*tr[aá]ng|b[aá]nh\s*x[eẻ]o|c[oơ]m\b|b[uú]n\b|h[uủ]\s*ti[eế]u|ch[aả]\s*gi[oò]|g[oỏ]i\s*cu[oố]n|ch[eè](?=[^A-Za-z]|$)|viet(?:namese)?(?:\s+coffee|\s+iced)?|c[aà]\s*ph[eê]|bo\s*luc\s*lac|b[oò]\s*l[uú]c\s*l[aá]c|lemongrass\s+(steak|chicken|pork)|bun\s*bo)/i,
   ],
   [
     "hmong",
@@ -135,8 +150,12 @@ const ITEM_RULES = [
     /\b(chow\s*mein|orange\s*chicken|general\s*tso|kung\s*pao|mongolian|siu\s*mai|dim\s*sum|wonton|lo\s*mein|tanghulu|chinese)\b/i,
   ],
   [
-    "japanese_korean",
-    /\b(teriyaki|katsu|bulgogi|korean\s+corn\s*dogs?|korean\s+cheesedogs?|cheese\s*dogs?|ramen|sushi|gyoza|bibimbap|tonkatsu|japchae|korean\s+bbq)\b/i,
+    "korean",
+    /\b(kalbi|galbi|bulgogi|bibimbap|japchae|buldak|tteokbokki|kimchi|banchan|korean(?:\s+(?:bbq|corn\s*dogs?|cheesedogs?|cheese\s*dogs?))?)\b/i,
+  ],
+  [
+    "japanese",
+    /\b(teriyaki|katsu|tonkatsu|ramen|sushi|sashimi|gyoza|udon|donburi|okonomiyaki|takoyaki|japanese)\b/i,
   ],
   [
     "mexican_latin",
@@ -195,7 +214,8 @@ const VENDOR_RULES = [
   ["mediterranean", /ray'?s\s*kitchen|gyro|shawarma|halal\s*kitchen/i],
   ["italian", /veneto|gelato|gelateria|\bitalian\b/i],
   ["french", /chez\s*chibi|patisserie|pâtisserie|\bfrench\b/i],
-  ["japanese_korean", /\bkorean\b|teriyaki|ramen|bowli/i],
+  ["korean", /\bkorean\b|kalbi|galbi|bulgogi|buldak/i],
+  ["japanese", /teriyaki|ramen|bowli|sushi|\bjapanese\b/i],
   ["vietnamese", /viet|saigon|\bpho\b|b[aá]nh|zummi|tri[\s-]?foods/i],
   ["fusion", /\bfusion\b/i],
   [
@@ -314,20 +334,33 @@ function vendorCuisine(vendorName, { specificAsianOnly = false } = {}) {
 }
 
 /**
- * Resolve meal cuisine lane (not snacks/drinks format buckets).
- * Item name first; vendor only to disambiguate generic dish names.
- * Pan-Asian generics → Asian (DoorDash-style), unless a specific Asian vendor applies.
- * Unclassified meals → Other. Fusion only when name/vendor/item says so.
- * Never inherit vendor cuisine for commodity sides (bottled water, canned soda).
- * @param {{ name?: string, category?: string, cuisine?: string }} item
+ * Normalize item.cuisine to 1–2 valid meal cuisine ids.
+ * Accepts a string or array — dual tags mark fusion (e.g. Saigon musubi → asian + vietnamese).
+ * @param {{ cuisine?: string | string[] }} item
+ * @returns {string[]}
+ */
+export function cuisineIdsFromItem(item) {
+  const raw = item?.cuisine;
+  if (raw == null || raw === "") return [];
+  const list = Array.isArray(raw) ? raw : [raw];
+  const out = [];
+  for (const c of list) {
+    // Legacy combined lane (pre-split) — drop; staff retag to japanese or korean.
+    if (c === "japanese_korean") continue;
+    const id = c === "fusion_other" ? "other" : c;
+    if (!MEAL_CUISINE_IDS.includes(id)) continue;
+    if (!out.includes(id)) out.push(id);
+    if (out.length >= 2) break;
+  }
+  return out;
+}
+
+/**
+ * Infer a single cuisine when no explicit item.cuisine is set.
+ * @param {{ name?: string, category?: string }} item
  * @param {{ name?: string, cuisine?: string }} [vendor]
  */
-export function classifyCuisine(item, vendor = {}) {
-  // Item-level override only — do not blanket-apply vendor.cuisine to every line.
-  if (item?.cuisine && MEAL_CUISINE_IDS.includes(item.cuisine)) return item.cuisine;
-  // Legacy combined id
-  if (item?.cuisine === "fusion_other") return "other";
-
+function inferCuisine(item, vendor = {}) {
   const name = String(item?.name || "");
   const vendorName = String(vendor?.name || "");
 
@@ -358,6 +391,29 @@ export function classifyCuisine(item, vendor = {}) {
 }
 
 /**
+ * All cuisine lanes for an item (1–2 when staff dual-tag fusion).
+ * @param {{ name?: string, category?: string, cuisine?: string | string[] }} item
+ * @param {{ name?: string, cuisine?: string }} [vendor]
+ * @returns {string[]}
+ */
+export function classifyCuisines(item, vendor = {}) {
+  const explicit = cuisineIdsFromItem(item);
+  if (explicit.length) return explicit;
+  return [inferCuisine(item, vendor)];
+}
+
+/**
+ * Primary meal cuisine lane (first of classifyCuisines).
+ * Item name first; vendor only to disambiguate generic dish names.
+ * Never inherit vendor cuisine for commodity sides (bottled water, canned soda).
+ * @param {{ name?: string, category?: string, cuisine?: string | string[] }} item
+ * @param {{ name?: string, cuisine?: string }} [vendor]
+ */
+export function classifyCuisine(item, vendor = {}) {
+  return classifyCuisines(item, vendor)[0] || "other";
+}
+
+/**
  * Coffee / Tea / Others under the Drinks section.
  * Prefer explicit item.subcategory; else infer from name (legacy years without the field).
  * @param {{ name?: string, subcategory?: string, category?: string }} item
@@ -379,12 +435,13 @@ export function classifyDrinkSubcategory(item) {
 
 /**
  * Sections an item belongs to in By cuisine view.
+ * Dual-tagged fusion dishes appear under **each** named cuisine (not a separate Fusion dump).
  * Culture only — snacks / sweets / drinks are format (By type), not cuisine headings.
  * No cuisine → **Other**. Named drinks still file by culture when known (e.g. Vietnamese coffee).
  * @returns {string[]}
  */
 export function cuisineSectionsForItem(item, vendor = {}) {
-  return [classifyCuisine(item, vendor)];
+  return classifyCuisines(item, vendor);
 }
 
 /** Max length for public item notes (translation / flavors). */

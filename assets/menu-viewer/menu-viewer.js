@@ -9,13 +9,14 @@ import {
 import {
   CUISINE_ORDER,
   CUISINE_LABELS,
+  cuisineChipLabel,
   MEAL_CUISINE_IDS,
   DISH_TYPE_ORDER,
   DISH_TYPE_LABELS,
   DRINK_SUBCATEGORY_ORDER,
   DRINK_SUBCATEGORY_LABELS,
   cuisineSectionsForItem,
-  classifyCuisine,
+  classifyCuisines,
   dishTypeSectionsForItem,
   classifyDrinkSubcategory,
   ITEM_NOTE_MAX_LEN,
@@ -187,16 +188,22 @@ function renderItemThumb(item, vendorContext = null) {
   </span>`;
 }
 
-/** Culture chip on the dish line (not a filter). Skip drinks + unclassified Other. */
+/** Culture chip(s) on the dish line (not a filter). Dual tags = fusion. Named drinks keep culture (e.g. Vietnamese coffee); skip unclassified Other. */
 function renderCuisineChip(item, vendor = null) {
-  const category = String(item?.category || "meals").trim().toLowerCase();
-  if (category === "drinks") return "";
   const vendorCtx = vendor || { name: item?.vendorName, id: item?.vendorId };
-  const cuisine = classifyCuisine(item, vendorCtx);
-  if (!cuisine || cuisine === "other" || !MEAL_CUISINE_IDS.includes(cuisine)) return "";
-  const label = CUISINE_LABELS[cuisine];
-  if (!label) return "";
-  return `<span class="item-cuisine">${escapeHtml(label)}</span>`;
+  const cuisines = classifyCuisines(item, vendorCtx).filter(
+    (c) => c && c !== "other" && MEAL_CUISINE_IDS.includes(c) && cuisineChipLabel(c)
+  );
+  if (!cuisines.length) return "";
+  return cuisines
+    .map((c) => `<span class="item-cuisine">${escapeHtml(cuisineChipLabel(c))}</span>`)
+    .join("");
+}
+
+/** DOM id for a vendor card (`vendor-{id}`). */
+function vendorCardId(vendorId) {
+  const id = String(vendorId || "").trim();
+  return id ? `vendor-${id}` : "";
 }
 
 function renderItemPrimary(item, { showVendor = false, vendor = null, showCuisine = true } = {}) {
@@ -205,9 +212,14 @@ function renderItemPrimary(item, { showVendor = false, vendor = null, showCuisin
   const clarifyBit = note
     ? ` <span class="item-clarify">(${escapeHtml(note)})</span>`
     : "";
+  const vendorId = item.vendorId || vendor?.id;
+  const vendorName = item.vendorName || vendor?.name;
+  const cardId = vendorCardId(vendorId);
   const vendorBit =
-    showVendor && item.vendorName
-      ? `\u2003<span class="item-vendor">${escapeHtml(item.vendorName)}</span>`
+    showVendor && vendorName
+      ? cardId
+        ? `\u2003<a class="item-vendor" href="#${escapeHtml(cardId)}" data-vendor-jump="${escapeHtml(vendorId)}">${escapeHtml(vendorName)}</a>`
+        : `\u2003<span class="item-vendor">${escapeHtml(vendorName)}</span>`
       : "";
   const cuisineBit = showCuisine ? renderCuisineChip(item, vendor) : "";
   // Second line: cuisine chip, then options (e.g. Filipino · rice or garlic noodles…).
@@ -293,8 +305,10 @@ function renderVendorView(vendors) {
     .map((v) => {
       const logo = renderVendorLogo(v);
       const socials = renderVendorSocialLinks(v);
+      const cardId = vendorCardId(v.id);
+      const idAttr = cardId ? ` id="${escapeHtml(cardId)}"` : "";
       return `
-    <article class="vendor-card">
+    <article class="vendor-card"${idAttr}>
       <div class="vendor-card-head">
         ${logo}
         <div class="vendor-card-title">
@@ -459,12 +473,37 @@ function viewFromUrl() {
   }
 }
 
-function setViewInUrl(nextView) {
+/** `vendor-{id}` hash → vendor id, or null. */
+function vendorIdFromHash() {
+  try {
+    const h = String(window.location.hash || "").replace(/^#/, "");
+    if (h.startsWith("vendor-")) return h.slice("vendor-".length) || null;
+  } catch (_) {
+    /* ignore */
+  }
+  return null;
+}
+
+/**
+ * Sync `?view=` (+ optional hash) to the URL.
+ * @param {string} nextView
+ * @param {{ push?: boolean, hash?: string, scrollY?: number, vendorId?: string }} [opts]
+ */
+function setViewInUrl(nextView, opts = {}) {
   try {
     const url = new URL(window.location.href);
     if (nextView === DEFAULT_VIEW) url.searchParams.delete("view");
     else url.searchParams.set("view", nextView);
-    window.history.replaceState({}, "", url);
+    const hash = String(opts.hash || "").replace(/^#/, "");
+    url.hash = hash ? `#${hash}` : "";
+    const state = {
+      menuViewer: true,
+      view: nextView,
+      scrollY: typeof opts.scrollY === "number" ? opts.scrollY : window.scrollY,
+      vendorId: opts.vendorId || null,
+    };
+    if (opts.push) window.history.pushState(state, "", url);
+    else window.history.replaceState(state, "", url);
   } catch (_) {
     /* ignore */
   }
@@ -488,6 +527,10 @@ export function mountMenuViewer(container, menu) {
   let view = viewFromUrl() ?? DEFAULT_VIEW;
   let query = "";
   let currentMenu = menu;
+  /** After switching to By vendor, scroll to this card id (`vendor-{id}`). */
+  let pendingVendorScroll = null;
+  /** After Back/Forward re-render, restore this window scrollY. */
+  let pendingRestoreScroll = null;
 
   container.innerHTML = `
     <header>
@@ -621,9 +664,24 @@ export function mountMenuViewer(container, menu) {
     updateFiltersOpenLabel();
   }
 
+  function stickyOcclusionPx() {
+    if (!stickyHeadEl) return 96;
+    const rect = stickyHeadEl.getBoundingClientRect();
+    // `top` is nav (+ mobile search toolbar on narrow). Height is tabs / section chips.
+    // Together = full stack covering the viewport — height alone under-scrolls.
+    const stickyTop = Number.parseFloat(getComputedStyle(stickyHeadEl).top) || 0;
+    return Math.ceil(stickyTop + rect.height + 12);
+  }
+
   function syncSectionScrollMargin() {
-    const offset = stickyHeadEl ? Math.ceil(stickyHeadEl.getBoundingClientRect().height + 8) : 96;
-    contentEl.style.setProperty("--menu-section-scroll-margin", `${offset}px`);
+    contentEl.style.setProperty("--menu-section-scroll-margin", `${stickyOcclusionPx()}px`);
+  }
+
+  function scrollToMenuTarget(el) {
+    if (!el) return;
+    syncStickyMetrics();
+    const top = el.getBoundingClientRect().top + window.scrollY - stickyOcclusionPx();
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   }
 
   function syncMobileToolbarStickyOffset() {
@@ -674,7 +732,7 @@ export function mountMenuViewer(container, menu) {
           b.setAttribute("aria-current", on ? "true" : "false");
         });
         ensureChipFullyVisible(btn);
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToMenuTarget(target);
       });
     });
 
@@ -752,7 +810,57 @@ export function mountMenuViewer(container, menu) {
     else if (view === "cuisine") contentEl.innerHTML = renderCuisineView(vendors);
     else contentEl.innerHTML = renderDietView(vendors, currentMenu.filter_facets);
     setupSectionNav();
-    requestAnimationFrame(syncStickyMetrics);
+    requestAnimationFrame(() => {
+      syncStickyMetrics();
+      if (pendingVendorScroll) {
+        const targetId = pendingVendorScroll;
+        pendingVendorScroll = null;
+        pendingRestoreScroll = null;
+        // Second frame: vendor layout (2-col wide) + sticky height after chips hide.
+        requestAnimationFrame(() => {
+          scrollToMenuTarget(document.getElementById(targetId));
+        });
+        return;
+      }
+      if (pendingRestoreScroll != null) {
+        const y = pendingRestoreScroll;
+        pendingRestoreScroll = null;
+        window.scrollTo(0, y);
+      }
+    });
+  }
+
+  function jumpToVendor(vendorId) {
+    const cardId = vendorCardId(vendorId);
+    if (!cardId) return;
+    // Stamp scroll on the current history entry, then push By vendor so Back returns here.
+    setViewInUrl(view, { scrollY: window.scrollY });
+    view = "vendor";
+    syncViewTabs(container, view);
+    setViewInUrl(view, { push: true, hash: cardId, vendorId, scrollY: 0 });
+    pendingRestoreScroll = null;
+    pendingVendorScroll = cardId;
+    render();
+  }
+
+  function applyHistoryNavigation() {
+    const fromUrl = viewFromUrl();
+    const st = window.history.state;
+    const nextView =
+      (fromUrl && MENU_VIEWS.includes(fromUrl) ? fromUrl : null) ||
+      (st?.menuViewer && MENU_VIEWS.includes(st.view) ? st.view : null) ||
+      DEFAULT_VIEW;
+    const hashVendor = vendorIdFromHash() || st?.vendorId || null;
+    view = nextView;
+    syncViewTabs(container, view);
+    if (nextView === "vendor" && hashVendor) {
+      pendingVendorScroll = vendorCardId(hashVendor);
+      pendingRestoreScroll = null;
+    } else {
+      pendingVendorScroll = null;
+      pendingRestoreScroll = typeof st?.scrollY === "number" ? st.scrollY : window.scrollY;
+    }
+    render();
   }
 
   searchEl.addEventListener("input", (e) => {
@@ -787,11 +895,24 @@ export function mountMenuViewer(container, menu) {
     btn.addEventListener("click", () => {
       const next = MENU_VIEWS.includes(btn.dataset.view) ? btn.dataset.view : DEFAULT_VIEW;
       if (next === view) return;
+      pendingVendorScroll = null;
+      pendingRestoreScroll = null;
       view = next;
       syncViewTabs(container, view);
-      setViewInUrl(view);
+      setViewInUrl(view, { scrollY: window.scrollY });
       render();
     });
+  });
+
+  contentEl.addEventListener("click", (e) => {
+    const link = e.target.closest("a.item-vendor[data-vendor-jump]");
+    if (!link || !contentEl.contains(link)) return;
+    e.preventDefault();
+    jumpToVendor(link.getAttribute("data-vendor-jump"));
+  });
+
+  window.addEventListener("popstate", () => {
+    applyHistoryNavigation();
   });
 
   setupDietBadgeHandlers(container);
@@ -803,8 +924,16 @@ export function mountMenuViewer(container, menu) {
   setupDishLightbox(container);
 
   placeFiltersForViewport();
-  // Reflect non-default view in the URL when opened via deep link (or after tab pick).
-  if (view !== DEFAULT_VIEW) setViewInUrl(view);
+  // Reflect view (+ optional vendor hash) when opened via deep link.
+  const deepVendor = vendorIdFromHash();
+  if (view === "vendor" && deepVendor) {
+    pendingVendorScroll = vendorCardId(deepVendor);
+    setViewInUrl(view, { hash: vendorCardId(deepVendor), vendorId: deepVendor, scrollY: 0 });
+  } else if (view !== DEFAULT_VIEW) {
+    setViewInUrl(view);
+  } else {
+    setViewInUrl(view, { scrollY: window.scrollY });
+  }
   render();
 
   return {
