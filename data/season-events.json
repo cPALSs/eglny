@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T19:35:06.911Z",
+  "generatedAt": "2026-11-20T15:35:53.300Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -24,12 +24,12 @@
     },
     {
       "eventId": "ca-is-my-home-lny",
-      "dates": "Sun, Jan 31, 2027 (tentative)",
+      "dates": "Sun, Jan 31, 2027",
       "name": "Lunar New Year Market Fair",
       "host": "California Is My Home",
       "location": "District56 - 8230 Civic Center Dr, Elk Grove",
       "href": "https://www.caismyhome.com/",
-      "certainty": "tentative"
+      "certainty": "confirmed"
     },
     {
       "eventId": "cpalss-lny-capstone",
@@ -68,12 +68,12 @@
         },
         {
           "eventId": "ca-is-my-home-lny",
-          "dates": "Sun, Jan 31, 2027 (tentative)",
+          "dates": "Sun, Jan 31, 2027",
           "name": "Lunar New Year Market Fair",
           "host": "California Is My Home",
           "location": "District56 - 8230 Civic Center Dr, Elk Grove",
           "href": "https://www.caismyhome.com/",
-          "certainty": "tentative"
+          "certainty": "confirmed"
         },
         {
           "eventId": "cpalss-lny-capstone",
