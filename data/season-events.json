@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T15:35:53.300Z",
+  "generatedAt": "2026-11-20T16:22:01.535Z",
   "source": "community-graph",
   "seasonKind": "lny",
   "seasonYear": "2027",
@@ -29,7 +29,13 @@
       "host": "California Is My Home",
       "location": "District56 - 8230 Civic Center Dr, Elk Grove",
       "href": "https://www.caismyhome.com/",
-      "certainty": "confirmed"
+      "certainty": "confirmed",
+      "links": [
+        {
+          "label": "Vendor Sign-ups",
+          "href": "https://forms.gle/RW1QkUYvnMEKEufA6"
+        }
+      ]
     },
     {
       "eventId": "cpalss-lny-capstone",
@@ -73,7 +79,13 @@
           "host": "California Is My Home",
           "location": "District56 - 8230 Civic Center Dr, Elk Grove",
           "href": "https://www.caismyhome.com/",
-          "certainty": "confirmed"
+          "certainty": "confirmed",
+          "links": [
+            {
+              "label": "Vendor Sign-ups",
+              "href": "https://forms.gle/RW1QkUYvnMEKEufA6"
+            }
+          ]
         },
         {
           "eventId": "cpalss-lny-capstone",

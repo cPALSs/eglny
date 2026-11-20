@@ -3154,6 +3154,21 @@ a.co-chair-name {
   margin-top: 0.15rem;
 }
 
+.season-event-links {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.92rem;
+}
+
+.season-event-links a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.season-event-links a:hover {
+  text-decoration: underline;
+}
+
 .season-event-title a {
   color: var(--accent);
   text-decoration: none;

@@ -991,6 +991,18 @@
     return "confirmed";
   }
 
+  function renderSeasonEventLinks(event) {
+    const items = Array.isArray(event.links) ? event.links : [];
+    const parts = items
+      .filter((link) => link && link.label && link.href)
+      .map((link) => {
+        const href = String(link.href);
+        return `<a href="${escapeHtml(href)}"${externalLinkAttrs(href)}>${escapeHtml(String(link.label))}</a>`;
+      });
+    if (!parts.length) return "";
+    return `<span class="season-event-links">${parts.join(" · ")}</span>`;
+  }
+
   function renderSeasonEventItem(event) {
     const certainty = seasonEventCertainty(event);
     const soft =
@@ -1008,6 +1020,7 @@
       <span class="season-event-dates">${escapeHtml(event.dates)}</span>
       <span class="season-event-title">${nameHtml}${hostPart}</span>
       <span class="season-event-location">${escapeHtml(event.location)}</span>
+      ${renderSeasonEventLinks(event)}
     </li>`;
   }
 
