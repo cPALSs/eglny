@@ -35,7 +35,7 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas. Sponsors named holds: AFG 2 · SMUD 10×20 (2 pad-eq.) · Cosumnes CSD 3 → Remaining ~9 of 16; soft holds AABC · CAAPS · Sac State APIDA/APPEX. Special arrangements stay in-lane (merchant/corporate trades). Viet Seniors Assoc → Nonprofit. Photo/media → ops tent. CERT out. Held cook pad = advertise 15 of 16 food-side. Map ~133 guest pads. Drinks 5 (was 6). UC Davis Health goodwill declined 2026-11-20.",
+    "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas. Sponsors named holds: AFG 2 · SMUD 10×20 (2 pad-eq.) · Cosumnes CSD 3 → Remaining ~9 of 16; soft holds AABC · CAAPS · Sac State APIDA/APPEX. Special arrangements stay in-lane (merchant/corporate trades). Viet Seniors Assoc → Nonprofit. Photo/media → ops tent. CERT out. Held cook pad = advertise 15 of 16 food-side. Map ~133 guest pads. Drinks 5 (was 6). UC Davis Health goodwill declined 2026-11-20. Bao 2026-11-21: NP 15→14 then **kids −1 → NP +1** (NP **15** · kids **25**); public inventory row **Reserved** (1 · Remaining **N/A** · fee **N/A** → no waitlist) = guest survey / research pad from NP, not Eventeny. Same day: snacks-only merged into merchants/craft/GEN inventory row (published pool **55** = former 21+34); Eventeny SN vs MER/GEN SKUs unchanged — no hard snack-vendor cap. Cooking Remaining **3→4** — Huong no R1 seat-lock reply (seat released).",
     "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is.",
     "table": {
       "headers": [
@@ -48,7 +48,7 @@
         [
           "Open food / on-site cooking (canopy, truck, or trailer)",
           "15",
-          "3",
+          "4",
           "$750"
         ],
         [
@@ -58,17 +58,11 @@
           "$500"
         ],
         [
-          "Snacks-only / sealed treats",
-          "21",
-          "~12",
-          "$150"
-        ],
-        [
-          "Corporate, merchants, craft, and paid activities",
-          "34",
-          "~23",
+          "Merchants, craft, snacks, sealed treats, and paid activities",
+          "55",
+          "~35",
           [
-            "$150 merchants / craft / paid activities",
+            "$150 merchants / craft / snacks / sealed treats / paid activities",
             "$500 corporate / marketing"
           ]
         ],
@@ -79,22 +73,28 @@
           "$75"
         ],
         [
+          "Children’s activities",
+          "25",
+          "~19",
+          "No fee"
+        ],
+        [
           "Sponsors (package activation)",
           "16",
           "~9",
           "Package activation"
         ],
         [
-          "Children’s activities",
-          "26",
-          "~20",
-          "No fee"
+          "Reserved",
+          "1",
+          "N/A",
+          "N/A"
         ]
       ]
     },
     "notes": [
-      "**Drinks & snacks vs Snacks-only:** Fees are nested. If you sell **any drinks** (coffee, hot chocolate, boba, juice, etc.) — even alongside snacks — you are a **Drinks & snacks** booth (**$500**), not Snacks-only. **Snacks-only** (**$150**) means snacks / treats with **no** drinks. Sealed take-home food retail is also **$150** on the Food app.",
-      "**Same food type:** We limit how many booths sell the same kind of food so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. **Snacks-only:** softer limit — we still avoid too many of the same snack, but the exact cap (1, 2, or sometimes 3) is at our discretion as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer."
+      "**Drinks vs snacks / sealed:** Fees are nested. If you sell **any drinks** (coffee, hot chocolate, boba, juice, etc.) — even alongside snacks — you are a **Drinks & snacks** booth (**$500**). Snacks / treats with **no** drinks, and sealed take-home food retail, are **$150** on the Food app (same fee band as merchants / craft).",
+      "**Same food type:** We limit how many booths sell the same kind of **cooked food** or **drink** so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer. **Snacks / sealed treats** sit in the open merchant-style pool — we do **not** hard-cap snack vendors by type."
     ]
   },
   "fees": {

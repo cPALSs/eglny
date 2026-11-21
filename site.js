@@ -2412,18 +2412,31 @@
     return String(raw).trim() === "0";
   }
 
+  /** Fee cell that means reserved / not for sale — Remaining 0 must not imply waitlist. */
+  function isNaWeekendFeeInventoryValue(raw) {
+    const text = String(Array.isArray(raw) ? raw[0] : raw ?? "")
+      .trim()
+      .toLowerCase()
+      .replace(/\./g, "");
+    return text === "n/a" || text === "na";
+  }
+
   /**
    * Booth inventory table — display only. # of spots / Remaining come from vendors-booths.json
    * table cells as author-set literals; never compute them here from caps or fill counts.
-   * Appends “(waitlist open)” when the Remaining cell is literally 0.
+   * Appends “(waitlist open)” when the Remaining cell is literally 0 — unless Weekend fee is N/A (reserved).
    * Desktop: table. Mobile: cards with booth type title + 3-metric grid.
    */
   function renderInventoryTable(table) {
     if (!table?.headers?.length) return "";
     const headers = table.headers;
     const remainingCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase() === "remaining");
+    const feeCol = headers.findIndex((h) => {
+      const label = String(h ?? "").trim().toLowerCase();
+      return label === "weekend fee" || label === "fee";
+    });
     /** String, or string[] for multi-line cells (stacked lines, same size). */
-    const formatCell = (cell, i) => {
+    const formatCell = (cell, i, row) => {
       const lines = Array.isArray(cell) ? cell : [cell];
       const primary = formatBriefProse(lines[0] ?? "");
       const notes = lines
@@ -2431,8 +2444,12 @@
         .map((line) => `<span class="inventory-cell-note">${formatBriefProse(line)}</span>`)
         .join("");
       const remainingRaw = Array.isArray(cell) ? cell[0] : cell;
+      const feeRaw = feeCol >= 0 ? row?.[feeCol] : null;
       const suffix =
-        remainingCol >= 0 && i === remainingCol && isZeroRemainingInventoryValue(remainingRaw)
+        remainingCol >= 0 &&
+        i === remainingCol &&
+        isZeroRemainingInventoryValue(remainingRaw) &&
+        !isNaWeekendFeeInventoryValue(feeRaw)
           ? ` ${escapeHtml("(waitlist open)")}`
           : "";
       return `${primary}${suffix}${notes}`;
@@ -2440,19 +2457,19 @@
     const head = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
     const body = (table.rows ?? [])
       .map((row) => {
-        const cells = (row ?? []).map((cell, i) => `<td>${formatCell(cell, i)}</td>`);
+        const cells = (row ?? []).map((cell, i) => `<td>${formatCell(cell, i, row)}</td>`);
         return `<tr>${cells.join("")}</tr>`;
       })
       .join("");
     const cards = (table.rows ?? [])
       .map((row) => {
         const cells = row ?? [];
-        const title = formatCell(cells[0] ?? "", 0);
+        const title = formatCell(cells[0] ?? "", 0, row);
         const metrics = headers
           .slice(1)
           .map((label, offset) => {
             const i = offset + 1;
-            return `<div class="inventory-metric"><span class="inventory-metric-label">${escapeHtml(label)}</span><span class="inventory-metric-value">${formatCell(cells[i] ?? "", i)}</span></div>`;
+            return `<div class="inventory-metric"><span class="inventory-metric-label">${escapeHtml(label)}</span><span class="inventory-metric-value">${formatCell(cells[i] ?? "", i, row)}</span></div>`;
           })
           .join("");
         return `<article class="inventory-card"><h3 class="inventory-card-title">${title}</h3><div class="inventory-card-metrics">${metrics}</div></article>`;
