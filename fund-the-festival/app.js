@@ -334,6 +334,8 @@ const state = {
   estimatedSponsorMap: {},
   /** Sponsor dollars actually drawn per gift (may be below face amount when earned cash already covers part of a core card). */
   estimatedSponsorDollars: {},
+  /** Estimate pool dollars applied to close Core gap (no Core card assignment). */
+  estimatedCoreGapFill: 0,
   showEstimatedSponsors: false,
   cohortFilters: new Set(),
 };
@@ -394,8 +396,7 @@ function registryCatalogAmount({ priorityOnly = null } = {}) {
 
 /** Core gifts + optional registry variable amount (extra cash). */
 function coreContribAmount() {
-  const estimatedCore = sumEstimatedAssigned(["core"]);
-  if (estimatedCore !== null) return estimatedCore;
+  if (state.showEstimatedSponsors) return state.estimatedCoreGapFill || 0;
   return sumEnabled(["core"]) + (state.extraCash || 0);
 }
 
@@ -523,15 +524,6 @@ function choicesLockedForEstimate() {
   return !!state.showEstimatedSponsors;
 }
 
-/**
- * Core earmark cards that close the planning core sponsor gap (~$16,354).
- * Bao 2026-11-20: Festival Foundation + Sanitation / Amenities (not Main Stage).
- */
-const ESTIMATE_SPONSOR_FIRST_CORE = [
-  "festival_foundation",
-  "festival_amenities",
-];
-
 const WEATHER_CANCEL_FUND_ID = "weather_cancel_fund";
 
 function isAllocatableEstimateGift(g) {
@@ -541,16 +533,15 @@ function isAllocatableEstimateGift(g) {
     !g.variableAmount &&
     !g.requiresBoothSpot &&
     !g.requiresSponsorThreshold &&
-    (g.category === "core" || g.category === "registry" || g.category === "secondary")
+    g.category === "registry"
   );
 }
 
 /**
- * Liquid estimated-sponsor pool (Bao 2026-11-13):
- * 1. Sum all estimated dollars into one pool (no per-sponsor tags / pins).
- * 2. Close the core ops gap (~$16,354) on Foundation → Sanitation / Amenities.
- * 3. Fund remaining gifts all-or-nothing in display order (HP impact, then electives).
- * 4. Put any leftover on Weather / Cancel Fund as a partial (progress bar).
+ * Liquid estimated-sponsor pool:
+ * 1. Confirmed sponsors stay in the revenue baseline (not in this pool).
+ * 2. Close the remaining Core ops gap from the pool without painting Core cards.
+ * 3. Fund High Priority gifts all-or-nothing (impact order); leftover → Weather partial.
  */
 function confirmedSponsors(sponsorPayload = state.estimatedSponsors) {
   return (sponsorPayload?.sponsors ?? []).filter(
@@ -562,8 +553,18 @@ function confirmedSponsorTotal(sponsorPayload = state.estimatedSponsors) {
   return confirmedSponsors(sponsorPayload).reduce((s, sp) => s + (Number(sp.amount) || 0), 0);
 }
 
+/** Remaining Core gap after vendors + confirmed cash (not the pinned planning figure alone). */
+function remainingCoreGapAfterCash() {
+  const mvpCap = coreCardTarget();
+  if (!mvpCap) return 0;
+  const rawCash = (state.data?.scenario?.vendorRevenue ?? 0) + confirmedSponsorTotal();
+  return Math.max(0, mvpCap - Math.min(mvpCap, rawCash));
+}
+
 function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
-  if (!sponsorPayload?.sponsors?.length) return { names: {}, dollars: {} };
+  if (!sponsorPayload?.sponsors?.length) {
+    return { names: {}, dollars: {}, coreGapFill: 0 };
+  }
 
   const dollars = {};
   const giftById = (id) => gifts.find((g) => g.id === id);
@@ -572,32 +573,16 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
     .filter((sp) => String(sp?.status || "").toLowerCase() !== "confirmed")
     .reduce((s, sp) => s + (Number(sp.amount) || 0), 0);
 
-  const coreGap =
-    state.data?.event?.coreSponsorGap ??
-    state.data?.scenario?.headroomOrGap ??
-    16354;
-  let gapLeft = Math.max(0, Number(coreGap) || 0);
-
-  for (const id of ESTIMATE_SPONSOR_FIRST_CORE) {
-    if (pool <= 0 || gapLeft <= 0) break;
-    const gift = giftById(id);
-    if (!gift || !isAllocatableEstimateGift(gift)) continue;
-    const take = Math.min(pool, gapLeft, gift.amount);
-    if (take <= 0) continue;
-    dollars[id] = (dollars[id] || 0) + take;
-    pool -= take;
-    gapLeft -= take;
-  }
+  const gapLeft = remainingCoreGapAfterCash();
+  const coreGapFill = Math.min(pool, gapLeft);
+  pool -= coreGapFill;
 
   const priority = gifts
     .filter((g) => g.category === "registry" && g.priority && isAllocatableEstimateGift(g))
-    .sort(comparePriorityGifts);
-  const elective = gifts
-    .filter((g) => g.category === "registry" && !g.priority && isAllocatableEstimateGift(g))
-    .sort(compareElectiveGifts);
-  const displayOrder = [...priority, ...elective].filter((g) => g.id !== WEATHER_CANCEL_FUND_ID);
+    .sort(comparePriorityGifts)
+    .filter((g) => g.id !== WEATHER_CANCEL_FUND_ID);
 
-  for (const gift of displayOrder) {
+  for (const gift of priority) {
     if (pool < gift.amount) continue;
     dollars[gift.id] = gift.amount;
     pool -= gift.amount;
@@ -612,7 +597,7 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
     }
   }
 
-  return { names: {}, dollars };
+  return { names: {}, dollars, coreGapFill };
 }
 
 function estimatedSponsorDollars(giftId) {
@@ -621,23 +606,9 @@ function estimatedSponsorDollars(giftId) {
 
 function estimatedSponsorFullyCovered(giftId) {
   const gift = state.data?.gifts.find((g) => g.id === giftId);
-  if (!gift) return false;
+  if (!gift || gift.category === "core") return false;
   const d = estimatedSponsorDollars(giftId);
-  if (d <= 0) return false;
-  if (d >= gift.amount) return true;
-  // Core gap earmarks: green once the planning gap is closed on that stack.
-  if (ESTIMATE_SPONSOR_FIRST_CORE.includes(giftId)) {
-    const gap =
-      state.data?.event?.coreSponsorGap ??
-      state.data?.scenario?.headroomOrGap ??
-      16354;
-    const drawn = ESTIMATE_SPONSOR_FIRST_CORE.reduce(
-      (s, id) => s + estimatedSponsorDollars(id),
-      0,
-    );
-    return drawn >= Number(gap);
-  }
-  return false;
+  return d > 0 && d >= gift.amount;
 }
 
 function estimatedSponsorPartial(giftId) {
@@ -1214,9 +1185,9 @@ function coreFundingState() {
   /** Earned cash above MVP — still real dollars; credit toward full-vision bar. */
   const cashOverage = Math.max(0, rawCash - mvpCap);
   const sponsorGap = Math.max(0, mvpCap - cashOffset);
-  const estimatedCore = sumEstimatedAssigned(["core"]);
-  const coreContrib =
-    estimatedCore !== null ? estimatedCore : sumEnabled(["core"]) + (state.extraCash || 0);
+  const coreContrib = state.showEstimatedSponsors
+    ? state.estimatedCoreGapFill || 0
+    : sumEnabled(["core"]) + (state.extraCash || 0);
   const sponsorFill = Math.min(coreContrib, sponsorGap);
   const coreSurplus = coreContrib - sponsorFill;
   const remainingGap = Math.max(0, sponsorGap - sponsorFill);
@@ -1808,6 +1779,7 @@ async function loadEstimatedSponsorsData(entry) {
   state.estimatedSponsors = null;
   state.estimatedSponsorMap = {};
   state.estimatedSponsorDollars = {};
+  state.estimatedCoreGapFill = 0;
   if (!entry?.estimatedSponsorsFile) return;
 
   try {
@@ -1821,10 +1793,12 @@ async function loadEstimatedSponsorsData(entry) {
     );
     state.estimatedSponsorMap = allocated.names;
     state.estimatedSponsorDollars = allocated.dollars;
+    state.estimatedCoreGapFill = allocated.coreGapFill || 0;
   } catch {
     state.estimatedSponsors = null;
     state.estimatedSponsorMap = {};
     state.estimatedSponsorDollars = {};
+    state.estimatedCoreGapFill = 0;
   }
 }
 
