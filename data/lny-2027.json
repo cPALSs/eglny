@@ -24,17 +24,17 @@
       "summary": "90 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
       "lines": [
         {
-          "label": "Vendor booth fees",
+          "label": "Vendor booth fees (est.)",
           "amount": 24875,
           "note": "90 paid booths \u00b7 15 open cooking \u00d7 $750 \u00b7 5 drinks \u00d7 $500 \u00b7 21 snacks + 29 merchant/craft/paid \u00d7 $150 \u00b7 5 corporate \u00d7 $500 \u00b7 15 nonprofit \u00d7 $75"
         },
         {
-          "label": "Parking",
+          "label": "Parking (est.)",
           "amount": 16000,
           "note": "About 1,000 cars a day (6,000 guests, about 3 per car, over 2 days) \u00d7 $10 a day, minus about 20% for parking staff \u00b7 1,098 paid spaces"
         },
         {
-          "label": "Carnival share",
+          "label": "Carnival share (est.)",
           "amount": 5221,
           "note": "Our 20% share of carnival ride sales \u00b7 about 1.7 festival days (Sunday runs shorter with the Big Game)"
         }
