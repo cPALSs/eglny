@@ -1254,11 +1254,7 @@ function estimatedRevenueData() {
             label: "Confirmed sponsors",
             amount: confirmedTotal,
             note: confirmed
-              .map((sp) => {
-                const name = sp.name || "";
-                const tier = typeof sp.tier === "string" && sp.tier.trim() ? sp.tier.trim() : "";
-                return tier ? `${name} (${tier})` : name;
-              })
+              .map((sp) => sp.name || "")
               .filter(Boolean)
               .join(" · "),
           },
