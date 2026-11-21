@@ -6,7 +6,7 @@
     "mvpCap": 62450,
     "coreSponsorGap": 16354,
     "vendorRev100": 24875,
-    "registryFull": 184550,
+    "registryFull": 197050,
     "vendorSlots": 90,
     "attendance": 6000
   },
@@ -489,6 +489,33 @@
         }
       ],
       "priority": true,
+      "electiveGroup": "stage",
+      "chapterDays": "saturday"
+    },
+    {
+      "id": "lucky_wav_plus",
+      "name": "Lucky Wav+",
+      "emoji": "\ud83c\udfa7",
+      "amount": 12500,
+      "category": "registry",
+      "priority": false,
+      "cohorts": [
+        "C4"
+      ],
+      "sortOrder": 53.5,
+      "impactOrder": 6,
+      "tagline": "Optional upsize to Saturday Lucky Wav when sponsor dollars allow \u2014 details still taking shape.",
+      "description": "Optional upsize to Saturday Lucky Wav when sponsor dollars allow \u2014 details still taking shape.",
+      "benefits": [
+        "Lucky Wav+ presented by [Sponsor]",
+        "Website + social recognition when the expanded bill is set"
+      ],
+      "lineItems": [
+        {
+          "label": "Lucky Wav upsize",
+          "amount": 12500
+        }
+      ],
       "electiveGroup": "stage",
       "chapterDays": "saturday"
     },

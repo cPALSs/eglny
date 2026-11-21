@@ -544,7 +544,8 @@ function isAllocatableEstimateGift(g) {
  * Liquid estimated-sponsor pool:
  * 1. Confirmed sponsors stay in the revenue baseline (not in this pool).
  * 2. Close the remaining Core ops gap from the pool without painting Core cards.
- * 3. Fund High Priority gifts all-or-nothing (impact order); leftover → Weather partial.
+ * 3. Fund High Priority gifts all-or-nothing (impact order).
+ * 4. Fill Weather / Cancel Fund to face when possible; leftover → Electives; else Weather partial.
  */
 function confirmedSponsors(sponsorPayload = state.estimatedSponsors) {
   return (sponsorPayload?.sponsors ?? []).filter(
@@ -593,10 +594,20 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
 
   const weather = giftById(WEATHER_CANCEL_FUND_ID);
   if (weather && isAllocatableEstimateGift(weather) && pool > 0) {
-    const take = Math.min(pool, weather.amount);
-    if (take > 0) {
-      dollars[weather.id] = take;
-      pool -= take;
+    if (pool >= weather.amount) {
+      dollars[weather.id] = weather.amount;
+      pool -= weather.amount;
+      const elective = gifts
+        .filter((g) => g.category === "registry" && !g.priority && isAllocatableEstimateGift(g))
+        .sort(compareElectiveGifts);
+      for (const gift of elective) {
+        if (pool < gift.amount) continue;
+        dollars[gift.id] = gift.amount;
+        pool -= gift.amount;
+      }
+    } else {
+      dollars[weather.id] = pool;
+      pool = 0;
     }
   }
 
