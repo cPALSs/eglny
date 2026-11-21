@@ -552,12 +552,25 @@ function isAllocatableEstimateGift(g) {
  * 3. Fund remaining gifts all-or-nothing in display order (HP impact, then electives).
  * 4. Put any leftover on Weather / Cancel Fund as a partial (progress bar).
  */
+function confirmedSponsors(sponsorPayload = state.estimatedSponsors) {
+  return (sponsorPayload?.sponsors ?? []).filter(
+    (sp) => String(sp?.status || "").toLowerCase() === "confirmed" && (Number(sp.amount) || 0) > 0,
+  );
+}
+
+function confirmedSponsorTotal(sponsorPayload = state.estimatedSponsors) {
+  return confirmedSponsors(sponsorPayload).reduce((s, sp) => s + (Number(sp.amount) || 0), 0);
+}
+
 function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
   if (!sponsorPayload?.sponsors?.length) return { names: {}, dollars: {} };
 
   const dollars = {};
   const giftById = (id) => gifts.find((g) => g.id === id);
-  let pool = sponsorPayload.sponsors.reduce((s, sp) => s + (Number(sp.amount) || 0), 0);
+  // Confirmed cash is already in the revenue baseline — keep the estimate pool projected-only.
+  let pool = sponsorPayload.sponsors
+    .filter((sp) => String(sp?.status || "").toLowerCase() !== "confirmed")
+    .reduce((s, sp) => s + (Number(sp.amount) || 0), 0);
 
   const coreGap =
     state.data?.event?.coreSponsorGap ??
@@ -1196,7 +1209,7 @@ function coreFundingState() {
   const mvpCap = coreCardTarget();
   if (!mvpCap) return null;
 
-  const rawCash = state.data.scenario.vendorRevenue ?? 0;
+  const rawCash = (state.data.scenario.vendorRevenue ?? 0) + confirmedSponsorTotal();
   const cashOffset = Math.min(mvpCap, rawCash);
   /** Earned cash above MVP — still real dollars; credit toward full-vision bar. */
   const cashOverage = Math.max(0, rawCash - mvpCap);
@@ -1232,12 +1245,33 @@ function coreFundingState() {
 
 function estimatedRevenueData() {
   const er = state.data?.scenario?.estimatedRevenue;
-  if (er?.lines?.length) return er;
-  const total = state.data?.scenario?.vendorRevenue ?? 0;
+  const confirmed = confirmedSponsors();
+  const confirmedLines = confirmed.map((sp) => ({
+    label: sp.name,
+    amount: Number(sp.amount) || 0,
+    note: sp.tier ? `Confirmed · ${sp.tier}` : "Confirmed",
+  }));
+  const confirmedTotal = confirmedSponsorTotal();
+
+  if (er?.lines?.length) {
+    const baseLines = er.lines.map((line) => ({ ...line }));
+    const lines = [...baseLines, ...confirmedLines];
+    const baseTotal = er.total ?? baseLines.reduce((s, l) => s + (Number(l.amount) || 0), 0);
+    return {
+      ...er,
+      title: er.title || "Estimated revenue",
+      totalLabel: er.totalLabel || "Total estimated revenue",
+      lines,
+      total: baseTotal + confirmedTotal,
+    };
+  }
+  const total = (state.data?.scenario?.vendorRevenue ?? 0) + confirmedTotal;
   return {
     total,
+    title: "Estimated revenue",
+    totalLabel: "Total estimated revenue",
     summary: state.data?.scenario?.label ?? "",
-    lines: [{ label: cashOffsetLabel(), amount: total }],
+    lines: [{ label: cashOffsetLabel(), amount: state.data?.scenario?.vendorRevenue ?? 0 }, ...confirmedLines],
   };
 }
 
@@ -1250,20 +1284,20 @@ function renderRevenueModal() {
     .map(
       (line) => `
     <tr>
-      <td>${line.label}${line.note ? `<span class="revenue-modal-note">${line.note}</span>` : ""}</td>
+      <td>${escapeHtml(line.label)}${line.note ? `<span class="revenue-modal-note">${escapeHtml(line.note)}</span>` : ""}</td>
       <td>${fmt(line.amount)}</td>
     </tr>`,
     )
     .join("");
 
-  const totalLabel = er.totalLabel || "Total estimated revenue (pre-sponsorship)";
+  const totalLabel = er.totalLabel || "Total estimated revenue";
   body.innerHTML = `
-    ${er.summary ? `<p class="revenue-modal-summary">${er.summary}</p>` : ""}
+    ${er.summary ? `<p class="revenue-modal-summary">${escapeHtml(er.summary)}</p>` : ""}
     <table>
       <tbody>${rows}</tbody>
       <tfoot>
         <tr>
-          <th>${totalLabel}</th>
+          <th>${escapeHtml(totalLabel)}</th>
           <td>${fmt(er.total ?? er.lines.reduce((s, l) => s + l.amount, 0))}</td>
         </tr>
       </tfoot>
@@ -1272,7 +1306,7 @@ function renderRevenueModal() {
 
   const titleEl = document.querySelector("#revenue-modal .modal-header h3");
   if (titleEl) {
-    titleEl.textContent = er.title || "Estimated revenue (pre-sponsorship)";
+    titleEl.textContent = er.title || "Estimated revenue";
   }
 }
 
@@ -1294,8 +1328,15 @@ function renderEstimatedSponsorsModal() {
   const byTier = new Map(tiers.map((t) => [t.label, []]));
   const below = [];
 
-  for (const sp of sponsors) {
+  const displayName = (sp) => {
     const name = sp?.name;
+    if (!name) return "";
+    const confirmed = String(sp?.status || "").toLowerCase() === "confirmed";
+    return confirmed ? `${name} (confirmed)` : name;
+  };
+
+  for (const sp of sponsors) {
+    const name = displayName(sp);
     if (!name) continue;
     const amount = Number(sp.amount) || 0;
     // Optional `tier` override (e.g. SMUD Silver recognition at $2,500 cash).
@@ -1349,7 +1390,7 @@ function renderCoreProgress() {
 
   const pct = Math.min(100, Math.round(core.fundedPct));
 
-  labelEl.textContent = `Est. pre-sponsor revenue ${fmt(core.rawCash)}`;
+  labelEl.textContent = `Est. revenue ${fmt(core.rawCash)}`;
   neededLabelEl.textContent =
     core.remainingGap === 0 ? "✓ Target met" : `${fmt(core.remainingGap)} to go`;
   neededLabelEl.classList.toggle("progress-metric-value--closed", core.remainingGap === 0);
