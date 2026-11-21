@@ -1246,12 +1246,24 @@ function coreFundingState() {
 function estimatedRevenueData() {
   const er = state.data?.scenario?.estimatedRevenue;
   const confirmed = confirmedSponsors();
-  const confirmedLines = confirmed.map((sp) => ({
-    label: sp.name,
-    amount: Number(sp.amount) || 0,
-    note: sp.tier ? `Confirmed · ${sp.tier}` : "Confirmed",
-  }));
   const confirmedTotal = confirmedSponsorTotal();
+  const confirmedLines =
+    confirmed.length > 0
+      ? [
+          {
+            label: "Confirmed sponsors",
+            amount: confirmedTotal,
+            note: confirmed
+              .map((sp) => {
+                const name = sp.name || "";
+                const tier = typeof sp.tier === "string" && sp.tier.trim() ? sp.tier.trim() : "";
+                return tier ? `${name} (${tier})` : name;
+              })
+              .filter(Boolean)
+              .join(" · "),
+          },
+        ]
+      : [];
 
   if (er?.lines?.length) {
     const baseLines = er.lines.map((line) => ({ ...line }));
