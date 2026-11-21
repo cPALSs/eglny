@@ -524,12 +524,12 @@ function choicesLockedForEstimate() {
 }
 
 /**
- * Core earmark cards that close the planning core sponsor gap (~$20,104).
- * Bao 2026-10-20: Festival Foundation + Main Stage only (not Sanitation).
+ * Core earmark cards that close the planning core sponsor gap (~$16,354).
+ * Bao 2026-11-20: Festival Foundation + Sanitation / Amenities (not Main Stage).
  */
 const ESTIMATE_SPONSOR_FIRST_CORE = [
   "festival_foundation",
-  "outdoor_stage",
+  "festival_amenities",
 ];
 
 const WEATHER_CANCEL_FUND_ID = "weather_cancel_fund";
@@ -548,7 +548,7 @@ function isAllocatableEstimateGift(g) {
 /**
  * Liquid estimated-sponsor pool (Bao 2026-11-13):
  * 1. Sum all estimated dollars into one pool (no per-sponsor tags / pins).
- * 2. Close the core ops gap (~$20,104) on Foundation → Main Stage.
+ * 2. Close the core ops gap (~$16,354) on Foundation → Sanitation / Amenities.
  * 3. Fund remaining gifts all-or-nothing in display order (HP impact, then electives).
  * 4. Put any leftover on Weather / Cancel Fund as a partial (progress bar).
  */
@@ -562,7 +562,7 @@ function computeEstimatedSponsorMap(gifts, sponsorPayload, _rawCash = 0) {
   const coreGap =
     state.data?.event?.coreSponsorGap ??
     state.data?.scenario?.headroomOrGap ??
-    20104;
+    16354;
   let gapLeft = Math.max(0, Number(coreGap) || 0);
 
   for (const id of ESTIMATE_SPONSOR_FIRST_CORE) {
@@ -617,7 +617,7 @@ function estimatedSponsorFullyCovered(giftId) {
     const gap =
       state.data?.event?.coreSponsorGap ??
       state.data?.scenario?.headroomOrGap ??
-      20104;
+      16354;
     const drawn = ESTIMATE_SPONSOR_FIRST_CORE.reduce(
       (s, id) => s + estimatedSponsorDollars(id),
       0,
@@ -1035,7 +1035,7 @@ function renderSectionHints() {
   if (registryPriorityEl) {
     registryPriorityEl.innerHTML = formatMarkdown(
       replaceTokens(sections.registryPriority) ||
-        "Kid-friendly experiences we lead with in asks. Still sponsor-funded; no funding guarantee.",
+        "Family linger and Saturday stage stories — sponsor-funded experiences for the weekend. An item runs when it is funded.",
     );
   }
   if (registryElectiveEl) {
@@ -1298,6 +1298,13 @@ function renderEstimatedSponsorsModal() {
     const name = sp?.name;
     if (!name) continue;
     const amount = Number(sp.amount) || 0;
+    // Optional `tier` override (e.g. SMUD Silver recognition at $2,500 cash).
+    const overrideLabel =
+      typeof sp.tier === "string" && sp.tier.trim() ? sp.tier.trim() : null;
+    if (overrideLabel && byTier.has(overrideLabel)) {
+      byTier.get(overrideLabel).push(name);
+      continue;
+    }
     if (amount < (tiers[tiers.length - 1]?.min || 0)) {
       below.push(name);
       continue;
@@ -1380,7 +1387,7 @@ function renderProgress() {
 
   document.getElementById("progress-bar").innerHTML = `
     <div class="progress-seg funded" style="width:${fundedPct}%" title="Funded toward lead ask"></div>
-    <div class="progress-seg core-unfunded" style="width:${toGoPct}%" title="To Target (core gap + High Priority)"></div>
+    <div class="progress-seg core-unfunded" style="width:${toGoPct}%" title="To Target"></div>
     <div class="progress-seg vision-unfunded" style="width:${stretchGapPct}%" title="To Stretch (electives)"></div>
   `;
 

@@ -85,8 +85,9 @@
      Prefer scale over %-padding: %-padding + aspect-ratio cyclic-sizes and crushes the mark. */
   --sponsor-card-logo-scale: 0.8;
   --sponsor-card-min: 8.5rem; /* grid floor; cards grow with the track */
-  --sponsor-card-bg: #f2f0ee; /* dark theme: a few nits under pure white */
-  --sponsor-card-bg-alpha: 0.96; /* plate only — logos stay opaque */
+  /* Dark: same white plate as light, then whole-card opacity (logo + fill). */
+  --sponsor-card-bg: #ffffff;
+  --sponsor-card-opacity: 0.92;
   --sponsor-card-border: color-mix(in srgb, #f3e0cf 18%, transparent);
 }
 
@@ -108,7 +109,7 @@
   --heading: var(--lead);
   --season-tentative-bg: #fff6d4;
   --sponsor-card-bg: #ffffff;
-  --sponsor-card-bg-alpha: 1;
+  --sponsor-card-opacity: 1;
   --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
 }
 
@@ -131,7 +132,7 @@
     --heading: var(--lead);
     --season-tentative-bg: #fff6d4;
     --sponsor-card-bg: #ffffff;
-    --sponsor-card-bg-alpha: 1;
+    --sponsor-card-opacity: 1;
     --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
   }
 }
@@ -2668,7 +2669,8 @@ a.co-chair-name {
   min-height: 0;
   padding: 0;
   box-sizing: border-box;
-  background: transparent;
+  background: var(--sponsor-card-bg);
+  opacity: var(--sponsor-card-opacity);
   border: 1px solid var(--sponsor-card-border);
   border-radius: var(--radius);
   text-align: center;
@@ -2679,18 +2681,6 @@ a.co-chair-name {
   overflow: hidden;
 }
 
-/* Plate behind logo — alpha applies to fill only so the mark stays opaque. */
-.sponsor-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  background: var(--sponsor-card-bg);
-  opacity: var(--sponsor-card-bg-alpha);
-  pointer-events: none;
-}
-
 .sponsor-card:hover {
   border-color: var(--accent);
   color: var(--accent);
@@ -2698,8 +2688,6 @@ a.co-chair-name {
 
 /* Name-only cards (no img) stay in normal grid flow. */
 .sponsor-card > :not(img) {
-  position: relative;
-  z-index: 1;
   max-width: calc(100% * var(--sponsor-card-logo-scale));
   max-height: calc(100% * var(--sponsor-card-logo-scale));
 }
@@ -2708,7 +2696,6 @@ a.co-chair-name {
    aspect-ratio box (grid-item % height does not — tall marks clipped). */
 .sponsor-card img {
   position: absolute;
-  z-index: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

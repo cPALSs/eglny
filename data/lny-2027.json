@@ -4,10 +4,10 @@
     "venue": "Elk Grove Park, California",
     "dates": "Feb 13\u201314, 2027 \u00b7 11 AM\u20137 PM",
     "mvpCap": 62450,
-    "coreSponsorGap": 20104,
-    "vendorRev100": 21125,
-    "registryFull": 184050,
-    "vendorSlots": 77,
+    "coreSponsorGap": 16354,
+    "vendorRev100": 24875,
+    "registryFull": 184550,
+    "vendorSlots": 90,
     "attendance": 6000
   },
   "scenario": {
@@ -16,17 +16,17 @@
     "fillRate": 1.0,
     "attendance": 6000,
     "mvpCap": 62450,
-    "vendorRevenue": 42346,
-    "headroomOrGap": 20104,
-    "vendorSlots": 77,
+    "vendorRevenue": 46096,
+    "headroomOrGap": 16354,
+    "vendorSlots": 90,
     "estimatedRevenue": {
-      "total": 42346,
-      "summary": "77 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
+      "total": 46096,
+      "summary": "90 paid booths \u00b7 6,000 attendance \u00b7 100% fill",
       "lines": [
         {
           "label": "Vendor booth fees",
-          "amount": 21125,
-          "note": "77 paid booths \u00b7 12 food truck / open cooking \u00d7 $750 \u00b7 5 drinks \u00d7 $500 \u00b7 40 merchant, craft, and snack \u00d7 $150 \u00b7 5 corporate \u00d7 $500 \u00b7 15 nonprofit \u00d7 $75"
+          "amount": 24875,
+          "note": "90 paid booths \u00b7 15 open cooking \u00d7 $750 \u00b7 5 drinks \u00d7 $500 \u00b7 21 snacks + 29 merchant/craft/paid \u00d7 $150 \u00b7 5 corporate \u00d7 $500 \u00b7 15 nonprofit \u00d7 $75"
         },
         {
           "label": "Parking",
@@ -36,7 +36,7 @@
         {
           "label": "Carnival share",
           "amount": 5221,
-          "note": "Our 20% share of carnival ride sales \u00b7 2026 earned $3,071 on Saturday alone (Sunday rides closed for wind) \u00b7 2027 counts about 1.7 days\u2019 worth, since Super Bowl Sunday runs shorter"
+          "note": "Our 20% share of carnival ride sales \u00b7 about 1.7 festival days (Sunday runs shorter with the Big Game)"
         }
       ]
     }
@@ -78,14 +78,14 @@
       "amount": 3600,
       "category": "core",
       "sortOrder": 3,
-      "tagline": "Moves the committee and the site \u2014 ops tent, golf carts, haul, signage, and volunteer meals.",
-      "description": "Moves the committee and the site \u2014 ops tent, golf carts, haul, signage, and volunteer meals.",
+      "tagline": "Moves the festival on the ground \u2014 ops tent, golf carts, haul, signage, and volunteer meals.",
+      "description": "Moves the festival on the ground \u2014 ops tent, golf carts, haul, signage, and volunteer meals.",
       "benefits": [
         "Logistics Core sponsor recognition on website + email"
       ],
       "lineItems": [
         {
-          "label": "Committee ops tent",
+          "label": "Festival ops tent",
           "amount": 1200
         },
         {
@@ -207,7 +207,7 @@
           "amount": 1000
         },
         {
-          "label": "Police + Public Works (2026 City in-kind estimate)",
+          "label": "Police + Public Works support",
           "amount": 13200
         }
       ]
@@ -218,8 +218,8 @@
       "amount": 8250,
       "category": "core",
       "sortOrder": 2,
-      "tagline": "Weekend restrooms and hand-wash, waste carts, cleaning supplies, and committee tables and chairs.",
-      "description": "Weekend restrooms and hand-wash, waste carts, cleaning supplies, and committee tables and chairs.",
+      "tagline": "Weekend restrooms and hand-wash, waste carts, cleaning supplies, and staff tables and chairs.",
+      "description": "Weekend restrooms and hand-wash, waste carts, cleaning supplies, and staff tables and chairs.",
       "benefits": [
         "Sanitation / Amenities sponsor recognition on website + email"
       ],
@@ -233,7 +233,7 @@
           "amount": 1000
         },
         {
-          "label": "Republic trash / recycling / organics carts (2026 City in-kind estimate)",
+          "label": "Trash / recycling / organics carts",
           "amount": 2250
         },
         {
@@ -615,7 +615,7 @@
     },
     {
       "id": "lac_hong_children_contests",
-      "name": "Children's Cultural Contests (draft)",
+      "name": "Children's Cultural Contests",
       "emoji": "\ud83c\udfa4",
       "amount": 3000,
       "category": "registry",
@@ -628,26 +628,27 @@
       ],
       "sortOrder": 52,
       "impactOrder": 18,
-      "tagline": "Draft \u2014 children\u2019s speech, singing, and cultural contests with L\u1ea1c H\u1ed3ng. Format TBD.",
-      "description": "Draft \u2014 children\u2019s speech, singing, and cultural contests with L\u1ea1c H\u1ed3ng. Format TBD.",
+      "tagline": "Children\u2019s speech, singing, and cultural contests with L\u1ea1c H\u1ed3ng \u2014 format still taking shape.",
+      "description": "Children\u2019s speech, singing, and cultural contests with L\u1ea1c H\u1ed3ng \u2014 format still taking shape.",
       "benefits": [
-        "TBD once contest product is locked with L\u1ea1c H\u1ed3ng"
+        "Children\u2019s Cultural Contests presented by [Sponsor]",
+        "Website + social recognition when the program is set"
       ],
       "lineItems": [
         {
-          "label": "Prize pool (placeholder \u2014 TBD with partner)",
+          "label": "Prize pool",
           "amount": 1200
         },
         {
-          "label": "Host / MC + contest ops stipend (placeholder)",
+          "label": "Host / MC + contest ops stipend",
           "amount": 800
         },
         {
-          "label": "Judging materials, certificates, check-in + signage (placeholder)",
+          "label": "Judging materials, certificates, check-in + signage",
           "amount": 500
         },
         {
-          "label": "Run-of-show coordination (placeholder)",
+          "label": "Run-of-show coordination",
           "amount": 500
         }
       ],
@@ -690,6 +691,40 @@
         {
           "label": "Judging / scoring admin + panel materials",
           "amount": 400
+        }
+      ],
+      "chapterDays": "saturday"
+    },
+    {
+      "id": "chess_tournament",
+      "name": "Chess Tournament",
+      "emoji": "\u265f",
+      "amount": 500,
+      "category": "registry",
+      "priority": true,
+      "cohorts": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "sortOrder": 12.25,
+      "impactOrder": 6.5,
+      "tagline": "Youth chess brackets in the pavilion \u2014 ages 6\u201311 and 12\u201317, with a small entry fee that feeds the prize pool.",
+      "description": "Youth chess brackets in the pavilion \u2014 ages 6\u201311 and 12\u201317, with a small entry fee that feeds the prize pool.",
+      "benefits": [
+        "Chess Tournament presented by [Sponsor]",
+        "Facebook/Instagram feature + youth player tags",
+        "MC thank-you for players + winners photo-op",
+        "Listed on website weekend schedule"
+      ],
+      "lineItems": [
+        {
+          "label": "Prize pool (ages 6\u201311 and 12\u201317)",
+          "amount": 350
+        },
+        {
+          "label": "Tables / boards setup + check-in materials + certificates",
+          "amount": 150
         }
       ],
       "chapterDays": "saturday"
@@ -947,7 +982,7 @@
           "amount": 150
         },
         {
-          "label": "Weighted ballast blocks / barrels \u2014 wind secure (2026 gap)",
+          "label": "Weighted ballast blocks / barrels \u2014 wind secure",
           "amount": 800
         }
       ],
@@ -1004,15 +1039,15 @@
       "category": "registry",
       "sortOrder": 15.5,
       "impactOrder": 10,
-      "tagline": "Not a cash gift \u2014 booth fee waiver if a vendor sets up Pavilion seating guests can use to recharge.",
-      "description": "Not a cash gift \u2014 booth fee waiver if a vendor sets up Pavilion seating guests can use to recharge.",
+      "tagline": "A Pavilion seating hang for guests to recharge \u2014 offered as a booth fee waiver for a vendor who hosts the setup (not a cash sponsorship).",
+      "description": "A Pavilion seating hang for guests to recharge \u2014 offered as a booth fee waiver for a vendor who hosts the setup (not a cash sponsorship).",
       "benefits": [
         "Booth fee waiver (portion or full) in exchange for a guest-ready Viet Cafe setup",
-        "Staff can connect vendors to furniture sources (Vietnamese stools / low tables)"
+        "Help connecting vendors to furniture sources (Vietnamese stools / low tables)"
       ],
       "lineItems": [
         {
-          "label": "Booth fee waiver (ops credit \u2014 not a sponsor cash ask)",
+          "label": "Booth fee waiver for a guest-ready Viet Cafe setup",
           "amount": 0
         }
       ],
@@ -1097,11 +1132,11 @@
       "description": "Sunday LED wall and kickoff security for a main-stage Big Game watch.",
       "benefits": [
         "Big Game \u2014 Main-Stage Watch presented by [Sponsor]",
-        "Named on Tailgate kickoff / watch chapter recognition"
+        "Named on Big Game kickoff / watch recognition"
       ],
       "lineItems": [
         {
-          "label": "LED wall \u2014 Sunday Tailgate watch",
+          "label": "LED wall \u2014 Sunday Big Game watch",
           "amount": 3200
         },
         {
@@ -1109,7 +1144,7 @@
           "amount": 900
         },
         {
-          "label": "Tailgate kickoff peak security / traffic add (main-stage gather)",
+          "label": "Kickoff peak security / traffic add (main-stage gather)",
           "amount": 1500
         }
       ],
@@ -1197,8 +1232,8 @@
       "cohorts": [],
       "sortOrder": 17,
       "impactOrder": 16,
-      "tagline": "Optional Kloss camp screen and camp-watch security for Tailgate camps.",
-      "description": "Optional Kloss camp screen and camp-watch security for Tailgate camps.",
+      "tagline": "Optional outdoor camp screen and evening security for a Big Game camp-watch hang.",
+      "description": "Optional outdoor camp screen and evening security for a Big Game camp-watch hang.",
       "benefits": [
         "Big Game Outdoor Evening presented by [Sponsor]",
         "MC thank-you + website / Facebook / Instagram feature",
@@ -1206,7 +1241,7 @@
       ],
       "lineItems": [
         {
-          "label": "Kloss camp LED / outdoor screen rental + labor",
+          "label": "Outdoor camp LED / screen rental + labor",
           "amount": 3500
         },
         {
@@ -1336,7 +1371,7 @@
       ],
       "lineItems": [
         {
-          "label": "Creator fee \u2014 appearance + meet & greet window (placeholder; scales with tier)",
+          "label": "Creator fee \u2014 appearance + meet & greet window",
           "amount": 3500
         },
         {

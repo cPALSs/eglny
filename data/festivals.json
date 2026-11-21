@@ -8,9 +8,9 @@
       "estimatedSponsorsFile": "../data/lny-2027-sponsors.json",
       "cashOffsetLabel": "Vendors, parking & carnival",
       "sections": {
-        "core": "Earned cash (vendors, parking, carnival) covers most of core ({preSponsor} of {coreTarget}). Sponsor a core gift below to close the remaining gap — each unlocks stories for social posting.",
-        "registry": "Sponsors close the core ops gap first (planning $20,104 after earned cash — Festival Foundation + Main Stage earmarks; not the full core face), then unlock High Priority: Saturday’s theatrical day, Sunday’s Tết Tailgate (Super Bowl), family moments both days, and the Weather / Cancel Fund. Electives (including Yearbook) are optional stories we may not lead with in asks.",
-        "registryPriority": "Family linger, Saturday stage stories, and Sunday Tết Tailgate screens — still sponsor-funded, with no funding guarantee.",
+        "core": "Vendors, parking, and carnival cover most of Core ({preSponsor} of {coreTarget}). Sponsor a Core gift below to finish opening the festival — each unlocks stories for social posting.",
+        "registry": "After Core, choose High Priority gifts that shape what families experience — Saturday stage stories, family moments both days, and the Weather / Cancel Fund. Electives are optional add-ons; funded items run, and the rest wait.",
+        "registryPriority": "Family linger and Saturday stage stories — sponsor-funded experiences for the weekend. An item runs when it is funded.",
         "registryElective": "Optional stories — stage performances, creator meet & greets, Relay Cup, beer garden, elders, décor accents, and more. Funded items run; unfunded ones wait.",
         "tiers": "Recognition levels based on your total sponsorship. Tier benefits stack with any registry stories you fund — your build highlights the tier you reach.",
         "options": "Sponsor booth spot unlocks at Bronze ($3,000+). Bring your own tent, or add Premium Tent Rental. Premium Tent Rental requires sponsor booth spot."

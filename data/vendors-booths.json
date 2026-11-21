@@ -35,8 +35,8 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas.",
-    "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is. Ops / host / district pads are reserved separately and are not in these counts.",
+    "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas. Sponsors named holds: AFG 2 · SMUD 10×20 (2 pad-eq.) · Cosumnes CSD 3 → Remaining ~9 of 16; soft holds AABC · CAAPS · Sac State APIDA/APPEX. Special arrangements stay in-lane (merchant/corporate trades). Viet Seniors Assoc → Nonprofit. Photo/media → ops tent. CERT out. Held cook pad = advertise 15 of 16 food-side. Map ~133 guest pads. Drinks 5 (was 6). UC Davis Health goodwill declined 2026-11-20.",
+    "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is.",
     "table": {
       "headers": [
         "Booth type",
@@ -53,7 +53,7 @@
         ],
         [
           "Drinks & snacks",
-          "6",
+          "5",
           "0",
           "$500"
         ],
@@ -65,8 +65,8 @@
         ],
         [
           "Corporate, merchants, craft, and paid activities",
-          "33",
-          "~22",
+          "34",
+          "~23",
           [
             "$150 merchants / craft / paid activities",
             "$500 corporate / marketing"
@@ -79,13 +79,13 @@
           "$75"
         ],
         [
-          "Sponsors",
+          "Sponsors (package activation)",
           "16",
-          "~16",
+          "~9",
           "Package activation"
         ],
         [
-          "Free children’s activity tables",
+          "Children’s activities",
           "26",
           "~20",
           "No fee"
@@ -94,8 +94,7 @@
     },
     "notes": [
       "**Drinks & snacks vs Snacks-only:** Fees are nested. If you sell **any drinks** (coffee, hot chocolate, boba, juice, etc.) — even alongside snacks — you are a **Drinks & snacks** booth (**$500**), not Snacks-only. **Snacks-only** (**$150**) means snacks / treats with **no** drinks. Sealed take-home food retail is also **$150** on the Food app.",
-      "**Same food type:** We limit how many booths sell the same kind of food so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. **Snacks-only:** softer limit — we still avoid too many of the same snack, but the exact cap (1, 2, or sometimes 3) is at our discretion as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer.",
-      "**Total map:** About **133** guest-facing pads (Zones A/B, roundabouts, Pavilion walkway, Rotary Grove; includes cooking + truck pads). Ops / host pads sit outside that count. Snack booths count toward general-pad capacity."
+      "**Same food type:** We limit how many booths sell the same kind of food so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. **Snacks-only:** softer limit — we still avoid too many of the same snack, but the exact cap (1, 2, or sometimes 3) is at our discretion as applications come in. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer."
     ]
   },
   "fees": {
