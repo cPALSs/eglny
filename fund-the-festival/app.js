@@ -1311,7 +1311,7 @@ function renderEstimatedSponsorsModal() {
     const name = sp?.name;
     if (!name) return "";
     const confirmed = String(sp?.status || "").toLowerCase() === "confirmed";
-    return confirmed ? `${name} (confirmed)` : name;
+    return confirmed ? `${name} ✓` : name;
   };
 
   for (const sp of sponsors) {
