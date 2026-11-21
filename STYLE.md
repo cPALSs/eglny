@@ -113,6 +113,29 @@ Path-finder controls that only scroll the page (e.g. Custom Zones DIY / Help) ar
 
 ---
 
+## Sponsor logo cards (homepage + `/sponsorship/`)
+
+Shared tokens on `.sponsor-card` (see `site.css` `:root`):
+
+| Rule | Token / behavior |
+|------|------------------|
+| **Plate (light)** | Pure white `#ffffff`, full opacity |
+| **Plate (dark)** | `#f2f0ee` (a few nits under white), plate alpha `0.96` via `::before` so the logo stays opaque |
+| **Aspect** | `3 / 2` (`--sponsor-card-aspect`) — every card same ratio |
+| **Inset** | Logo box = `--sponsor-card-logo-scale` (default `0.8` → 10% inset each side). Do **not** use %-padding on the card — it cyclic-sizes with `aspect-ratio` and crushes marks |
+| **Width** | Fluid from grid/flex track (`--sponsor-card-min`); not fixed px. Homepage may raise the floor only |
+| **Image fit** | Logo is **absolutely centered** with `max-width` + `max-height` at `--sponsor-card-logo-scale` (grid-item `%` height does not resolve against `aspect-ratio`, so tall marks clipped) |
+
+### Asset prep
+
+Crop export padding before drop-in under `sponsors/YYYY/`: trim near-white / transparent margins so sizing is driven by the CSS inset, not baked-in whitespace. Prefer PNG with real alpha when the mark isn’t rectangular.
+
+```bash
+magick logo.png -bordercolor white -border 1 -fuzz 2% -trim +repage sponsors/2026/slug.png
+```
+
+---
+
 ## Checklist for new pages
 
 1. Is the name a **brand**? → locked casing table above.

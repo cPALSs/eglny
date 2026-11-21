@@ -79,6 +79,15 @@
   --heading-line-height: 1.15;
   --max-width: 960px;
   --nav-height: 3.5rem;
+  /* Sponsor logo cards — shared homepage + /sponsorship/ (fluid width, fixed ratio + inset) */
+  --sponsor-card-aspect: 3 / 2;
+  /* Logo/name box = this fraction of the card; remainder is equal inset (0.8 → 10% each side).
+     Prefer scale over %-padding: %-padding + aspect-ratio cyclic-sizes and crushes the mark. */
+  --sponsor-card-logo-scale: 0.8;
+  --sponsor-card-min: 8.5rem; /* grid floor; cards grow with the track */
+  --sponsor-card-bg: #f2f0ee; /* dark theme: a few nits under pure white */
+  --sponsor-card-bg-alpha: 0.96; /* plate only — logos stay opaque */
+  --sponsor-card-border: color-mix(in srgb, #f3e0cf 18%, transparent);
 }
 
 :root[data-theme="light"] {
@@ -98,6 +107,9 @@
   --on-gold: #ffffff;
   --heading: var(--lead);
   --season-tentative-bg: #fff6d4;
+  --sponsor-card-bg: #ffffff;
+  --sponsor-card-bg-alpha: 1;
+  --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
 }
 
 @media (prefers-color-scheme: light) {
@@ -118,6 +130,9 @@
     --on-gold: #ffffff;
     --heading: var(--lead);
     --season-tentative-bg: #fff6d4;
+    --sponsor-card-bg: #ffffff;
+    --sponsor-card-bg-alpha: 1;
+    --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
   }
 }
 
@@ -1553,9 +1568,11 @@ body.nav-open {
   padding-top: 1.75rem;
 }
 
-/* Homepage 2027 sponsors — same logos/tiers as /sponsorship/, home section chrome.
-   Mobile: two columns, sized to the row (~200px on a 440px phone — bigger than /sponsorship/).
-   ≥640px: larger cards (desktop home hero treatment). */
+/* Homepage 2027 sponsors — same card tokens as /sponsorship/; only track floor differs. */
+.home-sponsors-2027 {
+  --sponsor-card-min: clamp(9.5rem, 42vw, 14rem);
+}
+
 .home-sponsors-2027 .sponsor-tier {
   margin: 1.5rem 0 0;
 }
@@ -1566,36 +1583,6 @@ body.nav-open {
 
 .home-sponsors-2027 .sponsor-tier h2 {
   margin-bottom: 0.75rem;
-}
-
-.home-sponsors-2027 .sponsor-grid--center {
-  gap: 0.75rem;
-}
-
-.home-sponsors-2027 .sponsor-grid--center .sponsor-card {
-  flex: 0 1 calc((100% - 0.75rem) / 2);
-  width: calc((100% - 0.75rem) / 2);
-  max-width: 200px;
-  min-height: 120px;
-  padding: 1.15rem;
-}
-
-.home-sponsors-2027 .sponsor-card img {
-  max-height: 100px;
-}
-
-@media (min-width: 640px) {
-  .home-sponsors-2027 .sponsor-grid--center .sponsor-card {
-    flex: 0 1 360px;
-    width: 360px;
-    max-width: none;
-    min-height: 176px;
-    padding: 2rem;
-  }
-
-  .home-sponsors-2027 .sponsor-card img {
-    max-height: 144px;
-  }
 }
 
 .home-build-cta > p:first-of-type {
@@ -2642,7 +2629,7 @@ a.co-chair-name {
 
 .sponsor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--sponsor-card-min)), 1fr));
   gap: 0.75rem;
 }
 
@@ -2657,37 +2644,51 @@ a.co-chair-name {
 
 .sponsor-grid--center .sponsor-card {
   box-sizing: border-box;
-  flex: 0 1 130px;
-  width: 130px;
+  flex: 0 1 var(--sponsor-card-min);
+  width: var(--sponsor-card-min);
   max-width: 100%;
 }
 
 @media (min-width: 640px) {
-  .sponsor-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
+  :root {
+    --sponsor-card-min: 10rem;
   }
 
-  .sponsor-grid--center .sponsor-card {
-    flex: 0 1 180px;
-    width: 180px;
+  .sponsor-grid {
+    gap: 1rem;
   }
 }
 
 .sponsor-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 88px;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid color-mix(in srgb, #1a2332 14%, transparent);
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: var(--sponsor-card-aspect);
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid var(--sponsor-card-border);
   border-radius: var(--radius);
   text-align: center;
   text-decoration: none;
   color: #1a2332;
   font-weight: 600;
   font-size: 0.95rem;
+  overflow: hidden;
+}
+
+/* Plate behind logo — alpha applies to fill only so the mark stays opaque. */
+.sponsor-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--sponsor-card-bg);
+  opacity: var(--sponsor-card-bg-alpha);
+  pointer-events: none;
 }
 
 .sponsor-card:hover {
@@ -2695,11 +2696,28 @@ a.co-chair-name {
   color: var(--accent);
 }
 
+/* Name-only cards (no img) stay in normal grid flow. */
+.sponsor-card > :not(img) {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% * var(--sponsor-card-logo-scale));
+  max-height: calc(100% * var(--sponsor-card-logo-scale));
+}
+
+/* Absolutely centered so max-height % resolves against the card’s definite
+   aspect-ratio box (grid-item % height does not — tall marks clipped). */
 .sponsor-card img {
-  max-height: 72px;
-  max-width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: auto;
+  height: auto;
+  max-width: calc(100% * var(--sponsor-card-logo-scale));
+  max-height: calc(100% * var(--sponsor-card-logo-scale));
   object-fit: contain;
+  object-position: center;
 }
 
 .build-subnav {
