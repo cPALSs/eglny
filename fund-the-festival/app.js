@@ -400,19 +400,22 @@ function coreContribAmount() {
   return sumEnabled(["core"]) + (state.extraCash || 0);
 }
 
-/** Pinned planning core sponsor gap (after earned cash) — not full core face. */
+/**
+ * Remaining Core gap after vendors + confirmed cash (live).
+ * Prefer this over the pinned planning figure so confirmed cash is not asked twice on Festival Vision.
+ */
 function coreSponsorGapAmount(core) {
+  if (core && Number.isFinite(Number(core.sponsorGap))) return Math.max(0, Number(core.sponsorGap));
   const pinned =
     state.data?.event?.coreSponsorGap ?? state.data?.scenario?.headroomOrGap ?? null;
   if (pinned != null && Number.isFinite(Number(pinned))) return Number(pinned);
-  return core?.sponsorGap ?? 0;
+  return 0;
 }
 
 /**
  * Festival vision caps + waterfall funding (sponsor lead ask).
- * Target = coreSponsorGap + High Priority · Stretch = that + electives.
- * Earned cash is already netted into the gap (see Core ops panel); this bar
- * tracks sponsor dollars toward the lead ask Bao approved (~$63.4K).
+ * Target = remaining Core gap + High Priority · Stretch = that + electives.
+ * Vendors + confirmed cash already reduce the Core gap (see Core ops / Est. revenue).
  */
 function festivalVisionState() {
   const core = coreFundingState();
