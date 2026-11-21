@@ -268,13 +268,13 @@
           {
             "id": "waitlist",
             "title": "Selection waitlist",
-            "body": "You’re next in line for that booth type. If a selected vendor misses the pay-by, we offer **that same seat to you right away** — we don’t hold it for Round 2 new applicants. **If you weren’t first pick for a limited food type,** you can stay on this waitlist for a possible promotion, **or** submit a new Round 2 application for a different food type that isn’t already taken. Separately: if **you** were selected in Round 1 and didn’t pay by Nov 20, you move to the Round 2 waitlist (no new deposit) and wait for Round 2 decisions around Jan 22.",
-            "next": "A waitlist spot is not a reserved booth until you get an offer and pay."
+            "body": "You’re next in line for that booth type. If a selected vendor misses the pay-by, we offer **that same seat to you right away** — we don’t hold it for Round 2 new applicants. **If you weren’t first pick for a limited food type,** you can stay on this waitlist for a possible promotion, **or** submit a new Round 2 application for a different food type that isn’t already taken. Separately: if **you** were selected in Round 1 and didn’t pay by Nov 20, you move to the Round 2 waitlist (no new deposit) and wait for Round 2 decisions around Jan 22. We may promote waitlisted applicants through **Sat, Feb 6, 2027**; after that we stop assigning new seats from the waitlist.",
+            "next": "A waitlist spot is not a reserved booth until you get an offer and pay. If you’re still unassigned after Feb 6, we start refunding the $25 application deposit on **Sun, Feb 7, 2027**."
           },
           {
             "id": "declined",
             "title": "Declined",
-            "body": "Not selected for this festival season. If you paid the $25 application deposit, we refund it.",
+            "body": "Not selected for this festival season. If you paid the $25 application deposit, we refund it (waitlist refunds begin **Sun, Feb 7, 2027** for applicants still unassigned after the Feb 6 promote cutoff).",
             "next": null
           }
         ]
