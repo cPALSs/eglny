@@ -2,7 +2,8 @@
   "eventYear": 2027,
   "tierOrder": [
     "Partners",
-    "Silver Sponsors"
+    "Silver Sponsors",
+    "Community Sponsors"
   ],
   "sponsors": [
     {
@@ -22,6 +23,12 @@
       "tier": "Silver Sponsors",
       "url": "https://www.smud.org/",
       "logo": "2026/smud.png"
+    },
+    {
+      "name": "Sky River",
+      "tier": "Community Sponsors",
+      "url": "https://www.skyriver.com/",
+      "logo": "2026/sky-river.png"
     }
   ]
 }
