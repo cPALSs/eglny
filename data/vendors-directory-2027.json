@@ -1,11 +1,10 @@
 {
   "festival": "Elk Grove Lunar New Year Tết 2027",
   "season": 2027,
-  "updated": "2026-11-19",
-  "source": "Round 1 Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657). Kids activity tables (57739) excluded.",
-  "foodMenuHref": "/food/",
+  "updated": "2026-11-21",
+  "source": "Round 1 Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657). Kids activity tables (57739) listed on Kids Village, not this directory.",
   "headline": "Vendors",
-  "lead": "Craft merchants and nonprofit community tables at the festival. Meals, drinks, and snacks are listed separately. [Register as a vendor](/vendors/).",
+  "lead": "Craft merchants and nonprofit community tables at the festival. Children’s activity tables will be listed on [Kids Village](/kids-village/). Meals, drinks, and snacks are on the [Food menu](/food/). [Register as a vendor](/vendors/).",
   "sections": [
     {
       "id": "merchants",
@@ -113,7 +112,17 @@
       "id": "nonprofits",
       "title": "Nonprofits & community tables",
       "emptyMessage": "No nonprofit info tables confirmed yet.",
-      "vendors": []
+      "vendors": [
+        {
+          "id": "mv-norcal",
+          "name": "Miss & Miss Teen Vietnam Northern California",
+          "description": "Hosting [Star of Spring Mini-Pageant](/activities/).",
+          "logo": "/assets/vendors-directory/2027/mv-norcal.jpg",
+          "website": null,
+          "instagram": "missvietnamnorcal",
+          "facebook": "MissVietnamNorthernCalifornia"
+        }
+      ]
     }
   ]
 }

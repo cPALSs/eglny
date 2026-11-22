@@ -1188,6 +1188,24 @@
     return handle ? `https://www.instagram.com/${encodeURIComponent(handle)}/` : null;
   }
 
+  function normalizeVendorFacebookUrl(facebook) {
+    if (!facebook) return null;
+    const raw = String(facebook).trim();
+    if (!raw) return null;
+    if (/^https?:\/\//i.test(raw)) return raw;
+    let path = raw
+      .replace(/^@/, "")
+      .replace(/^(www\.)?facebook\.com\//i, "")
+      .replace(/^fb\.com\//i, "")
+      .replace(/^\/+/, "")
+      .replace(/\/+$/, "");
+    if (!path) return null;
+    if (/^profile\.php\?/i.test(path)) return `https://www.facebook.com/${path}`;
+    const [slug, query] = path.split("?");
+    const base = `https://www.facebook.com/${encodeURIComponent(slug)}`;
+    return query ? `${base}?${query}` : `${base}/`;
+  }
+
   function vendorLogoSrc(logo) {
     if (!logo) return null;
     if (/^https?:\/\//i.test(logo)) return logo;
@@ -1285,24 +1303,30 @@
             aria-label="${escapeHtml(`Instagram: ${igHandle}`)}"
           >${renderSocialIcon("Instagram")}</a>`
       : "";
+    const fbUrl = normalizeVendorFacebookUrl(vendor.facebook);
+    const fbLink = fbUrl
+      ? `<a
+            class="vendor-directory-fb"
+            href="${escapeHtml(fbUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="${escapeHtml(`Facebook: ${vendor.name ?? "vendor"}`)}"
+          >${renderSocialIcon("Facebook")}</a>`
+      : "";
     const iconRow =
-      websiteLink || igLink
-        ? `<div class="vendor-directory-icons">${websiteLink}${igLink}</div>`
+      websiteLink || igLink || fbLink
+        ? `<div class="vendor-directory-icons">${websiteLink}${igLink}${fbLink}</div>`
         : "";
     return `<li class="vendor-directory-item${hasRealLogo ? " vendor-directory-item--has-avatar" : ""}">
       ${logo}
       <div class="vendor-directory-body">
-        <div class="vendor-directory-name-row">
-          <h3 class="vendor-directory-name">${escapeHtml(vendor.name)}</h3>
-          ${iconRow}
-        </div>
-        ${vendor.description ? `<p class="vendor-directory-desc">${escapeHtml(vendor.description)}</p>` : ""}
+        <h3 class="vendor-directory-name">${escapeHtml(vendor.name)}${iconRow}</h3>
+        ${vendor.description ? `<p class="vendor-directory-desc">${formatBriefProse(vendor.description)}</p>` : ""}
       </div>
     </li>`;
   }
 
   function renderVendorsDirectoryPage(data) {
-    const foodHref = data?.foodMenuHref ?? "/food/";
     const sections = data?.sections ?? [];
     const toc = sections.map((section) => ({
       id: section.id,
@@ -1327,11 +1351,7 @@
       })
       .join("");
 
-    const main = `
-      <div class="vendor-directory-food-callout">
-        <p>Meals, drinks, snacks, and treats are on the <a href="${escapeHtml(foodHref)}">Food menu</a>.</p>
-      </div>
-      ${sectionHtml}`;
+    const main = sectionHtml;
 
     return `
       <section class="hero">
