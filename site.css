@@ -1394,6 +1394,7 @@ body.nav-open {
 .inventory-fee-stack {
   display: flex;
   flex-direction: column;
+  gap: 0.35rem;
 }
 
 .inventory-fee-line {
@@ -1403,10 +1404,64 @@ body.nav-open {
   line-height: 1.35;
 }
 
-.inventory-fee-line + .inventory-fee-line {
+.inventory-fee-line--primary {
+  font-weight: 600;
+}
+
+.inventory-fee-stack > .inventory-fee-line + .inventory-fee-line {
   margin-top: 0.45rem;
   padding-top: 0.45rem;
   border-top: 1px solid var(--border);
+}
+
+.inventory-fee-details {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inventory-fee-details-toggle {
+  cursor: pointer;
+  list-style: none;
+  display: inline;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  line-height: 1.35;
+}
+
+.inventory-fee-details-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.inventory-fee-details-hide {
+  display: none;
+}
+
+.inventory-fee-details[open] .inventory-fee-details-show {
+  display: none;
+}
+
+.inventory-fee-details[open] .inventory-fee-details-hide {
+  display: inline;
+}
+
+.inventory-fee-breakdown {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.45rem;
+}
+
+.inventory-fee-breakdown .inventory-fee-line {
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--border);
+}
+
+.inventory-fee-breakdown .inventory-fee-line:first-child {
+  margin-top: 0.25rem;
 }
 
 .inventory-cell-note {

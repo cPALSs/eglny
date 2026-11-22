@@ -2455,8 +2455,12 @@
       const label = String(h ?? "").trim().toLowerCase();
       return label === "weekend fee" || label === "fee";
     });
-    /** String, or string[] for multi-line cells. Fee column: amount-first lines with rules between. */
-    const formatCell = (cell, i, row) => {
+    /**
+     * String, or string[] for multi-line cells.
+     * Fee column on the first 3 rows only: booth fee first; extra lines behind collapsed “See expense breakdown”.
+     * Other multi-line fee cells keep the full stack expanded.
+     */
+    const formatCell = (cell, i, row, rowIndex = 0) => {
       const lines = Array.isArray(cell) ? cell : [cell];
       const remainingRaw = Array.isArray(cell) ? cell[0] : cell;
       const feeRaw = feeCol >= 0 ? row?.[feeCol] : null;
@@ -2468,6 +2472,32 @@
           ? ` ${escapeHtml("(waitlist open)")}`
           : "";
       if (i === feeCol && lines.length > 1) {
+        const collapseBreakdown = rowIndex < 3;
+        if (collapseBreakdown) {
+          // Keep leading booth-fee lines visible (e.g. $150 snacks + $500 corporate); collapse deposits / TFF / COI.
+          let primaryCount = 1;
+          while (
+            primaryCount < lines.length &&
+            /\bbooth fee\b/i.test(String(lines[primaryCount] ?? ""))
+          ) {
+            primaryCount += 1;
+          }
+          const primary = lines
+            .slice(0, primaryCount)
+            .map(
+              (line, idx) =>
+                `<div class="inventory-fee-line${idx === 0 ? " inventory-fee-line--primary" : ""}">${formatBriefProse(line)}</div>`
+            )
+            .join("");
+          const rest = lines.slice(primaryCount);
+          if (!rest.length) {
+            return `<div class="inventory-fee-stack">${primary}</div>`;
+          }
+          const breakdown = rest
+            .map((line) => `<div class="inventory-fee-line">${formatBriefProse(line)}</div>`)
+            .join("");
+          return `<div class="inventory-fee-stack">${primary}<details class="inventory-fee-details"><summary class="inventory-fee-details-toggle"><span class="inventory-fee-details-show">See expense breakdown</span><span class="inventory-fee-details-hide">Hide expense breakdown</span></summary><div class="inventory-fee-breakdown">${breakdown}</div></details></div>`;
+        }
         return `<div class="inventory-fee-stack">${lines
           .map((line) => `<div class="inventory-fee-line">${formatBriefProse(line)}</div>`)
           .join("")}</div>`;
@@ -2481,26 +2511,26 @@
     };
     const head = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
     const body = (table.rows ?? [])
-      .map((row) => {
-        const cells = (row ?? []).map((cell, i) => `<td>${formatCell(cell, i, row)}</td>`);
+      .map((row, rowIndex) => {
+        const cells = (row ?? []).map((cell, i) => `<td>${formatCell(cell, i, row, rowIndex)}</td>`);
         return `<tr>${cells.join("")}</tr>`;
       })
       .join("");
     const cards = (table.rows ?? [])
-      .map((row) => {
+      .map((row, rowIndex) => {
         const cells = row ?? [];
-        const title = formatCell(cells[0] ?? "", 0, row);
+        const title = formatCell(cells[0] ?? "", 0, row, rowIndex);
         const compactMetrics = headers
           .slice(1)
           .map((label, offset) => {
             const i = offset + 1;
             if (i === feeCol) return "";
-            return `<div class="inventory-metric"><span class="inventory-metric-label">${escapeHtml(label)}</span><span class="inventory-metric-value">${formatCell(cells[i] ?? "", i, row)}</span></div>`;
+            return `<div class="inventory-metric"><span class="inventory-metric-label">${escapeHtml(label)}</span><span class="inventory-metric-value">${formatCell(cells[i] ?? "", i, row, rowIndex)}</span></div>`;
           })
           .join("");
         const feeHtml =
           feeCol >= 0
-            ? `<div class="inventory-metric inventory-metric--fee"><span class="inventory-metric-label">${escapeHtml(headers[feeCol])}</span><span class="inventory-metric-value">${formatCell(cells[feeCol] ?? "", feeCol, row)}</span></div>`
+            ? `<div class="inventory-metric inventory-metric--fee"><span class="inventory-metric-label">${escapeHtml(headers[feeCol])}</span><span class="inventory-metric-value">${formatCell(cells[feeCol] ?? "", feeCol, row, rowIndex)}</span></div>`
             : "";
         return `<article class="inventory-card"><h3 class="inventory-card-title">${title}</h3><div class="inventory-card-metrics">${compactMetrics}</div>${feeHtml}</article>`;
       })
