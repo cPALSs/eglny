@@ -35,7 +35,7 @@
     "id": "inventory",
     "tocLabel": "Inventory",
     "title": "Booth inventory",
-    "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas. Sponsors named holds: AFG 2 · SMUD 10×20 (2 pad-eq.) · Cosumnes CSD 3 → Remaining ~9 of 16; soft holds AABC · CAAPS · Sac State APIDA/APPEX. Special arrangements stay in-lane (merchant/corporate trades). Viet Seniors Assoc → Nonprofit. Photo/media → ops tent. CERT out. Held cook pad = advertise 15 of 16 food-side. Map ~133 guest pads. Drinks 5 (was 6). UC Davis Health goodwill declined 2026-11-20. Bao 2026-11-21: NP 15→14 then **kids −1 → NP +1** (NP **15** · kids **25**); public inventory row **Reserved** (1 · Remaining **N/A** · fee **N/A** → no waitlist) = guest survey / research pad from NP, not Eventeny. Same day: snacks-only merged into merchants/craft/GEN inventory row (published pool **55** = former 21+34); Eventeny SN vs MER/GEN SKUs unchanged — no hard snack-vendor cap. Cooking Remaining **3→4** — Huong no R1 seat-lock reply (seat released).",
+    "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas. Sponsors named holds: AFG 2 · SMUD 10×20 (2 pad-eq.) · Cosumnes CSD 3 → Remaining ~9 of 16; soft holds AABC · CAAPS. Photo/media → ops tent. CERT out. Held cook pad = advertise 15 of 16 food-side. Map ~133 guest pads. Drinks 5 (was 6). UC Davis Health goodwill declined 2026-11-20. Bao 2026-11-21: NP path kids−1→NP+1 (cap **15** · kids **25**); **Reserved** row = guest survey / research (not Eventeny). Snacks merged into MER/craft/GEN publish pool **55**. Cooking Remaining **4** (Huong R1 released). **NP named holds (2026-11-21 eve):** (1) **Sac State APIDA/APPEX** 1 — Night Lights reciprocal; (2) **Vietnamese Senior Association** 1 — renew 2026 prayer/program comp; (3) **Miss & Miss Teen Vietnam NorCal** 1 — renew; asking Mai Mai + Dai if Star of Spring needs a 2nd. → NP Remaining **12** of 15. **Not reserved yet:** UCD VSA · VN CARES (outreach later). **No merchant holds:** Hien/OUAT already on free-kids R1; Sac Hats wait reach-out; TCS already in Eventeny queue (booth swap); Rubi’s Art likely prior-year weather credit — wait. **Risk (Bao → talk Tido/Thuy):** under-radar 2026 comps need seller-permit + insurance training if renewed as legitimate ops.",
     "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is.",
     "table": {
       "headers": [
@@ -69,7 +69,7 @@
         [
           "Nonprofit / community info",
           "15",
-          "15",
+          "12",
           "$75"
         ],
         [
