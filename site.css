@@ -1351,7 +1351,7 @@ body.nav-open {
 
 .inventory-card-metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.65rem 0.65rem;
   align-items: start;
 }
@@ -1362,6 +1362,16 @@ body.nav-open {
   gap: 0.25rem;
   min-width: 0;
   text-align: left;
+}
+
+.inventory-metric--fee {
+  margin-top: 0.75rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border);
+}
+
+.inventory-metric--fee .inventory-metric-value {
+  font-weight: 500;
 }
 
 .inventory-metric-label {
@@ -1381,13 +1391,31 @@ body.nav-open {
   overflow-wrap: anywhere;
 }
 
+.inventory-fee-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.inventory-fee-line {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.inventory-fee-line + .inventory-fee-line {
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--border);
+}
+
 .inventory-cell-note {
   display: block;
-  margin-top: 0.2rem;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  line-height: inherit;
+  margin-top: 0.35rem;
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 @media (max-width: 719px) {

@@ -2425,7 +2425,7 @@
    * Booth inventory table — display only. # of spots / Remaining come from vendors-booths.json
    * table cells as author-set literals; never compute them here from caps or fill counts.
    * Appends “(waitlist open)” when the Remaining cell is literally 0 — unless Weekend fee is N/A (reserved).
-   * Desktop: table. Mobile: cards with booth type title + 3-metric grid.
+   * Desktop: table. Mobile: cards with booth type title, spots/remaining row, then weekend fee full-width.
    */
   function renderInventoryTable(table) {
     if (!table?.headers?.length) return "";
@@ -2435,14 +2435,9 @@
       const label = String(h ?? "").trim().toLowerCase();
       return label === "weekend fee" || label === "fee";
     });
-    /** String, or string[] for multi-line cells (stacked lines, same size). */
+    /** String, or string[] for multi-line cells. Fee column: amount-first lines with rules between. */
     const formatCell = (cell, i, row) => {
       const lines = Array.isArray(cell) ? cell : [cell];
-      const primary = formatBriefProse(lines[0] ?? "");
-      const notes = lines
-        .slice(1)
-        .map((line) => `<span class="inventory-cell-note">${formatBriefProse(line)}</span>`)
-        .join("");
       const remainingRaw = Array.isArray(cell) ? cell[0] : cell;
       const feeRaw = feeCol >= 0 ? row?.[feeCol] : null;
       const suffix =
@@ -2452,6 +2447,16 @@
         !isNaWeekendFeeInventoryValue(feeRaw)
           ? ` ${escapeHtml("(waitlist open)")}`
           : "";
+      if (i === feeCol && lines.length > 1) {
+        return `<div class="inventory-fee-stack">${lines
+          .map((line) => `<div class="inventory-fee-line">${formatBriefProse(line)}</div>`)
+          .join("")}</div>`;
+      }
+      const primary = formatBriefProse(lines[0] ?? "");
+      const notes = lines
+        .slice(1)
+        .map((line) => `<span class="inventory-cell-note">${formatBriefProse(line)}</span>`)
+        .join("");
       return `${primary}${suffix}${notes}`;
     };
     const head = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
@@ -2465,14 +2470,19 @@
       .map((row) => {
         const cells = row ?? [];
         const title = formatCell(cells[0] ?? "", 0, row);
-        const metrics = headers
+        const compactMetrics = headers
           .slice(1)
           .map((label, offset) => {
             const i = offset + 1;
+            if (i === feeCol) return "";
             return `<div class="inventory-metric"><span class="inventory-metric-label">${escapeHtml(label)}</span><span class="inventory-metric-value">${formatCell(cells[i] ?? "", i, row)}</span></div>`;
           })
           .join("");
-        return `<article class="inventory-card"><h3 class="inventory-card-title">${title}</h3><div class="inventory-card-metrics">${metrics}</div></article>`;
+        const feeHtml =
+          feeCol >= 0
+            ? `<div class="inventory-metric inventory-metric--fee"><span class="inventory-metric-label">${escapeHtml(headers[feeCol])}</span><span class="inventory-metric-value">${formatCell(cells[feeCol] ?? "", feeCol, row)}</span></div>`
+            : "";
+        return `<article class="inventory-card"><h3 class="inventory-card-title">${title}</h3><div class="inventory-card-metrics">${compactMetrics}</div>${feeHtml}</article>`;
       })
       .join("");
     return `<div class="inventory-display">

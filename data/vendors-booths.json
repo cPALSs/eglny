@@ -49,34 +49,56 @@
           "Onsite cooking (canopy, truck, or trailer). Drinks and snacks included.",
           "15",
           "4",
-          "$750"
+          [
+            "**$750** booth fee",
+            "**$100** refundable trash deposit",
+            "**$500** refundable cooking cleanup deposit",
+            "**$258** County TFF if needed (high risk)",
+            "**~$70** COI estimate — or use your own policy",
+            "If approved, **50%** of booth fee to lock; rest of fees and deposits later"
+          ]
         ],
         [
           "Drinks and snacks only",
           "5",
           "0",
-          "$500"
+          [
+            "**$500** booth fee",
+            "**$100** refundable trash deposit",
+            "**$116** or **$258** County TFF if needed (low vs high risk)",
+            "**~$70** COI estimate — or use your own policy",
+            "If approved, **50%** of booth fee to lock; rest of fees and deposits later"
+          ]
         ],
         [
           "Snacks only, merchants, craft, sealed treats, and paid activities",
           "55",
           "~35",
           [
-            "$150 snacks only / merchants / craft / sealed treats / paid activities",
-            "$500 corporate / marketing"
+            "**$150** booth fee (snacks, merchants, craft, sealed treats, paid activities)",
+            "**$500** booth fee (corporate / marketing)",
+            "**$100** refundable trash deposit",
+            "**$116** or **$258** County TFF if needed (snacks / sealed food)",
+            "**~$70** COI estimate for food + power, or **~$50** power only — or use your own policy"
           ]
         ],
         [
           "Nonprofit / community info",
           "15",
           "4",
-          "$75"
+          [
+            "**$75** booth fee",
+            "**~$50** COI estimate for power — or use your own policy"
+          ]
         ],
         [
           "Children’s activities",
           "25",
           "~19",
-          "No fee"
+          [
+            "**$0** booth fee",
+            "COI if required — potentially sponsored"
+          ]
         ],
         [
           "Sponsors (package activation)",
@@ -94,7 +116,7 @@
     },
     "notes": [
       "**Onsite cooking** means you cook or prep and **sell food to guests** for the whole weekend — not a staged live-demo booth.",
-      "**If approved for onsite cooking (all-in):** weekend booth **$750** + refundable **$100** trash + refundable **$500** cooking cleanup = **$1,350**, plus the **$25** application deposit at apply (credited toward the $750 if selected) and Sacramento County TFF fees if you need a single-event permit.",
+      "Weekend fee stacks **booth fee** + **refundable** cleanup deposits + County TFF when needed + a **COI** if your booth type requires one. COI dollar lines are short-term policy **estimates** (~$70 food · ~$50 exhibitor/power) — buy anywhere that meets the limits under Fees. Skip TFF if your MEV or MFF already covers the weekend. Cooking and drinks lock with a **partial booth payment**; the rest is due later. Also budget the **$25** application deposit at apply (credited toward the booth fee if selected).",
       "**Paid guest activities** (face painting, balloon art, timed challenges, etc. where guests pay) → **Merchant / craft / paid activity** at **$150** on the Merchants & corporate app — not Corporate / marketing (**$500**), and not a free kids activity table.",
       "**Same food type:** We limit how many booths sell the same kind of **cooked food** or **drink** so the festival has variety. **Onsite cooking** and **Drinks and snacks only:** strong limit — we avoid duplicate hot-food categories and drink types. If more than one vendor wants a limited type, we rank applications and offer in that order. **Snacks only** sits in the open merchant-style pool — we do **not** hard-cap snack vendors by type."
     ]
@@ -232,7 +254,8 @@
           "**Certificate holder:** Elk Grove Lunar New Year Tết 2027 / VACOS · 9950 Elk Grove-Florin Road, Elk Grove, CA 95624"
         ],
         "after": [
-          "You can upload a COI with your application if you already have one. Otherwise wait until closer to Jan 29. We’ll email accepted food and power vendors these guidelines again before the due date."
+          "You can upload a COI with your application if you already have one. Otherwise wait until closer to Jan 29. We’ll email accepted food and power vendors these guidelines again before the due date.",
+          "Need to buy a short-term policy? Rough estimates for a 2-day booth are about **$70** (food) and **$50** (exhibitor / power) — or use any insurer that meets the limits above. Free kids activity tables: COI, when required, may be **potentially sponsored**."
         ]
       },
       {
