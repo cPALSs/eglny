@@ -48,5 +48,10 @@
 
   if (pathname === "/vendors-directory" || pathname === "/vendors-directory/") {
     location.replace("/vendors-list/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/food-menu" || pathname === "/food-menu/") {
+    location.replace("/food/" + search + hash);
   }
 })();

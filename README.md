@@ -27,10 +27,10 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/vendors/` | **Vendor booths** — apply cards (Eventeny booth or Custom Zones) + inventory + two-round selection |
 | `/rfp/` | Redirect → `/team/` (RFP index retired from public hub) |
 | `/rfp/childrens-theater/` | Children’s Theater detail — deep-linked from Team open seat (Village / Maker Spot pages unlisted) |
-| `/food-menu/` | **Food menu** — 2026 meals / drinks / snacks listing (under **Visit**) |
+| `/food/` | **Food menu** — meals / drinks / snacks listing (under **Visit**); `/food-menu/` redirects here |
 | `/vendors-list/` | **Vendors** — Round 1 craft merchants and nonprofit tables (under **Visit**); `/vendors-directory/` redirects here |
 | `/kids-village/` | **Kids Village** — coming-soon placeholder + feed-the-lion play (under **Visit**) |
-| `/attractions/food/` | Redirect → `/food-menu/` |
+| `/attractions/food/` | Legacy attraction page (prefer `/food/`) |
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
 | `/resources/lion-dance/` | Redirect → [littlesaigonsac.town/lists/lion-dance/](https://littlesaigonsac.town/lists/lion-dance/) (LSS Lists roster) |
@@ -89,7 +89,7 @@ python3 -m http.server 8765
 - http://localhost:8765/custom-zones/
 - http://localhost:8765/vendors/
 - http://localhost:8765/rfp/
-- http://localhost:8765/food-menu/
+- http://localhost:8765/food/
 - http://localhost:8765/vendors-list/
 - http://localhost:8765/kids-village/
 - http://localhost:8765/resources/

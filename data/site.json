@@ -51,7 +51,7 @@
     "activitiesLabel": "Activities",
     "activitiesHref": "/activities/",
     "foodLabel": "Food menu",
-    "foodHref": "/food-menu/",
+    "foodHref": "/food/",
     "vendorsLabel": "Vendors",
     "vendorsHref": "/vendors-list/"
   },
@@ -584,7 +584,7 @@
       {
         "title": "Food menu",
         "body": "Browse locked-in 2027 meals, drinks, and snacks — or switch to the 2026 menu. Search and filter by dietary needs.",
-        "href": "/food-menu/"
+        "href": "/food/"
       },
       {
         "title": "Vendors",

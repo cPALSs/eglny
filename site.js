@@ -195,7 +195,7 @@
         href: "/attendees/",
         children: [
           { id: "activities", label: "Activities", navLabel: "Activities", href: "/activities/" },
-          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food-menu/" },
+          { id: "food-menu", label: "Food menu", navLabel: "Food menu", href: "/food/" },
           {
             id: "vendors-list",
             label: "Vendors",
@@ -1302,7 +1302,7 @@
   }
 
   function renderVendorsDirectoryPage(data) {
-    const foodHref = data?.foodMenuHref ?? "/food-menu/";
+    const foodHref = data?.foodMenuHref ?? "/food/";
     const sections = data?.sections ?? [];
     const toc = sections.map((section) => ({
       id: section.id,
