@@ -9,7 +9,7 @@
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply for single booth or an entire zone",
-    "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10.",
+    "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10. Official vendor questions and invitations use **contact@eglny.com** and Eventeny only — don’t treat other Gmail addresses as from the organizing team.",
     "partnerIntro": "Two ways to join the map: apply for a standard booth on Eventeny, or inquire about a named Custom Zones corner.",
     "paths": [
       {
@@ -28,7 +28,7 @@
     "cta": {
       "label": "Apply on Eventeny",
       "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
-      "note": "Sign in or create a free Eventeny account. Most applicants pay a **$25** application deposit when they apply for a single booth. Nonprofit, community info, and free kids activity tables pay no deposit — and the free kids activity form does not ask for a credit card."
+      "note": "Sign in or create a free Eventeny account. Most applicants pay a **$25** application deposit when they apply for a single booth. Nonprofit, community info, and free kids activity tables pay no deposit — and the free kids activity form does not ask for a credit card. Questions: **contact@eglny.com**."
     }
   },
   "inventory": {
@@ -36,7 +36,7 @@
     "tocLabel": "Inventory",
     "title": "Booth inventory",
     "editorNote": "Staff/agent only — not rendered on eglny.com. **# of spots** and **Remaining** in inventory.table are author-set literals from Bao. Never derive them from caps, Round 1 fill, applicant counts, or formulas. Sponsors named holds: AFG 2 · SMUD 10×20 (2 pad-eq.) · Cosumnes CSD 3 → Remaining ~9 of 16; soft holds AABC · CAAPS. Photo/media → ops tent. CERT out. Held cook pad = advertise 15 of 16 food-side. Map ~133 guest pads. Drinks 5 (was 6). UC Davis Health goodwill declined 2026-11-20. Bao 2026-11-21: NP path kids−1→NP+1 (cap **15** · kids **25**); **Reserved** row = guest survey / research (not Eventeny). Snacks merged into MER/craft/GEN publish pool **55**. Cooking Remaining **4** (Huong R1 released). **NP named holds (2026-11-21 night):** (1) **Sac State APIDA/APPEX** 1 — Night Lights reciprocal; (2) **Vietnamese Senior Association** 1 — renew 2026 prayer/program comp; (3) **Miss & Miss Teen Vietnam NorCal / MV NORCAL** **2** — Dai confirmed 2026-11-21 (Miss/Miss Teen + Star of Spring); (4) **Red Envelope for Charity / Lì xì for Charity** **5** — Ellie campaign beneficiary/partner booth block; (5) **Lạc Hồng** 1; (6) **Liên Đoàn Lạc Việt** 1 (Bao 2026-11-21). **Pending (Bao 2026-11-21):** may move Lạc Hồng / Lạc Việt into **kids-activity** pads instead (free **2 NP**); BoiAn to confirm with each org — promote via kid activities vs dedicated NP booth. Hold NP seats until confirmed. → NP Remaining **4** of 15. **Not reserved yet:** UCD VSA · VN CARES (outreach later). **No merchant holds:** Hien/OUAT already on free-kids R1; Sac Hats wait reach-out; TCS already in Eventeny queue (booth swap); Rubi’s Art likely prior-year weather credit — wait. **Risk (Bao → talk Tido/Thuy):** under-radar 2026 comps need seller-permit + insurance training if renewed as legitimate ops.",
-    "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is.",
+    "intro": "Here’s how many booths we’re planning for, how many are still open, and what the weekend fee is. Last year Cosumnes CSD counted about **5,000–6,000** guests over the weekend — we’re planning a similar free public festival (not a guarantee of any one year’s peak).",
     "table": {
       "headers": [
         "Booth type",
@@ -46,23 +46,23 @@
       ],
       "rows": [
         [
-          "Open food / on-site cooking (canopy, truck, or trailer)",
+          "Onsite cooking (canopy, truck, or trailer). Drinks and snacks included.",
           "15",
           "4",
           "$750"
         ],
         [
-          "Drinks & snacks",
+          "Drinks and snacks only",
           "5",
           "0",
           "$500"
         ],
         [
-          "Merchants, craft, snacks, sealed treats, and paid activities",
+          "Snacks only, merchants, craft, sealed treats, and paid activities",
           "55",
           "~35",
           [
-            "$150 merchants / craft / snacks / sealed treats / paid activities",
+            "$150 snacks only / merchants / craft / sealed treats / paid activities",
             "$500 corporate / marketing"
           ]
         ],
@@ -93,15 +93,17 @@
       ]
     },
     "notes": [
-      "**Drinks vs snacks / sealed:** Fees are nested. If you sell **any drinks** (coffee, hot chocolate, boba, juice, etc.) — even alongside snacks — you are a **Drinks & snacks** booth (**$500**). Snacks / treats with **no** drinks, and sealed take-home food retail, are **$150** on the Food app (same fee band as merchants / craft).",
-      "**Same food type:** We limit how many booths sell the same kind of **cooked food** or **drink** so the festival has variety. **Cooking and Drinks & snacks:** strong limit — we avoid duplicate hot-food categories and drink types. If more than one vendor wants a limited type, we rank applications and offer the booth in that order. If the first person doesn’t pay, the next person gets the offer. **Snacks / sealed treats** sit in the open merchant-style pool — we do **not** hard-cap snack vendors by type."
+      "**Onsite cooking** means you cook or prep and **sell food to guests** for the whole weekend — not a staged live-demo booth.",
+      "**If approved for onsite cooking (all-in):** weekend booth **$750** + refundable **$100** trash + refundable **$500** cooking cleanup = **$1,350**, plus the **$25** application deposit at apply (credited toward the $750 if selected) and Sacramento County TFF fees if you need a single-event permit.",
+      "**Paid guest activities** (face painting, balloon art, timed challenges, etc. where guests pay) → **Merchant / craft / paid activity** at **$150** on the Merchants & corporate app — not Corporate / marketing (**$500**), and not a free kids activity table.",
+      "**Same food type:** We limit how many booths sell the same kind of **cooked food** or **drink** so the festival has variety. **Onsite cooking** and **Drinks and snacks only:** strong limit — we avoid duplicate hot-food categories and drink types. If more than one vendor wants a limited type, we rank applications and offer in that order. **Snacks only** sits in the open merchant-style pool — we do **not** hard-cap snack vendors by type."
     ]
   },
   "fees": {
     "id": "fees",
     "tocLabel": "Fees & terms",
     "title": "Fees and terms",
-    "intro": "Fees are for the whole weekend (Saturday and Sunday). Same prices as on Eventeny. There is no early-bird discount — applying early helps you get a decision sooner in Round 1.",
+    "intro": "Fees are for the **whole weekend** (Saturday and Sunday). We expect vendors to **staff both days** — there are no single-day booths. Same prices as on Eventeny. There is no early-bird discount — applying early helps you get a decision sooner in Round 1.",
     "sections": [
       {
         "title": "Application deposit",
@@ -124,6 +126,18 @@
         ]
       },
       {
+        "title": "Booth pad and footprint",
+        "body": [
+          "Disclose your setup size on the application so we can place you correctly."
+        ],
+        "bullets": [
+          "**Merchant, craft, snacks, and activity pads:** about **10×10**.",
+          "**Canopy cooking:** about **10×30** (includes roughly **5 feet** into grass / meridian for your generator).",
+          "**Food trucks and trailers:** dedicated pads; we can accommodate large units (up to about **10×40**). Tell us your length and pull-in needs when you apply.",
+          "Canopy cooking uses the same onsite-cooking lane and fee as a truck or trailer — layout assigns the pad type after you’re selected."
+        ]
+      },
+      {
         "title": "Table and chairs",
         "body": [
           "Paid vendor booths get **one standard table and two chairs**. Festival volunteers set them up before the weekend and take them down after."
@@ -135,14 +149,25 @@
         ]
       },
       {
+        "title": "Power and generators",
+        "body": [
+          "Booth pads do **not** have shared electrical outlets. If you need power (freezer, electric griddle, lights, POS, etc.), bring your own quiet generator and/or battery pack."
+        ],
+        "bullets": [
+          "Disclose generator use on your application. Generators must be fenced or guarded and meet Fire spacing rules.",
+          "Propane equipment (griddles, fryers, etc.) is allowed when it meets Fire / LPG rules (tanks, clearances, extinguisher).",
+          "Using electrical power or a generator also means you need a COI by the Jan 29 deadline (see Insurance below)."
+        ]
+      },
+      {
         "title": "Locking your booth",
         "body": [
           "An offer only holds until the pay-by date. **Paying the booth fee locks your spot** — cleanup deposits do not."
         ],
         "bullets": [
           "**Round 1 — cooking** (canopy, food truck, or trailer): pay **$375 of the $750** booth fee by **Fri, Nov 20, 2026** to lock. The rest of the booth fee (**$350** after your $25 deposit credit) plus cleanup deposits are due **Fri, Jan 29, 2027**, or you give up the booth.",
-          "**Round 1 — Drinks & snacks:** pay **$250 of the $500** booth fee by **Fri, Nov 20, 2026** to lock. The rest of the booth fee (**$225** after your $25 deposit credit) plus cleanup deposits are due **Fri, Jan 29, 2027**, or you give up the booth.",
-          "**Round 1 — everyone else** (Snacks-only, merchant, corporate, nonprofit): pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits are due **Fri, Jan 29, 2027**.",
+          "**Round 1 — Drinks and snacks only:** pay **$250 of the $500** booth fee by **Fri, Nov 20, 2026** to lock. The rest of the booth fee (**$225** after your $25 deposit credit) plus cleanup deposits are due **Fri, Jan 29, 2027**, or you give up the booth.",
+          "**Round 1 — everyone else** (Snacks only, merchant, corporate, nonprofit): pay the **full booth fee** by **Fri, Nov 20, 2026** to lock. Cleanup deposits are due **Fri, Jan 29, 2027**.",
           "**Round 2:** pay the booth fee (and any deposits due) by **Fri, Jan 29, 2027** — or when you’re approved, if that’s later."
         ]
       },
@@ -212,13 +237,13 @@
       },
       {
         "title": "Hours and load-in",
-        "bullets": [
-          "Vendor hours: **11 AM–7 PM** Sat–Sun, Feb 13–14, 2027",
-          "Load-in: **Friday, Feb 12, 2027**",
-          "Tear-down: after 7 PM Sunday"
+        "body": [
+          "Booth fees cover **both festival days** — we don’t offer single-day booths. Public hours are **11 AM–7 PM** Sat–Sun, Feb 13–14, 2027. Primary load-in is **Friday, Feb 12** (exact window in your vendor onboarding packet); same-day gates open around **7 AM** both mornings. Tear-down is after **7 PM Sunday**.",
+          "Vehicles are **drop-off only**. Be out of booth zones by **~10 AM** both days unless you’re granted an exemption. Exempt vehicles (food trucks / trailers placed for the weekend, or other written exemptions) stay put and **cannot move during public hours**. Plan for Fire inspection about **9–10 AM Saturday** with your pad ready and clear of non-exempt vehicles. Leaving early or bringing gear later means carting from the vendor reserved parking lots.",
+          "You may leave equipment secured on your assigned pad overnight Sat→Sun. Overnight site security is planned; still lock valuables and cover gear. The festival is not liable for theft or damage to vendor property."
         ],
         "after": [
-          "Exact load-in and tear-down times come with your acceptance email."
+          "Exact load-in, vehicle cutoffs, and tear-down times come in your vendor onboarding packet and may be updated for park or Fire needs."
         ]
       }
     ]
@@ -232,7 +257,7 @@
       {
         "label": "Round 1 — Closed",
         "window": "Oct 11 → Nov 5, 2026",
-        "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** cooking booths pay **$375 of $750**; Drinks & snacks pay **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → that seat goes **right away** to the next Round 1 waitlisted vendor for that booth type; you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and Drinks & snacks vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
+        "note": "Most spots (~70–80%). Decisions around Nov 10. **Pay the booth fee by Nov 20 to lock your seat:** onsite cooking pays **$375 of $750**; Drinks and snacks only pays **$250 of $500**; everyone else pays the full booth fee. Miss Nov 20 → that seat goes **right away** to the next Round 1 waitlisted vendor for that booth type; you lose the $25 deposit and move to the Round 2 waitlist (no new deposit). Cooking and drinks vendors who locked still owe the rest of the booth fee plus cleanup deposits by Jan 29, or they give up the booth."
       },
       {
         "label": "Round 2 — Open now",
@@ -261,8 +286,8 @@
           {
             "id": "offer",
             "title": "Offer sent",
-            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay by the deadline to lock your booth** (Round 1 cooking: $375 of $750 by Nov 20; Drinks & snacks: $250 of $500 by Nov 20; everyone else: full booth fee by Nov 20).",
-            "next": "Once that payment clears, you’re on the map. Round 1 cooking and Drinks & snacks vendors still owe the rest of the booth fee plus cleanup deposits by Jan 29."
+            "body": "You’re selected. Accept the offer (food vendors may get a recommended festival menu), then **pay by the deadline to lock your booth** (Round 1 onsite cooking: $375 of $750 by Nov 20; Drinks and snacks only: $250 of $500 by Nov 20; everyone else: full booth fee by Nov 20).",
+            "next": "Once that payment clears, you’re on the map. Round 1 cooking and drinks vendors still owe the rest of the booth fee plus cleanup deposits by Jan 29."
           },
           {
             "id": "waitlist",
@@ -281,7 +306,7 @@
       {
         "id": "paid",
         "title": "Pay → official vendor",
-        "body": "Your offer only lasts until the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 booth-fee lock** and that seat goes to the next Round 1 waitlisted vendor right away; you lose the $25 deposit and join the **Round 2 waitlist** (no new deposit). **Round 1 cooking and Drinks & snacks vendors** who locked with the half booth fee but miss the **Jan 29** remainder + deposits **give up the booth** (same: next on the selection waitlist). Cancel by Jan 15 for a full booth-fee refund; after Jan 15 through Jan 29 for a refund minus the cancel fee; after Jan 29, no booth-fee refund."
+        "body": "Your offer only lasts until the pay-by date. Pay on time and you’re on the map. **Miss Round 1’s Nov 20 booth-fee lock** and that seat goes to the next Round 1 waitlisted vendor right away; you lose the $25 deposit and join the **Round 2 waitlist** (no new deposit). **Round 1 cooking and drinks vendors** who locked with the half booth fee but miss the **Jan 29** remainder + deposits **give up the booth** (same: next on the selection waitlist). Cancel by Jan 15 for a full booth-fee refund; after Jan 15 through Jan 29 for a refund minus the cancel fee; after Jan 29, no booth-fee refund."
       }
     ],
     "footnote": "Dates can shift a little if we need to. Spot counts by booth type were set with Round 1 decisions (around Nov 10)."
@@ -292,7 +317,7 @@
     "title": "Selection criteria",
     "intro": "We look at the whole round of applications together — not whoever paid first. Food applicants are ranked within their type. Craft, merchant, and info booths are reviewed for overall festival fit.",
     "factorsTitle": "Food ranking factors",
-    "factorsIntro": "For cooking and Drinks & snacks applicants, here’s roughly how much each factor counted in Round 1 and how much it counts in Round 2:",
+    "factorsIntro": "For onsite cooking and Drinks and snacks only applicants, here’s roughly how much each factor counted in Round 1 and how much it counts in Round 2:",
     "factors": {
       "headers": [
         "Factor",
