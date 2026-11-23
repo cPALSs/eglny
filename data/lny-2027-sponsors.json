@@ -1,5 +1,5 @@
 {
-  "source": "2027 LNY estimated-sponsor projection — starts from 2026 deposit baselines (lny-2026-sponsors.json). Deltas vs 2026: drop Thien Ho / Sac DA; drop VABA + CWS (2026-11-20); add City of Elk Grove $3,000 estimated. Confirmed 2026-11-20: SMUD $2,500 · Sky River $1,500 (cash baseline, not estimate pool). Liquid projected pool: close remaining Core gap without painting Core cards, then High Priority (impact order); leftover → Weather partial. Electives not auto-funded by estimate.",
+  "source": "2027 LNY estimated-sponsor projection — starts from 2026 deposit baselines (lny-2026-sponsors.json). Deltas vs 2026: drop Thien Ho / Sac DA; drop VABA + CWS (2026-11-20); add City of Elk Grove $3,000 estimated. Confirmed 2026-11-20: SMUD $2,500 · Sky River $1,500 (cash baseline, not estimate pool). Confirmed UC Davis Health $1,500 Community (2026-11-17). Liquid projected pool: close remaining Core gap without painting Core cards, then High Priority (impact order); leftover → Weather partial. Electives not auto-funded by estimate.",
   "baseline": "lny-2026-sponsors.json",
   "sponsors": [
     { "name": "American Furniture Galleries", "amount": 15000, "giftId": "outdoor_stage" },
@@ -19,6 +19,7 @@
     { "name": "Journey to the Dumpling", "amount": 1500 },
     { "name": "Pat Hume", "amount": 1500 },
     { "name": "Darren Suen", "amount": 1500 },
-    { "name": "Sky River", "amount": 1500, "status": "confirmed", "tier": "Community" }
+    { "name": "Sky River", "amount": 1500, "status": "confirmed", "tier": "Community" },
+    { "name": "UC Davis Health", "amount": 1500, "status": "confirmed", "tier": "Community" }
   ]
 }
