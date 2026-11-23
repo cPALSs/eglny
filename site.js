@@ -439,7 +439,8 @@
     <footer class="site-footer">
       <nav class="site-footer-nav" aria-label="Footer">${navLinks}</nav>
       ${social}
-      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>${coalition ? ` · (${coalition})` : ""}</p>
+      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a></p>
+      ${coalition ? `<p class="site-footer-meta site-footer-hosts">Hosted by ${coalition}</p>` : ""}
     </footer>
   `;
   }
@@ -711,6 +712,43 @@
     "/assets/hero/golden-goat-01.jpg 1280w, /assets/hero/golden-goat-01-2x.jpg 1920w";
   const HERO_GOLDEN_GOAT_SIZES = "100vw";
 
+  function renderFestivalHosts(site) {
+    const hero = site.hero ?? {};
+    const footer = site.footer ?? {};
+    const hostsLabel = hero.hostsLabel || "Hosted by";
+    const hosts =
+      hero.hosts ??
+      (footer.coalitionLinks ?? [])
+        .filter((link) => ["cPALSs", "VACOS", "NVCC"].includes(link.label))
+        .map((link) => ({
+          label: link.label,
+          name: link.label,
+          href: link.href,
+          logo: `/assets/hosts/${String(link.label).toLowerCase()}.png`,
+        }));
+    if (!hosts.length) return "";
+    const items = hosts
+      .map((host) => {
+        const name = host.name || host.label || "";
+        const label = host.label || name;
+        const href = host.href || "#";
+        const logo = host.logo || "";
+        return `<a class="festival-host" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
+          <span class="festival-host-mark">
+            <img src="${escapeHtml(logo)}" alt="${escapeHtml(name)}" width="120" height="120" loading="lazy" decoding="async" />
+          </span>
+          <span class="festival-host-label">${escapeHtml(label)}</span>
+        </a>`;
+      })
+      .join("");
+    return `
+      <div class="festival-hosts" aria-label="${escapeHtml(hostsLabel)}">
+        <p class="festival-hosts-label">${escapeHtml(hostsLabel)}</p>
+        <div class="festival-hosts-row">${items}</div>
+      </div>
+    `;
+  }
+
   function renderFestivalHero(site) {
     const event = site.event ?? {};
     const hero = site.hero ?? {};
@@ -718,16 +756,18 @@
     const venue = event.venueShort || event.venue || "Elk\u00A0Grove Park";
     const address = event.address || "";
     const freeLine = event.admissionLabel || "Free community celebration";
-    const headline = hero.festivalHeadline || "Celebrate Lunar New Year Tết in Elk\u00A0Grove";
+    const title =
+      event.name ||
+      site.meta?.siteName ||
+      "Elk Grove Lunar New Year Tết";
     const lead =
       hero.festivalLead ||
-      "A joyful celebration of heritage, community, and new beginnings. Enjoy traditional performances, delicious food, music, and activities for the whole family.";
+      "A free family weekend of heritage, food, entertainment, and community — honoring where we come from and celebrating where we’re headed.";
     const keepElkGrove = (s) => String(s).replace(/Elk Grove/g, "Elk\u00A0Grove");
     const leadHtml = escapeHtml(lead);
 
     return `
       <section class="festival-hero" aria-label="Festival highlight">
-        <h1 class="sr-only">${escapeHtml(keepElkGrove(headline))}</h1>
         <img
           class="festival-hero-banner"
           src="${HERO_GOLDEN_GOAT_SRC}"
@@ -739,6 +779,7 @@
           decoding="async"
         />
         <div class="festival-hero-inner">
+          <h1 class="festival-hero-title">${escapeHtml(keepElkGrove(title))}</h1>
           <p class="festival-hero-lead">${leadHtml}</p>
           <div class="festival-hero-meta" role="group" aria-label="Event details">
             <div class="festival-meta-item">
@@ -768,6 +809,7 @@
               </div>
             </div>
           </div>
+          ${renderFestivalHosts(site)}
         </div>
       </section>
     `;
@@ -2457,7 +2499,7 @@
     });
     /**
      * String, or string[] for multi-line cells.
-     * Fee column on the first 3 rows only: booth fee first; extra lines behind collapsed “See expense breakdown”.
+     * Fee column on the first 3 rows only: booth fee first; extra lines behind collapsed “See other expenses”.
      * Other multi-line fee cells keep the full stack expanded.
      */
     const formatCell = (cell, i, row, rowIndex = 0) => {
@@ -2496,7 +2538,7 @@
           const breakdown = rest
             .map((line) => `<div class="inventory-fee-line">${formatBriefProse(line)}</div>`)
             .join("");
-          return `<div class="inventory-fee-stack">${primary}<details class="inventory-fee-details"><summary class="inventory-fee-details-toggle"><span class="inventory-fee-details-show">See expense breakdown</span><span class="inventory-fee-details-hide">Hide expense breakdown</span></summary><div class="inventory-fee-breakdown">${breakdown}</div></details></div>`;
+          return `<div class="inventory-fee-stack">${primary}<details class="inventory-fee-details"><summary class="inventory-fee-details-toggle"><span class="inventory-fee-details-show">See other expenses</span><span class="inventory-fee-details-hide">Hide other expenses</span></summary><div class="inventory-fee-breakdown">${breakdown}</div></details></div>`;
         }
         return `<div class="inventory-fee-stack">${lines
           .map((line) => `<div class="inventory-fee-line">${formatBriefProse(line)}</div>`)

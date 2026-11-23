@@ -24,7 +24,28 @@
   },
   "hero": {
     "festivalHeadline": "Celebrate Lunar New Year Tết in Elk Grove",
-    "festivalLead": "A free family weekend of heritage, food, and community — with Lucky Wav on the main stage, honoring where we come from and celebrating where we’re headed.",
+    "festivalLead": "A free family weekend of heritage, food, entertainment, and community — honoring where we come from and celebrating where we’re headed.",
+    "hostsLabel": "Hosted by",
+    "hosts": [
+      {
+        "label": "cPALSs",
+        "name": "Community Partners Advocate of Little Saigon Sacramento",
+        "href": "https://www.cpalss.com/",
+        "logo": "/assets/hosts/cpalss.png"
+      },
+      {
+        "label": "VACOS",
+        "name": "Vietnamese American Community of Sacramento",
+        "href": "https://vacos.org/",
+        "logo": "/assets/hosts/vacos.png"
+      },
+      {
+        "label": "NVCC",
+        "name": "NorCal Vietnamese Chamber of Commerce",
+        "href": "https://www.facebook.com/norcalvietnamesechamber/",
+        "logo": "/assets/hosts/nvcc.png"
+      }
+    ],
     "headline": "Help build the 2027 festival",
     "homeLead": "Join the team shaping this year’s celebration. Round 2 vendor applications are open through January 15.",
     "intro": "Elk Grove Lunar New Year Tết returns to Elk Grove Park this February — welcoming the Year of the Goat with a free, family-centered festival weekend: carnival, lion dance, kids programming, and live music on the main stage. Vendor fees fund the essentials. Sponsors unlock the magic.",

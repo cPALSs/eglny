@@ -2671,6 +2671,10 @@ a.co-chair-name {
   margin: 0;
 }
 
+.site-footer-hosts {
+  margin-top: 0.4rem;
+}
+
 .sponsor-tier {
   margin: 2rem 0;
 }
@@ -3731,12 +3735,101 @@ a.co-chair-name {
   text-align: center;
 }
 
+.festival-hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(
+    calc(1.65rem * var(--font-display-scale)),
+    calc(4.2vw * var(--font-display-scale)),
+    calc(2.35rem * var(--font-display-scale))
+  );
+  line-height: var(--heading-line-height);
+  color: var(--heading);
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
 .festival-hero-lead {
   margin: 0;
   font-size: 1.15rem;
   line-height: 1.6;
   color: var(--lead);
   max-width: 40rem;
+}
+
+.festival-hosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.festival-hosts-label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: calc(0.78rem * var(--font-display-scale));
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.festival-hosts-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  width: min(100%, 28rem);
+  align-items: start;
+  justify-items: center;
+}
+
+.festival-host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.festival-host:hover .festival-host-mark,
+.festival-host:focus-visible .festival-host-mark {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+.festival-host-mark {
+  display: block;
+  width: clamp(4.5rem, 18vw, 6.25rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.festival-host-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.festival-host-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-align: center;
+}
+
+.festival-host:hover .festival-host-label,
+.festival-host:focus-visible .festival-host-label {
+  color: var(--text);
 }
 
 .festival-hero-meta {
