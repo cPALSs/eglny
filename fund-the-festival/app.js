@@ -134,6 +134,7 @@ const GIFT_SORT = {
   stage_production_plus: 10,
   sponsor_booth: 1,
   tent_rental: 2,
+  premium_sponsor_booth: 3,
   additional_amount: 0,
 };
 
@@ -451,7 +452,14 @@ function festivalVisionState() {
 }
 
 function getSponsorRules() {
-  return state.data?.sponsorRules ?? { boothUnlockThreshold: 2500, boothTierLabel: "Gold" };
+  return (
+    state.data?.sponsorRules ?? {
+      boothUnlockThreshold: 2500,
+      boothTierLabel: "Gold",
+      premiumBoothUnlockThreshold: 7500,
+      premiumBoothTierLabel: "Gold",
+    }
+  );
 }
 
 function selectedTierAmount() {
@@ -479,33 +487,66 @@ function coreGiftName(giftId) {
   return gift ? gift.name : "base core gift";
 }
 
+function giftSponsorThreshold(gift) {
+  const rules = getSponsorRules();
+  if (gift?.id === "premium_sponsor_booth") {
+    return gift.sponsorThresholdMin ?? rules.premiumBoothUnlockThreshold ?? 7500;
+  }
+  return gift?.sponsorThresholdMin ?? rules.boothUnlockThreshold;
+}
+
+function giftSponsorTierLabel(gift) {
+  const rules = getSponsorRules();
+  if (gift?.id === "premium_sponsor_booth") {
+    return gift.sponsorTierLabel ?? rules.premiumBoothTierLabel ?? "Gold";
+  }
+  return gift?.sponsorTierLabel ?? rules.boothTierLabel;
+}
+
+function premiumBoothIncludedByTier() {
+  const { premiumBoothUnlockThreshold } = getSponsorRules();
+  const threshold = premiumBoothUnlockThreshold ?? 7500;
+  return state.selectedTierMin != null && state.selectedTierMin >= threshold;
+}
+
 function boothIncludedByTier() {
   const { boothUnlockThreshold } = getSponsorRules();
+  if (premiumBoothIncludedByTier()) return false;
   return state.selectedTierMin != null && state.selectedTierMin >= boothUnlockThreshold;
 }
 
+function hasBoothSpot() {
+  return !!(state.enabled.sponsor_booth || state.enabled.premium_sponsor_booth);
+}
+
 function isOptionUnlocked(gift) {
-  const { boothUnlockThreshold } = getSponsorRules();
-  if (gift.requiresSponsorThreshold && sponsorTotal() < boothUnlockThreshold) return false;
-  if (gift.requiresBoothSpot && !state.enabled.sponsor_booth) return false;
+  if (gift.requiresSponsorThreshold && sponsorTotal() < giftSponsorThreshold(gift)) return false;
+  if (gift.requiresBoothSpot && !hasBoothSpot()) return false;
   if (gift.requiresCoreGift && !state.enabled[gift.requiresCoreGift]) return false;
   return true;
 }
 
 function unlockNotice(gift) {
-  const { boothUnlockThreshold, boothTierLabel } = getSponsorRules();
   const parts = [];
   if (gift.id === "sponsor_booth" && boothIncludedByTier()) {
     const tier = selectedTier();
+    const { boothTierLabel } = getSponsorRules();
     return `Included with your selected ${tier?.label ?? boothTierLabel} tier.`;
   }
-  if (gift.requiresSponsorThreshold && sponsorTotal() < boothUnlockThreshold) {
+  if (gift.id === "premium_sponsor_booth" && premiumBoothIncludedByTier()) {
+    const tier = selectedTier();
+    const { premiumBoothTierLabel } = getSponsorRules();
+    return `Included with your selected ${tier?.label ?? premiumBoothTierLabel} tier.`;
+  }
+  if (gift.requiresSponsorThreshold && sponsorTotal() < giftSponsorThreshold(gift)) {
+    const label = giftSponsorTierLabel(gift);
+    const threshold = giftSponsorThreshold(gift);
     parts.push(
-      `Requires ${boothTierLabel} sponsorship (${fmt(boothUnlockThreshold)} minimum). Your build: ${fmt(sponsorTotal())}.`,
+      `Requires ${label} sponsorship (${fmt(threshold)} minimum). Your build: ${fmt(sponsorTotal())}.`,
     );
   }
-  if (gift.requiresBoothSpot && !state.enabled.sponsor_booth) {
-    parts.push("Requires sponsor booth spot — add sponsor booth spot first.");
+  if (gift.requiresBoothSpot && !hasBoothSpot()) {
+    parts.push("Requires sponsor booth spot — add sponsor booth first.");
   }
   if (gift.requiresCoreGift && !state.enabled[gift.requiresCoreGift]) {
     parts.push(`Requires ${coreGiftName(gift.requiresCoreGift)} — select it first.`);
@@ -716,21 +757,23 @@ function enforceOptionLocks() {
       }
     }
   }
-  const { boothUnlockThreshold } = getSponsorRules();
-  if (sponsorTotal() < boothUnlockThreshold) {
-    for (const gift of state.data?.gifts ?? []) {
-      if (gift.requiresSponsorThreshold) delete state.enabled[gift.id];
+  for (const gift of state.data?.gifts ?? []) {
+    if (gift.requiresSponsorThreshold && sponsorTotal() < giftSponsorThreshold(gift)) {
+      delete state.enabled[gift.id];
     }
   }
-  if (boothIncludedByTier()) {
+  if (premiumBoothIncludedByTier()) {
+    state.enabled.premium_sponsor_booth = true;
+    delete state.enabled.sponsor_booth;
+  } else if (boothIncludedByTier()) {
     state.enabled.sponsor_booth = true;
+    delete state.enabled.premium_sponsor_booth;
+  } else {
+    delete state.enabled.premium_sponsor_booth;
   }
   for (const gift of state.data?.gifts ?? []) {
-    if (gift.requiresBoothSpot) {
-      const boothGift = state.data.gifts.find(
-        (g) => g.requiresSponsorThreshold && state.enabled[g.id],
-      );
-      if (!boothGift) delete state.enabled[gift.id];
+    if (gift.requiresBoothSpot && !hasBoothSpot()) {
+      delete state.enabled[gift.id];
     }
   }
 }
@@ -829,6 +872,7 @@ function setGiftEnabled(id, checked) {
   if (gift && !isSelectableGift(gift)) return;
   if (gift && !isOptionUnlocked(gift) && checked) return;
   if (id === "sponsor_booth" && !checked && boothIncludedByTier()) return;
+  if (id === "premium_sponsor_booth" && !checked && premiumBoothIncludedByTier()) return;
   if (checked) state.enabled[id] = true;
   else delete state.enabled[id];
   enforceOptionLocks();
@@ -886,9 +930,10 @@ function giftAmountLabel(gift) {
     return state.extraCash > 0 ? fmt(state.extraCash) : "Variable";
   }
   if (gift.requiresSponsorThreshold) {
-    const { boothUnlockThreshold, boothTierLabel } = getSponsorRules();
+    const threshold = giftSponsorThreshold(gift);
+    const label = giftSponsorTierLabel(gift);
     const suffix = gift.amount > 0 ? ` · ${fmt(gift.amount)}` : "";
-    return `${boothTierLabel} · ${fmt(boothUnlockThreshold)}+${suffix}`;
+    return `${label} · ${fmt(threshold)}+${suffix}`;
   }
   if (gift.amount === 0) return "Included";
   return fmt(gift.amount);
@@ -1474,7 +1519,9 @@ function giftCardHtml(gift) {
   const on = selectable && !!state.enabled[gift.id];
   const unlocked = isOptionUnlocked(gift);
   const lockChoices = choicesLockedForEstimate();
-  const includedByTier = gift.id === "sponsor_booth" && boothIncludedByTier();
+  const includedByTier =
+    (gift.id === "sponsor_booth" && boothIncludedByTier()) ||
+    (gift.id === "premium_sponsor_booth" && premiumBoothIncludedByTier());
   const toggleLocked = !unlocked || lockChoices || includedByTier;
   return `
     <article class="gift-card${on ? " enabled" : ""}${selectable && !unlocked ? " locked" : ""}${selectable ? "" : " gift-card--readonly"}${estimatedSponsorCardClass(gift.id)}" data-id="${gift.id}" tabindex="0">
@@ -1614,7 +1661,9 @@ function renderModalContent(giftId) {
   const unlocked = isOptionUnlocked(gift);
   const selectable = isSelectableGift(gift);
   const variable = isVariableAmountGift(gift);
-  const includedByTier = gift.id === "sponsor_booth" && boothIncludedByTier();
+  const includedByTier =
+    (gift.id === "sponsor_booth" && boothIncludedByTier()) ||
+    (gift.id === "premium_sponsor_booth" && premiumBoothIncludedByTier());
 
   document.getElementById("modal-title").textContent = giftLabel(gift);
   document.getElementById("modal-amount").textContent = giftAmountLabel(gift);

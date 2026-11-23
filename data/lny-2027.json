@@ -1340,19 +1340,20 @@
     },
     {
       "id": "sponsor_booth",
-      "name": "Sponsor booth spot",
+      "name": "Sponsor booth",
       "amount": 0,
       "category": "options",
       "sortOrder": 1,
-      "tagline": "On-site 10\u00d710 sponsor activation \u2014 bring your own tent; we assign the spot.",
-      "description": "On-site 10\u00d710 sponsor activation \u2014 bring your own tent; we assign the spot.",
+      "tagline": "On-site 10\u00d710 activation \u2014 basic popup canopy + weights included, or bring your own tent.",
+      "description": "On-site 10\u00d710 sponsor activation. We assign the spot and can provide a labeled basic popup canopy with pad weights, or you bring your own tent. Anyone can add Premium Tent Rental ($900) for a sturdy tent. Gold and above include Premium sponsor booth (sturdy tent) instead.",
       "benefits": [
         "Logo on website sponsor page",
-        "Included with Bronze tier sponsorship"
+        "Included with Bronze and Silver tier sponsorship",
+        "Basic 10\u00d710 popup canopy + pad weights included (or BYO tent)"
       ],
       "lineItems": [
         {
-          "label": "Sponsor booth slot assignment",
+          "label": "Sponsor booth slot + basic popup canopy / BYO",
           "amount": 0
         }
       ],
@@ -1364,19 +1365,42 @@
       "amount": 900,
       "category": "options",
       "sortOrder": 2,
-      "tagline": "Optional \u2014 we rent the 10\u00d710 tent for your sponsor booth.",
-      "description": "Optional \u2014 we rent the 10\u00d710 tent for your sponsor booth.",
+      "tagline": "Optional sturdy 10\u00d710 tent + weights \u2014 available to anyone, any gift total.",
+      "description": "Optional $900 sturdy weighted 10\u00d710 tent (delivery and pickup handled by festival ops). Open to anyone on Fund the Festival \u2014 no booth or tier minimum. Gold and above already include a sturdy tent with Premium sponsor booth; you can still add this if you want a separate rental.",
       "benefits": [
         "Delivery + pickup handled by festival ops",
-        "Same 10\u00d710 spec as sponsor booth footprint"
+        "Sturdy frame / weighted 10\u00d710",
+        "No booth or tier minimum \u2014 add to any build"
       ],
       "lineItems": [
         {
-          "label": "10\u00d710 tent + weights (weekend)",
+          "label": "10\u00d710 premium tent + weights (weekend)",
           "amount": 900
         }
+      ]
+    },
+    {
+      "id": "premium_sponsor_booth",
+      "name": "Premium sponsor booth",
+      "amount": 0,
+      "category": "options",
+      "sortOrder": 3,
+      "tagline": "On-site 10\u00d710 with a sturdy weighted tent \u2014 included at Gold and above.",
+      "description": "On-site 10\u00d710 sponsor activation with a sturdy weighted tent (delivery and pickup handled by festival ops). Included with Gold ($7,500+) and higher tiers.",
+      "benefits": [
+        "Logo on website sponsor page",
+        "Included with Gold tier sponsorship and above",
+        "Sturdy 10\u00d710 tent + weights included"
       ],
-      "requiresBoothSpot": true
+      "lineItems": [
+        {
+          "label": "Premium sponsor booth + sturdy tent / weights",
+          "amount": 0
+        }
+      ],
+      "requiresSponsorThreshold": true,
+      "sponsorThresholdMin": 7500,
+      "sponsorTierLabel": "Gold"
     },
     {
       "id": "influencer_meet_greet",
@@ -1456,7 +1480,9 @@
   ],
   "sponsorRules": {
     "boothUnlockThreshold": 3000,
-    "boothTierLabel": "Bronze"
+    "boothTierLabel": "Bronze",
+    "premiumBoothUnlockThreshold": 7500,
+    "premiumBoothTierLabel": "Gold"
   },
   "sponsorTiers": [
     {
@@ -1481,7 +1507,7 @@
         "Mention in email blast to mailing lists",
         "Instagram / Facebook tag",
         "MC stage thank-you",
-        "10\u00d710 sponsor booth"
+        "Sponsor booth (basic canopy or BYO)"
       ]
     },
     {
@@ -1495,14 +1521,14 @@
         "Logo row in email blast to mailing lists",
         "Instagram / Facebook post",
         "MC stage thank-you",
-        "10\u00d710 sponsor booth",
+        "Sponsor booth (basic canopy or BYO)",
         "Website logo + link for 3 months"
       ]
     },
     {
       "label": "Gold",
       "min": 7500,
-      "tagline": "Strong recognition with booth and speaking opportunity",
+      "tagline": "Strong recognition with premium booth and speaking opportunity",
       "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
       "benefits": [
         "Name on website sponsor page",
@@ -1510,7 +1536,7 @@
         "Dedicated block in email blast to mailing lists",
         "Instagram / Facebook post + Story",
         "MC stage thank-you",
-        "10\u00d710 sponsor booth",
+        "Premium sponsor booth (sturdy weighted tent)",
         "Speaking opportunity",
         "4\u00d74 stage / digital banner",
         "Website logo + link for 6 months"
@@ -1519,7 +1545,7 @@
     {
       "label": "Diamond",
       "min": 10000,
-      "tagline": "Major recognition with booth and stage banner",
+      "tagline": "Major recognition with premium booth and stage banner",
       "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
       "benefits": [
         "Name on website sponsor page",
@@ -1527,7 +1553,7 @@
         "Featured placement in email blast to mailing lists",
         "Instagram / Facebook collaboration post",
         "MC stage thank-you",
-        "10\u00d710 sponsor booth",
+        "Premium sponsor booth (sturdy weighted tent)",
         "Speaking opportunity",
         "4\u00d76 stage / digital banner",
         "Website logo + link for 6 months"
@@ -1536,7 +1562,7 @@
     {
       "label": "Platinum",
       "min": 15000,
-      "tagline": "Presenting partner recognition with booth and VIP",
+      "tagline": "Presenting partner recognition with premium booth and VIP",
       "description": "Recognition tier for your total sponsorship. Tier benefits stack with naming credit on any registry stories you fund.",
       "benefits": [
         "Name on website sponsor page",
@@ -1544,7 +1570,7 @@
         "Headline placement in all email blasts",
         "Hero Instagram / Facebook coverage (multiple posts)",
         "Opening and recurring MC stage thank-you",
-        "Premium 10\u00d710 sponsor booth",
+        "Premium sponsor booth (sturdy weighted tent)",
         "Speaking opportunity + intro session",
         "6\u00d710 stage / digital banner",
         "Website logo + link for 12 months"
