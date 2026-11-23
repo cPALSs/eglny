@@ -1345,7 +1345,7 @@
       "category": "options",
       "sortOrder": 1,
       "tagline": "On-site 10\u00d710 activation \u2014 basic popup canopy + weights included, or bring your own tent.",
-      "description": "On-site 10\u00d710 sponsor activation. We assign the spot and can provide a labeled basic popup canopy with pad weights, or you bring your own tent. Anyone can add Premium Tent Rental ($900) for a sturdy tent. Gold and above include Premium sponsor booth (sturdy tent) instead.",
+      "description": "On-site 10\u00d710 sponsor activation. We assign the spot and can provide a labeled basic popup canopy with pad weights, or you bring your own tent. Anyone can add Premium Tent Rental ($300) for a sturdy tent. Gold and above include Premium sponsor booth (sturdy tent) instead.",
       "benefits": [
         "Logo on website sponsor page",
         "Included with Bronze and Silver tier sponsorship",
@@ -1362,11 +1362,11 @@
     {
       "id": "tent_rental",
       "name": "Premium Tent Rental",
-      "amount": 900,
+      "amount": 300,
       "category": "options",
       "sortOrder": 2,
       "tagline": "Optional sturdy 10\u00d710 tent + weights \u2014 available to anyone, any gift total.",
-      "description": "Optional $900 sturdy weighted 10\u00d710 tent (delivery and pickup handled by festival ops). Open to anyone on Fund the Festival \u2014 no booth or tier minimum. Gold and above already include a sturdy tent with Premium sponsor booth; you can still add this if you want a separate rental.",
+      "description": "Optional $300 sturdy weighted 10\u00d710 frame tent (delivery and pickup handled by festival ops). Priced near 2026 Capitol Tent City unit cost (~$265) plus a small buffer. Open to anyone on Fund the Festival \u2014 no booth or tier minimum. Gold and above already include a sturdy tent with Premium sponsor booth; you can still add this if you want a separate rental.",
       "benefits": [
         "Delivery + pickup handled by festival ops",
         "Sturdy frame / weighted 10\u00d710",
@@ -1375,7 +1375,7 @@
       "lineItems": [
         {
           "label": "10\u00d710 premium tent + weights (weekend)",
-          "amount": 900
+          "amount": 300
         }
       ]
     },
