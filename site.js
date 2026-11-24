@@ -1585,6 +1585,43 @@
     });
   }
 
+
+  /** Allow only #rgb / #rrggbb / #rrggbbaa for sponsor cardBg (inline CSS). */
+  function sanitizeSponsorCardBg(value) {
+    if (typeof value !== "string") return null;
+    const v = value.trim();
+    return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(v) ? v : null;
+  }
+
+  /** Expand #rgb → #rrggbb for luminance checks. */
+  function expandSponsorCardBgHex(hex) {
+    if (!hex) return null;
+    if (hex.length === 4) {
+      return `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
+    }
+    return hex.length >= 7 ? hex.slice(0, 7) : hex;
+  }
+
+  /** Relative luminance 0–1; null if unparseable. */
+  function sponsorCardBgLuminance(hex) {
+    const full = expandSponsorCardBgHex(hex);
+    if (!full || full.length !== 7) return null;
+    const r = parseInt(full.slice(1, 3), 16) / 255;
+    const g = parseInt(full.slice(3, 5), 16) / 255;
+    const b = parseInt(full.slice(5, 7), 16) / 255;
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  }
+
+  /** Resolve plate color: explicit cardBg, else logoOnDark/darkBg → near-black. */
+  function resolveSponsorCardBg(sponsor) {
+    const fromCard = sanitizeSponsorCardBg(sponsor?.cardBg);
+    if (fromCard) return fromCard;
+    if (sponsor?.logoOnDark === true || sponsor?.darkBg === true) {
+      return "#0a0a0a";
+    }
+    return null;
+  }
+
   function renderSponsorTierHtml(sponsorsData, options = {}) {
     const sponsors = sponsorsData?.sponsors ?? [];
     const tierOrder = sponsorsData?.tierOrder ?? [];
@@ -1615,10 +1652,22 @@
             const inner = s.logo
               ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />`
               : escapeHtml(s.name);
+            const cardBg = resolveSponsorCardBg(s);
+            const styleAttr = cardBg
+              ? ` style="--sponsor-card-bg:${cardBg};--sponsor-card-opacity:1"`
+              : "";
+            const lum = cardBg ? sponsorCardBgLuminance(cardBg) : null;
+            const onDark =
+              s.logoOnDark === true ||
+              s.darkBg === true ||
+              (lum != null && lum < 0.25);
+            const cardClass = onDark
+              ? "sponsor-card sponsor-card--on-dark"
+              : "sponsor-card";
             if (s.url) {
-              return `<a class="sponsor-card" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
+              return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
             }
-            return `<div class="sponsor-card">${inner}</div>`;
+            return `<div class="${cardClass}"${styleAttr}>${inner}</div>`;
           })
           .join("");
         return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2>${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;

@@ -115,7 +115,7 @@ Path-finder controls that only scroll the page (e.g. Custom Zones DIY / Help) ar
 
 ## Sponsor logo cards (homepage + `/sponsorship/`)
 
-Shared tokens on `.sponsor-card` (see `site.css` `:root`):
+Shared tokens on `.sponsor-card` (see `site.css` `:root`). Agent workflow for Magick trim/plates, flier compositing, Gray-smush/SVG pitfalls: skill [`festival-sponsor-logos`](../../../.cursor/skills/festival-sponsor-logos/SKILL.md).
 
 | Rule | Token / behavior |
 |------|------------------|
@@ -125,10 +125,11 @@ Shared tokens on `.sponsor-card` (see `site.css` `:root`):
 | **Inset** | Logo box = `--sponsor-card-logo-scale` (default `0.8` → 10% inset each side). Do **not** use %-padding on the card — it cyclic-sizes with `aspect-ratio` and crushes marks |
 | **Width** | Fluid from grid/flex track (`--sponsor-card-min`); not fixed px. Homepage may raise the floor only |
 | **Image fit** | Logo is **absolutely centered** with `max-width` + `max-height` at `--sponsor-card-logo-scale` (grid-item `%` height does not resolve against `aspect-ratio`, so tall marks clipped) |
+| **Grid** | Cap at **4 columns** max on wide viewports (same as Toy Drive) |
 
 ### Asset prep
 
-Crop export padding before drop-in under `sponsors/YYYY/`: trim near-white / transparent margins so sizing is driven by the CSS inset, not baked-in whitespace. Prefer PNG with real alpha when the mark isn’t rectangular.
+Crop export padding before drop-in under `sponsors/YYYY/`: trim near-white / transparent margins so sizing is driven by the CSS inset, not baked-in whitespace. Prefer PNG with real alpha when the mark isn’t rectangular. Do **not** auto-trim navy/brand plates meant to match `cardBg`.
 
 ```bash
 magick logo.png -bordercolor white -border 1 -fuzz 2% -trim +repage sponsors/2026/slug.png

@@ -14,6 +14,7 @@
     { "name": "Parkwest Casino Lotus", "amount": 2000 },
     { "name": "SF Supermarket", "amount": 2000 },
     { "name": "SMUD", "amount": 2500, "status": "confirmed", "tier": "Silver" },
+    { "name": "Golden 1 Credit Union", "amount": 3500, "status": "confirmed", "giftId": "children_show", "tier": "Children's Show Presenter" },
     { "name": "Anthem", "amount": 1500 },
     { "name": "Rod Brewer", "amount": 1500 },
     { "name": "Journey to the Dumpling", "amount": 1500 },

@@ -2773,6 +2773,18 @@ a.co-chair-name {
   color: var(--accent);
 }
 
+/* Dark plates (cardBg luminance < ~0.25 or logoOnDark/darkBg). */
+.sponsor-card--on-dark {
+  border-color: color-mix(in srgb, #f3e0cf 22%, transparent);
+  color: #f3e0cf;
+  opacity: 1;
+}
+
+.sponsor-card--on-dark:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* Name-only cards (no img) stay in normal grid flow. */
 .sponsor-card > :not(img) {
   max-width: calc(100% * var(--sponsor-card-logo-scale));

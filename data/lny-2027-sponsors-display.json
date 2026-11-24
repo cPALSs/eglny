@@ -3,6 +3,8 @@
   "tierOrder": [
     "Partners",
     "Silver Sponsors",
+    "Children's Show Presenter",
+    "Bronze Sponsors",
     "Community Sponsors"
   ],
   "sponsors": [
@@ -23,6 +25,13 @@
       "tier": "Silver Sponsors",
       "url": "https://www.smud.org/",
       "logo": "2026/smud.png"
+    },
+    {
+      "name": "Golden 1 Credit Union",
+      "tier": "Children's Show Presenter",
+      "url": "https://www.golden1.com/our-community/our-commitment",
+      "logo": "2026/golden-1-credit-union.png",
+      "cardBg": "#000000"
     },
     {
       "name": "Sky River",
