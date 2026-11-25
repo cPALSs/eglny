@@ -1,8 +1,8 @@
 {
   "festival": "Elk Grove Lunar New Year Tết 2027",
   "season": 2027,
-  "updated": "2026-11-21",
-  "source": "Round 1 Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657). Kids activity tables (57739) listed on Kids Village, not this directory.",
+  "updated": "2026-11-24",
+  "source": "Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657), including Round 2 early selects with booth fee due Jan 29. Kids activity tables (57739) listed on Kids Village, not this directory.",
   "headline": "Vendors",
   "lead": "Craft merchants and nonprofit community tables at the festival. Children’s activity tables will be listed on [Kids Village](/kids-village/). Meals, drinks, and snacks are on the [Food menu](/food/). [Register as a vendor](/vendors/).",
   "sections": [
@@ -15,8 +15,25 @@
           "name": "100 Seconds Tower",
           "description": "Staffed hang-challenge endurance activity — guests pay to hang from a bar.",
           "logo": "/assets/vendors-directory/2027/100-seconds-tower.jpg",
-          "website": "https://www.tiktok.com/@100.seconds.tower",
+          "website": "https://100secondstower.com/",
           "instagram": null
+        },
+        {
+          "id": "anngoo-nails",
+          "name": "AnnGoo Nails",
+          "description": "Handmade reusable press-on nails — custom designs and Lunar New Year–inspired sets.",
+          "logo": "/assets/vendors-directory/2027/anngoo-nails.jpg",
+          "website": "https://www.instagram.com/anngoonails/",
+          "instagram": "anngoonails"
+        },
+        {
+          "id": "att",
+          "name": "AT&T",
+          "description": "Wireless and fiber connectivity — spin-wheel prizes and multilingual guest support.",
+          "logo": "/assets/vendors-directory/2027/att.jpg",
+          "website": "https://www.att.com/fiber",
+          "instagram": "att",
+          "facebook": "ATT"
         },
         {
           "id": "em-be-books",
@@ -67,6 +84,14 @@
           "instagram": "luxury_boutique_0724"
         },
         {
+          "id": "marcus-air-conditioning",
+          "name": "Marcus Air Conditioning",
+          "description": "Local HVAC — family games, prizes, and giveaways at the booth.",
+          "logo": "/assets/vendors-directory/2027/marcus-air-conditioning.jpg",
+          "website": "https://www.marcusairconditioner.com/",
+          "instagram": null
+        },
+        {
           "id": "mas-trading",
           "name": "Ma's Trading Company",
           "description": "Sunglasses, Lunar New Year gifts, and toys.",
@@ -87,7 +112,15 @@
           "name": "Tiny Cute Studio",
           "description": "Handmade crochet flowers and keychains.",
           "logo": "/assets/vendors-directory/2027/tiny-cute-studio.jpg",
-          "website": "https://tinycutestudio.etsy.com/",
+          "website": "https://www.etsy.com/shop/TinyCuteStudio",
+          "instagram": null
+        },
+        {
+          "id": "tengy-stuff",
+          "name": "Tengy stuff",
+          "description": "Handmade keychains, jewelry, squishies, and plushies.",
+          "logo": "/assets/vendors-directory/2027/tengy-stuff.jpg",
+          "website": null,
           "instagram": null
         },
         {
@@ -97,6 +130,14 @@
           "logo": "/assets/vendors-directory/2027/the-creative-space.jpg",
           "website": "https://www.thecreativespacesac.com/",
           "instagram": "thecreativespacesac"
+        },
+        {
+          "id": "the-velvet-cart",
+          "name": "The Velvet Cart",
+          "description": "Squishy toys and plush collectibles.",
+          "logo": "/assets/vendors-directory/2027/the-velvet-cart.jpg",
+          "website": null,
+          "instagram": "the_velvet.cart"
         },
         {
           "id": "xuan-lee",
@@ -113,6 +154,15 @@
       "title": "Nonprofits & community tables",
       "emptyMessage": "No nonprofit info tables confirmed yet.",
       "vendors": [
+        {
+          "id": "arabesque-conservatory-of-music",
+          "name": "Arabesque Conservatory of Music",
+          "description": "Inclusive music and art education — interactive music and art items, flyers, and sign-ups.",
+          "logo": "/assets/vendors-directory/2027/arabesque-conservatory-of-music.jpg",
+          "website": "https://www.arabesqueconservatory.com/",
+          "instagram": "arabesqueconservatory",
+          "facebook": "arabesqueconservatory"
+        },
         {
           "id": "mv-norcal",
           "name": "Miss & Miss Teen Vietnam Northern California",

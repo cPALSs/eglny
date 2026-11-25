@@ -1,6 +1,6 @@
 {
-  "festival": "LNY 2027 — Round 1 locked vendors",
-  "published_at": "2026-11-20T04:08:00Z",
+  "festival": "Elk Grove Lunar New Year Tết 2027 — Food vendors",
+  "published_at": "2026-11-25T01:40:00Z",
   "year": 2027,
   "disclaimer": "Menu subject to change. Filters reflect vendor self-report — not medical advice.",
   "booth_kind_note": "booth_kind is a menu display archetype (canopy vs truck vs prepack). On-site cooking uses one festival inventory pool of 15 — trucks and trailers are on-site cooking, not a separate cap from canopy open cook.",
@@ -1060,6 +1060,47 @@
           "category": "sweets",
           "allergens": [],
           "dietary_tags": []
+        }
+      ]
+    },
+    {
+      "id": "applesbyterri",
+      "name": "applesbyterri",
+      "booth_label": null,
+      "booth_kind": "prepack",
+      "logo": "assets/food-menu/2027/applesbyterri/logo.jpg",
+      "instagram": "applesbyterri",
+      "facebook": null,
+      "dietary": [],
+      "items": [
+        {
+          "name": "Caramel apples, hand-dipped",
+          "note": null,
+          "options": "plain, salted caramel, peanuts with chocolate swirls, graham cracker dust with white chocolate, dark chocolate sea salt, toffee, Oreos, s'mores, butter toffee peanuts, apple pie, ube, and more",
+          "price": null,
+          "category": "sweets",
+          "cuisine": "american",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_dairy",
+            "contains_nuts",
+            "contains_gluten"
+          ]
+        },
+        {
+          "name": "Oatmeal lace cookies",
+          "note": null,
+          "options": null,
+          "price": null,
+          "category": "sweets",
+          "cuisine": "american",
+          "allergens": [],
+          "dietary_tags": [],
+          "dietary_warnings": [
+            "contains_gluten",
+            "contains_dairy"
+          ]
         }
       ]
     },
