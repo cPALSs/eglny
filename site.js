@@ -3380,8 +3380,15 @@
       </section>`
         : "";
 
+    const waitlistWarningHtml = waitlist.warning
+      ? `<aside class="vendors-official-notice" role="note">
+        <p>${formatBriefProse(waitlist.warning)}</p>
+      </aside>`
+      : "";
+
     const mainHtml = `
       <section class="content-section site-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
+        ${waitlistWarningHtml}
         <h2>${escapeHtml(waitlist.title ?? "Apply for single booth or an entire zone")}</h2>
         ${waitlist.partnerIntro ? `<p>${formatBriefProse(waitlist.partnerIntro)}</p>` : ""}
         ${

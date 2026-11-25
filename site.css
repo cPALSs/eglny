@@ -2965,6 +2965,21 @@ a.co-chair-name {
   line-height: 1.45;
 }
 
+.vendors-official-notice {
+  margin: 0 0 1.15rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, var(--border));
+  background: color-mix(in srgb, var(--gold) 14%, var(--surface));
+  color: var(--text);
+}
+
+.vendors-official-notice p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 .vendors-waitlist-note {
   margin: 0 0 0.85rem;
   font-size: 0.95rem;

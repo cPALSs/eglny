@@ -9,7 +9,8 @@
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply for single booth or an entire zone",
-    "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10. Official vendor questions and invitations use **contact@eglny.com** and Eventeny only — don’t treat other Gmail addresses as from the organizing team.",
+    "warning": "Official vendor questions and invitations use **contact@eglny.com** and Eventeny only — don’t treat other Gmail addresses as from the organizing team. We’re a community-based festival, so you may talk with individuals on their personal email. If anyone asks for payment and you’re not sure it’s us, email **contact@eglny.com** to confirm before you pay.",
+    "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10.",
     "partnerIntro": "Two ways to join the map: apply for a standard booth on Eventeny, or inquire about a named Custom Zones corner.",
     "paths": [
       {
