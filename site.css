@@ -1323,6 +1323,18 @@ body.nav-open {
   font-weight: 600;
 }
 
+.volunteer-shifts-table {
+  table-layout: fixed;
+}
+
+.volunteer-shifts-table__shift {
+  width: 25%;
+}
+
+.volunteer-shifts-table__tasks {
+  width: 75%;
+}
+
 .inventory-cards {
   display: none;
 }

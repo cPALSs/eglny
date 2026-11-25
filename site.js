@@ -631,21 +631,44 @@
               .map((p) => renderSkillsProjectCard(p, { ctaClass }))
               .join("")}</div>
           </section>`;
+    const dayOfCta =
+      dayOf?.ctaHref && dayOf?.ctaLabel
+        ? `<p class="cta-row"><a class="btn btn-primary" href="${escapeHtml(dayOf.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(dayOf.ctaLabel)}</a></p>`
+        : "";
+    const dayOfShifts = Array.isArray(dayOf?.shifts) ? dayOf.shifts : [];
+    const dayOfShiftCol = dayOf?.shiftColumn ?? "Shift";
+    const dayOfTasksCol = dayOf?.tasksColumn ?? "Tasks";
+    const dayOfTableHtml = dayOfShifts.length
+      ? `<div class="site-doc-table-wrap"><table class="site-doc-table volunteer-shifts-table">
+            <colgroup><col class="volunteer-shifts-table__shift" /><col class="volunteer-shifts-table__tasks" /></colgroup>
+            <thead><tr><th scope="col">${escapeHtml(dayOfShiftCol)}</th><th scope="col">${escapeHtml(dayOfTasksCol)}</th></tr></thead>
+            <tbody>${dayOfShifts
+              .map((s) => {
+                const shift = escapeHtml(s.shift ?? "").replace(/\n/g, "<br>");
+                const label = s.label ? `<strong>${escapeHtml(s.label)}</strong> — ` : "";
+                const tasks = escapeHtml(s.tasks ?? s.detail ?? "");
+                return `<tr><td>${shift}</td><td>${label}${tasks}</td></tr>`;
+              })
+              .join("")}</tbody>
+          </table></div>`
+      : "";
     const dayOfHtml = dayOf
       ? `
           <section class="content-section site-doc-section" id="day-of-help" data-doc-section>
             <h2>${escapeHtml(dayOf.title ?? "Day-of help")}</h2>
             <p>${escapeHtml(dayOf.body ?? "Registration is not yet available — come back later.")}</p>
+            ${dayOfTableHtml}
+            ${dayOfCta}
           </section>`
       : "";
     const toc = [
       ...(planningHtml
         ? [{ id: "planning-directing", label: planning?.title ?? "Planning & directing" }]
         : []),
-      { id: "skills-projects", label: skillsTitle },
       ...(dayOf ? [{ id: "day-of-help", label: dayOf.title ?? "Day-of help" }] : []),
+      { id: "skills-projects", label: skillsTitle },
     ];
-    return wrapDocLayout(renderDocToc(toc), `${planningHtml}${skillsHtml}${dayOfHtml}`);
+    return wrapDocLayout(renderDocToc(toc), `${planningHtml}${dayOfHtml}${skillsHtml}`);
   }
 
   /** @deprecated Prefer renderVolunteerPage */

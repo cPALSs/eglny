@@ -115,7 +115,33 @@
       },
       "dayOfHelp": {
         "title": "Day-of help",
-        "body": "We’d love your energy on festival weekend — greeters, load-in hands, zone helpers, and the little jobs that keep families smiling. Shift registration isn’t open yet; come back here when it is."
+        "body": "Help run Elk Grove Lunar New Year Tết at Elk Grove Park — open to adults and high school students. Pick a time shift on the form; at HQ check-in we assign stations. This is an interest sign-up; everyone is waitlisted until we approve.",
+        "shiftColumn": "Shift",
+        "tasksColumn": "Tasks",
+        "shifts": [
+          {
+            "shift": "Fri, Feb 12\n3:30–6:00 PM",
+            "label": "After-school Setup",
+            "tasks": "Flags & hanging, décor, tables & chairs. Outdoor work winds down near sunset."
+          },
+          {
+            "shift": "Sat, Feb 13 & Sun, Feb 14\n9:00 AM–1:00 PM",
+            "label": "Morning",
+            "tasks": "Finish setup (tables, chairs, light décor); HQ check-in; info / welcome booth as guests arrive; light site care."
+          },
+          {
+            "shift": "Sat & Sun\n1:00–5:00 PM",
+            "label": "Noon",
+            "tasks": "Peak guest hours: info / welcome booth; HQ / runners; light site care; light spot-fix if something shifted."
+          },
+          {
+            "shift": "Sat & Sun\n5:00–9:00 PM",
+            "label": "Evening / Strike",
+            "tasks": "Info booth through last guests (~7 PM); then tear down tables, chairs, and décor for load-out. Sun strike is usually the heavier leave-behind."
+          }
+        ],
+        "ctaLabel": "Sign up for interest",
+        "ctaHref": "https://app.buglevolunteers.com/registration?id=d0f3bb0b-d6b4-468c-809f-7011866f5222"
       },
       "projects": [
         {
