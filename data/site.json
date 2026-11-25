@@ -57,6 +57,8 @@
     "primaryHref": "/vendors/",
     "teamLabel": "Join the team",
     "teamHref": "/team/",
+    "volunteerWeekendLabel": "Volunteer that weekend",
+    "volunteerWeekendHref": "/production/volunteer/",
     "sponsorLabel": "Sponsor the festival",
     "sponsorHref": "/sponsorship/",
     "programsLabel": "Sign up for activities",
@@ -91,7 +93,7 @@
     "lead": "Show up to weekly production calls and Discord first. Program gift DRIs, Outreach Directors, and the Site & Ops Supercommittee are listed below. We also welcome visionaries who want to express celebration through the festival journey.",
     "rosterPage": {
       "headline": "Team",
-      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027."
+      "lead": "Who is working each part of Elk Grove Lunar New Year Tết 2027. For day-of volunteering visit Volunteering."
     },
     "join": {
       "title": "Get involved",

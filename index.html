@@ -204,8 +204,9 @@
             <p>${escapeHtml(h.homeLead ?? "Join the team shaping this year’s celebration.")}</p>
             <div class="cta-row">
               <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
-              <a class="btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
               <a class="btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the festival")}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
+              <a class="btn btn-secondary" href="${escapeHtml(c.volunteerWeekendHref ?? "/production/volunteer/")}">${escapeHtml(c.volunteerWeekendLabel ?? "Volunteer that weekend")}</a>
               <a class="btn btn-secondary" href="${escapeHtml(c.programsHref ?? "/production/activity-signups/")}">${escapeHtml(c.programsLabel ?? "Sign up for activities")}</a>
             </div>
           </section>
