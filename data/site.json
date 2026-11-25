@@ -584,11 +584,17 @@
     "lead": "Register for festival-weekend activities hosted at Elk Grove Lunar New Year Tết.",
     "programs": [
       {
-        "id": "stage-entertainment",
-        "title": "Stage entertainment",
+        "id": "stage-programming",
+        "title": "Stage programming",
         "body": "Interested in performing on stage? Email luckywavfest@gmail.com.",
         "contactEmail": "luckywavfest@gmail.com",
-        "emailSubject": "EGLNY 2027 — stage entertainment"
+        "emailSubject": "EGLNY 2027 — stage programming",
+        "links": [
+          {
+            "label": "Request to speak on stage",
+            "href": "https://forms.gle/WhpxofeVbej5G8PJ6"
+          }
+        ]
       },
       {
         "id": "star-of-spring",

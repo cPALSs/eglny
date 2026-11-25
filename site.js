@@ -1506,10 +1506,18 @@
             bodyHtml = `${bodyHtml}<p>${emailLink}</p>`;
           }
         }
+        const linksHtml = (Array.isArray(p.links) ? p.links : [])
+          .filter((l) => l?.href && l?.label)
+          .map(
+            (l) =>
+              `<p><a href="${escapeHtml(l.href)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a></p>`,
+          )
+          .join("");
         return `
       <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(p.title || "Program")}</h2>
         ${bodyHtml}
+        ${linksHtml}
         ${ctaHtml}
         ${flierHtml}
       </section>`;

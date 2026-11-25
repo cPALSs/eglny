@@ -17,7 +17,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/team/` | **Team** — roster by supercommittee, open-seat blurbs, interest modals with role copy, apply + FAQ (under **Production**) |
 | `/team/roles/` | Redirect → `/team/` (open roles folded into Team) |
 | `/production/volunteer/` | **Volunteering** — skills projects, day-of help, and pointer to Team for planning seats (under **Production**) |
-| `/production/activity-signups/` | **Activity sign-ups** — participant registrations (Star of Spring Mini-Pageant + flier; Stage entertainment contact) (under **Production**) |
+| `/production/activity-signups/` | **Activity sign-ups** — participant registrations (Star of Spring Mini-Pageant + flier; Stage programming contact + speak request) (under **Production**) |
 | `/production/` | Production hub — Team, Volunteering, Activity sign-ups, Sponsorship, Vendor booths |
 | `/attendees/` | **Visit** hub — guest guides for the festival weekend |
 | `/activities/` | **Activities** — programming and things to do (Star of Spring Mini-Pageant + flier) (under **Visit**) |
