@@ -1,7 +1,7 @@
 {
   "festival": "Elk Grove Lunar New Year Tết 2027",
   "season": 2027,
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "source": "Eventeny approvals (merchants app 54806; partner / booth-swap app 58271; nonprofit info app 57657), including Round 2 early selects with booth fee due Jan 29. Kids activity tables (57739) listed on Kids Village, not this directory.",
   "headline": "Vendors",
   "lead": "Craft merchants and nonprofit community tables at the festival. Children’s activity tables will be listed on [Kids Village](/kids-village/). Meals, drinks, and snacks are on the [Food menu](/food/). [Register as a vendor](/vendors/).",
@@ -82,6 +82,14 @@
           "logo": "/assets/vendors-directory/2027/luxury-boutique-0724.jpg",
           "website": null,
           "instagram": "luxury_boutique_0724"
+        },
+        {
+          "id": "lunarstar",
+          "name": "LunarStar",
+          "description": "Handmade gemstone jewelry — bracelets and necklaces.",
+          "logo": "/assets/vendors-directory/2027/lunarstar.jpg",
+          "website": "https://lunarstar.online/",
+          "instagram": "lunarstar.creations"
         },
         {
           "id": "marcus-air-conditioning",
