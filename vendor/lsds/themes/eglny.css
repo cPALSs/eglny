@@ -1,5 +1,6 @@
-/* src/themes/eglny.css */
+/* src/themes/vermillion.css */
 @layer lsds.tokens {
+  [data-ls-theme=vermillion],
   [data-ls-theme=eglny] {
     color-scheme: dark;
     --ls-background: #1a0806;
@@ -54,6 +55,7 @@
     --ls-sponsor-dark-fg: #f3e0cf;
     --ls-sponsor-dark-border: color-mix(in srgb, #f3e0cf 22%, transparent);
   }
+  [data-ls-theme=vermillion][data-ls-scheme=light],
   [data-ls-theme=eglny][data-ls-scheme=light] {
     color-scheme: light;
     --ls-background: #ffffff;
@@ -101,6 +103,7 @@
     --ls-sponsor-border: color-mix(in srgb, #1a2332 14%, transparent);
   }
   @media (prefers-color-scheme: light) {
+    [data-ls-theme=vermillion][data-ls-scheme=auto],
     [data-ls-theme=eglny][data-ls-scheme=auto] {
       color-scheme: light;
       --ls-background: #ffffff;
@@ -149,3 +152,5 @@
     }
   }
 }
+
+/* src/themes/eglny.css */
