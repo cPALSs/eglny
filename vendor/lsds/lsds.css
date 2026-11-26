@@ -1279,6 +1279,7 @@
     font-family: var(--ls-font-display);
     font-weight: 600;
     font-size: calc(1.15rem * var(--ls-font-display-scale));
+    line-height: var(--ls-line-height-heading);
     color: var(--ls-brand-gold, var(--ls-primary));
   }
   .ls-sponsor-grid {
@@ -1307,6 +1308,7 @@
     --ls-sponsor-card-bg: var(--ls-sponsor-bg);
     --ls-sponsor-card-fg: var(--ls-sponsor-fg);
     --ls-sponsor-card-border: var(--ls-sponsor-border);
+    --ls-sponsor-card-leading: var(--ls-line-height-ui);
     position: relative;
     display: grid;
     place-items: center;
@@ -1323,6 +1325,8 @@
     color: var(--ls-sponsor-card-fg);
     font-weight: 600;
     font-size: 0.95rem;
+    line-height: var(--ls-sponsor-card-leading);
+    text-wrap: balance;
     overflow: hidden;
     transition: border-color var(--ls-duration-fast) ease, color var(--ls-duration-fast) ease;
   }
