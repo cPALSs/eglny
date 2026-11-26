@@ -322,7 +322,7 @@
       const isAbout = page.id === "about";
       const parentHref = isAbout ? "/" : page.href;
       const parentLabel = isAbout ? "Home" : navLinkLabel(page);
-      const parent = `<a class="site-footer-nav-parent" href="${parentHref}">${escapeHtml(parentLabel)}</a>`;
+      const parent = `<a class="ls-footer-parent" href="${parentHref}">${escapeHtml(parentLabel)}</a>`;
 
       const cloudItems = [];
       if (isAbout) {
@@ -335,9 +335,9 @@
         );
       }
       const cloud = cloudItems.length
-        ? `<div class="site-footer-nav-cloud">${cloudItems.join("")}</div>`
+        ? `<div class="ls-footer-sublinks">${cloudItems.join("")}</div>`
         : "";
-      columns.push(`<div class="site-footer-nav-col">${parent}${cloud}</div>`);
+      columns.push(`<div class="ls-footer-col">${parent}${cloud}</div>`);
     }
 
     return columns.join("");
@@ -376,7 +376,7 @@
 
   function renderFooterSocialLinks(links) {
     if (!links?.length) return "";
-    return `<nav class="site-footer-social" aria-label="Social media">${renderSocialLinkItems(links)}</nav>`;
+    return `<nav class="ls-footer-social" aria-label="Social media">${renderSocialLinkItems(links)}</nav>`;
   }
 
   function renderFooter(site) {
@@ -391,11 +391,11 @@
       .join("\u00a0+\u00a0");
 
     return `
-    <footer class="site-footer">
-      <nav class="site-footer-nav" aria-label="Footer">${navLinks}</nav>
+    <footer class="ls-footer">
+      <nav class="ls-footer-nav" aria-label="Footer">${navLinks}</nav>
       ${social}
-      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a> &bull; <a href="${escapeHtml(privacyHref)}">Privacy</a></p>
-      ${coalition ? `<p class="site-footer-meta site-footer-hosts">Hosted by ${coalition}</p>` : ""}
+      <p class="ls-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a> &bull; <a href="${escapeHtml(privacyHref)}">Privacy</a></p>
+      ${coalition ? `<p class="ls-footer-meta ls-footer-hosts">Hosted by ${coalition}</p>` : ""}
     </footer>
   `;
   }

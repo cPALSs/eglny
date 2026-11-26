@@ -1,12 +1,12 @@
 # LSDS Migration & Custom Code Inventory (`eglny.com`)
 
-Synced to `cPALSs/design-system@33ba328` (`vendor/lsds/lsds.css`, `vendor/lsds/themes/vermillion.css`, `vendor/lsds/lsds.iife.js`) plus kerned Vietnamese Metropolis `.woff2` fonts in `assets/fonts/`.
+Synced to `cPALSs/design-system@d3a0f53` (`vendor/lsds/lsds.css`, `vendor/lsds/themes/vermillion.css`, `vendor/lsds/lsds.iife.js`) plus kerned Vietnamese Metropolis `.woff2` fonts in `assets/fonts/`.
 
 ## 1. Removed / Migrated to LSDS
 
 | Area | Before | After | Reduction |
 |---|---:|---:|---:|
-| `site.css` | 5,732 lines | 4,677 lines | **−1,055 lines (−18.4%)** |
+| `site.css` | 5,732 lines | 4,592 lines | **−1,140 lines (−19.9%)** |
 | `site.js` | 3,982 lines | 3,936 lines | **−46 lines (−1.2%)** |
 
 ### What migrated
@@ -15,6 +15,7 @@ Synced to `cPALSs/design-system@33ba328` (`vendor/lsds/lsds.css`, `vendor/lsds/t
 - **Doc layout, sticky TOC, pager & heading permalinks (`.site-doc-*` & `.host-doc-*` → `.ls-doc-*`)**: Removed ~465 lines of duplicated layout grid, sticky TOC, TOC pager, heading anchor (`#` copy-link + `Copied!`/`Copy failed` states), and Custom Zones `.host-doc-*` duplicate CSS from `site.css`. Updated `site.js` (`renderDocToc`, `wrapDocLayout`, `renderHostToc`, `renderHostActivations`, section templates) and static blog page `resources/blog/planning-sustainable-community-festivals/index.html` to `.ls-doc-*`.
 - **Sponsor grid & logo cards (`.sponsor-tier` / `.sponsor-grid` / `.sponsor-card` → `.ls-sponsor-*`)**: Removed ~115 lines of duplicated tier heading, responsive grid, centered homepage flex variant, aspect-ratio card, dark-plate, and centered logo CSS plus legacy `--sponsor-card-*` root aliases from `site.css`. Updated `site.js` `renderSponsorTierHtml()` to emit `.ls-sponsor-*` and `--ls-sponsor-card-bg` / `--ls-sponsor-opacity`.
 - **Poster & dish lightboxes (`.history-lightbox*` → `.ls-lightbox`)**: Removed `ensureHistoryLightbox` / `initHistoryLightbox` from `site.js`, `initHistoryLightbox()` calls from `about/history/index.html` and `resources/media/index.html`, and 59 lines of `.history-lightbox*` CSS from `site.css`. Poster triggers now use declarative `data-ls-lightbox` + `data-ls-lightbox-group` attributes wired by `lsds.iife.js`. `assets/menu-viewer/menu-viewer.js` now delegates dish photos to `LSDS.openLightbox` (with `captionHtml` for dish title, vendor, and credit) and its custom `.menu-dish-lightbox` fallback JS/CSS has been removed after wiring LSDS into `attractions/food/index.html`.
+- **Site footer (`.site-footer*` → `.ls-footer*`)**: Removed ~120 lines of duplicated desktop/mobile footer grid, social pill, and meta link CSS from `site.css`. Updated `site.js` `renderFooter()` / `renderFooterNavLinks()` / `renderFooterSocialLinks()` to emit `.ls-footer`, `.ls-footer-nav`, `.ls-footer-col`, `.ls-footer-parent`, `.ls-footer-sublinks`, `.ls-footer-social`, `.ls-footer-meta`, and `.ls-footer-hosts`.
 - **Resets, utilities & tokens**: Removed redundant `* { box-sizing: border-box }` and `.sr-only` (switched `site.js` to `.ls-sr-only`); scoped unlayered `a:not([class*="ls-"])` and `.panel h2:not(.ls-sponsor-tier-heading), .content-section h2:not(.ls-sponsor-tier-heading)` so unlayered site rules do not override `@layer lsds.*` primitives/patterns; replaced hardcoded copy-badge hexes (`#137333`, `#e6f4ea`, `#b42318`, `#fdecea`) via LSDS tokens and `.error-panel` `#f87171` with `var(--ls-destructive)`.
 
 ---
@@ -43,7 +44,6 @@ Synced to `cPALSs/design-system@33ba328` (`vendor/lsds/lsds.css`, `vendor/lsds/t
 | **Doc-layout & TOC overrides** (`site.css` hero-to-TOC grid gutter, `.site-doc-toc-filter`, `.ls-doc-toc-link--sub`, `.host-doc-main .doc-heading`) | Aligns page hero with 2-column doc layout; History page's Trung Thu filter checkbox (kept visible on mobile); sub-level TOC indent; Custom Zones flex heading | Page-specific behaviors (History filter, Custom Zones heading badges) | **Partial** — `.ls-doc-toc-link--sub` (nested TOC indent) and hero-gutter alignment are clean LSDS `doc-layout` candidates |
 | **Sponsor doc-section spacing** (`site.css` `.page-wrap--doc .ls-sponsor-tier.ls-doc-section`, `.home-sponsors-2027`) | Drops hairlines between consecutive sponsor tiers on `/sponsorship/` and raises `--ls-sponsor-min` on homepage | Layout rhythm specific to EGLNY's multi-year sponsorship page | No (thin CSS var/margin override as intended by LSDS) |
 | **Homepage Golden Goat hero, meta pill & co-host lockup** (`site.css`, `site.js` `renderFestivalHero`, `renderFestivalHosts`) | Full-bleed poster banner, red/iridescent date/location/admission bar, cPALSs + VACOS + NVCC host badges | Festival-specific brand hero | No |
-| **Footer** (`site.css` `.site-footer*`, `site.js` `renderFooter`) | 4-column desktop / compact mobile sitemap + social + contact + co-host credit | Site-specific sitemap structure | **Yes** — multi-column coalition site footer is shared across EGLNY, Great Lantern, and cPALSs sites |
 | **Resource / action card grid** (`site.css` `.resource-card*`, `.vendors-apply-paths`) | 2-column destination cards (Sponsorship, Production, Resources, Vendors Round 1/2 apply paths) | Referenced by static SEO prerender HTML across multiple pages + custom CTA baseline stretch | **Yes** — closely parallels `.ls-card` / `.ls-card-grid`; candidate for incremental migration when prerender templates are updated |
 | **Team roster, director lanes & media modals** (`site.css` `.roster-*`, `.lane-*`, `.modal-*`, `site.js` `renderRoster*`, `initRosterMedia`) | Photo/initials cards, Instagram reel & vision modals, volunteer lane cards | Rich EGLNY team/recruiting presentation | No |
 | **Vendor booths, inventory table & RFPs** (`site.css` `.site-doc-table*`, `.inventory-table`, `.booth-flow-list`, `site.js` `renderVendorsBoothsPage`, `renderInventoryTable`) | Author-locked booth inventory table, Round 1/2 process list, RFP briefs | Domain-specific vendor ops UI | **Partial** — `.site-doc-table` could adopt experimental `.ls-table` once promoted |
