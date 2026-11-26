@@ -1,19 +1,20 @@
 # LSDS Migration & Custom Code Inventory (`eglny.com`)
 
-Synced to `cPALSs/design-system@49f132c` (`vendor/lsds/lsds.css`, `vendor/lsds/themes/vermillion.css`, `vendor/lsds/lsds.iife.js`) plus kerned Vietnamese Metropolis `.woff2` fonts in `assets/fonts/`.
+Synced to `cPALSs/design-system@33ba328` (`vendor/lsds/lsds.css`, `vendor/lsds/themes/vermillion.css`, `vendor/lsds/lsds.iife.js`) plus kerned Vietnamese Metropolis `.woff2` fonts in `assets/fonts/`.
 
 ## 1. Removed / Migrated to LSDS
 
 | Area | Before | After | Reduction |
 |---|---:|---:|---:|
-| `site.css` | 5,732 lines | 4,737 lines | **−995 lines (−17.4%)** |
-| `site.js` | 3,982 lines | 3,982 lines | 0 lines (markup class migration; `initNavMenu` and `doc-scroll.js` already delegated to `window.LSDS`) |
+| `site.css` | 5,732 lines | 4,677 lines | **−1,055 lines (−18.4%)** |
+| `site.js` | 3,982 lines | 3,936 lines | **−46 lines (−1.2%)** |
 
 ### What migrated
 
 - **Nav shell (`.site-nav*` → `.ls-nav*`)**: Removed ~510 lines of duplicated bar, hamburger toggle, backdrop, drawer, link-stack, desktop dropdown submenu, and drawer-footer CSS from `site.css`. Updated `site.js` `renderNav()` / `renderNavLinks()` to emit `.ls-nav*` classes (retaining `.site-nav` on `<nav>` for `fund-the-festival/app.js` detection without editing `fund-the-festival/`).
 - **Doc layout, sticky TOC, pager & heading permalinks (`.site-doc-*` & `.host-doc-*` → `.ls-doc-*`)**: Removed ~465 lines of duplicated layout grid, sticky TOC, TOC pager, heading anchor (`#` copy-link + `Copied!`/`Copy failed` states), and Custom Zones `.host-doc-*` duplicate CSS from `site.css`. Updated `site.js` (`renderDocToc`, `wrapDocLayout`, `renderHostToc`, `renderHostActivations`, section templates) and static blog page `resources/blog/planning-sustainable-community-festivals/index.html` to `.ls-doc-*`.
 - **Sponsor grid & logo cards (`.sponsor-tier` / `.sponsor-grid` / `.sponsor-card` → `.ls-sponsor-*`)**: Removed ~115 lines of duplicated tier heading, responsive grid, centered homepage flex variant, aspect-ratio card, dark-plate, and centered logo CSS plus legacy `--sponsor-card-*` root aliases from `site.css`. Updated `site.js` `renderSponsorTierHtml()` to emit `.ls-sponsor-*` and `--ls-sponsor-card-bg` / `--ls-sponsor-opacity`.
+- **Poster & dish lightboxes (`.history-lightbox*` → `.ls-lightbox`)**: Removed `ensureHistoryLightbox` / `initHistoryLightbox` from `site.js`, `initHistoryLightbox()` calls from `about/history/index.html` and `resources/media/index.html`, and 59 lines of `.history-lightbox*` CSS from `site.css`. Poster triggers now use declarative `data-ls-lightbox` + `data-ls-lightbox-group` attributes wired by `lsds.iife.js`. `assets/menu-viewer/menu-viewer.js` now delegates dish photos to `LSDS.openLightbox` (with `captionHtml` for dish title, vendor, and credit) when `window.LSDS` is present, retaining its custom `.menu-dish-lightbox` fallback JS/CSS for non-LSDS embeds (`attractions/food/index.html`).
 - **Resets, utilities & tokens**: Removed redundant `* { box-sizing: border-box }` and `.sr-only` (switched `site.js` to `.ls-sr-only`); scoped unlayered `a:not([class*="ls-"])` and `.panel h2:not(.ls-sponsor-tier-heading), .content-section h2:not(.ls-sponsor-tier-heading)` so unlayered site rules do not override `@layer lsds.*` primitives/patterns; replaced hardcoded copy-badge hexes (`#137333`, `#e6f4ea`, `#b42318`, `#fdecea`) via LSDS tokens and `.error-panel` `#f87171` with `var(--ls-destructive)`.
 
 ---

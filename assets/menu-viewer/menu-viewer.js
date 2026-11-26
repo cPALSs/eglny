@@ -1283,18 +1283,51 @@ function ensureDishLightbox() {
   return dialog;
 }
 
-function setupDishLightbox(root) {
-  const dialog = ensureDishLightbox();
-  const img = dialog.querySelector(".menu-dish-lightbox-image");
-  const ph = dialog.querySelector(".menu-dish-lightbox-placeholder");
-  const titleEl = dialog.querySelector(".menu-dish-lightbox-title");
-  const vendorEl = dialog.querySelector(".menu-dish-lightbox-vendor");
-  const creditEl = dialog.querySelector(".menu-dish-lightbox-credit");
+function buildDishLightboxItem(btn) {
+  const src = btn.getAttribute("data-dish-src") || "";
+  if (!src) return null;
+  const title = btn.getAttribute("data-dish-title") || "Dish";
+  const vendor = btn.getAttribute("data-dish-vendor") || "";
+  const credit = btn.getAttribute("data-dish-credit") || "";
+  const alt = btn.getAttribute("data-dish-alt") || title;
+  const creditIsDuplicate =
+    !!credit &&
+    !!vendor &&
+    credit.trim().toLowerCase() === vendor.trim().toLowerCase();
+  const lines = [`<strong>${escapeHtml(title)}</strong>`];
+  if (vendor) lines.push(escapeHtml(vendor));
+  if (credit && !creditIsDuplicate) lines.push(escapeHtml(credit));
+  return { src, alt, captionHtml: lines.join("<br />") };
+}
 
+function setupDishLightbox(root) {
   root.addEventListener("click", (event) => {
     const btn = event.target.closest(".item-thumb.has-photo");
     if (!btn || !root.contains(btn)) return;
     event.preventDefault();
+
+    if (typeof window.LSDS?.openLightbox === "function") {
+      const pairs = [...root.querySelectorAll(".item-thumb.has-photo")]
+        .filter((el) => el.offsetParent !== null)
+        .map((el) => ({ el, item: buildDishLightboxItem(el) }))
+        .filter((p) => p.item);
+      const index = pairs.findIndex((p) => p.el === btn);
+      if (index !== -1) {
+        window.LSDS.openLightbox(
+          pairs.map((p) => p.item),
+          index,
+          { trigger: btn }
+        );
+      }
+      return;
+    }
+
+    const dialog = ensureDishLightbox();
+    const img = dialog.querySelector(".menu-dish-lightbox-image");
+    const ph = dialog.querySelector(".menu-dish-lightbox-placeholder");
+    const titleEl = dialog.querySelector(".menu-dish-lightbox-title");
+    const vendorEl = dialog.querySelector(".menu-dish-lightbox-vendor");
+    const creditEl = dialog.querySelector(".menu-dish-lightbox-credit");
 
     const title = btn.getAttribute("data-dish-title") || "Dish";
     const vendor = btn.getAttribute("data-dish-vendor") || "";

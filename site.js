@@ -923,7 +923,7 @@
         const alt = `Lunar New Year ${poster.year} festival poster — ${poster.venue}`;
         const src = poster.image ? `${prefix}${poster.image}` : "";
         const image = src
-          ? `<button type="button" class="history-poster-open" style="background-image: url('${escapeHtml(src)}')" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+          ? `<button type="button" class="history-poster-open" style="background-image: url('${escapeHtml(src)}')" data-ls-lightbox data-ls-lightbox-src="${escapeHtml(src)}" data-ls-lightbox-alt="${escapeHtml(alt)}" data-ls-lightbox-group="posters" aria-label="View ${escapeHtml(alt)}">
           <img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />
         </button>`
           : "";
@@ -3487,55 +3487,10 @@
     const alt = poster.alt ?? "Festival poster";
     return `
       <figure class="history-poster poster-card">
-        <button type="button" class="history-poster-open" style="background-image: url('${escapeHtml(src)}')" data-lightbox-src="${escapeHtml(src)}" data-lightbox-alt="${escapeHtml(alt)}" aria-label="View ${escapeHtml(alt)}">
+        <button type="button" class="history-poster-open" style="background-image: url('${escapeHtml(src)}')" data-ls-lightbox data-ls-lightbox-src="${escapeHtml(src)}" data-ls-lightbox-alt="${escapeHtml(alt)}" data-ls-lightbox-group="history-posters" aria-label="View ${escapeHtml(alt)}">
           <img class="poster-image" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />
         </button>
       </figure>`;
-  }
-
-  function ensureHistoryLightbox() {
-    let dialog = document.getElementById("history-poster-lightbox");
-    if (dialog) return dialog;
-
-    dialog = document.createElement("dialog");
-    dialog.id = "history-poster-lightbox";
-    dialog.className = "history-lightbox";
-    dialog.setAttribute("aria-label", "Festival poster");
-    dialog.innerHTML = `
-      <button type="button" class="history-lightbox-close" aria-label="Close">&times;</button>
-      <img class="history-lightbox-image" alt="" />`;
-    document.body.appendChild(dialog);
-
-    const img = dialog.querySelector(".history-lightbox-image");
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    dialog.querySelector(".history-lightbox-close")?.addEventListener("click", () => dialog.close());
-    dialog.addEventListener("close", () => {
-      if (img) {
-        img.removeAttribute("src");
-        img.alt = "";
-      }
-    });
-    return dialog;
-  }
-
-  function initHistoryLightbox(root = document) {
-    const dialog = ensureHistoryLightbox();
-    const img = dialog.querySelector(".history-lightbox-image");
-
-    root.querySelectorAll(".history-poster-open").forEach((button) => {
-      if (button.dataset.lightboxBound === "1") return;
-      button.dataset.lightboxBound = "1";
-      button.addEventListener("click", () => {
-        const src = button.getAttribute("data-lightbox-src");
-        const alt = button.getAttribute("data-lightbox-alt") || "Festival poster";
-        if (!src || !img) return;
-        img.src = src;
-        img.alt = alt;
-        dialog.showModal();
-      });
-    });
   }
 
   function renderHistoryVideoCard(video) {
@@ -3939,7 +3894,6 @@
     renderMediaPage,
     renderHistoryPage,
     initHistoryFilter,
-    initHistoryLightbox,
     initHistoryCarousels,
     renderResourcesPage,
     renderLionDanceGroupsPage,

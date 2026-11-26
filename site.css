@@ -4608,66 +4608,6 @@ a.co-chair-name {
   outline-offset: 2px;
 }
 
-.history-lightbox {
-  box-sizing: border-box;
-  width: 100vw;
-  max-width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  max-height: 100vh;
-  max-height: 100dvh;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #fff;
-}
-
-.history-lightbox[open] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.history-lightbox::backdrop {
-  background: rgba(0, 0, 0, 0.88);
-}
-
-.history-lightbox-image {
-  display: block;
-  width: auto;
-  height: 100vh;
-  height: 100dvh;
-  max-width: 100vw;
-  max-height: 100vh;
-  max-height: 100dvh;
-  margin: 0;
-  object-fit: contain;
-}
-
-.history-lightbox-close {
-  position: fixed;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 0;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  font-size: 1.75rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.history-lightbox-close:hover,
-.history-lightbox-close:focus-visible {
-  background: rgba(255, 255, 255, 0.18);
-}
-
 .video-play-badge--instagram {
   position: absolute;
   left: 0.65rem;
