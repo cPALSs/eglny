@@ -794,15 +794,56 @@ function build(labels) {
   parts.zoomReset.addEventListener("click", () => resetZoom(parts));
   let drag = null;
   let dragged = false;
-  parts.img.addEventListener("pointerdown", (event) => {
-    if (event.button !== 0 || parts.zoom.scale <= 1) return;
-    event.preventDefault();
-    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, tx: parts.zoom.tx, ty: parts.zoom.ty };
-    dragged = false;
-    parts.img.setPointerCapture?.(event.pointerId);
+  const pointers = /* @__PURE__ */ new Map();
+  let pinch = null;
+  const pinchMetrics = () => {
+    const [a, b] = [...pointers.values()];
+    return {
+      dist: Math.hypot(b.x - a.x, b.y - a.y) || 1,
+      mid: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
+    };
+  };
+  const startDrag = (id, x, y) => {
+    drag = { id, x, y, tx: parts.zoom.tx, ty: parts.zoom.ty };
     parts.img.classList.add("ls-is-dragging");
+  };
+  parts.img.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    parts.img.setPointerCapture?.(event.pointerId);
+    dragged = false;
+    if (pointers.size === 2) {
+      const m = pinchMetrics();
+      pinch = {
+        dist: m.dist,
+        mid: m.mid,
+        scale: parts.zoom.scale,
+        tx: parts.zoom.tx,
+        ty: parts.zoom.ty
+      };
+      drag = null;
+      dragged = true;
+      return;
+    }
+    if (parts.zoom.scale > 1) startDrag(event.pointerId, event.clientX, event.clientY);
   });
   parts.img.addEventListener("pointermove", (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (pinch && pointers.size >= 2) {
+      const m = pinchMetrics();
+      const next = Math.min(4, Math.max(1, pinch.scale * (m.dist / pinch.dist)));
+      parts.zoom.scale = next;
+      parts.zoom.tx = pinch.tx + (m.mid.x - pinch.mid.x);
+      parts.zoom.ty = pinch.ty + (m.mid.y - pinch.mid.y);
+      if (next <= 1) {
+        parts.zoom.tx = 0;
+        parts.zoom.ty = 0;
+      }
+      applyZoom(parts);
+      return;
+    }
     if (!drag || event.pointerId !== drag.id) return;
     const dx = event.clientX - drag.x;
     const dy = event.clientY - drag.y;
@@ -811,13 +852,22 @@ function build(labels) {
     parts.zoom.ty = drag.ty + dy;
     applyZoom(parts);
   });
-  const endDrag = (event) => {
-    if (!drag || event.pointerId !== drag.id) return;
-    drag = null;
-    parts.img.classList.remove("ls-is-dragging");
+  const endPointer = (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.delete(event.pointerId);
+    if (pinch) {
+      pinch = null;
+      const [rest] = [...pointers.entries()];
+      if (rest && parts.zoom.scale > 1) startDrag(rest[0], rest[1].x, rest[1].y);
+      return;
+    }
+    if (drag && event.pointerId === drag.id) {
+      drag = null;
+      parts.img.classList.remove("ls-is-dragging");
+    }
   };
-  parts.img.addEventListener("pointerup", endDrag);
-  parts.img.addEventListener("pointercancel", endDrag);
+  parts.img.addEventListener("pointerup", endPointer);
+  parts.img.addEventListener("pointercancel", endPointer);
   parts.img.addEventListener("click", (event) => {
     event.stopPropagation();
     if (dragged) {
