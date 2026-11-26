@@ -99,11 +99,11 @@ h2 {
   line-height: var(--heading-line-height);
 }
 
-a:not([class*="ls-"]):not(.ls-footer a) {
+a:where(:not([class*="ls-"]):not(.ls-footer a)) {
   color: var(--accent);
 }
 
-a:not([class*="ls-"]):not(.ls-footer a):hover {
+a:where(:not([class*="ls-"]):not(.ls-footer a)):hover {
   color: var(--accent-hover);
 }
 
