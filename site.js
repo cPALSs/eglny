@@ -73,7 +73,7 @@
     const toggle = document.getElementById("theme-toggle");
     if (toggle) {
       const appearance = resolvedAppearance(next);
-      toggle.innerHTML = `${themeIconMarkup(appearance)}<span class="sr-only">Color theme: ${themeLabel(next)}</span>`;
+      toggle.innerHTML = `${themeIconMarkup(appearance)}<span class="ls-sr-only">Color theme: ${themeLabel(next)}</span>`;
       toggle.setAttribute("aria-label", `Color theme: ${themeLabel(next)}`);
     }
   }
@@ -230,10 +230,10 @@
             .map((child) => {
               const childCurrent = child.id === resolvedActive ? ' aria-current="page"' : "";
               const external = child.external ? ' target="_blank" rel="noopener"' : "";
-              return `<div class="site-nav-sublink-wrap"><a class="site-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
+              return `<div class="ls-nav-sublink-wrap"><a class="ls-nav-sublink" href="${child.href}"${childCurrent}${external}>${escapeHtml(navLinkLabel(child))}</a></div>`;
             })
             .join("");
-          return `<div class="site-nav-group${childActive ? " is-active" : ""}" data-nav-section="${escapeHtml(page.id)}"><a class="site-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="site-nav-submenu">${sublinks}</div></div>`;
+          return `<div class="ls-nav-group${childActive ? " ls-is-active" : ""}" data-nav-section="${escapeHtml(page.id)}"><a class="ls-nav-parent" href="${page.href}"${parentCurrent}>${escapeHtml(navLinkLabel(page))}</a><div class="ls-nav-submenu">${sublinks}</div></div>`;
         }
         const current = page.id === resolvedActive ? ' aria-current="page"' : "";
         return `<a href="${page.href}"${current}>${escapeHtml(navLinkLabel(page))}</a>`;
@@ -247,9 +247,9 @@
     const links = renderNavLinks(pages, activePage);
 
     return `
-    <nav class="site-nav" data-ls-nav data-ls-nav-breakpoint="880px" aria-label="Main">
-      <div class="site-nav-bar">
-        <a class="site-nav-brand" href="/">
+    <nav class="ls-nav site-nav" data-ls-nav data-ls-nav-breakpoint="880px" aria-label="Main">
+      <div class="ls-nav-bar">
+        <a class="ls-nav-brand" href="/">
           <img
             class="site-nav-symbol"
             src="/assets/brand/eglny-symbol.png"
@@ -259,23 +259,23 @@
             decoding="async"
           />
           <span class="site-nav-logotype" aria-hidden="true"></span>
-          <span class="sr-only">Elk Grove Lunar New Year Tết</span>
+          <span class="ls-sr-only">Elk Grove Lunar New Year Tết</span>
         </a>
-        <div class="site-nav-end">
-          <button type="button" class="icon-btn site-nav-toggle" data-ls-nav-toggle aria-expanded="false" aria-controls="site-nav-drawer">
-            <span class="site-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="sr-only">Open menu</span>
+        <div class="ls-nav-end">
+          <button type="button" class="ls-nav-toggle" data-ls-nav-toggle aria-expanded="false" aria-controls="site-nav-drawer">
+            <span class="ls-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="ls-sr-only">Open menu</span>
           </button>
         </div>
       </div>
-      <div class="site-nav-backdrop" data-ls-nav-backdrop hidden aria-hidden="true"></div>
-      <div id="site-nav-drawer" class="site-nav-drawer" data-ls-nav-drawer aria-hidden="true">
-        <div class="site-nav-drawer-tools">
+      <div class="ls-nav-backdrop" data-ls-nav-backdrop hidden aria-hidden="true"></div>
+      <div id="site-nav-drawer" class="ls-nav-drawer" data-ls-nav-drawer aria-hidden="true">
+        <div class="ls-nav-drawer-tools">
           <div class="site-nav-social-slot"></div>
           ${renderThemeControl()}
         </div>
-        <div class="site-nav-links">${links}</div>
-        <div class="site-nav-drawer-footer">
+        <div class="ls-nav-links">${links}</div>
+        <div class="ls-nav-drawer-footer">
           <a class="site-nav-drawer-footer-email" href="mailto:contact@eglny.com">contact@eglny.com</a>
         </div>
       </div>
@@ -296,7 +296,7 @@
   }
 
   function initNavMenu() {
-    const nav = document.querySelector(".site-nav");
+    const nav = document.querySelector(".ls-nav");
     if (!nav) return;
 
     if (window.LSDS && typeof window.LSDS.initNavShell === "function") {
@@ -478,7 +478,7 @@
     const layoutClass =
       lane.layout === "responsibility-list" ? " lane-section--list" : "";
     return `
-          <section class="lane-section${layoutClass} site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
+          <section class="lane-section${layoutClass} ls-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
             <div class="lane-header">
               <h2>${escapeHtml(lane.title)}</h2>
               <p><strong>${escapeHtml(lane.subtitle)}</strong>${lane.intro ? " — " + escapeHtml(lane.intro) : ""}</p>
@@ -548,7 +548,7 @@
         ? `<p>${escapeHtml(block.intro)}</p>`
         : "";
     return `
-          <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
+          <section class="content-section ls-doc-section" id="skills-projects" data-doc-section>
             ${heading}
             <div class="skills-projects-grid">${cards}</div>
           </section>`;
@@ -564,7 +564,7 @@
       '<a href="/team/">Team</a>',
     );
     return `
-          <section class="content-section site-doc-section" id="planning-directing" data-doc-section>
+          <section class="content-section ls-doc-section" id="planning-directing" data-doc-section>
             <h2>${escapeHtml(title)}</h2>
             <p>${linkedBody}</p>
           </section>`;
@@ -580,7 +580,7 @@
     const ctaClass = openCount === 1 ? "ls-btn ls-btn--primary btn btn-primary" : "ls-btn ls-btn--secondary btn btn-secondary";
     const planningHtml = renderVolunteerPlanningSection(block);
     const skillsHtml = `
-          <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
+          <section class="content-section ls-doc-section" id="skills-projects" data-doc-section>
             <h2>${escapeHtml(skillsTitle)}</h2>
             <div class="skills-projects-grid">${projects
               .map((p) => renderSkillsProjectCard(p, { ctaClass }))
@@ -609,7 +609,7 @@
       : "";
     const dayOfHtml = dayOf
       ? `
-          <section class="content-section site-doc-section" id="day-of-help" data-doc-section>
+          <section class="content-section ls-doc-section" id="day-of-help" data-doc-section>
             <h2>${escapeHtml(dayOf.title ?? "Day-of help")}</h2>
             <p>${escapeHtml(dayOf.body ?? "Registration is not yet available — come back later.")}</p>
             ${dayOfTableHtml}
@@ -808,26 +808,26 @@
     const links = (tocItems ?? [])
       .map((item) => {
         if (item?.type === "divider" || item?.divider) {
-          return `<p class="site-doc-toc-label site-doc-toc-label--section">${escapeHtml(
+          return `<p class="ls-doc-toc-label ls-doc-toc-label--section">${escapeHtml(
             item.label ?? "",
           )}</p>`;
         }
-        return `<a class="site-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`;
+        return `<a class="ls-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`;
       })
       .join("");
     const back =
       options.backHref != null
-        ? `<a class="site-doc-toc-back" href="${escapeHtml(options.backHref)}">${escapeHtml(
+        ? `<a class="ls-doc-toc-back" href="${escapeHtml(options.backHref)}">${escapeHtml(
             options.backLabel ?? "← Back",
           )}</a>`
         : "";
-    const foot = options.footHtml ? `<div class="toc-foot">${options.footHtml}</div>` : "";
-    const navClass = options.backHref != null ? "site-doc-toc site-doc-toc--with-back" : "site-doc-toc";
-    return `<nav class="${navClass}" aria-label="On this page">${back}<p class="site-doc-toc-label">On this page</p>${links}${foot}</nav>`;
+    const foot = options.footHtml ? `<div class="ls-doc-toc-foot">${options.footHtml}</div>` : "";
+    const navClass = options.backHref != null ? "ls-doc-toc ls-doc-toc--with-back" : "ls-doc-toc";
+    return `<nav class="${navClass}" aria-label="On this page">${back}<p class="ls-doc-toc-label">On this page</p>${links}${foot}</nav>`;
   }
 
   function wrapDocLayout(tocHtml, mainHtml) {
-    return `<div class="site-doc-layout">${tocHtml}<div class="site-doc-main">${mainHtml}</div></div>`;
+    return `<div class="ls-doc-layout">${tocHtml}<div class="ls-doc-main">${mainHtml}</div></div>`;
   }
 
   function buildAboutToc(about) {
@@ -902,7 +902,7 @@
             .map((p) => `<p>${linkFirstFundTheFestival(formatBriefProse(p))}</p>`)
             .join("");
           return `
-      <section class="about-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+      <section class="about-section ls-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
         ${paragraphs}
         ${renderBriefTable(section.table)}
@@ -939,7 +939,7 @@
       .join("");
 
     return `
-    <section class="poster-wall site-doc-section" id="posters" data-doc-section>
+    <section class="poster-wall ls-doc-section" id="posters" data-doc-section>
       <h2>${escapeHtml(posterWall.title ?? "Festival posters over the years")}</h2>
       ${posterWall.intro ? `<p class="muted">${escapeHtml(posterWall.intro)}</p>` : ""}
       <div class="poster-grid">${cards}</div>
@@ -1098,7 +1098,7 @@
         const footer =
           index === blocks.length - 1 ? `${listNote}${contactNote}` : "";
         return `
-      <section class="about-section resources-season site-doc-section" id="${escapeHtml(block.id)}" data-doc-section>
+      <section class="about-section resources-season ls-doc-section" id="${escapeHtml(block.id)}" data-doc-section>
         <h2>${escapeHtml(block.title)}</h2>
         ${block.intro ? `<p>${escapeHtml(block.intro)}</p>` : ""}
         ${
@@ -1177,7 +1177,7 @@
           .map(renderLionDanceGroupItem)
           .join("");
         return `
-      <section class="about-section resources-lion-groups site-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
+      <section class="about-section resources-lion-groups ls-doc-section" id="${escapeHtml(lane.id)}" data-doc-section>
         <h2>${escapeHtml(lane.title)}</h2>
         <ul class="lion-group-list">${items}</ul>
       </section>`;
@@ -1363,7 +1363,7 @@
               ? `<p class="muted vendor-directory-empty">${escapeHtml(section.emptyMessage)}</p>`
               : `<p class="muted vendor-directory-empty">No vendors listed yet.</p>`;
         return `
-      <section class="about-section vendor-directory-section site-doc-section" id="${escapeHtml(section.id)}" data-doc-section>
+      <section class="about-section vendor-directory-section ls-doc-section" id="${escapeHtml(section.id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
         ${section.intro ? `<p>${escapeHtml(section.intro)}</p>` : ""}
         ${list}
@@ -1469,7 +1469,7 @@
           )
           .join("");
         return `
-      <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+      <section class="content-section ls-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(p.title || "Program")}</h2>
         ${bodyHtml}
         ${linksHtml}
@@ -1624,11 +1624,11 @@
     const logoPrefix = options.logoPrefix ?? "/sponsors/";
     const idPrefix = options.idPrefix ?? "";
     const docSections = options.docSections !== false;
-    const sectionClass = docSections ? "sponsor-tier site-doc-section" : "sponsor-tier";
+    const sectionClass = docSections ? "ls-sponsor-tier ls-doc-section" : "ls-sponsor-tier";
     const dataAttr = docSections ? " data-doc-section" : "";
     const gridClass = options.centerGrid
-      ? "sponsor-grid sponsor-grid--center"
-      : "sponsor-grid";
+      ? "ls-sponsor-grid ls-sponsor-grid--center"
+      : "ls-sponsor-grid";
     return sortedTiers
       .map((tier) => {
         const tierId = `${idPrefix}${slugifyHeading(tier)}`;
@@ -1640,7 +1640,7 @@
               : escapeHtml(s.name);
             const cardBg = resolveSponsorCardBg(s);
             const styleAttr = cardBg
-              ? ` style="--sponsor-card-bg:${cardBg};--sponsor-card-opacity:1"`
+              ? ` style="--ls-sponsor-card-bg:${cardBg};--ls-sponsor-opacity:1"`
               : "";
             const lum = cardBg ? sponsorCardBgLuminance(cardBg) : null;
             const onDark =
@@ -1648,15 +1648,15 @@
               s.darkBg === true ||
               (lum != null && lum < 0.25);
             const cardClass = onDark
-              ? "sponsor-card sponsor-card--on-dark"
-              : "sponsor-card";
+              ? "ls-sponsor-card ls-sponsor-card--on-dark"
+              : "ls-sponsor-card";
             if (s.url) {
               return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
             }
             return `<div class="${cardClass}"${styleAttr}>${inner}</div>`;
           })
           .join("");
-        return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2>${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
+        return `<section class="${sectionClass}" id="${escapeHtml(tierId)}"${dataAttr}><h2 class="ls-sponsor-tier-heading">${escapeHtml(tier)}</h2><div class="${gridClass}">${cards}</div></section>`;
       })
       .join("");
   }
@@ -1735,18 +1735,18 @@
       : "";
 
     const mainHtml = `
-      <section class="content-section site-doc-section" id="partner" data-doc-section>
+      <section class="content-section ls-doc-section" id="partner" data-doc-section>
         <h2>${escapeHtml(sponsorship?.partnerTitle ?? "Partner with us")}</h2>
         ${sponsorship?.partnerIntro ? `<p>${escapeHtml(sponsorship.partnerIntro)}</p>` : ""}
         <div class="resource-card-grid">${partnerCards}</div>
         ${partnerContactNote}
       </section>
-      <section class="sponsorship-thank-you site-doc-section" id="thank-you-2027" data-doc-section>
+      <section class="sponsorship-thank-you ls-doc-section" id="thank-you-2027" data-doc-section>
         <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYou2027Title)}</h2>
         <p>${escapeHtml(thankYou2027Lead)}</p>
       </section>
       ${tiers2027Html}
-      <section class="sponsorship-thank-you site-doc-section" id="thank-you-2026" data-doc-section>
+      <section class="sponsorship-thank-you ls-doc-section" id="thank-you-2026" data-doc-section>
         <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYouTitle)}</h2>
         <p>${escapeHtml(thankYouLead)}</p>
       </section>
@@ -1832,7 +1832,7 @@
 
     const videosHtml = videos.length
       ? `
-      <section class="content-section site-doc-section" id="videos" data-doc-section>
+      <section class="content-section ls-doc-section" id="videos" data-doc-section>
         <h2>${escapeHtml(videosHeading)}</h2>
         ${yearBlocks}
       </section>`
@@ -2340,7 +2340,7 @@
           ? `<div class="co-chairs roster-grid">${cards}</div>`
           : "";
         return `
-          <section class="content-section site-doc-section" id="${escapeHtml(id)}" data-doc-section>
+          <section class="content-section ls-doc-section" id="${escapeHtml(id)}" data-doc-section>
             ${heading}
             ${blurb}
             ${grid}
@@ -2357,7 +2357,7 @@
 
   function renderRosterPage(site) {
     const faqHtml = `
-          <section class="content-section site-doc-section" id="faq" data-doc-section>
+          <section class="content-section ls-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${renderFaqBlock(site)}
           </section>`;
@@ -2384,7 +2384,7 @@
       ? `<a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
       : "";
     return `
-          <section class="content-section site-doc-section" id="get-involved" data-doc-section>
+          <section class="content-section ls-doc-section" id="get-involved" data-doc-section>
             <h2>${escapeHtml(join.title ?? "Get involved")}</h2>
             ${join.intro ? `<p>${escapeHtml(join.intro)}</p>` : ""}
             <ul>
@@ -2432,7 +2432,7 @@
       : "";
 
     return `
-          <section class="content-section site-doc-section" id="apply" data-doc-section>
+          <section class="content-section ls-doc-section" id="apply" data-doc-section>
             <h2>Apply &amp; get involved</h2>
             <h3>Apply to an open role</h3>
             <p>${escapeHtml(join.applyNote ?? "Apply on Idealist — name the role or vision you’re interested in.")}</p>
@@ -2455,7 +2455,7 @@
   function renderJoinPage(site) {
     const mainHtml = `
           ${renderJoinSection(site)}
-          <section class="content-section site-doc-section" id="faq" data-doc-section>
+          <section class="content-section ls-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${renderFaqBlock(site)}
           </section>`;
@@ -2473,7 +2473,7 @@
 
     const mainHtml = `
           ${renderApplySection(site)}
-          <section class="content-section site-doc-section" id="faq" data-doc-section>
+          <section class="content-section ls-doc-section" id="faq" data-doc-section>
             <h2>FAQ</h2>
             ${renderFaqBlock(site)}
           </section>
@@ -2640,7 +2640,7 @@
   function renderVendorRfpSection(section) {
     const paragraphs = (section.paragraphs ?? []).map((p) => `<p>${formatBriefProse(p)}</p>`).join("");
     return `
-      <section class="content-section site-doc-section" id="${escapeHtml(section.id)}" data-doc-section>
+      <section class="content-section ls-doc-section" id="${escapeHtml(section.id)}" data-doc-section>
         <h2>${escapeHtml(section.title)}</h2>
         ${paragraphs}
         ${renderBriefTable(section.table)}
@@ -2656,7 +2656,7 @@
     const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
     const label = contact.buttonLabel ?? "Email your proposal";
     return `
-      <section class="content-section site-doc-section" id="${escapeHtml(contact.id ?? "contact")}" data-doc-section>
+      <section class="content-section ls-doc-section" id="${escapeHtml(contact.id ?? "contact")}" data-doc-section>
         <h2>${escapeHtml(contact.title ?? "Submit a proposal")}</h2>
         ${contact.intro ? `<p>${formatBriefProse(contact.intro)}</p>` : ""}
         <p><a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(mailto)}">${escapeHtml(label)}</a></p>
@@ -2863,7 +2863,7 @@
     const zones = catalog.zoneBaselines ?? [];
     const sectionId = diy.id ?? "decorate-yourself";
     return `
-    <section id="${escapeHtml(sectionId)}" class="host-doc-section host-diy-section" data-host-section data-path="diy">
+    <section id="${escapeHtml(sectionId)}" class="ls-doc-section host-diy-section" data-host-section data-path="diy">
       <h2>${escapeHtml(diy.title ?? "Decorate it yourself")}</h2>
       <p class="host-diy-lead">${escapeHtml(diy.intro ?? "")}</p>
       ${renderZonePricingTiers(zones, diy, catalog)}
@@ -2919,7 +2919,7 @@
     const addons = catalog.addons ?? [];
     const categories = ha.addonCategories ?? [];
     return `
-    <section id="${escapeHtml(sectionId)}" class="host-doc-section host-help-section" data-host-section data-path="help">
+    <section id="${escapeHtml(sectionId)}" class="ls-doc-section host-help-section" data-host-section data-path="help">
       <h2>${escapeHtml(helpSection.title ?? "Help me bring it to life")}</h2>
       <p class="host-help-lead">${escapeHtml(helpSection.intro ?? "")}</p>
       ${renderAddonCard(addons, categories)}
@@ -2960,10 +2960,10 @@
     const links = (tocItems ?? [])
       .map(
         (item) =>
-          `<a class="host-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
+          `<a class="ls-doc-toc-link" href="#${escapeHtml(item.id)}" data-toc-target="${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`,
       )
       .join("");
-    return `<nav class="host-doc-toc" aria-label="On this page"><p class="host-doc-toc-label">On this page</p>${links}</nav>`;
+    return `<nav class="ls-doc-toc host-doc-toc" aria-label="On this page"><p class="ls-doc-toc-label">On this page</p>${links}</nav>`;
   }
 
   function renderHostApplyBlock(hostApply, prominent) {
@@ -3117,10 +3117,10 @@
       ${renderHostPrompts(ha.prompts ?? {})}
     </section>
 
-    <div class="host-doc-layout">
+    <div class="ls-doc-layout">
       ${renderHostToc(ha.toc)}
-      <div class="host-doc-main">
-        <section id="examples" class="host-doc-section" data-host-section>
+      <div class="ls-doc-main host-doc-main">
+        <section id="examples" class="ls-doc-section" data-host-section>
           <h2>${escapeHtml(ha.storiesSection?.title ?? "Examples")}</h2>
           <p class="muted">${escapeHtml(ha.storiesSection?.intro ?? "")}</p>
           <div class="host-story-grid">${featuredHtml}</div>
@@ -3129,12 +3129,12 @@
         ${renderDiySection(ha.diySection, catalog)}
         ${renderHelpSection(ha.helpSection, ha, catalog)}
 
-        <section id="contact" class="host-doc-section" data-host-section>
+        <section id="contact" class="ls-doc-section" data-host-section>
           <h2>${escapeHtml(ha.apply?.title ?? "Email us to start")}</h2>
           ${renderHostApplyBlock(ha.apply, true)}
         </section>
 
-        <section id="faq" class="host-doc-section" data-host-section>
+        <section id="faq" class="ls-doc-section" data-host-section>
           <h2>FAQ</h2>
           ${faqHtml}
         </section>
@@ -3292,7 +3292,7 @@
           : "";
 
     const inventoryHtml = hasInventory
-      ? `<section class="content-section site-doc-section" id="${escapeHtml(inventory.id ?? "inventory")}" data-doc-section>
+      ? `<section class="content-section ls-doc-section" id="${escapeHtml(inventory.id ?? "inventory")}" data-doc-section>
         <h2>${escapeHtml(inventory.title ?? "Booth inventory")}</h2>
         ${inventory.intro ? `<p>${formatBriefProse(inventory.intro)}</p>` : ""}
         ${renderInventoryTable(inventory.table)}
@@ -3322,7 +3322,7 @@
       .join("");
 
     const feesHtml = hasFees
-      ? `<section class="content-section site-doc-section" id="${escapeHtml(fees.id ?? "fees")}" data-doc-section>
+      ? `<section class="content-section ls-doc-section" id="${escapeHtml(fees.id ?? "fees")}" data-doc-section>
         <h2>${escapeHtml(fees.title ?? "Fees and terms")}</h2>
         ${fees.intro ? `<p>${formatBriefProse(fees.intro)}</p>` : ""}
         ${feesSectionsHtml || renderBriefBullets(fees.notes)}
@@ -3331,7 +3331,7 @@
       : "";
 
     const restrictionsHtml = hasRestrictions
-      ? `<section class="content-section site-doc-section" id="${escapeHtml(restrictions.id ?? "restrictions")}" data-doc-section>
+      ? `<section class="content-section ls-doc-section" id="${escapeHtml(restrictions.id ?? "restrictions")}" data-doc-section>
         <h2>${escapeHtml(restrictions.title ?? "Restrictions")}</h2>
         ${
           restrictions.deny?.length
@@ -3352,7 +3352,7 @@
       : "";
 
     const criteriaHtml = hasCriteria
-        ? `<section class="content-section site-doc-section" id="${escapeHtml(criteria.id ?? "criteria")}" data-doc-section>
+        ? `<section class="content-section ls-doc-section" id="${escapeHtml(criteria.id ?? "criteria")}" data-doc-section>
         <h2>${escapeHtml(criteria.title ?? "Selection criteria")}</h2>
         ${criteria.intro ? `<p>${formatBriefProse(criteria.intro)}</p>` : ""}
         ${
@@ -3373,7 +3373,7 @@
       : "";
 
     const mainHtml = `
-      <section class="content-section site-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
+      <section class="content-section ls-doc-section" id="${escapeHtml(waitlist.id ?? "waitlist")}" data-doc-section>
         ${waitlistWarningHtml}
         <h2>${escapeHtml(waitlist.title ?? "Apply for single booth or an entire zone")}</h2>
         ${waitlist.partnerIntro ? `<p>${formatBriefProse(waitlist.partnerIntro)}</p>` : ""}
@@ -3394,7 +3394,7 @@
       ${inventoryHtml}
       ${feesHtml}
       ${restrictionsHtml}
-      <section class="content-section site-doc-section" id="${escapeHtml(timeline.id ?? "timeline")}" data-doc-section>
+      <section class="content-section ls-doc-section" id="${escapeHtml(timeline.id ?? "timeline")}" data-doc-section>
         <h2>${escapeHtml(timeline.title ?? "How selection works")}</h2>
         ${timeline.intro ? `<p>${formatBriefProse(timeline.intro)}</p>` : ""}
         <div class="booth-rounds-grid">${roundsHtml}</div>
@@ -3436,7 +3436,7 @@
     const tocItems = lots ? [{ id: "lots", label: "Open lots" }] : [];
     const mainHtml = lots
       ? `
-      <section class="content-section site-doc-section" id="lots" data-doc-section aria-labelledby="lots-heading">
+      <section class="content-section ls-doc-section" id="lots" data-doc-section aria-labelledby="lots-heading">
         <h2 id="lots-heading">Open lots</h2>
         <div class="resource-card-grid">${lots}</div>
         ${index?.note ? `<p class="muted">${escapeHtml(index.note)}</p>` : ""}
@@ -3834,7 +3834,7 @@
         const mafAttr = eraMaf ? ' data-maf="1"' : "";
         const blocks = (era.blocks ?? []).map(renderHistoryBlock).join("");
         return `
-      <section class="content-section site-doc-section history-era" id="${escapeHtml(era.id)}" data-doc-section${mafAttr}>
+      <section class="content-section ls-doc-section history-era" id="${escapeHtml(era.id)}" data-doc-section${mafAttr}>
         <h2>${escapeHtml(era.title)}</h2>
         ${blocks}
       </section>`;
@@ -3850,7 +3850,7 @@
       </label>
       ${
         history.hideMafHelp
-          ? `<p class="sr-only" id="${filterId}-help">${escapeHtml(history.hideMafHelp)}</p>`
+          ? `<p class="ls-sr-only" id="${filterId}-help">${escapeHtml(history.hideMafHelp)}</p>`
           : ""
       }`;
 
@@ -3861,7 +3861,7 @@
 
     const mainHtml = `
       ${erasHtml}
-      <section class="content-section site-doc-section" id="join-2027" data-doc-section>
+      <section class="content-section ls-doc-section" id="join-2027" data-doc-section>
         <h2>Still going</h2>
         <p>The park weekend is the civic line we are still building — same corridor pride, a lawn families can walk.</p>
         ${cta}
@@ -3893,7 +3893,7 @@
       root.querySelectorAll("[data-maf]").forEach((el) => {
         el.hidden = hide;
       });
-      root.querySelectorAll(".site-doc-toc-link").forEach((link) => {
+      root.querySelectorAll(".ls-doc-toc-link").forEach((link) => {
         const target = root.getElementById?.(link.dataset.tocTarget) || document.getElementById(link.dataset.tocTarget);
         if (target?.hasAttribute("data-maf")) {
           link.hidden = hide;
