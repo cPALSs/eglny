@@ -682,6 +682,10 @@
   font-weight: 500;
 }
 
+.menu-layout .menu-view-tabs .view-btn[hidden] {
+  display: none;
+}
+
 .menu-layout .menu-view-tabs .view-btn.active {
   color: var(--accent, #b91c1c);
   border-bottom-color: var(--accent, #b91c1c);

@@ -675,7 +675,15 @@ function renderDietView(vendors, facets) {
 }
 
 const MENU_VIEWS = ["theme", "type", "cuisine", "vendor", "diet"];
-const DEFAULT_VIEW = "type";
+const DEFAULT_VIEW = "theme";
+
+function menuHasThemes(m) {
+  return Number(m?.year) >= 2027;
+}
+
+function defaultViewForMenu(m) {
+  return menuHasThemes(m) ? "theme" : "type";
+}
 
 function viewFromUrl() {
   try {
@@ -737,9 +745,10 @@ function syncViewTabs(container, nextView) {
  */
 export function mountMenuViewer(container, menu) {
   let activeFilters = new Set();
-  let view = viewFromUrl() ?? DEFAULT_VIEW;
-  let query = "";
   let currentMenu = menu;
+  let view = viewFromUrl() ?? defaultViewForMenu(currentMenu);
+  if (view === "theme" && !menuHasThemes(currentMenu)) view = "type";
+  let query = "";
   /** After switching to By vendor, scroll to this card id (`vendor-{id}`). */
   let pendingVendorScroll = null;
   /** After Back/Forward re-render, restore this window scrollY. */
@@ -1199,13 +1208,25 @@ export function mountMenuViewer(container, menu) {
   }
   setupDishLightbox(container);
 
+  const themeTabBtn = container.querySelector('.view-btn[data-view="theme"]');
+  function syncThemeTabVisibility() {
+    const hasThemes = menuHasThemes(currentMenu);
+    if (themeTabBtn) themeTabBtn.hidden = !hasThemes;
+    if (!hasThemes && view === "theme") {
+      view = "type";
+      setViewInUrl(view);
+    }
+    syncViewTabs(container, view);
+  }
+
   placeFiltersForViewport();
+  syncThemeTabVisibility();
   // Reflect view (+ optional vendor hash) when opened via deep link.
   const deepVendor = vendorIdFromHash();
   if (view === "vendor" && deepVendor) {
     pendingVendorScroll = vendorCardId(deepVendor);
     setViewInUrl(view, { hash: vendorCardId(deepVendor), vendorId: deepVendor, scrollY: 0 });
-  } else if (view !== DEFAULT_VIEW) {
+  } else if (view !== defaultViewForMenu(currentMenu)) {
     setViewInUrl(view);
   } else {
     setViewInUrl(view, { scrollY: window.scrollY });
@@ -1215,6 +1236,7 @@ export function mountMenuViewer(container, menu) {
   return {
     setMenu(nextMenu) {
       currentMenu = nextMenu;
+      syncThemeTabVisibility();
       render();
     },
   };
