@@ -1,8 +1,8 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "49f132ca5e2d816f197a77cb8b381a0f18eeba97",
-  "shortCommit": "49f132c",
-  "syncedAt": "2026-11-26T18:37:34.390Z",
+  "commit": "33ba3282467bc06714e4da9380bb9436d2b0b498",
+  "shortCommit": "33ba328",
+  "syncedAt": "2026-11-26T18:53:51.112Z",
   "theme": "vermillion",
   "experimental": [
     "checklist",
@@ -10,14 +10,15 @@
     "data-table",
     "icon",
     "infobox",
+    "lightbox",
     "sheet",
     "tabs",
     "toc-drawer"
   ],
   "files": {
-    "lsds.css": "2920bbcf08595855",
-    "lsds.js": "c058acf781e7c3f7",
-    "lsds.iife.js": "a3acc767ca91633b",
-    "themes/vermillion.css": "93fcf9c1ebf37938"
+    "lsds.css": "3aba240f5541d963",
+    "lsds.js": "efa35b52463a0323",
+    "lsds.iife.js": "38a67a02c48b5b34",
+    "themes/vermillion.css": "6a229b7791de4191"
   }
 }

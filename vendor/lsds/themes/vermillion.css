@@ -151,4 +151,13 @@
       --ls-sponsor-border: color-mix(in srgb, #1a2332 14%, transparent);
     }
   }
+  [data-ls-theme=vermillion],
+  [data-ls-theme=eglny] {
+    --ls-media-bg: rgb(0 0 0 / 0.94);
+    --ls-media-fg: rgb(255 255 255);
+    --ls-media-muted: rgb(255 255 255 / 0.72);
+    --ls-media-chip: rgb(255 255 255 / 0.14);
+    --ls-media-chip-hover: rgb(255 255 255 / 0.26);
+    --ls-media-video-bg: rgb(0 0 0);
+  }
 }

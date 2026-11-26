@@ -20,15 +20,18 @@ var LSDS = (() => {
   // src/lsds.js
   var lsds_exports = {};
   __export(lsds_exports, {
+    closeLightbox: () => closeLightbox,
     initAll: () => initAll,
     initDocScroll: () => initDocScroll,
     initHeadingAnchors: () => initHeadingAnchors,
     initLangSwitch: () => initLangSwitch,
+    initLightbox: () => initLightbox,
     initNavShell: () => initNavShell,
     initSchemeToggle: () => initSchemeToggle,
     initSheets: () => initSheets,
     initTabs: () => initTabs,
     initTocDrawer: () => initTocDrawer,
+    openLightbox: () => openLightbox,
     refreshTocPager: () => refreshTocPager
   });
 
@@ -730,6 +733,229 @@ var LSDS = (() => {
     }
   }
 
+  // src/experimental/lightbox/lightbox.js
+  var DIALOG_ID = "ls-lightbox";
+  var bound = /* @__PURE__ */ new WeakSet();
+  var hooks = { renderChrome: null };
+  var ui = null;
+  var LABELS = {
+    en: { close: "Close", previous: "Previous", next: "Next", viewer: "Image viewer" },
+    vi: { close: "\u0110\xF3ng", previous: "Tr\u01B0\u1EDBc", next: "Ti\u1EBFp", viewer: "Tr\xECnh xem h\xECnh \u1EA3nh" }
+  };
+  var ICON_CLOSE2 = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  var ICON_PREV = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6l-6 6 6 6"/></svg>';
+  var ICON_NEXT = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg>';
+  function youtubeId(value) {
+    const v = String(value || "").trim();
+    if (/^[\w-]{11}$/.test(v)) return v;
+    const m = v.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/);
+    return m ? m[1] : "";
+  }
+  function labelsFor() {
+    const lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    return LABELS[lang] || LABELS.en;
+  }
+  function build(labels) {
+    const dialog = document.createElement("dialog");
+    dialog.id = DIALOG_ID;
+    dialog.className = "ls-lightbox";
+    dialog.setAttribute("aria-label", labels.viewer);
+    dialog.innerHTML = `
+    <div class="ls-lightbox-stage">
+      <img class="ls-lightbox-img" alt="" hidden />
+      <video class="ls-lightbox-video" controls playsinline preload="metadata" hidden></video>
+      <iframe class="ls-lightbox-youtube" hidden allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title=""></iframe>
+      <button type="button" class="ls-lightbox-nav ls-lightbox-prev" hidden>${ICON_PREV}</button>
+      <button type="button" class="ls-lightbox-nav ls-lightbox-next" hidden>${ICON_NEXT}</button>
+    </div>
+    <div class="ls-lightbox-bar">
+      <div class="ls-lightbox-meta">
+        <p class="ls-lightbox-caption" hidden></p>
+        <p class="ls-lightbox-counter" hidden></p>
+      </div>
+      <div class="ls-lightbox-actions" hidden></div>
+    </div>
+    <button type="button" class="ls-lightbox-close">${ICON_CLOSE2}</button>
+  `;
+    document.body.appendChild(dialog);
+    const q = (sel) => dialog.querySelector(sel);
+    const parts = {
+      dialog,
+      stage: q(".ls-lightbox-stage"),
+      img: q(".ls-lightbox-img"),
+      video: q(".ls-lightbox-video"),
+      youtube: q(".ls-lightbox-youtube"),
+      prev: q(".ls-lightbox-prev"),
+      next: q(".ls-lightbox-next"),
+      caption: q(".ls-lightbox-caption"),
+      counter: q(".ls-lightbox-counter"),
+      actions: q(".ls-lightbox-actions"),
+      close: q(".ls-lightbox-close"),
+      session: null
+    };
+    parts.close.addEventListener("click", () => dialog.close());
+    parts.prev.addEventListener("click", () => step(parts, -1));
+    parts.next.addEventListener("click", () => step(parts, 1));
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog || event.target === parts.stage) dialog.close();
+    });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.target.closest?.("video, iframe")) return;
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        step(parts, -1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        step(parts, 1);
+      }
+    });
+    dialog.addEventListener("close", () => onClose(parts));
+    return parts;
+  }
+  function ensure(labels) {
+    if (ui && ui.dialog.isConnected) {
+      applyLabels(ui, labels);
+      return ui;
+    }
+    ui = build(labels);
+    return ui;
+  }
+  function applyLabels(parts, labels) {
+    parts.dialog.setAttribute("aria-label", labels.viewer);
+    parts.close.setAttribute("aria-label", labels.close);
+    parts.prev.setAttribute("aria-label", labels.previous);
+    parts.next.setAttribute("aria-label", labels.next);
+  }
+  function stopMedia(parts) {
+    parts.video.pause();
+    parts.video.removeAttribute("src");
+    parts.video.removeAttribute("poster");
+    parts.video.load();
+    parts.youtube.removeAttribute("src");
+  }
+  function render(parts) {
+    const { items, index, renderChrome } = parts.session;
+    const item = items[index];
+    stopMedia(parts);
+    const isVideo = Boolean(item.video);
+    const ytId = youtubeId(item.youtube);
+    const isYoutube = !isVideo && Boolean(ytId);
+    const isImage = !isVideo && !isYoutube;
+    parts.img.hidden = !isImage;
+    if (isImage) {
+      parts.img.src = item.src || "";
+      parts.img.alt = item.alt || "";
+    } else {
+      parts.img.removeAttribute("src");
+    }
+    parts.video.hidden = !isVideo;
+    if (isVideo) {
+      parts.video.src = item.video;
+      if (item.poster) parts.video.poster = item.poster;
+    }
+    parts.youtube.hidden = !isYoutube;
+    if (isYoutube) {
+      parts.youtube.title = item.alt || item.caption || "Video";
+      parts.youtube.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(ytId)}?rel=0&autoplay=1`;
+    }
+    const multi = items.length > 1;
+    parts.prev.hidden = !multi;
+    parts.next.hidden = !multi;
+    if (item.captionHtml) {
+      parts.caption.innerHTML = item.captionHtml;
+    } else {
+      parts.caption.textContent = item.caption || "";
+    }
+    parts.caption.hidden = !(item.captionHtml || item.caption);
+    parts.counter.textContent = multi ? `${index + 1} / ${items.length}` : "";
+    parts.counter.hidden = !multi;
+    parts.actions.replaceChildren();
+    const chrome = renderChrome || hooks.renderChrome;
+    if (typeof chrome === "function") chrome(item, parts.actions, { index, total: items.length });
+    parts.actions.hidden = parts.actions.childElementCount === 0;
+  }
+  function step(parts, delta) {
+    const s = parts.session;
+    if (!s || s.items.length < 2) return;
+    s.index = (s.index + delta + s.items.length) % s.items.length;
+    render(parts);
+  }
+  function onClose(parts) {
+    stopMedia(parts);
+    document.documentElement.classList.remove("ls-lightbox-open");
+    const session = parts.session;
+    parts.session = null;
+    parts.actions.replaceChildren();
+    const trigger = session?.trigger;
+    if (trigger && trigger.isConnected && typeof trigger.focus === "function") {
+      trigger.focus({ preventScroll: true });
+    }
+  }
+  function openLightbox(items, index = 0, options = {}) {
+    const list = (Array.isArray(items) ? items : [items]).filter((i) => i && (i.src || i.video || youtubeId(i.youtube)));
+    if (!list.length) return;
+    const labels = options.labels || labelsFor();
+    const parts = ensure(labels);
+    parts.session = {
+      items: list,
+      index: Math.min(Math.max(0, index), list.length - 1),
+      renderChrome: typeof options.renderChrome === "function" ? options.renderChrome : null,
+      trigger: options.trigger || null
+    };
+    render(parts);
+    document.documentElement.classList.add("ls-lightbox-open");
+    if (!parts.dialog.open) parts.dialog.showModal();
+    parts.close.focus({ preventScroll: true });
+  }
+  function closeLightbox() {
+    if (ui?.dialog.open) ui.dialog.close();
+  }
+  function itemFromTrigger(trigger) {
+    const ds = trigger.dataset;
+    const img = trigger.querySelector?.("img");
+    const href = trigger.tagName === "A" ? trigger.getAttribute("href") : "";
+    const src = ds.lsLightboxSrc || href || img?.getAttribute("src") || "";
+    const video = ds.lsLightboxVideo || "";
+    const youtube = ds.lsLightboxYoutube || "";
+    if (!src && !video && !youtube) return null;
+    return {
+      src,
+      video,
+      youtube,
+      poster: ds.lsLightboxPoster || "",
+      alt: ds.lsLightboxAlt || img?.getAttribute("alt") || "",
+      caption: ds.lsLightboxCaption || "",
+      captionHtml: ds.lsLightboxCaptionHtml || ""
+    };
+  }
+  function onTriggerClick(event, root) {
+    const trigger = event.target.closest?.("[data-ls-lightbox]");
+    if (!trigger || !root.contains(trigger)) return;
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const item = itemFromTrigger(trigger);
+    if (!item) return;
+    event.preventDefault();
+    const group = trigger.dataset.lsLightboxGroup;
+    if (!group) {
+      openLightbox([item], 0, { trigger });
+      return;
+    }
+    const pairs = [...root.querySelectorAll("[data-ls-lightbox][data-ls-lightbox-group]")].filter((t) => t.dataset.lsLightboxGroup === group).map((t) => ({ t, item: itemFromTrigger(t) })).filter((p) => p.item);
+    const index = pairs.findIndex((p) => p.t === trigger);
+    openLightbox(
+      pairs.map((p) => p.item),
+      Math.max(0, index),
+      { trigger }
+    );
+  }
+  function initLightbox(root = document, options = {}) {
+    if (!root?.querySelectorAll) return;
+    if (typeof options.renderChrome === "function") hooks.renderChrome = options.renderChrome;
+    if (bound.has(root)) return;
+    bound.add(root);
+    root.addEventListener("click", (event) => onTriggerClick(event, root));
+  }
+
   // src/lsds.js
   function initAll(root = document, options = {}) {
     initSchemeToggle(root, options.scheme);
@@ -737,6 +963,7 @@ var LSDS = (() => {
     initLangSwitch(root, options.lang);
     initSheets(root);
     initTabs(root);
+    initLightbox(root);
     if (root.querySelector?.("[data-ls-toc]")) {
       initDocScroll(options.docScroll);
     }
@@ -753,7 +980,10 @@ var LSDS = (() => {
       initLangSwitch,
       initSheets,
       initTocDrawer,
-      initTabs
+      initTabs,
+      initLightbox,
+      openLightbox,
+      closeLightbox
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => initAll(document), { once: true });
