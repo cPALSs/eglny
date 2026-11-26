@@ -2177,10 +2177,13 @@ a.co-chair-name {
   background: rgba(0, 0, 0, 0.55);
   padding: 0.2rem 0.45rem;
   border-radius: 4px;
+  transition: background 0.15s ease;
 }
 
 .video-fallback-link:hover {
-  text-decoration: underline;
+  color: #fff;
+  background: #ff0000;
+  text-decoration: none;
 }
 
 .video-caption {
