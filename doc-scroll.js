@@ -4,6 +4,9 @@
  */
 (function (root) {
   function init(options) {
+    if (root.LSDS && typeof root.LSDS.initTocDrawer === "function") {
+      root.LSDS.initTocDrawer();
+    }
     if (root.LSDS && typeof root.LSDS.initDocScroll === "function") {
       return root.LSDS.initDocScroll(options);
     }
