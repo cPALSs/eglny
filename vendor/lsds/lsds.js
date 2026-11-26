@@ -577,6 +577,70 @@ function initSheets(root = document) {
   return controllers;
 }
 
+// src/experimental/toc-drawer/toc-drawer.js
+var ICON_OPEN = '<svg class="ls-toc-fab-icon ls-toc-fab-icon--open" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="4.5" cy="6" r="1.4" fill="currentColor"/><circle cx="4.5" cy="12" r="1.4" fill="currentColor"/><circle cx="4.5" cy="18" r="1.4" fill="currentColor"/></svg>';
+var ICON_CLOSE = '<svg class="ls-toc-fab-icon ls-toc-fab-icon--close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+var idCounter = 0;
+function initTocDrawer(root = document, options = {}) {
+  const desktopQuery = window.matchMedia(options.desktopQuery || "(min-width: 1100px)");
+  const controllers = [];
+  for (const layout of root.querySelectorAll(".ls-doc-layout[data-ls-toc-drawer]")) {
+    let setInert = function(on) {
+      for (const el of layout.querySelectorAll(inertSelector)) el.inert = on;
+    }, setOpen = function(open, { restoreFocus = true } = {}) {
+      const next = Boolean(open) && !desktopQuery.matches;
+      if (next === nav.classList.contains("ls-is-open")) return;
+      nav.classList.toggle("ls-is-open", next);
+      overlay.hidden = !next;
+      fab.setAttribute("aria-expanded", String(next));
+      document.documentElement.classList.toggle("ls-toc-drawer-lock", next);
+      setInert(next);
+      if (next) {
+        const target = nav.querySelector('[aria-current="location"]') || nav.querySelector("a[href], button");
+        target?.scrollIntoView({ block: "nearest" });
+        target?.focus({ preventScroll: true });
+      } else if (restoreFocus) {
+        fab.focus({ preventScroll: true });
+      }
+    };
+    if (layout.dataset.lsTocDrawerBound) continue;
+    const nav = layout.querySelector(".ls-doc-toc");
+    if (!nav) continue;
+    layout.dataset.lsTocDrawerBound = "1";
+    if (!nav.id) nav.id = `ls-doc-toc-${++idCounter}`;
+    const inertSelector = layout.getAttribute("data-ls-toc-drawer") || ".ls-doc-main";
+    const fab = document.createElement("button");
+    fab.type = "button";
+    fab.className = "ls-toc-fab";
+    fab.setAttribute("aria-controls", nav.id);
+    fab.setAttribute("aria-expanded", "false");
+    fab.setAttribute("aria-label", nav.getAttribute("aria-label") || "On this page");
+    fab.innerHTML = ICON_OPEN + ICON_CLOSE;
+    const overlay = document.createElement("div");
+    overlay.className = "ls-toc-drawer-overlay";
+    overlay.hidden = true;
+    layout.append(overlay, fab);
+    fab.addEventListener("click", () => setOpen(!nav.classList.contains("ls-is-open")));
+    overlay.addEventListener("click", () => setOpen(false));
+    nav.addEventListener("click", (event) => {
+      if (event.target.closest("a[href]") && nav.classList.contains("ls-is-open")) {
+        setOpen(false, { restoreFocus: false });
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && nav.classList.contains("ls-is-open")) {
+        event.preventDefault();
+        setOpen(false);
+      }
+    });
+    desktopQuery.addEventListener("change", () => {
+      if (desktopQuery.matches) setOpen(false, { restoreFocus: false });
+    });
+    controllers.push({ layout, nav, fab, open: () => setOpen(true), close: () => setOpen(false) });
+  }
+  return controllers;
+}
+
 // src/lsds.js
 function initAll(root = document, options = {}) {
   initSchemeToggle(root, options.scheme);
@@ -586,6 +650,7 @@ function initAll(root = document, options = {}) {
   if (root.querySelector?.("[data-ls-toc]")) {
     initDocScroll(options.docScroll);
   }
+  initTocDrawer(root, options.tocDrawer);
 }
 if (typeof window !== "undefined") {
   window.LSDS = {
@@ -596,7 +661,8 @@ if (typeof window !== "undefined") {
     initHeadingAnchors,
     refreshTocPager,
     initLangSwitch,
-    initSheets
+    initSheets,
+    initTocDrawer
   };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => initAll(document), { once: true });
@@ -612,5 +678,6 @@ export {
   initNavShell,
   initSchemeToggle,
   initSheets,
+  initTocDrawer,
   refreshTocPager
 };
