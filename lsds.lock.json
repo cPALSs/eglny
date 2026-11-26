@@ -1,8 +1,8 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "33ba3282467bc06714e4da9380bb9436d2b0b498",
-  "shortCommit": "33ba328",
-  "syncedAt": "2026-11-26T18:53:51.112Z",
+  "commit": "f5abee546baf5bdde8b55a951e9e64add1bae9fd",
+  "shortCommit": "f5abee5",
+  "syncedAt": "2026-11-26T19:12:31.259Z",
   "theme": "vermillion",
   "experimental": [
     "checklist",
@@ -16,9 +16,9 @@
     "toc-drawer"
   ],
   "files": {
-    "lsds.css": "3aba240f5541d963",
-    "lsds.js": "efa35b52463a0323",
-    "lsds.iife.js": "38a67a02c48b5b34",
+    "lsds.css": "495ede330c1d961e",
+    "lsds.js": "8da5a6ea4278af1d",
+    "lsds.iife.js": "477260220b3e3211",
     "themes/vermillion.css": "6a229b7791de4191"
   }
 }

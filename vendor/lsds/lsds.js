@@ -702,10 +702,28 @@ var bound = /* @__PURE__ */ new WeakSet();
 var hooks = { renderChrome: null };
 var ui = null;
 var LABELS = {
-  en: { close: "Close", previous: "Previous", next: "Next", viewer: "Image viewer" },
-  vi: { close: "\u0110\xF3ng", previous: "Tr\u01B0\u1EDBc", next: "Ti\u1EBFp", viewer: "Tr\xECnh xem h\xECnh \u1EA3nh" }
+  en: {
+    close: "Close",
+    previous: "Previous",
+    next: "Next",
+    viewer: "Image viewer",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    zoomReset: "Reset zoom"
+  },
+  vi: {
+    close: "\u0110\xF3ng",
+    previous: "Tr\u01B0\u1EDBc",
+    next: "Ti\u1EBFp",
+    viewer: "Tr\xECnh xem h\xECnh \u1EA3nh",
+    zoomIn: "Ph\xF3ng to",
+    zoomOut: "Thu nh\u1ECF",
+    zoomReset: "\u0110\u1EB7t l\u1EA1i thu ph\xF3ng"
+  }
 };
 var ICON_CLOSE2 = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+var ICON_ZOOM_IN = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg>';
+var ICON_ZOOM_OUT = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 12h12"/></svg>';
 var ICON_PREV = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6l-6 6 6 6"/></svg>';
 var ICON_NEXT = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg>';
 function youtubeId(value) {
@@ -738,7 +756,14 @@ function build(labels) {
       </div>
       <div class="ls-lightbox-actions" hidden></div>
     </div>
-    <button type="button" class="ls-lightbox-close">${ICON_CLOSE2}</button>
+    <div class="ls-lightbox-top">
+      <div class="ls-lightbox-zoom-group" hidden>
+        <button type="button" class="ls-lightbox-zoom-btn ls-lightbox-zoom-out">${ICON_ZOOM_OUT}</button>
+        <button type="button" class="ls-lightbox-zoom-btn ls-lightbox-zoom-reset">100%</button>
+        <button type="button" class="ls-lightbox-zoom-btn ls-lightbox-zoom-in">${ICON_ZOOM_IN}</button>
+      </div>
+      <button type="button" class="ls-lightbox-close">${ICON_CLOSE2}</button>
+    </div>
   `;
   document.body.appendChild(dialog);
   const q = (sel) => dialog.querySelector(sel);
@@ -753,12 +778,64 @@ function build(labels) {
     caption: q(".ls-lightbox-caption"),
     counter: q(".ls-lightbox-counter"),
     actions: q(".ls-lightbox-actions"),
+    zoomGroup: q(".ls-lightbox-zoom-group"),
+    zoomOut: q(".ls-lightbox-zoom-out"),
+    zoomReset: q(".ls-lightbox-zoom-reset"),
+    zoomIn: q(".ls-lightbox-zoom-in"),
     close: q(".ls-lightbox-close"),
+    zoom: { scale: 1, tx: 0, ty: 0 },
     session: null
   };
   parts.close.addEventListener("click", () => dialog.close());
   parts.prev.addEventListener("click", () => step(parts, -1));
   parts.next.addEventListener("click", () => step(parts, 1));
+  parts.zoomIn.addEventListener("click", () => setZoom(parts, parts.zoom.scale + 0.5));
+  parts.zoomOut.addEventListener("click", () => setZoom(parts, parts.zoom.scale - 0.5));
+  parts.zoomReset.addEventListener("click", () => resetZoom(parts));
+  let drag = null;
+  let dragged = false;
+  parts.img.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0 || parts.zoom.scale <= 1) return;
+    event.preventDefault();
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, tx: parts.zoom.tx, ty: parts.zoom.ty };
+    dragged = false;
+    parts.img.setPointerCapture?.(event.pointerId);
+    parts.img.classList.add("ls-is-dragging");
+  });
+  parts.img.addEventListener("pointermove", (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX - drag.x;
+    const dy = event.clientY - drag.y;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragged = true;
+    parts.zoom.tx = drag.tx + dx;
+    parts.zoom.ty = drag.ty + dy;
+    applyZoom(parts);
+  });
+  const endDrag = (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    drag = null;
+    parts.img.classList.remove("ls-is-dragging");
+  };
+  parts.img.addEventListener("pointerup", endDrag);
+  parts.img.addEventListener("pointercancel", endDrag);
+  parts.img.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (dragged) {
+      dragged = false;
+      return;
+    }
+    setZoom(parts, parts.zoom.scale > 1 ? 1 : 2);
+  });
+  parts.stage.addEventListener(
+    "wheel",
+    (event) => {
+      if (parts.img.hidden) return;
+      event.preventDefault();
+      const delta = event.deltaY < 0 ? 0.25 : -0.25;
+      setZoom(parts, parts.zoom.scale + delta);
+    },
+    { passive: false }
+  );
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog || event.target === parts.stage) dialog.close();
   });
@@ -770,6 +847,15 @@ function build(labels) {
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
       step(parts, 1);
+    } else if (!parts.img.hidden && (event.key === "+" || event.key === "=")) {
+      event.preventDefault();
+      setZoom(parts, parts.zoom.scale + 0.5);
+    } else if (!parts.img.hidden && (event.key === "-" || event.key === "_")) {
+      event.preventDefault();
+      setZoom(parts, parts.zoom.scale - 0.5);
+    } else if (!parts.img.hidden && event.key === "0") {
+      event.preventDefault();
+      resetZoom(parts);
     }
   });
   dialog.addEventListener("close", () => onClose(parts));
@@ -788,6 +874,34 @@ function applyLabels(parts, labels) {
   parts.close.setAttribute("aria-label", labels.close);
   parts.prev.setAttribute("aria-label", labels.previous);
   parts.next.setAttribute("aria-label", labels.next);
+  parts.zoomIn.setAttribute("aria-label", labels.zoomIn);
+  parts.zoomOut.setAttribute("aria-label", labels.zoomOut);
+  parts.zoomReset.setAttribute("aria-label", labels.zoomReset);
+}
+function applyZoom(parts) {
+  const { scale, tx, ty } = parts.zoom;
+  const zoomed = scale > 1;
+  parts.img.classList.toggle("ls-is-zoomed", zoomed);
+  parts.img.style.transform = zoomed ? `translate(${tx}px, ${ty}px) scale(${scale})` : "";
+  parts.zoomReset.textContent = `${Math.round(scale * 100)}%`;
+  parts.zoomOut.disabled = scale <= 1;
+  parts.zoomReset.disabled = !zoomed;
+  parts.zoomIn.disabled = scale >= 4;
+}
+function setZoom(parts, nextScale) {
+  const clamped = Math.min(4, Math.max(1, Math.round(nextScale * 4) / 4));
+  parts.zoom.scale = clamped;
+  if (clamped <= 1) {
+    parts.zoom.tx = 0;
+    parts.zoom.ty = 0;
+  }
+  applyZoom(parts);
+}
+function resetZoom(parts) {
+  parts.zoom.scale = 1;
+  parts.zoom.tx = 0;
+  parts.zoom.ty = 0;
+  applyZoom(parts);
 }
 function stopMedia(parts) {
   parts.video.pause();
@@ -805,6 +919,8 @@ function render(parts) {
   const isYoutube = !isVideo && Boolean(ytId);
   const isImage = !isVideo && !isYoutube;
   parts.img.hidden = !isImage;
+  parts.zoomGroup.hidden = !isImage;
+  resetZoom(parts);
   if (isImage) {
     parts.img.src = item.src || "";
     parts.img.alt = item.alt || "";
@@ -845,6 +961,7 @@ function step(parts, delta) {
 }
 function onClose(parts) {
   stopMedia(parts);
+  resetZoom(parts);
   document.documentElement.classList.remove("ls-lightbox-open");
   const session = parts.session;
   parts.session = null;

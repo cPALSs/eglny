@@ -2489,6 +2489,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     padding: var(--ls-lightbox-pad) 3.25rem 0.5rem;
   }
   .ls-lightbox-img,
@@ -2498,6 +2499,20 @@
     max-height: 100%;
     object-fit: contain;
     border-radius: var(--ls-radius-sm);
+  }
+  .ls-lightbox-img {
+    cursor: zoom-in;
+    user-select: none;
+    touch-action: none;
+    transform-origin: center center;
+    transition: transform var(--ls-duration-fast) ease;
+  }
+  .ls-lightbox-img.ls-is-zoomed {
+    cursor: grab;
+  }
+  .ls-lightbox-img.ls-is-dragging {
+    cursor: grabbing;
+    transition: none;
   }
   .ls-lightbox-video {
     background: var(--ls-media-video-bg);
@@ -2550,11 +2565,51 @@
   .ls-lightbox-next {
     right: 0.75rem;
   }
-  .ls-lightbox-close {
+  .ls-lightbox-top {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .ls-lightbox-zoom-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .ls-lightbox-zoom-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.65rem;
+    margin: 0;
+    border: 0;
+    border-radius: var(--ls-radius-pill);
+    background: var(--ls-lightbox-chip);
+    color: var(--ls-lightbox-fg);
+    font: inherit;
+    font-size: var(--ls-text-sm);
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--ls-duration-fast) ease;
+  }
+  .ls-lightbox-zoom-btn:hover:not(:disabled) {
+    background: var(--ls-lightbox-chip-hover);
+  }
+  .ls-lightbox-zoom-btn:focus-visible {
+    outline: 2px solid var(--ls-ring);
+    outline-offset: 2px;
+  }
+  .ls-lightbox-zoom-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .ls-lightbox-close {
     width: 2.5rem;
     height: 2.5rem;
   }
