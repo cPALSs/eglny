@@ -53,20 +53,6 @@
     --ls-sponsor-border: color-mix(in srgb, #f3e0cf 18%, transparent);
     --ls-sponsor-dark-fg: #f3e0cf;
     --ls-sponsor-dark-border: color-mix(in srgb, #f3e0cf 22%, transparent);
-    --ls-font-body:
-      "Metropolis",
-      system-ui,
-      -apple-system,
-      "Segoe UI",
-      sans-serif;
-    --ls-font-display:
-      "Metropolis",
-      system-ui,
-      -apple-system,
-      "Segoe UI",
-      sans-serif;
-    --ls-font-display-scale: 1.1;
-    --ls-radius: 10px;
   }
   [data-ls-theme=eglny][data-ls-scheme=light] {
     color-scheme: light;

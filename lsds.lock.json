@@ -1,8 +1,8 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "7539c86ad3a818bfa522cbce89d2575853072868",
-  "shortCommit": "7539c86",
-  "syncedAt": "2026-11-26T16:37:28.058Z",
+  "commit": "8baa5894add2b6ef9fd6ede468509091cb4510af",
+  "shortCommit": "8baa589",
+  "syncedAt": "2026-11-26T16:50:27.779Z",
   "theme": "eglny",
   "experimental": [
     "checklist",
@@ -12,9 +12,9 @@
     "toc-drawer"
   ],
   "files": {
-    "lsds.css": "38d043a6f10785f8",
+    "lsds.css": "8f32660f31db0a6d",
     "lsds.js": "7fe9d34bcdb1d04f",
     "lsds.iife.js": "b024d768d4f7d898",
-    "themes/eglny.css": "b2ff41e5c16be560"
+    "themes/eglny.css": "96a940501a225762"
   }
 }

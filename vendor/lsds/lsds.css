@@ -41,12 +41,13 @@
     --ls-toc-width: 200px;
     --ls-toc-gap: 2.5rem;
     --ls-font-body:
+      "Metropolis",
       system-ui,
       -apple-system,
       "Segoe UI",
       sans-serif;
     --ls-font-display: var(--ls-font-body);
-    --ls-font-display-scale: 1;
+    --ls-font-display-scale: 1.1;
     --ls-line-height-body: 1.55;
     --ls-line-height-heading: 1.15;
     --ls-line-height-ui: 1.25;
