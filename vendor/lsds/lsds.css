@@ -2048,9 +2048,10 @@
     text-align: center;
   }
   .ls-table-sort {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
+    --ls-table-sort-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4-4 4 4M6 12l4 4 4-4'/%3E%3C/svg%3E");
+    --ls-table-sort-opacity: 0.45;
+    --ls-table-sort-turn: none;
+    display: inline;
     margin: 0;
     padding: 0;
     border: 0;
@@ -2068,28 +2069,34 @@
     outline-offset: 2px;
     border-radius: var(--ls-radius-sm);
   }
-  .ls-table-sort::after {
+  .ls-table-sort::after,
+  .ls-table :where(th.ls-table-num) .ls-table-sort::before {
     content: "";
-    flex: none;
+    display: inline-block;
     width: 0.75rem;
     height: 0.75rem;
+    margin-inline-start: 0.3rem;
+    vertical-align: -0.1em;
     background: currentColor;
-    opacity: 0.45;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4-4 4 4M6 12l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+    opacity: var(--ls-table-sort-opacity);
+    mask: var(--ls-table-sort-icon) center / contain no-repeat;
+    transform: var(--ls-table-sort-turn);
+  }
+  .ls-table :where(th.ls-table-num) .ls-table-sort::before {
+    margin-inline: 0 0.3rem;
+  }
+  .ls-table :where(th.ls-table-num) .ls-table-sort::after {
+    content: none;
   }
   .ls-table :where([aria-sort=ascending], [aria-sort=descending]) {
     color: var(--ls-table-fg);
   }
-  .ls-table :where([aria-sort=ascending]) .ls-table-sort::after,
-  .ls-table :where([aria-sort=descending]) .ls-table-sort::after {
-    opacity: 1;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 15V5M5.5 9.5L10 5l4.5 4.5'/%3E%3C/svg%3E");
+  .ls-table :where([aria-sort=ascending], [aria-sort=descending]) .ls-table-sort {
+    --ls-table-sort-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 15V5M5.5 9.5L10 5l4.5 4.5'/%3E%3C/svg%3E");
+    --ls-table-sort-opacity: 1;
   }
-  .ls-table :where([aria-sort=descending]) .ls-table-sort::after {
-    transform: rotate(180deg);
-  }
-  .ls-table :where(th.ls-table-num) .ls-table-sort {
-    flex-direction: row-reverse;
+  .ls-table :where([aria-sort=descending]) .ls-table-sort {
+    --ls-table-sort-turn: rotate(180deg);
   }
   @media (max-width: 639.98px) {
     .ls-table.ls-table--stack :where(thead) {
