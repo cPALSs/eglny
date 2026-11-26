@@ -924,8 +924,7 @@
  * Placeholder “bullseyes”: hard-stop radial gradients only (solid annuli).
  * Each --vN uses a different stop pattern (ring count + thick/thin widths), not just hue.
  */
-.menu-layout .item-thumb--v0 .item-thumb-placeholder,
-.menu-dish-lightbox-placeholder.item-thumb--v0 {
+.menu-layout .item-thumb--v0 .item-thumb-placeholder {
   /* 5 rings: thick · thin · thick · thin · wide outer */
   background: radial-gradient(
     circle at 50% 50%,
@@ -942,8 +941,7 @@
   );
 }
 
-.menu-layout .item-thumb--v1 .item-thumb-placeholder,
-.menu-dish-lightbox-placeholder.item-thumb--v1 {
+.menu-layout .item-thumb--v1 .item-thumb-placeholder {
   /* 4 rings: pin center · very wide · medium · rest */
   background: radial-gradient(
     circle at 50% 50%,
@@ -958,8 +956,7 @@
   );
 }
 
-.menu-layout .item-thumb--v2 .item-thumb-placeholder,
-.menu-dish-lightbox-placeholder.item-thumb--v2 {
+.menu-layout .item-thumb--v2 .item-thumb-placeholder {
   /* 5 rings: small hub · wide · razor-thin · chunky · rim */
   background: radial-gradient(
     circle at 50% 50%,
@@ -976,8 +973,7 @@
   );
 }
 
-.menu-layout .item-thumb--v3 .item-thumb-placeholder,
-.menu-dish-lightbox-placeholder.item-thumb--v3 {
+.menu-layout .item-thumb--v3 .item-thumb-placeholder {
   /* 5 rings: wedge / stripe / wedge / hairline / field */
   background: radial-gradient(
     circle at 50% 50%,
@@ -994,8 +990,7 @@
   );
 }
 
-.menu-layout .item-thumb--v4 .item-thumb-placeholder,
-.menu-dish-lightbox-placeholder.item-thumb--v4 {
+.menu-layout .item-thumb--v4 .item-thumb-placeholder {
   /* 4 rings: half disk · 3% rim · thick band · outer */
   background: radial-gradient(
     circle at 50% 50%,
@@ -1010,8 +1005,7 @@
   );
 }
 
-.menu-layout .item-thumb--v5 .item-thumb-placeholder,
-.menu-dish-lightbox-placeholder.item-thumb--v5 {
+.menu-layout .item-thumb--v5 .item-thumb-placeholder {
   /* 5 rings: asymmetrical (narrow · wide · sliver · mid · large) */
   background: radial-gradient(
     circle at 50% 50%,
@@ -1026,111 +1020,6 @@
     #7dd3fc 68%,
     #7dd3fc 100%
   );
-}
-
-.menu-dish-lightbox {
-  box-sizing: border-box;
-  width: min(92vw, 42rem);
-  max-width: 92vw;
-  max-height: 92vh;
-  max-height: 92dvh;
-  margin: auto;
-  padding: 1rem 1rem 1.15rem;
-  border: 0;
-  border-radius: 12px;
-  background: var(--surface, #ffffff);
-  color: var(--text, #1c1917);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
-}
-
-.menu-dish-lightbox[open] {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.85rem;
-}
-
-.menu-dish-lightbox::backdrop {
-  background: rgba(28, 25, 23, 0.72);
-}
-
-.menu-dish-lightbox-close {
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 0;
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--text, #1c1917) 8%, transparent);
-  color: var(--text, #1c1917);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.menu-dish-lightbox-close:hover,
-.menu-dish-lightbox-close:focus-visible {
-  background: color-mix(in srgb, var(--text, #1c1917) 14%, transparent);
-}
-
-.menu-dish-lightbox-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.85rem;
-  min-width: 0;
-}
-
-.menu-dish-lightbox-image {
-  display: block;
-  width: min(100%, 28rem);
-  max-height: min(62vh, 28rem);
-  max-height: min(62dvh, 28rem);
-  border-radius: 50%;
-  object-fit: cover;
-  aspect-ratio: 1;
-  box-shadow:
-    0 0 0 2px color-mix(in srgb, var(--accent, #b91c1c) 55%, #fff),
-    0 0 0 5px color-mix(in srgb, var(--border, #e7e5e4) 85%, transparent),
-    0 0 0 7px color-mix(in srgb, var(--accent, #b91c1c) 20%, transparent),
-    0 0 0 10px color-mix(in srgb, var(--text, #1c1917) 6%, transparent);
-}
-
-.menu-dish-lightbox-placeholder {
-  width: min(70vw, 16rem);
-  height: min(70vw, 16rem);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 2px color-mix(in srgb, var(--accent, #b91c1c) 55%, #fff),
-    0 0 0 5px color-mix(in srgb, var(--border, #e7e5e4) 85%, transparent),
-    0 0 0 7px color-mix(in srgb, var(--accent, #b91c1c) 20%, transparent),
-    0 0 0 10px color-mix(in srgb, var(--text, #1c1917) 6%, transparent);
-}
-
-.menu-dish-lightbox-caption {
-  text-align: center;
-  font-family: system-ui, sans-serif;
-  max-width: 28rem;
-}
-
-.menu-dish-lightbox-title {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.menu-dish-lightbox-vendor,
-.menu-dish-lightbox-credit {
-  margin: 0.25rem 0 0;
-  font-size: 0.88rem;
-}
-
-.menu-dish-lightbox-credit {
-  font-size: 0.78rem;
 }
 
 .menu-layout .item-name {

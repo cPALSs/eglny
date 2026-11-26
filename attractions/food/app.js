@@ -1,4 +1,4 @@
-import { mountMenuViewer } from "../menu-viewer.js";
+import { mountMenuViewer } from "../../assets/menu-viewer/menu-viewer.js";
 
 const MENU_URL = new URL("../../data/food-menu.json", import.meta.url);
 

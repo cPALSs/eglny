@@ -1242,47 +1242,6 @@ export function mountMenuViewer(container, menu) {
   };
 }
 
-function ensureDishLightbox() {
-  let dialog = document.getElementById("menu-dish-lightbox");
-  if (dialog) return dialog;
-
-  dialog = document.createElement("dialog");
-  dialog.id = "menu-dish-lightbox";
-  dialog.className = "menu-dish-lightbox";
-  dialog.setAttribute("aria-label", "Dish photo");
-  dialog.innerHTML = `
-    <button type="button" class="menu-dish-lightbox-close" aria-label="Close">&times;</button>
-    <div class="menu-dish-lightbox-body">
-      <img class="menu-dish-lightbox-image" alt="" hidden />
-      <div class="menu-dish-lightbox-placeholder" hidden></div>
-      <div class="menu-dish-lightbox-caption">
-        <p class="menu-dish-lightbox-title"></p>
-        <p class="menu-dish-lightbox-vendor muted"></p>
-        <p class="menu-dish-lightbox-credit muted"></p>
-      </div>
-    </div>`;
-  document.body.appendChild(dialog);
-
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
-  });
-  dialog.querySelector(".menu-dish-lightbox-close")?.addEventListener("click", () => dialog.close());
-  dialog.addEventListener("close", () => {
-    const img = dialog.querySelector(".menu-dish-lightbox-image");
-    const ph = dialog.querySelector(".menu-dish-lightbox-placeholder");
-    if (img) {
-      img.hidden = true;
-      img.removeAttribute("src");
-      img.alt = "";
-    }
-    if (ph) {
-      ph.hidden = true;
-      ph.className = "menu-dish-lightbox-placeholder";
-    }
-  });
-  return dialog;
-}
-
 function buildDishLightboxItem(btn) {
   const src = btn.getAttribute("data-dish-src") || "";
   if (!src) return null;
@@ -1306,59 +1265,18 @@ function setupDishLightbox(root) {
     if (!btn || !root.contains(btn)) return;
     event.preventDefault();
 
-    if (typeof window.LSDS?.openLightbox === "function") {
-      const pairs = [...root.querySelectorAll(".item-thumb.has-photo")]
-        .filter((el) => el.offsetParent !== null)
-        .map((el) => ({ el, item: buildDishLightboxItem(el) }))
-        .filter((p) => p.item);
-      const index = pairs.findIndex((p) => p.el === btn);
-      if (index !== -1) {
-        window.LSDS.openLightbox(
-          pairs.map((p) => p.item),
-          index,
-          { trigger: btn }
-        );
-      }
-      return;
+    if (typeof window.LSDS?.openLightbox !== "function") return;
+    const pairs = [...root.querySelectorAll(".item-thumb.has-photo")]
+      .filter((el) => el.offsetParent !== null)
+      .map((el) => ({ el, item: buildDishLightboxItem(el) }))
+      .filter((p) => p.item);
+    const index = pairs.findIndex((p) => p.el === btn);
+    if (index !== -1) {
+      window.LSDS.openLightbox(
+        pairs.map((p) => p.item),
+        index,
+        { trigger: btn }
+      );
     }
-
-    const dialog = ensureDishLightbox();
-    const img = dialog.querySelector(".menu-dish-lightbox-image");
-    const ph = dialog.querySelector(".menu-dish-lightbox-placeholder");
-    const titleEl = dialog.querySelector(".menu-dish-lightbox-title");
-    const vendorEl = dialog.querySelector(".menu-dish-lightbox-vendor");
-    const creditEl = dialog.querySelector(".menu-dish-lightbox-credit");
-
-    const title = btn.getAttribute("data-dish-title") || "Dish";
-    const vendor = btn.getAttribute("data-dish-vendor") || "";
-    const credit = btn.getAttribute("data-dish-credit") || "";
-    const src = btn.getAttribute("data-dish-src") || "";
-    const alt = btn.getAttribute("data-dish-alt") || title;
-    if (!src || !img) return;
-
-    if (titleEl) titleEl.textContent = title;
-    if (vendorEl) {
-      vendorEl.textContent = vendor;
-      vendorEl.hidden = !vendor;
-    }
-    if (creditEl) {
-      // Skip credit when it duplicates the vendor line (common when image_credit = vendor name).
-      const creditIsDuplicate =
-        !!credit &&
-        !!vendor &&
-        credit.trim().toLowerCase() === vendor.trim().toLowerCase();
-      creditEl.textContent = creditIsDuplicate ? "" : credit;
-      creditEl.hidden = !credit || creditIsDuplicate;
-    }
-
-    img.hidden = false;
-    img.src = src;
-    img.alt = alt;
-    if (ph) {
-      ph.hidden = true;
-      ph.className = "menu-dish-lightbox-placeholder";
-    }
-
-    dialog.showModal();
   });
 }
