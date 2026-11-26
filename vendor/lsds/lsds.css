@@ -349,20 +349,29 @@
   .ls-chip {
     --ls-chip-bg: var(--ls-muted);
     --ls-chip-fg: var(--ls-muted-foreground);
+    --ls-chip-pad-y: 0.2rem;
+    --ls-chip-leading: 1.25;
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.2rem 0.55rem;
+    padding: var(--ls-chip-pad-y) 0.55rem;
     border-radius: var(--ls-radius-pill);
     background: var(--ls-chip-bg);
     color: var(--ls-chip-fg);
     font-family: var(--ls-font-body);
     font-size: 0.75rem;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: var(--ls-chip-leading);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     white-space: nowrap;
+  }
+  @supports (text-box: trim-both cap alphabetic) {
+    .ls-chip {
+      display: inline-block;
+      padding-block: calc(var(--ls-chip-pad-y) + (var(--ls-chip-leading) * 1em - 1cap) / 2);
+      text-box: trim-both cap alphabetic;
+    }
   }
   .ls-chip--needs-you {
     --ls-chip-bg: var(--ls-destructive-soft);
