@@ -50,7 +50,7 @@
 }
 
 :root {
-  /* Bridged to LSDS tokens (/vendor/lsds/themes/eglny.css) — light/dark handled via [data-ls-theme="eglny"][data-ls-scheme] */
+  /* Bridged to LSDS tokens (/vendor/lsds/themes/vermillion.css) — light/dark handled via [data-ls-theme="vermillion"][data-ls-scheme] */
   --bg: var(--ls-background);
   --surface: var(--ls-card);
   --surface-raised: var(--ls-surface-raised);

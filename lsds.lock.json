@@ -1,9 +1,9 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "2636c23390d8fe0b379b8af06d0288e2bbf927ca",
-  "shortCommit": "2636c23",
-  "syncedAt": "2026-11-26T18:29:06.024Z",
-  "theme": "eglny",
+  "commit": "49f132ca5e2d816f197a77cb8b381a0f18eeba97",
+  "shortCommit": "49f132c",
+  "syncedAt": "2026-11-26T18:37:34.390Z",
+  "theme": "vermillion",
   "experimental": [
     "checklist",
     "collapsible",
@@ -18,6 +18,6 @@
     "lsds.css": "2920bbcf08595855",
     "lsds.js": "c058acf781e7c3f7",
     "lsds.iife.js": "a3acc767ca91633b",
-    "themes/eglny.css": "19bb0f674d9d80a3"
+    "themes/vermillion.css": "93fcf9c1ebf37938"
   }
 }

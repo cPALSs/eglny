@@ -1,6 +1,6 @@
 # LSDS Migration & Custom Code Inventory (`eglny.com`)
 
-Synced to `cPALSs/design-system@7a3cbdd` (`vendor/lsds/lsds.css`, `vendor/lsds/themes/eglny.css`, `vendor/lsds/lsds.iife.js`) plus kerned Vietnamese Metropolis `.woff2` fonts in `assets/fonts/`.
+Synced to `cPALSs/design-system@49f132c` (`vendor/lsds/lsds.css`, `vendor/lsds/themes/vermillion.css`, `vendor/lsds/lsds.iife.js`) plus kerned Vietnamese Metropolis `.woff2` fonts in `assets/fonts/`.
 
 ## 1. Removed / Migrated to LSDS
 
