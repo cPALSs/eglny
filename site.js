@@ -430,6 +430,7 @@
     const footer = site?.footer ?? {};
     const social = renderFooterSocialLinks(footer.socialLinks);
     const contactEmail = siteContactEmail(site);
+    const privacyHref = `${navPrefix()}privacy/`;
     const coalition = (footer.coalitionLinks ?? [])
       .filter((link) => link.href !== "https://www.elkgrovelunarnewyear.com/")
       .map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>`)
@@ -439,7 +440,7 @@
     <footer class="site-footer">
       <nav class="site-footer-nav" aria-label="Footer">${navLinks}</nav>
       ${social}
-      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a></p>
+      <p class="site-footer-meta"><a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a> &bull; <a href="${escapeHtml(privacyHref)}">Privacy</a></p>
       ${coalition ? `<p class="site-footer-meta site-footer-hosts">Hosted by ${coalition}</p>` : ""}
     </footer>
   `;
