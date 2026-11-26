@@ -46,4 +46,4 @@ Guest food-menu UI copied from Festival Network food-curation-engine:
 
 Used by `/food/` (legacy `/food-menu/` redirects). Re-copy when the engine viewer changes. Data: `../data/food-menu.json` (publish from `lny-2026-applicants.json` via `publish_public_menu(..., items_source="capability")`).
 
-Browse tabs: **By cuisine** (default; snacks double-list under cuisine + Snacks; Drinks last) · **By vendor** · **By diet**. Optional item `note` renders as a muted second line.
+Browse tabs: **Type** · **Cuisine** (snacks double-list under cuisine + Snacks; Drinks last) · **Vendor** · **Diet**. Optional item `note` renders as a muted second line.

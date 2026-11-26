@@ -124,6 +124,10 @@
   width: 100%;
 }
 
+.menu-layout .menu-sidebar-toolbar[hidden] {
+  display: none;
+}
+
 .menu-layout .menu-search {
   flex: 1 1 auto;
   min-width: 0;
@@ -1188,6 +1192,25 @@
   min-width: 0;
 }
 
+.menu-layout .item-options-toggle {
+  display: inline;
+  padding: 0;
+  margin-left: 0.2rem;
+  border: none;
+  background: none;
+  color: var(--accent, #b91c1c);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.menu-layout .item-options-toggle:hover,
+.menu-layout .item-options-toggle:focus-visible {
+  opacity: 0.8;
+}
+
 .menu-layout .item-options {
   display: block;
   font-size: 0.85em;
@@ -1291,6 +1314,201 @@
 
 .menu-layout .category-block .items {
   margin-top: 0.5rem;
+}
+
+.menu-layout .theme-intro {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: var(--text, #1c1917);
+}
+
+.menu-layout .theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.menu-layout .theme-controls[hidden] {
+  display: none;
+}
+
+.menu-layout .theme-control-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--muted, #78716c);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.menu-layout .theme-control-btn:hover,
+.menu-layout .theme-control-btn:focus-visible {
+  color: var(--accent, #b91c1c);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.menu-layout .theme-controls-sep {
+  color: var(--muted, #78716c);
+  opacity: 0.6;
+}
+
+.menu-layout .theme-block {
+  margin-top: 0.75rem;
+}
+
+.menu-layout .theme-block:first-of-type {
+  margin-top: 0;
+}
+
+.menu-layout .theme-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid var(--theme-border, var(--border, #e7e5e4));
+  background: var(--theme-bg, var(--surface, #ffffff));
+  color: var(--theme-ink, var(--text, #1c1917));
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.menu-layout .theme-banner:focus-visible {
+  outline: 2px solid var(--theme-accent, var(--accent, #b91c1c));
+  outline-offset: 2px;
+}
+
+.menu-layout .theme-banner-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.menu-layout .theme-banner h3 {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+  color: var(--theme-ink, var(--heading, #1c1917));
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.menu-layout .theme-banner-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--theme-sub, var(--muted, #57534e));
+}
+
+.menu-layout .theme-banner-art {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 62px;
+  margin: -0.5rem 0;
+  color: var(--theme-accent, var(--theme-ink, currentColor));
+  pointer-events: none;
+}
+
+.menu-layout .theme-banner-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-layout .theme-banner-caret {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-ink, #1c1917) 8%, transparent);
+  color: var(--theme-ink, currentColor);
+  transition: transform 0.18s ease;
+}
+
+.menu-layout .theme-banner[aria-expanded="true"] .theme-banner-caret {
+  transform: rotate(180deg);
+}
+
+.menu-layout .theme-body[hidden] {
+  display: none;
+}
+
+/* Island Hopping — tropical palms, coastal teal & warm sand */
+.menu-layout .theme-block--island-hopping .theme-banner {
+  --theme-bg: linear-gradient(135deg, #e6f6f2 0%, #f8f3e3 100%);
+  --theme-border: #b6dfd4;
+  --theme-ink: #0f4c45;
+  --theme-sub: #2d6a62;
+  --theme-accent: #0f766e;
+}
+
+/* Vietnamese Cà Phê Tour — roasted espresso & condensed-milk cream */
+.menu-layout .theme-block--vietnamese-ca-phe .theme-banner {
+  --theme-bg: linear-gradient(135deg, #f6ece0 0%, #ead7c2 100%);
+  --theme-border: #d7baa0;
+  --theme-ink: #4a2815;
+  --theme-sub: #6e452b;
+  --theme-accent: #7c3f1d;
+}
+
+/* Purple Reign — velvety purple yam & lavender */
+.menu-layout .theme-block--purple-reign .theme-banner {
+  --theme-bg: linear-gradient(135deg, #f3ebfb 0%, #e5d4f7 100%);
+  --theme-border: #cfb2ee;
+  --theme-ink: #4c1d7a;
+  --theme-sub: #6b3b99;
+  --theme-accent: #7c3aed;
+}
+
+/* Plant Power — fresh leaf green & sage */
+.menu-layout .theme-block--plant-power .theme-banner {
+  --theme-bg: linear-gradient(135deg, #ecf7e8 0%, #d9efd0 100%);
+  --theme-border: #b5dba6;
+  --theme-ink: #1f4d1a;
+  --theme-sub: #3e6b35;
+  --theme-accent: #2f7d2a;
+}
+
+/* Smoke & Sizzle — ember amber & smoky terracotta */
+.menu-layout .theme-block--smoke-and-sizzle .theme-banner {
+  --theme-bg: linear-gradient(135deg, #fdf0e6 0%, #f5d6be 100%);
+  --theme-border: #e5b28c;
+  --theme-ink: #6b240c;
+  --theme-sub: #8c3d1e;
+  --theme-accent: #c2410c;
+}
+
+/* Take-Home Tết — festive crimson-gold & warm ivory */
+.menu-layout .theme-block--take-home-tet .theme-banner {
+  --theme-bg: linear-gradient(135deg, #fef6e4 0%, #fce2d8 100%);
+  --theme-border: #eab7a4;
+  --theme-ink: #7f1d1d;
+  --theme-sub: #9a3412;
+  --theme-accent: #b91c1c;
+}
+
+/* Sweet Tooth Tour — warm berry rose & pastel cream */
+.menu-layout .theme-block--sweet-tooth .theme-banner {
+  --theme-bg: linear-gradient(135deg, #fdf0f3 0%, #fce3d6 100%);
+  --theme-border: #f2c4cf;
+  --theme-ink: #881337;
+  --theme-sub: #9f3553;
+  --theme-accent: #be123c;
 }
 
 .menu-layout .category-subgroup {

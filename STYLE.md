@@ -47,7 +47,7 @@ Use **Title Case** for top-level and submenu destinations that are proper names 
 - Food menu
 - 2026 archive (year + common noun)
 - Lion dance groups
-- Menu view tabs: **By cuisine**, **By vendor**, **By diet** (sentence-case “By …”)
+- Menu view tabs: **Type**, **Cuisine**, **Vendor**, **Diet** (single-word, no “By” prefix)
 - Optional item **note** — muted second line (translation / flavors); not Title Case
 
 Acronyms stay as acronyms: **RFPs**, **LNY**, **FAQ**, **EGLNY**.

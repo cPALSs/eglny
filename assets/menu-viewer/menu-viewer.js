@@ -206,9 +206,29 @@ function vendorCardId(vendorId) {
   return id ? `vendor-${id}` : "";
 }
 
+function shortOptionsPreview(text) {
+  if (text.length <= ITEM_NOTE_MAX_LEN) return null;
+  let cut = text.slice(0, ITEM_NOTE_MAX_LEN);
+  const lastBreak = Math.max(cut.lastIndexOf(", "), cut.lastIndexOf(" "));
+  if (lastBreak > ITEM_NOTE_MAX_LEN * 0.55) {
+    cut = cut.slice(0, lastBreak);
+  }
+  return cut.replace(/[,;\s]+$/, "");
+}
+
+function renderOptionsHtml(options, previewOverride) {
+  const full = String(options || "").trim();
+  if (!full) return "";
+  const short = previewOverride ? String(previewOverride).trim() : shortOptionsPreview(full);
+  if (!short || short === full) {
+    return `<span class="item-options-text">${escapeHtml(full)}</span>`;
+  }
+  return `<span class="item-options-text" data-expandable><span class="item-options-short">${escapeHtml(short)}</span><span class="item-options-full" hidden>${escapeHtml(full)}</span> <button type="button" class="item-options-toggle" aria-expanded="false">more</button></span>`;
+}
+
 function renderItemPrimary(item, { showVendor = false, vendor = null, showCuisine = true } = {}) {
-  const note = truncateField(item?.note);
-  const options = truncateField(item?.options);
+  const note = String(item?.note || "").trim();
+  const options = String(item?.options || "").trim();
   const clarifyBit = note
     ? ` <span class="item-clarify">(${escapeHtml(note)})</span>`
     : "";
@@ -223,9 +243,8 @@ function renderItemPrimary(item, { showVendor = false, vendor = null, showCuisin
       : "";
   const cuisineBit = showCuisine ? renderCuisineChip(item, vendor) : "";
   // Second line: cuisine chip, then options (e.g. Filipino · rice or garlic noodles…).
-  const metaBits = [cuisineBit, options ? `<span class="item-options-text">${escapeHtml(options)}</span>` : ""]
-    .filter(Boolean)
-    .join("");
+  const optionsBit = renderOptionsHtml(options, item?.optionsPreview);
+  const metaBits = [cuisineBit, optionsBit].filter(Boolean).join("");
   const metaBit = metaBits ? `<span class="item-meta">${metaBits}</span>` : "";
   return `<span class="item-text"><span class="item-name">${escapeHtml(item.name)}${clarifyBit}${renderDietaryBadges(item)}${vendorBit}</span>${metaBit}</span>`;
 }
@@ -357,6 +376,200 @@ function renderDrinkSubgroups(items, { idPrefix = "menu-type-drinks", showCuisin
     .join("");
 }
 
+const THEME_TOURS = [
+  {
+    id: "island-hopping",
+    title: "Island Hopping",
+    subtitle: "A Filipino & Hawaiian tasting — bite, plate, sweet, and refresher",
+    stops: [
+      { vendorId: "dellsubi", itemName: "Spam musubi, OG" },
+      { vendorId: "fairy-bites-delicacies", itemName: "Lumpia" },
+      { vendorId: "baboy-boys", itemName: "Lechon rice plate" },
+      { vendorId: "my-lumpia-lady", itemName: "Turon, banana" },
+      { vendorId: "next-gen-lemonade", itemName: "Lemonade, fruit-infused", optionsPreview: "aloha, lychee pineapple" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="96" cy="18" r="11" fill="currentColor" opacity="0.18"/>
+      <path d="M52 72 C53 54 57 42 63 30" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M63 30 C52 24 41 25 32 32 M63 30 C54 18 44 15 34 17 M63 30 C64 17 72 10 82 9 M63 30 C74 22 86 24 94 31 M63 30 C73 32 82 39 86 48" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity="0.65"/>
+      <path d="M92 72 C91 58 88 49 84 40" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity="0.45"/>
+      <path d="M84 40 C75 35 67 36 61 42 M84 40 C85 31 92 26 100 26 M84 40 C93 34 103 36 109 42 M84 40 C91 42 98 47 101 54" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity="0.5"/>
+    </svg>`,
+  },
+  {
+    id: "vietnamese-ca-phe",
+    title: "Vietnamese Cà Phê Hour",
+    subtitle: "Compare iced cà phê sữa đá and house twists — best shared",
+    stops: [
+      { vendorId: "bobette-tea", itemName: "Vietnamese coffee" },
+      { vendorId: "tri-foods", itemName: "Vietnamese coffee" },
+      { vendorId: "boba-meet-up", itemName: "Vietnamese coffee" },
+      { vendorId: "mr-cane", itemName: "Vietnamese coffee latte" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="64" y="14" width="28" height="4" rx="2" fill="currentColor" opacity="0.5"/>
+      <path d="M68 18 H88 L85 35 H71 Z" stroke="currentColor" stroke-width="2.2" fill="currentColor" fill-opacity="0.14" opacity="0.65"/>
+      <line x1="60" y1="36" x2="96" y2="36" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.6"/>
+      <path d="M66 36 H90 L86 64 H70 Z" stroke="currentColor" stroke-width="2.2" fill="currentColor" fill-opacity="0.1" opacity="0.6"/>
+      <path d="M78 40 C78 45 75 46 75 49 C75 51 76.5 52 78 52 C79.5 52 81 51 81 49 C81 46 78 45 78 40 Z" fill="currentColor" opacity="0.45"/>
+      <ellipse cx="44" cy="48" rx="7" ry="10" transform="rotate(-24 44 48)" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.12" opacity="0.45"/>
+      <path d="M41 40 C44 46 44 51 47 56" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.45"/>
+    </svg>`,
+  },
+  {
+    id: "purple-reign",
+    title: "Purple Reign",
+    subtitle: "Ube from drink to dessert to sweet treat",
+    stops: [
+      { vendorId: "bobette-tea", itemName: "Ube coffee" },
+      { vendorId: "mr-cane", itemName: "Vietnamese coffee latte", optionsPreview: "ube" },
+      { vendorId: "hey-mango", itemName: "Mango sticky rice with ube mochi" },
+      { vendorId: "applesbyterri", itemName: "Caramel apples, hand-dipped", optionsPreview: "ube" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M62 48 C56 36 62 20 76 16 C90 12 102 22 100 36 C98 50 86 60 72 58 C66 57 64 53 62 48 Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.2" opacity="0.65"/>
+      <path d="M72 24 C78 21 86 24 89 31 M69 36 C74 34 81 36 84 41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
+      <path d="M58 52 C48 50 40 42 38 30 C48 30 56 36 60 46" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+      <circle cx="96" cy="54" r="4" fill="currentColor" opacity="0.28"/>
+      <circle cx="48" cy="20" r="3" fill="currentColor" opacity="0.24"/>
+    </svg>`,
+  },
+  {
+    id: "sweet-tooth",
+    title: "Sweet Tooth Tour",
+    subtitle: "Crunchy, creamy, warm, and cold — a balanced dessert run",
+    stops: [
+      { vendorId: "tri-foods", itemName: "Chè" },
+      { vendorId: "pop-berry", itemName: "Tanghulu" },
+      { vendorId: "hey-mango", itemName: "Mango sticky rice" },
+      { vendorId: "pitayas-locas", itemName: "Churros" },
+      { vendorId: "veneto-authentic-italian-gelato", itemName: "Italian gelato" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="80" cy="36" r="17" stroke="currentColor" stroke-width="2.2" fill="currentColor" fill-opacity="0.12" opacity="0.6"/>
+      <path d="M80 24 C87 24 91 30 89 36 C87 42 79 44 74 40 C70 36 72 29 77 29 C81 29 83 33 81 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <line x1="80" y1="53" x2="80" y2="68" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.5"/>
+      <path d="M46 20 L48 26 L54 28 L48 30 L46 36 L44 30 L38 28 L44 26 Z" fill="currentColor" opacity="0.38"/>
+      <circle cx="56" cy="50" r="3.5" fill="currentColor" opacity="0.3"/>
+      <circle cx="104" cy="22" r="3" fill="currentColor" opacity="0.32"/>
+    </svg>`,
+  },
+  {
+    id: "plant-power",
+    title: "Plant Power",
+    subtitle: "Vegan and dairy-free picks — drink, sweet, dessert, and frozen treat",
+    stops: [
+      { vendorId: "pitayas-locas", itemName: "Aguas frescas" },
+      { vendorId: "pop-berry", itemName: "Tanghulu" },
+      { vendorId: "hey-mango", itemName: "Mango sticky rice" },
+      { vendorId: "veneto-authentic-italian-gelato", itemName: "Italian sorbet" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 60 C60 44 60 30 60 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
+      <path d="M60 30 C50 26 40 28 34 34 C42 38 52 37 60 30 Z" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.8" opacity="0.7"/>
+      <path d="M60 24 C68 18 80 18 88 24 C80 30 68 31 60 24 Z" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="1.8" opacity="0.7"/>
+      <path d="M60 40 C70 40 78 44 82 50 C74 54 66 52 60 40 Z" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.6" opacity="0.6"/>
+      <path d="M30 64 C46 62 74 62 92 64" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+      <circle cx="98" cy="20" r="3.5" fill="currentColor" opacity="0.28"/>
+      <circle cx="22" cy="18" r="2.5" fill="currentColor" opacity="0.24"/>
+    </svg>`,
+  },
+  {
+    id: "smoke-and-sizzle",
+    title: "Smoke & Sizzle",
+    subtitle: "Charred, smoky, and sizzling off the grill",
+    stops: [
+      { vendorId: "myzz-piggyz-tiger-bite", itemName: "Purple sticky rice plate, Hmong sausage" },
+      { vendorId: "gim-belly", itemName: "Kalbi short ribs plate" },
+      { vendorId: "happy-foods", itemName: "Garlic noodles with shrimp" },
+      { vendorId: "mr-cane", itemName: "Sugarcane juice, fresh-pressed fruit infusions" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M74 58 C60 58 52 49 54 37 C56 27 65 22 68 12 C75 18 78 24 77 31 C82 28 85 23 86 19 C92 26 95 34 94 42 C92 52 84 58 74 58 Z" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" opacity="0.65"/>
+      <path d="M73 54 C67 54 63 49 65 42 C66 37 71 34 73 28 C78 33 82 39 81 45 C80 51 77 54 73 54 Z" fill="currentColor" fill-opacity="0.22" opacity="0.7"/>
+      <path d="M38 44 C35 38 41 34 38 28 M46 48 C43 42 49 38 46 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+      <line x1="48" y1="62" x2="100" y2="62" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.5"/>
+    </svg>`,
+  },
+  {
+    id: "take-home-tet",
+    title: "Take-Home Tết",
+    subtitle: "Pastries, cookies, jerky, and popcorn to bring home",
+    stops: [
+      { vendorId: "chez-chibi-bakery", itemName: "Cookies and pastries, Lunar New Year" },
+      { vendorId: "divine-bake-house", itemName: "Cookies, gourmet stuffed" },
+      { vendorId: "jerky-jerky", itemName: "Beef jerky, prepackaged" },
+      { vendorId: "mr-pops", itemName: "Popcorn, prepackaged" },
+      { vendorId: "annies-jammies", itemName: "Jam, fruit" },
+    ],
+    art: `<svg viewBox="0 0 120 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="78" y1="6" x2="78" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+      <rect x="70" y="14" width="16" height="4" rx="1.5" fill="currentColor" opacity="0.55"/>
+      <ellipse cx="78" cy="34" rx="17" ry="16" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="2.2" opacity="0.65"/>
+      <ellipse cx="78" cy="34" rx="8" ry="16" stroke="currentColor" stroke-width="1.6" opacity="0.45"/>
+      <rect x="71" y="50" width="14" height="4" rx="1.5" fill="currentColor" opacity="0.55"/>
+      <line x1="78" y1="54" x2="78" y2="66" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M44 24 L46 29 L51 31 L46 33 L44 38 L42 33 L37 31 L42 29 Z" fill="currentColor" opacity="0.38"/>
+      <circle cx="102" cy="22" r="3" fill="currentColor" opacity="0.3"/>
+    </svg>`,
+  },
+];
+
+/** Curated festival food-tour themes, ordered from most seasonal to most common. */
+const THEME_ORDER = [
+  "take-home-tet",
+  "vietnamese-ca-phe",
+  "purple-reign",
+  "island-hopping",
+  "plant-power",
+  "smoke-and-sizzle",
+  "sweet-tooth",
+];
+
+/** Curated festival food-tour themes. */
+function renderThemeView(vendors) {
+  const vendorById = new Map(vendors.map((v) => [v.id, v]));
+  const orderedTours = [...THEME_TOURS].sort(
+    (a, b) => THEME_ORDER.indexOf(a.id) - THEME_ORDER.indexOf(b.id),
+  );
+  const sections = orderedTours.map((theme) => {
+    const items = [];
+    for (const stop of theme.stops) {
+      const v = vendorById.get(stop.vendorId);
+      if (!v) continue;
+      const item = v.items.find((i) => i.name === stop.itemName);
+      if (item) {
+        items.push({
+          ...item,
+          vendorName: v.name,
+          vendorId: v.id,
+          ...(stop.optionsPreview ? { optionsPreview: stop.optionsPreview } : {}),
+        });
+      }
+    }
+    if (!items.length) return "";
+    return `
+    <section class="category-block theme-block theme-block--${theme.id}" id="menu-theme-${theme.id}">
+      <button type="button" class="theme-banner" aria-expanded="false" aria-controls="menu-theme-body-${theme.id}">
+        <div class="theme-banner-copy">
+          <h3>${escapeHtml(theme.title)}</h3>
+          <p class="theme-banner-subtitle">${escapeHtml(theme.subtitle)}</p>
+        </div>
+        <span class="theme-banner-art" aria-hidden="true">${theme.art}</span>
+        <span class="theme-banner-caret" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span>
+      </button>
+      <div class="theme-body" id="menu-theme-body-${theme.id}" hidden>
+        ${renderItemList(items, { showVendor: true, showCuisine: false })}
+      </div>
+    </section>`;
+  })
+    .filter(Boolean)
+    .join("");
+
+  if (!sections) return "<p class='muted'>No menu items for the current filters.</p>";
+  return `<p class="theme-intro">Find a food tour to match your cravings!</p>${sections}`;
+}
+
 /** Default browse: dish-type sections. */
 function renderTypeView(vendors) {
   const bySection = Object.fromEntries(DISH_TYPE_ORDER.map((id) => [id, []]));
@@ -457,11 +670,11 @@ function renderDietView(vendors, facets) {
 
   return (
     sections ||
-    "<p class='muted'>No dietary tags on the current menu items. Try clearing filters or switch to By vendor.</p>"
+    "<p class='muted'>No dietary tags on the current menu items. Try clearing filters or switch to Vendor.</p>"
   );
 }
 
-const MENU_VIEWS = ["type", "cuisine", "vendor", "diet"];
+const MENU_VIEWS = ["theme", "type", "cuisine", "vendor", "diet"];
 const DEFAULT_VIEW = "type";
 
 function viewFromUrl() {
@@ -573,11 +786,17 @@ export function mountMenuViewer(container, menu) {
         <div class="menu-main-sticky">
           <div class="menu-tabs-row">
             <nav class="menu-view-tabs" role="tablist" aria-label="Menu view">
-              <button type="button" class="view-btn active" data-view="type" role="tab" aria-selected="true">By type</button>
-              <button type="button" class="view-btn" data-view="cuisine" role="tab" aria-selected="false">By cuisine</button>
-              <button type="button" class="view-btn" data-view="vendor" role="tab" aria-selected="false">By vendor</button>
-              <button type="button" class="view-btn" data-view="diet" role="tab" aria-selected="false">By diet</button>
+              <button type="button" class="view-btn" data-view="theme" role="tab" aria-selected="false">Theme</button>
+              <button type="button" class="view-btn active" data-view="type" role="tab" aria-selected="true">Type</button>
+              <button type="button" class="view-btn" data-view="cuisine" role="tab" aria-selected="false">Cuisine</button>
+              <button type="button" class="view-btn" data-view="vendor" role="tab" aria-selected="false">Vendor</button>
+              <button type="button" class="view-btn" data-view="diet" role="tab" aria-selected="false">Diet</button>
             </nav>
+          </div>
+          <div class="theme-controls" hidden>
+            <button type="button" class="theme-control-btn" data-theme-action="expand">Expand all</button>
+            <span class="theme-controls-sep" aria-hidden="true">·</span>
+            <button type="button" class="theme-control-btn" data-theme-action="collapse">Collapse all</button>
           </div>
           <nav class="menu-section-chips" aria-label="Jump to section" hidden></nav>
         </div>
@@ -604,10 +823,12 @@ export function mountMenuViewer(container, menu) {
   const searchEl = container.querySelector(".menu-search");
   const sectionChipsEl = container.querySelector(".menu-section-chips");
   const stickyHeadEl = container.querySelector(".menu-main-sticky");
+  const themeControlsEl = container.querySelector(".theme-controls");
   const filtersSheetEl = container.querySelector(".menu-filters-sheet");
   const filtersOpenBtn = container.querySelector(".menu-filters-open");
   const filtersCloseBtn = container.querySelector(".menu-filters-close");
   const filtersCountEl = container.querySelector(".menu-filters-count");
+  const sidebarToolbarEl = container.querySelector(".menu-sidebar-toolbar");
   const sidebarFiltersEl = container.querySelector(".menu-sidebar-filters");
   const filtersSheetBodyEl = container.querySelector(".menu-filters-sheet-body");
   const menuSidebarEl = container.querySelector(".menu-sidebar");
@@ -623,8 +844,20 @@ export function mountMenuViewer(container, menu) {
       if (sidebarFiltersEl.parentElement !== filtersSheetBodyEl) {
         filtersSheetBodyEl.appendChild(sidebarFiltersEl);
       }
-    } else if (sidebarFiltersEl.parentElement !== menuSidebarEl) {
-      menuSidebarEl.appendChild(sidebarFiltersEl);
+      if (sidebarToolbarEl && stickyHeadEl && sidebarToolbarEl.parentElement !== stickyHeadEl) {
+        stickyHeadEl.appendChild(sidebarToolbarEl);
+      }
+    } else {
+      if (sidebarToolbarEl && sidebarToolbarEl.parentElement !== menuSidebarEl) {
+        menuSidebarEl.prepend(sidebarToolbarEl);
+      }
+      if (sidebarFiltersEl.parentElement !== menuSidebarEl) {
+        if (sidebarToolbarEl && sidebarToolbarEl.parentElement === menuSidebarEl) {
+          sidebarToolbarEl.after(sidebarFiltersEl);
+        } else {
+          menuSidebarEl.prepend(sidebarFiltersEl);
+        }
+      }
     }
   }
 
@@ -705,7 +938,7 @@ export function mountMenuViewer(container, menu) {
     }
 
     const sections = [...contentEl.querySelectorAll(".category-block[id]")];
-    if (view === "vendor" || !sections.length) {
+    if (view === "vendor" || view === "theme" || !sections.length) {
       sectionChipsEl.hidden = true;
       sectionChipsEl.innerHTML = "";
       syncStickyMetrics();
@@ -794,9 +1027,11 @@ export function mountMenuViewer(container, menu) {
 
   function render() {
     titleEl.textContent = currentMenu.festival || "Festival Food";
-    disclaimerEl.textContent =
-      "Menu subject to change. Filters reflect vendor self-report — not medical advice.";
+    disclaimerEl.innerHTML =
+      '<a href="/vendors/">Register as a vendor</a>. Menu subject to change. Filters reflect vendor self-report — not medical advice.';
     if (updatedEl) updatedEl.textContent = "";
+    if (sidebarToolbarEl) sidebarToolbarEl.hidden = view === "theme";
+    if (themeControlsEl) themeControlsEl.hidden = view !== "theme";
     renderFilters();
 
     const vendors = filteredVendors(currentMenu, activeFilters, query);
@@ -806,6 +1041,7 @@ export function mountMenuViewer(container, menu) {
       return;
     }
     if (view === "vendor") contentEl.innerHTML = renderVendorView(vendors);
+    else if (view === "theme") contentEl.innerHTML = renderThemeView(vendors);
     else if (view === "type") contentEl.innerHTML = renderTypeView(vendors);
     else if (view === "cuisine") contentEl.innerHTML = renderCuisineView(vendors);
     else contentEl.innerHTML = renderDietView(vendors, currentMenu.filter_facets);
@@ -904,7 +1140,47 @@ export function mountMenuViewer(container, menu) {
     });
   });
 
+  if (themeControlsEl) {
+    themeControlsEl.addEventListener("click", (e) => {
+      const themeAction = e.target.closest(".theme-control-btn[data-theme-action]");
+      if (!themeAction) return;
+      e.preventDefault();
+      const expand = themeAction.dataset.themeAction === "expand";
+      contentEl.querySelectorAll(".theme-banner").forEach((btn) => {
+        btn.setAttribute("aria-expanded", expand ? "true" : "false");
+        const bodyId = btn.getAttribute("aria-controls");
+        const body = bodyId ? document.getElementById(bodyId) : null;
+        if (body) body.hidden = !expand;
+      });
+    });
+  }
+
   contentEl.addEventListener("click", (e) => {
+    const themeBanner = e.target.closest(".theme-banner");
+    if (themeBanner && contentEl.contains(themeBanner)) {
+      e.preventDefault();
+      const expanded = themeBanner.getAttribute("aria-expanded") === "true";
+      themeBanner.setAttribute("aria-expanded", expanded ? "false" : "true");
+      const bodyId = themeBanner.getAttribute("aria-controls");
+      const body = bodyId ? document.getElementById(bodyId) : null;
+      if (body) body.hidden = expanded;
+      return;
+    }
+    const toggle = e.target.closest(".item-options-toggle");
+    if (toggle && contentEl.contains(toggle)) {
+      e.preventDefault();
+      const wrap = toggle.closest(".item-options-text");
+      const shortEl = wrap?.querySelector(".item-options-short");
+      const fullEl = wrap?.querySelector(".item-options-full");
+      if (shortEl && fullEl) {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        shortEl.hidden = !expanded;
+        fullEl.hidden = expanded;
+        toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+        toggle.textContent = expanded ? "more" : "less";
+      }
+      return;
+    }
     const link = e.target.closest("a.item-vendor[data-vendor-jump]");
     if (!link || !contentEl.contains(link)) return;
     e.preventDefault();

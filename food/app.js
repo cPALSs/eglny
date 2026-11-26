@@ -43,10 +43,6 @@ async function loadMenu(year) {
   return res.json();
 }
 
-function heroCopyHtml(esc) {
-  return `${esc("Meals, drinks, and snacks from Elk Grove Lunar New Year Tết.")} <a href="/vendors/">Register as a vendor</a>.`;
-}
-
 function ensureYearControls(main, year, onChange) {
   const tabsRow = main.querySelector(".menu-tabs-row");
   if (tabsRow) {
@@ -113,16 +109,11 @@ async function init() {
     if (pushUrl) setYearInUrl(year);
 
     const menu = await loadMenu(year);
-    const leadHtml = heroCopyHtml(esc);
-
-    const heroLead = main.querySelector(".hero-lead");
-    if (heroLead) heroLead.innerHTML = leadHtml;
 
     if (!viewer) {
       main.innerHTML = `
         <section class="hero">
           <h1>Food menu</h1>
-          <p class="hero-lead">${leadHtml}</p>
         </section>
         <div id="menu-root" class="food-menu-viewer" aria-live="polite"></div>
       `;
