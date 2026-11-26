@@ -1,8 +1,8 @@
 {
   "designSystem": "cPALSs/design-system",
-  "commit": "ca93c858b91cecce0b3f8a18080a608f4cca4ca1",
-  "shortCommit": "ca93c85",
-  "syncedAt": "2026-11-26T16:58:04.284Z",
+  "commit": "7d7a3534b69ae7ab19877058fd5d08fcaee7f718",
+  "shortCommit": "7d7a353",
+  "syncedAt": "2026-11-26T17:09:48.962Z",
   "theme": "eglny",
   "experimental": [
     "checklist",
