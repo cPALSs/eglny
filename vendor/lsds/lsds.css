@@ -89,16 +89,19 @@
     --ls-btn-py: 0.9rem;
     --ls-btn-font-size: calc(0.8rem * var(--ls-font-display-scale));
     --ls-btn-font-weight: 600;
+    --ls-btn-leading: 1.2;
+    --ls-btn-min-h: 0px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
+    min-height: var(--ls-btn-min-h);
     padding: var(--ls-btn-py) var(--ls-btn-px);
     border-radius: var(--ls-btn-radius);
     font-family: var(--ls-font-display);
     font-size: var(--ls-btn-font-size);
     font-weight: var(--ls-btn-font-weight);
-    line-height: 1.2;
+    line-height: var(--ls-btn-leading);
     text-decoration: none;
     background: var(--ls-btn-bg);
     color: var(--ls-btn-fg);
@@ -161,7 +164,7 @@
     --ls-btn-py: 0.4rem;
     --ls-btn-font-size: 0.875rem;
     --ls-btn-font-weight: 500;
-    min-height: 40px;
+    --ls-btn-min-h: 40px;
     font-family: var(--ls-font-body);
     white-space: nowrap;
   }
@@ -169,8 +172,25 @@
     --ls-btn-px: 0.7rem;
     --ls-btn-py: 0.25rem;
     --ls-btn-font-size: 0.8rem;
-    min-height: 32px;
+    --ls-btn-min-h: 32px;
     gap: 0.3rem;
+  }
+  @supports (text-box: trim-both cap alphabetic) {
+    .ls-btn {
+      --ls-btn-natural-h: calc(2 * var(--ls-btn-py) + var(--ls-btn-leading) * 1em);
+    }
+    .ls-btn:not(:has(> *)) {
+      display: inline-block;
+      padding-block: calc((max(var(--ls-btn-natural-h), var(--ls-btn-min-h) - 2px) - 1cap) / 2);
+      text-align: center;
+      text-box: trim-both cap alphabetic;
+    }
+    .ls-btn:has(> *) {
+      min-height: max(var(--ls-btn-natural-h) + 2px, var(--ls-btn-min-h));
+    }
+    .ls-btn > :where(:not(svg, img, :has(svg, img))) {
+      text-box: trim-both cap alphabetic;
+    }
   }
   .ls-btn--icon {
     padding-inline: 0.55rem;
