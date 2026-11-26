@@ -455,6 +455,30 @@
     min-height: 5.5rem;
     resize: vertical;
   }
+  .ls-field-select:not([multiple], [size]) {
+    --ls-field-caret: var(--ls-muted-foreground);
+    --ls-field-caret-size: 0.32rem;
+    --ls-field-caret-inset: 0.85rem;
+    appearance: none;
+    padding-inline-end: calc(var(--ls-field-caret-inset) + 2 * var(--ls-field-caret-size) + 0.6rem);
+    background-image:
+      linear-gradient(
+        45deg,
+        transparent calc(50% - 1.1px),
+        var(--ls-field-caret) calc(50% - 0.6px),
+        var(--ls-field-caret) calc(50% + 0.6px),
+        transparent calc(50% + 1.1px)),
+      linear-gradient(
+        -45deg,
+        transparent calc(50% - 1.1px),
+        var(--ls-field-caret) calc(50% - 0.6px),
+        var(--ls-field-caret) calc(50% + 0.6px),
+        transparent calc(50% + 1.1px));
+    background-position: calc(100% - var(--ls-field-caret-inset) - var(--ls-field-caret-size)) 50%, calc(100% - var(--ls-field-caret-inset)) 50%;
+    background-size: var(--ls-field-caret-size) var(--ls-field-caret-size);
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
   .ls-field-input:focus-visible,
   .ls-field-select:focus-visible,
   .ls-field-textarea:focus-visible {
