@@ -1205,6 +1205,7 @@
     letter-spacing: 0.04em;
     line-height: 1;
     text-transform: uppercase;
+    text-box: trim-both cap alphabetic;
   }
 }
 
