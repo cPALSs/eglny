@@ -18,7 +18,7 @@ Source masters: `Programs/Lunar New Year/2027/Marketing Assets/` (`EGLNY 2027 Sy
 
 ## Fonts (`fonts/`)
 
-Self-hosted **Metropolis** (Chris Simpson; OFL) as woff2 — Regular, RegularItalic, Medium, SemiBold, Bold, BoldItalic. Declared via `@font-face` in `../site.css`.
+Self-hosted **Metropolis** (Chris Simpson; Unlicense) as woff2 — Regular, RegularItalic, Medium, SemiBold, Bold, BoldItalic. Declared via `@font-face` in `../site.css`. These are the design-system's modified build with full Vietnamese coverage and upstream v11 kerning (sources and licensing in design-system `src/fonts/FONTLOG.md`); copy updates from there under the same names.
 
 ## Lion dance group avatars (`lion-dance/`)
 
