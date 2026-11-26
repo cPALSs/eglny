@@ -261,6 +261,41 @@ body.ls-nav-open {
     background: var(--surface);
   }
 
+  .ls-nav-drawer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+  }
+
+  .ls-nav-links {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .ls-nav-drawer-footer {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    margin: 0.25rem 0 0 1rem;
+    padding: 0.75rem 0.5rem 1rem 0.15rem;
+    min-width: 0;
+  }
+
+  .ls-nav-drawer-tools {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0.25rem 1rem 0 0;
+    padding: 0.75rem 0 1rem;
+    border-top: 1px solid var(--border);
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .ls-nav-drawer-tools .theme-toggle {
+    margin-left: 0;
+  }
+
   /* Mobile visual: About | Visit / Production | Resources while keeping desktop DOM order. */
   .ls-nav-group[data-nav-section="about"] {
     order: 1;
