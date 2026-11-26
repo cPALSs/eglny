@@ -6,6 +6,10 @@
   :where([data-ls-theme] *, [data-ls-theme] *::before, [data-ls-theme] *::after) {
     box-sizing: border-box;
   }
+  :where([data-ls-theme]) {
+    font-family: var(--ls-font-body);
+    line-height: var(--ls-line-height-body);
+  }
 }
 
 /* src/tokens/base.css */
@@ -45,6 +49,7 @@
     --ls-font-display-scale: 1;
     --ls-line-height-body: 1.55;
     --ls-line-height-heading: 1.15;
+    --ls-line-height-ui: 1.25;
     --ls-z-nav: 100;
     --ls-z-submenu: 110;
     --ls-z-overlay: 550;
@@ -869,7 +874,7 @@
     color: var(--ls-muted-foreground);
     text-decoration: none;
     font-size: 0.9rem;
-    line-height: 1.25;
+    line-height: var(--ls-line-height-ui);
   }
   .ls-doc-toc-back:hover {
     color: var(--ls-primary);
@@ -1061,7 +1066,7 @@
       color: var(--ls-muted-foreground);
       text-decoration: none;
       font-size: 0.92rem;
-      line-height: 1.25;
+      line-height: var(--ls-line-height-ui);
       border-left: 2px solid transparent;
     }
     .ls-doc-toc-link:hover {
