@@ -9,7 +9,7 @@
     "id": "waitlist",
     "tocLabel": "Apply",
     "title": "Apply for single booth or an entire zone",
-    "warning": "Official vendor questions and invitations use **contact@eglny.com** and Eventeny only — don’t treat other Gmail addresses as from the organizing team. We’re a community-based festival, so you may talk with individuals on their personal email. If anyone asks for payment and you’re not sure it’s us, email **contact@eglny.com** to confirm before you pay.",
+    "warning": "Official vendor questions and invitations use **[contact@eglny.com](mailto:contact@eglny.com)** and Eventeny only — don’t treat other Gmail addresses as from the organizing team. We’re a community-based festival, so you may talk with individuals on their personal email. If anyone asks for payment and you’re not sure it’s us, email **[contact@eglny.com](mailto:contact@eglny.com)** to confirm before you pay.",
     "bodyAfter": "Round 1 closed Nov 5. Round 1 decisions were around Nov 10.",
     "partnerIntro": "Two ways to join the map: apply for a standard booth on Eventeny, or inquire about a named Custom Zones corner.",
     "paths": [
@@ -29,7 +29,7 @@
     "cta": {
       "label": "Apply on Eventeny",
       "href": "https://www.eventeny.com/events/eglny-33484/#vendor-section",
-      "note": "Sign in or create a free Eventeny account. Most applicants pay a **$25** application deposit when they apply for a single booth. Nonprofit, community info, and free kids activity tables pay no deposit — and the free kids activity form does not ask for a credit card. Questions: **contact@eglny.com**."
+      "note": "Sign in or create a free Eventeny account. Most applicants pay a **$25** application deposit when they apply for a single booth. Nonprofit, community info, and free kids activity tables pay no deposit — and the free kids activity form does not ask for a credit card. Questions: **[contact@eglny.com](mailto:contact@eglny.com)**."
     }
   },
   "inventory": {
@@ -118,7 +118,7 @@
     "notes": [
       "**Onsite cooking** means you cook or prep and **sell food to guests** for the whole weekend — not a staged live-demo booth.",
       "**Vegetarian-focused cooking:** One of the **15** onsite cooking spots is reserved for a booth whose **core menu is vegetarian** — not a meat cook that also offers one vegetarian dish. Apply for onsite cooking on Eventeny and describe your menu; we offer that reserved seat when a vegetarian-focused cook fits.",
-      "**Same food type:** We limit how many booths sell the same kind of **cooked food** or **drink** so the festival has variety. **Onsite cooking** and **Drinks and snacks only:** strong limit — we avoid duplicate hot-food categories and drink types. If more than one vendor wants a limited type, we rank applications and offer in that order. **Snacks only** sits in the open merchant-style pool — we do **not** hard-cap snack vendors by type.",
+      "**Same food type:** We limit how many booths sell the same kind of **cooked food** or **drink** so the festival has variety. **Onsite cooking** and **Drinks and snacks only:** strong limit — we avoid duplicate hot-food categories and drink types. If more than one vendor wants a limited type, we rank applications and offer in that order. **Snacks only** sits in the open merchant-style pool, and we soft-cap snack-only vendors at our discretion to promote food diversity.",
       "Weekend fee stacks **booth fee** + **refundable** cleanup deposits + County TFF when needed + a **COI** if your booth type requires one. COI dollar lines are short-term policy **estimates** (~$70 food · ~$50 exhibitor/power) — buy anywhere that meets the limits under Fees. Skip TFF if your MEV or MFF already covers the weekend. Cooking and drinks lock with a **partial booth payment**; the rest is due later. Also budget the **$25** application deposit at apply (credited toward the booth fee if selected).",
       "**Paid guest activities** (face painting, balloon art, timed challenges, etc. where guests pay) → **Merchant / craft / paid activity** at **$150** on the Merchants & corporate app — not Corporate / marketing (**$500**), and not a free kids activity table."
     ]

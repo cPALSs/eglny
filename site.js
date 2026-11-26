@@ -2535,7 +2535,7 @@
   function formatBriefProse(text) {
     return escapeHtml(text ?? "")
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\[([^\]]+)\]\((\/[^)\s]+)\)/g, '<a href="$2">$1</a>');
+      .replace(/\[([^\]]+)\]\((\/[^)\s]+|mailto:[^)\s]+)\)/g, '<a href="$2">$1</a>');
   }
 
   function renderBriefTable(table) {

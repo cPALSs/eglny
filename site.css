@@ -2977,13 +2977,23 @@ a.co-chair-name {
   line-height: 1.45;
 }
 
+.site-doc-main > .site-doc-section:first-child:has(> .vendors-official-notice:first-child) {
+  padding-top: 0;
+}
+
 .vendors-official-notice {
-  margin: 0 0 1.15rem;
+  margin: 0 0 2rem;
   padding: 0.85rem 1rem;
   border-radius: var(--radius);
   border: 1px solid color-mix(in srgb, var(--gold) 55%, var(--border));
   background: color-mix(in srgb, var(--gold) 14%, var(--surface));
   color: var(--text);
+}
+
+@media (min-width: 1100px) {
+  .vendors-official-notice {
+    margin-bottom: 1.75rem;
+  }
 }
 
 .vendors-official-notice p {
