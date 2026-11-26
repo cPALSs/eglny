@@ -542,6 +542,185 @@
   }
 }
 
+/* src/primitives/prose.css */
+@layer lsds.primitives {
+  .ls-prose {
+    --ls-prose-fg: var(--ls-foreground);
+    --ls-prose-heading: var(--ls-heading);
+    --ls-prose-muted: var(--ls-muted-foreground);
+    --ls-prose-link: var(--ls-primary);
+    --ls-prose-link-hover: var(--ls-primary-hover);
+    --ls-prose-rule: var(--ls-border);
+    --ls-prose-accent: var(--ls-primary);
+    --ls-prose-code-bg: var(--ls-muted);
+    --ls-prose-measure: 42rem;
+    --ls-prose-flow: 1em;
+    --ls-prose-font-mono:
+      ui-monospace,
+      "SF Mono",
+      Menlo,
+      Consolas,
+      monospace;
+    max-width: var(--ls-prose-measure);
+    color: var(--ls-prose-fg);
+    font-family: var(--ls-font-body);
+    font-size: var(--ls-text-base);
+    line-height: var(--ls-line-height-body);
+  }
+  .ls-prose > :where(*) {
+    margin-block: 0;
+  }
+  .ls-prose > :where(* + *) {
+    margin-block-start: var(--ls-prose-flow);
+  }
+  .ls-prose :where(h1, h2, h3, h4) {
+    font-family: var(--ls-font-display);
+    font-weight: 700;
+    line-height: var(--ls-line-height-heading);
+    color: var(--ls-prose-heading);
+    text-wrap: balance;
+  }
+  .ls-prose :where(h1) {
+    font-size: calc(var(--ls-text-3xl) * var(--ls-font-display-scale));
+  }
+  .ls-prose :where(h2) {
+    font-size: calc(var(--ls-text-2xl) * var(--ls-font-display-scale));
+  }
+  .ls-prose :where(h3) {
+    font-size: calc(var(--ls-text-xl) * var(--ls-font-display-scale));
+    font-weight: 650;
+  }
+  .ls-prose :where(h4) {
+    font-size: var(--ls-text-lg);
+    font-weight: 650;
+  }
+  .ls-prose > :where(h2) {
+    margin-block-start: var(--ls-space-xl);
+  }
+  .ls-prose > :where(h3, h4) {
+    margin-block-start: var(--ls-space-lg);
+  }
+  .ls-prose > :where(h1, h2, h3, h4) + :where(*) {
+    margin-block-start: 0.5em;
+  }
+  .ls-prose > :where(:first-child) {
+    margin-block-start: 0;
+  }
+  .ls-prose :where(.ls-lead) {
+    font-size: var(--ls-text-lg);
+    line-height: 1.5;
+    color: var(--ls-lead);
+  }
+  .ls-prose :where(small, figcaption, .ls-prose-caption) {
+    font-size: var(--ls-text-sm);
+    color: var(--ls-prose-muted);
+  }
+  .ls-prose :where(strong, b) {
+    font-weight: 700;
+  }
+  .ls-prose :where(a:not(.ls-btn)) {
+    color: var(--ls-prose-link);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+  .ls-prose :where(a:not(.ls-btn)):hover {
+    color: var(--ls-prose-link-hover);
+    text-decoration-thickness: 2px;
+  }
+  .ls-prose :where(a:not(.ls-btn)):focus-visible {
+    outline: 2px solid var(--ls-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .ls-prose :where(code, kbd) {
+    padding: 0.1em 0.35em;
+    border-radius: var(--ls-radius-sm);
+    background: var(--ls-prose-code-bg);
+    font-family: var(--ls-prose-font-mono);
+    font-size: 0.875em;
+  }
+  .ls-prose :where(ul, ol) {
+    padding-inline-start: 1.4em;
+  }
+  .ls-prose :where(li + li),
+  .ls-prose :where(li) > :where(ul, ol) {
+    margin-block-start: 0.35em;
+  }
+  .ls-prose :where(li)::marker {
+    color: var(--ls-prose-muted);
+  }
+  .ls-prose :where(ol) > :where(li)::marker {
+    font-variant-numeric: tabular-nums;
+  }
+  .ls-prose :where(dt) {
+    font-weight: 650;
+    color: var(--ls-prose-heading);
+  }
+  .ls-prose :where(dd) {
+    margin: 0.15em 0 0;
+  }
+  .ls-prose :where(dd + dt) {
+    margin-block-start: 0.75em;
+  }
+  .ls-prose :where(blockquote) {
+    padding-inline-start: 1em;
+    border-inline-start: 3px solid var(--ls-prose-accent);
+    color: var(--ls-lead);
+    font-size: var(--ls-text-lg);
+    line-height: 1.5;
+  }
+  .ls-prose :where(blockquote) > :where(* + *) {
+    margin-block-start: 0.5em;
+  }
+  .ls-prose :where(blockquote) :where(p) {
+    margin: 0;
+  }
+  .ls-prose :where(blockquote) :where(footer, cite) {
+    display: block;
+    font-size: var(--ls-text-sm);
+    font-style: normal;
+    color: var(--ls-prose-muted);
+  }
+  .ls-prose :where(pre) {
+    overflow-x: auto;
+    padding: 0.9em 1em;
+    border-radius: var(--ls-radius);
+    background: var(--ls-prose-code-bg);
+    font-size: var(--ls-text-sm);
+    line-height: 1.5;
+  }
+  .ls-prose :where(pre) :where(code) {
+    padding: 0;
+    background: none;
+    font-size: inherit;
+  }
+  .ls-prose :where(hr) {
+    height: 0;
+    border: 0;
+    border-top: 1px solid var(--ls-prose-rule);
+  }
+  .ls-prose > :where(hr) {
+    margin-block: var(--ls-space-lg);
+  }
+  .ls-prose :where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--ls-text-sm);
+    line-height: var(--ls-line-height-ui);
+  }
+  .ls-prose :where(th, td) {
+    padding: 0.55em 0.75em 0.55em 0;
+    border-bottom: 1px solid var(--ls-prose-rule);
+    text-align: start;
+    vertical-align: top;
+  }
+  .ls-prose :where(th) {
+    font-weight: 650;
+    color: var(--ls-prose-heading);
+  }
+}
+
 /* src/patterns/nav-shell/nav-shell.css */
 @layer lsds.patterns {
   .ls-nav-wrap {
