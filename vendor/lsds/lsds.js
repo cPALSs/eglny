@@ -641,12 +641,68 @@ function initTocDrawer(root = document, options = {}) {
   return controllers;
 }
 
+// src/experimental/tabs/tabs.js
+function initTabs(root = document) {
+  if (!root?.querySelectorAll) return;
+  for (const container of root.querySelectorAll("[data-ls-tabs]")) {
+    if (container.dataset.lsTabsReady === "1") continue;
+    const tablist = container.querySelector('[role="tablist"]');
+    if (!tablist) continue;
+    container.dataset.lsTabsReady = "1";
+    const getTabs = () => [...tablist.querySelectorAll('[role="tab"]')];
+    const activate = (tab, moveFocus = false) => {
+      const tabs = getTabs();
+      const targetId = tab.getAttribute("aria-controls");
+      for (const t of tabs) {
+        const active = t === tab;
+        t.setAttribute("aria-selected", active ? "true" : "false");
+        t.classList.toggle("ls-is-active", active);
+        t.tabIndex = active ? 0 : -1;
+        const panelId = t.getAttribute("aria-controls");
+        if (panelId) {
+          const panel = container.querySelector(`#${CSS.escape(panelId)}`);
+          if (panel) panel.hidden = !active;
+        }
+      }
+      if (moveFocus) tab.focus();
+      container.dispatchEvent(
+        new CustomEvent("ls:tab-change", {
+          bubbles: true,
+          detail: { tab, panelId: targetId }
+        })
+      );
+    };
+    const initial = getTabs().find((t) => t.getAttribute("aria-selected") === "true" && !t.disabled) || getTabs().find((t) => !t.disabled);
+    if (initial) activate(initial, false);
+    tablist.addEventListener("click", (event) => {
+      const tab = event.target.closest?.('[role="tab"]');
+      if (!tab || tab.disabled || !tablist.contains(tab)) return;
+      activate(tab, false);
+    });
+    tablist.addEventListener("keydown", (event) => {
+      const enabled = getTabs().filter((t) => !t.disabled);
+      if (!enabled.length) return;
+      const idx = enabled.indexOf(document.activeElement);
+      if (idx === -1) return;
+      let nextIdx = -1;
+      if (event.key === "ArrowRight") nextIdx = (idx + 1) % enabled.length;
+      else if (event.key === "ArrowLeft") nextIdx = (idx - 1 + enabled.length) % enabled.length;
+      else if (event.key === "Home") nextIdx = 0;
+      else if (event.key === "End") nextIdx = enabled.length - 1;
+      else return;
+      event.preventDefault();
+      activate(enabled[nextIdx], true);
+    });
+  }
+}
+
 // src/lsds.js
 function initAll(root = document, options = {}) {
   initSchemeToggle(root, options.scheme);
   initNavShell(root);
   initLangSwitch(root, options.lang);
   initSheets(root);
+  initTabs(root);
   if (root.querySelector?.("[data-ls-toc]")) {
     initDocScroll(options.docScroll);
   }
@@ -662,7 +718,8 @@ if (typeof window !== "undefined") {
     refreshTocPager,
     initLangSwitch,
     initSheets,
-    initTocDrawer
+    initTocDrawer,
+    initTabs
   };
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => initAll(document), { once: true });
@@ -678,6 +735,7 @@ export {
   initNavShell,
   initSchemeToggle,
   initSheets,
+  initTabs,
   initTocDrawer,
   refreshTocPager
 };

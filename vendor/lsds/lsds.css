@@ -2339,4 +2339,113 @@
   }
 }
 
+/* src/experimental/tabs/tabs.css */
+@layer lsds.experimental {
+  .ls-tabs {
+    --ls-tab-fg: var(--ls-muted-foreground);
+    --ls-tab-fg-hover: var(--ls-foreground);
+    --ls-tab-fg-active: var(--ls-primary);
+    --ls-tab-accent: var(--ls-primary);
+    --ls-tab-border: var(--ls-border);
+    --ls-tab-pad-y: 0.55rem;
+    --ls-tab-pad-x: 0.9rem;
+  }
+  .ls-tablist {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--ls-tab-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .ls-tablist::-webkit-scrollbar {
+    display: none;
+  }
+  .ls-tab {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex: none;
+    margin: 0 0 -1px;
+    padding: var(--ls-tab-pad-y) var(--ls-tab-pad-x);
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: var(--ls-radius-sm) var(--ls-radius-sm) 0 0;
+    background: transparent;
+    color: var(--ls-tab-fg);
+    font: inherit;
+    font-size: var(--ls-text-sm);
+    font-weight: 600;
+    line-height: var(--ls-line-height-ui);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color var(--ls-duration-fast) ease,
+      border-color var(--ls-duration-fast) ease,
+      background var(--ls-duration-fast) ease;
+  }
+  .ls-tab:hover:not(:disabled) {
+    color: var(--ls-tab-fg-hover);
+  }
+  .ls-tab[aria-selected=true],
+  .ls-tab.ls-is-active {
+    color: var(--ls-tab-fg-active);
+    border-bottom-color: var(--ls-tab-accent);
+  }
+  .ls-tab:focus-visible {
+    outline: 2px solid var(--ls-ring);
+    outline-offset: -2px;
+  }
+  .ls-tab:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .ls-tab-count {
+    font-size: var(--ls-text-xs);
+    font-weight: 600;
+    color: var(--ls-muted-foreground);
+    padding: 0.08rem 0.42rem;
+    border-radius: var(--ls-radius-pill);
+    background: var(--ls-surface-raised);
+  }
+  .ls-tab[aria-selected=true] .ls-tab-count,
+  .ls-tab.ls-is-active .ls-tab-count {
+    color: var(--ls-primary);
+    background: var(--ls-primary-soft);
+  }
+  .ls-tabs--segmented .ls-tablist {
+    display: inline-flex;
+    max-width: 100%;
+    gap: 0.2rem;
+    padding: 0.22rem;
+    border: 1px solid var(--ls-tab-border);
+    border-radius: var(--ls-radius-pill);
+    background: var(--ls-surface-raised);
+  }
+  .ls-tabs--segmented .ls-tab {
+    margin: 0;
+    padding: 0.38rem 0.85rem;
+    border-bottom: 0;
+    border-radius: var(--ls-radius-pill);
+  }
+  .ls-tabs--segmented .ls-tab[aria-selected=true],
+  .ls-tabs--segmented .ls-tab.ls-is-active {
+    color: var(--ls-foreground);
+    background: var(--ls-card);
+    box-shadow: 0 0 0 1px var(--ls-border);
+  }
+  .ls-tabpanel {
+    padding-top: 1rem;
+  }
+  .ls-tabpanel[hidden] {
+    display: none;
+  }
+  .ls-tabpanel:focus-visible {
+    outline: 2px solid var(--ls-ring);
+    outline-offset: 2px;
+    border-radius: var(--ls-radius-sm);
+  }
+}
+
 /* src/lsds.css */
