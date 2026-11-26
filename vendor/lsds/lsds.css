@@ -423,6 +423,7 @@
     --ls-field-fg: var(--ls-foreground);
     --ls-field-border: var(--ls-input);
     --ls-field-radius: var(--ls-radius-sm);
+    --ls-field-placeholder: color-mix(in oklab, var(--ls-muted-foreground) 65%, var(--ls-field-bg));
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
@@ -454,6 +455,17 @@
   .ls-field-textarea {
     min-height: 5.5rem;
     resize: vertical;
+  }
+  .ls-field-input::placeholder,
+  .ls-field-textarea::placeholder {
+    color: var(--ls-field-placeholder);
+    opacity: 1;
+  }
+  .ls-field-select:not([multiple], [size]):has(> option[value=""]:checked) {
+    color: var(--ls-field-placeholder);
+  }
+  .ls-field-select:not([multiple], [size]):has(> option[value=""]:checked) :where(option) {
+    color: var(--ls-field-fg);
   }
   .ls-field-select:not([multiple], [size]) {
     --ls-field-caret: var(--ls-muted-foreground);
