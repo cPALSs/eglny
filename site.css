@@ -50,91 +50,39 @@
 }
 
 :root {
-  color-scheme: dark;
-  /* Brand dark — deep red-black / cream / brand red / warm gold */
-  --bg: #1a0806;
-  --surface: #2a0e0a;
-  --surface-raised: #3a1610;
-  --border: #6b2a22;
-  --text: #f3e0cf;
-  --muted: #c9a99a;
-  /* Warm rose/cream for hero / intro lead copy */
-  --lead: #f5c4b8;
-  --teal: color-mix(in srgb, #a3bb92 70%, #ffffff);
-  --heading: var(--text);
-  --accent: #e4180c;
-  --accent-hover: #f24b20;
-  --accent-dim: #5b1a14;
-  --gold: #e8b84a;
-  --on-gold: #1a0806;
-  --season-tentative-bg: color-mix(in srgb, var(--gold) 22%, var(--surface));
-  --success: #3dd68c;
-  --on-accent: #fff;
-  --overlay: rgba(0, 0, 0, 0.55);
-  --radius: 10px;
-  --font: "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display-scale: 1.1;
-  /* Body is 1.55; wrapping display h2s need tight leading (matches .hero h1) */
-  --heading-line-height: 1.15;
-  --max-width: 960px;
-  --nav-height: 3.5rem;
-  /* Sponsor logo cards — shared homepage + /sponsorship/ (fluid width, fixed ratio + inset) */
-  --sponsor-card-aspect: 3 / 2;
-  /* Logo/name box = this fraction of the card; remainder is equal inset (0.8 → 10% each side).
-     Prefer scale over %-padding: %-padding + aspect-ratio cyclic-sizes and crushes the mark. */
-  --sponsor-card-logo-scale: 0.8;
-  --sponsor-card-min: 8.5rem; /* grid floor; cards grow with the track */
-  /* Dark: same white plate as light, then whole-card opacity (logo + fill). */
-  --sponsor-card-bg: #ffffff;
-  --sponsor-card-opacity: 0.92;
-  --sponsor-card-border: color-mix(in srgb, #f3e0cf 18%, transparent);
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --surface-raised: #f7f3f0;
-  --border: #e8ddd6;
-  --text: #3a2a26;
-  --muted: #6b5c55;
-  --lead: #8b1a12;
-  --teal: #6a8a68;
-  --accent: #e4180c;
-  --accent-hover: #b8140a;
-  --accent-dim: #f5d0d0;
-  --gold: #c4891a;
-  --on-gold: #ffffff;
-  --heading: var(--lead);
-  --season-tentative-bg: #fff6d4;
-  --sponsor-card-bg: #ffffff;
-  --sponsor-card-opacity: 1;
-  --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
-}
-
-@media (prefers-color-scheme: light) {
-  :root[data-theme="auto"] {
-    color-scheme: light;
-    --bg: #ffffff;
-    --surface: #ffffff;
-    --surface-raised: #f7f3f0;
-    --border: #e8ddd6;
-    --text: #3a2a26;
-    --muted: #6b5c55;
-    --lead: #8b1a12;
-    --teal: #6a8a68;
-    --accent: #e4180c;
-    --accent-hover: #b8140a;
-    --accent-dim: #f5d0d0;
-    --gold: #c4891a;
-    --on-gold: #ffffff;
-    --heading: var(--lead);
-    --season-tentative-bg: #fff6d4;
-    --sponsor-card-bg: #ffffff;
-    --sponsor-card-opacity: 1;
-    --sponsor-card-border: color-mix(in srgb, #1a2332 14%, transparent);
-  }
+  /* Bridged to LSDS tokens (/vendor/lsds/themes/eglny.css) — light/dark handled via [data-ls-theme="eglny"][data-ls-scheme] */
+  --bg: var(--ls-background);
+  --surface: var(--ls-card);
+  --surface-raised: var(--ls-surface-raised);
+  --border: var(--ls-border);
+  --text: var(--ls-foreground);
+  --muted: var(--ls-muted-foreground);
+  --lead: var(--ls-lead);
+  --teal: var(--ls-brand-teal);
+  --heading: var(--ls-heading);
+  --accent: var(--ls-primary);
+  --accent-hover: var(--ls-primary-hover);
+  --accent-dim: var(--ls-primary-soft);
+  --gold: var(--ls-brand-gold);
+  --on-gold: var(--ls-brand-gold-foreground);
+  --season-tentative-bg: var(--ls-warning-soft);
+  --success: var(--ls-success);
+  --on-accent: var(--ls-primary-foreground);
+  --overlay: var(--ls-overlay);
+  --radius: var(--ls-radius);
+  --font: var(--ls-font-body);
+  --font-display: var(--ls-font-display);
+  --font-display-scale: var(--ls-font-display-scale);
+  --heading-line-height: var(--ls-line-height-heading);
+  --max-width: var(--ls-max-width);
+  --nav-height: var(--ls-nav-height);
+  /* Sponsor logo cards — bridged to LSDS sponsor tokens */
+  --sponsor-card-aspect: var(--ls-sponsor-aspect);
+  --sponsor-card-logo-scale: var(--ls-sponsor-logo-scale);
+  --sponsor-card-min: var(--ls-sponsor-min);
+  --sponsor-card-bg: var(--ls-sponsor-bg);
+  --sponsor-card-opacity: var(--ls-sponsor-opacity);
+  --sponsor-card-border: var(--ls-sponsor-border);
 }
 
 * {
@@ -162,11 +110,11 @@ h2 {
   line-height: var(--heading-line-height);
 }
 
-a {
+a:not(.ls-btn) {
   color: var(--accent);
 }
 
-a:hover {
+a:not(.ls-btn):hover {
   color: var(--accent-hover);
 }
 
@@ -1557,54 +1505,7 @@ body.nav-open {
   }
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.9rem 1.55rem;
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-size: calc(0.8rem * var(--font-display-scale));
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
-  color: var(--on-accent);
-}
-
-.btn-secondary {
-  background: var(--gold);
-  color: var(--on-gold);
-  border-color: var(--gold);
-}
-
-.btn-secondary:hover {
-  background: color-mix(in srgb, var(--gold) 82%, #fff);
-  border-color: color-mix(in srgb, var(--gold) 82%, #fff);
-  color: var(--on-gold);
-}
-
-.btn-tertiary {
-  background: var(--surface-raised);
-  color: var(--text);
-  border-color: var(--border);
-}
-
-.btn-tertiary:hover {
-  background: color-mix(in srgb, var(--surface-raised) 70%, var(--border));
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--border) 70%, var(--text));
-}
+/* Buttons (.ls-btn / .ls-btn--primary|secondary|tertiary) now live in /vendor/lsds/lsds.css */
 
 .panel,
 .content-section {

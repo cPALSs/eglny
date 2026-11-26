@@ -68,6 +68,7 @@
   function applyTheme(theme) {
     const next = VALID_THEMES.has(theme) ? theme : "auto";
     document.documentElement.setAttribute("data-theme", next);
+    document.documentElement.setAttribute("data-ls-scheme", next);
 
     const toggle = document.getElementById("theme-toggle");
     if (toggle) {
@@ -246,7 +247,7 @@
     const links = renderNavLinks(pages, activePage);
 
     return `
-    <nav class="site-nav" aria-label="Main">
+    <nav class="site-nav" data-ls-nav data-ls-nav-breakpoint="880px" aria-label="Main">
       <div class="site-nav-bar">
         <a class="site-nav-brand" href="/">
           <img
@@ -261,14 +262,14 @@
           <span class="sr-only">Elk Grove Lunar New Year Tết</span>
         </a>
         <div class="site-nav-end">
-          <button type="button" class="icon-btn site-nav-toggle" aria-expanded="false" aria-controls="site-nav-drawer">
+          <button type="button" class="icon-btn site-nav-toggle" data-ls-nav-toggle aria-expanded="false" aria-controls="site-nav-drawer">
             <span class="site-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
             <span class="sr-only">Open menu</span>
           </button>
         </div>
       </div>
-      <div class="site-nav-backdrop" hidden aria-hidden="true"></div>
-      <div id="site-nav-drawer" class="site-nav-drawer" aria-hidden="true">
+      <div class="site-nav-backdrop" data-ls-nav-backdrop hidden aria-hidden="true"></div>
+      <div id="site-nav-drawer" class="site-nav-drawer" data-ls-nav-drawer aria-hidden="true">
         <div class="site-nav-drawer-tools">
           <div class="site-nav-social-slot"></div>
           ${renderThemeControl()}
@@ -298,60 +299,13 @@
     const nav = document.querySelector(".site-nav");
     if (!nav) return;
 
-    const toggle = nav.querySelector(".site-nav-toggle");
-    const drawer = nav.querySelector("#site-nav-drawer");
-    const backdrop = nav.querySelector(".site-nav-backdrop");
-    const srLabel = toggle?.querySelector(".sr-only");
-    if (!toggle || !drawer) return;
-
-    const desktopQuery = window.matchMedia("(min-width: 880px)");
-
-    function setOpen(open) {
-      if (desktopQuery.matches) {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        drawer.setAttribute("aria-hidden", "false");
-        if (backdrop) {
-          backdrop.hidden = true;
-          backdrop.setAttribute("aria-hidden", "true");
-        }
-        document.body.classList.remove("nav-open");
-        if (srLabel) srLabel.textContent = "Open menu";
+    if (window.LSDS && typeof window.LSDS.initNavShell === "function") {
+      const controllers = window.LSDS.initNavShell(document);
+      const ctrl = controllers.find((c) => c.nav === nav);
+      if (ctrl) {
+        closeNavMenu = () => ctrl.close();
         return;
       }
-      nav.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      drawer.setAttribute("aria-hidden", open ? "false" : "true");
-      if (backdrop) {
-        backdrop.hidden = !open;
-        backdrop.setAttribute("aria-hidden", open ? "false" : "true");
-      }
-      document.body.classList.toggle("nav-open", open);
-      if (srLabel) srLabel.textContent = open ? "Close menu" : "Open menu";
-    }
-
-    toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
-
-    if (backdrop) {
-      backdrop.addEventListener("click", () => setOpen(false));
-    }
-
-    nav.querySelectorAll(".site-nav-links a, .site-nav-drawer-footer a").forEach((link) => {
-      link.addEventListener("click", () => setOpen(false));
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && nav.classList.contains("is-open")) setOpen(false);
-    });
-
-    desktopQuery.addEventListener("change", (event) => {
-      if (event.matches) setOpen(false);
-    });
-
-    closeNavMenu = () => setOpen(false);
-
-    if (desktopQuery.matches) {
-      drawer.setAttribute("aria-hidden", "false");
     }
   }
 
@@ -541,13 +495,13 @@
       const mailto = `mailto:${apply.email}?subject=${encodeURIComponent(apply.emailSubject)}`;
       return `
     <div class="cta-row">
-      <a class="btn btn-primary" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
+      <a class="ls-btn ls-btn--primary btn btn-primary" href="${mailto}">Email ${escapeHtml(apply.email)}</a>
     </div>`;
     }
 
     return `
     <div class="cta-row">
-      <a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>
+      <a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>
     </div>
     ${apply.idealistFallback ? `<p class="muted">${escapeHtml(apply.idealistFallback)}</p>` : ""}
   `;
@@ -585,7 +539,7 @@
     const projects = block?.projects ?? [];
     if (!projects.length) return "";
     const openCount = projects.filter((p) => !isSkillsProjectFilled(p)).length;
-    const ctaClass = openCount === 1 ? "btn btn-primary" : "btn btn-secondary";
+    const ctaClass = openCount === 1 ? "ls-btn ls-btn--primary btn btn-primary" : "ls-btn ls-btn--secondary btn btn-secondary";
     const cards = projects.map((p) => renderSkillsProjectCard(p, { ctaClass })).join("");
     const heading = showHeading
       ? `<h2>${escapeHtml(block.sectionTitle ?? "Skills projects")}</h2>
@@ -623,7 +577,7 @@
     const planning = block?.planning;
     const projects = block?.projects ?? [];
     const openCount = projects.filter((p) => !isSkillsProjectFilled(p)).length;
-    const ctaClass = openCount === 1 ? "btn btn-primary" : "btn btn-secondary";
+    const ctaClass = openCount === 1 ? "ls-btn ls-btn--primary btn btn-primary" : "ls-btn ls-btn--secondary btn btn-secondary";
     const planningHtml = renderVolunteerPlanningSection(block);
     const skillsHtml = `
           <section class="content-section site-doc-section" id="skills-projects" data-doc-section>
@@ -634,7 +588,7 @@
           </section>`;
     const dayOfCta =
       dayOf?.ctaHref && dayOf?.ctaLabel
-        ? `<p class="cta-row"><a class="btn btn-primary" href="${escapeHtml(dayOf.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(dayOf.ctaLabel)}</a></p>`
+        ? `<p class="cta-row"><a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(dayOf.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(dayOf.ctaLabel)}</a></p>`
         : "";
     const dayOfShifts = Array.isArray(dayOf?.shifts) ? dayOf.shifts : [];
     const dayOfShiftCol = dayOf?.shiftColumn ?? "Shift";
@@ -1471,7 +1425,7 @@
         const shareButtonHtml = flier?.src
           ? `<button
               type="button"
-              class="btn btn-tertiary programming-flier-share"
+              class="ls-btn ls-btn--tertiary btn btn-tertiary programming-flier-share"
               data-share-src="${escapeHtml(flier.src)}"
               data-share-title="${escapeHtml(shareTitle)}"
               aria-label="${escapeHtml(shareLabel)}"
@@ -1480,7 +1434,7 @@
           : "";
         const registerHtml =
           p.ctaHref && p.ctaLabel
-            ? `<a class="btn btn-primary" href="${escapeHtml(p.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(p.ctaLabel)}</a>`
+            ? `<a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(p.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(p.ctaLabel)}</a>`
             : "";
         const ctaHtml =
           registerHtml || shareButtonHtml
@@ -2427,7 +2381,7 @@
     const applyHtml = join.applyNote ? `<li>${escapeHtml(join.applyNote)}</li>` : "";
     const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(apply?.emailSubject ?? "LNY 2027 team interest")}`;
     const idealistBtn = idealist
-      ? `<a class="btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
+      ? `<a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(idealist)}" target="_blank" rel="noopener">${escapeHtml(idealistLabel)}</a>`
       : "";
     return `
           <section class="content-section site-doc-section" id="get-involved" data-doc-section>
@@ -2442,15 +2396,15 @@
               ${idealistBtn}
               ${
                 !hideRolesCta && join.rolesHref
-                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse open seats")}</a>`
+                  ? `<a class="ls-btn ls-btn--secondary btn btn-secondary" href="${escapeHtml(join.rolesHref)}">${escapeHtml(join.rolesCtaLabel ?? "Browse open seats")}</a>`
                   : ""
               }
               ${
                 join.skillsHref && (site.teamPage?.skillsProjects?.projects?.length ?? 0) > 0
-                  ? `<a class="btn btn-secondary" href="${escapeHtml(join.skillsHref)}">${escapeHtml(join.skillsCtaLabel ?? "Browse small projects")}</a>`
+                  ? `<a class="ls-btn ls-btn--secondary btn btn-secondary" href="${escapeHtml(join.skillsHref)}">${escapeHtml(join.skillsCtaLabel ?? "Browse small projects")}</a>`
                   : ""
               }
-              <a class="btn btn-tertiary" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
+              <a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="${mailto}">Email ${escapeHtml(contactEmail)}</a>
             </div>
           </section>`;
   }
@@ -2474,7 +2428,7 @@
     const mailtoGuest = `mailto:${contactEmail}?subject=${encodeURIComponent("LNY 2027 Zoom guest")}`;
 
     const discordBtn = join.discordHref
-      ? `<p class="cta-row"><a class="btn btn-tertiary" href="${escapeHtml(join.discordHref)}"${externalLinkAttrs(join.discordHref)}>${escapeHtml(join.discordLabel ?? "Join the Discord")}</a></p>`
+      ? `<p class="cta-row"><a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="${escapeHtml(join.discordHref)}"${externalLinkAttrs(join.discordHref)}>${escapeHtml(join.discordLabel ?? "Join the Discord")}</a></p>`
       : "";
 
     return `
@@ -2487,7 +2441,7 @@
               <div class="apply-side-path">
                 <h3>Attend Zoom calls</h3>
                 <p>${escapeHtml(join.zoom ?? "Weekly Zoom production calls are Tuesdays at 6:30 PM.")}</p>
-                <p class="cta-row"><a class="btn btn-tertiary" href="${mailtoGuest}">Email ${escapeHtml(contactEmail)}</a></p>
+                <p class="cta-row"><a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="${mailtoGuest}">Email ${escapeHtml(contactEmail)}</a></p>
               </div>
               <div class="apply-side-path">
                 <h3>Join Discord</h3>
@@ -2705,7 +2659,7 @@
       <section class="content-section site-doc-section" id="${escapeHtml(contact.id ?? "contact")}" data-doc-section>
         <h2>${escapeHtml(contact.title ?? "Submit a proposal")}</h2>
         ${contact.intro ? `<p>${formatBriefProse(contact.intro)}</p>` : ""}
-        <p><a class="btn btn-primary" href="${escapeHtml(mailto)}">${escapeHtml(label)}</a></p>
+        <p><a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(mailto)}">${escapeHtml(label)}</a></p>
         <p class="muted"><a href="${escapeHtml(mailto)}">${escapeHtml(email)}</a></p>
       </section>`;
   }
@@ -2996,8 +2950,8 @@
     const vendorHref = vendor?.href ?? "/vendors/";
     return `
     <div class="host-prompt-row">
-      <button type="button" class="btn btn-secondary" data-host-prompt="diy">${escapeHtml(diy.label)}</button>
-      <button type="button" class="btn btn-secondary" data-host-prompt="help">${escapeHtml(help.label)}</button>
+      <button type="button" class="ls-btn ls-btn--secondary btn btn-secondary" data-host-prompt="diy">${escapeHtml(diy.label)}</button>
+      <button type="button" class="ls-btn ls-btn--secondary btn btn-secondary" data-host-prompt="help">${escapeHtml(help.label)}</button>
       <a class="host-prompt-vendor" href="${escapeHtml(vendorHref)}">${escapeHtml(vendor.label)}</a>
     </div>`;
   }
@@ -3019,13 +2973,13 @@
       ? `mailto:${hostApply.email}?subject=${encodeURIComponent(hostApply.emailSubject ?? "LNY 2027 — custom zone inquiry")}`
       : "";
     const primary = mailto
-      ? `<a class="btn btn-primary" id="host-contact-email" href="${mailto}">Email ${escapeHtml(hostApply.email)}</a>`
+      ? `<a class="ls-btn ls-btn--primary btn btn-primary" id="host-contact-email" href="${mailto}">Email ${escapeHtml(hostApply.email)}</a>`
       : formUrl
-        ? `<a class="btn btn-primary" id="host-contact-form" href="${escapeHtml(formUrl)}">${escapeHtml(formLabel)}</a>`
+        ? `<a class="ls-btn ls-btn--primary btn btn-primary" id="host-contact-form" href="${escapeHtml(formUrl)}">${escapeHtml(formLabel)}</a>`
         : "";
     const secondary =
       mailto && formUrl
-        ? `<a class="btn btn-secondary" id="host-contact-form" href="${escapeHtml(formUrl)}">${escapeHtml(formLabel)}</a>`
+        ? `<a class="ls-btn ls-btn--secondary btn btn-secondary" id="host-contact-form" href="${escapeHtml(formUrl)}">${escapeHtml(formLabel)}</a>`
         : "";
     return `
     <div class="apply-block${prominent ? " apply-block--prominent" : ""}">
@@ -3314,7 +3268,7 @@
         const label = isEventeny
           ? (waitlist.cta?.label ?? "Apply on Eventeny")
           : (link.ctaLabel ?? "Learn more");
-        const btnClass = isEventeny ? "btn btn-primary" : "btn btn-secondary";
+        const btnClass = isEventeny ? "ls-btn ls-btn--primary btn btn-primary" : "ls-btn ls-btn--secondary btn btn-secondary";
         const external = isEventeny ? ' target="_blank" rel="noopener"' : "";
         return `
       <article class="resource-card">
@@ -3332,7 +3286,7 @@
             waitlist.cta.note
               ? `<p class="muted vendors-waitlist-note">${formatBriefProse(waitlist.cta.note)}</p>`
               : ""
-          }<p class="vendors-waitlist-cta"><a class="btn btn-primary" href="${escapeHtml(waitlist.cta.href)}" target="_blank" rel="noopener">${escapeHtml(waitlist.cta.label ?? "Join the vendor waitlist")}</a></p>`
+          }<p class="vendors-waitlist-cta"><a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(waitlist.cta.href)}" target="_blank" rel="noopener">${escapeHtml(waitlist.cta.label ?? "Join the vendor waitlist")}</a></p>`
         : waitlist.cta?.note && applyPaths.length
           ? `<p class="muted vendors-waitlist-note">${formatBriefProse(waitlist.cta.note)}</p>`
           : "";
@@ -3467,7 +3421,7 @@
       <section class="hero">
         <h1>${escapeHtml(index?.headline ?? "RFPs")}</h1>
         ${index?.lead ? `<p class="hero-lead">${escapeHtml(index.lead)}</p>` : ""}
-        <p><a class="btn btn-primary" href="${escapeHtml(redirect)}">Go to Team</a></p>
+        <p><a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(redirect)}">Go to Team</a></p>
       </section>`;
     }
     const lots = (index?.lots ?? [])
@@ -3901,7 +3855,7 @@
       }`;
 
     const cta = history.cta
-      ? `<p class="history-cta"><a class="btn btn-primary" href="${escapeHtml(history.cta.href)}">${escapeHtml(history.cta.label)}</a></p>
+      ? `<p class="history-cta"><a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(history.cta.href)}">${escapeHtml(history.cta.label)}</a></p>
          ${history.cta.note ? `<p class="muted">${formatHistoryText(history.cta.note)}</p>` : ""}`
       : "";
 

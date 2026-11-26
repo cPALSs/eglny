@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="auto" data-ls-theme="eglny" data-ls-scheme="auto">
 <head>
   <meta charset="UTF-8" />
   <style>
@@ -24,10 +24,12 @@
     (function () {
       try {
         var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+        if (t === "light" || t === "dark") { document.documentElement.setAttribute("data-theme", t); document.documentElement.setAttribute("data-ls-scheme", t); }
       } catch (_) {}
     })();
   </script>
+  <link rel="stylesheet" href="/vendor/lsds/lsds.css" />
+  <link rel="stylesheet" href="/vendor/lsds/themes/eglny.css" />
   <link rel="stylesheet" href="../site.css" />
   <meta name="description" content="Privacy Policy for eglny.com — Elk Grove Lunar New Year Tết." />
   <link rel="canonical" href="https://eglny.com/privacy/" />
@@ -109,6 +111,7 @@
     </div>
   </main>
   <div id="site-footer"></div>
+  <script src="/vendor/lsds/lsds.iife.js"></script>
   <script src="../doc-scroll.js"></script>
   <script src="../site.js"></script>
   <script>

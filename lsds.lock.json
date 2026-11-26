@@ -1,0 +1,16 @@
+{
+  "designSystem": "cPALSs/design-system",
+  "commit": "4b4e0f0fccbebcca9567d44e526b1cc74cd2e21d",
+  "shortCommit": "4b4e0f0",
+  "syncedAt": "2026-11-26T12:25:25.109Z",
+  "theme": "eglny",
+  "experimental": [
+    "sheet"
+  ],
+  "files": {
+    "lsds.css": "6380aba7bcb91c41",
+    "lsds.js": "217d4e4848e96ced",
+    "lsds.iife.js": "10331680fd770a4d",
+    "themes/eglny.css": "b2ff41e5c16be560"
+  }
+}

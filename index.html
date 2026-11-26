@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="auto" data-ls-theme="eglny" data-ls-scheme="auto">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,11 +22,13 @@
     (function () {
       try {
         var t = sessionStorage.getItem("eglny-theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+        if (t === "light" || t === "dark") { document.documentElement.setAttribute("data-theme", t); document.documentElement.setAttribute("data-ls-scheme", t); }
       } catch (_) {}
     })();
   </script>
-<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="/vendor/lsds/lsds.css" />
+  <link rel="stylesheet" href="/vendor/lsds/themes/eglny.css" />
+  <link rel="stylesheet" href="site.css" />
   <meta name="description" content="Official site for the Elk Grove Lunar New Year Tết festival — free family weekend at Elk Grove Park. 2027 dates, sponsors, volunteer roles, and festival info." />
   <link rel="canonical" href="https://eglny.com/" />
   <meta property="og:title" content="Elk Grove Lunar New Year Tết Festival — Elk Grove Park" />
@@ -163,18 +165,19 @@
           <section class="content-section">
             <h2>Help build the 2027 festival</h2>
             <p>Join the team shaping this year’s celebration. Round 2 vendor applications are open through January 15.</p>
-            <p><a class="btn btn-primary" href="/vendors/">Register as vendor</a> <a class="btn btn-secondary" href="/vendors/">Register as vendor</a></p>
+            <p><a class="ls-btn ls-btn--primary btn btn-primary" href="/vendors/">Register as vendor</a> <a class="ls-btn ls-btn--secondary btn btn-secondary" href="/vendors/">Register as vendor</a></p>
           </section>
           <section class="content-section">
             <h2>Fund the experience</h2>
             <p></p>
-            <p><a class="btn btn-secondary" href="undefined">undefined</a> <a class="btn btn-tertiary" href="https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view" target="_blank" rel="noopener">Sponsorship packet</a></p>
+            <p><a class="ls-btn ls-btn--secondary btn btn-secondary" href="undefined">undefined</a> <a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="https://drive.google.com/file/d/1rrwG0v8IZRp4qqH6nlx_c8PQZM2kynkT/view" target="_blank" rel="noopener">Sponsorship packet</a></p>
           </section>
         </div>
       </div>
     </div>
   </main>
   <div id="site-footer"></div>
+  <script src="/vendor/lsds/lsds.iife.js"></script>
   <script src="doc-scroll.js"></script>
   <script src="site.js"></script>
   <script type="module">
@@ -206,20 +209,20 @@
             <h2>${escapeHtml(h.headline)}</h2>
             <p>${escapeHtml(h.homeLead ?? "Join the team shaping this year’s celebration.")}</p>
             <div class="cta-row">
-              <a class="btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
-              <a class="btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the festival")}</a>
-              <a class="btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
-              <a class="btn btn-secondary" href="${escapeHtml(c.volunteerWeekendHref ?? "/production/volunteer/")}">${escapeHtml(c.volunteerWeekendLabel ?? "Volunteer that weekend")}</a>
-              <a class="btn btn-secondary" href="${escapeHtml(c.programsHref ?? "/production/activity-signups/")}">${escapeHtml(c.programsLabel ?? "Sign up for activities")}</a>
+              <a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(c.primaryHref)}">${escapeHtml(c.primaryLabel)}</a>
+              <a class="ls-btn ls-btn--secondary btn btn-secondary" href="${escapeHtml(c.sponsorHref ?? "/sponsorship/")}">${escapeHtml(c.sponsorLabel ?? "Sponsor the festival")}</a>
+              <a class="ls-btn ls-btn--secondary btn btn-secondary" href="${escapeHtml(c.teamHref ?? "/team/")}">${escapeHtml(c.teamLabel ?? "Join the team")}</a>
+              <a class="ls-btn ls-btn--secondary btn btn-secondary" href="${escapeHtml(c.volunteerWeekendHref ?? "/production/volunteer/")}">${escapeHtml(c.volunteerWeekendLabel ?? "Volunteer that weekend")}</a>
+              <a class="ls-btn ls-btn--secondary btn btn-secondary" href="${escapeHtml(c.programsHref ?? "/production/activity-signups/")}">${escapeHtml(c.programsLabel ?? "Sign up for activities")}</a>
             </div>
           </section>
           <section class="content-section home-build-cta home-sneak-preview">
             <h2>${escapeHtml(sneak.headline ?? "Sneak preview")}</h2>
             <p>${escapeHtml(sneak.lead ?? "See what’s in store for the Year of the Goat!")}</p>
             <div class="cta-row">
-              <a class="btn btn-tertiary" href="${escapeHtml(sneak.activitiesHref ?? "/activities/")}">${escapeHtml(sneak.activitiesLabel ?? "Activities")}</a>
-              <a class="btn btn-tertiary" href="${escapeHtml(sneak.foodHref ?? "/food/")}">${escapeHtml(sneak.foodLabel ?? "Food menu")}</a>
-              <a class="btn btn-tertiary" href="${escapeHtml(sneak.vendorsHref ?? "/vendors-list/")}">${escapeHtml(sneak.vendorsLabel ?? "Vendors")}</a>
+              <a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="${escapeHtml(sneak.activitiesHref ?? "/activities/")}">${escapeHtml(sneak.activitiesLabel ?? "Activities")}</a>
+              <a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="${escapeHtml(sneak.foodHref ?? "/food/")}">${escapeHtml(sneak.foodLabel ?? "Food menu")}</a>
+              <a class="ls-btn ls-btn--tertiary btn btn-tertiary" href="${escapeHtml(sneak.vendorsHref ?? "/vendors-list/")}">${escapeHtml(sneak.vendorsLabel ?? "Vendors")}</a>
             </div>
           </section>
           ${renderHomeSponsors2027(site.sponsorship, sponsors2027Data)}

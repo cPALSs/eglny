@@ -1,0 +1,165 @@
+/* src/themes/eglny.css */
+@layer lsds.tokens {
+  [data-ls-theme=eglny] {
+    color-scheme: dark;
+    --ls-background: #1a0806;
+    --ls-foreground: #f3e0cf;
+    --ls-card: #2a0e0a;
+    --ls-card-foreground: #f3e0cf;
+    --ls-surface-raised: #3a1610;
+    --ls-primary: #e4180c;
+    --ls-primary-hover: #f24b20;
+    --ls-primary-foreground: #ffffff;
+    --ls-primary-soft: #5b1a14;
+    --ls-secondary: #e8b84a;
+    --ls-secondary-hover: color-mix(in srgb, #e8b84a 82%, #ffffff);
+    --ls-secondary-foreground: #1a0806;
+    --ls-muted: #3a1610;
+    --ls-muted-foreground: #c9a99a;
+    --ls-accent: color-mix(in srgb, #3a1610 70%, #6b2a22);
+    --ls-accent-foreground: #f3e0cf;
+    --ls-border: #6b2a22;
+    --ls-input: #6b2a22;
+    --ls-ring: #e8b84a;
+    --ls-overlay: rgba(0, 0, 0, 0.55);
+    --ls-shadow-md: 0 12px 28px rgba(0, 0, 0, 0.28);
+    --ls-shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.45);
+    --ls-heading: #f3e0cf;
+    --ls-lead: #f5c4b8;
+    --ls-success: #3dd68c;
+    --ls-success-soft: #103224;
+    --ls-success-foreground: #b8f5d6;
+    --ls-warning: #e8b84a;
+    --ls-warning-soft: color-mix(in srgb, #e8b84a 22%, #2a0e0a);
+    --ls-warning-foreground: #f8dfa0;
+    --ls-destructive: #f87171;
+    --ls-destructive-soft: #4c1313;
+    --ls-destructive-foreground: #fecaca;
+    --ls-info: #93c5fd;
+    --ls-info-soft: #172554;
+    --ls-info-foreground: #dbeafe;
+    --ls-copied-fg: #137333;
+    --ls-copied-bg: #e6f4ea;
+    --ls-copied-border: #b7dfc2;
+    --ls-copy-fail-fg: #b42318;
+    --ls-copy-fail-bg: #fdecea;
+    --ls-copy-fail-border: #f5c2c0;
+    --ls-brand-gold: #e8b84a;
+    --ls-brand-gold-foreground: #1a0806;
+    --ls-brand-teal: color-mix(in srgb, #a3bb92 70%, #ffffff);
+    --ls-sponsor-bg: #ffffff;
+    --ls-sponsor-fg: #1a2332;
+    --ls-sponsor-opacity: 0.92;
+    --ls-sponsor-border: color-mix(in srgb, #f3e0cf 18%, transparent);
+    --ls-sponsor-dark-fg: #f3e0cf;
+    --ls-sponsor-dark-border: color-mix(in srgb, #f3e0cf 22%, transparent);
+    --ls-font-body:
+      "Metropolis",
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
+    --ls-font-display:
+      "Metropolis",
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
+    --ls-font-display-scale: 1.1;
+    --ls-radius: 10px;
+  }
+  [data-ls-theme=eglny][data-ls-scheme=light] {
+    color-scheme: light;
+    --ls-background: #ffffff;
+    --ls-foreground: #3a2a26;
+    --ls-card: #ffffff;
+    --ls-card-foreground: #3a2a26;
+    --ls-surface-raised: #f7f3f0;
+    --ls-primary: #e4180c;
+    --ls-primary-hover: #b8140a;
+    --ls-primary-foreground: #ffffff;
+    --ls-primary-soft: #f5d0d0;
+    --ls-secondary: #c4891a;
+    --ls-secondary-hover: color-mix(in srgb, #c4891a 82%, #ffffff);
+    --ls-secondary-foreground: #ffffff;
+    --ls-muted: #f7f3f0;
+    --ls-muted-foreground: #6b5c55;
+    --ls-accent: color-mix(in srgb, #f7f3f0 70%, #e8ddd6);
+    --ls-accent-foreground: #3a2a26;
+    --ls-border: #e8ddd6;
+    --ls-input: #d6c8bf;
+    --ls-ring: #e4180c;
+    --ls-overlay: rgba(26, 8, 6, 0.45);
+    --ls-shadow-md: 0 12px 28px rgba(0, 0, 0, 0.14);
+    --ls-shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.2);
+    --ls-heading: #8b1a12;
+    --ls-lead: #8b1a12;
+    --ls-success: #15803d;
+    --ls-success-soft: #dcfce7;
+    --ls-success-foreground: #14532d;
+    --ls-warning: #a16207;
+    --ls-warning-soft: #fff6d4;
+    --ls-warning-foreground: #713f12;
+    --ls-destructive: #b91c1c;
+    --ls-destructive-soft: #fee2e2;
+    --ls-destructive-foreground: #7f1d1d;
+    --ls-info: #3730a3;
+    --ls-info-soft: #e0e7ff;
+    --ls-info-foreground: #312e81;
+    --ls-brand-gold: #c4891a;
+    --ls-brand-gold-foreground: #ffffff;
+    --ls-brand-teal: #6a8a68;
+    --ls-sponsor-bg: #ffffff;
+    --ls-sponsor-fg: #1a2332;
+    --ls-sponsor-opacity: 1;
+    --ls-sponsor-border: color-mix(in srgb, #1a2332 14%, transparent);
+  }
+  @media (prefers-color-scheme: light) {
+    [data-ls-theme=eglny][data-ls-scheme=auto] {
+      color-scheme: light;
+      --ls-background: #ffffff;
+      --ls-foreground: #3a2a26;
+      --ls-card: #ffffff;
+      --ls-card-foreground: #3a2a26;
+      --ls-surface-raised: #f7f3f0;
+      --ls-primary: #e4180c;
+      --ls-primary-hover: #b8140a;
+      --ls-primary-foreground: #ffffff;
+      --ls-primary-soft: #f5d0d0;
+      --ls-secondary: #c4891a;
+      --ls-secondary-hover: color-mix(in srgb, #c4891a 82%, #ffffff);
+      --ls-secondary-foreground: #ffffff;
+      --ls-muted: #f7f3f0;
+      --ls-muted-foreground: #6b5c55;
+      --ls-accent: color-mix(in srgb, #f7f3f0 70%, #e8ddd6);
+      --ls-accent-foreground: #3a2a26;
+      --ls-border: #e8ddd6;
+      --ls-input: #d6c8bf;
+      --ls-ring: #e4180c;
+      --ls-overlay: rgba(26, 8, 6, 0.45);
+      --ls-shadow-md: 0 12px 28px rgba(0, 0, 0, 0.14);
+      --ls-shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.2);
+      --ls-heading: #8b1a12;
+      --ls-lead: #8b1a12;
+      --ls-success: #15803d;
+      --ls-success-soft: #dcfce7;
+      --ls-success-foreground: #14532d;
+      --ls-warning: #a16207;
+      --ls-warning-soft: #fff6d4;
+      --ls-warning-foreground: #713f12;
+      --ls-destructive: #b91c1c;
+      --ls-destructive-soft: #fee2e2;
+      --ls-destructive-foreground: #7f1d1d;
+      --ls-info: #3730a3;
+      --ls-info-soft: #e0e7ff;
+      --ls-info-foreground: #312e81;
+      --ls-brand-gold: #c4891a;
+      --ls-brand-gold-foreground: #ffffff;
+      --ls-brand-teal: #6a8a68;
+      --ls-sponsor-bg: #ffffff;
+      --ls-sponsor-fg: #1a2332;
+      --ls-sponsor-opacity: 1;
+      --ls-sponsor-border: color-mix(in srgb, #1a2332 14%, transparent);
+    }
+  }
+}
