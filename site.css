@@ -562,6 +562,42 @@ body.ls-nav-open {
   margin: 1rem 0 1.25rem;
 }
 
+.inventory-progress {
+  margin: 1rem 0 1.15rem;
+}
+
+.inventory-progress__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+}
+
+.inventory-progress__label {
+  font-weight: 600;
+}
+
+.inventory-progress__pct {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.inventory-progress__track {
+  height: 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 22%, var(--surface));
+  overflow: hidden;
+}
+
+.inventory-progress__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--gold, var(--accent)));
+  transition: width 0.3s ease;
+}
+
 .site-doc-table {
   width: 100%;
   border-collapse: collapse;

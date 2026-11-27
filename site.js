@@ -3291,12 +3291,62 @@
           ? `<p class="muted vendors-waitlist-note">${formatBriefProse(waitlist.cta.note)}</p>`
           : "";
 
+    const renderInventoryProgress = (inv) => {
+      const rows = inv?.table?.rows ?? [];
+      const headers = inv?.table?.headers ?? [];
+      const spotsCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase().includes("spot"));
+      const remCol = headers.findIndex((h) => String(h ?? "").trim().toLowerCase() === "remaining");
+      if (spotsCol < 0 || remCol < 0 || !rows.length) return "";
+      let total = 0;
+      let remaining = 0;
+      let approx = false;
+      for (const row of rows) {
+        const spotsText = String(Array.isArray(row?.[spotsCol]) ? row[spotsCol][0] : row?.[spotsCol] ?? "");
+        const remText = String(Array.isArray(row?.[remCol]) ? row[remCol][0] : row?.[remCol] ?? "").trim();
+        const spotsMatch = spotsText.match(/\d+/);
+        if (!spotsMatch) continue;
+        const spotsNum = Number(spotsMatch[0]);
+        if (!Number.isFinite(spotsNum) || spotsNum <= 0) continue;
+        total += spotsNum;
+        if (remText.startsWith("~")) approx = true;
+        const remMatch = remText.match(/\d+/);
+        if (remMatch) {
+          remaining += Math.min(spotsNum, Number(remMatch[0]));
+        }
+      }
+      if (total <= 0) return "";
+      const filled = Math.max(0, total - remaining);
+      const pct = Math.round((filled / total) * 100);
+      const pctLabel = `${approx ? "~" : ""}${pct}%`;
+      return `
+        <div class="inventory-progress">
+          <div class="inventory-progress__header">
+            <span class="inventory-progress__label">Total booths filled</span>
+            <span class="inventory-progress__pct">${escapeHtml(pctLabel)}</span>
+          </div>
+          <div class="inventory-progress__track" role="progressbar" aria-label="Total booths filled" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
+            <div class="inventory-progress__fill" style="width: ${pct}%"></div>
+          </div>
+        </div>`;
+    };
+
+    const inventoryNotesHtml = (inventory.noteSections ?? []).length
+      ? inventory.noteSections
+          .map(
+            (sec) => `
+        <h3 class="booth-path-heading">${escapeHtml(sec.title)}</h3>
+        ${renderBriefBullets(sec.bullets)}`,
+          )
+          .join("")
+      : renderBriefBullets(inventory.notes);
+
     const inventoryHtml = hasInventory
       ? `<section class="content-section ls-doc-section" id="${escapeHtml(inventory.id ?? "inventory")}" data-doc-section>
         <h2>${escapeHtml(inventory.title ?? "Booth inventory")}</h2>
         ${inventory.intro ? `<p>${formatBriefProse(inventory.intro)}</p>` : ""}
+        ${renderInventoryProgress(inventory)}
         ${renderInventoryTable(inventory.table)}
-        ${renderBriefBullets(inventory.notes)}
+        ${inventoryNotesHtml}
         ${inventory.footnote ? `<p class="muted">${formatBriefProse(inventory.footnote)}</p>` : ""}
       </section>`
       : "";
