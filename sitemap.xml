@@ -49,7 +49,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eglny.com/production/volunteer/</loc>
+    <loc>https://eglny.com/volunteer/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://eglny.com/activity-signups/</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -67,7 +73,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eglny.com/vendors-list/</loc>
+    <loc>https://eglny.com/vendors/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://eglny.com/vendor-booths/</loc>
     <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -115,19 +127,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://eglny.com/resources/media/</loc>
+    <loc>https://eglny.com/media/</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://eglny.com/resources/blog/</loc>
+    <loc>https://eglny.com/blog/</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://eglny.com/resources/blog/planning-sustainable-community-festivals/</loc>
+    <loc>https://eglny.com/blog/planning-sustainable-community-festivals/</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

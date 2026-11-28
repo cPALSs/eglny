@@ -34,7 +34,7 @@ Unified LNY hub — logotype home, **About** (story + media + blog), **Productio
 | `/resources/` | Resources hub |
 | `/resources/season/` | **Lunar New Year Season** calendar — under **Resources** |
 | `/resources/lion-dance/` | Redirect → [littlesaigonsac.town/lists/lion-dance/](https://littlesaigonsac.town/lists/lion-dance/) (LSS Lists roster) |
-| `/sponsors/` | Redirect → `/sponsorship/#thank-you-2026` |
+| `/sponsors/` | Redirect → `/sponsorship/#past-sponsors` |
 | `/resources/media/` | Press and festival YouTube embeds — under **About** |
 | `/resources/blog/` | **Blog** — SEO-safe planning notes (generated from shared markdown) — under **About** |
 | `/build/` | Redirect → `/fund-the-festival/` |

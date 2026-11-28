@@ -1,0 +1,218 @@
+{
+  "eventYear": 2025,
+  "tierOrder": [
+    "Partners",
+    "Platinum Sponsors",
+    "Diamond Sponsors",
+    "Bronze Sponsors",
+    "Community Sponsors",
+    "Event Supporters"
+  ],
+  "sponsors": [
+    {
+      "name": "Cosumnes Community Services District",
+      "tier": "Partners",
+      "url": "https://www.cosumnescsd.gov/",
+      "logo": "2026/cosumnes-csd.png"
+    },
+    {
+      "name": "City of Elk Grove",
+      "tier": "Partners",
+      "url": "https://elkgrove.gov/",
+      "logo": "2026/city-of-elk-grove.png"
+    },
+    {
+      "name": "Duc Huong",
+      "tier": "Diamond Sponsors",
+      "url": "https://duchuongsandwiches.com/",
+      "logo": "2026/duc-huong.png"
+    },
+    {
+      "name": "American Furniture Galleries",
+      "tier": "Platinum Sponsors",
+      "url": "https://www.americanfurnituregalleries.net/",
+      "logo": "2026/american-furniture-gallery.png"
+    },
+    {
+      "name": "Anthem",
+      "tier": "Bronze Sponsors",
+      "url": "https://www.anthem.com/ca",
+      "logo": "2026/anthem.png"
+    },
+    {
+      "name": "District Attorney Sacramento County",
+      "tier": "Bronze Sponsors",
+      "url": "https://www.sacda.org/",
+      "logo": "2026/thien-ho.png"
+    },
+    {
+      "name": "Hydro City",
+      "tier": "Bronze Sponsors",
+      "url": "https://shophydrocity.com/",
+      "logo": "2025/hydro-city.png"
+    },
+    {
+      "name": "Kaiser Permanente",
+      "tier": "Bronze Sponsors",
+      "url": "https://healthy.kaiserpermanente.org/northern-california",
+      "logo": "2025/kaiser-permanente.png"
+    },
+    {
+      "name": "Nguyen Chiropractic",
+      "tier": "Bronze Sponsors",
+      "url": "https://nguyenchiro.com/",
+      "logo": "2025/nguyen-chiropractic.png"
+    },
+    {
+      "name": "RC Willey",
+      "tier": "Bronze Sponsors",
+      "url": "https://www.rcwilley.com/location/California/Sacramento",
+      "logo": "2025/rc-willey.png"
+    },
+    {
+      "name": "SMUD",
+      "tier": "Bronze Sponsors",
+      "url": "https://www.smud.org/",
+      "logo": "2026/smud.png"
+    },
+    {
+      "name": "Station 16",
+      "tier": "Bronze Sponsors",
+      "url": "https://station16restaurant.com/",
+      "logo": "2025/station-16.png"
+    },
+    {
+      "name": "Sutter SeniorCare PACE",
+      "tier": "Bronze Sponsors",
+      "url": "https://www.sutterhealth.org/find-location/facility/sutter-seniorcare-pace-1043247396",
+      "logo": "2025/sutter-seniorcare-pace.png"
+    },
+    {
+      "name": "Verizon",
+      "tier": "Bronze Sponsors",
+      "url": "https://www.verizon.com/",
+      "logo": "2026/verizon.png"
+    },
+    {
+      "name": "Bullsai",
+      "tier": "Community Sponsors",
+      "url": "https://bullsai.com/",
+      "logo": "2025/bullsai.png"
+    },
+    {
+      "name": "Journey to the Dumpling",
+      "tier": "Community Sponsors",
+      "url": "https://journeytothedumpling.com/",
+      "logo": "2026/journey-to-the-dumpling.png"
+    },
+    {
+      "name": "Pat Hume",
+      "tier": "Community Sponsors",
+      "url": "https://bos.saccounty.gov/District5/",
+      "logo": "2026/pat-hume.png"
+    },
+    {
+      "name": "SF Supermarket",
+      "tier": "Community Sponsors",
+      "url": "https://shunfatsupermarket.com/",
+      "logo": "2026/sf-supermarket.png"
+    },
+    {
+      "name": "Bốn Mùa Vietnamese Restaurant",
+      "tier": "Event Supporters",
+      "url": "https://bonmuasac.com/",
+      "logo": "2025/bon-mua.png"
+    },
+    {
+      "name": "Chason's",
+      "tier": "Event Supporters",
+      "url": "https://crabstadium.com/",
+      "logo": "2026/chasons.png"
+    },
+    {
+      "name": "Dream Catcher Insurance",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2025/dream-catcher-insurance.png"
+    },
+    {
+      "name": "Dream Real Estate Group - Cathy Le",
+      "tier": "Event Supporters",
+      "url": "https://dreamreal.io/",
+      "logo": "2025/dream-real-estate-cathy-le.png"
+    },
+    {
+      "name": "Equity Zone Mortgage",
+      "tier": "Event Supporters",
+      "url": "https://equityzonemortgage.com/",
+      "logo": "2025/equity-zone-mortgage.png"
+    },
+    {
+      "name": "Huong Lan Sandwiches",
+      "tier": "Event Supporters",
+      "url": "https://huonglansandwichessacto.com/",
+      "logo": "2025/huong-lan-sandwiches.png"
+    },
+    {
+      "name": "Jade Stone Real Estate",
+      "tier": "Event Supporters",
+      "url": "https://www.jadestonere.com/",
+      "logo": "2025/jade-stone-real-estate.png"
+    },
+    {
+      "name": "KW Commercial - Tuan Nguyen",
+      "tier": "Event Supporters",
+      "url": "https://www.thepowerinvestmentteam.com/tuan-nguyen",
+      "logo": "2025/kw-commercial-tuan-nguyen.png"
+    },
+    {
+      "name": "Loan Factory - Tri Nguyen",
+      "tier": "Event Supporters",
+      "url": "https://www.loanfactory.com/tringuyen",
+      "logo": "2025/loan-factory-tri-nguyen.png"
+    },
+    {
+      "name": "Miss & Miss Teen Vietnam Northern California",
+      "tier": "Event Supporters",
+      "url": "https://instagram.com/missvietnamnorcal",
+      "logo": "2025/mv-norcal.png"
+    },
+    {
+      "name": "Nikki Win Team",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2025/nikki-win.png"
+    },
+    {
+      "name": "Paris Bánh Mì - Elk Grove",
+      "tier": "Event Supporters",
+      "url": "https://parisbanhmi.com/",
+      "logo": "2025/paris-banh-mi.png"
+    },
+    {
+      "name": "Peach + Ivy Nail and Skin",
+      "tier": "Event Supporters",
+      "url": "https://peachandivy.com/",
+      "logo": "2025/peach-and-ivy.png",
+      "cardBg": "#9BAB9E"
+    },
+    {
+      "name": "PlanetPOS",
+      "tier": "Event Supporters",
+      "url": "https://planetpos.com/",
+      "logo": "2025/planetpos.png"
+    },
+    {
+      "name": "Tido Financial",
+      "tier": "Event Supporters",
+      "url": "https://www.tidofinancial.com/",
+      "logo": "2025/tido-financial.png"
+    },
+    {
+      "name": "Vice Mayor Sergio Robles",
+      "tier": "Event Supporters",
+      "url": "https://elkgrove.gov/city-council/district-4-sergio-robles",
+      "logo": "2025/sergio-robles.png"
+    }
+  ]
+}

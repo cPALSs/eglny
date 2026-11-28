@@ -87,25 +87,74 @@
         revealPage,
       } = window.EglnySite;
       initPageShell("sponsorship");
+
+      // TOC scroll-spy + Past sponsors tabs <-> URL hash.
+      // #partner, #thank-you-2027, #past-sponsors-2026, #past-sponsors-2025.
+      // #past-sponsors and legacy #thank-you-2026 open 2026.
+      function initPastSponsorsHash() {
+        const section = document.getElementById("past-sponsors");
+        const tabs = section?.querySelector("[data-ls-tabs]");
+        if (!section || !tabs) return;
+        const activePastYear = () => {
+          const tab = tabs.querySelector('[role="tab"][aria-selected="true"]');
+          const year = (tab?.id || "").replace("past-sponsors-tab-", "");
+          return /^\d{4}$/.test(year) ? year : "2026";
+        };
+        const setHash = (next) => {
+          if (next && window.location.hash !== `#${next}`) {
+            try {
+              window.history.replaceState(null, "", `#${next}`);
+            } catch {}
+          }
+        };
+        const toc = document.querySelector("[data-ls-toc], .ls-doc-toc, .site-doc-toc");
+        if (toc) {
+          new MutationObserver(() => {
+            const active = toc.querySelector('[data-toc-target][aria-current="location"]');
+            const id = active?.getAttribute("data-toc-target");
+            if (!id) return;
+            setHash(id === "past-sponsors" ? `past-sponsors-${activePastYear()}` : id);
+          }).observe(toc, { attributes: true, subtree: true, attributeFilter: ["aria-current"] });
+        }
+        tabs.addEventListener("ls:tab-change", (event) => {
+          const year = (event.detail?.tab?.id || "").replace("past-sponsors-tab-", "");
+          if (/^\d{4}$/.test(year)) setHash(`past-sponsors-${year}`);
+        });
+        const openFromHash = () => {
+          let h = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+          if (h === "thank-you-2026") h = "past-sponsors";
+          const year = /^past-sponsors-(\d{4})$/.exec(h)?.[1] ?? (h === "past-sponsors" ? "2026" : null);
+          if (!year) return;
+          document.getElementById(`past-sponsors-tab-${year}`)?.click();
+          section.scrollIntoView({ block: "start" });
+        };
+        window.addEventListener("hashchange", openFromHash);
+        openFromHash();
+      }
       try {
-        const [site, sponsors2026Data, sponsors2027Data] = await Promise.all([
+        const [site, sponsors2026Data, sponsors2027Data, sponsors2025Data] = await Promise.all([
           loadSiteData(),
           loadJsonData("data/lny-2026-sponsors-display.json"),
           loadJsonData("data/lny-2027-sponsors-display.json"),
+          loadJsonData("data/lny-2025-sponsors-display.json"),
         ]);
         setPageTitle(site, site.sponsorship?.headline ?? "Sponsorship");
         document.querySelector('meta[name="description"]').setAttribute(
           "content",
-          "Sponsor Elk Grove Lunar New Year Tết 2027 — Fund The Festival, sponsorship packet, and thank you to our 2026 partners.",
+          "Sponsor Elk Grove Lunar New Year Tết 2027 — Fund The Festival, sponsorship packet, and thank you to our past partners.",
         );
         document.getElementById("main").innerHTML = renderSponsorshipPage(
           site.sponsorship,
           sponsors2026Data,
           sponsors2027Data,
+          sponsors2025Data,
         );
-        initDocToc();
+        window.LSDS?.initTabs?.(document.getElementById("main"));
+        // syncHash off: this page owns the hash for past-sponsors tabs.
+        initDocToc({ syncHash: false });
         mountFooter(site);
         if (typeof revealPage === "function") revealPage();
+        initPastSponsorsHash();
       } catch (err) {
         document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
         if (typeof revealPage === "function") revealPage();

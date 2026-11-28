@@ -54,19 +54,19 @@
   },
   "cta": {
     "primaryLabel": "Register as vendor",
-    "primaryHref": "/vendors/",
+    "primaryHref": "/vendor-booths/",
     "teamLabel": "Join the team",
     "teamHref": "/team/",
     "volunteerWeekendLabel": "Volunteer that weekend",
-    "volunteerWeekendHref": "/production/volunteer/",
+    "volunteerWeekendHref": "/volunteer/",
     "sponsorLabel": "Sponsor the festival",
     "sponsorHref": "/sponsorship/",
     "programsLabel": "Sign up for activities",
-    "programsHref": "/production/activity-signups/",
+    "programsHref": "/activity-signups/",
     "sponsorsLabel": "2026 sponsors",
-    "sponsorsHref": "/sponsorship/#thank-you-2026",
+    "sponsorsHref": "/sponsorship/#past-sponsors",
     "archiveLabel": "2026 archive",
-    "archiveHref": "https://www.elkgrovelunarnewyear.com/"
+    "archiveHref": "https://sites.google.com/elkgrovelunarnewyear.com/www/home"
   },
   "sneakPreview": {
     "headline": "Sneak preview",
@@ -76,7 +76,7 @@
     "foodLabel": "Food menu",
     "foodHref": "/food/",
     "vendorsLabel": "Vendors",
-    "vendorsHref": "/vendors-list/"
+    "vendorsHref": "/vendors/"
   },
   "apply": {
     "email": "contact@eglny.com",
@@ -104,7 +104,7 @@
       "discordNote": "Day-to-day asks, intros, and grapevine recruiting.",
       "applyNote": "Apply as Coordinator — name the Director seat or committee role (or vision) you’re interested in, preferred contact method (email, text, or phone), and any other events you’re already working on this season.",
       "skillsCtaLabel": "Browse volunteer openings",
-      "skillsHref": "/production/volunteer/"
+      "skillsHref": "/volunteer/"
     },
     "skillsProjects": {
       "title": "Volunteering",
@@ -421,12 +421,12 @@
         {
           "title": "Tết Tailgate",
           "emoji": "🏈",
-          "own": "Gift budget · Sunday Tailgate chapter · Big Game licensing · vendor/contract path · handoff to Main-Stage Watch when separate"
+          "own": "Gift budget · Sunday Tailgate chapter · Big Game licensing (elective, if funded) · vendor/contract path · handoff to Main-Stage Watch when separate"
         },
         {
           "title": "Main-Stage Watch",
           "emoji": "📺",
-          "own": "Gift budget · Tailgate outdoor watch ops contracts · peak security coordination with Site & Ops"
+          "own": "Gift budget (elective, if funded) · Tailgate outdoor watch ops contracts · peak security coordination with Site & Ops"
         }
       ]
     },
@@ -560,12 +560,12 @@
       {
         "title": "Volunteering",
         "body": "Skills projects, day-of help, and a path to Team for planning seats and open roles.",
-        "href": "/production/volunteer/"
+        "href": "/volunteer/"
       },
       {
         "title": "Activity sign-ups",
         "body": "Open participant registrations for festival-weekend activities — start with Star of Spring Mini-Pageant.",
-        "href": "/production/activity-signups/"
+        "href": "/activity-signups/"
       },
       {
         "title": "Sponsorship",
@@ -575,7 +575,7 @@
       {
         "title": "Vendor booths",
         "body": "Single booths on Eventeny, Custom Zones for a named corner, selection rounds, and fees.",
-        "href": "/vendors/"
+        "href": "/vendor-booths/"
       }
     ]
   },
@@ -644,7 +644,7 @@
       {
         "title": "Vendors",
         "body": "Round 1 craft merchants and nonprofit community tables. Food is on the food menu; children’s activity tables will be on Kids Village.",
-        "href": "/vendors-list/"
+        "href": "/vendors/"
       },
       {
         "title": "Kids Village",
@@ -671,7 +671,7 @@
       {
         "title": "2026 archive",
         "body": "Prior-year Elk Grove Lunar New Year site — photos, recap, and archive pages.",
-        "href": "https://www.elkgrovelunarnewyear.com/",
+        "href": "https://sites.google.com/elkgrovelunarnewyear.com/www/home",
         "external": true
       }
     ]
@@ -986,7 +986,7 @@
       },
       {
         "label": "2026 archive",
-        "href": "https://www.elkgrovelunarnewyear.com/"
+        "href": "https://sites.google.com/elkgrovelunarnewyear.com/www/home"
       }
     ]
   },
@@ -1014,7 +1014,7 @@
       },
       "vendor": {
         "label": "I just want a booth spot",
-        "href": "/vendors/"
+        "href": "/vendor-booths/"
       }
     },
     "diySection": {
@@ -1186,7 +1186,7 @@
       },
       {
         "q": "Are Tailgate camps the same as custom zones?",
-        "a": "No. Sunday **camps** are jersey-crew patches by the Big Game screen inside Kloss. Custom zones are themed villages / plazas elsewhere on the map — different product, different intake."
+        "a": "No. Sunday **camps** are jersey-crew patches by the Sunday watch party screen inside Kloss. Custom zones are themed villages / plazas elsewhere on the map — different product, different intake."
       },
       {
         "q": "Do festival organizers book singers for my zone?",

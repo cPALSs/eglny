@@ -5,7 +5,8 @@
     "Silver Sponsors",
     "Children's Show Presenter",
     "Bronze Sponsors",
-    "Community Sponsors"
+    "Community Sponsors",
+    "In-Kind Service"
   ],
   "sponsors": [
     {
@@ -44,6 +45,64 @@
       "tier": "Community Sponsors",
       "url": "https://health.ucdavis.edu/",
       "logo": "2026/uc-davis-health.png"
+    },
+    {
+      "name": "Bao Productions",
+      "tier": "In-Kind Service",
+      "url": null,
+      "logo": null,
+      "caption": "events + automation"
+    },
+    {
+      "name": "Curriculum Vitae Staffing Solutions",
+      "tier": "In-Kind Service",
+      "url": null,
+      "logo": "2026/curriculum-vitae.jpg",
+      "cardBg": "#05032B"
+    },
+    {
+      "name": "H.E.A.R.T.",
+      "tier": "In-Kind Service",
+      "url": null,
+      "logo": "2026/heart.png",
+      "cardBg": "#E4CEB7",
+      "cardBleed": true
+    },
+    {
+      "name": "Kevin P. Nguyen Team — CrossCountry Mortgage",
+      "tier": "In-Kind Service",
+      "url": "https://ccm.com/phuong-nguyen",
+      "logo": "2026/kevin-p-nguyen-team.png"
+    },
+    {
+      "name": "Lazzarini Whiteford Young LLP",
+      "tier": "In-Kind Service",
+      "url": "https://www.lwyllp.com/",
+      "logo": "2026/lwy-llp.png"
+    },
+    {
+      "name": "Miss & Miss Teen Vietnam Northern California",
+      "tier": "In-Kind Service",
+      "url": "https://instagram.com/missvietnamnorcal",
+      "logo": "2025/mv-norcal.png"
+    },
+    {
+      "name": "Pho Mi Amor",
+      "tier": "In-Kind Service",
+      "url": null,
+      "logo": "2026/pho-mi-amor.png"
+    },
+    {
+      "name": "Tido Financial",
+      "tier": "In-Kind Service",
+      "url": "https://www.tidofinancial.com/",
+      "logo": "2025/tido-financial.png"
+    },
+    {
+      "name": "TotalCare Property Services",
+      "tier": "In-Kind Service",
+      "url": null,
+      "logo": "2026/totalcare-property-services.png"
     }
   ]
 }

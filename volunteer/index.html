@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto" data-ls-theme="vermillion" data-ls-scheme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    html { background: #1a0806; color-scheme: dark; }
+    html[data-theme="light"] { background: #ffffff; color-scheme: light; }
+    @media (prefers-color-scheme: light) {
+      html[data-theme="auto"] { background: #ffffff; color-scheme: light; }
+    }
+    html.js:not(.is-hydrated) body { visibility: hidden; }
+  </style>
+  <script>
+    document.documentElement.classList.add("js");
+    setTimeout(function () { document.documentElement.classList.add("is-hydrated"); }, 3000);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <title>Volunteering — Elk Grove Lunar New Year Tết</title>
+  <script src="../clean-urls.js"></script>
+  <script>
+    (function () {
+      try {
+        var t = sessionStorage.getItem("eglny-theme");
+        if (t === "light" || t === "dark") { document.documentElement.setAttribute("data-theme", t); document.documentElement.setAttribute("data-ls-scheme", t); }
+      } catch (_) {}
+    })();
+  </script>
+<link rel="stylesheet" href="/vendor/lsds/lsds.css" />
+  <link rel="stylesheet" href="/vendor/lsds/themes/vermillion.css" />
+  <link rel="stylesheet" href="../site.css" />
+  <meta name="description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects, day-of help, and a path to Team for open roles." />
+  <link rel="canonical" href="https://eglny.com/volunteer/" />
+  <meta property="og:title" content="Volunteering — Elk Grove Lunar New Year Tết" />
+  <meta property="og:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects, day-of help, and a path to Team for open roles." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eglny.com/volunteer/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Volunteering — Elk Grove Lunar New Year Tết" />
+  <meta name="twitter:description" content="Volunteering for Elk Grove Lunar New Year Tết 2027 — skills projects, day-of help, and a path to Team for open roles." />
+  <meta property="og:image" content="https://eglny.com/assets/og-default.jpg?v=1793670221" />
+  <meta name="twitter:image" content="https://eglny.com/assets/og-default.jpg?v=1793670221" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SFT9M0ME"></script>
+  <script src="../analytics.js"></script>
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main class="page-wrap page-wrap--doc" id="main">
+    <div id="seo-prerender" class="seo-prerender">
+      <section class="hero">
+        <h1>Volunteering</h1>
+        <p>Thank you for wanting to help make Tết happen.</p>
+      </section>
+      <section>
+        <h2>Planning Coordinators</h2>
+        <p>See <a href="/team/">Team</a> for open Coordinator roles — Directors (decision authority) and committee members who help execute.</p>
+      </section>
+      <section>
+        <h2>Day-of help</h2>
+        <p>Help run Elk Grove Lunar New Year Tết at Elk Grove Park — open to adults and high school students. Pick a time shift on the form; at HQ check-in we assign stations. This is an interest sign-up; everyone is waitlisted until we approve.</p>
+        <table>
+          <thead><tr><th>Shift</th><th>Tasks</th></tr></thead>
+          <tbody>
+            <tr><td>Fri, Feb 12<br>3:30–6:00 PM</td><td><strong>After-school Setup</strong> — Flags &amp; hanging, décor, tables &amp; chairs. Outdoor work winds down near sunset.</td></tr>
+            <tr><td>Sat, Feb 13 &amp; Sun, Feb 14<br>9:00 AM–1:00 PM</td><td><strong>Morning</strong> — Finish setup (tables, chairs, light décor); HQ check-in; info / welcome booth as guests arrive; light site care.</td></tr>
+            <tr><td>Sat &amp; Sun<br>1:00–5:00 PM</td><td><strong>Noon</strong> — Peak guest hours: info / welcome booth; HQ / runners; light site care; light spot-fix if something shifted.</td></tr>
+            <tr><td>Sat &amp; Sun<br>5:00–9:00 PM</td><td><strong>Evening / Strike</strong> — Info booth through last guests (~7 PM); then tear down tables, chairs, and décor for load-out. Sun strike is usually the heavier leave-behind.</td></tr>
+          </tbody>
+        </table>
+        <p><a href="https://app.buglevolunteers.com/registration?id=d0f3bb0b-d6b4-468c-809f-7011866f5222" rel="noopener">Sign up for interest</a></p>
+      </section>
+      <section>
+        <h2>Skills projects</h2>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/vendor/lsds/lsds.iife.js"></script>
+  <script src="../doc-scroll.js"></script>
+  <script src="../site.js"></script>
+  <script>
+    (async function () {
+      const {
+        initPageShell,
+        loadSiteData,
+        mountFooter,
+        renderVolunteerPage,
+        initDocToc,
+        setPageTitle,
+        escapeHtml,
+        linkFirstTeam,
+        revealPage,
+      } = window.EglnySite;
+      initPageShell("volunteer");
+      try {
+        const site = await loadSiteData();
+        const block = site.teamPage?.skillsProjects;
+        setPageTitle(site, block?.headline ?? block?.title ?? "Volunteering");
+        document.getElementById("main").innerHTML = `
+          <section class="hero">
+            <h1>${escapeHtml(block?.headline ?? block?.title ?? "Volunteering")}</h1>
+            ${block?.lead ? `<p class="hero-lead">${linkFirstTeam(escapeHtml(block.lead))}</p>` : ""}
+          </section>
+          ${renderVolunteerPage(site)}
+        `;
+        initDocToc();
+        mountFooter(site);
+        if (typeof revealPage === "function") revealPage();
+      } catch (err) {
+        document.getElementById("main").innerHTML = `<p class="error-panel">${escapeHtml(err.message)}</p>`;
+        if (typeof revealPage === "function") revealPage();
+      }
+    })();
+  </script>
+</body>
+</html>

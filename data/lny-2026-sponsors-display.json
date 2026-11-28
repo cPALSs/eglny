@@ -5,7 +5,8 @@
     "Platinum Sponsors",
     "Bronze Sponsors",
     "Community Sponsors",
-    "Media Sponsors"
+    "Media Sponsors",
+    "Event Supporters"
   ],
   "sponsors": [
     {
@@ -41,91 +42,91 @@
     {
       "name": "Fire Wings",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://firewings.com/",
       "logo": "2026/fire-wings.png"
     },
     {
       "name": "Hydro City",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://shophydrocity.com/",
       "logo": "2026/hydro-city.png"
     },
     {
       "name": "Metro by T-Mobile",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://www.metrobyt-mobile.com/",
       "logo": "2026/metro-by-tmobile.png"
     },
     {
       "name": "Parkwest Casino Lotus",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://parkwestcasinolotus.com/",
       "logo": "2026/parkwest-casino-lotus.png"
     },
     {
       "name": "Phoong Law",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://phoonglaw.com/",
       "logo": "2026/phoong-law.png"
     },
     {
       "name": "SF Supermarket",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://shunfatsupermarket.com/",
       "logo": "2026/sf-supermarket.png"
     },
     {
       "name": "Verizon",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://www.verizon.com/",
       "logo": "2026/verizon.png"
     },
     {
       "name": "Xfinity",
       "tier": "Bronze Sponsors",
-      "url": null,
+      "url": "https://www.xfinity.com/",
       "logo": "2026/xfinity.png"
     },
     {
       "name": "Asian American Business Club",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://aabcsacramento.com/",
       "logo": "2026/aabc.png"
     },
     {
       "name": "Chason's",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://crabstadium.com/",
       "logo": "2026/chasons.png"
     },
     {
       "name": "Hook & Reel",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://hookreel.com/location/sacramento/",
       "logo": "2026/hook-and-reel.png"
     },
     {
       "name": "Darren Suen",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://elkgrove.gov/city-council/district-1-darren-suen",
       "logo": "2026/darren-suen.png"
     },
     {
       "name": "Rod Brewer",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://elkgrove.gov/city-council/district-2-rod-brewer",
       "logo": "2026/rod-brewer.png"
     },
     {
       "name": "Thien Ho",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://www.sacda.org/",
       "logo": "2026/thien-ho.png"
     },
     {
       "name": "Pat Hume",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://bos.saccounty.gov/District5/",
       "logo": "2026/pat-hume.png"
     },
     {
@@ -137,44 +138,163 @@
     {
       "name": "KP International Market",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://sac.kpmart.com/",
       "logo": "2026/kp-international-market.png"
     },
     {
       "name": "Journey to the Dumpling",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://journeytothedumpling.com/",
       "logo": "2026/journey-to-the-dumpling.png"
     },
     {
       "name": "Anthem",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://www.anthem.com/ca",
       "logo": "2026/anthem.png"
     },
     {
       "name": "California Waste Solutions",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://calwaste.com/",
       "logo": "2026/california-waste-solutions.png"
     },
     {
       "name": "Vietnamese American Business Association",
       "tier": "Community Sponsors",
-      "url": null,
+      "url": "https://vabaus.com/",
       "logo": "2026/vaba.png"
     },
     {
       "name": "MY58",
       "tier": "Media Sponsors",
-      "url": null,
-      "logo": "2026/my58.png"
+      "url": "https://www.kcra.com/",
+      "logo": "2026/my58.png",
+      "cardFit": "cover"
     },
     {
       "name": "Messenger Publishing Group",
       "tier": "Media Sponsors",
       "url": null,
       "logo": "2026/messenger-publishing-group.png"
+    },
+    {
+      "name": "Angels of Sound",
+      "tier": "Event Supporters",
+      "url": "https://angelsofsound.com/",
+      "logo": "2026/angels-of-sound.png"
+    },
+    {
+      "name": "APIDA Center at Sacramento State",
+      "tier": "Event Supporters",
+      "url": "https://www.csus.edu/student-affairs/centers-programs/apida-center/",
+      "logo": "2026/apida-center-sac-state.png"
+    },
+    {
+      "name": "AROS Powered by SSD",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/aros.png"
+    },
+    {
+      "name": "Bob's Club",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/bobs-club.png"
+    },
+    {
+      "name": "Curriculum Vitae Staffing Solutions",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/curriculum-vitae.jpg",
+      "cardBg": "#05032B"
+    },
+    {
+      "name": "Dulciland Colombia",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/dulciland.png"
+    },
+    {
+      "name": "Elevative",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/elevative.png"
+    },
+    {
+      "name": "H.E.A.R.T.",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/heart.png",
+      "cardBg": "#E4CEB7",
+      "cardBleed": true
+    },
+    {
+      "name": "Job Corps",
+      "tier": "Event Supporters",
+      "url": "https://www.jobcorps.gov/",
+      "logo": "2026/job-corps.png"
+    },
+    {
+      "name": "Kevin P. Nguyen Team — CrossCountry Mortgage",
+      "tier": "Event Supporters",
+      "url": "https://ccm.com/phuong-nguyen",
+      "logo": "2026/kevin-p-nguyen-team.png"
+    },
+    {
+      "name": "Lazzarini Whiteford Young LLP",
+      "tier": "Event Supporters",
+      "url": "https://www.lwyllp.com/",
+      "logo": "2026/lwy-llp.png"
+    },
+    {
+      "name": "Mack Lab Media Group",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/mack-lab-media-group.png"
+    },
+    {
+      "name": "Mamie's Administrative Services",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/mamies-administrative-services.png"
+    },
+    {
+      "name": "Miracles in Old Elk Grove",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/miracles-in-old-elk-grove.png"
+    },
+    {
+      "name": "Miss & Miss Teen Vietnam Northern California",
+      "tier": "Event Supporters",
+      "url": "https://instagram.com/missvietnamnorcal",
+      "logo": "2025/mv-norcal.png"
+    },
+    {
+      "name": "Pho Mi Amor",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/pho-mi-amor.png"
+    },
+    {
+      "name": "Tido Financial",
+      "tier": "Event Supporters",
+      "url": "https://www.tidofinancial.com/",
+      "logo": "2025/tido-financial.png"
+    },
+    {
+      "name": "TotalCare Property Services",
+      "tier": "Event Supporters",
+      "url": null,
+      "logo": "2026/totalcare-property-services.png"
+    },
+    {
+      "name": "Vivian Vu Realtor",
+      "tier": "Event Supporters",
+      "url": "https://linktr.ee/vivianvu",
+      "logo": "2026/vivian-vu-realtor.png",
+      "cardBg": "#000000"
     }
   ]
 }

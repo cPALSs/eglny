@@ -1037,7 +1037,7 @@ export function mountMenuViewer(container, menu) {
   function render() {
     titleEl.textContent = currentMenu.festival || "Festival Food";
     disclaimerEl.innerHTML =
-      '<a href="/vendors/">Register as a vendor</a>. Menu subject to change. Filters reflect vendor self-report — not medical advice.';
+      '<a href="/vendor-booths/">Register as a vendor</a>. Menu subject to change. Filters reflect vendor self-report — not medical advice.';
     if (updatedEl) updatedEl.textContent = "";
     if (sidebarToolbarEl) sidebarToolbarEl.hidden = view === "theme";
     if (themeControlsEl) themeControlsEl.hidden = view !== "theme";

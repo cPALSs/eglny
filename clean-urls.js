@@ -46,12 +46,42 @@
     return;
   }
 
-  if (pathname === "/vendors-directory" || pathname === "/vendors-directory/") {
-    location.replace("/vendors-list/" + search + hash);
+  if (
+    pathname === "/vendors-directory" ||
+    pathname === "/vendors-directory/" ||
+    pathname === "/vendors-list" ||
+    pathname === "/vendors-list/"
+  ) {
+    location.replace("/vendors/" + search + hash);
     return;
   }
 
   if (pathname === "/food-menu" || pathname === "/food-menu/") {
     location.replace("/food/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/production/volunteer" || pathname === "/production/volunteer/") {
+    location.replace("/volunteer/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/production/activity-signups" || pathname === "/production/activity-signups/") {
+    location.replace("/activity-signups/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/resources/media" || pathname === "/resources/media/") {
+    location.replace("/media/" + search + hash);
+    return;
+  }
+
+  if (pathname === "/resources/blog" || pathname === "/resources/blog/") {
+    location.replace("/blog/" + search + hash);
+    return;
+  }
+
+  if (pathname.startsWith("/resources/blog/")) {
+    location.replace(pathname.replace(/^\/resources\/blog\//, "/blog/") + search + hash);
   }
 })();

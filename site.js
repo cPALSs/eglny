@@ -164,8 +164,8 @@
         href: "/about/",
         children: [
           { id: "history", label: "History", href: "/about/history/" },
-          { id: "blog", label: "Blog", href: "/resources/blog/" },
-          { id: "media", label: "Media", href: "/resources/media/" },
+          { id: "blog", label: "Blog", href: "/blog/" },
+          { id: "media", label: "Media", href: "/media/" },
         ],
       },
       {
@@ -178,16 +178,16 @@
             id: "volunteer",
             label: "Volunteering",
             navLabel: "Volunteering",
-            href: "/production/volunteer/",
+            href: "/volunteer/",
           },
           {
             id: "activity-signups",
             label: "Activity sign-ups",
             navLabel: "Activity sign-ups",
-            href: "/production/activity-signups/",
+            href: "/activity-signups/",
           },
           { id: "sponsorship", label: "Sponsorship", navLabel: "Sponsorship", href: "/sponsorship/" },
-          { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendors/" },
+          { id: "booths", label: "Vendor booths", navLabel: "Vendor booths", href: "/vendor-booths/" },
         ],
       },
       {
@@ -201,7 +201,7 @@
             id: "vendors-list",
             label: "Vendors",
             navLabel: "Vendors",
-            href: "/vendors-list/",
+            href: "/vendors/",
           },
           { id: "kids-village", label: "Kids Village", navLabel: "Kids Village", href: "/kids-village/" },
         ],
@@ -213,7 +213,7 @@
         children: [
           { id: "season", label: "Lunar New Year Season", href: "/resources/season/" },
           { id: "lion-dance", label: "Lion dance groups", navLabel: "Lion dance groups", href: "https://littlesaigonsac.town/lists/lion-dance/", external: true },
-          { id: "archive2026", label: "2026 archive", navLabel: "2026 archive", href: "https://www.elkgrovelunarnewyear.com/", external: true },
+          { id: "archive2026", label: "2026 archive", navLabel: "2026 archive", href: "https://sites.google.com/elkgrovelunarnewyear.com/www/home", external: true },
         ],
       },
     ];
@@ -386,7 +386,7 @@
     const contactEmail = siteContactEmail(site);
     const privacyHref = `${navPrefix()}privacy/`;
     const coalition = (footer.coalitionLinks ?? [])
-      .filter((link) => link.href !== "https://www.elkgrovelunarnewyear.com/")
+      .filter((link) => link.href !== "https://sites.google.com/elkgrovelunarnewyear.com/www/home")
       .map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>`)
       .join("\u00a0+\u00a0");
 
@@ -888,8 +888,8 @@
     return buildOpenRolesToc(site);
   }
 
-  function initDocToc() {
-    return window.DocScroll.init();
+  function initDocToc(options) {
+    return window.DocScroll.init(options);
   }
 
   function renderAboutSections(about) {
@@ -1635,9 +1635,18 @@
         const cards = byTier
           .get(tier)
           .map((s) => {
+            const isCover = s.cardFit === "cover";
+            const isBleed = isCover || s.cardBleed === true;
+            const imgStyle = isCover
+              ? ' style="width:100%;height:100%;object-fit:cover"'
+              : isBleed
+                ? ' style="height:100%;width:auto"'
+                : "";
             const inner = s.logo
-              ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}" />`
-              : escapeHtml(s.name);
+              ? `<img src="${escapeHtml(logoPrefix)}${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)}"${imgStyle} />`
+              : s.caption
+                ? `<span class="ls-sponsor-label" style="display:flex;flex-direction:column;align-items:center;line-height:1.2;text-align:center"><span class="ls-sponsor-name">${escapeHtml(s.name)}</span><span class="ls-sponsor-caption" style="font-size:0.8em;opacity:0.8">${escapeHtml(s.caption)}</span></span>`
+                : escapeHtml(s.name);
             const cardBg = resolveSponsorCardBg(s);
             const styleAttr = cardBg
               ? ` style="--ls-sponsor-card-bg:${cardBg};--ls-sponsor-opacity:1"`
@@ -1647,9 +1656,13 @@
               s.logoOnDark === true ||
               s.darkBg === true ||
               (lum != null && lum < 0.25);
-            const cardClass = onDark
-              ? "ls-sponsor-card ls-sponsor-card--on-dark"
-              : "ls-sponsor-card";
+            const cardClass = [
+              "ls-sponsor-card",
+              onDark ? "ls-sponsor-card--on-dark" : "",
+              isBleed ? "ls-sponsor-card--bleed" : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
             if (s.url) {
               return `<a class="${cardClass}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener"${styleAttr}>${inner}</a>`;
             }
@@ -1681,7 +1694,7 @@
           </section>`;
   }
 
-  function renderSponsorshipPage(sponsorship, sponsors2026Data, sponsors2027Data) {
+  function renderSponsorshipPage(sponsorship, sponsors2026Data, sponsors2027Data, sponsors2025Data) {
     const links = sponsorship?.links ?? [];
     const partnerCards = links
       .map((link) => {
@@ -1711,8 +1724,15 @@
       centerGrid: false,
     });
     const tiers2026Html = renderSponsorTierHtml(sponsors2026Data, {
+      idPrefix: "2026-",
       centerGrid: false,
     });
+    const tiers2025Html = sponsors2025Data
+      ? renderSponsorTierHtml(sponsors2025Data, {
+          idPrefix: "2025-",
+          centerGrid: false,
+        })
+      : "";
 
     const tocItems = [
       { id: "partner", label: sponsorship?.partnerTitle ?? "Partner with us" },
@@ -1721,8 +1741,8 @@
         label: sponsorship?.sponsors2027TocLabel ?? "2027 sponsors",
       },
       {
-        id: "thank-you-2026",
-        label: sponsorship?.sponsors2026TocLabel ?? `${year} sponsors`,
+        id: "past-sponsors",
+        label: sponsorship?.pastSponsorsTocLabel ?? "Past sponsors",
       },
     ];
 
@@ -1733,6 +1753,26 @@
           `<a href="mailto:${escapeHtml(partnerEmail)}?subject=${encodeURIComponent("LNY 2027 sponsorship")}">${escapeHtml(partnerEmail)}</a>`,
         )}</p>`
       : "";
+
+    const pastYears = [
+      { year: "2026", html: tiers2026Html || "<p>No sponsors to display.</p>" },
+      ...(tiers2025Html ? [{ year: "2025", html: tiers2025Html }] : []),
+    ];
+    const pastTabsHtml = `
+      <div class="ls-tabs" data-ls-tabs>
+        <div class="ls-tablist" role="tablist" aria-label="Past sponsors by year">
+          ${pastYears
+            .map(
+              (item, idx) => `<button type="button" class="ls-tab" role="tab" id="past-sponsors-tab-${item.year}" aria-controls="past-sponsors-panel-${item.year}" aria-selected="${idx === 0 ? "true" : "false"}" tabindex="${idx === 0 ? "0" : "-1"}">${item.year}</button>`,
+            )
+            .join("")}
+        </div>
+        ${pastYears
+          .map(
+            (item, idx) => `<div class="ls-tabpanel" role="tabpanel" id="past-sponsors-panel-${item.year}" aria-labelledby="past-sponsors-tab-${item.year}"${idx === 0 ? "" : " hidden"}>${item.html}</div>`,
+          )
+          .join("")}
+      </div>`;
 
     const mainHtml = `
       <section class="content-section ls-doc-section" id="partner" data-doc-section>
@@ -1746,11 +1786,11 @@
         <p>${escapeHtml(thankYou2027Lead)}</p>
       </section>
       ${tiers2027Html}
-      <section class="sponsorship-thank-you ls-doc-section" id="thank-you-2026" data-doc-section>
-        <h2 class="sponsorship-thank-you-title">${escapeHtml(thankYouTitle)}</h2>
-        <p>${escapeHtml(thankYouLead)}</p>
-      </section>
-      ${tiers2026Html || "<p>No sponsors to display.</p>"}`;
+      <section class="sponsorship-thank-you ls-doc-section" id="past-sponsors" data-doc-section>
+        <h2 class="sponsorship-thank-you-title">${escapeHtml(sponsorship?.pastSponsorsTitle ?? "Past sponsors")}</h2>
+        <p>${escapeHtml(sponsorship?.pastSponsorsLead ?? "Thank you to the partners and sponsors who made past festivals possible.")}</p>
+        ${pastTabsHtml}
+      </section>`;
 
     return `
       <section class="hero">
@@ -2947,7 +2987,7 @@
     const diy = prompts.diy;
     const help = prompts.help;
     const vendor = prompts.vendor;
-    const vendorHref = vendor?.href ?? "/vendors/";
+    const vendorHref = vendor?.href ?? "/vendor-booths/";
     return `
     <div class="host-prompt-row">
       <button type="button" class="ls-btn ls-btn--secondary btn btn-secondary" data-host-prompt="diy">${escapeHtml(diy.label)}</button>
@@ -2997,7 +3037,7 @@
       ${hostApply.vendorNote
         ? `<p class="muted">${escapeHtml(hostApply.vendorNote).replace(
             /Vendor booths/,
-            '<a href="/vendors/">Vendor booths</a>',
+            '<a href="/vendor-booths/">Vendor booths</a>',
           )}</p>`
         : ""}
       ${hostApply.responseNote ? `<p class="muted">${escapeHtml(hostApply.responseNote)}</p>` : ""}
