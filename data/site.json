@@ -604,7 +604,14 @@
         "ctaHref": "https://tally.so/r/dbb7po",
         "flier": {
           "src": "/assets/programming/star-of-spring-mini-pageant-2027.jpg",
-          "alt": "Star of Spring 2027 Mini Pageant flyer — Miss & Miss Teen Vietnam Northern California"
+          "alt": "Star of Spring 2027 Mini Pageant flyer — Miss & Miss Teen Vietnam Northern California",
+          "qr": {
+            "href": "https://tally.so/r/dbb7po",
+            "left": 10.1,
+            "top": 75.1,
+            "width": 22.2,
+            "height": 17.5
+          }
         }
       }
     ]
@@ -622,7 +629,14 @@
         "ctaHref": "https://tally.so/r/dbb7po",
         "flier": {
           "src": "/assets/programming/star-of-spring-mini-pageant-2027.jpg",
-          "alt": "Star of Spring 2027 Mini Pageant flyer — Miss & Miss Teen Vietnam Northern California"
+          "alt": "Star of Spring 2027 Mini Pageant flyer — Miss & Miss Teen Vietnam Northern California",
+          "qr": {
+            "href": "https://tally.so/r/dbb7po",
+            "left": 10.1,
+            "top": 75.1,
+            "width": 22.2,
+            "height": 17.5
+          }
         }
       }
     ]

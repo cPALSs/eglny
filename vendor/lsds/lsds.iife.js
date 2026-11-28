@@ -23,6 +23,7 @@ var LSDS = (() => {
     closeLightbox: () => closeLightbox,
     initAll: () => initAll,
     initDocScroll: () => initDocScroll,
+    initFliers: () => initFliers,
     initHeadingAnchors: () => initHeadingAnchors,
     initLangSwitch: () => initLangSwitch,
     initLightbox: () => initLightbox,
@@ -1123,6 +1124,189 @@ var LSDS = (() => {
     root.addEventListener("click", (event) => onTriggerClick(event, root));
   }
 
+  // src/experimental/flier/flier.js
+  var MOBILE_QUERY = "(max-width: 768px)";
+  var bound2 = /* @__PURE__ */ new WeakSet();
+  var toastTimer = null;
+  var LABELS2 = {
+    en: {
+      share: "Share",
+      copyLink: "Copy link",
+      shareAria: "Share {title}",
+      copyAria: "Copy link to {title}",
+      linkCopied: "Link copied",
+      copyFailed: "Could not copy link",
+      scanQr: "Scan QR code to register"
+    },
+    vi: {
+      share: "Chia s\u1EBB",
+      copyLink: "Sao ch\xE9p li\xEAn k\u1EBFt",
+      shareAria: "Chia s\u1EBB {title}",
+      copyAria: "Sao ch\xE9p li\xEAn k\u1EBFt {title}",
+      linkCopied: "\u0110\xE3 sao ch\xE9p li\xEAn k\u1EBFt",
+      copyFailed: "Kh\xF4ng th\u1EC3 sao ch\xE9p li\xEAn k\u1EBFt",
+      scanQr: "Qu\xE9t m\xE3 QR \u0111\u1EC3 \u0111\u0103ng k\xFD"
+    }
+  };
+  var ICON_ZOOM = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg>';
+  var ICON_SHARE = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+  var ICON_LINK = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+  function labelsFor2() {
+    const lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    return LABELS2[lang] || LABELS2.en;
+  }
+  var canWebShare = () => typeof navigator !== "undefined" && typeof navigator.share === "function";
+  var isMobile = () => window.matchMedia(MOBILE_QUERY).matches;
+  function titleFor(figure, trigger) {
+    return figure.dataset.lsFlierTitle || trigger.dataset.lsFlierAlt || "Flier";
+  }
+  function shareUrlFor(figure) {
+    return figure.dataset.lsFlierShareUrl || window.location.href;
+  }
+  function srcFor(trigger) {
+    return trigger.dataset.lsFlierSrc || trigger.getAttribute("href") || "";
+  }
+  function fileNameFor(src) {
+    try {
+      const base = new URL(src, window.location.href).pathname.split("/").pop();
+      return base && /\.[a-z0-9]+$/i.test(base) ? base : "flier.jpg";
+    } catch (_) {
+      return "flier.jpg";
+    }
+  }
+  function showToast(message, anchor) {
+    const host = anchor?.closest?.(".ls-lightbox[open]") || document.body;
+    let toast = document.querySelector(".ls-flier-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "ls-flier-toast";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+    }
+    if (toast.parentNode !== host) host.appendChild(toast);
+    toast.textContent = message;
+    toast.classList.add("ls-is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("ls-is-visible"), 2200);
+  }
+  async function copyLink(url, anchor, L) {
+    try {
+      await navigator.clipboard.writeText(url);
+      showToast(L.linkCopied, anchor);
+    } catch (_) {
+      showToast(L.copyFailed, anchor);
+    }
+  }
+  async function shareFlier(src, title, url) {
+    if (src && typeof navigator.canShare === "function") {
+      try {
+        const res = await fetch(new URL(src, window.location.href));
+        if (res.ok) {
+          const blob = await res.blob();
+          const file = new File([blob], fileNameFor(src), { type: blob.type || "image/jpeg" });
+          const payload = { files: [file], title, text: title };
+          if (navigator.canShare(payload)) {
+            await navigator.share(payload);
+            return;
+          }
+        }
+      } catch (err) {
+        if (err?.name === "AbortError") throw err;
+      }
+    }
+    await navigator.share({ title, text: title, url });
+  }
+  async function runAction(figure, trigger, L, anchor) {
+    if (anchor.dataset.busy === "1") return;
+    anchor.dataset.busy = "1";
+    const url = shareUrlFor(figure);
+    const title = titleFor(figure, trigger);
+    try {
+      if (canWebShare()) await shareFlier(srcFor(trigger), title, url);
+      else await copyLink(url, anchor, L);
+    } catch (err) {
+      if (err?.name === "AbortError") return;
+      console.warn("Flier share failed", err);
+      await copyLink(url, anchor, L);
+    } finally {
+      delete anchor.dataset.busy;
+    }
+  }
+  function actionSpec(L, title) {
+    return canWebShare() ? { icon: ICON_SHARE, label: L.share, aria: L.shareAria.replace("{title}", title) } : { icon: ICON_LINK, label: L.copyLink, aria: L.copyAria.replace("{title}", title) };
+  }
+  function ensureZoomBadge(trigger) {
+    if (trigger.querySelector(":scope > .ls-flier-zoom")) return;
+    const badge = document.createElement("span");
+    badge.className = "ls-flier-zoom";
+    badge.setAttribute("aria-hidden", "true");
+    badge.innerHTML = ICON_ZOOM;
+    trigger.appendChild(badge);
+  }
+  function ensureAction(figure, title, L) {
+    let btn = figure.querySelector(":scope > .ls-flier-action");
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ls-flier-action";
+      figure.appendChild(btn);
+    }
+    const spec = actionSpec(L, title);
+    btn.innerHTML = spec.icon;
+    btn.title = spec.label;
+    btn.setAttribute("aria-label", spec.aria);
+    return btn;
+  }
+  function openInLightbox(figure, trigger, L, title) {
+    openLightbox(
+      [
+        {
+          src: srcFor(trigger),
+          alt: trigger.dataset.lsFlierAlt || "",
+          caption: trigger.dataset.lsFlierCaption || title
+        }
+      ],
+      0,
+      {
+        trigger,
+        renderChrome: (_item, actionsEl) => {
+          const dialog = actionsEl.closest(".ls-lightbox");
+          dialog?.querySelectorAll(".ls-flier-action-chrome").forEach((el) => el.remove());
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "ls-lightbox-action ls-flier-action-chrome";
+          const spec = actionSpec(L, title);
+          btn.innerHTML = spec.icon;
+          btn.title = spec.label;
+          btn.setAttribute("aria-label", spec.aria);
+          btn.addEventListener("click", () => runAction(figure, trigger, L, btn));
+          const close = dialog?.querySelector(".ls-lightbox-top .ls-lightbox-close");
+          if (close) close.before(btn);
+          else actionsEl.appendChild(btn);
+        }
+      }
+    );
+  }
+  function initFliers(root = document) {
+    root.querySelectorAll?.(".ls-flier").forEach((figure) => {
+      if (bound2.has(figure)) return;
+      const trigger = figure.querySelector(".ls-flier-open");
+      if (!trigger) return;
+      bound2.add(figure);
+      const L = labelsFor2();
+      const title = titleFor(figure, trigger);
+      ensureZoomBadge(trigger);
+      const action = ensureAction(figure, title, L);
+      action.addEventListener("click", () => runAction(figure, trigger, L, action));
+      trigger.addEventListener("click", (event) => {
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        if (isMobile()) return;
+        openInLightbox(figure, trigger, L, title);
+      });
+    });
+  }
+
   // src/lsds.js
   function initAll(root = document, options = {}) {
     initSchemeToggle(root, options.scheme);
@@ -1131,6 +1315,7 @@ var LSDS = (() => {
     initSheets(root);
     initTabs(root);
     initLightbox(root);
+    initFliers(root);
     if (root.querySelector?.("[data-ls-toc]")) {
       initDocScroll(options.docScroll);
     }
@@ -1150,7 +1335,8 @@ var LSDS = (() => {
       initTabs,
       initLightbox,
       openLightbox,
-      closeLightbox
+      closeLightbox,
+      initFliers
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => initAll(document), { once: true });

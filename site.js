@@ -1421,31 +1421,25 @@
         const id = p.id || slugifyHeading(p.title || "program");
         const flier = p.flier;
         const shareTitle = p.title || "Program flier";
-        const shareLabel = `Share ${shareTitle} flier`;
-        const shareButtonHtml = flier?.src
-          ? `<button
-              type="button"
-              class="ls-btn ls-btn--tertiary btn btn-tertiary programming-flier-share"
-              data-share-src="${escapeHtml(flier.src)}"
-              data-share-title="${escapeHtml(shareTitle)}"
-              aria-label="${escapeHtml(shareLabel)}"
-              hidden
-            >Share flier</button>`
-          : "";
         const registerHtml =
           p.ctaHref && p.ctaLabel
             ? `<a class="ls-btn ls-btn--primary btn btn-primary" href="${escapeHtml(p.ctaHref)}" target="_blank" rel="noopener">${escapeHtml(p.ctaLabel)}</a>`
             : "";
-        const ctaHtml =
-          registerHtml || shareButtonHtml
-            ? `<p class="cta-row programming-signup-cta">${registerHtml}${shareButtonHtml}</p>`
+        const ctaHtml = registerHtml
+          ? `<p class="cta-row programming-signup-cta">${registerHtml}</p>`
+          : "";
+        const flierAlt = flier?.alt || p.title || "Program flier";
+        const qr = flier?.qr;
+        const qrLinkHtml =
+          qr?.href && [qr.left, qr.top, qr.width, qr.height].every(Number.isFinite)
+            ? `<a class="ls-flier-qr" href="${escapeHtml(qr.href)}" target="_blank" rel="noopener" style="--ls-flier-qr-x:${qr.left}%;--ls-flier-qr-y:${qr.top}%;--ls-flier-qr-w:${qr.width}%;--ls-flier-qr-h:${qr.height}%" aria-label="Scan QR code to register for ${escapeHtml(shareTitle)}"></a>`
             : "";
         const flierHtml = flier?.src
           ? `
-        <figure class="programming-flier">
-          <a class="programming-flier-open" href="${escapeHtml(flier.src)}" target="_blank" rel="noopener">
-            <img class="programming-flier-image" src="${escapeHtml(flier.src)}" alt="${escapeHtml(flier.alt || p.title || "Program flier")}" loading="lazy" width="1080" height="1334" />
-          </a>
+        <figure class="ls-flier programming-flier" data-ls-flier-title="${escapeHtml(shareTitle)}">
+          <a class="ls-flier-open" href="${escapeHtml(flier.src)}" data-ls-flier-src="${escapeHtml(flier.src)}" data-ls-flier-alt="${escapeHtml(flierAlt)}" data-ls-flier-caption="${escapeHtml(shareTitle)}">
+            <img class="ls-flier-img" src="${escapeHtml(flier.src)}" alt="${escapeHtml(flierAlt)}" loading="lazy" width="1080" height="1334" />
+          </a>${qrLinkHtml}
         </figure>`
           : "";
         const contactEmail = p.contactEmail;
@@ -1471,10 +1465,12 @@
         return `
       <section class="content-section ls-doc-section" id="${escapeHtml(id)}" data-doc-section>
         <h2>${escapeHtml(p.title || "Program")}</h2>
-        ${bodyHtml}
-        ${linksHtml}
-        ${ctaHtml}
         ${flierHtml}
+        <div class="programming-signup-copy">
+          ${bodyHtml}
+          ${linksHtml}
+          ${ctaHtml}
+        </div>
       </section>`;
       })
       .join("");
@@ -1487,80 +1483,9 @@
       ${wrapDocLayout(renderDocToc(toc), programsHtml)}`;
   }
 
-  function flierShareFileName(src) {
-    try {
-      const path = new URL(src, window.location.href).pathname;
-      const base = path.split("/").pop();
-      return base && /\.[a-z0-9]+$/i.test(base) ? base : "flier.jpg";
-    } catch (_) {
-      return "flier.jpg";
-    }
-  }
-
-  async function shareProgrammingFlier(button) {
-    if (typeof navigator === "undefined" || typeof navigator.share !== "function") {
-      return;
-    }
-    const src = button.getAttribute("data-share-src");
-    const title = button.getAttribute("data-share-title") || "Programming flier";
-    const pageUrl = window.location.href;
-    const text = `${title} — Elk Grove Lunar New Year Tết`;
-
-    if (src && typeof navigator.canShare === "function") {
-      try {
-        const response = await fetch(src);
-        if (!response.ok) throw new Error(`Flier fetch failed (${response.status})`);
-        const blob = await response.blob();
-        const type = blob.type || "image/jpeg";
-        const file = new File([blob], flierShareFileName(src), { type });
-        const fileShare = { files: [file], title, text };
-        if (navigator.canShare(fileShare)) {
-          await navigator.share(fileShare);
-          return { mode: "file" };
-        }
-      } catch (_) {
-        /* fall through to URL share */
-      }
-    }
-
-    await navigator.share({ title, text, url: pageUrl });
-    return { mode: "url" };
-  }
-
+  /** Flier zoom, share/copy, and QR hotspot live in LSDS (`.ls-flier`). Call after rendering flier markup. */
   function initProgrammingFlierShare(root = document) {
-    const buttons = root.querySelectorAll(".programming-flier-share");
-    if (!buttons.length) return;
-
-    const shareAvailable =
-      typeof navigator !== "undefined" && typeof navigator.share === "function";
-
-    buttons.forEach((button) => {
-      if (!shareAvailable) {
-        button.hidden = true;
-        button.setAttribute("aria-hidden", "true");
-        button.disabled = true;
-        return;
-      }
-
-      button.hidden = false;
-      button.removeAttribute("aria-hidden");
-      button.disabled = false;
-      if (button.dataset.shareBound === "1") return;
-      button.dataset.shareBound = "1";
-
-      button.addEventListener("click", async () => {
-        if (button.dataset.sharing === "1") return;
-        button.dataset.sharing = "1";
-        try {
-          await shareProgrammingFlier(button);
-        } catch (err) {
-          if (err && err.name === "AbortError") return;
-          console.warn("Programming flier share failed", err);
-        } finally {
-          delete button.dataset.sharing;
-        }
-      });
-    });
+    window.LSDS?.initFliers?.(root);
   }
 
   function renderAttendeesPage(attendees) {
