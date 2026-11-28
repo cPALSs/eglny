@@ -1113,6 +1113,7 @@ var LABELS2 = {
 var ICON_ZOOM = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg>';
 var ICON_SHARE = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
 var ICON_LINK = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+var ICON_EXTERNAL = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
 function labelsFor2() {
   const lang = (document.documentElement.lang || "en").slice(0, 2).toLowerCase();
   return LABELS2[lang] || LABELS2.en;
@@ -1197,6 +1198,16 @@ async function runAction(figure, trigger, L, anchor) {
 function actionSpec(L, title) {
   return canWebShare() ? { icon: ICON_SHARE, label: L.share, aria: L.shareAria.replace("{title}", title) } : { icon: ICON_LINK, label: L.copyLink, aria: L.copyAria.replace("{title}", title) };
 }
+function ensureQrIcon(figure) {
+  figure.querySelectorAll(":scope > .ls-flier-qr").forEach((qr) => {
+    if (qr.querySelector(":scope > .ls-flier-qr-icon")) return;
+    const icon = document.createElement("span");
+    icon.className = "ls-flier-qr-icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.innerHTML = ICON_EXTERNAL;
+    qr.appendChild(icon);
+  });
+}
 function ensureZoomBadge(trigger) {
   if (trigger.querySelector(":scope > .ls-flier-zoom")) return;
   const badge = document.createElement("span");
@@ -1258,6 +1269,7 @@ function initFliers(root = document) {
     const L = labelsFor2();
     const title = titleFor(figure, trigger);
     ensureZoomBadge(trigger);
+    ensureQrIcon(figure);
     const action = ensureAction(figure, title, L);
     action.addEventListener("click", () => runAction(figure, trigger, L, action));
     trigger.addEventListener("click", (event) => {

@@ -2853,13 +2853,40 @@
   .ls-flier-qr {
     position: absolute;
     z-index: 2;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     left: var(--ls-flier-qr-x);
     top: var(--ls-flier-qr-y);
     width: var(--ls-flier-qr-w);
     height: var(--ls-flier-qr-h);
     border-radius: 4px;
+    background: transparent;
+    color: var(--ls-media-fg);
     cursor: pointer;
+    transition: background var(--ls-duration-fast) ease;
+  }
+  .ls-flier-qr-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--ls-duration-fast) ease;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .ls-flier-qr:hover {
+      background: color-mix(in srgb, var(--ls-media-bg) 52%, transparent);
+    }
+    .ls-flier-qr:hover .ls-flier-qr-icon {
+      opacity: 1;
+    }
+  }
+  .ls-flier-qr:focus-visible {
+    background: color-mix(in srgb, var(--ls-media-bg) 52%, transparent);
+  }
+  .ls-flier-qr:focus-visible .ls-flier-qr-icon {
+    opacity: 1;
   }
   .ls-flier-open:focus-visible,
   .ls-flier-action:focus-visible,
