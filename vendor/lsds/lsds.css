@@ -2902,6 +2902,14 @@
     height: 2.5rem;
     padding: 0;
   }
+  .ls-flier-lightbox-overlay {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .ls-flier-lightbox-overlay .ls-flier-qr {
+    pointer-events: auto;
+  }
   .ls-flier-toast {
     position: fixed;
     left: 50%;

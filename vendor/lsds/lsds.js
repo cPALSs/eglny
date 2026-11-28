@@ -1230,6 +1230,42 @@ function ensureAction(figure, title, L) {
   btn.setAttribute("aria-label", spec.aria);
   return btn;
 }
+function mountLightboxQrOverlay(figure, dialog) {
+  dialog.querySelectorAll(".ls-flier-lightbox-overlay").forEach((el) => el.remove());
+  const qrs = [...figure.querySelectorAll(":scope > .ls-flier-qr")];
+  if (!qrs.length) return;
+  const stage = dialog.querySelector(".ls-lightbox-stage");
+  const img = dialog.querySelector(".ls-lightbox-img");
+  if (!stage || !img) return;
+  const overlay = document.createElement("div");
+  overlay.className = "ls-flier-lightbox-overlay";
+  qrs.forEach((qr) => overlay.appendChild(qr.cloneNode(true)));
+  stage.appendChild(overlay);
+  const sync = () => {
+    if (!overlay.isConnected || img.hidden) return;
+    const sr = stage.getBoundingClientRect();
+    const ir = img.getBoundingClientRect();
+    if (!ir.width || !ir.height) return;
+    overlay.style.left = `${ir.left - sr.left}px`;
+    overlay.style.top = `${ir.top - sr.top}px`;
+    overlay.style.width = `${ir.width}px`;
+    overlay.style.height = `${ir.height}px`;
+  };
+  const mo = new MutationObserver(() => requestAnimationFrame(sync));
+  mo.observe(img, { attributes: true, attributeFilter: ["style", "class"] });
+  img.addEventListener("load", sync);
+  img.addEventListener("transitionend", sync);
+  window.addEventListener("resize", sync);
+  requestAnimationFrame(sync);
+  const cleanup = () => {
+    mo.disconnect();
+    img.removeEventListener("load", sync);
+    img.removeEventListener("transitionend", sync);
+    window.removeEventListener("resize", sync);
+    overlay.remove();
+  };
+  dialog.addEventListener("close", cleanup, { once: true });
+}
 function openInLightbox(figure, trigger, L, title) {
   openLightbox(
     [
@@ -1256,6 +1292,7 @@ function openInLightbox(figure, trigger, L, title) {
         const close = dialog?.querySelector(".ls-lightbox-top .ls-lightbox-close");
         if (close) close.before(btn);
         else actionsEl.appendChild(btn);
+        if (dialog) mountLightboxQrOverlay(figure, dialog);
       }
     }
   );
